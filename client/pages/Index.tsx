@@ -318,14 +318,14 @@ const ORB_BUTTON_CONFIG = {
   buttons: [
     {
       text: "About us",
-      angle: -65,                   // Position around circle (-90 = top, 0 = right, 90 = bottom, 180 = left)
-      radius: 220,                  // Distance from center (higher = further out)
+      angle: -45,                   // Position: top-right, more to the right
+      radius: 280,                  // Distance from center (increased for better spread)
       position: "top-right",        // Visual description (for reference only)
       animationDelay: 0.2,         // When button appears (in seconds)
 
       // Fine-tune positioning (these are added to calculated position)
-      xOffset: 15,                  // Move left (-) or right (+) in pixels (moved right)
-      yOffset: 20,                  // Move up (-) or down (+) in pixels (moved down)
+      xOffset: 0,                   // Reset offset for cleaner positioning
+      yOffset: -20,                 // Move up slightly
 
       // Override global settings for this button (optional)
       customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
@@ -333,41 +333,41 @@ const ORB_BUTTON_CONFIG = {
 
     {
       text: "Services",
-      angle: 25,                    // Position: lower right
-      radius: 180,                  // Distance from center
-      position: "right",
+      angle: 45,                    // Position: bottom-right
+      radius: 270,                  // Distance from center (increased for better spread)
+      position: "bottom-right",
       animationDelay: 0.6,
 
       // Custom positioning for Services button
       xOffset: 0,                   // Move left (-) or right (+) in pixels
-      yOffset: 40,                  // Move up (-) or down (+) in pixels (currently moved down 40px)
+      yOffset: 20,                  // Move down slightly
 
       // Services button uses fixed positioning across all screen sizes
-      customRadiusMultiplier: 0.75, // Fixed multiplier for consistent positioning
+      customRadiusMultiplier: 0.85, // Slightly increased for better spread
     },
 
     {
       text: "Portfolio",
-      angle: 125,                   // Position: lower left
-      radius: 190,                  // Distance from center
+      angle: 135,                   // Position: bottom-left
+      radius: 270,                  // Distance from center (increased for better spread)
       position: "bottom-left",
       animationDelay: 1.0,
 
       xOffset: 0,                   // Move left (-) or right (+) in pixels
-      yOffset: 0,                   // Move up (-) or down (+) in pixels
+      yOffset: 20,                  // Move down slightly
 
       customRadiusMultiplier: null,
     },
 
     {
       text: "Contact us",
-      angle: -170,                  // Position: upper left
-      radius: 220,                  // Distance from center
+      angle: -135,                  // Position: top-left
+      radius: 280,                  // Distance from center (increased for better spread)
       position: "top-left",
       animationDelay: 1.4,
 
-      xOffset: 20,                  // Move right 20px
-      yOffset: -100,                // Move up 100px
+      xOffset: 0,                   // Reset offset for cleaner positioning
+      yOffset: -20,                 // Move up slightly
 
       customRadiusMultiplier: null,
     },
