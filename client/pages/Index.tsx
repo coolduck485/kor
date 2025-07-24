@@ -345,15 +345,15 @@ const ORB_BUTTON_CONFIG = {
     {
       text: "Services",
       angle: 45, // Position: bottom-right
-      radius: 270, // Distance from center (increased for better spread)
+      radius: 260, // Reduced from 270 to move it in a bit
       position: "bottom-right",
       animationDelay: 0.6,
       size: "large", // Bigger button
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for Services button
-      xOffset: 0, // Move left (-) or right (+) in pixels
-      yOffset: 20, // Move down slightly
+      xOffset: -10, // Move left a bit from 0 to -10
+      yOffset: 15, // Reduced from 20 to 15
 
       // Services button now uses global positioning for consistency
       customRadiusMultiplier: null, // Use global multipliers for consistency
