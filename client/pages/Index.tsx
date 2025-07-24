@@ -324,8 +324,8 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 0.2,         // When button appears (in seconds)
 
       // Fine-tune positioning (these are added to calculated position)
-      xOffset: 0,                   // Move left (-) or right (+) in pixels
-      yOffset: 0,                   // Move up (-) or down (+) in pixels
+      xOffset: 15,                  // Move left (-) or right (+) in pixels (moved right)
+      yOffset: 20,                  // Move up (-) or down (+) in pixels (moved down)
 
       // Override global settings for this button (optional)
       customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
