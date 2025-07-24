@@ -318,14 +318,14 @@ const ORB_BUTTON_CONFIG = {
   buttons: [
     {
       text: "About us",
-      angle: -45,                   // Position: top-right, more to the right
-      radius: 280,                  // Distance from center (increased for better spread)
-      position: "top-right",        // Visual description (for reference only)
+      angle: -25,                   // Position: moved down from top-right (less negative = lower)
+      radius: 290,                  // Distance from center (slightly increased)
+      position: "right-side",       // Visual description (for reference only)
       animationDelay: 0.2,         // When button appears (in seconds)
 
       // Fine-tune positioning (these are added to calculated position)
-      xOffset: 0,                   // Reset offset for cleaner positioning
-      yOffset: -20,                 // Move up slightly
+      xOffset: -15,                 // Move slightly left for randomization
+      yOffset: 35,                  // Move down significantly
 
       // Override global settings for this button (optional)
       customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
