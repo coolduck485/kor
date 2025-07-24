@@ -595,10 +595,10 @@ function OrbFloatingButton({
       className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 animate-gentleFloat"
       style={
         {
-          "--mobile-x": `${x * radius * mobileMultiplier + xOffset}px`,
-          "--mobile-y": `${y * radius * mobileMultiplier + yOffset}px`,
-          "--tablet-x": `${x * radius * tabletMultiplier + xOffset}px`,
-          "--tablet-y": `${y * radius * tabletMultiplier + yOffset}px`,
+          "--mobile-x": `${Math.max(-120, Math.min(120, x * radius * mobileMultiplier + xOffset))}px`,
+          "--mobile-y": `${Math.max(-120, Math.min(120, y * radius * mobileMultiplier + yOffset))}px`,
+          "--tablet-x": `${Math.max(-180, Math.min(180, x * radius * tabletMultiplier + xOffset))}px`,
+          "--tablet-y": `${Math.max(-150, Math.min(150, y * radius * tabletMultiplier + yOffset))}px`,
           "--desktop-x": `${x * radius * desktopMultiplier + xOffset + (text === "About us" ? -100 : 0)}px`,
           "--desktop-y": `${y * radius * desktopMultiplier + yOffset}px`,
           marginLeft: "var(--mobile-x)",
