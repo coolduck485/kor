@@ -231,10 +231,23 @@ function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloating
     };
   };
 
+  const radian = (angle * Math.PI) / 180;
+  const x = Math.cos(radian);
+  const y = Math.sin(radian);
+
   return (
     <div
       className="pointer-events-auto"
-      style={getStaticPosition()}
+      style={{
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        marginLeft: `${x * radius * 0.5}px`, // Mobile: 50%
+        marginTop: `${y * radius * 0.5}px`,
+        animationDelay: `${delay}s`,
+        zIndex: 20
+      }}
     >
       <button className="group relative px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:scale-105">
         {/* Enhanced glass layers */}
