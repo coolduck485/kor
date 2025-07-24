@@ -475,6 +475,8 @@ function OrbFloatingButton({
   xOffset,
   yOffset,
   customRadiusMultiplier,
+  size,
+  accent,
 }: OrbFloatingButtonProps) {
   // Calculate base position from angle
   const radian = (angle * Math.PI) / 180;
@@ -489,9 +491,66 @@ function OrbFloatingButton({
   const desktopMultiplier =
     customRadiusMultiplier || ORB_BUTTON_CONFIG.global.desktopRadiusMultiplier;
 
+  // Size configurations for different button variants
+  const sizeConfig = {
+    small: {
+      padding: "px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5",
+      text: "text-xs sm:text-sm md:text-sm",
+      radius: "rounded-lg sm:rounded-xl md:rounded-2xl",
+      scale: 0.9,
+    },
+    medium: {
+      padding: "px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3",
+      text: "text-sm sm:text-base md:text-base",
+      radius: "rounded-xl sm:rounded-2xl md:rounded-3xl",
+      scale: 1.0,
+    },
+    large: {
+      padding: "px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4",
+      text: "text-base sm:text-lg md:text-xl",
+      radius: "rounded-2xl sm:rounded-3xl md:rounded-3xl",
+      scale: 1.15,
+    },
+  };
+
+  // Accent color configurations
+  const accentConfig = {
+    cyan: {
+      glow: "rgba(34, 211, 238, 0.6)",
+      gradient: "from-cyan-400/20 via-cyan-300/10 to-transparent",
+      shadow: "0 0 25px rgba(34, 211, 238, 0.4), 0 0 50px rgba(34, 211, 238, 0.2)",
+      border: "border-cyan-300/30",
+      bg: "bg-cyan-400/5",
+    },
+    purple: {
+      glow: "rgba(147, 51, 234, 0.6)",
+      gradient: "from-purple-400/20 via-purple-300/10 to-transparent",
+      shadow: "0 0 25px rgba(147, 51, 234, 0.4), 0 0 50px rgba(147, 51, 234, 0.2)",
+      border: "border-purple-300/30",
+      bg: "bg-purple-400/5",
+    },
+    blue: {
+      glow: "rgba(59, 130, 246, 0.6)",
+      gradient: "from-blue-400/20 via-blue-300/10 to-transparent",
+      shadow: "0 0 25px rgba(59, 130, 246, 0.4), 0 0 50px rgba(59, 130, 246, 0.2)",
+      border: "border-blue-300/30",
+      bg: "bg-blue-400/5",
+    },
+    green: {
+      glow: "rgba(34, 197, 94, 0.6)",
+      gradient: "from-green-400/20 via-green-300/10 to-transparent",
+      shadow: "0 0 25px rgba(34, 197, 94, 0.4), 0 0 50px rgba(34, 197, 94, 0.2)",
+      border: "border-green-300/30",
+      bg: "bg-green-400/5",
+    },
+  };
+
+  const currentSize = sizeConfig[size as keyof typeof sizeConfig] || sizeConfig.medium;
+  const currentAccent = accentConfig[accent as keyof typeof accentConfig] || accentConfig.cyan;
+
   return (
     <div
-      className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+      className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 animate-gentleFloat"
       style={
         {
           "--mobile-x": `${x * radius * mobileMultiplier + xOffset}px`,
@@ -503,6 +562,7 @@ function OrbFloatingButton({
           marginLeft: "var(--mobile-x)",
           marginTop: "var(--mobile-y)",
           animationDelay: `${delay}s`,
+          transform: `scale(${currentSize.scale})`,
         } as React.CSSProperties
       }
     >
@@ -525,39 +585,65 @@ function OrbFloatingButton({
         }}
       />
       <button
-        className="group relative px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl hover:bg-white/15 hover:border-white/30 transition-all"
+        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 ${currentAccent.border} ${currentAccent.bg} backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:border-white/40 hover:shadow-2xl active:scale-95 overflow-hidden`}
         style={{
           transitionDuration: ORB_BUTTON_CONFIG.global.animationDuration,
           transform: `scale(1)`,
+          background: `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.transform = `scale(${ORB_BUTTON_CONFIG.global.hoverScale})`;
+          e.currentTarget.style.transform = `scale(${ORB_BUTTON_CONFIG.global.hoverScale}) rotateY(5deg)`;
+          e.currentTarget.style.boxShadow = currentAccent.shadow;
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.transform = `scale(1)`;
+          e.currentTarget.style.transform = `scale(1) rotateY(0deg)`;
+          e.currentTarget.style.boxShadow = "none";
         }}
       >
-        {/* Enhanced glass layers */}
-        <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white/20 via-white/5 to-transparent" />
-        <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-tl from-blue-400/10 via-transparent to-white/5" />
-        <div className="absolute inset-[1px] rounded-xl sm:rounded-2xl bg-gradient-to-b from-white/10 to-transparent opacity-50" />
+        {/* Animated background layers */}
+        <div className={`absolute inset-0 ${currentSize.radius} bg-gradient-to-br ${currentAccent.gradient} opacity-50 group-hover:opacity-70 transition-all duration-500`} />
+        <div className={`absolute inset-0 ${currentSize.radius} bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500`} />
+
+        {/* Futuristic circuit-like patterns */}
+        <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+          <div className="absolute top-1 left-1 w-2 h-2 bg-white/30 rounded-full animate-pulse" />
+          <div className="absolute bottom-1 right-1 w-1 h-1 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }} />
+          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        </div>
+
+        {/* Holographic scanning line effect */}
+        <div className="absolute inset-0 overflow-hidden rounded-inherit">
+          <div
+            className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"
+            style={{ animationDelay: "0.2s" }}
+          />
+        </div>
+
+        {/* Pulsing border effect */}
+        <div className={`absolute inset-0 ${currentSize.radius} border border-white/10 group-hover:border-white/30 transition-all duration-500 animate-pulse opacity-50`} />
 
         {/* Button text with enhanced styling and glow animation */}
-        <span className="relative text-white/80 text-xs sm:text-sm md:text-sm font-medium group-hover:text-white transition-all duration-300 drop-shadow-sm animate-textGlow whitespace-nowrap">
+        <span className={`relative text-white/90 ${currentSize.text} font-semibold group-hover:text-white transition-all duration-500 drop-shadow-lg whitespace-nowrap tracking-wide font-mono`}
+          style={{
+            textShadow: `0 0 10px ${currentAccent.glow}, 0 0 20px ${currentAccent.glow}40`,
+          }}
+        >
           {text}
         </span>
 
-        {/* Enhanced hover glow with pulsing effect */}
-        <div
-          className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse"
+        {/* Enhanced 3D depth effect */}
+        <div className={`absolute inset-0 ${currentSize.radius} opacity-0 group-hover:opacity-100 transition-all duration-700`}
           style={{
-            boxShadow:
-              "0 0 20px rgba(73, 146, 255, 0.4), 0 0 40px rgba(73, 146, 255, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.1)",
+            background: `linear-gradient(145deg, transparent 0%, ${currentAccent.glow}20 50%, transparent 100%)`,
+            transform: "translateZ(10px)",
           }}
         />
 
-        {/* Glass reflection with shimmer effect */}
-        <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-t-xl sm:rounded-t-2xl bg-gradient-to-b from-white/15 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+        {/* Holographic shimmer effect */}
+        <div className={`absolute top-0.5 left-0.5 right-0.5 h-1/3 ${currentSize.radius} bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500`} />
+
+        {/* Bottom reflection */}
+        <div className={`absolute bottom-0.5 left-0.5 right-0.5 h-1/4 ${currentSize.radius} bg-gradient-to-t from-white/15 to-transparent opacity-30 group-hover:opacity-50 transition-all duration-500`} />
       </button>
     </div>
   );
