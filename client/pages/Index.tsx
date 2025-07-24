@@ -383,7 +383,7 @@ const ORB_BUTTON_CONFIG = {
       size: "medium", // Standard size
       accent: "blue", // Color accent - unified to blue
 
-      xOffset: 0, // Reset offset for cleaner positioning
+      xOffset: -90, // Move 90px to the left as requested
       yOffset: 0, // Reset offset for cleaner positioning
 
       customRadiusMultiplier: null,
