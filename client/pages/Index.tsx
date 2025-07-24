@@ -421,6 +421,9 @@ interface OrbFloatingButtonProps {
   position: string;
   radius: number;
   delay: number;
+  xOffset: number;
+  yOffset: number;
+  customRadiusMultiplier: number | null;
 }
 
 function OrbFloatingButton({
