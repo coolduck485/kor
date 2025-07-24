@@ -284,13 +284,20 @@ export default function Index() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll/Swipe Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center space-y-3 animate-button-float">
-          <span className="font-inter text-white/70 text-sm font-medium animate-text-glow">
+          {/* Desktop: Scroll Down */}
+          <span className="hidden lg:block font-inter text-white/70 text-sm font-medium animate-text-glow">
             Scroll Down
           </span>
-          <div className="relative w-6 h-10 border-2 border-white/40 rounded-full flex justify-center backdrop-blur-sm bg-white/5">
+          {/* Mobile/Tablet: Swipe Down */}
+          <span className="lg:hidden font-inter text-white/70 text-sm font-medium animate-text-glow">
+            Swipe Down
+          </span>
+
+          {/* Desktop: Mouse scroll indicator */}
+          <div className="hidden lg:flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
             <div
               className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
               style={{
@@ -298,6 +305,35 @@ export default function Index() {
               }}
             />
             <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
+          </div>
+
+          {/* Mobile/Tablet: Phone with swipe indicator */}
+          <div className="lg:hidden relative">
+            {/* Phone Icon */}
+            <div className="relative w-8 h-12 border-2 border-white/40 rounded-lg backdrop-blur-sm bg-white/5 flex items-center justify-center">
+              {/* Phone screen */}
+              <div className="w-4 h-7 bg-white/10 rounded-sm relative overflow-hidden">
+                {/* Swipe gesture indicator */}
+                <div
+                  className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-down shadow-lg"
+                  style={{
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    boxShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
+                  }}
+                />
+                {/* Second swipe line for better effect */}
+                <div
+                  className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-down-delayed"
+                  style={{
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                  }}
+                />
+              </div>
+              {/* Phone speaker */}
+              <div className="absolute top-1 w-2 h-0.5 bg-white/30 rounded-full"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -314,9 +350,9 @@ const ORB_BUTTON_CONFIG = {
   // Global settings for all buttons
   global: {
     // Base radius multipliers for different screen sizes - mobile needs smaller radius
-    mobileRadiusMultiplier: 0.35, // Reduced for mobile to prevent cutoff
-    tabletRadiusMultiplier: 0.6, // Good size for tablet
-    desktopRadiusMultiplier: 0.6, // Good size for desktop
+    mobileRadiusMultiplier: 0.3, // Reduced to prevent buttons from cutting off screen on mobile
+    tabletRadiusMultiplier: 0.65, // Slightly increased for tablet
+    desktopRadiusMultiplier: 0.7, // Increased for desktop for better spread
 
     // Global animation settings
     animationDuration: "600ms", // How long hover animations take
@@ -327,16 +363,16 @@ const ORB_BUTTON_CONFIG = {
   buttons: [
     {
       text: "About us",
-      angle: -25, // Position: moved down from top-right (less negative = lower)
-      radius: 290, // Distance from center (slightly increased)
-      position: "right-side", // Visual description (for reference only)
+      angle: -30, // Position: top-right, more evenly spaced
+      radius: 280, // Consistent distance from center
+      position: "top-right", // Visual description (for reference only)
       animationDelay: 0.2, // When button appears (in seconds)
       size: "medium", // Button size variant
       accent: "blue", // Color accent - unified to blue
 
       // Fine-tune positioning (these are added to calculated position)
-      xOffset: -15, // Move slightly left for randomization
-      yOffset: -25, // Moved higher from 10 to -25 for mobile
+      xOffset: 0, // Centered positioning for cleaner look
+      yOffset: -35, // Moved up a tiny bit more from -30 to -35 for mobile
 
       // Override global settings for this button (optional)
       customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
@@ -344,16 +380,16 @@ const ORB_BUTTON_CONFIG = {
 
     {
       text: "Services",
-      angle: 45, // Position: bottom-right
-      radius: 260, // Reduced from 270 to move it in a bit
+      angle: 30, // Position: bottom-right, mirrored from About us for symmetry
+      radius: 280, // Consistent distance from center
       position: "bottom-right",
       animationDelay: 0.6,
-      size: "large", // Bigger button
+      size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for Services button
-      xOffset: -10, // Move left a bit from 0 to -10
-      yOffset: 15, // Reduced from 20 to 15
+      xOffset: 0, // Centered positioning
+      yOffset: 0, // Moved up for better spacing
 
       // Services button now uses global positioning for consistency
       customRadiusMultiplier: null, // Use global multipliers for consistency
@@ -361,30 +397,30 @@ const ORB_BUTTON_CONFIG = {
 
     {
       text: "Portfolio",
-      angle: 135, // Position: bottom-left
-      radius: 270, // Distance from center (increased for better spread)
+      angle: 150, // Position: bottom-left, better symmetry
+      radius: 280, // Consistent distance from center
       position: "bottom-left",
       animationDelay: 1.0,
-      size: "small", // Smaller button for variety
+      size: "medium", // Consistent sizing for uniform look
       accent: "blue", // Color accent - unified to blue
 
-      xOffset: 0, // Move left (-) or right (+) in pixels
-      yOffset: 20, // Move down slightly
+      xOffset: 0, // Centered positioning
+      yOffset: 5, // Slight adjustment for visual balance
 
       customRadiusMultiplier: null,
     },
 
     {
       text: "Contact us",
-      angle: -135, // Position: moved further from Kor text (was -155, now -135)
-      radius: 290, // Distance from center - increased to move further away
-      position: "left-side",
+      angle: -150, // Position: top-left, mirrored from Portfolio for symmetry
+      radius: 280, // Consistent distance from center
+      position: "top-left",
       animationDelay: 1.4,
-      size: "medium", // Standard size
+      size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
 
-      xOffset: -35, // More left to move away from Kor text
-      yOffset: -50, // Moved even higher from -25 to -50 for mobile
+      xOffset: -100, // Adjusted for better spacing from text
+      yOffset: -55, // Moved up 10px more from -45 to -55
 
       customRadiusMultiplier: null,
     },
@@ -563,7 +599,7 @@ function OrbFloatingButton({
           "--mobile-y": `${y * radius * mobileMultiplier + yOffset}px`,
           "--tablet-x": `${x * radius * tabletMultiplier + xOffset}px`,
           "--tablet-y": `${y * radius * tabletMultiplier + yOffset}px`,
-          "--desktop-x": `${x * radius * desktopMultiplier + xOffset}px`,
+          "--desktop-x": `${x * radius * desktopMultiplier + xOffset + (text === "About us" ? -100 : 0)}px`,
           "--desktop-y": `${y * radius * desktopMultiplier + yOffset}px`,
           marginLeft: "var(--mobile-x)",
           marginTop: "var(--mobile-y)",
@@ -628,14 +664,15 @@ function OrbFloatingButton({
         {/* Holographic scanning line effect */}
         <div className="absolute inset-0 overflow-hidden rounded-inherit">
           <div
-            className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"
-            style={{ animationDelay: "0.2s" }}
+            className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"
+            style={{ animationDelay: "0.2s", left: "-50px" }}
           />
         </div>
 
         {/* Pulsing border effect */}
         <div
           className={`absolute inset-0 ${currentSize.radius} border border-white/10 group-hover:border-white/30 transition-all duration-500 animate-pulse opacity-50`}
+          style={{ left: "-50px" }}
         />
 
         {/* Button text with enhanced styling and glow animation */}
