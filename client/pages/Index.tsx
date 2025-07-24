@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export default function Index() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -11,18 +11,21 @@ export default function Index() {
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
-          backgroundSize: '50px 50px'
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
+            backgroundSize: "50px 50px",
+          }}
+        />
       </div>
 
       {/* Mouse Follower Effect */}
@@ -31,10 +34,11 @@ export default function Index() {
         style={{
           left: `${mousePosition.x * 100}%`,
           top: `${mousePosition.y * 100}%`,
-          transform: 'translate(-50%, -50%)',
-          background: 'radial-gradient(circle, rgba(73, 146, 255, 0.1) 0%, transparent 70%)',
-          width: '600px',
-          height: '600px',
+          transform: "translate(-50%, -50%)",
+          background:
+            "radial-gradient(circle, rgba(73, 146, 255, 0.1) 0%, transparent 70%)",
+          width: "600px",
+          height: "600px",
         }}
       />
 
@@ -48,11 +52,41 @@ export default function Index() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z" stroke="#22D3EE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M5 3.5V7.5" stroke="#22D3EE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M19 17.5V21.5" stroke="#22D3EE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M3 5.5H7" stroke="#22D3EE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M17 19.5H21" stroke="#22D3EE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path
+              d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z"
+              stroke="#22D3EE"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M5 3.5V7.5"
+              stroke="#22D3EE"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M19 17.5V21.5"
+              stroke="#22D3EE"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M3 5.5H7"
+              stroke="#22D3EE"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M17 19.5H21"
+              stroke="#22D3EE"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
           <span className="font-inter text-white/80 text-xs md:text-sm font-normal text-center animate-textGlow">
             Future-Ready Solutions, Custom-Built
@@ -62,7 +96,6 @@ export default function Index() {
 
       {/* Main Content Container */}
       <div className="relative flex items-center justify-center min-h-screen">
-
         {/* Central Glowing Orb - SVG Based */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative animate-float">
@@ -74,52 +107,141 @@ export default function Index() {
               xmlns="http://www.w3.org/2000/svg"
               className="w-[45rem] h-[45rem] sm:w-[60rem] sm:h-[60rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem]"
               style={{
-                position: 'absolute',
-                left: '50%',
-                top: '50%',
-                transform: 'translate(-50%, -50%)'
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
               }}
             >
               <defs>
-                <filter id="orbFilter" x="0.820007" y="-259.18" width="1282.36" height="1298.36" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                  <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset/>
-                  <feGaussianBlur stdDeviation="11.79"/>
-                  <feColorMatrix type="matrix" values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"/>
-                  <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset/>
-                  <feGaussianBlur stdDeviation="41.265"/>
-                  <feColorMatrix type="matrix" values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"/>
-                  <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset/>
-                  <feGaussianBlur stdDeviation="82.53"/>
-                  <feColorMatrix type="matrix" values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"/>
-                  <feBlend mode="normal" in2="effect2_dropShadow" result="effect3_dropShadow"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset/>
-                  <feGaussianBlur stdDeviation="141.48"/>
-                  <feColorMatrix type="matrix" values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"/>
-                  <feBlend mode="normal" in2="effect3_dropShadow" result="effect4_dropShadow"/>
-                  <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                  <feOffset/>
-                  <feGaussianBlur stdDeviation="247.59"/>
-                  <feColorMatrix type="matrix" values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"/>
-                  <feBlend mode="normal" in2="effect4_dropShadow" result="effect5_dropShadow"/>
-                  <feBlend mode="normal" in="SourceGraphic" in2="effect5_dropShadow" result="shape"/>
-                  <feGaussianBlur stdDeviation="17.5" result="effect6_foregroundBlur"/>
+                <filter
+                  id="orbFilter"
+                  x="0.820007"
+                  y="-259.18"
+                  width="1282.36"
+                  height="1298.36"
+                  filterUnits="userSpaceOnUse"
+                  colorInterpolationFilters="sRGB"
+                >
+                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="11.79" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow"
+                  />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="41.265" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="effect1_dropShadow"
+                    result="effect2_dropShadow"
+                  />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="82.53" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="effect2_dropShadow"
+                    result="effect3_dropShadow"
+                  />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="141.48" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="effect3_dropShadow"
+                    result="effect4_dropShadow"
+                  />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset />
+                  <feGaussianBlur stdDeviation="247.59" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in2="effect4_dropShadow"
+                    result="effect5_dropShadow"
+                  />
+                  <feBlend
+                    mode="normal"
+                    in="SourceGraphic"
+                    in2="effect5_dropShadow"
+                    result="shape"
+                  />
+                  <feGaussianBlur
+                    stdDeviation="17.5"
+                    result="effect6_foregroundBlur"
+                  />
                 </filter>
-                <linearGradient id="orbGradient" x1="496" y1="449.231" x2="853.699" y2="451.438" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#3FBAFF"/>
-                  <stop offset="0.493374" stopColor="#4992FF"/>
-                  <stop offset="1" stopColor="#3987E3"/>
+                <linearGradient
+                  id="orbGradient"
+                  x1="496"
+                  y1="449.231"
+                  x2="853.699"
+                  y2="451.438"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stopColor="#3FBAFF" />
+                  <stop offset="0.493374" stopColor="#4992FF" />
+                  <stop offset="1" stopColor="#3987E3" />
                 </linearGradient>
               </defs>
               <g filter="url(#orbFilter)">
-                <ellipse cx="642" cy="390" rx="146" ry="154" fill="url(#orbGradient)"/>
-                <ellipse cx="642" cy="390" rx="146" ry="154" stroke="black"/>
+                <ellipse
+                  cx="642"
+                  cy="390"
+                  rx="146"
+                  ry="154"
+                  fill="url(#orbGradient)"
+                />
+                <ellipse cx="642" cy="390" rx="146" ry="154" stroke="black" />
               </g>
             </svg>
           </div>
@@ -136,8 +258,10 @@ export default function Index() {
 
           {/* Development services - keeping same position */}
           <div className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4">
-            <p className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-glow-text-light animate-text-glow"
-               style={{ animationDelay: '1s' }}>
+            <p
+              className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-glow-text-light animate-text-glow"
+              style={{ animationDelay: "1s" }}
+            >
               Development services
             </p>
           </div>
@@ -154,12 +278,16 @@ export default function Index() {
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center space-y-3 animate-button-float">
-          <span className="font-inter text-white/70 text-sm font-medium animate-text-glow">Scroll Down</span>
+          <span className="font-inter text-white/70 text-sm font-medium animate-text-glow">
+            Scroll Down
+          </span>
           <div className="relative w-6 h-10 border-2 border-white/40 rounded-full flex justify-center backdrop-blur-sm bg-white/5">
-            <div className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
-                 style={{
-                   boxShadow: '0 0 10px rgba(73, 146, 255, 0.5)'
-                 }} />
+            <div
+              className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
+              style={{
+                boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
+              }}
+            />
             <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
           </div>
         </div>
@@ -172,11 +300,35 @@ export default function Index() {
 const ORB_BUTTON_CONFIG = {
   // Button data with unique positions organically spread around the orb
   buttons: [
-    { text: "About us", angle: -65, radius: 220, position: "top-right", animationDelay: 0.2 },      // Upper right
-    { text: "Services", angle: 25, radius: 180, position: "right", animationDelay: 0.6 },           // Lower right, closer
-    { text: "Portfolio", angle: 125, radius: 190, position: "bottom-left", animationDelay: 1.0 },   // Lower left, moved closer
-    { text: "Contact us", angle: -170, radius: 220, position: "top-left", animationDelay: 1.4 }     // Upper left, moved up and slightly right
-  ]
+    {
+      text: "About us",
+      angle: -65,
+      radius: 220,
+      position: "top-right",
+      animationDelay: 0.2,
+    }, // Upper right
+    {
+      text: "Services",
+      angle: 25,
+      radius: 180,
+      position: "right",
+      animationDelay: 0.6,
+    }, // Lower right, closer
+    {
+      text: "Portfolio",
+      angle: 125,
+      radius: 190,
+      position: "bottom-left",
+      animationDelay: 1.0,
+    }, // Lower left, moved closer
+    {
+      text: "Contact us",
+      angle: -170,
+      radius: 220,
+      position: "top-left",
+      animationDelay: 1.4,
+    }, // Upper left, moved up and slightly right
+  ],
 };
 
 function OrbFloatingButtons() {
@@ -204,7 +356,13 @@ interface OrbFloatingButtonProps {
   delay: number;
 }
 
-function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloatingButtonProps) {
+function OrbFloatingButton({
+  text,
+  angle,
+  position,
+  radius,
+  delay,
+}: OrbFloatingButtonProps) {
   const getStaticPosition = () => {
     // Convert angle to radians and calculate position
     const radian = (angle * Math.PI) / 180;
@@ -220,14 +378,14 @@ function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloating
     const desktopY = y * radius;
 
     return {
-      position: 'absolute' as const,
-      left: '50%',
-      top: '50%',
+      position: "absolute" as const,
+      left: "50%",
+      top: "50%",
       transform: `translate(-50%, -50%)`,
       marginLeft: `${mobileX}px`,
       marginTop: `${mobileY}px`,
       animationDelay: `${delay}s`,
-      zIndex: 20
+      zIndex: 20,
     };
   };
 
@@ -236,7 +394,7 @@ function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloating
   const y = Math.sin(radian);
 
   // Special adjustments for buttons
-  const yOffset = text === "Contact us" ? -100 : (text === "Services" ? 10 : 0);
+  const yOffset = text === "Contact us" ? -100 : text === "Services" ? 10 : 0;
   const xOffset = text === "Contact us" ? 20 : 0;
 
   // Fix Services button to use consistent positioning across screen sizes
@@ -246,20 +404,23 @@ function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloating
   return (
     <div
       className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
-      style={{
-        '--mobile-x': `${x * (isServicesButton ? fixedRadius * 0.7 : radius * 0.5) + xOffset}px`,
-        '--mobile-y': `${y * (isServicesButton ? fixedRadius * 0.7 : radius * 0.5) + yOffset}px`,
-        '--tablet-x': `${x * (isServicesButton ? fixedRadius * 0.7 : radius * 0.75) + xOffset}px`,
-        '--tablet-y': `${y * (isServicesButton ? fixedRadius * 0.7 : radius * 0.75) + yOffset}px`,
-        '--desktop-x': `${x * (isServicesButton ? fixedRadius * 0.7 : radius) + xOffset}px`,
-        '--desktop-y': `${y * (isServicesButton ? fixedRadius * 0.7 : radius) + yOffset}px`,
-        marginLeft: 'var(--mobile-x)',
-        marginTop: 'var(--mobile-y)',
-        animationDelay: `${delay}s`,
-      } as React.CSSProperties}
+      style={
+        {
+          "--mobile-x": `${x * (isServicesButton ? fixedRadius * 0.7 : radius * 0.5) + xOffset}px`,
+          "--mobile-y": `${y * (isServicesButton ? fixedRadius * 0.7 : radius * 0.5) + yOffset}px`,
+          "--tablet-x": `${x * (isServicesButton ? fixedRadius * 0.7 : radius * 0.75) + xOffset}px`,
+          "--tablet-y": `${y * (isServicesButton ? fixedRadius * 0.7 : radius * 0.75) + yOffset}px`,
+          "--desktop-x": `${x * (isServicesButton ? fixedRadius * 0.7 : radius) + xOffset}px`,
+          "--desktop-y": `${y * (isServicesButton ? fixedRadius * 0.7 : radius) + yOffset}px`,
+          marginLeft: "var(--mobile-x)",
+          marginTop: "var(--mobile-y)",
+          animationDelay: `${delay}s`,
+        } as React.CSSProperties
+      }
     >
-      <style dangerouslySetInnerHTML={{
-        __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
           @media (min-width: 640px) {
             [style*="--mobile-x"] {
               margin-left: var(--tablet-x) !important;
@@ -272,8 +433,9 @@ function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloating
               margin-top: var(--desktop-y) !important;
             }
           }
-        `
-      }} />
+        `,
+        }}
+      />
       <button className="group relative px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:scale-105">
         {/* Enhanced glass layers */}
         <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white/20 via-white/5 to-transparent" />
@@ -286,10 +448,13 @@ function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloating
         </span>
 
         {/* Enhanced hover glow with pulsing effect */}
-        <div className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse"
-             style={{
-               boxShadow: '0 0 20px rgba(73, 146, 255, 0.4), 0 0 40px rgba(73, 146, 255, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.1)'
-             }} />
+        <div
+          className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse"
+          style={{
+            boxShadow:
+              "0 0 20px rgba(73, 146, 255, 0.4), 0 0 40px rgba(73, 146, 255, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.1)",
+          }}
+        />
 
         {/* Glass reflection with shimmer effect */}
         <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-t-xl sm:rounded-t-2xl bg-gradient-to-b from-white/15 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
