@@ -406,6 +406,9 @@ function OrbFloatingButtons() {
           position={button.position}
           radius={button.radius}
           delay={button.animationDelay}
+          xOffset={button.xOffset}
+          yOffset={button.yOffset}
+          customRadiusMultiplier={button.customRadiusMultiplier}
         />
       ))}
     </>
