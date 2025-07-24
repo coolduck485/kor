@@ -585,7 +585,7 @@ function OrbFloatingButton({
         }}
       />
       <button
-        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 ${currentAccent.border} ${currentAccent.bg} backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:border-white/40 hover:shadow-2xl active:scale-95 overflow-hidden`}
+        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 border-blue-300/30 bg-blue-400/5 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:border-white/40 hover:shadow-2xl active:scale-95 overflow-hidden`}
         style={{
           transitionDuration: ORB_BUTTON_CONFIG.global.animationDuration,
           transform: `scale(1)`,
