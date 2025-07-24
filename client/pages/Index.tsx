@@ -383,7 +383,7 @@ const ORB_BUTTON_CONFIG = {
       size: "medium", // Standard size
       accent: "blue", // Color accent - unified to blue
 
-      xOffset: -90, // Move 90px to the left as requested
+      xOffset: -20, // Reduced offset for mobile compatibility (was -90, now -20)
       yOffset: 0, // Reset offset for cleaner positioning
 
       customRadiusMultiplier: null,
@@ -415,7 +415,7 @@ const ORB_BUTTON_CONFIG = {
 // ========================================
 //
 // To move "Services" button 50px to the right:
-// Change: xOffset: 0  →  xOffset: 50
+// Change: xOffset: 0  ��  xOffset: 50
 //
 // To move "About us" button 30px up:
 // Change: yOffset: 0  →  yOffset: -30
