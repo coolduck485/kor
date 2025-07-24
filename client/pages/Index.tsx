@@ -355,8 +355,8 @@ const ORB_BUTTON_CONFIG = {
       xOffset: 0, // Move left (-) or right (+) in pixels
       yOffset: 20, // Move down slightly
 
-      // Services button uses fixed positioning across all screen sizes
-      customRadiusMultiplier: 0.85, // Slightly increased for better spread
+      // Services button now uses global positioning for consistency
+      customRadiusMultiplier: null, // Use global multipliers for consistency
     },
 
     {
