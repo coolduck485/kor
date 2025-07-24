@@ -250,7 +250,7 @@ export default function Index() {
         {/* Text Content - Moved up */}
         <div className="relative z-10 px-4 -mt-16">
           {/* Kor - moved further to the left */}
-          <div className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20">
+          <div className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20" style={{marginLeft: '-5px'}}>
             <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-glow">
               Kor
             </h1>
