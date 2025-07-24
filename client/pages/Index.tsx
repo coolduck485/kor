@@ -369,7 +369,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       xOffset: 0, // Move left (-) or right (+) in pixels
-      yOffset: 20, // Move down slightly
+      yOffset: 10, // Moved up from 20 to 10
 
       customRadiusMultiplier: null,
     },
