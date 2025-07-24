@@ -593,7 +593,7 @@ function OrbFloatingButton({
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = `scale(${ORB_BUTTON_CONFIG.global.hoverScale}) rotateY(5deg)`;
-          e.currentTarget.style.boxShadow = currentAccent.shadow;
+          e.currentTarget.style.boxShadow = "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = `scale(1) rotateY(0deg)`;
