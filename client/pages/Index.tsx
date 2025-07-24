@@ -350,9 +350,9 @@ const ORB_BUTTON_CONFIG = {
   // Global settings for all buttons
   global: {
     // Base radius multipliers for different screen sizes - mobile needs smaller radius
-    mobileRadiusMultiplier: 0.3, // Reduced to prevent buttons from cutting off screen on mobile
-    tabletRadiusMultiplier: 0.5, // Reduced to bring buttons closer to orb on tablet
-    desktopRadiusMultiplier: 0.7, // Increased for desktop for better spread
+    mobileRadiusMultiplier: 0.7, // Match desktop positioning
+    tabletRadiusMultiplier: 0.7, // Match desktop positioning
+    desktopRadiusMultiplier: 0.7, // Keep desktop positioning unchanged
 
     // Global animation settings
     animationDuration: "600ms", // How long hover animations take
@@ -372,7 +372,7 @@ const ORB_BUTTON_CONFIG = {
 
       // Fine-tune positioning (these are added to calculated position)
       xOffset: 0, // Centered positioning for cleaner look
-      yOffset: -75, // Moved up 40px more from -35 to -75 for mobile
+      yOffset: -35, // Reset to match desktop positioning better
 
       // Override global settings for this button (optional)
       customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
@@ -536,10 +536,10 @@ function OrbFloatingButton({
       scale: 0.75, // Smaller on mobile
     },
     medium: {
-      padding: "px-3 py-1.5 sm:px-5 sm:py-2.5 md:px-6 md:py-3",
-      text: "text-xs sm:text-base md:text-base",
-      radius: "rounded-lg sm:rounded-2xl md:rounded-3xl",
-      scale: 0.85, // Smaller on mobile
+      padding: "px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3",
+      text: "text-xs sm:text-sm md:text-base",
+      radius: "rounded-md sm:rounded-xl md:rounded-3xl",
+      scale: 0.65, // Much smaller on mobile/tablet for better fit
     },
     large: {
       padding: "px-3 py-1.5 sm:px-6 sm:py-3 md:px-8 md:py-4",
