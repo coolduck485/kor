@@ -384,7 +384,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       xOffset: -35, // More left to move away from Kor text
-      yOffset: -25, // Move up to get off the Kor text area
+      yOffset: -50, // Moved even higher from -25 to -50 for mobile
 
       customRadiusMultiplier: null,
     },
