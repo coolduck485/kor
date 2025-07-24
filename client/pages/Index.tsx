@@ -314,8 +314,8 @@ const ORB_BUTTON_CONFIG = {
   // Global settings for all buttons
   global: {
     // Base radius multipliers for different screen sizes
-    mobileRadiusMultiplier: 0.5, // How far buttons are from center on mobile (0.5 = half distance)
-    tabletRadiusMultiplier: 0.75, // How far buttons are from center on tablet
+    mobileRadiusMultiplier: 0.25, // How far buttons are from center on mobile (0.25 = quarter distance for better mobile fit)
+    tabletRadiusMultiplier: 0.6, // How far buttons are from center on tablet
     desktopRadiusMultiplier: 1.0, // How far buttons are from center on desktop
 
     // Global animation settings
