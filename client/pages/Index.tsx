@@ -436,43 +436,15 @@ function OrbFloatingButton({
   yOffset,
   customRadiusMultiplier,
 }: OrbFloatingButtonProps) {
-  const getStaticPosition = () => {
-    // Convert angle to radians and calculate position
-    const radian = (angle * Math.PI) / 180;
-    const x = Math.cos(radian);
-    const y = Math.sin(radian);
-
-    // Calculate positions for different screen sizes
-    const mobileX = x * (radius * 0.5);
-    const mobileY = y * (radius * 0.5);
-    const tabletX = x * (radius * 0.7);
-    const tabletY = y * (radius * 0.7);
-    const desktopX = x * radius;
-    const desktopY = y * radius;
-
-    return {
-      position: "absolute" as const,
-      left: "50%",
-      top: "50%",
-      transform: `translate(-50%, -50%)`,
-      marginLeft: `${mobileX}px`,
-      marginTop: `${mobileY}px`,
-      animationDelay: `${delay}s`,
-      zIndex: 20,
-    };
-  };
-
+  // Calculate base position from angle
   const radian = (angle * Math.PI) / 180;
   const x = Math.cos(radian);
   const y = Math.sin(radian);
 
-  // Special adjustments for buttons
-  const yOffset = text === "Contact us" ? -100 : text === "Services" ? 40 : 0;
-  const xOffset = text === "Contact us" ? 20 : 0;
-
-  // Fix Services button to use consistent positioning across screen sizes
-  const isServicesButton = text === "Services";
-  const fixedRadius = isServicesButton ? 180 : radius; // Use fixed radius for Services button
+  // Get radius multipliers from config or use custom override
+  const mobileMultiplier = customRadiusMultiplier || ORB_BUTTON_CONFIG.global.mobileRadiusMultiplier;
+  const tabletMultiplier = customRadiusMultiplier || ORB_BUTTON_CONFIG.global.tabletRadiusMultiplier;
+  const desktopMultiplier = customRadiusMultiplier || ORB_BUTTON_CONFIG.global.desktopRadiusMultiplier;
 
   return (
     <div
