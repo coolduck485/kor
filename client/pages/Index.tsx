@@ -228,19 +228,7 @@ function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloating
       className="pointer-events-auto"
       style={getStaticPosition()}
     >
-      <button className="group relative px-6 py-3 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:scale-105 animate-gentleBounce">
-        {/* Animated Sparkle Icon */}
-        <div className="absolute -top-1 -right-1 w-3 h-3">
-          <svg
-            className="w-full h-full animate-sparkle opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-            viewBox="0 0 24 25"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z" stroke="#22D3EE" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-
+      <button className="group relative px-6 py-3 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:scale-105">
         {/* Enhanced glass layers */}
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 via-white/5 to-transparent" />
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-tl from-blue-400/10 via-transparent to-white/5" />
