@@ -332,7 +332,7 @@ const ORB_BUTTON_CONFIG = {
       position: "right-side", // Visual description (for reference only)
       animationDelay: 0.2, // When button appears (in seconds)
       size: "medium", // Button size variant
-      accent: "cyan", // Color accent
+      accent: "blue", // Color accent - unified to blue
 
       // Fine-tune positioning (these are added to calculated position)
       xOffset: -15, // Move slightly left for randomization
@@ -349,7 +349,7 @@ const ORB_BUTTON_CONFIG = {
       position: "bottom-right",
       animationDelay: 0.6,
       size: "large", // Bigger button
-      accent: "purple", // Color accent
+      accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for Services button
       xOffset: 0, // Move left (-) or right (+) in pixels
@@ -366,7 +366,7 @@ const ORB_BUTTON_CONFIG = {
       position: "bottom-left",
       animationDelay: 1.0,
       size: "small", // Smaller button for variety
-      accent: "blue", // Color accent
+      accent: "blue", // Color accent - unified to blue
 
       xOffset: 0, // Move left (-) or right (+) in pixels
       yOffset: 20, // Move down slightly
@@ -376,15 +376,15 @@ const ORB_BUTTON_CONFIG = {
 
     {
       text: "Contact us",
-      angle: -155, // Position: moved down from top-left (more negative = different angle)
-      radius: 275, // Distance from center (slightly different from About us)
+      angle: -135, // Position: moved further from Kor text (was -155, now -135)
+      radius: 290, // Distance from center - increased to move further away
       position: "left-side",
       animationDelay: 1.4,
       size: "medium", // Standard size
-      accent: "green", // Color accent
+      accent: "blue", // Color accent - unified to blue
 
-      xOffset: 25, // Move right for randomization
-      yOffset: -45, // Move up 50px from previous position (5 - 50 = -45)
+      xOffset: 0, // Reset offset for cleaner positioning
+      yOffset: 0, // Reset offset for cleaner positioning
 
       customRadiusMultiplier: null,
     },
