@@ -664,8 +664,8 @@ function OrbFloatingButton({
         {/* Holographic scanning line effect */}
         <div className="absolute inset-0 overflow-hidden rounded-inherit">
           <div
-            className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"
-            style={{ animationDelay: "0.2s" }}
+            className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"
+            style={{ animationDelay: "0.2s", left: "-50px" }}
           />
         </div>
 
