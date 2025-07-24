@@ -371,7 +371,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       // Fine-tune positioning (these are added to calculated position)
-      xOffset: -100, // Moved 100px to the left from 0 to -100
+      xOffset: 0, // Centered positioning for cleaner look
       yOffset: -35, // Moved up a tiny bit more from -30 to -35 for mobile
 
       // Override global settings for this button (optional)
