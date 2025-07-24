@@ -394,6 +394,25 @@ const ORB_BUTTON_CONFIG = {
 // 0.5 = half distance, 1.0 = full distance, 1.5 = 50% further
 //
 // ========================================
+// USAGE EXAMPLES:
+// ========================================
+//
+// To move "Services" button 50px to the right:
+// Change: xOffset: 0  →  xOffset: 50
+//
+// To move "About us" button 30px up:
+// Change: yOffset: 0  →  yOffset: -30
+//
+// To make all buttons closer to center on mobile:
+// Change: mobileRadiusMultiplier: 0.5  →  mobileRadiusMultiplier: 0.3
+//
+// To make "Portfolio" button appear at the top:
+// Change: angle: 125  →  angle: -90
+//
+// To make buttons grow more on hover:
+// Change: hoverScale: 1.05  →  hoverScale: 1.15
+//
+// ========================================
 
 function OrbFloatingButtons() {
   return (
