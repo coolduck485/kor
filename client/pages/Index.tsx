@@ -206,12 +206,13 @@ interface OrbFloatingButtonProps {
 
 function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloatingButtonProps) {
   const getStaticPosition = () => {
-    // Convert angle to radians and calculate position with responsive radius
+    // Convert angle to radians and calculate position
     const radian = (angle * Math.PI) / 180;
 
-    // Responsive radius adjustments based on screen size
-    // Using CSS custom properties for responsive calculations
-    const responsiveRadius = `clamp(${radius * 0.6}px, ${radius * 0.8}px + 2vw, ${radius}px)`;
+    // Calculate responsive radius based on screen size
+    const mobileRadius = radius * 0.5;  // 50% on mobile
+    const tabletRadius = radius * 0.7;  // 70% on tablet
+    const desktopRadius = radius;       // 100% on desktop
 
     const x = Math.cos(radian);
     const y = Math.sin(radian);
@@ -221,13 +222,19 @@ function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloating
       left: '50%',
       top: '50%',
       transform: `translate(-50%, -50%)`,
-      '--base-x': x.toString(),
-      '--base-y': y.toString(),
-      '--radius': responsiveRadius,
-      marginLeft: `calc(var(--base-x) * var(--radius))`,
-      marginTop: `calc(var(--base-y) * var(--radius))`,
+      marginLeft: `${x * mobileRadius}px`,
+      marginTop: `${y * mobileRadius}px`,
       animationDelay: `${delay}s`,
-      zIndex: 20
+      zIndex: 20,
+      // Use CSS media queries for responsive positioning
+      '@media (min-width: 640px)': {
+        marginLeft: `${x * tabletRadius}px`,
+        marginTop: `${y * tabletRadius}px`,
+      },
+      '@media (min-width: 1024px)': {
+        marginLeft: `${x * desktopRadius}px`,
+        marginTop: `${y * desktopRadius}px`,
+      },
     } as React.CSSProperties;
   };
 
