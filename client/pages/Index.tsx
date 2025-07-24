@@ -236,25 +236,25 @@ function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloating
       className="pointer-events-auto"
       style={getStaticPosition()}
     >
-      <button className="group relative px-6 py-3 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:scale-105">
+      <button className="group relative px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:scale-105">
         {/* Enhanced glass layers */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 via-white/5 to-transparent" />
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-tl from-blue-400/10 via-transparent to-white/5" />
-        <div className="absolute inset-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent opacity-50" />
+        <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white/20 via-white/5 to-transparent" />
+        <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-tl from-blue-400/10 via-transparent to-white/5" />
+        <div className="absolute inset-[1px] rounded-xl sm:rounded-2xl bg-gradient-to-b from-white/10 to-transparent opacity-50" />
 
         {/* Button text with enhanced styling and glow animation */}
-        <span className="relative text-white/80 text-sm font-medium group-hover:text-white transition-all duration-300 drop-shadow-sm animate-textGlow">
+        <span className="relative text-white/80 text-xs sm:text-sm md:text-sm font-medium group-hover:text-white transition-all duration-300 drop-shadow-sm animate-textGlow whitespace-nowrap">
           {text}
         </span>
 
         {/* Enhanced hover glow with pulsing effect */}
-        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse"
+        <div className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse"
              style={{
-               boxShadow: '0 0 30px rgba(73, 146, 255, 0.4), 0 0 60px rgba(73, 146, 255, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1)'
+               boxShadow: '0 0 20px rgba(73, 146, 255, 0.4), 0 0 40px rgba(73, 146, 255, 0.2), inset 0 0 15px rgba(255, 255, 255, 0.1)'
              }} />
 
         {/* Glass reflection with shimmer effect */}
-        <div className="absolute top-1 left-1 right-1 h-1/3 rounded-t-2xl bg-gradient-to-b from-white/15 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+        <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-t-xl sm:rounded-t-2xl bg-gradient-to-b from-white/15 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
       </button>
     </div>
   );
