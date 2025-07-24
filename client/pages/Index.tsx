@@ -432,6 +432,9 @@ function OrbFloatingButton({
   position,
   radius,
   delay,
+  xOffset,
+  yOffset,
+  customRadiusMultiplier,
 }: OrbFloatingButtonProps) {
   const getStaticPosition = () => {
     // Convert angle to radians and calculate position
