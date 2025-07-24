@@ -491,25 +491,25 @@ function OrbFloatingButton({
   const desktopMultiplier =
     customRadiusMultiplier || ORB_BUTTON_CONFIG.global.desktopRadiusMultiplier;
 
-  // Size configurations for different button variants
+  // Size configurations for different button variants - mobile-optimized
   const sizeConfig = {
     small: {
-      padding: "px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5",
+      padding: "px-2 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2.5",
       text: "text-xs sm:text-sm md:text-sm",
-      radius: "rounded-lg sm:rounded-xl md:rounded-2xl",
-      scale: 0.9,
+      radius: "rounded-md sm:rounded-xl md:rounded-2xl",
+      scale: 0.75, // Smaller on mobile
     },
     medium: {
-      padding: "px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3",
-      text: "text-sm sm:text-base md:text-base",
-      radius: "rounded-xl sm:rounded-2xl md:rounded-3xl",
-      scale: 1.0,
+      padding: "px-3 py-1.5 sm:px-5 sm:py-2.5 md:px-6 md:py-3",
+      text: "text-xs sm:text-base md:text-base",
+      radius: "rounded-lg sm:rounded-2xl md:rounded-3xl",
+      scale: 0.85, // Smaller on mobile
     },
     large: {
-      padding: "px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4",
-      text: "text-base sm:text-lg md:text-xl",
-      radius: "rounded-2xl sm:rounded-3xl md:rounded-3xl",
-      scale: 1.15,
+      padding: "px-3 py-1.5 sm:px-6 sm:py-3 md:px-8 md:py-4",
+      text: "text-sm sm:text-lg md:text-xl",
+      radius: "rounded-lg sm:rounded-3xl md:rounded-3xl",
+      scale: 0.95, // Smaller on mobile
     },
   };
 
