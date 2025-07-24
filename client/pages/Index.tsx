@@ -420,7 +420,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       xOffset: -20, // Mobile-friendly spacing
-      yOffset: -25, // Mobile-friendly positioning
+      yOffset: -75, // Moved up 50px from -25 to -75
 
       customRadiusMultiplier: null,
     },
