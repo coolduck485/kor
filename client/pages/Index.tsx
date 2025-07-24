@@ -319,8 +319,8 @@ const ORB_BUTTON_CONFIG = {
     desktopRadiusMultiplier: 1.0, // How far buttons are from center on desktop
 
     // Global animation settings
-    animationDuration: "500ms", // How long hover animations take
-    hoverScale: 1.05, // How much buttons grow on hover (1.05 = 5% bigger)
+    animationDuration: "600ms", // How long hover animations take
+    hoverScale: 1.15, // How much buttons grow on hover (1.15 = 15% bigger)
   },
 
   // Individual button configurations
@@ -331,6 +331,8 @@ const ORB_BUTTON_CONFIG = {
       radius: 290, // Distance from center (slightly increased)
       position: "right-side", // Visual description (for reference only)
       animationDelay: 0.2, // When button appears (in seconds)
+      size: "medium", // Button size variant
+      accent: "cyan", // Color accent
 
       // Fine-tune positioning (these are added to calculated position)
       xOffset: -15, // Move slightly left for randomization
@@ -346,6 +348,8 @@ const ORB_BUTTON_CONFIG = {
       radius: 270, // Distance from center (increased for better spread)
       position: "bottom-right",
       animationDelay: 0.6,
+      size: "large", // Bigger button
+      accent: "purple", // Color accent
 
       // Custom positioning for Services button
       xOffset: 0, // Move left (-) or right (+) in pixels
@@ -361,6 +365,8 @@ const ORB_BUTTON_CONFIG = {
       radius: 270, // Distance from center (increased for better spread)
       position: "bottom-left",
       animationDelay: 1.0,
+      size: "small", // Smaller button for variety
+      accent: "blue", // Color accent
 
       xOffset: 0, // Move left (-) or right (+) in pixels
       yOffset: 20, // Move down slightly
@@ -374,6 +380,8 @@ const ORB_BUTTON_CONFIG = {
       radius: 275, // Distance from center (slightly different from About us)
       position: "left-side",
       animationDelay: 1.4,
+      size: "medium", // Standard size
+      accent: "green", // Color accent
 
       xOffset: 25, // Move right for randomization
       yOffset: -45, // Move up 50px from previous position (5 - 50 = -45)
