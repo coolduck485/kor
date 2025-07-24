@@ -367,7 +367,7 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 1.4,
 
       xOffset: 25,                  // Move right for randomization
-      yOffset: 5,                  // Move down significantly
+      yOffset: -45,                 // Move up 50px from previous position (5 - 50 = -45)
 
       customRadiusMultiplier: null,
     },
