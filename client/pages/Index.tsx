@@ -634,7 +634,7 @@ function OrbFloatingButton({
         {/* Enhanced 3D depth effect */}
         <div className={`absolute inset-0 ${currentSize.radius} opacity-0 group-hover:opacity-100 transition-all duration-700`}
           style={{
-            background: `linear-gradient(145deg, transparent 0%, ${currentAccent.glow}20 50%, transparent 100%)`,
+            background: `linear-gradient(145deg, transparent 0%, rgba(73, 146, 255, 0.2) 50%, transparent 100%)`,
             transform: "translateZ(10px)",
           }}
         />
