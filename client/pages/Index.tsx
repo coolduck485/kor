@@ -363,16 +363,16 @@ const ORB_BUTTON_CONFIG = {
   buttons: [
     {
       text: "About us",
-      angle: -25, // Position: moved down from top-right (less negative = lower)
-      radius: 290, // Distance from center (slightly increased)
-      position: "right-side", // Visual description (for reference only)
+      angle: -30, // Position: top-right, more evenly spaced
+      radius: 280, // Consistent distance from center
+      position: "top-right", // Visual description (for reference only)
       animationDelay: 0.2, // When button appears (in seconds)
       size: "medium", // Button size variant
       accent: "blue", // Color accent - unified to blue
 
       // Fine-tune positioning (these are added to calculated position)
-      xOffset: -15, // Move slightly left for randomization
-      yOffset: -30, // Moved up a tiny bit more from -25 to -30 for mobile
+      xOffset: 0, // Centered positioning for cleaner look
+      yOffset: -35, // Moved up a tiny bit more from -30 to -35 for mobile
 
       // Override global settings for this button (optional)
       customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
@@ -380,16 +380,16 @@ const ORB_BUTTON_CONFIG = {
 
     {
       text: "Services",
-      angle: 45, // Position: bottom-right
-      radius: 260, // Reduced from 270 to move it in a bit
+      angle: 30, // Position: bottom-right, mirrored from About us for symmetry
+      radius: 280, // Consistent distance from center
       position: "bottom-right",
       animationDelay: 0.6,
-      size: "large", // Bigger button
+      size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for Services button
-      xOffset: -10, // Move left a bit from 0 to -10
-      yOffset: 5, // Moved up from 15 to 5
+      xOffset: 0, // Centered positioning
+      yOffset: 0, // Moved up for better spacing
 
       // Services button now uses global positioning for consistency
       customRadiusMultiplier: null, // Use global multipliers for consistency
@@ -397,30 +397,30 @@ const ORB_BUTTON_CONFIG = {
 
     {
       text: "Portfolio",
-      angle: 135, // Position: bottom-left
-      radius: 270, // Distance from center (increased for better spread)
+      angle: 150, // Position: bottom-left, better symmetry
+      radius: 280, // Consistent distance from center
       position: "bottom-left",
       animationDelay: 1.0,
-      size: "small", // Smaller button for variety
+      size: "medium", // Consistent sizing for uniform look
       accent: "blue", // Color accent - unified to blue
 
-      xOffset: 0, // Move left (-) or right (+) in pixels
-      yOffset: 10, // Moved up from 20 to 10
+      xOffset: 0, // Centered positioning
+      yOffset: 5, // Slight adjustment for visual balance
 
       customRadiusMultiplier: null,
     },
 
     {
       text: "Contact us",
-      angle: -135, // Position: moved further from Kor text (was -155, now -135)
-      radius: 290, // Distance from center - increased to move further away
-      position: "left-side",
+      angle: -150, // Position: top-left, mirrored from Portfolio for symmetry
+      radius: 280, // Consistent distance from center
+      position: "top-left",
       animationDelay: 1.4,
-      size: "medium", // Standard size
+      size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
 
-      xOffset: -145, // Moved 50px back to the right from -195 to -145
-      yOffset: -50, // Moved even higher from -25 to -50 for mobile
+      xOffset: -100, // Adjusted for better spacing from text
+      yOffset: -45, // Adjusted positioning
 
       customRadiusMultiplier: null,
     },
