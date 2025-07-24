@@ -175,7 +175,7 @@ const ORB_BUTTON_CONFIG = {
     { text: "About us", angle: -65, radius: 220, position: "top-right", animationDelay: 0.2 },      // Upper right
     { text: "Services", angle: 25, radius: 180, position: "right", animationDelay: 0.6 },           // Lower right, closer
     { text: "Portfolio", angle: 125, radius: 190, position: "bottom-left", animationDelay: 1.0 },   // Lower left, moved closer
-    { text: "Contact us", angle: -145, radius: 200, position: "top-left", animationDelay: 1.4 }     // Upper left, medium distance
+    { text: "Contact us", angle: -155, radius: 200, position: "top-left", animationDelay: 1.4 }     // Upper left, moved up to avoid text collision
   ]
 };
 
