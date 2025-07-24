@@ -313,10 +313,10 @@ export default function Index() {
 const ORB_BUTTON_CONFIG = {
   // Global settings for all buttons
   global: {
-    // Base radius multipliers for different screen sizes
-    mobileRadiusMultiplier: 0.25, // How far buttons are from center on mobile (0.25 = quarter distance for better mobile fit)
-    tabletRadiusMultiplier: 0.6, // How far buttons are from center on tablet
-    desktopRadiusMultiplier: 1.0, // How far buttons are from center on desktop
+    // Base radius multipliers for different screen sizes - consistent across all breakpoints
+    mobileRadiusMultiplier: 0.6, // Consistent positioning across all screen sizes
+    tabletRadiusMultiplier: 0.6, // Same as mobile for consistent look
+    desktopRadiusMultiplier: 0.6, // Same as mobile and tablet for consistent look
 
     // Global animation settings
     animationDuration: "600ms", // How long hover animations take
@@ -415,7 +415,7 @@ const ORB_BUTTON_CONFIG = {
 // ========================================
 //
 // To move "Services" button 50px to the right:
-// Change: xOffset: 0  ��  xOffset: 50
+// Change: xOffset: 0  →  xOffset: 50
 //
 // To move "About us" button 30px up:
 // Change: yOffset: 0  →  yOffset: -30
