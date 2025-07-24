@@ -43,7 +43,10 @@ export default function Index() {
       />
 
       {/* Animated Glass Badge at Top */}
-      <div className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce" style={{marginTop: '10px'}}>
+      <div
+        className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce"
+        style={{ marginTop: "10px" }}
+      >
         <div className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-xs hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:scale-105">
           {/* Animated Sparkle Icon */}
           <svg
@@ -250,14 +253,20 @@ export default function Index() {
         {/* Text Content - Moved up */}
         <div className="relative z-10 px-4 -mt-16">
           {/* Kor - moved further to the left */}
-          <div className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20" style={{marginLeft: '-5px'}}>
+          <div
+            className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20"
+            style={{ marginLeft: "-5px" }}
+          >
             <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-glow">
               Kor
             </h1>
           </div>
 
           {/* Development services - keeping same position */}
-          <div className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4" style={{marginLeft: '5px', marginTop: '-5px'}}>
+          <div
+            className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4"
+            style={{ marginLeft: "5px", marginTop: "-5px" }}
+          >
             <p
               className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-glow-text-light animate-text-glow"
               style={{ animationDelay: "1s" }}
@@ -305,27 +314,27 @@ const ORB_BUTTON_CONFIG = {
   // Global settings for all buttons
   global: {
     // Base radius multipliers for different screen sizes
-    mobileRadiusMultiplier: 0.5,    // How far buttons are from center on mobile (0.5 = half distance)
-    tabletRadiusMultiplier: 0.75,   // How far buttons are from center on tablet
-    desktopRadiusMultiplier: 1.0,   // How far buttons are from center on desktop
+    mobileRadiusMultiplier: 0.5, // How far buttons are from center on mobile (0.5 = half distance)
+    tabletRadiusMultiplier: 0.75, // How far buttons are from center on tablet
+    desktopRadiusMultiplier: 1.0, // How far buttons are from center on desktop
 
     // Global animation settings
-    animationDuration: "500ms",     // How long hover animations take
-    hoverScale: 1.05,              // How much buttons grow on hover (1.05 = 5% bigger)
+    animationDuration: "500ms", // How long hover animations take
+    hoverScale: 1.05, // How much buttons grow on hover (1.05 = 5% bigger)
   },
 
   // Individual button configurations
   buttons: [
     {
       text: "About us",
-      angle: -25,                   // Position: moved down from top-right (less negative = lower)
-      radius: 290,                  // Distance from center (slightly increased)
-      position: "right-side",       // Visual description (for reference only)
-      animationDelay: 0.2,         // When button appears (in seconds)
+      angle: -25, // Position: moved down from top-right (less negative = lower)
+      radius: 290, // Distance from center (slightly increased)
+      position: "right-side", // Visual description (for reference only)
+      animationDelay: 0.2, // When button appears (in seconds)
 
       // Fine-tune positioning (these are added to calculated position)
-      xOffset: -15,                 // Move slightly left for randomization
-      yOffset: 35,                  // Move down significantly
+      xOffset: -15, // Move slightly left for randomization
+      yOffset: 35, // Move down significantly
 
       // Override global settings for this button (optional)
       customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
@@ -333,14 +342,14 @@ const ORB_BUTTON_CONFIG = {
 
     {
       text: "Services",
-      angle: 45,                    // Position: bottom-right
-      radius: 270,                  // Distance from center (increased for better spread)
+      angle: 45, // Position: bottom-right
+      radius: 270, // Distance from center (increased for better spread)
       position: "bottom-right",
       animationDelay: 0.6,
 
       // Custom positioning for Services button
-      xOffset: 0,                   // Move left (-) or right (+) in pixels
-      yOffset: 20,                  // Move down slightly
+      xOffset: 0, // Move left (-) or right (+) in pixels
+      yOffset: 20, // Move down slightly
 
       // Services button uses fixed positioning across all screen sizes
       customRadiusMultiplier: 0.85, // Slightly increased for better spread
@@ -348,26 +357,26 @@ const ORB_BUTTON_CONFIG = {
 
     {
       text: "Portfolio",
-      angle: 135,                   // Position: bottom-left
-      radius: 270,                  // Distance from center (increased for better spread)
+      angle: 135, // Position: bottom-left
+      radius: 270, // Distance from center (increased for better spread)
       position: "bottom-left",
       animationDelay: 1.0,
 
-      xOffset: 0,                   // Move left (-) or right (+) in pixels
-      yOffset: 20,                  // Move down slightly
+      xOffset: 0, // Move left (-) or right (+) in pixels
+      yOffset: 20, // Move down slightly
 
       customRadiusMultiplier: null,
     },
 
     {
       text: "Contact us",
-      angle: -155,                  // Position: moved down from top-left (more negative = different angle)
-      radius: 275,                  // Distance from center (slightly different from About us)
+      angle: -155, // Position: moved down from top-left (more negative = different angle)
+      radius: 275, // Distance from center (slightly different from About us)
       position: "left-side",
       animationDelay: 1.4,
 
-      xOffset: 25,                  // Move right for randomization
-      yOffset: -45,                 // Move up 50px from previous position (5 - 50 = -45)
+      xOffset: 25, // Move right for randomization
+      yOffset: -45, // Move up 50px from previous position (5 - 50 = -45)
 
       customRadiusMultiplier: null,
     },
@@ -461,9 +470,12 @@ function OrbFloatingButton({
   const y = Math.sin(radian);
 
   // Get radius multipliers from config or use custom override
-  const mobileMultiplier = customRadiusMultiplier || ORB_BUTTON_CONFIG.global.mobileRadiusMultiplier;
-  const tabletMultiplier = customRadiusMultiplier || ORB_BUTTON_CONFIG.global.tabletRadiusMultiplier;
-  const desktopMultiplier = customRadiusMultiplier || ORB_BUTTON_CONFIG.global.desktopRadiusMultiplier;
+  const mobileMultiplier =
+    customRadiusMultiplier || ORB_BUTTON_CONFIG.global.mobileRadiusMultiplier;
+  const tabletMultiplier =
+    customRadiusMultiplier || ORB_BUTTON_CONFIG.global.tabletRadiusMultiplier;
+  const desktopMultiplier =
+    customRadiusMultiplier || ORB_BUTTON_CONFIG.global.desktopRadiusMultiplier;
 
   return (
     <div
