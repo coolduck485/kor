@@ -282,6 +282,8 @@ export default {
         "gentleBounce": "gentle-bounce 3s ease-in-out infinite",
         sparkle: "sparkle 6s ease-in-out infinite",
         textGlow: "text-glow 4s ease-in-out infinite",
+        "swipe-down": "swipe-down 2s ease-in-out infinite",
+        "swipe-down-delayed": "swipe-down-delayed 2s ease-in-out infinite 0.3s",
       },
       boxShadow: {
         glow: "0 0 100px rgba(73, 146, 255, 0.5), 0 0 200px rgba(73, 146, 255, 0.3), 0 0 300px rgba(73, 146, 255, 0.2)",
