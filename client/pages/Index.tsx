@@ -383,8 +383,8 @@ const ORB_BUTTON_CONFIG = {
       size: "medium", // Standard size
       accent: "blue", // Color accent - unified to blue
 
-      xOffset: -20, // Reduced offset for mobile compatibility (was -90, now -20)
-      yOffset: 0, // Reset offset for cleaner positioning
+      xOffset: -35, // More left to move away from Kor text
+      yOffset: -25, // Move up to get off the Kor text area
 
       customRadiusMultiplier: null,
     },
