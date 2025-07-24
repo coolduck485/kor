@@ -336,7 +336,7 @@ const ORB_BUTTON_CONFIG = {
 
       // Fine-tune positioning (these are added to calculated position)
       xOffset: -15, // Move slightly left for randomization
-      yOffset: 35, // Move down significantly
+      yOffset: 10, // Moved up from 35 to 10 for mobile
 
       // Override global settings for this button (optional)
       customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
