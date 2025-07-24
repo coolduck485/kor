@@ -235,20 +235,24 @@ function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloating
   const x = Math.cos(radian);
   const y = Math.sin(radian);
 
-  // Special adjustments for Contact us button - move up 100px and right 20px
+  // Special adjustments for buttons
   const yOffset = text === "Contact us" ? -100 : 0;
   const xOffset = text === "Contact us" ? 20 : 0;
+
+  // Fix Services button to use consistent positioning across screen sizes
+  const isServicesButton = text === "Services";
+  const fixedRadius = isServicesButton ? 180 : radius; // Use fixed radius for Services button
 
   return (
     <div
       className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
       style={{
-        '--mobile-x': `${x * radius * 0.5 + xOffset}px`,
-        '--mobile-y': `${y * radius * 0.5 + yOffset}px`,
-        '--tablet-x': `${x * radius * 0.75 + xOffset}px`,
-        '--tablet-y': `${y * radius * 0.75 + yOffset}px`,
-        '--desktop-x': `${x * radius + xOffset}px`,
-        '--desktop-y': `${y * radius + yOffset}px`,
+        '--mobile-x': `${x * (isServicesButton ? fixedRadius * 0.7 : radius * 0.5) + xOffset}px`,
+        '--mobile-y': `${y * (isServicesButton ? fixedRadius * 0.7 : radius * 0.5) + yOffset}px`,
+        '--tablet-x': `${x * (isServicesButton ? fixedRadius * 0.7 : radius * 0.75) + xOffset}px`,
+        '--tablet-y': `${y * (isServicesButton ? fixedRadius * 0.7 : radius * 0.75) + yOffset}px`,
+        '--desktop-x': `${x * (isServicesButton ? fixedRadius * 0.7 : radius) + xOffset}px`,
+        '--desktop-y': `${y * (isServicesButton ? fixedRadius * 0.7 : radius) + yOffset}px`,
         marginLeft: 'var(--mobile-x)',
         marginTop: 'var(--mobile-y)',
         animationDelay: `${delay}s`,
