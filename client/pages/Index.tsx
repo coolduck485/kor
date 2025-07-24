@@ -350,9 +350,9 @@ const ORB_BUTTON_CONFIG = {
   // Global settings for all buttons
   global: {
     // Base radius multipliers for different screen sizes - mobile needs smaller radius
-    mobileRadiusMultiplier: 0.35, // Reduced for mobile to prevent cutoff
-    tabletRadiusMultiplier: 0.6, // Good size for tablet
-    desktopRadiusMultiplier: 0.6, // Good size for desktop
+    mobileRadiusMultiplier: 0.45, // Increased for better spacing on mobile
+    tabletRadiusMultiplier: 0.65, // Slightly increased for tablet
+    desktopRadiusMultiplier: 0.7, // Increased for desktop for better spread
 
     // Global animation settings
     animationDuration: "600ms", // How long hover animations take
