@@ -672,6 +672,7 @@ function OrbFloatingButton({
         {/* Pulsing border effect */}
         <div
           className={`absolute inset-0 ${currentSize.radius} border border-white/10 group-hover:border-white/30 transition-all duration-500 animate-pulse opacity-50`}
+          style={{ left: "-50px" }}
         />
 
         {/* Button text with enhanced styling and glow animation */}
