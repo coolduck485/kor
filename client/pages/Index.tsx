@@ -599,7 +599,7 @@ function OrbFloatingButton({
           "--mobile-y": `${y * radius * mobileMultiplier + yOffset}px`,
           "--tablet-x": `${x * radius * tabletMultiplier + xOffset}px`,
           "--tablet-y": `${y * radius * tabletMultiplier + yOffset}px`,
-          "--desktop-x": `${x * radius * desktopMultiplier + xOffset}px`,
+          "--desktop-x": `${x * radius * desktopMultiplier + xOffset + (text === "About us" ? -100 : 0)}px`,
           "--desktop-y": `${y * radius * desktopMultiplier + yOffset}px`,
           marginLeft: "var(--mobile-x)",
           marginTop: "var(--mobile-y)",
