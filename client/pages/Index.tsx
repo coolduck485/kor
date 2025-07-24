@@ -445,6 +445,8 @@ function OrbFloatingButtons() {
           xOffset={button.xOffset}
           yOffset={button.yOffset}
           customRadiusMultiplier={button.customRadiusMultiplier}
+          size={button.size}
+          accent={button.accent}
         />
       ))}
     </>
@@ -460,6 +462,8 @@ interface OrbFloatingButtonProps {
   xOffset: number;
   yOffset: number;
   customRadiusMultiplier: number | null;
+  size: string;
+  accent: string;
 }
 
 function OrbFloatingButton({
