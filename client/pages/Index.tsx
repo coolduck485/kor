@@ -350,8 +350,8 @@ const ORB_BUTTON_CONFIG = {
   // Global settings for all buttons
   global: {
     // Base radius multipliers for different screen sizes - mobile needs smaller radius
-    mobileRadiusMultiplier: 0.7, // Match desktop positioning
-    tabletRadiusMultiplier: 0.7, // Match desktop positioning
+    mobileRadiusMultiplier: 0.35, // Compact mobile positioning
+    tabletRadiusMultiplier: 0.5, // Moderate tablet positioning
     desktopRadiusMultiplier: 0.7, // Keep desktop positioning unchanged
 
     // Global animation settings
@@ -372,7 +372,7 @@ const ORB_BUTTON_CONFIG = {
 
       // Fine-tune positioning (these are added to calculated position)
       xOffset: 0, // Centered positioning for cleaner look
-      yOffset: -35, // Reset to match desktop positioning better
+      yOffset: -20, // Adjusted for mobile positioning
 
       // Override global settings for this button (optional)
       customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
@@ -389,7 +389,7 @@ const ORB_BUTTON_CONFIG = {
 
       // Custom positioning for Services button
       xOffset: 0, // Centered positioning
-      yOffset: 0, // Moved up for better spacing
+      yOffset: 10, // Better spacing for mobile
 
       // Services button now uses global positioning for consistency
       customRadiusMultiplier: null, // Use global multipliers for consistency
@@ -405,7 +405,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       xOffset: 0, // Centered positioning
-      yOffset: 5, // Slight adjustment for visual balance
+      yOffset: 15, // Adjusted for mobile balance
 
       customRadiusMultiplier: null,
     },
@@ -419,8 +419,8 @@ const ORB_BUTTON_CONFIG = {
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
 
-      xOffset: -100, // Adjusted for better spacing from text
-      yOffset: -55, // Moved up 10px more from -45 to -55
+      xOffset: -20, // Mobile-friendly spacing
+      yOffset: -25, // Mobile-friendly positioning
 
       customRadiusMultiplier: null,
     },
@@ -536,10 +536,10 @@ function OrbFloatingButton({
       scale: 0.75, // Smaller on mobile
     },
     medium: {
-      padding: "px-2 py-1 sm:px-4 sm:py-2 md:px-6 md:py-3",
+      padding: "px-2 py-1 sm:px-3 sm:py-1.5 md:px-6 md:py-3",
       text: "text-xs sm:text-sm md:text-base",
-      radius: "rounded-md sm:rounded-xl md:rounded-3xl",
-      scale: 0.65, // Much smaller on mobile/tablet for better fit
+      radius: "rounded-lg sm:rounded-xl md:rounded-3xl",
+      scale: 0.8, // Appropriately sized for mobile
     },
     large: {
       padding: "px-3 py-1.5 sm:px-6 sm:py-3 md:px-8 md:py-4",
