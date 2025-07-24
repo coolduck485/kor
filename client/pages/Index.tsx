@@ -235,18 +235,19 @@ function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloating
   const x = Math.cos(radian);
   const y = Math.sin(radian);
 
-  // Special adjustment for Contact us button - move up 100px
+  // Special adjustments for Contact us button - move up 100px and right 20px
   const yOffset = text === "Contact us" ? -100 : 0;
+  const xOffset = text === "Contact us" ? 20 : 0;
 
   return (
     <div
       className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
       style={{
-        '--mobile-x': `${x * radius * 0.5}px`,
+        '--mobile-x': `${x * radius * 0.5 + xOffset}px`,
         '--mobile-y': `${y * radius * 0.5 + yOffset}px`,
-        '--tablet-x': `${x * radius * 0.75}px`,
+        '--tablet-x': `${x * radius * 0.75 + xOffset}px`,
         '--tablet-y': `${y * radius * 0.75 + yOffset}px`,
-        '--desktop-x': `${x * radius}px`,
+        '--desktop-x': `${x * radius + xOffset}px`,
         '--desktop-y': `${y * radius + yOffset}px`,
         marginLeft: 'var(--mobile-x)',
         marginTop: 'var(--mobile-y)',
