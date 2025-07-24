@@ -353,7 +353,7 @@ const ORB_BUTTON_CONFIG = {
 
       // Custom positioning for Services button
       xOffset: -10, // Move left a bit from 0 to -10
-      yOffset: 15, // Reduced from 20 to 15
+      yOffset: 5, // Moved up from 15 to 5
 
       // Services button now uses global positioning for consistency
       customRadiusMultiplier: null, // Use global multipliers for consistency
