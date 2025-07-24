@@ -601,7 +601,7 @@ function OrbFloatingButton({
         }}
       >
         {/* Animated background layers */}
-        <div className={`absolute inset-0 ${currentSize.radius} bg-gradient-to-br ${currentAccent.gradient} opacity-50 group-hover:opacity-70 transition-all duration-500`} />
+        <div className={`absolute inset-0 ${currentSize.radius} bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50 group-hover:opacity-70 transition-all duration-500`} />
         <div className={`absolute inset-0 ${currentSize.radius} bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500`} />
 
         {/* Futuristic circuit-like patterns */}
