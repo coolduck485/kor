@@ -257,7 +257,7 @@ export default function Index() {
           </div>
 
           {/* Development services - keeping same position */}
-          <div className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4">
+          <div className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4" style={{marginLeft: '5px', marginTop: '-10px'}}>
             <p
               className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-glow-text-light animate-text-glow"
               style={{ animationDelay: "1s" }}
