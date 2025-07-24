@@ -481,7 +481,19 @@ function OrbFloatingButton({
         `,
         }}
       />
-      <button className="group relative px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:scale-105">
+      <button
+        className="group relative px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl hover:bg-white/15 hover:border-white/30 transition-all"
+        style={{
+          transitionDuration: ORB_BUTTON_CONFIG.global.animationDuration,
+          transform: `scale(1)`,
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = `scale(${ORB_BUTTON_CONFIG.global.hoverScale})`;
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = `scale(1)`;
+        }}
+      >
         {/* Enhanced glass layers */}
         <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white/20 via-white/5 to-transparent" />
         <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-tl from-blue-400/10 via-transparent to-white/5" />
