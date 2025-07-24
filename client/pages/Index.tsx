@@ -313,10 +313,10 @@ export default function Index() {
 const ORB_BUTTON_CONFIG = {
   // Global settings for all buttons
   global: {
-    // Base radius multipliers for different screen sizes - consistent across all breakpoints
-    mobileRadiusMultiplier: 0.6, // Consistent positioning across all screen sizes
-    tabletRadiusMultiplier: 0.6, // Same as mobile for consistent look
-    desktopRadiusMultiplier: 0.6, // Same as mobile and tablet for consistent look
+    // Base radius multipliers for different screen sizes - mobile needs smaller radius
+    mobileRadiusMultiplier: 0.35, // Reduced for mobile to prevent cutoff
+    tabletRadiusMultiplier: 0.6, // Good size for tablet
+    desktopRadiusMultiplier: 0.6, // Good size for desktop
 
     // Global animation settings
     animationDuration: "600ms", // How long hover animations take
