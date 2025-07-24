@@ -296,40 +296,104 @@ export default function Index() {
   );
 }
 
-// Configuration for orb-floating buttons
+// ========================================
+// BUTTON POSITIONING CONFIGURATION
+// ========================================
+// Edit these values to easily adjust button positions
+
 const ORB_BUTTON_CONFIG = {
-  // Button data with unique positions organically spread around the orb
+  // Global settings for all buttons
+  global: {
+    // Base radius multipliers for different screen sizes
+    mobileRadiusMultiplier: 0.5,    // How far buttons are from center on mobile (0.5 = half distance)
+    tabletRadiusMultiplier: 0.75,   // How far buttons are from center on tablet
+    desktopRadiusMultiplier: 1.0,   // How far buttons are from center on desktop
+
+    // Global animation settings
+    animationDuration: "500ms",     // How long hover animations take
+    hoverScale: 1.05,              // How much buttons grow on hover (1.05 = 5% bigger)
+  },
+
+  // Individual button configurations
   buttons: [
     {
       text: "About us",
-      angle: -65,
-      radius: 220,
-      position: "top-right",
-      animationDelay: 0.2,
-    }, // Upper right
+      angle: -65,                   // Position around circle (-90 = top, 0 = right, 90 = bottom, 180 = left)
+      radius: 220,                  // Distance from center (higher = further out)
+      position: "top-right",        // Visual description (for reference only)
+      animationDelay: 0.2,         // When button appears (in seconds)
+
+      // Fine-tune positioning (these are added to calculated position)
+      xOffset: 0,                   // Move left (-) or right (+) in pixels
+      yOffset: 0,                   // Move up (-) or down (+) in pixels
+
+      // Override global settings for this button (optional)
+      customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
+    },
+
     {
       text: "Services",
-      angle: 25,
-      radius: 180,
+      angle: 25,                    // Position: lower right
+      radius: 180,                  // Distance from center
       position: "right",
       animationDelay: 0.6,
-    }, // Lower right, closer
+
+      // Custom positioning for Services button
+      xOffset: 0,                   // Move left (-) or right (+) in pixels
+      yOffset: 40,                  // Move up (-) or down (+) in pixels (currently moved down 40px)
+
+      // Services button uses fixed positioning across all screen sizes
+      customRadiusMultiplier: 0.75, // Fixed multiplier for consistent positioning
+    },
+
     {
       text: "Portfolio",
-      angle: 125,
-      radius: 190,
+      angle: 125,                   // Position: lower left
+      radius: 190,                  // Distance from center
       position: "bottom-left",
       animationDelay: 1.0,
-    }, // Lower left, moved closer
+
+      xOffset: 0,                   // Move left (-) or right (+) in pixels
+      yOffset: 0,                   // Move up (-) or down (+) in pixels
+
+      customRadiusMultiplier: null,
+    },
+
     {
       text: "Contact us",
-      angle: -170,
-      radius: 220,
+      angle: -170,                  // Position: upper left
+      radius: 220,                  // Distance from center
       position: "top-left",
       animationDelay: 1.4,
-    }, // Upper left, moved up and slightly right
+
+      xOffset: 20,                  // Move right 20px
+      yOffset: -100,                // Move up 100px
+
+      customRadiusMultiplier: null,
+    },
   ],
 };
+
+// ========================================
+// QUICK POSITIONING GUIDE:
+// ========================================
+//
+// ANGLES (degrees around circle):
+// -90 or 270 = Top
+// 0 = Right
+// 90 = Bottom
+// 180 or -180 = Left
+//
+// RADIUS: Distance from center (try values 150-300)
+//
+// OFFSETS: Fine-tune positioning in pixels
+// xOffset: negative = left, positive = right
+// yOffset: negative = up, positive = down
+//
+// SCREEN SIZE MULTIPLIERS:
+// 0.5 = half distance, 1.0 = full distance, 1.5 = 50% further
+//
+// ========================================
 
 function OrbFloatingButtons() {
   return (
