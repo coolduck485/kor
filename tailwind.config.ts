@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
-        poppins: ['Poppins', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
+        sans: ["Poppins", "Inter", "system-ui", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -111,19 +111,24 @@ export default {
         },
         "orb-rotate": {
           "0%": {
-            background: "linear-gradient(0deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
+            background:
+              "linear-gradient(0deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
           },
           "25%": {
-            background: "linear-gradient(90deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
+            background:
+              "linear-gradient(90deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
           },
           "50%": {
-            background: "linear-gradient(180deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
+            background:
+              "linear-gradient(180deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
           },
           "75%": {
-            background: "linear-gradient(270deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
+            background:
+              "linear-gradient(270deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
           },
           "100%": {
-            background: "linear-gradient(360deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
+            background:
+              "linear-gradient(360deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
           },
         },
         "glow-intensity": {
@@ -173,7 +178,8 @@ export default {
             textShadow: "0 0 20px rgba(255, 255, 255, 0.5)",
           },
           "50%": {
-            textShadow: "0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(73, 146, 255, 0.3)",
+            textShadow:
+              "0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(73, 146, 255, 0.3)",
           },
         },
         "button-float": {
@@ -229,7 +235,8 @@ export default {
             textShadow: "0 0 5px rgba(34, 211, 238, 0.3)",
           },
           "50%": {
-            textShadow: "0 0 10px rgba(34, 211, 238, 0.6), 0 0 20px rgba(34, 211, 238, 0.3)",
+            textShadow:
+              "0 0 10px rgba(34, 211, 238, 0.6), 0 0 20px rgba(34, 211, 238, 0.3)",
           },
         },
         "swipe-down": {
@@ -278,8 +285,8 @@ export default {
         "float-delayed": "float-delayed 6s ease-in-out infinite 2s",
         "text-glow": "text-glow 3s ease-in-out infinite",
         "button-float": "button-float 5s ease-in-out infinite",
-        "gentleFloat": "gentle-float 4s ease-in-out infinite",
-        "gentleBounce": "gentle-bounce 3s ease-in-out infinite",
+        gentleFloat: "gentle-float 4s ease-in-out infinite",
+        gentleBounce: "gentle-bounce 3s ease-in-out infinite",
         sparkle: "sparkle 6s ease-in-out infinite",
         textGlow: "text-glow 4s ease-in-out infinite",
         "swipe-down": "swipe-down 2s ease-in-out infinite",
@@ -287,7 +294,8 @@ export default {
       },
       boxShadow: {
         glow: "0 0 100px rgba(73, 146, 255, 0.5), 0 0 200px rgba(73, 146, 255, 0.3), 0 0 300px rgba(73, 146, 255, 0.2)",
-        "glow-intense": "0 0 50px rgba(73, 146, 255, 0.8), 0 0 100px rgba(73, 146, 255, 0.6), 0 0 200px rgba(73, 146, 255, 0.4)",
+        "glow-intense":
+          "0 0 50px rgba(73, 146, 255, 0.8), 0 0 100px rgba(73, 146, 255, 0.6), 0 0 200px rgba(73, 146, 255, 0.4)",
         glass: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
       },
       backdropBlur: {
