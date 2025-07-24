@@ -350,7 +350,7 @@ const ORB_BUTTON_CONFIG = {
   // Global settings for all buttons
   global: {
     // Base radius multipliers for different screen sizes - mobile needs smaller radius
-    mobileRadiusMultiplier: 0.45, // Increased for better spacing on mobile
+    mobileRadiusMultiplier: 0.3, // Reduced to prevent buttons from cutting off screen on mobile
     tabletRadiusMultiplier: 0.65, // Slightly increased for tablet
     desktopRadiusMultiplier: 0.7, // Increased for desktop for better spread
 
