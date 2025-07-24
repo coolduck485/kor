@@ -206,21 +206,29 @@ interface OrbFloatingButtonProps {
 
 function OrbFloatingButton({ text, angle, position, radius, delay }: OrbFloatingButtonProps) {
   const getStaticPosition = () => {
-    // Convert angle to radians and calculate position
+    // Convert angle to radians and calculate position with responsive radius
     const radian = (angle * Math.PI) / 180;
-    const x = Math.cos(radian) * radius;
-    const y = Math.sin(radian) * radius;
+
+    // Responsive radius adjustments based on screen size
+    // Using CSS custom properties for responsive calculations
+    const responsiveRadius = `clamp(${radius * 0.6}px, ${radius * 0.8}px + 2vw, ${radius}px)`;
+
+    const x = Math.cos(radian);
+    const y = Math.sin(radian);
 
     return {
       position: 'absolute' as const,
       left: '50%',
       top: '50%',
       transform: `translate(-50%, -50%)`,
-      marginLeft: `${x}px`,
-      marginTop: `${y}px`,
+      '--base-x': x.toString(),
+      '--base-y': y.toString(),
+      '--radius': responsiveRadius,
+      marginLeft: `calc(var(--base-x) * var(--radius))`,
+      marginTop: `calc(var(--base-y) * var(--radius))`,
       animationDelay: `${delay}s`,
       zIndex: 20
-    };
+    } as React.CSSProperties;
   };
 
   return (
