@@ -623,9 +623,9 @@ function OrbFloatingButton({
         <div className={`absolute inset-0 ${currentSize.radius} border border-white/10 group-hover:border-white/30 transition-all duration-500 animate-pulse opacity-50`} />
 
         {/* Button text with enhanced styling and glow animation */}
-        <span className={`relative text-white/90 ${currentSize.text} font-semibold group-hover:text-white transition-all duration-500 drop-shadow-lg whitespace-nowrap tracking-wide font-mono`}
+        <span className={`relative text-white/90 ${currentSize.text} font-semibold group-hover:text-white transition-all duration-500 drop-shadow-lg whitespace-nowrap tracking-wide font-poppins`}
           style={{
-            textShadow: `0 0 10px ${currentAccent.glow}, 0 0 20px ${currentAccent.glow}40`,
+            textShadow: `0 0 10px rgba(73, 146, 255, 0.6), 0 0 20px rgba(73, 146, 255, 0.4)`,
           }}
         >
           {text}
