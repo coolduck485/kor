@@ -351,7 +351,7 @@ const ORB_BUTTON_CONFIG = {
   global: {
     // Base radius multipliers for different screen sizes - mobile needs smaller radius
     mobileRadiusMultiplier: 0.3, // Reduced to prevent buttons from cutting off screen on mobile
-    tabletRadiusMultiplier: 0.65, // Slightly increased for tablet
+    tabletRadiusMultiplier: 0.5, // Reduced to bring buttons closer to orb on tablet
     desktopRadiusMultiplier: 0.7, // Increased for desktop for better spread
 
     // Global animation settings
