@@ -394,7 +394,7 @@ function OrbFloatingButton({
   const y = Math.sin(radian);
 
   // Special adjustments for buttons
-  const yOffset = text === "Contact us" ? -100 : text === "Services" ? 10 : 0;
+  const yOffset = text === "Contact us" ? -100 : text === "Services" ? 40 : 0;
   const xOffset = text === "Contact us" ? 20 : 0;
 
   // Fix Services button to use consistent positioning across screen sizes
