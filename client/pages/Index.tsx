@@ -361,13 +361,13 @@ const ORB_BUTTON_CONFIG = {
 
     {
       text: "Contact us",
-      angle: -135,                  // Position: top-left
-      radius: 280,                  // Distance from center (increased for better spread)
-      position: "top-left",
+      angle: -155,                  // Position: moved down from top-left (more negative = different angle)
+      radius: 275,                  // Distance from center (slightly different from About us)
+      position: "left-side",
       animationDelay: 1.4,
 
-      xOffset: 0,                   // Reset offset for cleaner positioning
-      yOffset: -20,                 // Move up slightly
+      xOffset: 25,                  // Move right for randomization
+      yOffset: 45,                  // Move down significantly
 
       customRadiusMultiplier: null,
     },
