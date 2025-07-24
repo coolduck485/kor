@@ -43,7 +43,7 @@ export default function Index() {
       />
 
       {/* Animated Glass Badge at Top */}
-      <div className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce">
+      <div className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce" style={{marginTop: '10px'}}>
         <div className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-xs hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:scale-105">
           {/* Animated Sparkle Icon */}
           <svg
