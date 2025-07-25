@@ -508,6 +508,41 @@ export default function Index() {
         </div>
       </div>
 
+      {/* Floating Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Top corner accent lights */}
+        <div
+          className="absolute top-10 left-10 w-32 h-32 rounded-full opacity-30"
+          style={{
+            background: "radial-gradient(circle, rgba(73, 146, 255, 0.2) 0%, transparent 70%)",
+            animation: "pulse 6s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute top-20 right-16 w-24 h-24 rounded-full opacity-25"
+          style={{
+            background: "radial-gradient(circle, rgba(63, 186, 255, 0.3) 0%, transparent 70%)",
+            animation: "pulse 4s ease-in-out infinite 1s",
+          }}
+        />
+
+        {/* Bottom corner lights */}
+        <div
+          className="absolute bottom-16 left-20 w-28 h-28 rounded-full opacity-20"
+          style={{
+            background: "radial-gradient(circle, rgba(57, 135, 227, 0.4) 0%, transparent 70%)",
+            animation: "pulse 7s ease-in-out infinite 2s",
+          }}
+        />
+        <div
+          className="absolute bottom-12 right-12 w-20 h-20 rounded-full opacity-35"
+          style={{
+            background: "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
+            animation: "pulse 5s ease-in-out infinite 0.5s",
+          }}
+        />
+      </div>
+
       {/* Scroll/Swipe Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center space-y-3 animate-button-float">
