@@ -1960,7 +1960,24 @@ export default function Index() {
         </div>
 
         {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
-        <div className="hidden sm:flex absolute inset-0 items-center justify-center">
+        <motion.div
+          className="hidden sm:flex absolute inset-0 items-center justify-center"
+          initial={{
+            opacity: 0,
+            scale: 0.8,
+            filter: "blur(5px)"
+          }}
+          animate={animationStep >= 3 ? {
+            opacity: 1,
+            scale: 1,
+            filter: "blur(0px)"
+          } : {}}
+          transition={{
+            duration: 1,
+            ease: [0.16, 1, 0.3, 1],
+            delay: 0.3
+          }}
+        >
           <div className="relative">
             {/* Animated Connection Lines Between Buttons */}
             <svg
@@ -1996,7 +2013,7 @@ export default function Index() {
             </svg>
             <OrbFloatingButtons />
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Floating Decorative Elements */}
