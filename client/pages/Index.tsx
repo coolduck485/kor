@@ -9,6 +9,92 @@ export default function Index() {
     isNear: false,
   });
   const badgeRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Framer Motion animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
+
+  const fadeInScale = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
+
+  const slideInFromSide = (direction: "left" | "right") => ({
+    hidden: {
+      opacity: 0,
+      x: direction === "left" ? -100 : 100,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  });
+
+  const staggeredLetters = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.5,
+      },
+    },
+  };
+
+  const letterVariants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.8,
+      rotateX: -90,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
