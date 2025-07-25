@@ -1,9 +1,11 @@
 import { Palette, RotateCcw } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
+import { useRetroMode } from "@/hooks/use-retro-mode";
 import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
+  const { mode } = useRetroMode();
 
   return (
     <Button
