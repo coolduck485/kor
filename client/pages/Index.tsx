@@ -144,7 +144,7 @@ export default function Index() {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      clearTimeout(loadTimer);
+      timeouts.forEach(clearTimeout);
     };
   }, []);
 
@@ -247,7 +247,7 @@ export default function Index() {
               {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══██╗
+██╔═██╗ ██║   ██║��█╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
@@ -266,13 +266,13 @@ export default function Index() {
             </div>
             <div className="terminal-content">
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╔═════════════════════════════════════════��══════════════╗
+                ╔════════════════════════════════════════════════════════╗
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
                 ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╚════════════════════════════════════════════════════════╝
+                ╚══════════════════════════════��═════════════════════════╝
               </div>
               <div className="text-amber-400 font-bold mb-3 mt-4">
                 SYSTEM STATUS:{" "}
@@ -398,7 +398,7 @@ export default function Index() {
             </div>
 
             <div className="loading-indicators">
-              <span>█▓���░</span>
+              <span>█▓▒░</span>
               <span className="blink">LOADING...</span>
               <span>░▒▓█</span>
             </div>
