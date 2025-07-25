@@ -482,6 +482,24 @@
   background-clip: text;
 }
 
+/* Light mode chrome */
+.light .chrome-wavy-text .wavy-letter {
+  background: linear-gradient(
+    110deg,
+    #666666 0%,
+    #999999 25%,
+    #333333 45%,
+    #333333 55%,
+    #999999 75%,
+    #666666 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
 /* Light mode version */
 .light .shine-text-enhanced {
   color: #1f2937; /* Fallback color for light mode */
@@ -497,5 +515,4 @@
   );
   background-size: 300% 100%;
   background-position: 0% 50%;
-  animation: wavy-shine 8s ease-in-out infinite;
 }
