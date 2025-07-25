@@ -835,11 +835,12 @@ export default function Index() {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             min-height: calc(100vh - 160px);
             padding: 32px;
             position: relative;
             z-index: 105;
+            padding-bottom: 100px;
           }
 
           .retro-logo-container {
