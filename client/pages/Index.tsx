@@ -637,12 +637,13 @@ export default function Index() {
                   {"Development services".split("").map((letter, i) => (
                     <span
                       key={i}
-                      className="inline-block animate-letter-float"
+                      className="inline-block"
                       style={{
-                        animationDelay: `${i * 0.1 + 1}s`,
+                        animation: `letter-float 2s ease-in-out infinite ${i * 0.1 + 1}s`,
                         textShadow: theme === "light"
                           ? `0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(147, 51, 234, 0.4)`
                           : `0 0 20px rgba(73, 146, 255, 0.8), 0 0 40px rgba(34, 211, 238, 0.5)`,
+                        animationFillMode: "both",
                       }}
                     >
                       {letter === " " ? "\u00A0" : letter}
