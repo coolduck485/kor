@@ -427,7 +427,7 @@ export default function Index() {
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║��█╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═���  ╚��╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚��╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
           </motion.div>
@@ -445,9 +445,7 @@ export default function Index() {
             <div className="terminal-content">
 
 
-              <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╚══════════════════════════════��═════════════════════════╝
-              </div>
+
               <div className="text-amber-400 font-bold mb-3 mt-4">
                 SYSTEM STATUS:{" "}
                 <span className="text-green-400 terminal-glow">
@@ -603,7 +601,7 @@ export default function Index() {
                   className="close-terminal"
                   onClick={() => setShowTerminal(false)}
                 >
-                  ✕
+                  ��
                 </button>
               </div>
               <div className="terminal-body">
