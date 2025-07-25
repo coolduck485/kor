@@ -254,47 +254,67 @@ export default function Index() {
                 ╔════════════════════════════════════════════════════════╗
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ║           KOR DEVELOPMENT SYSTEMS v2.4.7             ║
+                ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
                 ╚════════════════════════════════════════════════════════╝
               </div>
               <div className="text-amber-400 font-bold mb-3 mt-4">
-                SYSTEM STATUS: <span className="text-green-400 terminal-glow">OPERATIONAL</span>
+                SYSTEM STATUS:{" "}
+                <span className="text-green-400 terminal-glow">
+                  OPERATIONAL
+                </span>
               </div>
               <div className="terminal-line">
-                <span className="text-green-400">[ACTIVE]</span>&nbsp;CUSTOM SOFTWARE SOLUTIONS
+                <span className="text-green-400">[ACTIVE]</span>&nbsp;CUSTOM
+                SOFTWARE SOLUTIONS
               </div>
               <div className="terminal-line">
-                <span className="text-green-400">[ACTIVE]</span>&nbsp;<span className="text-cyan-400">WEB APPLICATION DEVELOPMENT</span>
+                <span className="text-green-400">[ACTIVE]</span>&nbsp;
+                <span className="text-cyan-400">
+                  WEB APPLICATION DEVELOPMENT
+                </span>
               </div>
               <div className="terminal-line">
-                <span className="text-green-400">[ACTIVE]</span>&nbsp;AI/ML INTEGRATION SERVICES
+                <span className="text-green-400">[ACTIVE]</span>&nbsp;AI/ML
+                INTEGRATION SERVICES
               </div>
               <div className="terminal-line mb-2">
-                <span className="text-green-400">[ACTIVE]</span>&nbsp;CLOUD INFRASTRUCTURE DESIGN
+                <span className="text-green-400">[ACTIVE]</span>&nbsp;CLOUD
+                INFRASTRUCTURE DESIGN
               </div>
               <div className="terminal-line mb-2">
-                <span className="text-yellow-400">[PRIORITY]</span>&nbsp;<span className="text-red-400 font-bold">
+                <span className="text-yellow-400">[PRIORITY]</span>&nbsp;
+                <span className="text-red-400 font-bold">
                   LEGACY SYSTEM MODERNIZATION
                 </span>
               </div>
               <div className="terminal-line mb-2">
-                <span className="text-green-400">[ACTIVE]</span>&nbsp;<span className="text-purple-400">ENTERPRISE AUTOMATION</span>
+                <span className="text-green-400">[ACTIVE]</span>&nbsp;
+                <span className="text-purple-400">ENTERPRISE AUTOMATION</span>
               </div>
               <div className="terminal-line mb-4">
                 <span className="text-green-400 blink">█</span>
               </div>
               <div className="memory-section">
-                <div className="text-xs mb-2 text-cyan-400">SYSTEM RESOURCES:</div>
-                <div className="text-xs text-green-400 mb-1" style={{ lineHeight: '1.2', fontFamily: 'monospace' }}>
+                <div className="text-xs mb-2 text-cyan-400">
+                  SYSTEM RESOURCES:
+                </div>
+                <div
+                  className="text-xs text-green-400 mb-1"
+                  style={{ lineHeight: "1.2", fontFamily: "monospace" }}
+                >
                   CPU: ████████████████████ 60%
                 </div>
-                <div className="text-xs text-amber-400 mb-1" style={{ lineHeight: '1.2', fontFamily: 'monospace' }}>
+                <div
+                  className="text-xs text-amber-400 mb-1"
+                  style={{ lineHeight: "1.2", fontFamily: "monospace" }}
+                >
                   RAM: ██████████████████████ 50%
                 </div>
                 <div className="text-xs text-green-400 mt-1">
-                  NETWORK: {systemStats.networkUp}GB/s ↑ | {systemStats.networkDown}MB/s ↓
+                  NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
+                  {systemStats.networkDown}MB/s ↓
                 </div>
               </div>
             </div>
@@ -412,52 +432,52 @@ export default function Index() {
                     </div>
                   ))}
                   <div className="terminal-input-line">
-                  <span className="prompt">&gt;</span>
-                  <input
-                    type="text"
-                    className="terminal-input"
-                    value={terminalInput}
-                    onChange={(e) => setTerminalInput(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        const command = terminalInput.trim().toLowerCase();
-                        const newOutput = [
-                          ...terminalOutput,
-                          `>${terminalInput}`,
-                        ];
+                    <span className="prompt">&gt;</span>
+                    <input
+                      type="text"
+                      className="terminal-input"
+                      value={terminalInput}
+                      onChange={(e) => setTerminalInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          const command = terminalInput.trim().toLowerCase();
+                          const newOutput = [
+                            ...terminalOutput,
+                            `>${terminalInput}`,
+                          ];
 
-                        if (command === "help") {
-                          newOutput.push("");
-                          newOutput.push(
-                            "Switch back to the main website theme to explore",
-                          );
-                          newOutput.push(
-                            "my projects, services, and portfolio.",
-                          );
-                          newOutput.push(
-                            "Type 'help' to see list of available commands.",
-                          );
-                          newOutput.push("");
-                        } else if (command === "clear") {
-                          setTerminalOutput([
-                            "Type 'help' to see list of available commands.",
-                          ]);
+                          if (command === "help") {
+                            newOutput.push("");
+                            newOutput.push(
+                              "Switch back to the main website theme to explore",
+                            );
+                            newOutput.push(
+                              "my projects, services, and portfolio.",
+                            );
+                            newOutput.push(
+                              "Type 'help' to see list of available commands.",
+                            );
+                            newOutput.push("");
+                          } else if (command === "clear") {
+                            setTerminalOutput([
+                              "Type 'help' to see list of available commands.",
+                            ]);
+                            setTerminalInput("");
+                            return;
+                          } else if (command !== "") {
+                            newOutput.push(`Command '${command}' not found.`);
+                            newOutput.push("");
+                            newOutput.push(
+                              "Type 'help' to see list of available commands.",
+                            );
+                          }
+                          setTerminalOutput(newOutput);
                           setTerminalInput("");
-                          return;
-                        } else if (command !== "") {
-                          newOutput.push(`Command '${command}' not found.`);
-                          newOutput.push("");
-                          newOutput.push(
-                            "Type 'help' to see list of available commands.",
-                          );
                         }
-                        setTerminalOutput(newOutput);
-                        setTerminalInput("");
-                      }
-                    }}
-                    placeholder="Type command..."
-                    autoFocus
-                  />
+                      }}
+                      placeholder="Type command..."
+                      autoFocus
+                    />
                   </div>
                 </div>
               </div>
