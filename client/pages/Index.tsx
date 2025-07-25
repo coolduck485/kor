@@ -604,20 +604,20 @@ export default function Index() {
 
         @keyframes sparkle-twinkle {
           0%, 100% {
-            opacity: 0.2;
-            transform: scale(0.8) rotate(0deg);
+            opacity: 0.4;
+            transform: scale(0.9) rotate(0deg);
           }
           25% {
-            opacity: 0.6;
-            transform: scale(1.0) rotate(90deg);
+            opacity: 0.8;
+            transform: scale(1.1) rotate(90deg);
           }
           50% {
             opacity: 1;
-            transform: scale(1.2) rotate(180deg);
+            transform: scale(1.3) rotate(180deg);
           }
           75% {
-            opacity: 0.6;
-            transform: scale(1.0) rotate(270deg);
+            opacity: 0.8;
+            transform: scale(1.1) rotate(270deg);
           }
         }
 
