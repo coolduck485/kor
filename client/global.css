@@ -408,38 +408,32 @@
 
 
 
-/* Chrome text styling with wavy letters and contained shine */
+/* Modern chrome text styling */
 .chrome-wavy-text {
   display: inline-block;
   position: relative;
-  overflow: hidden;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .chrome-wavy-text .wavy-letter {
   display: inline-block;
-  color: #c0c0c0;
   background: linear-gradient(
-    135deg,
-    #a0a0a0 0%,
-    #d0d0d0 30%,
-    #f0f0f0 50%,
-    #d0d0d0 70%,
-    #a0a0a0 100%
+    145deg,
+    #8e8e93 0%,
+    #c7c7cc 25%,
+    #f2f2f7 45%,
+    #ffffff 50%,
+    #f2f2f7 55%,
+    #c7c7cc 75%,
+    #8e8e93 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
-  z-index: 1;
-}
-
-.chrome-wavy-text .wavy-letter:nth-child(odd) {
-  animation: wavy-letter 4s ease-in-out infinite;
-}
-
-.chrome-wavy-text .wavy-letter:nth-child(even) {
-  animation: wavy-letter 4s ease-in-out infinite 0.5s;
+  transition: all 0.3s ease;
 }
 
 
