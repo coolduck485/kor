@@ -1218,6 +1218,7 @@ const ORB_BUTTON_CONFIG = {
 // ========================================
 
 function OrbFloatingButtons() {
+  const { theme } = useTheme();
   return (
     <>
       {ORB_BUTTON_CONFIG.buttons.map((button) => (
@@ -1233,6 +1234,7 @@ function OrbFloatingButtons() {
           customRadiusMultiplier={button.customRadiusMultiplier}
           size={button.size}
           accent={button.accent}
+          theme={theme}
         />
       ))}
     </>
