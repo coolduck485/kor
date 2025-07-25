@@ -306,8 +306,13 @@ export default function Index() {
 
       {/* Interactive Glass Badge at Top */}
       <div
-        className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce"
-        style={{ marginTop: "10px" }}
+        className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-75 sm:scale-100"
+        style={{ marginTop: "140px" }}
+        css={{
+          '@media (min-width: 640px)': {
+            marginTop: '10px'
+          }
+        }}
       >
         <div
           ref={badgeRef}
