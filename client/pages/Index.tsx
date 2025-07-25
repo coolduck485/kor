@@ -1247,52 +1247,36 @@ export default function Index() {
             }
           }
 
-          @keyframes scanline {
-            0% {
-              transform: translateY(-100vh);
-            }
-            100% {
-              transform: translateY(100vh);
-            }
-          }
-
-          @keyframes flicker {
+          @keyframes static-noise {
             0%, 100% {
-              opacity: 1;
+              background-position: 0 0;
+            }
+            10% {
+              background-position: -5% -10%;
+            }
+            20% {
+              background-position: -10% 5%;
+            }
+            30% {
+              background-position: 5% -15%;
+            }
+            40% {
+              background-position: -15% 10%;
             }
             50% {
-              opacity: 0.95;
+              background-position: 10% 0%;
             }
-            51% {
-              opacity: 1;
+            60% {
+              background-position: 0% -5%;
             }
-            52% {
-              opacity: 0.98;
+            70% {
+              background-position: -5% 15%;
             }
-            53% {
-              opacity: 1;
+            80% {
+              background-position: 15% -10%;
             }
-          }
-
-          @keyframes typing {
-            from {
-              width: 0;
-            }
-            to {
-              width: 100%;
-            }
-          }
-
-          @keyframes crt-glow {
-            0%, 100% {
-              box-shadow:
-                inset 0 0 50px rgba(0, 255, 65, 0.05),
-                0 0 50px rgba(0, 255, 65, 0.1);
-            }
-            50% {
-              box-shadow:
-                inset 0 0 50px rgba(0, 255, 65, 0.1),
-                0 0 100px rgba(0, 255, 65, 0.2);
+            90% {
+              background-position: -10% 5%;
             }
           }
 
@@ -1303,35 +1287,16 @@ export default function Index() {
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(
-              90deg,
-              transparent 98%,
-              rgba(0, 255, 65, 0.03) 100%
-            );
-            background-size: 3px 100%;
+            background-image:
+              radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.02) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(0, 255, 65, 0.02) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(0, 255, 65, 0.015) 0%, transparent 50%),
+              radial-gradient(circle at 0% 100%, rgba(0, 255, 65, 0.02) 0%, transparent 50%),
+              radial-gradient(circle at 100% 0%, rgba(0, 255, 65, 0.015) 0%, transparent 50%);
+            background-size: 100px 100px, 150px 150px, 200px 200px, 300px 300px, 400px 400px;
+            animation: static-noise 0.5s infinite;
             pointer-events: none;
-            animation: flicker 0.15s infinite linear;
-          }
-
-          .retro-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(
-              90deg,
-              transparent 0%,
-              rgba(0, 255, 65, 0.6) 50%,
-              transparent 100%
-            );
-            animation: scanline 3s linear infinite;
-            pointer-events: none;
-          }
-
-          .terminal-window {
-            animation: crt-glow 4s ease-in-out infinite;
+            opacity: 0.3;
           }
         `}</style>
           </>
