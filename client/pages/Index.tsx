@@ -231,7 +231,7 @@ export default function Index() {
             <pre className="ascii-logo">
               {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
-█████╔╝ ██║   ██║██████╔╝
+█████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
@@ -288,10 +288,10 @@ export default function Index() {
               <div className="memory-section">
                 <div className="text-xs mb-2 text-cyan-400">SYSTEM RESOURCES:</div>
                 <div className="text-xs text-green-400 mb-1">
-                  CPU: ████████████████░░░░ 80%
+                  CPU: ██████████████████░░ 90%
                 </div>
                 <div className="text-xs text-amber-400 mb-1">
-                  RAM: ██████████████░░░░░░ 70%
+                  RAM: ███████████████████░ 95%
                 </div>
                 <div className="loading-bar"></div>
                 <div className="text-xs text-green-400 mt-1">
