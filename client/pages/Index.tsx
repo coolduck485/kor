@@ -778,6 +778,10 @@ export default function Index() {
             box-shadow:
               inset 0 0 50px rgba(0, 255, 65, 0.1),
               0 0 50px rgba(0, 255, 65, 0.3);
+            height: calc(100vh - 16px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
           }
 
           .retro-container::before {
