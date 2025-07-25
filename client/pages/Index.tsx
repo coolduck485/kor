@@ -392,9 +392,9 @@ export default function Index() {
             style={{ marginLeft: "-5px" }}
           >
             <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-reveal">
-              <span className="inline-block animate-text-bounce" style={{ animationDelay: '0.2s' }}>K</span>
-              <span className="inline-block animate-text-bounce" style={{ animationDelay: '0.4s' }}>o</span>
-              <span className="inline-block animate-text-bounce" style={{ animationDelay: '0.6s' }}>r</span>
+              <span className="inline-block animate-text-bounce" style={{ animationDelay: '0.8s' }}>K</span>
+              <span className="inline-block animate-text-bounce" style={{ animationDelay: '1.4s' }}>o</span>
+              <span className="inline-block animate-text-bounce" style={{ animationDelay: '2.0s' }}>r</span>
             </h1>
           </div>
 
