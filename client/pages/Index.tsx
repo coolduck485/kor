@@ -352,17 +352,17 @@ export default function Index() {
             className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4"
             style={{ marginLeft: "5px", marginTop: "-5px" }}
           >
-            <p
-              className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative"
-              style={{
-                animationName: `shine-${SHINE_CONFIG.direction}`,
-                animationDuration: SHINE_CONFIG.duration,
-                animationDelay: SHINE_CONFIG.delay,
-                animationIterationCount: 'infinite',
-                animationTimingFunction: 'ease-out',
-              }}
-            >
-              <span className="relative inline-block shine-text-base">
+            <p className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative">
+              <span
+                className="relative inline-block shine-text-base"
+                style={{
+                  animationName: `shine-${SHINE_CONFIG.direction}`,
+                  animationDuration: SHINE_CONFIG.duration,
+                  animationDelay: SHINE_CONFIG.delay,
+                  animationIterationCount: 'infinite',
+                  animationTimingFunction: 'ease-out',
+                }}
+              >
                 Development services
                 {/* Sparkles */}
                 {SHINE_CONFIG.showSparkles && [...Array(SHINE_CONFIG.sparkleCount)].map((_, i) => (
