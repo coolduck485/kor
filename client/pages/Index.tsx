@@ -622,7 +622,7 @@ export default function Index() {
           }
         }
 
-        .animate-shine-text-only {
+        .shine-text-base {
           background: linear-gradient(
             90deg,
             rgba(178, 227, 255, 0.7) 0%,
@@ -643,7 +643,10 @@ export default function Index() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
           filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.4));
-          animation: shine-text-sweep 2.5s ease-out infinite 1s;
+        }
+
+        .animate-sparkle-twinkle {
+          animation: sparkle-twinkle ease-in-out infinite;
         }
 
         .animate-text-reveal {
