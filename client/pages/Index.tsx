@@ -182,7 +182,7 @@ export default function Index() {
           >
             <pre className="ascii-logo">
               {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝█��╔═══██╗██╔══██╗
+██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -507,18 +507,33 @@ export default function Index() {
             left: 0;
             height: 100%;
             background: #00ff41;
-            animation: loading-progress 3s ease-in-out infinite;
+            animation: random-memory-usage 4s ease-in-out infinite;
           }
 
-          @keyframes loading-progress {
+          @keyframes random-memory-usage {
             0% {
-              width: 0%;
+              width: 25%;
             }
-            50% {
-              width: 70%;
+            15% {
+              width: 45%;
+            }
+            30% {
+              width: 35%;
+            }
+            45% {
+              width: 65%;
+            }
+            60% {
+              width: 40%;
+            }
+            75% {
+              width: 55%;
+            }
+            90% {
+              width: 30%;
             }
             100% {
-              width: 100%;
+              width: 48%;
             }
           }
 
