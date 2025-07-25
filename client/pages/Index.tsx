@@ -510,7 +510,7 @@ export default function Index() {
           animation: noise 3s ease-in-out infinite;
         }
 
-        @keyframes shine-text-sweep {
+        @keyframes shine-left-to-right {
           0% {
             background: linear-gradient(
               90deg,
@@ -534,6 +534,44 @@ export default function Index() {
           }
           100% {
             background-position: 250% 0;
+          }
+        }
+
+        @keyframes shine-right-to-left {
+          0% {
+            background: linear-gradient(
+              90deg,
+              rgba(178, 227, 255, 0.7) 0%,
+              rgba(178, 227, 255, 0.7) 20%,
+              rgba(255, 255, 255, 1) 35%,
+              rgba(255, 255, 255, 1) 40%,
+              rgba(255, 255, 255, 1) 45%,
+              rgba(255, 255, 255, 1) 50%,
+              rgba(255, 255, 255, 1) 55%,
+              rgba(255, 255, 255, 1) 60%,
+              rgba(255, 255, 255, 1) 65%,
+              rgba(178, 227, 255, 0.7) 80%,
+              rgba(178, 227, 255, 0.7) 100%
+            );
+            background-size: 400% 100%;
+            background-position: 250% 0;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+          100% {
+            background-position: -150% 0;
+          }
+        }
+
+        @keyframes sparkle-twinkle {
+          0%, 100% {
+            opacity: 0;
+            transform: scale(0.5) rotate(0deg);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.2) rotate(180deg);
           }
         }
 
