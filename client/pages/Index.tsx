@@ -823,6 +823,33 @@ export default function Index() {
         {/* Orb-Floating Navigation Buttons - positioned relative to orb */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative">
+            {/* Animated Connection Lines Between Buttons */}
+            <svg className="absolute inset-0 pointer-events-none" width="600" height="600" style={{ left: "-300px", top: "-300px" }}>
+              <circle
+                cx="300"
+                cy="300"
+                r="280"
+                fill="none"
+                stroke="rgba(73, 146, 255, 0.1)"
+                strokeWidth="1"
+                strokeDasharray="5 10"
+                style={{
+                  animation: "geometric-pulse 15s ease-in-out infinite",
+                }}
+              />
+              <circle
+                cx="300"
+                cy="300"
+                r="320"
+                fill="none"
+                stroke="rgba(63, 186, 255, 0.08)"
+                strokeWidth="1"
+                strokeDasharray="8 15"
+                style={{
+                  animation: "geometric-pulse 20s ease-in-out infinite 2s",
+                }}
+              />
+            </svg>
             <OrbFloatingButtons />
           </div>
         </div>
