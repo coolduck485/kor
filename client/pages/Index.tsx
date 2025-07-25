@@ -187,7 +187,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██���███╔╝██║  ██║
+██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1045,10 +1045,7 @@ export default function Index() {
 
               {/* Dark Theme */}
               <button
-                onClick={() => {
-                  const { setTheme } = useTheme();
-                  setTheme("dark");
-                }}
+                onClick={() => setTheme("dark")}
                 className={`group w-full px-3 py-2 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-300 hover:shadow-xl active:scale-95 overflow-hidden relative ${
                   theme === "dark"
                     ? "border-purple-500/60 bg-purple-100/20"
