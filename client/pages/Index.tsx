@@ -1296,7 +1296,7 @@ export default function Index() {
             background-size: 100px 100px, 150px 150px, 200px 200px, 300px 300px, 400px 400px;
             animation: static-noise 0.5s infinite;
             pointer-events: none;
-            opacity: 0.3;
+            opacity: 0.6;
           }
         `}</style>
           </>
