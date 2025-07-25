@@ -217,7 +217,7 @@ export default function Index() {
               radial-gradient(circle at 80% 20%, rgba(63, 186, 255, 0.2) 0%, transparent 50%),
               radial-gradient(circle at 40% 40%, rgba(57, 135, 227, 0.1) 0%, transparent 50%)
             `,
-            animation: "pulse 8s ease-in-out infinite alternate",
+            animation: "subtle-glow 12s ease-in-out infinite alternate",
           }}
         />
       </div>
