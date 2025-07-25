@@ -668,11 +668,11 @@ export default function Index() {
                             style={{
                               background:
                                 theme === "light"
-                                  ? "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)"
-                                  : "radial-gradient(circle, rgba(73, 146, 255, 0.9) 0%, transparent 70%)",
+                                  ? "radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%)"
+                                  : "radial-gradient(circle, rgba(73, 146, 255, 0.6) 0%, transparent 70%)",
                               clipPath:
                                 "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-                              animation: "spin-slow 8s linear infinite",
+                              animation: "spin-slow 15s linear infinite",
                             }}
                           />
                         )}
@@ -682,11 +682,11 @@ export default function Index() {
                             style={{
                               background:
                                 theme === "light"
-                                  ? "linear-gradient(45deg, rgba(147, 51, 234, 0.8), rgba(59, 130, 246, 0.6))"
-                                  : "linear-gradient(45deg, rgba(34, 211, 238, 0.8), rgba(73, 146, 255, 0.7))",
+                                  ? "linear-gradient(45deg, rgba(147, 51, 234, 0.5), rgba(59, 130, 246, 0.4))"
+                                  : "linear-gradient(45deg, rgba(34, 211, 238, 0.5), rgba(73, 146, 255, 0.4))",
                               clipPath:
                                 "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                              animation: "pulse-fast 1.5s ease-in-out infinite",
+                              animation: "gentle-pulse 4s ease-in-out infinite",
                             }}
                           />
                         )}
@@ -696,11 +696,11 @@ export default function Index() {
                             style={{
                               background:
                                 theme === "light"
-                                  ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.6), rgba(59, 130, 246, 0.8))"
-                                  : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.7), rgba(73, 146, 255, 0.8))",
+                                  ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.5), rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.5))"
+                                  : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.5), rgba(34, 211, 238, 0.4), rgba(73, 146, 255, 0.5))",
                               clipPath:
                                 "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
-                              animation: "rotate-slow 6s linear infinite",
+                              animation: "rotate-slow 12s linear infinite",
                             }}
                           />
                         )}
