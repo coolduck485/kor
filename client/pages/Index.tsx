@@ -183,20 +183,77 @@ export default function Index() {
         }}
       />
 
-      {/* Floating Ambient Particles */}
+      {/* Enhanced Floating Ambient Particles with Color Shifting */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(25)].map((_, i) => (
           <div
             key={`particle-${i}`}
             className="absolute rounded-full opacity-60"
             style={{
-              left: `${10 + ((i * 70) % 90)}%`,
-              top: `${15 + ((i * 40) % 80)}%`,
-              width: `${2 + (i % 3)}px`,
-              height: `${2 + (i % 3)}px`,
-              background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.3 + (i % 3) * 0.2})`,
-              animation: `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
-              filter: "blur(0.5px)",
+              left: `${5 + ((i * 60) % 95)}%`,
+              top: `${10 + ((i * 35) % 85)}%`,
+              width: `${1 + (i % 4)}px`,
+              height: `${1 + (i % 4)}px`,
+              background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.2 + (i % 4) * 0.15})`,
+              animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
+              filter: "blur(0.3px)",
+              transform: `scale(${0.5 + (i % 3) * 0.3})`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Animated Geometric Patterns */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+        <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
+          {/* Animated hexagon grid */}
+          {[...Array(6)].map((_, i) => (
+            <polygon
+              key={`hex-${i}`}
+              points="100,20 140,40 140,80 100,100 60,80 60,40"
+              fill="none"
+              stroke="rgba(73, 146, 255, 0.3)"
+              strokeWidth="1"
+              strokeDasharray="10 5"
+              style={{
+                transform: `translate(${100 + i * 200}px, ${100 + (i % 2) * 150}px)`,
+                animation: `geometric-pulse ${8 + i}s ease-in-out infinite ${i * 0.5}s`,
+              }}
+            />
+          ))}
+          {/* Animated connecting lines */}
+          {[...Array(4)].map((_, i) => (
+            <line
+              key={`line-${i}`}
+              x1={50 + i * 300}
+              y1={200}
+              x2={250 + i * 300}
+              y2={400}
+              stroke="rgba(63, 186, 255, 0.2)"
+              strokeWidth="1"
+              strokeDasharray="15 10"
+              style={{
+                animation: `geometric-pulse ${10 + i * 2}s ease-in-out infinite ${i * 0.7}s`,
+              }}
+            />
+          ))}
+        </svg>
+      </div>
+
+      {/* Breathing Orbs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`breath-orb-${i}`}
+            className="absolute rounded-full"
+            style={{
+              left: `${15 + ((i * 80) % 70)}%`,
+              top: `${20 + ((i * 60) % 60)}%`,
+              width: `${20 + (i % 3) * 15}px`,
+              height: `${20 + (i % 3) * 15}px`,
+              background: `radial-gradient(circle, rgba(${73 + (i * 10)}, ${146 + (i * 5)}, 255, 0.3) 0%, transparent 70%)`,
+              animation: `breath ${6 + (i % 4)}s ease-in-out infinite ${i * 0.4}s`,
+              filter: `blur(${2 + (i % 3)}px)`,
             }}
           />
         ))}
