@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
 
 export default function Index() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -8,6 +9,92 @@ export default function Index() {
     isNear: false,
   });
   const badgeRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Framer Motion animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
+
+  const fadeInScale = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
+
+  const slideInFromSide = (direction: "left" | "right") => ({
+    hidden: {
+      opacity: 0,
+      x: direction === "left" ? -100 : 100,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  });
+
+  const staggeredLetters = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.5,
+      },
+    },
+  };
+
+  const letterVariants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.8,
+      rotateX: -90,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      },
+    },
+  };
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -18,7 +105,16 @@ export default function Index() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    // Trigger loading animation after a short delay
+    const loadTimer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      clearTimeout(loadTimer);
+    };
   }, []);
 
   const handleBadgeMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -56,19 +152,13 @@ export default function Index() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
+    <motion.div
+      className="relative min-h-screen bg-black overflow-hidden"
+      variants={containerVariants}
+      initial="hidden"
+      animate={isLoaded ? "visible" : "hidden"}
+    >
       {/* Enhanced Background Elements */}
-      {/* Animated Grid Pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div
-          className="absolute inset-0 animate-pulse"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
-            backgroundSize: "50px 50px",
-            animation: "backgroundShift 20s ease-in-out infinite alternate",
-          }}
-        />
-      </div>
 
       {/* Dynamic Gradient Overlays */}
       <div className="absolute inset-0 opacity-10">
@@ -113,7 +203,7 @@ export default function Index() {
               radial-gradient(circle at 80% 20%, rgba(63, 186, 255, 0.2) 0%, transparent 50%),
               radial-gradient(circle at 40% 40%, rgba(57, 135, 227, 0.1) 0%, transparent 50%)
             `,
-            animation: "pulse 8s ease-in-out infinite alternate",
+            animation: "subtle-glow 12s ease-in-out infinite alternate",
           }}
         />
       </div>
@@ -426,39 +516,36 @@ export default function Index() {
             className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20"
             style={{ marginLeft: "-5px" }}
           >
-            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-reveal relative">
+            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight relative">
               <span
-                className="inline-block animate-text-bounce relative"
+                className="inline-block relative"
                 style={{
-                  animationDelay: "0.8s",
                   textShadow:
                     "0 0 20px rgba(73, 146, 255, 0.6), 0 0 40px rgba(73, 146, 255, 0.4)",
                   animation:
-                    "textGlow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.8s both",
+                    "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s infinite both",
                 }}
               >
                 K
               </span>
               <span
-                className="inline-block animate-text-bounce relative"
+                className="inline-block relative"
                 style={{
-                  animationDelay: "1.4s",
                   textShadow:
                     "0 0 20px rgba(63, 186, 255, 0.6), 0 0 40px rgba(63, 186, 255, 0.4)",
                   animation:
-                    "textGlow 3s ease-in-out infinite 1s, text-bounce 2s ease-in-out 1.4s both",
+                    "text-glow 3s ease-in-out infinite 0.3s, text-bounce 2s ease-in-out 0.8s infinite both",
                 }}
               >
                 o
               </span>
               <span
-                className="inline-block animate-text-bounce relative"
+                className="inline-block relative"
                 style={{
-                  animationDelay: "2.0s",
                   textShadow:
                     "0 0 20px rgba(57, 135, 227, 0.6), 0 0 40px rgba(57, 135, 227, 0.4)",
                   animation:
-                    "textGlow 3s ease-in-out infinite 2s, text-bounce 2s ease-in-out 2.0s both",
+                    "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s infinite both",
                 }}
               >
                 r
@@ -548,7 +635,7 @@ export default function Index() {
           style={{
             background:
               "radial-gradient(circle, rgba(73, 146, 255, 0.2) 0%, transparent 70%)",
-            animation: "pulse 6s ease-in-out infinite",
+            animation: "gentle-glow 8s ease-in-out infinite",
           }}
         />
         <div
@@ -556,7 +643,7 @@ export default function Index() {
           style={{
             background:
               "radial-gradient(circle, rgba(63, 186, 255, 0.3) 0%, transparent 70%)",
-            animation: "pulse 4s ease-in-out infinite 1s",
+            animation: "gentle-glow 10s ease-in-out infinite 2s",
           }}
         />
 
@@ -566,7 +653,7 @@ export default function Index() {
           style={{
             background:
               "radial-gradient(circle, rgba(57, 135, 227, 0.4) 0%, transparent 70%)",
-            animation: "pulse 7s ease-in-out infinite 2s",
+            animation: "gentle-glow 14s ease-in-out infinite 4s",
           }}
         />
         <div
@@ -574,7 +661,7 @@ export default function Index() {
           style={{
             background:
               "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
-            animation: "pulse 5s ease-in-out infinite 0.5s",
+            animation: "gentle-glow 12s ease-in-out infinite 1s",
           }}
         />
       </div>
@@ -954,6 +1041,26 @@ export default function Index() {
           }
         }
 
+        @keyframes subtle-glow {
+          0%,
+          100% {
+            opacity: 0.15;
+          }
+          50% {
+            opacity: 0.25;
+          }
+        }
+
+        @keyframes gentle-glow {
+          0%,
+          100% {
+            opacity: 0.2;
+          }
+          50% {
+            opacity: 0.35;
+          }
+        }
+
         .animate-type-writer {
           animation: type-writer 1s ease-out forwards;
         }
@@ -963,7 +1070,7 @@ export default function Index() {
           animation: fade-in-word 0.8s ease-out forwards;
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 }
 
@@ -1279,11 +1386,8 @@ function OrbFloatingButton({
 
         {/* Futuristic circuit-like patterns */}
         <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-          <div className="absolute top-1 left-1 w-2 h-2 bg-white/30 rounded-full animate-pulse" />
-          <div
-            className="absolute bottom-1 right-1 w-1 h-1 bg-white/40 rounded-full animate-pulse"
-            style={{ animationDelay: "0.5s" }}
-          />
+          <div className="absolute top-1 left-1 w-2 h-2 bg-white/30 rounded-full" />
+          <div className="absolute bottom-1 right-1 w-1 h-1 bg-white/40 rounded-full" />
           <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         </div>
 
@@ -1297,7 +1401,7 @@ function OrbFloatingButton({
 
         {/* Pulsing border effect */}
         <div
-          className={`absolute inset-0 ${currentSize.radius} border border-white/10 group-hover:border-white/30 transition-all duration-500 animate-pulse opacity-50`}
+          className={`absolute inset-0 ${currentSize.radius} border border-white/10 group-hover:border-white/30 transition-all duration-500 opacity-30`}
           style={{ left: "-50px" }}
         />
 
