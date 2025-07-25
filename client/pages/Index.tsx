@@ -385,8 +385,8 @@ export default function Index() {
                       key={`sparkle-${i}`}
                       className="absolute animate-sparkle-twinkle pointer-events-none"
                       style={{
-                        left: `${-5 + (i * 110) / SHINE_CONFIG.sparkleCount}%`,
-                        top: `${-25 + (i % 4) * -8}px`,
+                        left: `calc(50% + ${Math.cos((i / SHINE_CONFIG.sparkleCount) * 360 * Math.PI / 180) * 120}px)`,
+                        top: `calc(50% + ${Math.sin((i / SHINE_CONFIG.sparkleCount) * 360 * Math.PI / 180) * 60}px)`,
                         animationDelay: `${i * 0.4 + 2}s`,
                         animationDuration: `${2 + Math.random() * 1.5}s`,
                         transform: `scale(${0.2 + Math.random() * 0.15}) rotate(${Math.random() * 360}deg)`,
