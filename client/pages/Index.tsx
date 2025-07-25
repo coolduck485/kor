@@ -190,7 +190,7 @@ export default function Index() {
         <ThemeToggle />
       </div>
 
-      {/* Custom Blue Glowy Orb Cursor - Diffuse Style */}
+      {/* Custom Blue Glowy Orb Cursor - Figma Design Match */}
       <div
         className={`fixed pointer-events-none z-[60] transition-opacity duration-300 ${
           customCursor.visible ? 'opacity-100' : 'opacity-0'
@@ -201,60 +201,25 @@ export default function Index() {
           transform: 'translate(-50%, -50%)',
         }}
       >
-        {/* Diffuse cursor orb with multiple glow layers */}
-        <div className="relative">
-          {/* Outermost diffuse glow */}
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: '80px',
-              height: '80px',
-              background: 'radial-gradient(circle, rgba(73, 146, 255, 0.15) 0%, rgba(73, 146, 255, 0.08) 30%, rgba(73, 146, 255, 0.03) 60%, transparent 100%)',
-              transform: 'translate(-50%, -50%)',
-              filter: 'blur(4px)',
-              animation: 'gentle-pulse 3s ease-in-out infinite',
-            }}
-          />
-          {/* Secondary glow layer */}
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: '50px',
-              height: '50px',
-              background: 'radial-gradient(circle, rgba(73, 146, 255, 0.25) 0%, rgba(73, 146, 255, 0.15) 40%, rgba(73, 146, 255, 0.05) 70%, transparent 100%)',
-              transform: 'translate(-50%, -50%)',
-              filter: 'blur(2px)',
-              animation: 'gentle-pulse 3s ease-in-out infinite 0.5s',
-            }}
-          />
-          {/* Main glow */}
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: '30px',
-              height: '30px',
-              background: 'radial-gradient(circle, rgba(73, 146, 255, 0.4) 0%, rgba(73, 146, 255, 0.25) 50%, rgba(73, 146, 255, 0.1) 80%, transparent 100%)',
-              transform: 'translate(-50%, -50%)',
-              filter: 'blur(1px)',
-              animation: 'orb-pulse 3s ease-in-out infinite',
-            }}
-          />
-          {/* Core bright center */}
-          <div
-            className="absolute rounded-full"
-            style={{
-              width: '8px',
-              height: '8px',
-              background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(73, 146, 255, 0.8) 40%, rgba(57, 135, 227, 0.9) 100%)',
-              transform: 'translate(-50%, -50%)',
-              boxShadow: `
-                0 0 20px rgba(73, 146, 255, 0.6),
-                0 0 40px rgba(73, 146, 255, 0.4),
-                0 0 60px rgba(73, 146, 255, 0.2)
-              `,
-            }}
-          />
-        </div>
+        {/* Figma-matched cursor orb */}
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: '18px',
+            height: '19px',
+            borderRadius: '19px',
+            background: 'linear-gradient(90deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)',
+            boxShadow: `
+              0 0 31px 0 #4992FF,
+              0 0 18px 0 #4992FF,
+              0 0 10px 0 #4992FF,
+              0 0 5px 0 #4992FF,
+              0 0 1.5px 0 #4992FF
+            `,
+            filter: 'blur(1.1px)',
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
       </div>
 
       {/* Enhanced Background Elements */}
