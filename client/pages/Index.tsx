@@ -516,39 +516,36 @@ export default function Index() {
             className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20"
             style={{ marginLeft: "-5px" }}
           >
-            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-reveal relative">
+            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight relative">
               <span
-                className="inline-block animate-text-bounce relative"
+                className="inline-block relative"
                 style={{
-                  animationDelay: "0.8s",
                   textShadow:
                     "0 0 20px rgba(73, 146, 255, 0.6), 0 0 40px rgba(73, 146, 255, 0.4)",
                   animation:
-                    "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.8s both",
+                    "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s both",
                 }}
               >
                 K
               </span>
               <span
-                className="inline-block animate-text-bounce relative"
+                className="inline-block relative"
                 style={{
-                  animationDelay: "1.4s",
                   textShadow:
                     "0 0 20px rgba(63, 186, 255, 0.6), 0 0 40px rgba(63, 186, 255, 0.4)",
                   animation:
-                    "text-glow 3s ease-in-out infinite 1s, text-bounce 2s ease-in-out 1.4s both",
+                    "text-glow 3s ease-in-out infinite 0.3s, text-bounce 2s ease-in-out 0.8s both",
                 }}
               >
                 o
               </span>
               <span
-                className="inline-block animate-text-bounce relative"
+                className="inline-block relative"
                 style={{
-                  animationDelay: "2.0s",
                   textShadow:
                     "0 0 20px rgba(57, 135, 227, 0.6), 0 0 40px rgba(57, 135, 227, 0.4)",
                   animation:
-                    "text-glow 3s ease-in-out infinite 2s, text-bounce 2s ease-in-out 2.0s both",
+                    "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s both",
                 }}
               >
                 r
