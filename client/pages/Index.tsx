@@ -19,6 +19,7 @@ export default function Index() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingStep, setLoadingStep] = useState(0); // 0: initial, 1: K, 2: Ko, 3: Kor, 4: complete
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [previousMode, setPreviousMode] = useState(mode);
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
@@ -403,7 +404,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║��█╔══██╗
-██║  ██╗╚██████╔╝██║  ██║
+██║  ██╗╚██���███╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
