@@ -374,7 +374,7 @@ export default function Index() {
                   animationDuration: SHINE_CONFIG.duration,
                   animationDelay: SHINE_CONFIG.delay,
                   animationIterationCount: "infinite",
-                  animationTimingFunction: "ease-out",
+                  animationTimingFunction: "ease-in-out",
                 }}
               >
                 Development services
