@@ -792,8 +792,8 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Mobile Hamburger Menu */}
-        <div className="md:hidden absolute inset-0 flex items-center justify-center">
+        {/* Mobile Hamburger Menu - Only on mobile (640px and below) */}
+        <div className="sm:hidden absolute inset-0 flex items-center justify-center">
           <div className="relative">
             <MobileHamburgerMenu
               isOpen={isMobileMenuOpen}
@@ -804,7 +804,7 @@ export default function Index() {
         </div>
 
         {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
-        <div className="hidden md:flex absolute inset-0 items-center justify-center">
+        <div className="hidden sm:flex absolute inset-0 items-center justify-center">
           <div className="relative">
             {/* Animated Connection Lines Between Buttons */}
             <svg
@@ -883,7 +883,7 @@ export default function Index() {
       </div>
 
       {/* Scroll/Swipe Indicator */}
-      <div className="absolute bottom-8 lg:bottom-8 md:bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2 z-20">
+      <div className="absolute bottom-16 lg:bottom-16 md:bottom-24 sm:bottom-28 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center space-y-3 animate-button-float">
           {/* Desktop: Scroll Down */}
           <span
@@ -1310,20 +1310,20 @@ interface MobileHamburgerMenuProps {
 
 function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuProps) {
   const menuItems = [
-    { text: "About us", icon: "👥" },
-    { text: "Services", icon: "⚙️" },
-    { text: "Portfolio", icon: "📁" },
-    { text: "Contact us", icon: "📧" },
+    { text: "About us" },
+    { text: "Services" },
+    { text: "Portfolio" },
+    { text: "Contact us" },
   ];
 
   return (
     <>
-      {/* Hamburger Button positioned where About Us was */}
+      {/* Hamburger Button - moved 200px right and 200px up */}
       <div
         className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30"
         style={{
-          marginLeft: "-80px", // Position similar to where About Us was
-          marginTop: "-80px",
+          marginLeft: "120px", // Moved 200px right from -80px
+          marginTop: "-280px", // Moved 200px up from -80px
           animationDelay: "0.2s",
           animation: "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s",
         }}
@@ -1385,8 +1385,8 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
             style={{
-              marginLeft: "-80px",
-              marginTop: "0px",
+              marginLeft: "120px", // Match hamburger button position
+              marginTop: "-200px", // Position menu above button to avoid scroll indicator
             }}
           >
             <div
@@ -1415,15 +1415,14 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.3 }}
-                    className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-300 hover:scale-105 flex items-center space-x-3 ${
+                    className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-300 hover:scale-105 flex items-center justify-center ${
                       theme === "light"
                         ? "hover:bg-white/20 text-gray-800 hover:text-gray-900"
                         : "hover:bg-white/10 text-white/90 hover:text-white"
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
-                    <span className="text-lg">{item.icon}</span>
-                    <span className="font-poppins font-semibold text-sm">
+                    <span className="font-poppins font-semibold text-sm tracking-wide">
                       {item.text}
                     </span>
                   </motion.button>
