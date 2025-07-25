@@ -353,9 +353,34 @@ export default function Index() {
             style={{ marginLeft: "5px", marginTop: "-5px" }}
           >
             <p
-              className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative animate-shine-text-only"
+              className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative"
+              style={{
+                animationName: `shine-${SHINE_CONFIG.direction}`,
+                animationDuration: SHINE_CONFIG.duration,
+                animationDelay: SHINE_CONFIG.delay,
+                animationIterationCount: 'infinite',
+                animationTimingFunction: 'ease-out',
+              }}
             >
-              Development services
+              <span className="relative inline-block shine-text-base">
+                Development services
+                {/* Sparkles */}
+                {SHINE_CONFIG.showSparkles && [...Array(SHINE_CONFIG.sparkleCount)].map((_, i) => (
+                  <span
+                    key={`sparkle-${i}`}
+                    className="absolute text-white opacity-60 animate-sparkle-twinkle pointer-events-none"
+                    style={{
+                      left: `${10 + (i * 80 / SHINE_CONFIG.sparkleCount)}%`,
+                      top: `${-10 + (i % 2) * -15}px`,
+                      fontSize: '0.5em',
+                      animationDelay: `${i * 0.3 + 2}s`,
+                      animationDuration: `${1.5 + Math.random() * 1}s`,
+                    }}
+                  >
+                    ✨
+                  </span>
+                ))}
+              </span>
             </p>
           </div>
         </div>
