@@ -3026,6 +3026,12 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 0.2, // When button appears (in seconds)
       size: "medium", // Button size variant
       accent: "blue", // Color accent - unified to blue
+      onClick: () => {
+        // Scroll to about section or navigate to about page
+        console.log("About us clicked");
+        // For now, let's add an alert to show it's working
+        alert("About Us section - Coming soon!");
+      },
 
       // Fine-tune positioning (these are added to calculated position)
       xOffset: 0, // Centered positioning for cleaner look
