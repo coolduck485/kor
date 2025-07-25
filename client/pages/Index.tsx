@@ -3020,25 +3020,23 @@ const ORB_BUTTON_CONFIG = {
   buttons: [
     {
       text: "About us",
-      angle: -30, // Position: top-right, more evenly spaced
+      angle: -30, // Position: top-right, mirrored from Services for symmetry
       radius: 280, // Consistent distance from center
-      position: "top-right", // Visual description (for reference only)
-      animationDelay: 0.2, // When button appears (in seconds)
-      size: "medium", // Button size variant
+      position: "top-right",
+      animationDelay: 0.2,
+      size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
-        // Scroll to about section or navigate to about page
         console.log("About us clicked");
-        // For now, let's add an alert to show it's working
         alert("About Us section - Coming soon!");
       },
 
-      // Fine-tune positioning (these are added to calculated position)
-      xOffset: 0, // Centered positioning for cleaner look
-      yOffset: -20, // Adjusted for mobile positioning
+      // Custom positioning for About us button
+      xOffset: 0, // Centered positioning
+      yOffset: -20, // Better spacing for mobile
 
-      // Override global settings for this button (optional)
-      customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
+      // About us button now uses global positioning for consistency
+      customRadiusMultiplier: null, // Use global multipliers for consistency
     },
 
     {
