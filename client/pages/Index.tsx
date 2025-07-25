@@ -407,9 +407,9 @@ export default function Index() {
                           <feBlend mode="normal" in="SourceGraphic" in2="effect3_dropShadow" result="shape"/>
                         </filter>
                         <linearGradient id={`gradient_sparkle_${i}`} x1="504.394" y1="628.011" x2="679.912" y2="578.083" gradientUnits="userSpaceOnUse">
-                          <stop stopColor="#3FBAFF"/>
-                          <stop offset="0.493374" stopColor="#4992FF"/>
-                          <stop offset="1" stopColor="#3987E3"/>
+                          <stop stopColor="#1E40AF"/>
+                          <stop offset="0.493374" stopColor="#1D4ED8"/>
+                          <stop offset="1" stopColor="#1E3A8A"/>
                         </linearGradient>
                       </defs>
                       <g filter={`url(#filter_sparkle_${i})`}>
