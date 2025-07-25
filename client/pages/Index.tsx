@@ -420,6 +420,70 @@ export default function Index() {
           </div>
         </div>
       </div>
+
+      {/* Enhanced Background Animations */}
+      <style jsx>{`
+        @keyframes backgroundShift {
+          0%, 100% { transform: translateX(0) translateY(0); }
+          25% { transform: translateX(10px) translateY(-5px); }
+          50% { transform: translateX(-5px) translateY(10px); }
+          75% { transform: translateX(15px) translateY(5px); }
+        }
+
+        @keyframes float-particle {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px) scale(1);
+            opacity: 0.2;
+          }
+          25% {
+            transform: translateY(-20px) translateX(10px) scale(1.2);
+            opacity: 0.4;
+          }
+          50% {
+            transform: translateY(-40px) translateX(-15px) scale(0.8);
+            opacity: 0.6;
+          }
+          75% {
+            transform: translateY(-20px) translateX(20px) scale(1.1);
+            opacity: 0.3;
+          }
+        }
+
+        @keyframes gradient-shift {
+          0%, 100% { transform: translateX(0%) translateY(0%) rotate(0deg); }
+          25% { transform: translateX(10%) translateY(-5%) rotate(1deg); }
+          50% { transform: translateX(-5%) translateY(10%) rotate(-1deg); }
+          75% { transform: translateX(15%) translateY(-10%) rotate(0.5deg); }
+        }
+
+        @keyframes gradient-shift-reverse {
+          0%, 100% { transform: translateX(0%) translateY(0%) rotate(0deg); }
+          25% { transform: translateX(-10%) translateY(5%) rotate(-1deg); }
+          50% { transform: translateX(5%) translateY(-10%) rotate(1deg); }
+          75% { transform: translateX(-15%) translateY(10%) rotate(-0.5deg); }
+        }
+
+        @keyframes noise {
+          0%, 100% { opacity: 0.05; transform: translateX(0) translateY(0); }
+          50% { opacity: 0.1; transform: translateX(2px) translateY(1px); }
+        }
+
+        .animate-float-particle {
+          animation: float-particle linear infinite;
+        }
+
+        .animate-gradient-shift {
+          animation: gradient-shift 25s ease-in-out infinite;
+        }
+
+        .animate-gradient-shift-reverse {
+          animation: gradient-shift-reverse 30s ease-in-out infinite;
+        }
+
+        .animate-noise {
+          animation: noise 3s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
