@@ -1228,6 +1228,93 @@ export default function Index() {
               transform: translateY(-4px);
             }
           }
+
+          @keyframes scanline {
+            0% {
+              transform: translateY(-100vh);
+            }
+            100% {
+              transform: translateY(100vh);
+            }
+          }
+
+          @keyframes flicker {
+            0%, 100% {
+              opacity: 1;
+            }
+            50% {
+              opacity: 0.95;
+            }
+            51% {
+              opacity: 1;
+            }
+            52% {
+              opacity: 0.98;
+            }
+            53% {
+              opacity: 1;
+            }
+          }
+
+          @keyframes typing {
+            from {
+              width: 0;
+            }
+            to {
+              width: 100%;
+            }
+          }
+
+          @keyframes crt-glow {
+            0%, 100% {
+              box-shadow:
+                inset 0 0 50px rgba(0, 255, 65, 0.05),
+                0 0 50px rgba(0, 255, 65, 0.1);
+            }
+            50% {
+              box-shadow:
+                inset 0 0 50px rgba(0, 255, 65, 0.1),
+                0 0 100px rgba(0, 255, 65, 0.2);
+            }
+          }
+
+          .retro-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+              90deg,
+              transparent 98%,
+              rgba(0, 255, 65, 0.03) 100%
+            );
+            background-size: 3px 100%;
+            pointer-events: none;
+            animation: flicker 0.15s infinite linear;
+          }
+
+          .retro-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(
+              90deg,
+              transparent 0%,
+              rgba(0, 255, 65, 0.6) 50%,
+              transparent 100%
+            );
+            animation: scanline 3s linear infinite;
+            pointer-events: none;
+          }
+
+          .terminal-window {
+            animation: crt-glow 4s ease-in-out infinite;
+          }
         `}</style>
           </>
         )}
