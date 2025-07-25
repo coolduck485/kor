@@ -185,7 +185,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██████╔╝██║  ██║
+██║  ██╗╚██��███╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -241,46 +241,43 @@ export default function Index() {
 
           {/* Navigation Buttons */}
           <motion.div
-            className="button-grid"
+            className="button-grid-single"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 2, duration: 1 }}
           >
             <button
-              className="pixel-button"
-              onClick={() => console.log("About")}
-            >
-              ▓ ABOUT ▓
-            </button>
-            <button
-              className="pixel-button"
-              onClick={() => console.log("Services")}
-            >
-              ▓ SERVICES ▓
-            </button>
-            <button
-              className="pixel-button"
-              onClick={() => console.log("Portfolio")}
-            >
-              ▓ PORTFOLIO ▓
-            </button>
-            <button
-              className="pixel-button"
-              onClick={() => console.log("Contact")}
-            >
-              ▓ CONTACT ▓
-            </button>
-            <button
-              className="pixel-button"
-              onClick={() => console.log("Terminal")}
+              className="pixel-button terminal-button"
+              onClick={() => setShowTerminal(true)}
             >
               ▓ TERMINAL ▓
             </button>
+          </motion.div>
+
+          {/* Social Media Buttons */}
+          <motion.div
+            className="social-button-grid"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 2.5, duration: 1 }}
+          >
             <button
-              className="pixel-button"
-              onClick={() => console.log("Archives")}
+              className="pixel-button social-button"
+              onClick={() => window.open("https://instagram.com", "_blank")}
             >
-              ▓ ARCHIVES ▓
+              ▓ INSTAGRAM ▓
+            </button>
+            <button
+              className="pixel-button social-button"
+              onClick={() => window.open("https://discord.com", "_blank")}
+            >
+              ▓ DISCORD ▓
+            </button>
+            <button
+              className="pixel-button social-button"
+              onClick={() => window.open("https://telegram.org", "_blank")}
+            >
+              ▓ TELEGRAM ▓
             </button>
           </motion.div>
 
