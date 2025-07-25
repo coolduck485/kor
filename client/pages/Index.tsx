@@ -740,19 +740,20 @@ export default function Index() {
           }
 
           .interactive-terminal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 800px;
-            height: 70%;
-            max-height: 600px;
-            background: #0a0a0a;
-            border: 3px solid #00ff41;
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
-            z-index: 9999;
-            overflow: hidden;
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: 90% !important;
+            max-width: 800px !important;
+            height: 70% !important;
+            max-height: 600px !important;
+            background: #0a0a0a !important;
+            border: 3px solid #00ff41 !important;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4) !important;
+            z-index: 9999 !important;
+            overflow: hidden !important;
+            margin: 0 !important;
           }
 
           .interactive-terminal .terminal-header {
@@ -2508,7 +2509,7 @@ const ORB_BUTTON_CONFIG = {
 // ========================================
 //
 // To move "Services" button 50px to the right:
-// Change: xOffset: 0  →  xOffset: 50
+// Change: xOffset: 0  ��  xOffset: 50
 //
 // To move "About us" button 30px up:
 // Change: yOffset: 0  →  yOffset: -30
