@@ -1256,7 +1256,10 @@ export default function Index() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Theme Toggle Container with Tooltip */}
+      {/* Main Content - Only show after loading */}
+      {!isLoading && (
+        <>
+          {/* Theme Toggle Container with Tooltip */}
       <div className="fixed top-6 right-6 z-50">
         <div className="group relative">
           {/* Tooltip */}
@@ -2442,6 +2445,8 @@ export default function Index() {
           animation: fade-in-word 0.8s ease-out forwards;
         }
       `}</style>
+        </>
+      )}
     </motion.div>
   );
 }
