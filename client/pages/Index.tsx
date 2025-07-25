@@ -28,15 +28,16 @@ export default function Index() {
 
   // Welcome notification - shows once per page load
   useEffect(() => {
-    if (animationStep >= 2 && !hasShownWelcomeRef.current) {
-      hasShownWelcomeRef.current = true;
-      setTimeout(() => {
-        showInfo(
-          "Welcome to KOR!",
-          "Experience the future of modern web development. Click the X to dismiss.",
-        );
-      }, 3000);
-    }
+    // Temporarily disabled to test button functionality
+    // if (animationStep >= 2 && !hasShownWelcomeRef.current) {
+    //   hasShownWelcomeRef.current = true;
+    //   setTimeout(() => {
+    //     showInfo(
+    //       "Welcome to KOR!",
+    //       "Experience the future of modern web development. Click the X to dismiss.",
+    //     );
+    //   }, 3000);
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animationStep]);
   const [showTerminal, setShowTerminal] = useState(false);
@@ -470,12 +471,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔══██╗
-█████╔╝ ██║   ██║██████╔╝
+                  {`██╗  ██╗ ████���█╗ ██████╗
+██║ ██╔╝██╔═══██╗██╔═��██╗
+█████╔╝ ██║   ���█║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚���════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -540,7 +541,8 @@ export default function Index() {
                   </div>
                   <div className="terminal-line mb-1">
                     <span className="text-cyan-400">MEM:</span>&nbsp;
-                    <span className="text-yellow-400">████████░░</span>&nbsp;78%
+                    <span className="text-yellow-400">██��█████░░</span>
+                    &nbsp;78%
                   </div>
                   <div className="terminal-line mb-3">
                     <span className="text-cyan-400">NET:</span>&nbsp;
@@ -565,7 +567,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████��███████████████ 50%
+                      RAM: ██████��██���████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1754,7 +1756,7 @@ export default function Index() {
         {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
-            className="relative animate-float cursor-pointer group"
+            className="relative animate-float cursor-pointer group pointer-events-none"
             initial={{
               opacity: 0,
               scale: 0.3,
@@ -1799,7 +1801,7 @@ export default function Index() {
               viewBox="0 0 1284 810"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-[58rem] h-[58rem] sm:w-[78rem] sm:h-[78rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem]"
+              className="w-[58rem] h-[58rem] sm:w-[78rem] sm:h-[78rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem] pointer-events-none"
               style={{
                 position: "absolute",
                 left: "50%",
@@ -3020,19 +3022,23 @@ const ORB_BUTTON_CONFIG = {
   buttons: [
     {
       text: "About us",
-      angle: -30, // Position: top-right, more evenly spaced
+      angle: -30, // Position: top-right, mirrored from Services for symmetry
       radius: 280, // Consistent distance from center
-      position: "top-right", // Visual description (for reference only)
-      animationDelay: 0.2, // When button appears (in seconds)
-      size: "medium", // Button size variant
+      position: "top-right",
+      animationDelay: 0.2,
+      size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
+      onClick: () => {
+        console.log("About us clicked");
+        alert("About Us section - Coming soon!");
+      },
 
-      // Fine-tune positioning (these are added to calculated position)
-      xOffset: 0, // Centered positioning for cleaner look
-      yOffset: -20, // Adjusted for mobile positioning
+      // Custom positioning for About us button
+      xOffset: 0, // Centered positioning
+      yOffset: -20, // Better spacing for mobile
 
-      // Override global settings for this button (optional)
-      customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
+      // About us button now uses global positioning for consistency
+      customRadiusMultiplier: null, // Use global multipliers for consistency
     },
 
     {
@@ -3043,6 +3049,10 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 0.6,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
+      onClick: () => {
+        console.log("Services clicked");
+        alert("Services section - Coming soon!");
+      },
 
       // Custom positioning for Services button
       xOffset: 0, // Centered positioning
@@ -3060,6 +3070,10 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 1.0,
       size: "medium", // Consistent sizing for uniform look
       accent: "blue", // Color accent - unified to blue
+      onClick: () => {
+        console.log("Portfolio clicked");
+        alert("Portfolio section - Coming soon!");
+      },
 
       xOffset: 0, // Centered positioning
       yOffset: 15, // Adjusted for mobile balance
@@ -3075,6 +3089,10 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 1.4,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
+      onClick: () => {
+        console.log("Contact us clicked");
+        alert("Contact us section - Coming soon!");
+      },
 
       xOffset: -20, // Mobile-friendly spacing
       yOffset: -75, // Moved up 50px from -25 to -75
@@ -3142,6 +3160,7 @@ function OrbFloatingButtons() {
           size={button.size}
           accent={button.accent}
           theme={theme}
+          onClick={button.onClick}
         />
       ))}
     </>
@@ -3160,6 +3179,7 @@ interface OrbFloatingButtonProps {
   size: string;
   accent: string;
   theme: "light" | "dark";
+  onClick?: () => void;
 }
 
 function OrbFloatingButton({
@@ -3174,6 +3194,7 @@ function OrbFloatingButton({
   size,
   accent,
   theme,
+  onClick,
 }: OrbFloatingButtonProps) {
   // Calculate base position from angle
   const radian = (angle * Math.PI) / 180;
@@ -3253,14 +3274,14 @@ function OrbFloatingButton({
 
   return (
     <div
-      className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 animate-gentleFloat"
+      className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] animate-gentleFloat"
       style={
         {
-          "--mobile-x": `${Math.max(-120, Math.min(120, x * radius * mobileMultiplier + xOffset + (text === "About us" ? -60 : 0)))}px`,
+          "--mobile-x": `${Math.max(-120, Math.min(120, x * radius * mobileMultiplier + xOffset))}px`,
           "--mobile-y": `${Math.max(-120, Math.min(120, y * radius * mobileMultiplier + yOffset))}px`,
-          "--tablet-x": `${Math.max(-180, Math.min(180, x * radius * tabletMultiplier + xOffset + (text === "About us" ? -60 : 0)))}px`,
+          "--tablet-x": `${Math.max(-180, Math.min(180, x * radius * tabletMultiplier + xOffset))}px`,
           "--tablet-y": `${Math.max(-150, Math.min(150, y * radius * tabletMultiplier + yOffset))}px`,
-          "--desktop-x": `${x * radius * desktopMultiplier + xOffset + (text === "About us" ? -100 : 0)}px`,
+          "--desktop-x": `${x * radius * desktopMultiplier + xOffset}px`,
           "--desktop-y": `${y * radius * desktopMultiplier + yOffset}px`,
           marginLeft: "var(--mobile-x)",
           marginTop: "var(--mobile-y)",
@@ -3289,7 +3310,7 @@ function OrbFloatingButton({
         }}
       />
       <button
-        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
+        className={`group relative cursor-pointer ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
           theme === "light"
             ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
             : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
@@ -3302,6 +3323,7 @@ function OrbFloatingButton({
               ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
               : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
         }}
+        onClick={onClick}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = `scale(${ORB_BUTTON_CONFIG.global.hoverScale}) rotateY(5deg)`;
           e.currentTarget.style.boxShadow =
