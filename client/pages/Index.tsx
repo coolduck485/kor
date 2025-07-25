@@ -235,7 +235,7 @@ export default function Index() {
                 width: `${400 + i * 120}px`,
                 height: `${400 + i * 120}px`,
                 border: `1px solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
-                animation: `pulse ${5 + i}s ease-in-out infinite ${i * 0.8}s`,
+                animation: `energy-ripple 3s ease-out infinite ${i * 0.4}s`,
               }}
             />
           ))}
