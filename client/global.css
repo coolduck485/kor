@@ -434,7 +434,7 @@
 .chrome-wavy-text {
   display: inline-block;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .chrome-wavy-text .wavy-letter {
@@ -464,25 +464,37 @@
   animation: wavy-letter 4s ease-in-out infinite 0.5s;
 }
 
-/* Cartoon shine overlay using box-shadow approach */
-.chrome-wavy-text::before {
-  content: '';
+/* Cartoon shine overlay that's masked to text content */
+.chrome-wavy-text::after {
+  content: 'Development services';
   position: absolute;
   top: 0;
-  left: -100%;
-  width: 50%;
+  left: 0;
+  width: 100%;
   height: 100%;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  line-height: inherit;
   background: linear-gradient(
-    75deg,
+    90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.8) 50%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.9) 48%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 1) 52%,
+    rgba(255, 255, 255, 0.9) 54%,
+    transparent 60%,
     transparent 100%
   );
+  background-size: 300% 100%;
+  background-position: -300% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   animation: cartoon-shine-sweep 4s ease-in-out infinite 1s;
   z-index: 2;
   pointer-events: none;
-  mix-blend-mode: overlay;
-  transform: skewX(-20deg);
 }
 
 /* Enhanced shine text styling */
