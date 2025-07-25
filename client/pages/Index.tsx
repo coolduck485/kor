@@ -1247,36 +1247,12 @@ export default function Index() {
             }
           }
 
-          @keyframes static-noise {
-            0%, 100% {
-              background-position: 0 0;
+          @keyframes scanlines {
+            0% {
+              transform: translateY(-100%);
             }
-            10% {
-              background-position: -5% -10%;
-            }
-            20% {
-              background-position: -10% 5%;
-            }
-            30% {
-              background-position: 5% -15%;
-            }
-            40% {
-              background-position: -15% 10%;
-            }
-            50% {
-              background-position: 10% 0%;
-            }
-            60% {
-              background-position: 0% -5%;
-            }
-            70% {
-              background-position: -5% 15%;
-            }
-            80% {
-              background-position: 15% -10%;
-            }
-            90% {
-              background-position: -10% 5%;
+            100% {
+              transform: translateY(100vh);
             }
           }
 
@@ -1287,16 +1263,36 @@ export default function Index() {
             left: 0;
             right: 0;
             bottom: 0;
-            background-image:
-              radial-gradient(circle at 20% 50%, rgba(0, 255, 65, 0.02) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(0, 255, 65, 0.02) 0%, transparent 50%),
-              radial-gradient(circle at 40% 80%, rgba(0, 255, 65, 0.015) 0%, transparent 50%),
-              radial-gradient(circle at 0% 100%, rgba(0, 255, 65, 0.02) 0%, transparent 50%),
-              radial-gradient(circle at 100% 0%, rgba(0, 255, 65, 0.015) 0%, transparent 50%);
-            background-size: 100px 100px, 150px 150px, 200px 200px, 300px 300px, 400px 400px;
-            animation: static-noise 0.5s infinite;
+            background: repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 2px,
+              rgba(0, 255, 65, 0.03) 2px,
+              rgba(0, 255, 65, 0.03) 4px
+            );
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.8;
+          }
+
+          .retro-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 1px,
+              rgba(0, 255, 65, 0.1) 1px,
+              rgba(0, 255, 65, 0.1) 2px,
+              transparent 2px,
+              transparent 8px
+            );
+            animation: scanlines 4s linear infinite;
+            pointer-events: none;
+            opacity: 0.4;
           }
         `}</style>
           </>
