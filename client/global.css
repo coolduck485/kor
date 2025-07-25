@@ -375,6 +375,26 @@
   }
 }
 
+@keyframes orb-pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    filter: brightness(1) saturate(1);
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(1.05);
+    filter: brightness(1.1) saturate(1.2);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    filter: brightness(1.2) saturate(1.4);
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(1.05);
+    filter: brightness(1.1) saturate(1.2);
+  }
+}
+
 @keyframes button-drift {
   0%,
   100% {
