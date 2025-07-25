@@ -1244,34 +1244,39 @@ export default function Index() {
       {/* Main Content - Always visible with orchestrated animations */}
       {/* Theme Toggle Container with Tooltip */}
       <div className="fixed top-6 right-6 z-50">
-        <div className="group relative">
-          {/* Tooltip */}
-          <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
-            <div
-              className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
-                theme === "light"
-                  ? "border-blue-400/40 bg-white/80 text-gray-800"
-                  : "border-blue-300/30 bg-blue-400/10 text-white/90"
-              }`}
-              style={{
-                background:
-                  theme === "light"
-                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
-              }}
-            >
-              Click any theme to change the site's appearance
-              {/* Tooltip arrow */}
+        <div
+          className="group relative"
+          onMouseEnter={() => setIsTooltipDismissed(true)}
+        >
+          {/* Tooltip - only show in modern mode and if not dismissed */}
+          {mode === "modern" && !isTooltipDismissed && (
+            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
               <div
-                className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
                   theme === "light"
-                    ? "border-l-white/80"
-                    : "border-l-blue-400/10"
+                    ? "border-blue-400/40 bg-white/80 text-gray-800"
+                    : "border-blue-300/30 bg-blue-400/10 text-white/90"
                 }`}
-              />
+                style={{
+                  background:
+                    theme === "light"
+                      ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                  boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+                }}
+              >
+                Click any theme to change the site's appearance
+                {/* Tooltip arrow */}
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/80"
+                      : "border-l-blue-400/10"
+                  }`}
+                />
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Container for existing toggles */}
           <div
