@@ -554,8 +554,12 @@ export default function Index() {
           }
         }
 
-        .animate-shooting-star {
-          animation: shooting-star linear infinite;
+        .animate-shine-text {
+          animation: shine-text 3s ease-in-out infinite;
+        }
+
+        .animate-shine-sweep {
+          animation: shine-sweep 4s ease-in-out infinite 2s;
         }
 
         .animate-text-reveal {
