@@ -1374,7 +1374,7 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
     <>
       {/* Hamburger Button - adjusted position: down 150px, left 50px */}
       <div
-        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-60"
+        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
         style={{
           marginLeft: "70px", // Moved left 50px from 120px
           marginTop: "-130px", // Moved down 150px from -280px
@@ -1468,7 +1468,7 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: -20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-60"
+            className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
             style={{
               marginLeft: `${menuPosition.left}px`, // Dynamic positioning to stay in bounds
               marginTop: `${menuPosition.top}px`, // Dynamic positioning to stay in bounds
@@ -1569,7 +1569,7 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/30 z-50"
+            className="fixed inset-0 bg-black/30 z-40"
             onClick={() => setIsOpen(false)}
             style={{
               backdropFilter: 'blur(12px)',
