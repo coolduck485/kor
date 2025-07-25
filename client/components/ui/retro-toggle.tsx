@@ -1,4 +1,4 @@
-import { Monitor, Terminal } from "lucide-react"
+import { Gamepad2, Monitor } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useRetroMode } from "@/hooks/use-retro-mode"
 
@@ -13,9 +13,9 @@ export function RetroToggle() {
       className="border-input bg-background hover:bg-accent hover:text-accent-foreground"
     >
       {mode === "retro" ? (
-        <Monitor className="h-[1.2rem] w-[1.2rem]" />
+        <Monitor className="h-[1.2rem] w-[1.2rem] text-blue-500" />
       ) : (
-        <Terminal className="h-[1.2rem] w-[1.2rem]" />
+        <Gamepad2 className="h-[1.2rem] w-[1.2rem] text-green-500" />
       )}
       <span className="sr-only">Toggle retro mode</span>
     </Button>
