@@ -1,57 +1,68 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React, { createContext, useContext, useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface FloatingNotification {
   id: string;
   title: string;
   description: string;
-  type?: 'info' | 'success' | 'warning' | 'error';
+  type?: "info" | "success" | "warning" | "error";
   duration?: number; // Auto-dismiss duration in ms, 0 = no auto-dismiss
 }
 
 interface NotificationContextType {
   notifications: FloatingNotification[];
-  addNotification: (notification: Omit<FloatingNotification, 'id'>) => void;
+  addNotification: (notification: Omit<FloatingNotification, "id">) => void;
   removeNotification: (id: string) => void;
   clearAll: () => void;
 }
 
-const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
+const NotificationContext = createContext<NotificationContextType | undefined>(
+  undefined,
+);
 
 export const useNotifications = () => {
   const context = useContext(NotificationContext);
   if (!context) {
-    throw new Error('useNotifications must be used within NotificationProvider');
+    throw new Error(
+      "useNotifications must be used within NotificationProvider",
+    );
   }
   return context;
 };
 
-export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [notifications, setNotifications] = useState<FloatingNotification[]>([]);
+export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [notifications, setNotifications] = useState<FloatingNotification[]>(
+    [],
+  );
 
-  const addNotification = useCallback((notification: Omit<FloatingNotification, 'id'>) => {
-    const id = Math.random().toString(36).substr(2, 9);
-    const newNotification: FloatingNotification = {
-      id,
-      duration: 0, // Default no auto-dismiss - user must click X
-      type: 'info',
-      ...notification,
-    };
+  const addNotification = useCallback(
+    (notification: Omit<FloatingNotification, "id">) => {
+      const id = Math.random().toString(36).substr(2, 9);
+      const newNotification: FloatingNotification = {
+        id,
+        duration: 0, // Default no auto-dismiss - user must click X
+        type: "info",
+        ...notification,
+      };
 
-    setNotifications(prev => [...prev, newNotification]);
+      setNotifications((prev) => [...prev, newNotification]);
 
-    // Auto-dismiss if duration is set
-    if (newNotification.duration && newNotification.duration > 0) {
-      setTimeout(() => {
-        removeNotification(id);
-      }, newNotification.duration);
-    }
-  }, []);
+      // Auto-dismiss if duration is set
+      if (newNotification.duration && newNotification.duration > 0) {
+        setTimeout(() => {
+          removeNotification(id);
+        }, newNotification.duration);
+      }
+    },
+    [],
+  );
 
   const removeNotification = useCallback((id: string) => {
-    setNotifications(prev => prev.filter(n => n.id !== id));
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
   }, []);
 
   const clearAll = useCallback(() => {
@@ -59,7 +70,9 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
   }, []);
 
   return (
-    <NotificationContext.Provider value={{ notifications, addNotification, removeNotification, clearAll }}>
+    <NotificationContext.Provider
+      value={{ notifications, addNotification, removeNotification, clearAll }}
+    >
       {children}
       <FloatingNotificationContainer />
     </NotificationContext.Provider>
@@ -91,8 +104,15 @@ interface FloatingNotificationItemProps {
   onClose: () => void;
 }
 
-const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotificationItemProps>(({ notification, onClose }, ref) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0, isNear: false });
+const FloatingNotificationItem = React.forwardRef<
+  HTMLDivElement,
+  FloatingNotificationItemProps
+>(({ notification, onClose }, ref) => {
+  const [mousePosition, setMousePosition] = useState({
+    x: 0,
+    y: 0,
+    isNear: false,
+  });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -101,7 +121,7 @@ const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotifi
     const x = e.clientX - centerX;
     const y = e.clientY - centerY;
     const distance = Math.sqrt(x * x + y * y);
-    
+
     setMousePosition({
       x,
       y,
@@ -113,31 +133,31 @@ const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotifi
     setMousePosition({ x: 0, y: 0, isNear: false });
   };
 
-  const getTypeColors = (type: FloatingNotification['type']) => {
+  const getTypeColors = (type: FloatingNotification["type"]) => {
     switch (type) {
-      case 'success':
+      case "success":
         return {
-          border: 'rgba(34, 197, 94, 0.3)',
-          glow: 'rgba(34, 197, 94, 0.2)',
-          accent: 'rgba(34, 197, 94, 0.6)',
+          border: "rgba(34, 197, 94, 0.3)",
+          glow: "rgba(34, 197, 94, 0.2)",
+          accent: "rgba(34, 197, 94, 0.6)",
         };
-      case 'warning':
+      case "warning":
         return {
-          border: 'rgba(245, 158, 11, 0.3)',
-          glow: 'rgba(245, 158, 11, 0.2)',
-          accent: 'rgba(245, 158, 11, 0.6)',
+          border: "rgba(245, 158, 11, 0.3)",
+          glow: "rgba(245, 158, 11, 0.2)",
+          accent: "rgba(245, 158, 11, 0.6)",
         };
-      case 'error':
+      case "error":
         return {
-          border: 'rgba(239, 68, 68, 0.3)',
-          glow: 'rgba(239, 68, 68, 0.2)',
-          accent: 'rgba(239, 68, 68, 0.6)',
+          border: "rgba(239, 68, 68, 0.3)",
+          glow: "rgba(239, 68, 68, 0.2)",
+          accent: "rgba(239, 68, 68, 0.6)",
         };
       default:
         return {
-          border: 'rgba(73, 146, 255, 0.3)',
-          glow: 'rgba(73, 146, 255, 0.2)',
-          accent: 'rgba(73, 146, 255, 0.6)',
+          border: "rgba(73, 146, 255, 0.3)",
+          glow: "rgba(73, 146, 255, 0.2)",
+          accent: "rgba(73, 146, 255, 0.6)",
         };
     }
   };
@@ -147,29 +167,29 @@ const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotifi
   return (
     <motion.div
       layout
-      initial={{ 
-        opacity: 0, 
-        scale: 0.8, 
+      initial={{
+        opacity: 0,
+        scale: 0.8,
         x: 100,
-        filter: "blur(10px)"
+        filter: "blur(10px)",
       }}
-      animate={{ 
-        opacity: 1, 
-        scale: 1, 
+      animate={{
+        opacity: 1,
+        scale: 1,
         x: 0,
-        filter: "blur(0px)"
+        filter: "blur(0px)",
       }}
-      exit={{ 
-        opacity: 0, 
-        scale: 0.9, 
+      exit={{
+        opacity: 0,
+        scale: 0.9,
         x: 100,
         filter: "blur(5px)",
-        transition: { duration: 0.2 }
+        transition: { duration: 0.2 },
       }}
       transition={{
         type: "spring",
         stiffness: 300,
-        damping: 30
+        damping: 30,
       }}
       className="relative group pointer-events-auto animate-float"
       onMouseMove={handleMouseMove}
@@ -190,7 +210,8 @@ const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotifi
           borderRadius: "inherit",
           mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           maskComposite: "xor",
-          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          WebkitMask:
+            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",
         }}
       />
@@ -200,7 +221,7 @@ const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotifi
         className={cn(
           "relative backdrop-blur-xl rounded-xl p-4 pr-10 shadow-2xl transition-all duration-300",
           "hover:shadow-glow-intense group-hover:scale-[1.02]",
-          "border border-transparent"
+          "border border-transparent",
         )}
         style={{
           background: "rgba(0, 0, 0, 0.4)",
@@ -219,8 +240,8 @@ const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotifi
               key={i}
               className="absolute rounded-full opacity-30"
               style={{
-                left: `${10 + (i * 15) % 80}%`,
-                top: `${20 + (i * 25) % 60}%`,
+                left: `${10 + ((i * 15) % 80)}%`,
+                top: `${20 + ((i * 25) % 60)}%`,
                 width: `${1 + (i % 3)}px`,
                 height: `${1 + (i % 3)}px`,
                 background: colors.accent,
@@ -238,7 +259,7 @@ const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotifi
             "absolute top-3 right-3 p-1 rounded-md",
             "text-white/60 hover:text-white",
             "hover:bg-white/10 transition-all duration-200",
-            "focus:outline-none focus:ring-2 focus:ring-white/20"
+            "focus:outline-none focus:ring-2 focus:ring-white/20",
           )}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -248,10 +269,10 @@ const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotifi
 
         {/* Content */}
         <div className="space-y-1">
-          <motion.h4 
+          <motion.h4
             className={cn(
               "font-semibold text-white text-sm sm:text-base",
-              "animate-text-glow-pulse"
+              "animate-text-glow-pulse",
             )}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -259,7 +280,7 @@ const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotifi
           >
             {notification.title}
           </motion.h4>
-          <motion.p 
+          <motion.p
             className="text-white/80 text-xs sm:text-sm leading-relaxed"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -282,7 +303,11 @@ const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotifi
 });
 
 // Utility function for easy notification usage
-export const showNotification = (notification: Omit<FloatingNotification, 'id'>) => {
+export const showNotification = (
+  notification: Omit<FloatingNotification, "id">,
+) => {
   // This will be used with the context
-  console.warn('showNotification called outside of NotificationProvider. Use useNotifications().addNotification instead.');
+  console.warn(
+    "showNotification called outside of NotificationProvider. Use useNotifications().addNotification instead.",
+  );
 };

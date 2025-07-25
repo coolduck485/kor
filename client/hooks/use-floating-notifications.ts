@@ -1,46 +1,66 @@
-import { useNotifications, type FloatingNotification } from '@/components/ui/floating-notification';
+import {
+  useNotifications,
+  type FloatingNotification,
+} from "@/components/ui/floating-notification";
 
 export const useFloatingNotifications = () => {
-  const { addNotification, removeNotification, clearAll, notifications } = useNotifications();
+  const { addNotification, removeNotification, clearAll, notifications } =
+    useNotifications();
 
   // Helper functions for different notification types
-  const showSuccess = (title: string, description: string, duration: number = 0) => {
+  const showSuccess = (
+    title: string,
+    description: string,
+    duration: number = 0,
+  ) => {
     addNotification({
       title,
       description,
-      type: 'success',
+      type: "success",
       duration,
     });
   };
 
-  const showError = (title: string, description: string, duration: number = 0) => {
+  const showError = (
+    title: string,
+    description: string,
+    duration: number = 0,
+  ) => {
     addNotification({
       title,
       description,
-      type: 'error',
+      type: "error",
       duration,
     });
   };
 
-  const showWarning = (title: string, description: string, duration: number = 0) => {
+  const showWarning = (
+    title: string,
+    description: string,
+    duration: number = 0,
+  ) => {
     addNotification({
       title,
       description,
-      type: 'warning',
+      type: "warning",
       duration,
     });
   };
 
-  const showInfo = (title: string, description: string, duration: number = 0) => {
+  const showInfo = (
+    title: string,
+    description: string,
+    duration: number = 0,
+  ) => {
     addNotification({
       title,
       description,
-      type: 'info',
+      type: "info",
       duration,
     });
   };
 
-  const show = (notification: Omit<FloatingNotification, 'id'>) => {
+  const show = (notification: Omit<FloatingNotification, "id">) => {
     addNotification(notification);
   };
 
@@ -51,11 +71,11 @@ export const useFloatingNotifications = () => {
     showWarning,
     showInfo,
     show,
-    
+
     // Management methods
     remove: removeNotification,
     clearAll,
-    
+
     // State
     notifications,
     count: notifications.length,

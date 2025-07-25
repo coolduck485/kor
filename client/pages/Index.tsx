@@ -9,7 +9,8 @@ import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
 export default function Index() {
   const { theme, setTheme } = useTheme();
   const { mode, toggleMode } = useRetroMode();
-  const { showSuccess, showError, showWarning, showInfo } = useFloatingNotifications();
+  const { showSuccess, showError, showWarning, showInfo } =
+    useFloatingNotifications();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
@@ -30,7 +31,10 @@ export default function Index() {
     if (animationStep >= 2 && !hasShownWelcomeRef.current) {
       hasShownWelcomeRef.current = true;
       setTimeout(() => {
-        showInfo("Welcome to KOR!", "Experience the future of modern web development. Click the X to dismiss.");
+        showInfo(
+          "Welcome to KOR!",
+          "Experience the future of modern web development. Click the X to dismiss.",
+        );
       }, 3000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1348,8 +1352,7 @@ export default function Index() {
     >
       {/* Main Content - Always visible with orchestrated animations */}
       {/* Left Corner Visual Elements for Mobile Balance */}
-      <div className="fixed top-6 left-6 z-40 block sm:hidden">
-      </div>
+      <div className="fixed top-6 left-6 z-40 block sm:hidden"></div>
 
       {/* Theme Toggle Container with Tooltip */}
       <div className="fixed top-6 right-6 z-50">
@@ -1676,79 +1679,79 @@ export default function Index() {
         </div>
 
         {/* Left Side Visual Balance Elements */}
-      <div className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 pointer-events-none">
-        {/* Floating geometric indicators */}
-        <div className="space-y-4 sm:space-y-8">
-          {/* Primary indicator */}
+        <div className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 pointer-events-none">
+          {/* Floating geometric indicators */}
+          <div className="space-y-4 sm:space-y-8">
+            {/* Primary indicator */}
+            <motion.div
+              className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-400/30 animate-gentle-pulse"
+              initial={{ opacity: 0, x: -20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2, duration: 1 }}
+            />
+            {/* Secondary indicators */}
+            <motion.div
+              className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-blue-300/20 animate-gentle-pulse"
+              initial={{ opacity: 0, x: -20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2.3, duration: 1 }}
+              style={{ animationDelay: "1s" }}
+            />
+            <motion.div
+              className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-200/25 animate-gentle-pulse"
+              initial={{ opacity: 0, x: -20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2.6, duration: 1 }}
+              style={{ animationDelay: "2s" }}
+            />
+          </div>
+
+          {/* Vertical progress line */}
           <motion.div
-            className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-400/30 animate-gentle-pulse"
-            initial={{ opacity: 0, x: -20 }}
-            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 2, duration: 1 }}
+            className="absolute left-1/2 -translate-x-1/2 top-12 sm:top-16 w-px h-16 sm:h-24 bg-gradient-to-b from-blue-400/40 via-blue-300/20 to-transparent"
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={animationStep >= 1 ? { opacity: 1, scaleY: 1 } : {}}
+            transition={{ delay: 3, duration: 1.5 }}
           />
-          {/* Secondary indicators */}
+
+          {/* Connecting line to center (desktop only) */}
           <motion.div
-            className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-blue-300/20 animate-gentle-pulse"
-            initial={{ opacity: 0, x: -20 }}
-            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 2.3, duration: 1 }}
-            style={{ animationDelay: "1s" }}
-          />
-          <motion.div
-            className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-200/25 animate-gentle-pulse"
-            initial={{ opacity: 0, x: -20 }}
-            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 2.6, duration: 1 }}
-            style={{ animationDelay: "2s" }}
+            className="hidden lg:block absolute top-8 left-4 w-32 h-px bg-gradient-to-r from-blue-400/30 to-transparent"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={animationStep >= 1 ? { opacity: 1, scaleX: 1 } : {}}
+            transition={{ delay: 3.5, duration: 1 }}
           />
         </div>
 
-        {/* Vertical progress line */}
-        <motion.div
-          className="absolute left-1/2 -translate-x-1/2 top-12 sm:top-16 w-px h-16 sm:h-24 bg-gradient-to-b from-blue-400/40 via-blue-300/20 to-transparent"
-          initial={{ opacity: 0, scaleY: 0 }}
-          animate={animationStep >= 1 ? { opacity: 1, scaleY: 1 } : {}}
-          transition={{ delay: 3, duration: 1.5 }}
-        />
-
-        {/* Connecting line to center (desktop only) */}
-        <motion.div
-          className="hidden lg:block absolute top-8 left-4 w-32 h-px bg-gradient-to-r from-blue-400/30 to-transparent"
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={animationStep >= 1 ? { opacity: 1, scaleX: 1 } : {}}
-          transition={{ delay: 3.5, duration: 1 }}
-        />
-      </div>
-
-      {/* Right Side Balance Elements */}
-      <div className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 pointer-events-none">
-        {/* Floating geometric indicators mirrored */}
-        <div className="space-y-4 sm:space-y-8">
-          <motion.div
-            className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-purple-400/25 animate-gentle-pulse"
-            initial={{ opacity: 0, x: 20 }}
-            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 2.2, duration: 1 }}
-            style={{ animationDelay: "0.5s" }}
-          />
-          <motion.div
-            className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-purple-300/20 animate-gentle-pulse"
-            initial={{ opacity: 0, x: 20 }}
-            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 2.5, duration: 1 }}
-            style={{ animationDelay: "1.5s" }}
-          />
-          <motion.div
-            className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-purple-200/30 animate-gentle-pulse"
-            initial={{ opacity: 0, x: 20 }}
-            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 2.8, duration: 1 }}
-            style={{ animationDelay: "2.5s" }}
-          />
+        {/* Right Side Balance Elements */}
+        <div className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 pointer-events-none">
+          {/* Floating geometric indicators mirrored */}
+          <div className="space-y-4 sm:space-y-8">
+            <motion.div
+              className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-purple-400/25 animate-gentle-pulse"
+              initial={{ opacity: 0, x: 20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2.2, duration: 1 }}
+              style={{ animationDelay: "0.5s" }}
+            />
+            <motion.div
+              className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-purple-300/20 animate-gentle-pulse"
+              initial={{ opacity: 0, x: 20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2.5, duration: 1 }}
+              style={{ animationDelay: "1.5s" }}
+            />
+            <motion.div
+              className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-purple-200/30 animate-gentle-pulse"
+              initial={{ opacity: 0, x: 20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2.8, duration: 1 }}
+              style={{ animationDelay: "2.5s" }}
+            />
+          </div>
         </div>
-      </div>
 
-      {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
+        {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
             className="relative animate-float cursor-pointer group"
@@ -2277,8 +2280,6 @@ export default function Index() {
             animation: "gentle-glow 12s ease-in-out infinite 1s",
           }}
         />
-
-
       </motion.div>
 
       {/* Scroll/Swipe Indicator */}
