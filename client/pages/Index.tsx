@@ -1,13 +1,16 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { RetroToggle } from "@/components/ui/retro-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
+import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
 
 export default function Index() {
   const { theme, setTheme } = useTheme();
   const { mode, toggleMode } = useRetroMode();
+  const { showSuccess, showError, showWarning, showInfo } =
+    useFloatingNotifications();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
@@ -21,6 +24,21 @@ export default function Index() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
+  const hasShownWelcomeRef = useRef(false);
+
+  // Welcome notification - shows once per page load
+  useEffect(() => {
+    if (animationStep >= 2 && !hasShownWelcomeRef.current) {
+      hasShownWelcomeRef.current = true;
+      setTimeout(() => {
+        showInfo(
+          "Welcome to KOR!",
+          "Experience the future of modern web development. Click the X to dismiss.",
+        );
+      }, 3000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animationStep]);
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
@@ -234,9 +252,9 @@ export default function Index() {
                 transition: { duration: 1, ease: "easeInOut" },
               }}
             >
-              {/* Matrix-style background */}
+              {/* Matrix-style background - reduced for performance */}
               <div className="absolute inset-0 overflow-hidden">
-                {[...Array(15)].map((_, i) => (
+                {[...Array(8)].map((_, i) => (
                   <motion.div
                     key={`matrix-${i}`}
                     className="absolute text-green-400 font-mono text-xs opacity-20"
@@ -248,10 +266,14 @@ export default function Index() {
                       y: [-20, window.innerHeight + 20],
                     }}
                     transition={{
-                      duration: 3 + (i % 3),
+                      duration: 4 + (i % 2),
                       repeat: Infinity,
-                      delay: i * 0.2,
+                      delay: i * 0.3,
                       ease: "linear",
+                    }}
+                    style={{
+                      willChange: "transform",
+                      backfaceVisibility: "hidden",
                     }}
                   >
                     {Array.from({ length: 20 }, () =>
@@ -439,22 +461,21 @@ export default function Index() {
                 animate={{ opacity: isLoaded ? 1 : 0 }}
                 transition={{ duration: 2 }}
               >
-                <div
-                  className="ascii-logo text-8xl font-bold text-center mb-4 text-green-400 terminal-glow"
+                <pre
+                  className="ascii-logo text-center mb-4 text-green-400 terminal-glow"
                   style={{
                     fontFamily: "JetBrains Mono, monospace",
-                    letterSpacing: "0.2em",
+                    letterSpacing: "0.05em",
+                    lineHeight: "1",
+                    fontSize: "1.2rem",
                   }}
                 >
-                  KOR
-                </div>
-                <pre className="hidden">
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██���██��══██╗
+██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -544,7 +565,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: ██████��███████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -772,7 +793,9 @@ export default function Index() {
               rgba(0, 255, 65, 0.03) 4px
             );
             pointer-events: none;
-            animation: scanlines 0.1s linear infinite;
+            animation: scanlines 0.2s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
             z-index: 100;
           }
 
@@ -1302,9 +1325,11 @@ export default function Index() {
               transparent 2px,
               transparent 8px
             );
-            animation: scanlines 4s linear infinite;
+            animation: scanlines 6s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
             pointer-events: none;
-            opacity: 0.4;
+            opacity: 0.3;
           }
         `}</style>
           </>
@@ -1326,6 +1351,9 @@ export default function Index() {
       animate={!isLoading && isLoaded ? "visible" : "hidden"}
     >
       {/* Main Content - Always visible with orchestrated animations */}
+      {/* Left Corner Visual Elements for Mobile Balance */}
+      <div className="fixed top-6 left-6 z-40 block sm:hidden"></div>
+
       {/* Theme Toggle Container with Tooltip */}
       <div className="fixed top-6 right-6 z-50">
         <div
@@ -1648,6 +1676,79 @@ export default function Index() {
               transformOrigin: "50% center",
             }}
           />
+        </div>
+
+        {/* Left Side Visual Balance Elements */}
+        <div className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 pointer-events-none">
+          {/* Floating geometric indicators */}
+          <div className="space-y-4 sm:space-y-8">
+            {/* Primary indicator */}
+            <motion.div
+              className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-400/30 animate-gentle-pulse"
+              initial={{ opacity: 0, x: -20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2, duration: 1 }}
+            />
+            {/* Secondary indicators */}
+            <motion.div
+              className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-blue-300/20 animate-gentle-pulse"
+              initial={{ opacity: 0, x: -20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2.3, duration: 1 }}
+              style={{ animationDelay: "1s" }}
+            />
+            <motion.div
+              className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-200/25 animate-gentle-pulse"
+              initial={{ opacity: 0, x: -20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2.6, duration: 1 }}
+              style={{ animationDelay: "2s" }}
+            />
+          </div>
+
+          {/* Vertical progress line */}
+          <motion.div
+            className="absolute left-1/2 -translate-x-1/2 top-12 sm:top-16 w-px h-16 sm:h-24 bg-gradient-to-b from-blue-400/40 via-blue-300/20 to-transparent"
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={animationStep >= 1 ? { opacity: 1, scaleY: 1 } : {}}
+            transition={{ delay: 3, duration: 1.5 }}
+          />
+
+          {/* Connecting line to center (desktop only) */}
+          <motion.div
+            className="hidden lg:block absolute top-8 left-4 w-32 h-px bg-gradient-to-r from-blue-400/30 to-transparent"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={animationStep >= 1 ? { opacity: 1, scaleX: 1 } : {}}
+            transition={{ delay: 3.5, duration: 1 }}
+          />
+        </div>
+
+        {/* Right Side Balance Elements */}
+        <div className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 pointer-events-none">
+          {/* Floating geometric indicators mirrored */}
+          <div className="space-y-4 sm:space-y-8">
+            <motion.div
+              className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-purple-400/25 animate-gentle-pulse"
+              initial={{ opacity: 0, x: 20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2.2, duration: 1 }}
+              style={{ animationDelay: "0.5s" }}
+            />
+            <motion.div
+              className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-purple-300/20 animate-gentle-pulse"
+              initial={{ opacity: 0, x: 20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2.5, duration: 1 }}
+              style={{ animationDelay: "1.5s" }}
+            />
+            <motion.div
+              className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-purple-200/30 animate-gentle-pulse"
+              initial={{ opacity: 0, x: 20 }}
+              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 2.8, duration: 1 }}
+              style={{ animationDelay: "2.5s" }}
+            />
+          </div>
         </div>
 
         {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
