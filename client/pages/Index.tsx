@@ -20,6 +20,7 @@ export default function Index() {
   const [animationStep, setAnimationStep] = useState(0); // 0: initial, 1: orb, 2: text, 3: buttons, 4: background, 5: complete
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
+  const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
@@ -601,7 +602,7 @@ export default function Index() {
                   className="close-terminal"
                   onClick={() => setShowTerminal(false)}
                 >
-                  ��
+                  ✕
                 </button>
               </div>
               <div className="terminal-body">
