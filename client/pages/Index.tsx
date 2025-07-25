@@ -473,7 +473,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ████���█╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔═��██╗
-█████╔╝ ██║   ██║██████╔╝
+█████╔╝ ██║   ���█║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚���════╝ ╚═╝  ╚═╝`}
@@ -3309,7 +3309,7 @@ function OrbFloatingButton({
         }}
       />
       <button
-        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
+        className={`group relative cursor-pointer ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
           theme === "light"
             ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
             : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
