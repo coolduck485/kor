@@ -443,7 +443,7 @@ export default function Index() {
             </div>
             <div className="terminal-content">
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╔═══════════════════════════════════════════��════════════╗
+                ╔════════════════════════════════════════════════════════╗
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
                 ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
@@ -1246,35 +1246,75 @@ export default function Index() {
               }
             }}
           >
-            {/* Background particles */}
+            {/* Cinematic background reveal */}
+            <motion.div
+              className="absolute inset-0"
+              initial={{ scale: 1.2, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              style={{
+                background: theme === "light"
+                  ? "radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.05) 50%, transparent 100%)"
+                  : "radial-gradient(circle at 50% 50%, rgba(73, 146, 255, 0.15) 0%, rgba(34, 211, 238, 0.08) 50%, transparent 100%)"
+              }}
+            />
+
+            {/* Enhanced background particles with cinematic movement */}
             <div className="absolute inset-0 overflow-hidden">
-              {[...Array(20)].map((_, i) => (
+              {[...Array(25)].map((_, i) => (
                 <motion.div
                   key={`loading-particle-${i}`}
                   className="absolute rounded-full"
                   style={{
-                    left: `${10 + (i * 80) % 90}%`,
-                    top: `${15 + (i * 60) % 80}%`,
-                    width: `${2 + (i % 3)}px`,
-                    height: `${2 + (i % 3)}px`,
+                    left: `${5 + (i * 75) % 95}%`,
+                    top: `${10 + (i * 60) % 85}%`,
+                    width: `${2 + (i % 4)}px`,
+                    height: `${2 + (i % 4)}px`,
                     background: theme === "light"
-                      ? `rgba(59, 130, 246, ${0.2 + (i % 3) * 0.1})`
-                      : `rgba(73, 146, 255, ${0.3 + (i % 3) * 0.15})`,
+                      ? `rgba(59, 130, 246, ${0.3 + (i % 3) * 0.15})`
+                      : `rgba(73, 146, 255, ${0.4 + (i % 3) * 0.2})`,
+                  }}
+                  initial={{
+                    opacity: 0,
+                    scale: 0,
+                    x: Math.random() * 200 - 100,
+                    y: Math.random() * 200 - 100
                   }}
                   animate={{
-                    y: [0, -20, 0],
-                    opacity: [0.2, 0.6, 0.2],
-                    scale: [1, 1.2, 1],
+                    opacity: [0, 0.8, 0.3],
+                    scale: [0, 1.5, 1],
+                    x: [0, Math.sin(i) * 30, 0],
+                    y: [0, -20 - (i % 10), 0],
                   }}
                   transition={{
-                    duration: 3 + (i % 4),
+                    duration: 4 + (i % 3),
                     repeat: Infinity,
-                    delay: i * 0.1,
+                    delay: 0.5 + (i * 0.1),
                     ease: "easeInOut"
                   }}
                 />
               ))}
             </div>
+
+            {/* Lens flare effect */}
+            <motion.div
+              className="absolute inset-0 pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={loadingStep >= 1 ? { opacity: 1 } : {}}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
+              <div
+                className="absolute top-1/2 left-1/2 w-96 h-96 rounded-full"
+                style={{
+                  background: theme === "light"
+                    ? "radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)"
+                    : "radial-gradient(circle, rgba(73, 146, 255, 0.2) 0%, transparent 70%)",
+                  transform: "translate(-50%, -50%)",
+                  filter: "blur(40px)",
+                  animation: "gentle-pulse 3s ease-in-out infinite"
+                }}
+              />
+            </motion.div>
 
             {/* Central loading area */}
             <div className="relative z-10 text-center">
