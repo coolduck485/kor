@@ -713,8 +713,10 @@ export default function Index() {
       animate={isLoaded ? "visible" : "hidden"}
     >
       {/* Theme Toggle and Retro Toggle */}
-      <div className="absolute top-4 right-4 flex flex-col space-y-2 z-50">
+      <div className="absolute top-4 right-4 z-50">
         <ThemeToggle />
+      </div>
+      <div className="absolute top-16 right-4 z-50">
         <RetroToggle />
       </div>
 
