@@ -452,6 +452,50 @@
   background-clip: text;
 }
 
+/* iOS-inspired warm glow development text */
+.warm-glow-text {
+  background: linear-gradient(
+    135deg,
+    #3B82F6 0%,     /* Blue start */
+    #60A5FA 25%,    /* Light blue */
+    #93C5FD 50%,    /* Lighter blue center */
+    #DBEAFE 75%,    /* Very light blue */
+    #EFF6FF 100%    /* Almost white blue end */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(251, 146, 60, 0.4))
+          drop-shadow(0 0 60px rgba(251, 146, 60, 0.3))
+          drop-shadow(0 0 90px rgba(251, 146, 60, 0.2))
+          drop-shadow(0 0 120px rgba(251, 146, 60, 0.1));
+  text-shadow: 0 0 40px rgba(251, 146, 60, 0.5),
+               0 0 80px rgba(251, 146, 60, 0.3),
+               0 0 120px rgba(251, 146, 60, 0.2);
+}
+
+/* Dark mode version */
+.dark .warm-glow-text {
+  background: linear-gradient(
+    135deg,
+    #60A5FA 0%,     /* Light blue start */
+    #93C5FD 25%,    /* Lighter blue */
+    #DBEAFE 50%,    /* Very light blue center */
+    #EFF6FF 75%,    /* Almost white blue */
+    #FFFFFF 100%    /* White end */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(251, 146, 60, 0.6))
+          drop-shadow(0 0 60px rgba(251, 146, 60, 0.4))
+          drop-shadow(0 0 90px rgba(251, 146, 60, 0.3))
+          drop-shadow(0 0 120px rgba(251, 146, 60, 0.2));
+  text-shadow: 0 0 40px rgba(251, 146, 60, 0.7),
+               0 0 80px rgba(251, 146, 60, 0.5),
+               0 0 120px rgba(251, 146, 60, 0.3);
+}
+
 /* Light mode chrome */
 .light .chrome-wavy-text .wavy-letter {
   background: linear-gradient(
