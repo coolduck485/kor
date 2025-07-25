@@ -670,7 +670,7 @@ export default function Index() {
           style={{
             background:
               "radial-gradient(circle, rgba(57, 135, 227, 0.4) 0%, transparent 70%)",
-            animation: "pulse 7s ease-in-out infinite 2s",
+            animation: "gentle-glow 14s ease-in-out infinite 4s",
           }}
         />
         <div
