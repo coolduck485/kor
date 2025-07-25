@@ -471,7 +471,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ████��█╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔══██╗
+██║ ██╔╝██╔═══██╗██╔═��██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -3160,6 +3160,7 @@ function OrbFloatingButtons() {
           size={button.size}
           accent={button.accent}
           theme={theme}
+          onClick={button.onClick}
         />
       ))}
     </>
