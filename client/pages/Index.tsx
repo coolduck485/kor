@@ -2017,7 +2017,22 @@ export default function Index() {
       </div>
 
       {/* Floating Decorative Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <motion.div
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+        initial={{
+          opacity: 0,
+          filter: "blur(10px)"
+        }}
+        animate={animationStep >= 4 ? {
+          opacity: 1,
+          filter: "blur(0px)"
+        } : {}}
+        transition={{
+          duration: 1.5,
+          ease: [0.16, 1, 0.3, 1],
+          delay: 0.4
+        }}
+      >
         {/* Top corner accent lights */}
         <div
           className="absolute top-10 left-10 w-32 h-32 rounded-full opacity-30"
@@ -2053,7 +2068,7 @@ export default function Index() {
             animation: "gentle-glow 12s ease-in-out infinite 1s",
           }}
         />
-      </div>
+      </motion.div>
 
       {/* Scroll/Swipe Indicator */}
       <div className="absolute bottom-28 lg:bottom-16 md:bottom-32 sm:bottom-36 left-1/2 transform -translate-x-1/2 z-20">
