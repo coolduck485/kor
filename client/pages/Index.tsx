@@ -23,19 +23,15 @@ export default function Index() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
+  const hasShownWelcomeRef = useRef(false);
 
-  // Welcome notification - shows once per session
+  // Welcome notification - shows once per page load
   useEffect(() => {
-    if (animationStep >= 2) {
-      // Clear previous session storage to ensure notification shows
-      sessionStorage.removeItem('welcomeNotificationShown');
-      const hasShownWelcome = sessionStorage.getItem('welcomeNotificationShown');
-      if (!hasShownWelcome) {
-        setTimeout(() => {
-          showInfo("Welcome to KOR!", "Experience the future of modern web development. Click the X to dismiss.");
-          sessionStorage.setItem('welcomeNotificationShown', 'true');
-        }, 3000);
-      }
+    if (animationStep >= 2 && !hasShownWelcomeRef.current) {
+      hasShownWelcomeRef.current = true;
+      setTimeout(() => {
+        showInfo("Welcome to KOR!", "Experience the future of modern web development. Click the X to dismiss.");
+      }, 3000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animationStep]);
