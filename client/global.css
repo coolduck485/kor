@@ -404,49 +404,85 @@
   animation: rotate-slow 6s linear infinite;
 }
 
+/* Modern chrome text styling */
+.chrome-wavy-text {
+  display: inline-block;
+  position: relative;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.chrome-wavy-text .wavy-letter {
+  display: inline-block;
+  background: linear-gradient(
+    145deg,
+    #8e8e93 0%,
+    #c7c7cc 25%,
+    #f2f2f7 45%,
+    #ffffff 50%,
+    #f2f2f7 55%,
+    #c7c7cc 75%,
+    #8e8e93 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
 /* Enhanced shine text styling */
 .shine-text-enhanced {
   color: white; /* Fallback color */
   background: linear-gradient(
-    90deg,
-    rgba(178, 227, 255, 0.9) 0%,
-    rgba(178, 227, 255, 0.9) 15%,
-    rgba(255, 255, 255, 1) 30%,
-    rgba(255, 255, 255, 1) 35%,
-    rgba(255, 255, 255, 1) 40%,
-    rgba(255, 255, 255, 1) 45%,
+    120deg,
+    rgba(178, 227, 255, 0.7) 0%,
+    rgba(178, 227, 255, 0.8) 20%,
+    rgba(255, 255, 255, 0.9) 35%,
     rgba(255, 255, 255, 1) 50%,
-    rgba(255, 255, 255, 1) 55%,
-    rgba(255, 255, 255, 1) 60%,
-    rgba(255, 255, 255, 1) 65%,
-    rgba(255, 255, 255, 1) 70%,
-    rgba(178, 227, 255, 0.9) 85%,
-    rgba(178, 227, 255, 0.9) 100%
+    rgba(255, 255, 255, 0.9) 65%,
+    rgba(178, 227, 255, 0.8) 80%,
+    rgba(178, 227, 255, 0.7) 100%
   );
-  background-size: 500% 100%;
-  background-position: 0% 0;
+  background-size: 300% 100%;
+  background-position: 0% 50%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Light mode chrome */
+.light .chrome-wavy-text .wavy-letter {
+  background: linear-gradient(
+    145deg,
+    #2c2c2e 0%,
+    #48484a 25%,
+    #6d6d70 45%,
+    #8e8e93 50%,
+    #6d6d70 55%,
+    #48484a 75%,
+    #2c2c2e 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Light mode version */
 .light .shine-text-enhanced {
   color: #1f2937; /* Fallback color for light mode */
   background: linear-gradient(
-    90deg,
-    rgba(59, 130, 246, 0.8) 0%,
-    rgba(59, 130, 246, 0.8) 15%,
-    rgba(17, 24, 39, 1) 30%,
-    rgba(17, 24, 39, 1) 35%,
-    rgba(17, 24, 39, 1) 40%,
-    rgba(17, 24, 39, 1) 45%,
+    120deg,
+    rgba(59, 130, 246, 0.6) 0%,
+    rgba(59, 130, 246, 0.7) 20%,
+    rgba(17, 24, 39, 0.8) 35%,
     rgba(17, 24, 39, 1) 50%,
-    rgba(17, 24, 39, 1) 55%,
-    rgba(17, 24, 39, 1) 60%,
-    rgba(17, 24, 39, 1) 65%,
-    rgba(17, 24, 39, 1) 70%,
-    rgba(59, 130, 246, 0.8) 85%,
-    rgba(59, 130, 246, 0.8) 100%
+    rgba(17, 24, 39, 0.8) 65%,
+    rgba(59, 130, 246, 0.7) 80%,
+    rgba(59, 130, 246, 0.6) 100%
   );
+  background-size: 300% 100%;
+  background-position: 0% 50%;
 }
