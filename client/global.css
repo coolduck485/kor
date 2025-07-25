@@ -404,10 +404,6 @@
   animation: rotate-slow 6s linear infinite;
 }
 
-
-
-
-
 /* Modern chrome text styling */
 .chrome-wavy-text {
   display: inline-block;
@@ -435,8 +431,6 @@
   position: relative;
   transition: all 0.3s ease;
 }
-
-
 
 /* Enhanced shine text styling */
 .shine-text-enhanced {
@@ -475,8 +469,6 @@
   background-clip: text;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
-
-
 
 /* Light mode version */
 .light .shine-text-enhanced {
