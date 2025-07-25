@@ -17,6 +17,26 @@ export default function Index() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  const handleBadgeMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!badgeRef.current) return;
+
+    const rect = badgeRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const mouseX = e.clientX - centerX;
+    const mouseY = e.clientY - centerY;
+
+    setBadgeMousePosition({
+      x: mouseX,
+      y: mouseY,
+      isNear: true
+    });
+  };
+
+  const handleBadgeMouseLeave = () => {
+    setBadgeMousePosition({ x: 0, y: 0, isNear: false });
+  };
+
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
       {/* Background Grid Pattern */}
