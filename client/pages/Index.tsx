@@ -1309,7 +1309,8 @@ interface MobileHamburgerMenuProps {
 }
 
 function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuProps) {
-  const [menuPosition, setMenuPosition] = useState({ left: 70, top: -50 });
+  const [menuPosition, setMenuPosition] = useState({ left: 70, top: -80 });
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const menuItems = [
     { text: "About us" },
@@ -1321,14 +1322,14 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
   // Calculate safe menu position to avoid screen overflow
   const calculateMenuPosition = () => {
     const menuWidth = 200; // Approximate menu width
-    const menuHeight = 250; // Approximate menu height
+    const menuHeight = 280; // Increased height for button-style items
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     const buttonX = viewportWidth / 2 + 70; // Button position
     const buttonY = viewportHeight / 2 - 130; // Button position
 
     let left = 70;
-    let top = -50;
+    let top = -80; // Closer to button
 
     // Check right boundary
     if (buttonX + menuWidth > viewportWidth - 20) {
@@ -1360,6 +1361,15 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => setShowTooltip(true), 500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowTooltip(false);
+    }
+  }, [isOpen]);
+
   return (
     <>
       {/* Hamburger Button - adjusted position: down 150px, left 50px */}
@@ -1374,6 +1384,8 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
+          onMouseEnter={() => setShowTooltip(true)}
+          onMouseLeave={() => !isOpen && setShowTooltip(false)}
           className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
             theme === "light"
               ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
@@ -1409,6 +1421,42 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
             />
           </div>
 
+          {/* Tooltip */}
+          <AnimatePresence>
+            {showTooltip && (
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+                className="absolute -top-14 left-1/2 -translate-x-1/2 pointer-events-none z-40"
+              >
+                <div
+                  className={`px-3 py-2 rounded-lg border backdrop-blur-xl text-xs font-medium whitespace-nowrap ${
+                    theme === "light"
+                      ? "border-blue-400/40 bg-white/80 text-gray-800"
+                      : "border-blue-300/30 bg-blue-400/10 text-white/90"
+                  }`}
+                  style={{
+                    background:
+                      theme === "light"
+                        ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                        : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                    boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+                  }}
+                >
+                  {isOpen ? "Click to close menu" : "Click to open menu"}
+                  {/* Tooltip arrow */}
+                  <div
+                    className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
+                      theme === "light" ? "border-t-white/80" : "border-t-blue-400/10"
+                    }`}
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Holographic scanning line effect */}
           <div className="absolute inset-0 overflow-hidden rounded-inherit">
             <div
@@ -1434,7 +1482,7 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
             }}
           >
             <div
-              className={`relative rounded-2xl border-2 backdrop-blur-2xl p-6 w-[200px] max-w-[90vw] ${
+              className={`relative rounded-2xl border-2 backdrop-blur-2xl p-4 w-[200px] max-w-[90vw] ${
                 theme === "light"
                   ? "border-blue-400/40 bg-white/30"
                   : "border-blue-300/30 bg-blue-400/5"
@@ -1451,24 +1499,61 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50" />
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30" />
 
-              {/* Menu Items */}
-              <div className="relative space-y-3">
+              {/* Menu Items - Styled like original floating buttons */}
+              <div className="relative space-y-2">
                 {menuItems.map((item, index) => (
                   <motion.button
                     key={item.text}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.3 }}
-                    className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-300 hover:scale-105 flex items-center justify-center ${
+                    className={`group w-full px-4 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-500 hover:shadow-xl active:scale-95 overflow-hidden relative ${
                       theme === "light"
-                        ? "hover:bg-white/20 text-gray-800 hover:text-gray-900"
-                        : "hover:bg-white/10 text-white/90 hover:text-white"
+                        ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60 text-gray-800 hover:text-gray-900"
+                        : "border-blue-300/30 bg-blue-400/5 hover:border-white/40 text-white/90 hover:text-white"
                     }`}
+                    style={{
+                      background:
+                        theme === "light"
+                          ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                          : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                    }}
                     onClick={() => setIsOpen(false)}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = `scale(1.05)`;
+                      e.currentTarget.style.boxShadow = "0 0 20px rgba(73, 146, 255, 0.4)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = `scale(1)`;
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
                   >
-                    <span className="font-poppins font-semibold text-sm tracking-wide">
+                    {/* Animated background layers */}
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50 group-hover:opacity-70 transition-all duration-500" />
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500" />
+
+                    {/* Futuristic circuit-like patterns */}
+                    <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                      <div className="absolute top-1 left-1 w-1 h-1 bg-white/30 rounded-full" />
+                      <div className="absolute bottom-1 right-1 w-0.5 h-0.5 bg-white/40 rounded-full" />
+                      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                    </div>
+
+                    {/* Holographic scanning line effect */}
+                    <div className="absolute inset-0 overflow-hidden rounded-inherit">
+                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                    </div>
+
+                    {/* Button text */}
+                    <span className="relative font-poppins font-semibold text-sm tracking-wide drop-shadow-lg">
                       {item.text}
                     </span>
+
+                    {/* Holographic shimmer effect */}
+                    <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
+
+                    {/* Bottom reflection */}
+                    <div className="absolute bottom-0.5 left-0.5 right-0.5 h-1/4 rounded-xl bg-gradient-to-t from-white/15 to-transparent opacity-30 group-hover:opacity-50 transition-all duration-500" />
                   </motion.button>
                 ))}
               </div>
@@ -1483,7 +1568,7 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
         )}
       </AnimatePresence>
 
-      {/* Backdrop overlay */}
+      {/* Enhanced Backdrop overlay that blurs all content */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -1491,8 +1576,12 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-10"
+            className="fixed inset-0 bg-black/20 backdrop-blur-md z-10"
             onClick={() => setIsOpen(false)}
+            style={{
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+            }}
           />
         )}
       </AnimatePresence>
