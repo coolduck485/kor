@@ -13,9 +13,12 @@ export default function Index() {
   });
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [cursorTrails, setCursorTrails] = useState<
-    Array<{ id: number; x: number; y: number }>
-  >([]);
+  const [customCursor, setCustomCursor] = useState({
+    x: 0,
+    y: 0,
+    visible: false,
+  });
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   // Framer Motion animation variants
   const containerVariants = {
@@ -109,33 +112,38 @@ export default function Index() {
         y: e.clientY / window.innerHeight,
       });
 
-      // Add cursor trail effect
-      setCursorTrails((prev) => {
-        const newTrail = {
-          id: Date.now(),
-          x: e.clientX,
-          y: e.clientY,
-        };
-        return [...prev.slice(-8), newTrail]; // Keep only last 8 trails
-      });
+      // Update custom cursor position with direct transform for better performance
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      }
+
+      if (!customCursor.visible) {
+        setCustomCursor((prev) => ({ ...prev, visible: true }));
+      }
+    };
+
+    const handleMouseEnter = () => {
+      setCustomCursor((prev) => ({ ...prev, visible: true }));
+    };
+
+    const handleMouseLeave = () => {
+      setCustomCursor((prev) => ({ ...prev, visible: false }));
     };
 
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseenter", handleMouseEnter);
+    window.addEventListener("mouseleave", handleMouseLeave);
 
     // Trigger loading animation after a short delay
     const loadTimer = setTimeout(() => {
       setIsLoaded(true);
     }, 300);
 
-    // Clean up old cursor trails
-    const trailCleanup = setInterval(() => {
-      setCursorTrails((prev) => prev.slice(-5));
-    }, 100);
-
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseenter", handleMouseEnter);
+      window.removeEventListener("mouseleave", handleMouseLeave);
       clearTimeout(loadTimer);
-      clearInterval(trailCleanup);
     };
   }, []);
 
@@ -175,7 +183,7 @@ export default function Index() {
 
   return (
     <motion.div
-      className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
+      className={`relative min-h-screen overflow-hidden transition-all duration-500 cursor-none ${
         theme === "light"
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
@@ -185,23 +193,43 @@ export default function Index() {
       animate={isLoaded ? "visible" : "hidden"}
     >
       {/* Theme Toggle */}
-      <ThemeToggle />
-      {/* Cursor Trail Effects */}
-      <div className="fixed inset-0 pointer-events-none z-50">
-        {cursorTrails.map((trail, index) => (
-          <div
-            key={trail.id}
-            className="absolute w-3 h-3 rounded-full"
-            style={{
-              left: trail.x - 6,
-              top: trail.y - 6,
-              background: `radial-gradient(circle, rgba(73, 146, 255, ${0.8 - index * 0.1}) 0%, transparent 70%)`,
-              animation: `cursor-trail 0.8s ease-out forwards`,
-              animationDelay: `${index * 0.05}s`,
-              transform: `scale(${1 - index * 0.1})`,
-            }}
-          />
-        ))}
+      <div className="cursor-none">
+        <ThemeToggle />
+      </div>
+
+      {/* Custom Blue Glowy Orb Cursor - Optimized for Performance */}
+      <div
+        ref={cursorRef}
+        className={`fixed pointer-events-none z-[60] transition-opacity duration-300 ${
+          customCursor.visible ? "opacity-100" : "opacity-0"
+        }`}
+        style={{
+          left: 0,
+          top: 0,
+          transform: "translate3d(0px, 0px, 0)",
+          willChange: "transform",
+        }}
+      >
+        {/* Figma-matched cursor orb */}
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: "18px",
+            height: "19px",
+            borderRadius: "19px",
+            background:
+              "linear-gradient(90deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
+            boxShadow: `
+              0 0 31px 0 #4992FF,
+              0 0 18px 0 #4992FF,
+              0 0 10px 0 #4992FF,
+              0 0 5px 0 #4992FF,
+              0 0 1.5px 0 #4992FF
+            `,
+            filter: "blur(1.1px)",
+            transform: "translate(-50%, -50%)",
+          }}
+        />
       </div>
 
       {/* Enhanced Background Elements */}
@@ -344,7 +372,7 @@ export default function Index() {
       >
         <div
           ref={badgeRef}
-          className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
+          className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden cursor-none"
           style={{
             background: "rgba(255, 255, 255, 0.1)",
             border: "2px solid transparent",
@@ -1608,7 +1636,7 @@ function OrbFloatingButton({
         }}
       />
       <button
-        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
+        className={`group relative cursor-none ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
           theme === "light"
             ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
             : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
