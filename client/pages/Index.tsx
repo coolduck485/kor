@@ -535,34 +535,28 @@ export default function Index() {
               }`}
             >
               <span
-                className="inline-block relative"
+                className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                 style={{
-                  textShadow:
-                    "0 0 20px rgba(73, 146, 255, 0.6), 0 0 40px rgba(73, 146, 255, 0.4)",
                   animation:
-                    "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s infinite both",
+                    "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s infinite both, warm-glow-pulse 3s ease-in-out infinite",
                 }}
               >
                 K
               </span>
               <span
-                className="inline-block relative"
+                className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                 style={{
-                  textShadow:
-                    "0 0 20px rgba(63, 186, 255, 0.6), 0 0 40px rgba(63, 186, 255, 0.4)",
                   animation:
-                    "text-glow 3s ease-in-out infinite 0.3s, text-bounce 2s ease-in-out 0.8s infinite both",
+                    "text-glow 3s ease-in-out infinite 0.3s, text-bounce 2s ease-in-out 0.8s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.3s",
                 }}
               >
                 o
               </span>
               <span
-                className="inline-block relative"
+                className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                 style={{
-                  textShadow:
-                    "0 0 20px rgba(57, 135, 227, 0.6), 0 0 40px rgba(57, 135, 227, 0.4)",
                   animation:
-                    "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s infinite both",
+                    "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.6s",
                 }}
               >
                 r
