@@ -35,7 +35,7 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
     const id = Math.random().toString(36).substr(2, 9);
     const newNotification: FloatingNotification = {
       id,
-      duration: 5000, // Default 5 seconds
+      duration: 0, // Default no auto-dismiss - user must click X
       type: 'info',
       ...notification,
     };
