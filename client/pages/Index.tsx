@@ -1299,6 +1299,165 @@ export default function Index() {
 }
 
 // ========================================
+// MOBILE HAMBURGER MENU COMPONENT
+// ========================================
+
+interface MobileHamburgerMenuProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  theme: "light" | "dark";
+}
+
+function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuProps) {
+  const menuItems = [
+    { text: "About us", icon: "👥" },
+    { text: "Services", icon: "⚙️" },
+    { text: "Portfolio", icon: "📁" },
+    { text: "Contact us", icon: "📧" },
+  ];
+
+  return (
+    <>
+      {/* Hamburger Button positioned where About Us was */}
+      <div
+        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30"
+        style={{
+          marginLeft: "-80px", // Position similar to where About Us was
+          marginTop: "-80px",
+          animationDelay: "0.2s",
+          animation: "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s",
+        }}
+      >
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
+            theme === "light"
+              ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
+              : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
+          }`}
+          style={{
+            background:
+              theme === "light"
+                ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+          }}
+        >
+          {/* Animated background layers */}
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50 group-hover:opacity-70 transition-all duration-500" />
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500" />
+
+          {/* Hamburger Icon */}
+          <div className="relative w-6 h-6 flex flex-col justify-center items-center space-y-1">
+            <div
+              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+                isOpen ? "rotate-45 translate-y-1.5" : ""
+              } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
+            />
+            <div
+              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+                isOpen ? "opacity-0" : ""
+              } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
+            />
+            <div
+              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+                isOpen ? "-rotate-45 -translate-y-1.5" : ""
+              } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
+            />
+          </div>
+
+          {/* Holographic scanning line effect */}
+          <div className="absolute inset-0 overflow-hidden rounded-inherit">
+            <div
+              className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"
+              style={{ animationDelay: "0.2s", left: "-50px" }}
+            />
+          </div>
+        </button>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+            style={{
+              marginLeft: "-80px",
+              marginTop: "0px",
+            }}
+          >
+            <div
+              className={`relative rounded-2xl border-2 backdrop-blur-2xl p-6 min-w-[200px] ${
+                theme === "light"
+                  ? "border-blue-400/40 bg-white/30"
+                  : "border-blue-300/30 bg-blue-400/5"
+              }`}
+              style={{
+                background:
+                  theme === "light"
+                    ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                boxShadow: "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
+              }}
+            >
+              {/* Animated background layers */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30" />
+
+              {/* Menu Items */}
+              <div className="relative space-y-3">
+                {menuItems.map((item, index) => (
+                  <motion.button
+                    key={item.text}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.3 }}
+                    className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-300 hover:scale-105 flex items-center space-x-3 ${
+                      theme === "light"
+                        ? "hover:bg-white/20 text-gray-800 hover:text-gray-900"
+                        : "hover:bg-white/10 text-white/90 hover:text-white"
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <span className="text-lg">{item.icon}</span>
+                    <span className="font-poppins font-semibold text-sm">
+                      {item.text}
+                    </span>
+                  </motion.button>
+                ))}
+              </div>
+
+              {/* Holographic shimmer effect */}
+              <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-2xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40" />
+
+              {/* Bottom reflection */}
+              <div className="absolute bottom-0.5 left-0.5 right-0.5 h-1/4 rounded-2xl bg-gradient-to-t from-white/15 to-transparent opacity-30" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Backdrop overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-10"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+// ========================================
 // BUTTON POSITIONING CONFIGURATION
 // ========================================
 // Edit these values to easily adjust button positions
