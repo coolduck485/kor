@@ -401,7 +401,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      █
+                      ��
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -550,7 +550,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████��██���████████████ 50%
+                      RAM: ██████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
