@@ -609,19 +609,29 @@ export default function Index() {
             }
           }
 
-          .button-grid {
+          .button-grid-single {
+            display: flex;
+            justify-content: center;
+            margin: 32px auto 16px;
+            max-width: 600px;
+            position: relative;
+            z-index: 106;
+          }
+
+          .social-button-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            max-width: 600px;
-            margin-bottom: 32px;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto 32px;
             position: relative;
             z-index: 106;
           }
 
           @media (max-width: 640px) {
-            .button-grid {
-              grid-template-columns: repeat(2, 1fr);
+            .social-button-grid {
+              grid-template-columns: repeat(1, 1fr);
+              max-width: 300px;
             }
           }
 
