@@ -443,7 +443,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██���██╔══██╗
+██╔═██╗ ██║   ██���██��══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
@@ -461,7 +461,10 @@ export default function Index() {
                   <span>TERMINAL</span>
                 </div>
                 <div className="terminal-content">
-                  <div className="text-amber-400 font-bold mb-3 mt-4">
+                  <div className="text-amber-400 font-bold mb-1">
+                    <span className="text-gray-500">$</span> system-info --status
+                  </div>
+                  <div className="text-amber-400 font-bold mb-3 mt-2">
                     SYSTEM STATUS:{" "}
                     <span className="text-green-400 terminal-glow">
                       OPERATIONAL
@@ -496,6 +499,21 @@ export default function Index() {
                     <span className="text-purple-400">
                       ENTERPRISE AUTOMATION
                     </span>
+                  </div>
+                  <div className="terminal-line mb-4">
+                    <span className="text-gray-500">---</span>
+                  </div>
+                  <div className="terminal-line mb-1">
+                    <span className="text-cyan-400">CPU:</span>&nbsp;
+                    <span className="text-green-400">██████████</span>&nbsp;100%
+                  </div>
+                  <div className="terminal-line mb-1">
+                    <span className="text-cyan-400">MEM:</span>&nbsp;
+                    <span className="text-yellow-400">████████░░</span>&nbsp;78%
+                  </div>
+                  <div className="terminal-line mb-3">
+                    <span className="text-cyan-400">NET:</span>&nbsp;
+                    <span className="text-green-400 terminal-glow">CONNECTED</span>
                   </div>
                   <div className="terminal-line mb-4">
                     <span className="text-green-400 blink">█</span>
