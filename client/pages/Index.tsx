@@ -263,29 +263,32 @@ export default function Index() {
                 SYSTEM STATUS: <span className="text-green-400 terminal-glow">OPERATIONAL</span>
               </div>
               <div className="terminal-line">
-                <span className="text-green-400">[ACTIVE]</span> CUSTOM SOFTWARE SOLUTIONS
+                <span className="text-green-400">[ACTIVE]</span>{" "}CUSTOM SOFTWARE SOLUTIONS
               </div>
               <div className="terminal-line">
-                <span className="text-green-400">[ACTIVE]</span> <span className="text-cyan-400">WEB APPLICATION DEVELOPMENT</span>
+                <span className="text-green-400">[ACTIVE]</span>{" "}<span className="text-cyan-400">WEB APPLICATION DEVELOPMENT</span>
               </div>
               <div className="terminal-line">
-                <span className="text-green-400">[ACTIVE]</span> AI/ML INTEGRATION SERVICES
+                <span className="text-green-400">[ACTIVE]</span>{" "}AI/ML INTEGRATION SERVICES
               </div>
               <div className="terminal-line mb-2">
-                <span className="text-green-400">[ACTIVE]</span> CLOUD INFRASTRUCTURE DESIGN
+                <span className="text-green-400">[ACTIVE]</span>{" "}CLOUD INFRASTRUCTURE DESIGN
               </div>
               <div className="terminal-line mb-2">
-                <span className="text-yellow-400">[PRIORITY]</span> <span className="typewriter text-red-400 font-bold">
+                <span className="text-yellow-400">[PRIORITY]</span>{" "}<span className="typewriter text-red-400 font-bold">
                   LEGACY SYSTEM MODERNIZATION
                 </span>
               </div>
+              <div className="terminal-line mb-2">
+                <span className="text-green-400">[ACTIVE]</span>{" "}<span className="text-purple-400">ENTERPRISE AUTOMATION</span>
+              </div>
               <div className="terminal-line mb-4">
-                <span className="text-green-400">[ACTIVE]</span> <span className="text-purple-400">ENTERPRISE AUTOMATION</span>
+                <span className="text-green-400 blink">█</span>
               </div>
               <div className="memory-section">
                 <div className="text-xs mb-2 text-cyan-400">SYSTEM RESOURCES:</div>
                 <div className="text-xs text-green-400 mb-1">
-                  CPU: ████████████████░░░░ 80%
+                  CPU: ██��█████████████░░░░ 80%
                 </div>
                 <div className="text-xs text-amber-400 mb-1">
                   RAM: ██████████████░░░░░░ 70%
@@ -294,9 +297,6 @@ export default function Index() {
                 <div className="text-xs text-green-400 mt-1">
                   NETWORK: {systemStats.networkUp}GB/s ↑ | {systemStats.networkDown}MB/s ↓
                 </div>
-              </div>
-              <div className="terminal-line mt-4">
-                <span className="text-green-400 blink">█</span>
               </div>
             </div>
           </motion.div>
