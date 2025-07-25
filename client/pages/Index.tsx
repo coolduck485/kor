@@ -441,11 +441,11 @@ export default function Index() {
               >
                 <pre className="ascii-logo">
                   {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔══██���
+██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██║��█╔══██╗
+██╔═██╗ ██║   ██���██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚��╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -574,7 +574,7 @@ export default function Index() {
                 transition={{ delay: 3, duration: 1 }}
               >
                 <div className="status-indicators">
-                  <span className="status-dot text-red-400 blink">●</span>
+                  <span className="status-dot text-red-400">●</span>
                   <span>READY</span>
                   <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
@@ -585,12 +585,13 @@ export default function Index() {
                 </div>
 
                 <div className="continue-prompt">
-                  ◄ ��� PRESS [SPACE] TO CONTINUE ◄ ►
+                  <span className="text-cyan-400">[SYSTEM READY]</span>
+                  <span className="text-green-400 ml-4">◄►◄►◄►</span>
                 </div>
 
                 <div className="loading-indicators">
                   <span>█▓▒░</span>
-                  <span className="blink">LOADING...</span>
+                  <span className="text-amber-400">PROCESSING...</span>
                   <span>░▒▓█</span>
                 </div>
               </motion.div>
