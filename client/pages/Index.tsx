@@ -983,7 +983,7 @@ export default function Index() {
 
           {/* Container for existing toggles */}
           <div
-            className={`rounded-2xl border-2 backdrop-blur-2xl p-4 ${
+            className={`rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/30"
                 : "border-blue-300/30 bg-blue-400/5"
