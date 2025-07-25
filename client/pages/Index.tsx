@@ -1309,6 +1309,8 @@ interface MobileHamburgerMenuProps {
 }
 
 function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuProps) {
+  const [menuPosition, setMenuPosition] = useState({ left: 70, top: -50 });
+
   const menuItems = [
     { text: "About us" },
     { text: "Services" },
@@ -1316,14 +1318,56 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
     { text: "Contact us" },
   ];
 
+  // Calculate safe menu position to avoid screen overflow
+  const calculateMenuPosition = () => {
+    const menuWidth = 200; // Approximate menu width
+    const menuHeight = 250; // Approximate menu height
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const buttonX = viewportWidth / 2 + 70; // Button position
+    const buttonY = viewportHeight / 2 - 130; // Button position
+
+    let left = 70;
+    let top = -50;
+
+    // Check right boundary
+    if (buttonX + menuWidth > viewportWidth - 20) {
+      left = 70 - (menuWidth + 40); // Move menu to left of button
+    }
+
+    // Check bottom boundary
+    if (buttonY + menuHeight > viewportHeight - 20) {
+      top = -menuHeight - 20; // Move menu above button
+    }
+
+    // Check top boundary
+    if (buttonY + top < 20) {
+      top = 20 - buttonY; // Move menu down to stay in view
+    }
+
+    // Check left boundary
+    if (buttonX + left < 20) {
+      left = 20 - (viewportWidth / 2); // Adjust to stay in view
+    }
+
+    return { left, top };
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      const position = calculateMenuPosition();
+      setMenuPosition(position);
+    }
+  }, [isOpen]);
+
   return (
     <>
-      {/* Hamburger Button - moved 200px right and 200px up */}
+      {/* Hamburger Button - adjusted position: down 150px, left 50px */}
       <div
         className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30"
         style={{
-          marginLeft: "120px", // Moved 200px right from -80px
-          marginTop: "-280px", // Moved 200px up from -80px
+          marginLeft: "70px", // Moved left 50px from 120px
+          marginTop: "-130px", // Moved down 150px from -280px
           animationDelay: "0.2s",
           animation: "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s",
         }}
@@ -1385,12 +1429,12 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
             style={{
-              marginLeft: "120px", // Match hamburger button position
-              marginTop: "-200px", // Position menu above button to avoid scroll indicator
+              marginLeft: `${menuPosition.left}px`, // Dynamic positioning to stay in bounds
+              marginTop: `${menuPosition.top}px`, // Dynamic positioning to stay in bounds
             }}
           >
             <div
-              className={`relative rounded-2xl border-2 backdrop-blur-2xl p-6 min-w-[200px] ${
+              className={`relative rounded-2xl border-2 backdrop-blur-2xl p-6 w-[200px] max-w-[90vw] ${
                 theme === "light"
                   ? "border-blue-400/40 bg-white/30"
                   : "border-blue-300/30 bg-blue-400/5"
