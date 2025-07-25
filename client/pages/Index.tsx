@@ -1,7 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Index() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [badgeMousePosition, setBadgeMousePosition] = useState({
+    x: 0,
+    y: 0,
+    isNear: false,
+  });
+  const badgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -15,18 +21,68 @@ export default function Index() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  const handleBadgeMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!badgeRef.current) return;
+
+    const rect = badgeRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const mouseX = e.clientX - centerX;
+    const mouseY = e.clientY - centerY;
+
+    setBadgeMousePosition({
+      x: mouseX,
+      y: mouseY,
+      isNear: true,
+    });
+  };
+
+  const handleBadgeMouseLeave = () => {
+    setBadgeMousePosition({ x: 0, y: 0, isNear: false });
+  };
+
+  // ========================================
+  // SHINE ANIMATION CONFIGURATION
+  // ========================================
+  const SHINE_CONFIG = {
+    direction: "right-to-left", // 'left-to-right' or 'right-to-left'
+    duration: "6s", // Animation duration (slowed down more)
+    delay: "1s", // Initial delay
+    interval: "8s", // Time between shine sweeps (total cycle time)
+    intensity: 0.9, // Brightness of the shine (0-1)
+    width: 30, // Width of the shine effect (percentage)
+    showSparkles: true, // Enable/disable sparkles
+    sparkleCount: 10, // Number of sparkles (increased for more visibility)
+  };
+
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
-      {/* Background Grid Pattern */}
+      {/* Enhanced Background Elements */}
+      {/* Animated Grid Pattern */}
       <div className="absolute inset-0 opacity-20">
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 animate-pulse"
           style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
             backgroundSize: "50px 50px",
+            animation: "backgroundShift 20s ease-in-out infinite alternate",
           }}
         />
       </div>
+
+      {/* Dynamic Gradient Overlays */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
+        <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
+      </div>
+
+      {/* Animated Noise Texture */}
+      <div
+        className="absolute inset-0 opacity-5 animate-noise"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+        }}
+      />
 
       {/* Mouse Follower Effect */}
       <div
@@ -42,12 +98,38 @@ export default function Index() {
         }}
       />
 
-      {/* Animated Glass Badge at Top */}
+      {/* Interactive Glass Badge at Top */}
       <div
         className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce"
         style={{ marginTop: "10px" }}
       >
-        <div className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-xs hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:scale-105">
+        <div
+          ref={badgeRef}
+          className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
+          style={{
+            background: "rgba(255, 255, 255, 0.1)",
+            border: "2px solid transparent",
+            backgroundClip: "padding-box",
+          }}
+          onMouseMove={handleBadgeMouseMove}
+          onMouseLeave={handleBadgeMouseLeave}
+        >
+          {/* Dynamic Border Effect */}
+          <div
+            className="absolute inset-0 rounded-full pointer-events-none transition-all duration-300"
+            style={{
+              background: badgeMousePosition.isNear
+                ? `conic-gradient(from ${(Math.atan2(badgeMousePosition.y, badgeMousePosition.x) * 180) / Math.PI + 90}deg, rgba(73, 146, 255, 0.8) 0deg, rgba(73, 146, 255, 0.4) 90deg, rgba(255, 255, 255, 0.2) 180deg, rgba(255, 255, 255, 0.2) 270deg, rgba(73, 146, 255, 0.8) 360deg)`
+                : "conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(255, 255, 255, 0.2) 360deg)",
+              padding: "2px",
+              borderRadius: "inherit",
+              mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+              maskComposite: "xor",
+              WebkitMask:
+                "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+              WebkitMaskComposite: "xor",
+            }}
+          />
           {/* Animated Sparkle Icon */}
           <svg
             className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle"
@@ -257,8 +339,25 @@ export default function Index() {
             className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20"
             style={{ marginLeft: "-5px" }}
           >
-            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-glow">
-              Kor
+            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-reveal">
+              <span
+                className="inline-block animate-text-bounce"
+                style={{ animationDelay: "0.8s" }}
+              >
+                K
+              </span>
+              <span
+                className="inline-block animate-text-bounce"
+                style={{ animationDelay: "1.4s" }}
+              >
+                o
+              </span>
+              <span
+                className="inline-block animate-text-bounce"
+                style={{ animationDelay: "2.0s" }}
+              >
+                r
+              </span>
             </h1>
           </div>
 
@@ -267,11 +366,136 @@ export default function Index() {
             className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4"
             style={{ marginLeft: "5px", marginTop: "-5px" }}
           >
-            <p
-              className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-glow-text-light animate-text-glow"
-              style={{ animationDelay: "1s" }}
-            >
-              Development services
+            <p className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative">
+              <span
+                className="relative inline-block shine-text-base"
+                style={{
+                  animationName: `shine-${SHINE_CONFIG.direction}`,
+                  animationDuration: SHINE_CONFIG.duration,
+                  animationDelay: SHINE_CONFIG.delay,
+                  animationIterationCount: "infinite",
+                  animationTimingFunction: "ease-out",
+                }}
+              >
+                Development services
+                {/* Figma Star Sparkles */}
+                {SHINE_CONFIG.showSparkles &&
+                  [...Array(SHINE_CONFIG.sparkleCount)].map((_, i) => (
+                    <div
+                      key={`sparkle-${i}`}
+                      className="absolute animate-sparkle-twinkle pointer-events-none"
+                      style={{
+                        left: `${-5 + (i * 110) / SHINE_CONFIG.sparkleCount}%`,
+                        top: `${-25 + (i % 4) * -8}px`,
+                        animationDelay: `${i * 0.4 + 2}s`,
+                        animationDuration: `${2 + Math.random() * 1.5}s`,
+                        transform: `scale(${0.2 + Math.random() * 0.15}) rotate(${Math.random() * 360}deg)`,
+                        opacity: 0.9,
+                      }}
+                    >
+                      <svg
+                        width="30"
+                        height="30"
+                        viewBox="0 0 1134 1152"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-full h-full"
+                      >
+                        <defs>
+                          <filter
+                            id={`filter_sparkle_${i}`}
+                            x="0.215881"
+                            y="0.612473"
+                            width="1133.4"
+                            height="1151.31"
+                            filterUnits="userSpaceOnUse"
+                            colorInterpolationFilters="sRGB"
+                          >
+                            <feFlood
+                              floodOpacity="0"
+                              result="BackgroundImageFix"
+                            />
+                            <feColorMatrix
+                              in="SourceAlpha"
+                              type="matrix"
+                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                              result="hardAlpha"
+                            />
+                            <feOffset />
+                            <feGaussianBlur stdDeviation="11.79" />
+                            <feColorMatrix
+                              type="matrix"
+                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                            />
+                            <feBlend
+                              mode="normal"
+                              in2="BackgroundImageFix"
+                              result="effect1_dropShadow"
+                            />
+                            <feColorMatrix
+                              in="SourceAlpha"
+                              type="matrix"
+                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                              result="hardAlpha"
+                            />
+                            <feOffset />
+                            <feGaussianBlur stdDeviation="41.265" />
+                            <feColorMatrix
+                              type="matrix"
+                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                            />
+                            <feBlend
+                              mode="normal"
+                              in2="effect1_dropShadow"
+                              result="effect2_dropShadow"
+                            />
+                            <feColorMatrix
+                              in="SourceAlpha"
+                              type="matrix"
+                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                              result="hardAlpha"
+                            />
+                            <feOffset />
+                            <feGaussianBlur stdDeviation="82.53" />
+                            <feColorMatrix
+                              type="matrix"
+                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                            />
+                            <feBlend
+                              mode="normal"
+                              in2="effect2_dropShadow"
+                              result="effect3_dropShadow"
+                            />
+                            <feBlend
+                              mode="normal"
+                              in="SourceGraphic"
+                              in2="effect3_dropShadow"
+                              result="shape"
+                            />
+                          </filter>
+                          <linearGradient
+                            id={`gradient_sparkle_${i}`}
+                            x1="504.394"
+                            y1="628.011"
+                            x2="679.912"
+                            y2="578.083"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stopColor="#1E40AF" />
+                            <stop offset="0.493374" stopColor="#1D4ED8" />
+                            <stop offset="1" stopColor="#1E3A8A" />
+                          </linearGradient>
+                        </defs>
+                        <g filter={`url(#filter_sparkle_${i})`}>
+                          <path
+                            d="M537.254 557.616L495.396 597.059L554.801 617.972L590.311 656.741L599.501 604.977L638.435 555.474L581.954 544.621L543.519 495.792L537.254 557.616Z"
+                            fill={`url(#gradient_sparkle_${i})`}
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                  ))}
+              </span>
             </p>
           </div>
         </div>
@@ -337,6 +561,272 @@ export default function Index() {
           </div>
         </div>
       </div>
+
+      {/* Enhanced Background Animations */}
+      <style jsx>{`
+        @keyframes backgroundShift {
+          0%,
+          100% {
+            transform: translateX(0) translateY(0);
+          }
+          25% {
+            transform: translateX(10px) translateY(-5px);
+          }
+          50% {
+            transform: translateX(-5px) translateY(10px);
+          }
+          75% {
+            transform: translateX(15px) translateY(5px);
+          }
+        }
+
+        @keyframes float-particle {
+          0%,
+          100% {
+            transform: translateY(0px) translateX(0px) scale(1);
+            opacity: 0.2;
+          }
+          25% {
+            transform: translateY(-20px) translateX(10px) scale(1.2);
+            opacity: 0.4;
+          }
+          50% {
+            transform: translateY(-40px) translateX(-15px) scale(0.8);
+            opacity: 0.6;
+          }
+          75% {
+            transform: translateY(-20px) translateX(20px) scale(1.1);
+            opacity: 0.3;
+          }
+        }
+
+        @keyframes gradient-shift {
+          0%,
+          100% {
+            transform: translateX(0%) translateY(0%) rotate(0deg);
+          }
+          25% {
+            transform: translateX(10%) translateY(-5%) rotate(1deg);
+          }
+          50% {
+            transform: translateX(-5%) translateY(10%) rotate(-1deg);
+          }
+          75% {
+            transform: translateX(15%) translateY(-10%) rotate(0.5deg);
+          }
+        }
+
+        @keyframes gradient-shift-reverse {
+          0%,
+          100% {
+            transform: translateX(0%) translateY(0%) rotate(0deg);
+          }
+          25% {
+            transform: translateX(-10%) translateY(5%) rotate(-1deg);
+          }
+          50% {
+            transform: translateX(5%) translateY(-10%) rotate(1deg);
+          }
+          75% {
+            transform: translateX(-15%) translateY(10%) rotate(-0.5deg);
+          }
+        }
+
+        @keyframes noise {
+          0%,
+          100% {
+            opacity: 0.05;
+            transform: translateX(0) translateY(0);
+          }
+          50% {
+            opacity: 0.1;
+            transform: translateX(2px) translateY(1px);
+          }
+        }
+
+        .animate-float-particle {
+          animation: float-particle linear infinite;
+        }
+
+        .animate-gradient-shift {
+          animation: gradient-shift 25s ease-in-out infinite;
+        }
+
+        .animate-gradient-shift-reverse {
+          animation: gradient-shift-reverse 30s ease-in-out infinite;
+        }
+
+        .animate-noise {
+          animation: noise 3s ease-in-out infinite;
+        }
+
+        @keyframes shine-left-to-right {
+          0% {
+            background: linear-gradient(
+              90deg,
+              rgba(178, 227, 255, 0.7) 0%,
+              rgba(178, 227, 255, 0.7) 20%,
+              rgba(255, 255, 255, 1) 35%,
+              rgba(255, 255, 255, 1) 40%,
+              rgba(255, 255, 255, 1) 45%,
+              rgba(255, 255, 255, 1) 50%,
+              rgba(255, 255, 255, 1) 55%,
+              rgba(255, 255, 255, 1) 60%,
+              rgba(255, 255, 255, 1) 65%,
+              rgba(178, 227, 255, 0.7) 80%,
+              rgba(178, 227, 255, 0.7) 100%
+            );
+            background-size: 400% 100%;
+            background-position: -150% 0;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+          100% {
+            background-position: 250% 0;
+          }
+        }
+
+        @keyframes shine-right-to-left {
+          0% {
+            background: linear-gradient(
+              90deg,
+              rgba(178, 227, 255, 0.7) 0%,
+              rgba(178, 227, 255, 0.7) 20%,
+              rgba(255, 255, 255, 1) 35%,
+              rgba(255, 255, 255, 1) 40%,
+              rgba(255, 255, 255, 1) 45%,
+              rgba(255, 255, 255, 1) 50%,
+              rgba(255, 255, 255, 1) 55%,
+              rgba(255, 255, 255, 1) 60%,
+              rgba(255, 255, 255, 1) 65%,
+              rgba(178, 227, 255, 0.7) 80%,
+              rgba(178, 227, 255, 0.7) 100%
+            );
+            background-size: 400% 100%;
+            background-position: 250% 0;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+          100% {
+            background-position: -150% 0;
+          }
+        }
+
+        @keyframes sparkle-twinkle {
+          0%,
+          100% {
+            opacity: 0.4;
+            transform: scale(0.9) rotate(0deg);
+          }
+          25% {
+            opacity: 0.8;
+            transform: scale(1.1) rotate(90deg);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.3) rotate(180deg);
+          }
+          75% {
+            opacity: 0.8;
+            transform: scale(1.1) rotate(270deg);
+          }
+        }
+
+        @keyframes text-reveal {
+          0% {
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            text-shadow: 0 0 0px rgba(73, 146, 255, 0);
+          }
+          50% {
+            text-shadow: 0 0 30px rgba(73, 146, 255, 0.8);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0px) scale(1);
+            text-shadow: 0 0 20px rgba(73, 146, 255, 0.4);
+          }
+        }
+
+        @keyframes text-bounce {
+          0%,
+          100% {
+            transform: translateY(0px) scale(1);
+          }
+          50% {
+            transform: translateY(-5px) scale(1.05);
+          }
+        }
+
+        @keyframes type-writer {
+          0% {
+            opacity: 0;
+            transform: translateX(-10px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0px);
+          }
+        }
+
+        @keyframes fade-in-word {
+          0% {
+            opacity: 0;
+            transform: translateY(10px) blur(2px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0px) blur(0px);
+          }
+        }
+
+        .shine-text-base {
+          background: linear-gradient(
+            90deg,
+            rgba(178, 227, 255, 0.7) 0%,
+            rgba(178, 227, 255, 0.7) 20%,
+            rgba(255, 255, 255, 1) 35%,
+            rgba(255, 255, 255, 1) 40%,
+            rgba(255, 255, 255, 1) 45%,
+            rgba(255, 255, 255, 1) 50%,
+            rgba(255, 255, 255, 1) 55%,
+            rgba(255, 255, 255, 1) 60%,
+            rgba(255, 255, 255, 1) 65%,
+            rgba(178, 227, 255, 0.7) 80%,
+            rgba(178, 227, 255, 0.7) 100%
+          );
+          background-size: 400% 100%;
+          background-position: 0% 0;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6))
+            drop-shadow(0 0 40px rgba(34, 211, 238, 0.4));
+        }
+
+        .animate-sparkle-twinkle {
+          animation: sparkle-twinkle ease-in-out infinite;
+        }
+
+        .animate-text-reveal {
+          animation: text-reveal 1.5s ease-out forwards;
+        }
+
+        .animate-text-bounce {
+          animation: text-bounce 2s ease-in-out infinite;
+        }
+
+        .animate-type-writer {
+          animation: type-writer 1s ease-out forwards;
+        }
+
+        .animate-fade-in-word {
+          opacity: 0;
+          animation: fade-in-word 0.8s ease-out forwards;
+        }
+      `}</style>
     </div>
   );
 }
@@ -350,9 +840,9 @@ const ORB_BUTTON_CONFIG = {
   // Global settings for all buttons
   global: {
     // Base radius multipliers for different screen sizes - mobile needs smaller radius
-    mobileRadiusMultiplier: 0.3, // Reduced to prevent buttons from cutting off screen on mobile
-    tabletRadiusMultiplier: 0.65, // Slightly increased for tablet
-    desktopRadiusMultiplier: 0.7, // Increased for desktop for better spread
+    mobileRadiusMultiplier: 0.35, // Compact mobile positioning
+    tabletRadiusMultiplier: 0.5, // Moderate tablet positioning
+    desktopRadiusMultiplier: 0.7, // Keep desktop positioning unchanged
 
     // Global animation settings
     animationDuration: "600ms", // How long hover animations take
@@ -372,7 +862,7 @@ const ORB_BUTTON_CONFIG = {
 
       // Fine-tune positioning (these are added to calculated position)
       xOffset: 0, // Centered positioning for cleaner look
-      yOffset: -35, // Moved up a tiny bit more from -30 to -35 for mobile
+      yOffset: -20, // Adjusted for mobile positioning
 
       // Override global settings for this button (optional)
       customRadiusMultiplier: null, // Set to override global radius multiplier for all screen sizes
@@ -389,7 +879,7 @@ const ORB_BUTTON_CONFIG = {
 
       // Custom positioning for Services button
       xOffset: 0, // Centered positioning
-      yOffset: 0, // Moved up for better spacing
+      yOffset: 10, // Better spacing for mobile
 
       // Services button now uses global positioning for consistency
       customRadiusMultiplier: null, // Use global multipliers for consistency
@@ -405,7 +895,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       xOffset: 0, // Centered positioning
-      yOffset: 5, // Slight adjustment for visual balance
+      yOffset: 15, // Adjusted for mobile balance
 
       customRadiusMultiplier: null,
     },
@@ -419,8 +909,8 @@ const ORB_BUTTON_CONFIG = {
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
 
-      xOffset: -100, // Adjusted for better spacing from text
-      yOffset: -55, // Moved up 10px more from -45 to -55
+      xOffset: -20, // Mobile-friendly spacing
+      yOffset: -75, // Moved up 50px from -25 to -75
 
       customRadiusMultiplier: null,
     },
@@ -536,10 +1026,10 @@ function OrbFloatingButton({
       scale: 0.75, // Smaller on mobile
     },
     medium: {
-      padding: "px-3 py-1.5 sm:px-5 sm:py-2.5 md:px-6 md:py-3",
-      text: "text-xs sm:text-base md:text-base",
-      radius: "rounded-lg sm:rounded-2xl md:rounded-3xl",
-      scale: 0.85, // Smaller on mobile
+      padding: "px-2 py-1 sm:px-3 sm:py-1.5 md:px-6 md:py-3",
+      text: "text-xs sm:text-sm md:text-base",
+      radius: "rounded-lg sm:rounded-xl md:rounded-3xl",
+      scale: 0.8, // Appropriately sized for mobile
     },
     large: {
       padding: "px-3 py-1.5 sm:px-6 sm:py-3 md:px-8 md:py-4",
@@ -595,10 +1085,10 @@ function OrbFloatingButton({
       className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 animate-gentleFloat"
       style={
         {
-          "--mobile-x": `${x * radius * mobileMultiplier + xOffset}px`,
-          "--mobile-y": `${y * radius * mobileMultiplier + yOffset}px`,
-          "--tablet-x": `${x * radius * tabletMultiplier + xOffset}px`,
-          "--tablet-y": `${y * radius * tabletMultiplier + yOffset}px`,
+          "--mobile-x": `${Math.max(-120, Math.min(120, x * radius * mobileMultiplier + xOffset + (text === "About us" ? -60 : 0)))}px`,
+          "--mobile-y": `${Math.max(-120, Math.min(120, y * radius * mobileMultiplier + yOffset))}px`,
+          "--tablet-x": `${Math.max(-180, Math.min(180, x * radius * tabletMultiplier + xOffset + (text === "About us" ? -60 : 0)))}px`,
+          "--tablet-y": `${Math.max(-150, Math.min(150, y * radius * tabletMultiplier + yOffset))}px`,
           "--desktop-x": `${x * radius * desktopMultiplier + xOffset + (text === "About us" ? -100 : 0)}px`,
           "--desktop-y": `${y * radius * desktopMultiplier + yOffset}px`,
           marginLeft: "var(--mobile-x)",
