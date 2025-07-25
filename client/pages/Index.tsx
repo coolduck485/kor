@@ -564,16 +564,8 @@ export default function Index() {
           }
         }
 
-        .animate-pulse-glow {
-          animation: pulse-glow ease-in-out infinite;
-        }
-
-        .animate-rotate-slow {
-          animation: rotate-slow linear infinite;
-        }
-
-        .animate-pulse-line {
-          animation: pulse-line ease-in-out infinite;
+        .animate-shooting-star {
+          animation: shooting-star linear infinite;
         }
 
         .animate-text-reveal {
