@@ -1742,7 +1742,24 @@ export default function Index() {
         </div>
 
         {/* Text Content - Moved up */}
-        <div className="relative z-10 px-4 -mt-16">
+        <motion.div
+          className="relative z-10 px-4 -mt-16"
+          initial={{
+            opacity: 0,
+            y: 80,
+            filter: "blur(10px)"
+          }}
+          animate={animationStep >= 2 ? {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)"
+          } : {}}
+          transition={{
+            duration: 1.2,
+            ease: [0.16, 1, 0.3, 1],
+            delay: 0.2
+          }}
+        >
           {/* Kor - moved further to the left */}
           <div
             className="text-center transform -translate-x-6 sm:-translate-x-8 md:-translate-x-16 lg:-translate-x-20"
@@ -1929,7 +1946,7 @@ export default function Index() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Mobile Hamburger Menu - Only on mobile (640px and below) */}
         <div className="sm:hidden absolute inset-0 flex items-center justify-center">
