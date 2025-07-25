@@ -423,7 +423,7 @@ export default function Index() {
             <pre className="ascii-logo">
               {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
-█████╔╝ █��║   ██║██████╔╝
+█████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║��█╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
@@ -443,13 +443,13 @@ export default function Index() {
             </div>
             <div className="terminal-content">
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╔════════════════════════════════════════════════════════╗
+                ╔═══════════════════════════════════════════��════════════╗
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
                 ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╚��═════════════════════════════��═════════════════════════╝
+                ╚══════════════════════════════��═════════════════════════╝
               </div>
               <div className="text-amber-400 font-bold mb-3 mt-4">
                 SYSTEM STATUS:{" "}
@@ -1424,16 +1424,52 @@ export default function Index() {
                 </motion.h1>
               </div>
 
-              {/* Loading subtitle */}
+              {/* Loading subtitle with typewriter effect */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={loadingStep >= 3 ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+                animate={loadingStep >= 3 ? {
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)"
+                } : {}}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.8,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
                 className={`font-poppins text-lg md:text-xl lg:text-2xl font-medium ${
                   theme === "light" ? "text-gray-600" : "text-white/70"
                 }`}
               >
-                Development Services
+                <motion.span
+                  initial={{ width: 0 }}
+                  animate={loadingStep >= 3 ? { width: "auto" } : {}}
+                  transition={{
+                    duration: 1.2,
+                    delay: 1.2,
+                    ease: "easeOut"
+                  }}
+                  className="inline-block overflow-hidden"
+                  style={{
+                    whiteSpace: "nowrap"
+                  }}
+                >
+                  Development Services
+                </motion.span>
+                <motion.span
+                  animate={loadingStep >= 3 ? {
+                    opacity: [0, 1, 0]
+                  } : {}}
+                  transition={{
+                    duration: 0.8,
+                    repeat: 3,
+                    delay: 1.2,
+                    ease: "easeInOut"
+                  }}
+                  className="ml-1"
+                >
+                  |
+                </motion.span>
               </motion.div>
 
               {/* Loading progress indicator */}
