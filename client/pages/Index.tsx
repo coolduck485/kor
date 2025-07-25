@@ -308,16 +308,9 @@ export default function Index() {
       <div
         className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-75 sm:scale-100"
         style={{
-          marginTop: "140px",
+          marginTop: "var(--badge-margin-top, 140px)",
         }}
       >
-        <style jsx>{`
-          @media (min-width: 640px) {
-            div[style*="marginTop"] {
-              margin-top: 10px !important;
-            }
-          }
-        `}</style>
         <div
           ref={badgeRef}
           className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
