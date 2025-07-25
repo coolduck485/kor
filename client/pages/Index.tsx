@@ -1250,6 +1250,7 @@ interface OrbFloatingButtonProps {
   customRadiusMultiplier: number | null;
   size: string;
   accent: string;
+  theme: "light" | "dark";
 }
 
 function OrbFloatingButton({
