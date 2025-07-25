@@ -6,8 +6,8 @@ import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 
 export default function Index() {
-  const { theme } = useTheme();
-  const { mode } = useRetroMode();
+  const { theme, setTheme } = useTheme();
+  const { mode, toggleMode } = useRetroMode();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
@@ -185,7 +185,7 @@ export default function Index() {
             <pre className="ascii-logo">
               {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
-█████╔╝ ██║   ██║██████╔╝
+█████╔╝ ██║   ██║█████���╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
