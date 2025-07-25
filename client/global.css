@@ -399,10 +399,11 @@
 
 /* Enhanced shine text styling */
 .shine-text-enhanced {
+  color: white; /* Fallback color */
   background: linear-gradient(
     90deg,
-    rgba(178, 227, 255, 0.8) 0%,
-    rgba(178, 227, 255, 0.8) 15%,
+    rgba(178, 227, 255, 0.9) 0%,
+    rgba(178, 227, 255, 0.9) 15%,
     rgba(255, 255, 255, 1) 30%,
     rgba(255, 255, 255, 1) 35%,
     rgba(255, 255, 255, 1) 40%,
@@ -412,12 +413,33 @@
     rgba(255, 255, 255, 1) 60%,
     rgba(255, 255, 255, 1) 65%,
     rgba(255, 255, 255, 1) 70%,
-    rgba(178, 227, 255, 0.8) 85%,
-    rgba(178, 227, 255, 0.8) 100%
+    rgba(178, 227, 255, 0.9) 85%,
+    rgba(178, 227, 255, 0.9) 100%
   );
   background-size: 500% 100%;
   background-position: 0% 0;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Light mode version */
+.light .shine-text-enhanced {
+  color: #1f2937; /* Fallback color for light mode */
+  background: linear-gradient(
+    90deg,
+    rgba(59, 130, 246, 0.8) 0%,
+    rgba(59, 130, 246, 0.8) 15%,
+    rgba(17, 24, 39, 1) 30%,
+    rgba(17, 24, 39, 1) 35%,
+    rgba(17, 24, 39, 1) 40%,
+    rgba(17, 24, 39, 1) 45%,
+    rgba(17, 24, 39, 1) 50%,
+    rgba(17, 24, 39, 1) 55%,
+    rgba(17, 24, 39, 1) 60%,
+    rgba(17, 24, 39, 1) 65%,
+    rgba(17, 24, 39, 1) 70%,
+    rgba(59, 130, 246, 0.8) 85%,
+    rgba(59, 130, 246, 0.8) 100%
+  );
 }
