@@ -183,11 +183,11 @@ export default function Index() {
             transition={{ duration: 2 }}
           >
             <pre className="ascii-logo">
-              {`██╗  ██╗ ██████╗ ███���██╗
+              {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ���█╗╚██████╔╝██║  ██║
+██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -954,7 +954,7 @@ export default function Index() {
       <div className="fixed top-6 right-6 z-50">
         <div className="group relative">
           {/* Tooltip */}
-          <div className="absolute bottom-full right-0 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <div className="absolute right-full top-1/2 -translate-y-1/2 mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
             <div
               className={`px-3 py-2 rounded-lg border backdrop-blur-xl text-sm font-medium whitespace-nowrap ${
                 theme === "light"
@@ -972,10 +972,10 @@ export default function Index() {
               Click any theme to change the site's appearance
               {/* Tooltip arrow */}
               <div
-                className={`absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
+                className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                   theme === "light"
-                    ? "border-t-white/80"
-                    : "border-t-blue-400/10"
+                    ? "border-l-white/80"
+                    : "border-l-blue-400/10"
                 }`}
               />
             </div>
@@ -2557,7 +2557,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: yOffset: 0  →  yOffset: -30
 //
 // To make all buttons closer to center on mobile:
-// Change: mobileRadiusMultiplier: 0.5  →  mobileRadiusMultiplier: 0.3
+// Change: mobileRadiusMultiplier: 0.5  ��  mobileRadiusMultiplier: 0.3
 //
 // To make "Portfolio" button appear at the top:
 // Change: angle: 125  →  angle: -90
