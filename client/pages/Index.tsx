@@ -421,14 +421,19 @@ export default function Index() {
           }
 
           .ascii-logo {
-            font-family: "JetBrains Mono", monospace;
-            font-weight: 800;
+            font-family: "JetBrains Mono", "Courier New", monospace;
+            font-weight: 700;
             font-size: clamp(8px, 2.5vw, 18px);
-            line-height: 0.9;
+            line-height: 1.0;
             color: #00ff41;
-            text-shadow: 0 0 10px #00ff41;
+            text-shadow: 0 0 8px #00ff41, 0 0 15px #00ff41;
             margin: 0;
             white-space: pre;
+            letter-spacing: 1px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 16px;
+            border: 1px solid #00ff41;
+            border-radius: 4px;
           }
 
           .retro-subtitle {
