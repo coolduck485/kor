@@ -163,11 +163,9 @@ export default function Index() {
   // Trigger loading animation when switching modes
   useEffect(() => {
     if (previousMode !== mode) {
-      console.log('🔄 Mode changed from', previousMode, 'to', mode);
       setPreviousMode(mode);
       // Only trigger loading if it's not the initial load
       if (previousMode !== null) {
-        console.log('🎭 Triggering loading for mode switch');
         triggerLoadingSequence();
       }
     }
@@ -424,7 +422,7 @@ export default function Index() {
             transition={{ duration: 2 }}
           >
             <pre className="ascii-logo">
-              {`██╗  ██╗ ██████╗ ██████╗
+              {`█���╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██���
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║��█╔══██╗
@@ -446,7 +444,7 @@ export default function Index() {
             </div>
             <div className="terminal-content">
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╔════════════════════════════════════════���═══════════════╗
+                ╔════════════════════════════════════════════════════════╗
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
                 ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
@@ -499,7 +497,7 @@ export default function Index() {
                   className="text-xs text-green-400 mb-1"
                   style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                 >
-                  CPU: ██████████��█████████ 60%
+                  CPU: ████████████████████ 60%
                 </div>
                 <div
                   className="text-xs text-amber-400 mb-1"
