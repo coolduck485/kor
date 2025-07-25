@@ -423,7 +423,7 @@ export default function Index() {
             <pre className="ascii-logo">
               {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
-█████╔╝ ██║   ██║██████╔╝
+█████╔╝ █��║   ██║██████╔╝
 ██╔═██╗ ██║   ██║��█╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
@@ -443,13 +443,13 @@ export default function Index() {
             </div>
             <div className="terminal-content">
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╔═════════════════════════════��══════════════════════════╗
+                ╔════════════════════════════════════════════════════════╗
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
                 ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╚══════════════════════════════��═════════════════════════╝
+                ╚��═════════════════════════════��═════════════════════════╝
               </div>
               <div className="text-amber-400 font-bold mb-3 mt-4">
                 SYSTEM STATUS:{" "}
@@ -1278,7 +1278,7 @@ export default function Index() {
 
             {/* Central loading area */}
             <div className="relative z-10 text-center">
-              {/* Loading KOR text */}
+              {/* Loading KOR text with YouTube-style reveal */}
               <div className="mb-8">
                 <motion.h1
                   className={`font-poppins text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight ${
@@ -1290,30 +1290,44 @@ export default function Index() {
                     className="inline-block relative"
                     initial={{
                       opacity: 0,
-                      y: 100,
+                      y: 150,
                       rotateX: -90,
-                      scale: 0.5
+                      scale: 0.3,
+                      filter: "blur(20px)"
                     }}
                     animate={loadingStep >= 1 ? {
                       opacity: 1,
                       y: 0,
                       rotateX: 0,
-                      scale: 1
+                      scale: 1,
+                      filter: "blur(0px)"
                     } : {}}
                     transition={{
-                      duration: 0.8,
-                      ease: [0.25, 0.46, 0.45, 0.94],
+                      duration: 1.2,
+                      ease: [0.16, 1, 0.3, 1],
                       type: "spring",
-                      stiffness: 100,
-                      damping: 15
+                      stiffness: 120,
+                      damping: 20
                     }}
                     style={{
                       textShadow: theme === "light"
-                        ? "0 0 30px rgba(59, 130, 246, 0.5)"
-                        : "0 0 30px rgba(73, 146, 255, 0.8), 0 0 60px rgba(73, 146, 255, 0.4)",
+                        ? "0 0 40px rgba(59, 130, 246, 0.6), 0 0 80px rgba(59, 130, 246, 0.3)"
+                        : "0 0 40px rgba(73, 146, 255, 0.9), 0 0 80px rgba(73, 146, 255, 0.5), 0 0 120px rgba(73, 146, 255, 0.3)",
                     }}
                   >
-                    K
+                    <motion.span
+                      animate={loadingStep >= 1 ? {
+                        scale: [1, 1.1, 1],
+                        filter: ["brightness(1)", "brightness(1.3)", "brightness(1)"]
+                      } : {}}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.3,
+                        ease: "easeOut"
+                      }}
+                    >
+                      K
+                    </motion.span>
                   </motion.span>
 
                   {/* o */}
@@ -1321,31 +1335,45 @@ export default function Index() {
                     className="inline-block relative"
                     initial={{
                       opacity: 0,
-                      y: 100,
+                      y: 150,
                       rotateX: -90,
-                      scale: 0.5
+                      scale: 0.3,
+                      filter: "blur(20px)"
                     }}
                     animate={loadingStep >= 2 ? {
                       opacity: 1,
                       y: 0,
                       rotateX: 0,
-                      scale: 1
+                      scale: 1,
+                      filter: "blur(0px)"
                     } : {}}
                     transition={{
-                      duration: 0.8,
-                      ease: [0.25, 0.46, 0.45, 0.94],
+                      duration: 1.2,
+                      ease: [0.16, 1, 0.3, 1],
                       type: "spring",
-                      stiffness: 100,
-                      damping: 15,
-                      delay: 0.1
+                      stiffness: 120,
+                      damping: 20,
+                      delay: 0.15
                     }}
                     style={{
                       textShadow: theme === "light"
-                        ? "0 0 30px rgba(59, 130, 246, 0.5)"
-                        : "0 0 30px rgba(73, 146, 255, 0.8), 0 0 60px rgba(73, 146, 255, 0.4)",
+                        ? "0 0 40px rgba(59, 130, 246, 0.6), 0 0 80px rgba(59, 130, 246, 0.3)"
+                        : "0 0 40px rgba(73, 146, 255, 0.9), 0 0 80px rgba(73, 146, 255, 0.5), 0 0 120px rgba(73, 146, 255, 0.3)",
                     }}
                   >
-                    o
+                    <motion.span
+                      animate={loadingStep >= 2 ? {
+                        scale: [1, 1.1, 1],
+                        filter: ["brightness(1)", "brightness(1.3)", "brightness(1)"]
+                      } : {}}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.45,
+                        ease: "easeOut"
+                      }}
+                    >
+                      o
+                    </motion.span>
                   </motion.span>
 
                   {/* r */}
@@ -1353,31 +1381,45 @@ export default function Index() {
                     className="inline-block relative"
                     initial={{
                       opacity: 0,
-                      y: 100,
+                      y: 150,
                       rotateX: -90,
-                      scale: 0.5
+                      scale: 0.3,
+                      filter: "blur(20px)"
                     }}
                     animate={loadingStep >= 3 ? {
                       opacity: 1,
                       y: 0,
                       rotateX: 0,
-                      scale: 1
+                      scale: 1,
+                      filter: "blur(0px)"
                     } : {}}
                     transition={{
-                      duration: 0.8,
-                      ease: [0.25, 0.46, 0.45, 0.94],
+                      duration: 1.2,
+                      ease: [0.16, 1, 0.3, 1],
                       type: "spring",
-                      stiffness: 100,
-                      damping: 15,
-                      delay: 0.2
+                      stiffness: 120,
+                      damping: 20,
+                      delay: 0.3
                     }}
                     style={{
                       textShadow: theme === "light"
-                        ? "0 0 30px rgba(59, 130, 246, 0.5)"
-                        : "0 0 30px rgba(73, 146, 255, 0.8), 0 0 60px rgba(73, 146, 255, 0.4)",
+                        ? "0 0 40px rgba(59, 130, 246, 0.6), 0 0 80px rgba(59, 130, 246, 0.3)"
+                        : "0 0 40px rgba(73, 146, 255, 0.9), 0 0 80px rgba(73, 146, 255, 0.5), 0 0 120px rgba(73, 146, 255, 0.3)",
                     }}
                   >
-                    r
+                    <motion.span
+                      animate={loadingStep >= 3 ? {
+                        scale: [1, 1.1, 1],
+                        filter: ["brightness(1)", "brightness(1.3)", "brightness(1)"]
+                      } : {}}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.6,
+                        ease: "easeOut"
+                      }}
+                    >
+                      r
+                    </motion.span>
                   </motion.span>
                 </motion.h1>
               </div>
