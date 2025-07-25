@@ -199,6 +199,158 @@ export default function Index() {
   if (mode === "retro") {
     return (
       <div className="retro-container min-h-screen">
+        {/* Retro Loading Screen */}
+        <AnimatePresence>
+          {isLoading && (
+            <motion.div
+              className="fixed inset-0 z-[10000] bg-black flex items-center justify-center"
+              initial={{ opacity: 1 }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 1, ease: "easeInOut" }
+              }}
+            >
+              {/* Matrix-style background */}
+              <div className="absolute inset-0 overflow-hidden">
+                {[...Array(15)].map((_, i) => (
+                  <motion.div
+                    key={`matrix-${i}`}
+                    className="absolute text-green-400 font-mono text-xs opacity-20"
+                    style={{
+                      left: `${(i * 100) / 15}%`,
+                      fontSize: '8px',
+                    }}
+                    animate={{
+                      y: [-20, window.innerHeight + 20],
+                    }}
+                    transition={{
+                      duration: 3 + (i % 3),
+                      repeat: Infinity,
+                      delay: i * 0.2,
+                      ease: "linear"
+                    }}
+                  >
+                    {Array.from({ length: 20 }, () =>
+                      String.fromCharCode(0x30A0 + Math.random() * 96)
+                    ).join('\n')}
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Central loading area */}
+              <div className="relative z-10 text-center">
+                {/* Loading KOR text in ASCII style */}
+                <div className="mb-8">
+                  <motion.div
+                    className="font-mono text-4xl md:text-6xl lg:text-7xl font-bold text-green-400"
+                    style={{
+                      textShadow: "0 0 10px #00ff41, 0 0 20px #00ff41",
+                    }}
+                  >
+                    {/* K */}
+                    <motion.span
+                      className="inline-block"
+                      initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                      animate={loadingStep >= 1 ? {
+                        opacity: 1,
+                        scale: 1,
+                        rotateY: 0
+                      } : {}}
+                      transition={{
+                        duration: 0.8,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 20
+                      }}
+                    >
+                      K
+                    </motion.span>
+
+                    {/* o */}
+                    <motion.span
+                      className="inline-block"
+                      initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                      animate={loadingStep >= 2 ? {
+                        opacity: 1,
+                        scale: 1,
+                        rotateY: 0
+                      } : {}}
+                      transition={{
+                        duration: 0.8,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 20,
+                        delay: 0.1
+                      }}
+                    >
+                      o
+                    </motion.span>
+
+                    {/* r */}
+                    <motion.span
+                      className="inline-block"
+                      initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                      animate={loadingStep >= 3 ? {
+                        opacity: 1,
+                        scale: 1,
+                        rotateY: 0
+                      } : {}}
+                      transition={{
+                        duration: 0.8,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 20,
+                        delay: 0.2
+                      }}
+                    >
+                      r
+                    </motion.span>
+                  </motion.div>
+                </div>
+
+                {/* Loading subtitle */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={loadingStep >= 3 ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="font-mono text-sm md:text-lg text-amber-400"
+                  style={{
+                    textShadow: "0 0 5px #ffaa00",
+                  }}
+                >
+                  INITIALIZING DEVELOPMENT SYSTEMS...
+                </motion.div>
+
+                {/* Terminal loading indicator */}
+                <motion.div
+                  className="mt-8 flex justify-center items-center space-x-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                >
+                  <span className="text-green-400 font-mono text-sm">[</span>
+                  {[...Array(10)].map((_, i) => (
+                    <motion.span
+                      key={i}
+                      className="text-green-400 font-mono text-sm"
+                      animate={{
+                        opacity: [0.3, 1, 0.3],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: i * 0.1,
+                      }}
+                    >
+                      █
+                    </motion.span>
+                  ))}
+                  <span className="text-green-400 font-mono text-sm">]</span>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         {/* Toggle Buttons Container */}
         <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
           <div className="group relative">
