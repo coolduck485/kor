@@ -664,6 +664,133 @@ export default function Index() {
             box-shadow: 2px 2px 0px #00ff41;
           }
 
+          .terminal-button {
+            border: 3px solid #00ff41 !important;
+            box-shadow: 6px 6px 0px #00ff41 !important;
+            font-size: 14px !important;
+            padding: 16px 32px !important;
+            text-shadow: 0 0 10px #00ff41;
+          }
+
+          .terminal-button:hover {
+            box-shadow: 8px 8px 0px #00ff41 !important;
+            transform: translate(-3px, -3px) !important;
+          }
+
+          .social-button {
+            border: 2px solid #ffaa00 !important;
+            color: #ffaa00 !important;
+            box-shadow: 4px 4px 0px #ffaa00 !important;
+            text-shadow: 0 0 8px #ffaa00;
+          }
+
+          .social-button:hover {
+            background: #ffaa00 !important;
+            color: #0a0a0a !important;
+            box-shadow: 6px 6px 0px #ffaa00 !important;
+            transform: translate(-2px, -2px) !important;
+          }
+
+          .interactive-terminal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            height: 70%;
+            max-height: 600px;
+            background: #0a0a0a;
+            border: 3px solid #00ff41;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+            z-index: 1000;
+            overflow: hidden;
+          }
+
+          .interactive-terminal .terminal-header {
+            background: #00ff41;
+            color: #0a0a0a;
+            padding: 8px 16px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: "JetBrains Mono", monospace;
+          }
+
+          .close-terminal {
+            background: none;
+            border: none;
+            color: #0a0a0a;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 4px 8px;
+          }
+
+          .close-terminal:hover {
+            background: rgba(10, 10, 10, 0.2);
+          }
+
+          .terminal-body {
+            height: calc(100% - 40px);
+            padding: 16px;
+            overflow-y: auto;
+            background: #0a0a0a;
+          }
+
+          .terminal-output {
+            margin-bottom: 16px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            min-height: 200px;
+          }
+
+          .terminal-output .terminal-line {
+            margin-bottom: 4px;
+          }
+
+          .terminal-output .prompt {
+            color: #00ff41;
+            margin-right: 8px;
+          }
+
+          .terminal-output .command {
+            color: #ffffff;
+          }
+
+          .terminal-output .output {
+            color: #ffaa00;
+          }
+
+          .terminal-input-line {
+            display: flex;
+            align-items: center;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 14px;
+          }
+
+          .terminal-input-line .prompt {
+            color: #00ff41;
+            margin-right: 8px;
+          }
+
+          .terminal-input {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 14px;
+            outline: none;
+            flex: 1;
+            caret-color: #00ff41;
+          }
+
+          .terminal-input::placeholder {
+            color: #666;
+          }
+
           .status-bar {
             text-align: center;
             space-y: 16px;
