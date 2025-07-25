@@ -200,10 +200,10 @@ export default function Index() {
           >
             <pre className="ascii-logo">
               {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔══���█╗
+██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██████╔╝██���  ██║
+██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -418,7 +418,6 @@ export default function Index() {
           .retro-logo-container {
             text-align: center;
             margin-bottom: 32px;
-            animation: pixel-float 3s ease-in-out infinite;
           }
 
           .ascii-logo {
@@ -437,8 +436,8 @@ export default function Index() {
             font-size: clamp(12px, 3vw, 18px);
             font-weight: bold;
             margin-top: 12px;
-            text-shadow: 0 0 10px #ffaa00;
-            animation: terminal-glow 2s ease-in-out infinite;
+            text-shadow: 0 0 10px #ffaa00, 0 0 20px #ffaa00, 0 0 30px #ffaa00;
+            letter-spacing: 2px;
           }
 
           .terminal-window {
