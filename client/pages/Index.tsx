@@ -655,10 +655,11 @@ export default function Index() {
                         style={{
                           left: `calc(50% + ${sparkle.x}px)`,
                           top: `calc(50% + ${sparkle.y}px)`,
-                          animation: `sparkle-enhanced ${2.5 + (i % 3) * 0.5}s ease-in-out infinite ${i * 0.15 + 2}s`,
+                          animation: `sparkle-enhanced ${6 + (i % 4) * 2}s ease-in-out infinite ${i * 0.8}s`,
                           transform: `scale(${sparkle.size})`,
-                          opacity: 0.9,
+                          opacity: 0.6,
                           animationFillMode: "both",
+                          zIndex: -1,
                         }}
                       >
                         {sparkle.type === "star" && (
