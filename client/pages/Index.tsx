@@ -439,13 +439,17 @@ export default function Index() {
                 animate={{ opacity: isLoaded ? 1 : 0 }}
                 transition={{ duration: 2 }}
               >
-                <pre className="ascii-logo">
+                <div className="ascii-logo text-8xl font-bold text-center mb-4 text-green-400 terminal-glow"
+                     style={{fontFamily: 'JetBrains Mono, monospace', letterSpacing: '0.2em'}}>
+                  KOR
+                </div>
+                <pre className="hidden">
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██���██��══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
