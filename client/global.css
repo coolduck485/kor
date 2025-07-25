@@ -404,21 +404,7 @@
   animation: rotate-slow 6s linear infinite;
 }
 
-/* Wavy letter animation */
-@keyframes wavy-letter {
-  0%, 100% {
-    transform: translateY(0px) rotateZ(0deg);
-  }
-  25% {
-    transform: translateY(-8px) rotateZ(1deg);
-  }
-  50% {
-    transform: translateY(-12px) rotateZ(0deg);
-  }
-  75% {
-    transform: translateY(-8px) rotateZ(-1deg);
-  }
-}
+
 
 
 
