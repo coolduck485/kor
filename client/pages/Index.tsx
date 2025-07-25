@@ -248,10 +248,14 @@ export default function Index() {
                       y: [-20, window.innerHeight + 20],
                     }}
                     transition={{
-                      duration: 3 + (i % 3),
+                      duration: 4 + (i % 2),
                       repeat: Infinity,
-                      delay: i * 0.2,
+                      delay: i * 0.3,
                       ease: "linear",
+                    }}
+                    style={{
+                      willChange: "transform",
+                      backfaceVisibility: "hidden",
                     }}
                   >
                     {Array.from({ length: 20 }, () =>
@@ -452,7 +456,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██���  ██╗╚██████╔╝██║  ██║
+██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
