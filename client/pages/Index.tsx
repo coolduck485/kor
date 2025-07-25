@@ -1657,7 +1657,72 @@ export default function Index() {
           />
         </div>
 
-        {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
+        {/* Left Side Visual Balance Elements */}
+      <div className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 pointer-events-none">
+        {/* Floating geometric indicators */}
+        <div className="space-y-4 sm:space-y-8">
+          {/* Primary indicator */}
+          <motion.div
+            className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-400/30 animate-gentle-pulse"
+            initial={{ opacity: 0, x: -20 }}
+            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 2, duration: 1 }}
+          />
+          {/* Secondary indicators */}
+          <motion.div
+            className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-blue-300/20 animate-gentle-pulse"
+            initial={{ opacity: 0, x: -20 }}
+            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 2.3, duration: 1 }}
+            style={{ animationDelay: "1s" }}
+          />
+          <motion.div
+            className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-200/25 animate-gentle-pulse"
+            initial={{ opacity: 0, x: -20 }}
+            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 2.6, duration: 1 }}
+            style={{ animationDelay: "2s" }}
+          />
+        </div>
+
+        {/* Vertical progress line */}
+        <motion.div
+          className="absolute left-1/2 -translate-x-1/2 top-12 sm:top-16 w-px h-16 sm:h-24 bg-gradient-to-b from-blue-400/40 via-blue-300/20 to-transparent"
+          initial={{ opacity: 0, scaleY: 0 }}
+          animate={animationStep >= 1 ? { opacity: 1, scaleY: 1 } : {}}
+          transition={{ delay: 3, duration: 1.5 }}
+        />
+      </div>
+
+      {/* Right Side Balance Elements */}
+      <div className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 pointer-events-none">
+        {/* Floating geometric indicators mirrored */}
+        <div className="space-y-4 sm:space-y-8">
+          <motion.div
+            className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-purple-400/25 animate-gentle-pulse"
+            initial={{ opacity: 0, x: 20 }}
+            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 2.2, duration: 1 }}
+            style={{ animationDelay: "0.5s" }}
+          />
+          <motion.div
+            className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-purple-300/20 animate-gentle-pulse"
+            initial={{ opacity: 0, x: 20 }}
+            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 2.5, duration: 1 }}
+            style={{ animationDelay: "1.5s" }}
+          />
+          <motion.div
+            className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-purple-200/30 animate-gentle-pulse"
+            initial={{ opacity: 0, x: 20 }}
+            animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 2.8, duration: 1 }}
+            style={{ animationDelay: "2.5s" }}
+          />
+        </div>
+      </div>
+
+      {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
             className="relative animate-float cursor-pointer group"
