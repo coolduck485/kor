@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 
 export default function Index() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [badgeMousePosition, setBadgeMousePosition] = useState({ x: 0, y: 0, isNear: false });
+  const badgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
