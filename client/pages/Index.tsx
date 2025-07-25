@@ -351,7 +351,10 @@ export default function Index() {
             </motion.div>
           )}
         </AnimatePresence>
-        {/* Toggle Buttons Container */}
+        {/* Retro Main Content - Only show after loading */}
+        {!isLoading && (
+          <>
+            {/* Toggle Buttons Container */}
         <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
           <div className="group relative">
             {/* Tooltip */}
@@ -1183,6 +1186,8 @@ export default function Index() {
             }
           }
         `}</style>
+          </>
+        )}
       </div>
     );
   }
