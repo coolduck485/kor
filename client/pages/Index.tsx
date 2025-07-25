@@ -190,7 +190,8 @@ export default function Index() {
               className="rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 border-green-300/30 bg-green-400/5"
               style={{
                 background: `linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,255,65,0.05) 50%, transparent 100%)`,
-                boxShadow: "0 0 25px rgba(0, 255, 65, 0.4), 0 0 50px rgba(0, 255, 65, 0.2)",
+                boxShadow:
+                  "0 0 25px rgba(0, 255, 65, 0.4), 0 0 50px rgba(0, 255, 65, 0.2)",
               }}
             >
               {/* Original Toggle Buttons */}
@@ -737,8 +738,6 @@ export default function Index() {
           .pixel-button:active {
             background: #00cc33;
           }
-
-
 
           .social-button {
             border: 2px solid #00ff41 !important;
