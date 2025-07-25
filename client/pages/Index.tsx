@@ -122,8 +122,8 @@ export default function Index() {
     setAnimationStep(0);
 
     const animationSequence = [
-      { delay: 300, step: 1 },  // Show central orb
-      { delay: 800, step: 2 },  // Show text (KOR + subtitle)
+      { delay: 300, step: 1 }, // Show central orb
+      { delay: 800, step: 2 }, // Show text (KOR + subtitle)
       { delay: 1400, step: 3 }, // Show buttons one by one
       { delay: 2000, step: 4 }, // Show background elements
       { delay: 2600, step: 5 }, // Complete - show everything else
@@ -136,7 +136,7 @@ export default function Index() {
           setIsLoading(false);
           setTimeout(() => setIsLoaded(true), 200);
         }
-      }, delay)
+      }, delay),
     );
 
     return timeouts;
@@ -231,7 +231,7 @@ export default function Index() {
               initial={{ opacity: 1 }}
               exit={{
                 opacity: 0,
-                transition: { duration: 1, ease: "easeInOut" }
+                transition: { duration: 1, ease: "easeInOut" },
               }}
             >
               {/* Matrix-style background */}
@@ -242,7 +242,7 @@ export default function Index() {
                     className="absolute text-green-400 font-mono text-xs opacity-20"
                     style={{
                       left: `${(i * 100) / 15}%`,
-                      fontSize: '8px',
+                      fontSize: "8px",
                     }}
                     animate={{
                       y: [-20, window.innerHeight + 20],
@@ -251,12 +251,12 @@ export default function Index() {
                       duration: 3 + (i % 3),
                       repeat: Infinity,
                       delay: i * 0.2,
-                      ease: "linear"
+                      ease: "linear",
                     }}
                   >
                     {Array.from({ length: 20 }, () =>
-                      String.fromCharCode(0x30A0 + Math.random() * 96)
-                    ).join('\n')}
+                      String.fromCharCode(0x30a0 + Math.random() * 96),
+                    ).join("\n")}
                   </motion.div>
                 ))}
               </div>
@@ -275,16 +275,20 @@ export default function Index() {
                     <motion.span
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
-                      animate={animationStep >= 1 ? {
-                        opacity: 1,
-                        scale: 1,
-                        rotateY: 0
-                      } : {}}
+                      animate={
+                        animationStep >= 1
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                              rotateY: 0,
+                            }
+                          : {}
+                      }
                       transition={{
                         duration: 0.8,
                         type: "spring",
                         stiffness: 200,
-                        damping: 20
+                        damping: 20,
                       }}
                     >
                       K
@@ -294,17 +298,21 @@ export default function Index() {
                     <motion.span
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
-                      animate={animationStep >= 2 ? {
-                        opacity: 1,
-                        scale: 1,
-                        rotateY: 0
-                      } : {}}
+                      animate={
+                        animationStep >= 2
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                              rotateY: 0,
+                            }
+                          : {}
+                      }
                       transition={{
                         duration: 0.8,
                         type: "spring",
                         stiffness: 200,
                         damping: 20,
-                        delay: 0.1
+                        delay: 0.1,
                       }}
                     >
                       o
@@ -314,17 +322,21 @@ export default function Index() {
                     <motion.span
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
-                      animate={animationStep >= 3 ? {
-                        opacity: 1,
-                        scale: 1,
-                        rotateY: 0
-                      } : {}}
+                      animate={
+                        animationStep >= 3
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                              rotateY: 0,
+                            }
+                          : {}
+                      }
                       transition={{
                         duration: 0.8,
                         type: "spring",
                         stiffness: 200,
                         damping: 20,
-                        delay: 0.2
+                        delay: 0.2,
                       }}
                     >
                       r
@@ -379,313 +391,320 @@ export default function Index() {
         {!isLoading && (
           <>
             {/* Toggle Buttons Container */}
-        <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
-          <div className="group relative">
-            {/* Tooltip */}
-            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
-              <div
-                className="px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap border-green-300/30 bg-green-400/10 text-green-400"
-                style={{
-                  background: `linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,255,65,0.05) 50%, transparent 100%)`,
-                  boxShadow: "0 0 15px rgba(0, 255, 65, 0.3)",
-                }}
+            <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
+              <div className="group relative">
+                {/* Tooltip */}
+                <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+                  <div
+                    className="px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap border-green-300/30 bg-green-400/10 text-green-400"
+                    style={{
+                      background: `linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,255,65,0.05) 50%, transparent 100%)`,
+                      boxShadow: "0 0 15px rgba(0, 255, 65, 0.3)",
+                    }}
+                  >
+                    Click to change the site's appearance
+                    {/* Tooltip arrow */}
+                    <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-green-400/10" />
+                  </div>
+                </div>
+
+                {/* Container for existing toggles */}
+                <div
+                  className="rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 border-green-300/30 bg-green-400/5"
+                  style={{
+                    background: `linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,255,65,0.05) 50%, transparent 100%)`,
+                    boxShadow:
+                      "0 0 25px rgba(0, 255, 65, 0.4), 0 0 50px rgba(0, 255, 65, 0.2)",
+                  }}
+                >
+                  {/* Original Toggle Buttons */}
+                  <div className="flex flex-col gap-2 sm:gap-3">
+                    <RetroToggle />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Content */}
+            <div className="retro-main">
+              {/* ASCII Logo */}
+              <motion.div
+                className="retro-logo-container"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isLoaded ? 1 : 0 }}
+                transition={{ duration: 2 }}
               >
-                Click to change the site's appearance
-                {/* Tooltip arrow */}
-                <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-green-400/10" />
-              </div>
-            </div>
-
-            {/* Container for existing toggles */}
-            <div
-              className="rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 border-green-300/30 bg-green-400/5"
-              style={{
-                background: `linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,255,65,0.05) 50%, transparent 100%)`,
-                boxShadow:
-                  "0 0 25px rgba(0, 255, 65, 0.4), 0 0 50px rgba(0, 255, 65, 0.2)",
-              }}
-            >
-              {/* Original Toggle Buttons */}
-              <div className="flex flex-col gap-2 sm:gap-3">
-                <RetroToggle />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="retro-main">
-          {/* ASCII Logo */}
-          <motion.div
-            className="retro-logo-container"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isLoaded ? 1 : 0 }}
-            transition={{ duration: 2 }}
-          >
-            <pre className="ascii-logo">
-              {`██╗  ██╗ ██████╗ ██████╗
+                <pre className="ascii-logo">
+                  {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██���
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║��█╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚��╝ ╚═════╝ ╚═╝  ╚═╝`}
-            </pre>
-            <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
-          </motion.div>
+                </pre>
+                <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
+              </motion.div>
 
-          {/* Terminal Window */}
-          <motion.div
-            className="terminal-window"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 1, duration: 1 }}
-          >
-            <div className="terminal-header">
-              <span>TERMINAL</span>
-            </div>
-            <div className="terminal-content">
-
-
-
-              <div className="text-amber-400 font-bold mb-3 mt-4">
-                SYSTEM STATUS:{" "}
-                <span className="text-green-400 terminal-glow">
-                  OPERATIONAL
-                </span>
-              </div>
-              <div className="terminal-line">
-                <span className="text-green-400">[ACTIVE]</span>&nbsp;CUSTOM
-                SOFTWARE SOLUTIONS
-              </div>
-              <div className="terminal-line">
-                <span className="text-green-400">[ACTIVE]</span>&nbsp;
-                <span className="text-cyan-400">
-                  WEB APPLICATION DEVELOPMENT
-                </span>
-              </div>
-              <div className="terminal-line">
-                <span className="text-green-400">[ACTIVE]</span>&nbsp;AI/ML
-                INTEGRATION SERVICES
-              </div>
-              <div className="terminal-line mb-2">
-                <span className="text-green-400">[ACTIVE]</span>&nbsp;CLOUD
-                INFRASTRUCTURE DESIGN
-              </div>
-              <div className="terminal-line mb-2">
-                <span className="text-yellow-400">[PRIORITY]</span>&nbsp;
-                <span className="text-red-400 font-bold">
-                  LEGACY SYSTEM MODERNIZATION
-                </span>
-              </div>
-              <div className="terminal-line mb-2">
-                <span className="text-green-400">[ACTIVE]</span>&nbsp;
-                <span className="text-purple-400">ENTERPRISE AUTOMATION</span>
-              </div>
-              <div className="terminal-line mb-4">
-                <span className="text-green-400 blink">█</span>
-              </div>
-              <div className="memory-section">
-                <div className="text-xs mb-2 text-cyan-400">
-                  SYSTEM RESOURCES:
+              {/* Terminal Window */}
+              <motion.div
+                className="terminal-window"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 1, duration: 1 }}
+              >
+                <div className="terminal-header">
+                  <span>TERMINAL</span>
                 </div>
-                <div
-                  className="text-xs text-green-400 mb-1"
-                  style={{ lineHeight: "1.2", fontFamily: "monospace" }}
-                >
-                  CPU: ████████████████████ 60%
-                </div>
-                <div
-                  className="text-xs text-amber-400 mb-1"
-                  style={{ lineHeight: "1.2", fontFamily: "monospace" }}
-                >
-                  RAM: ██████████████████████ 50%
-                </div>
-                <div className="text-xs text-green-400 mt-1">
-                  NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
-                  {systemStats.networkDown}MB/s ↓
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Navigation Buttons */}
-          <motion.div
-            className="button-grid-single"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 2, duration: 1 }}
-          >
-            <button
-              className="pixel-button"
-              onClick={() => setShowTerminal(true)}
-            >
-              TERMINAL
-            </button>
-          </motion.div>
-
-          {/* Social Media Buttons */}
-          <motion.div
-            className="social-button-grid"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 2.5, duration: 1 }}
-          >
-            <button
-              className="pixel-button social-button"
-              onClick={() => window.open("https://instagram.com", "_blank")}
-            >
-              INSTAGRAM
-            </button>
-            <button
-              className="pixel-button social-button"
-              onClick={() => window.open("https://discord.com", "_blank")}
-            >
-              DISCORD
-            </button>
-            <button
-              className="pixel-button social-button"
-              onClick={() => window.open("https://telegram.org", "_blank")}
-            >
-              TELEGRAM
-            </button>
-          </motion.div>
-
-          {/* Status Bar */}
-          <motion.div
-            className="status-bar"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 3, duration: 1 }}
-          >
-            <div className="status-indicators">
-              <span className="status-dot text-red-400 blink">●</span>
-              <span>READY</span>
-              <span className="status-dot text-amber-400">●</span>
-              <span>CONNECTED</span>
-              <span className="status-dot text-green-400 terminal-glow">●</span>
-              <span>ONLINE</span>
-            </div>
-
-            <div className="continue-prompt">
-              ◄ ��� PRESS [SPACE] TO CONTINUE ◄ ►
-            </div>
-
-            <div className="loading-indicators">
-              <span>█▓▒░</span>
-              <span className="blink">LOADING...</span>
-              <span>░▒▓█</span>
-            </div>
-          </motion.div>
-
-          {/* Dimmed Background Overlay */}
-          {showTerminal && (
-            <motion.div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setShowTerminal(false)}
-            />
-          )}
-
-          {/* Interactive Terminal */}
-          {showTerminal && (
-            <motion.div
-              className="interactive-terminal"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="terminal-header">
-                <span>TERMINAL</span>
-                <button
-                  className="close-terminal"
-                  onClick={() => setShowTerminal(false)}
-                >
-                  ✕
-                </button>
-              </div>
-              <div className="terminal-body">
-                <div className="terminal-output">
-                  {terminalOutput.map((line, index) => (
-                    <div key={index} className="terminal-line">
-                      {line.startsWith(">") ? (
-                        <>
-                          <span className="prompt">&gt;</span>
-                          <span className="command">{line.slice(1)}</span>
-                        </>
-                      ) : (
-                        <span className="output">{line}</span>
-                      )}
+                <div className="terminal-content">
+                  <div className="text-amber-400 font-bold mb-3 mt-4">
+                    SYSTEM STATUS:{" "}
+                    <span className="text-green-400 terminal-glow">
+                      OPERATIONAL
+                    </span>
+                  </div>
+                  <div className="terminal-line">
+                    <span className="text-green-400">[ACTIVE]</span>&nbsp;CUSTOM
+                    SOFTWARE SOLUTIONS
+                  </div>
+                  <div className="terminal-line">
+                    <span className="text-green-400">[ACTIVE]</span>&nbsp;
+                    <span className="text-cyan-400">
+                      WEB APPLICATION DEVELOPMENT
+                    </span>
+                  </div>
+                  <div className="terminal-line">
+                    <span className="text-green-400">[ACTIVE]</span>&nbsp;AI/ML
+                    INTEGRATION SERVICES
+                  </div>
+                  <div className="terminal-line mb-2">
+                    <span className="text-green-400">[ACTIVE]</span>&nbsp;CLOUD
+                    INFRASTRUCTURE DESIGN
+                  </div>
+                  <div className="terminal-line mb-2">
+                    <span className="text-yellow-400">[PRIORITY]</span>&nbsp;
+                    <span className="text-red-400 font-bold">
+                      LEGACY SYSTEM MODERNIZATION
+                    </span>
+                  </div>
+                  <div className="terminal-line mb-2">
+                    <span className="text-green-400">[ACTIVE]</span>&nbsp;
+                    <span className="text-purple-400">
+                      ENTERPRISE AUTOMATION
+                    </span>
+                  </div>
+                  <div className="terminal-line mb-4">
+                    <span className="text-green-400 blink">█</span>
+                  </div>
+                  <div className="memory-section">
+                    <div className="text-xs mb-2 text-cyan-400">
+                      SYSTEM RESOURCES:
                     </div>
-                  ))}
-                  <div className="terminal-input-line">
-                    <span className="prompt">&gt;</span>
-                    <input
-                      type="text"
-                      className="terminal-input"
-                      value={terminalInput}
-                      onChange={(e) => setTerminalInput(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          const command = terminalInput.trim().toLowerCase();
-                          const newOutput = [
-                            ...terminalOutput,
-                            `>${terminalInput}`,
-                          ];
-
-                          if (command === "help") {
-                            newOutput.push("");
-                            newOutput.push(
-                              "Switch back to the main website theme to explore",
-                            );
-                            newOutput.push(
-                              "my projects, services, and portfolio.",
-                            );
-                            newOutput.push(
-                              "Type 'help' to see list of available commands.",
-                            );
-                            newOutput.push("");
-                          } else if (command === "clear") {
-                            setTerminalOutput([
-                              "Type 'help' to see list of available commands.",
-                            ]);
-                            setTerminalInput("");
-                            return;
-                          } else if (command !== "") {
-                            newOutput.push(`Command '${command}' not found.`);
-                            newOutput.push("");
-                            newOutput.push(
-                              "Type 'help' to see list of available commands.",
-                            );
-                          }
-                          setTerminalOutput(newOutput);
-                          setTerminalInput("");
-                        }
-                      }}
-                      placeholder="Type command..."
-                      autoFocus
-                    />
+                    <div
+                      className="text-xs text-green-400 mb-1"
+                      style={{ lineHeight: "1.2", fontFamily: "monospace" }}
+                    >
+                      CPU: ████████████████████ 60%
+                    </div>
+                    <div
+                      className="text-xs text-amber-400 mb-1"
+                      style={{ lineHeight: "1.2", fontFamily: "monospace" }}
+                    >
+                      RAM: ██████████████████████ 50%
+                    </div>
+                    <div className="text-xs text-green-400 mt-1">
+                      NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
+                      {systemStats.networkDown}MB/s ↓
+                    </div>
                   </div>
                 </div>
+              </motion.div>
+
+              {/* Navigation Buttons */}
+              <motion.div
+                className="button-grid-single"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 2, duration: 1 }}
+              >
+                <button
+                  className="pixel-button"
+                  onClick={() => setShowTerminal(true)}
+                >
+                  TERMINAL
+                </button>
+              </motion.div>
+
+              {/* Social Media Buttons */}
+              <motion.div
+                className="social-button-grid"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 2.5, duration: 1 }}
+              >
+                <button
+                  className="pixel-button social-button"
+                  onClick={() => window.open("https://instagram.com", "_blank")}
+                >
+                  INSTAGRAM
+                </button>
+                <button
+                  className="pixel-button social-button"
+                  onClick={() => window.open("https://discord.com", "_blank")}
+                >
+                  DISCORD
+                </button>
+                <button
+                  className="pixel-button social-button"
+                  onClick={() => window.open("https://telegram.org", "_blank")}
+                >
+                  TELEGRAM
+                </button>
+              </motion.div>
+
+              {/* Status Bar */}
+              <motion.div
+                className="status-bar"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 3, duration: 1 }}
+              >
+                <div className="status-indicators">
+                  <span className="status-dot text-red-400 blink">●</span>
+                  <span>READY</span>
+                  <span className="status-dot text-amber-400">●</span>
+                  <span>CONNECTED</span>
+                  <span className="status-dot text-green-400 terminal-glow">
+                    ●
+                  </span>
+                  <span>ONLINE</span>
+                </div>
+
+                <div className="continue-prompt">
+                  ◄ ��� PRESS [SPACE] TO CONTINUE ◄ ►
+                </div>
+
+                <div className="loading-indicators">
+                  <span>█▓▒░</span>
+                  <span className="blink">LOADING...</span>
+                  <span>░▒▓█</span>
+                </div>
+              </motion.div>
+
+              {/* Dimmed Background Overlay */}
+              {showTerminal && (
+                <motion.div
+                  className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={() => setShowTerminal(false)}
+                />
+              )}
+
+              {/* Interactive Terminal */}
+              {showTerminal && (
+                <motion.div
+                  className="interactive-terminal"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="terminal-header">
+                    <span>TERMINAL</span>
+                    <button
+                      className="close-terminal"
+                      onClick={() => setShowTerminal(false)}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <div className="terminal-body">
+                    <div className="terminal-output">
+                      {terminalOutput.map((line, index) => (
+                        <div key={index} className="terminal-line">
+                          {line.startsWith(">") ? (
+                            <>
+                              <span className="prompt">&gt;</span>
+                              <span className="command">{line.slice(1)}</span>
+                            </>
+                          ) : (
+                            <span className="output">{line}</span>
+                          )}
+                        </div>
+                      ))}
+                      <div className="terminal-input-line">
+                        <span className="prompt">&gt;</span>
+                        <input
+                          type="text"
+                          className="terminal-input"
+                          value={terminalInput}
+                          onChange={(e) => setTerminalInput(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              const command = terminalInput
+                                .trim()
+                                .toLowerCase();
+                              const newOutput = [
+                                ...terminalOutput,
+                                `>${terminalInput}`,
+                              ];
+
+                              if (command === "help") {
+                                newOutput.push("");
+                                newOutput.push(
+                                  "Switch back to the main website theme to explore",
+                                );
+                                newOutput.push(
+                                  "my projects, services, and portfolio.",
+                                );
+                                newOutput.push(
+                                  "Type 'help' to see list of available commands.",
+                                );
+                                newOutput.push("");
+                              } else if (command === "clear") {
+                                setTerminalOutput([
+                                  "Type 'help' to see list of available commands.",
+                                ]);
+                                setTerminalInput("");
+                                return;
+                              } else if (command !== "") {
+                                newOutput.push(
+                                  `Command '${command}' not found.`,
+                                );
+                                newOutput.push("");
+                                newOutput.push(
+                                  "Type 'help' to see list of available commands.",
+                                );
+                              }
+                              setTerminalOutput(newOutput);
+                              setTerminalInput("");
+                            }
+                          }}
+                          placeholder="Type command..."
+                          autoFocus
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="retro-footer">
+              <div className="text-green-400">
+                COPYRIGHT (C) 2024 KOR SYSTEMS - ALL RIGHTS RESERVED
               </div>
-            </motion.div>
-          )}
-        </div>
+              <div className="text-amber-400">
+                TERMINAL EMULATION MODE - PHOSPHOR DISPLAY ACTIVE
+              </div>
+              <div className="text-red-400 blink">
+                WARNING: RETRO MODE ENGAGED
+              </div>
+            </div>
 
-        {/* Footer */}
-        <div className="retro-footer">
-          <div className="text-green-400">
-            COPYRIGHT (C) 2024 KOR SYSTEMS - ALL RIGHTS RESERVED
-          </div>
-          <div className="text-amber-400">
-            TERMINAL EMULATION MODE - PHOSPHOR DISPLAY ACTIVE
-          </div>
-          <div className="text-red-400 blink">WARNING: RETRO MODE ENGAGED</div>
-        </div>
-
-        {/* Retro Styles */}
-        <style>{`
+            {/* Retro Styles */}
+            <style>{`
           .retro-container {
             background: #0a0a0a;
             color: #00ff41;
@@ -1222,7 +1241,6 @@ export default function Index() {
       initial="hidden"
       animate={!isLoading && isLoaded ? "visible" : "hidden"}
     >
-
       {/* Main Content - Always visible with orchestrated animations */}
       {/* Theme Toggle Container with Tooltip */}
       <div className="fixed top-6 right-6 z-50">
@@ -1551,20 +1569,24 @@ export default function Index() {
               opacity: 0,
               scale: 0.3,
               y: 100,
-              filter: "blur(20px)"
+              filter: "blur(20px)",
             }}
-            animate={animationStep >= 1 ? {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              filter: "blur(0px)"
-            } : {}}
+            animate={
+              animationStep >= 1
+                ? {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                  }
+                : {}
+            }
             transition={{
               duration: 1.5,
               ease: [0.16, 1, 0.3, 1],
               type: "spring",
               stiffness: 80,
-              damping: 15
+              damping: 15,
             }}
             onMouseMove={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
@@ -1735,17 +1757,21 @@ export default function Index() {
           initial={{
             opacity: 0,
             y: 80,
-            filter: "blur(10px)"
+            filter: "blur(10px)",
           }}
-          animate={animationStep >= 2 ? {
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)"
-          } : {}}
+          animate={
+            animationStep >= 2
+              ? {
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                }
+              : {}
+          }
           transition={{
             duration: 1.2,
             ease: [0.16, 1, 0.3, 1],
-            delay: 0.2
+            delay: 0.2,
           }}
         >
           {/* Kor - moved further to the left */}
@@ -1953,17 +1979,21 @@ export default function Index() {
           initial={{
             opacity: 0,
             scale: 0.8,
-            filter: "blur(5px)"
+            filter: "blur(5px)",
           }}
-          animate={animationStep >= 3 ? {
-            opacity: 1,
-            scale: 1,
-            filter: "blur(0px)"
-          } : {}}
+          animate={
+            animationStep >= 3
+              ? {
+                  opacity: 1,
+                  scale: 1,
+                  filter: "blur(0px)",
+                }
+              : {}
+          }
           transition={{
             duration: 1,
             ease: [0.16, 1, 0.3, 1],
-            delay: 0.3
+            delay: 0.3,
           }}
         >
           <div className="relative">
@@ -2009,16 +2039,20 @@ export default function Index() {
         className="absolute inset-0 pointer-events-none overflow-hidden"
         initial={{
           opacity: 0,
-          filter: "blur(10px)"
+          filter: "blur(10px)",
         }}
-        animate={animationStep >= 4 ? {
-          opacity: 1,
-          filter: "blur(0px)"
-        } : {}}
+        animate={
+          animationStep >= 4
+            ? {
+                opacity: 1,
+                filter: "blur(0px)",
+              }
+            : {}
+        }
         transition={{
           duration: 1.5,
           ease: [0.16, 1, 0.3, 1],
-          delay: 0.4
+          delay: 0.4,
         }}
       >
         {/* Top corner accent lights */}
