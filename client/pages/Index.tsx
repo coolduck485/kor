@@ -364,21 +364,58 @@ export default function Index() {
                 }}
               >
                 Development services
-                {/* Sparkles */}
+                {/* Figma Star Sparkles */}
                 {SHINE_CONFIG.showSparkles && [...Array(SHINE_CONFIG.sparkleCount)].map((_, i) => (
-                  <span
+                  <div
                     key={`sparkle-${i}`}
-                    className="absolute text-white opacity-60 animate-sparkle-twinkle pointer-events-none"
+                    className="absolute animate-sparkle-twinkle pointer-events-none"
                     style={{
-                      left: `${10 + (i * 80 / SHINE_CONFIG.sparkleCount)}%`,
-                      top: `${-10 + (i % 2) * -15}px`,
-                      fontSize: '0.5em',
-                      animationDelay: `${i * 0.3 + 2}s`,
-                      animationDuration: `${1.5 + Math.random() * 1}s`,
+                      left: `${5 + (i * 90 / SHINE_CONFIG.sparkleCount)}%`,
+                      top: `${-20 + (i % 3) * -10}px`,
+                      animationDelay: `${i * 0.5 + 2}s`,
+                      animationDuration: `${2 + Math.random() * 1.5}s`,
+                      transform: `scale(${0.15 + Math.random() * 0.1}) rotate(${Math.random() * 360}deg)`,
                     }}
                   >
-                    ✨
-                  </span>
+                    <svg
+                      width="30"
+                      height="30"
+                      viewBox="0 0 1134 1152"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-full h-full"
+                    >
+                      <defs>
+                        <filter id={`filter_sparkle_${i}`} x="0.215881" y="0.612473" width="1133.4" height="1151.31" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                          <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                          <feOffset/>
+                          <feGaussianBlur stdDeviation="11.79"/>
+                          <feColorMatrix type="matrix" values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"/>
+                          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                          <feOffset/>
+                          <feGaussianBlur stdDeviation="41.265"/>
+                          <feColorMatrix type="matrix" values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"/>
+                          <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow"/>
+                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                          <feOffset/>
+                          <feGaussianBlur stdDeviation="82.53"/>
+                          <feColorMatrix type="matrix" values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"/>
+                          <feBlend mode="normal" in2="effect2_dropShadow" result="effect3_dropShadow"/>
+                          <feBlend mode="normal" in="SourceGraphic" in2="effect3_dropShadow" result="shape"/>
+                        </filter>
+                        <linearGradient id={`gradient_sparkle_${i}`} x1="504.394" y1="628.011" x2="679.912" y2="578.083" gradientUnits="userSpaceOnUse">
+                          <stop stopColor="#3FBAFF"/>
+                          <stop offset="0.493374" stopColor="#4992FF"/>
+                          <stop offset="1" stopColor="#3987E3"/>
+                        </linearGradient>
+                      </defs>
+                      <g filter={`url(#filter_sparkle_${i})`}>
+                        <path d="M537.254 557.616L495.396 597.059L554.801 617.972L590.311 656.741L599.501 604.977L638.435 555.474L581.954 544.621L543.519 495.792L537.254 557.616Z" fill={`url(#gradient_sparkle_${i})`}/>
+                      </g>
+                    </svg>
+                  </div>
                 ))}
               </span>
             </p>
