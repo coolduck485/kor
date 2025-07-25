@@ -15,7 +15,6 @@ export default function Index() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-
   // Framer Motion animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -171,8 +170,6 @@ export default function Index() {
       <div>
         <ThemeToggle />
       </div>
-
-
 
       {/* Enhanced Background Elements */}
 
@@ -1308,7 +1305,11 @@ interface MobileHamburgerMenuProps {
   theme: "light" | "dark";
 }
 
-function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuProps) {
+function MobileHamburgerMenu({
+  isOpen,
+  setIsOpen,
+  theme,
+}: MobileHamburgerMenuProps) {
   const [menuPosition, setMenuPosition] = useState({ left: 70, top: -80 });
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -1348,7 +1349,7 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
 
     // Check left boundary
     if (buttonX + left < 20) {
-      left = 20 - (viewportWidth / 2); // Adjust to stay in view
+      left = 20 - viewportWidth / 2; // Adjust to stay in view
     }
 
     return { left, top };
@@ -1379,7 +1380,8 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
           marginLeft: "70px", // Moved left 50px from 120px
           marginTop: "-130px", // Moved down 150px from -280px
           animationDelay: "0.2s",
-          animation: "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s",
+          animation:
+            "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s",
         }}
       >
         <button
@@ -1449,14 +1451,15 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
                   {/* Tooltip arrow */}
                   <div
                     className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
-                      theme === "light" ? "border-t-white/80" : "border-t-blue-400/10"
+                      theme === "light"
+                        ? "border-t-white/80"
+                        : "border-t-blue-400/10"
                     }`}
                   />
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
-
         </button>
       </div>
 
@@ -1485,7 +1488,8 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
                   theme === "light"
                     ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
                     : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                boxShadow: "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
+                boxShadow:
+                  "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
               }}
             >
               {/* Animated background layers */}
@@ -1514,7 +1518,8 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
                     onClick={() => setIsOpen(false)}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = `scale(1.05)`;
-                      e.currentTarget.style.boxShadow = "0 0 20px rgba(73, 146, 255, 0.4)";
+                      e.currentTarget.style.boxShadow =
+                        "0 0 20px rgba(73, 146, 255, 0.4)";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = `scale(1)`;
@@ -1572,8 +1577,8 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
             className="fixed inset-0 bg-black/30 z-40"
             onClick={() => setIsOpen(false)}
             style={{
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
             }}
           />
         )}
