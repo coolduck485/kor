@@ -1377,11 +1377,17 @@ function OrbFloatingButton({
         }}
       />
       <button
-        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 border-blue-300/30 bg-blue-400/5 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:border-white/40 hover:shadow-2xl active:scale-95 overflow-hidden`}
+        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
+          theme === "light"
+            ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
+            : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
+        }`}
         style={{
           transitionDuration: ORB_BUTTON_CONFIG.global.animationDuration,
           transform: `scale(1)`,
-          background: `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+          background: theme === "light"
+            ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = `scale(${ORB_BUTTON_CONFIG.global.hoverScale}) rotateY(5deg)`;
