@@ -200,7 +200,7 @@ export default function Index() {
           >
             <pre className="ascii-logo">
               {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔══██╗
+██║ ██╔╝██╔═══██╗██╔══���█╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██���  ██║
@@ -713,10 +713,8 @@ export default function Index() {
       animate={isLoaded ? "visible" : "hidden"}
     >
       {/* Theme Toggle and Retro Toggle */}
-      <div className="absolute top-4 right-4 z-50">
+      <div className="fixed top-6 right-6 z-50 flex flex-col gap-4">
         <ThemeToggle />
-      </div>
-      <div className="absolute top-16 right-4 z-50">
         <RetroToggle />
       </div>
 

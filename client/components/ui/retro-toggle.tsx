@@ -7,10 +7,10 @@ export function RetroToggle() {
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size="icon"
       onClick={toggleMode}
-      className="border-input bg-background hover:bg-accent hover:text-accent-foreground"
+      className="h-10 w-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110 cursor-none"
     >
       {mode === "retro" ? (
         <Monitor className="h-[1.2rem] w-[1.2rem] text-blue-500" />
