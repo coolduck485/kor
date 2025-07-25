@@ -22,6 +22,10 @@ export default function Index() {
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
     "Type 'help' to see list of available commands.",
   ]);
+  const [systemStats, setSystemStats] = useState({
+    networkUp: 1.2,
+    networkDown: 847,
+  });
 
   // Framer Motion animation variants
   const containerVariants = {
@@ -129,6 +133,19 @@ export default function Index() {
     };
   }, []);
 
+  // Dynamic network stats updates
+  useEffect(() => {
+    const updateStats = () => {
+      setSystemStats({
+        networkUp: Math.round((Math.random() * 0.8 + 0.8) * 10) / 10, // 0.8-1.6 GB/s
+        networkDown: Math.floor(Math.random() * 300) + 700, // 700-1000 MB/s
+      });
+    };
+
+    const interval = setInterval(updateStats, 2000); // Update every 2 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   const handleBadgeMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!badgeRef.current) return;
 
@@ -214,7 +231,7 @@ export default function Index() {
             <pre className="ascii-logo">
               {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
-█████╔╝ ██║   ██║██████╔╝
+██��██╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
@@ -233,33 +250,71 @@ export default function Index() {
               <span>TERMINAL</span>
             </div>
             <div className="terminal-content">
-              <div className="text-amber-400 font-bold mb-2">
-                SYSTEM STATUS: ONLINE
+              <div className="text-green-400 font-bold mb-2 terminal-glow">
+                ╔════════════════════════════════════════════════════════╗
               </div>
-              <div className="typewriter mb-2">
-                LOADING DEVELOPMENT SERVICES...
+              <div className="text-green-400 font-bold mb-2 terminal-glow">
+                ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
               </div>
-              <div className="terminal-line">
-                <span className="cursor-text">CUSTOM SOFTWARE SOLUTIONS</span>
+              <div className="text-green-400 font-bold mb-2 terminal-glow">
+                ╚════════════════════════════════════════════════════════╝
               </div>
-              <div className="terminal-line">
-                <span className="cursor-text text-amber-400">
-                  RETRO SYSTEM ARCHITECTURE
+              <div className="text-amber-400 font-bold mb-3 mt-4">
+                SYSTEM STATUS:{" "}
+                <span className="text-green-400 terminal-glow">
+                  OPERATIONAL
                 </span>
               </div>
               <div className="terminal-line">
-                <span className="cursor-text">WEB APPLICATION DEVELOPMENT</span>
+                <span className="text-green-400">[ACTIVE]</span>&nbsp;CUSTOM
+                SOFTWARE SOLUTIONS
               </div>
-              <div className="terminal-line mb-4">
-                <span className="cursor-text text-amber-400">
+              <div className="terminal-line">
+                <span className="text-green-400">[ACTIVE]</span>&nbsp;
+                <span className="text-cyan-400">
+                  WEB APPLICATION DEVELOPMENT
+                </span>
+              </div>
+              <div className="terminal-line">
+                <span className="text-green-400">[ACTIVE]</span>&nbsp;AI/ML
+                INTEGRATION SERVICES
+              </div>
+              <div className="terminal-line mb-2">
+                <span className="text-green-400">[ACTIVE]</span>&nbsp;CLOUD
+                INFRASTRUCTURE DESIGN
+              </div>
+              <div className="terminal-line mb-2">
+                <span className="text-yellow-400">[PRIORITY]</span>&nbsp;
+                <span className="text-red-400 font-bold">
                   LEGACY SYSTEM MODERNIZATION
                 </span>
               </div>
+              <div className="terminal-line mb-2">
+                <span className="text-green-400">[ACTIVE]</span>&nbsp;
+                <span className="text-purple-400">ENTERPRISE AUTOMATION</span>
+              </div>
+              <div className="terminal-line mb-4">
+                <span className="text-green-400 blink">█</span>
+              </div>
               <div className="memory-section">
-                <div className="text-xs mb-2">MEMORY USAGE:</div>
-                <div className="loading-bar"></div>
-                <div className="text-xs text-amber-400 mt-1">
-                  64KB / 640KB AVAILABLE
+                <div className="text-xs mb-2 text-cyan-400">
+                  SYSTEM RESOURCES:
+                </div>
+                <div
+                  className="text-xs text-green-400 mb-1"
+                  style={{ lineHeight: "1.2", fontFamily: "monospace" }}
+                >
+                  CPU: ████████████████████ 60%
+                </div>
+                <div
+                  className="text-xs text-amber-400 mb-1"
+                  style={{ lineHeight: "1.2", fontFamily: "monospace" }}
+                >
+                  RAM: ██████████████████████ 50%
+                </div>
+                <div className="text-xs text-green-400 mt-1">
+                  NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
+                  {systemStats.networkDown}MB/s ↓
                 </div>
               </div>
             </div>
@@ -376,54 +431,54 @@ export default function Index() {
                       )}
                     </div>
                   ))}
-                </div>
-                <div className="terminal-input-line">
-                  <span className="prompt">&gt;</span>
-                  <input
-                    type="text"
-                    className="terminal-input"
-                    value={terminalInput}
-                    onChange={(e) => setTerminalInput(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        const command = terminalInput.trim().toLowerCase();
-                        const newOutput = [
-                          ...terminalOutput,
-                          `>${terminalInput}`,
-                        ];
+                  <div className="terminal-input-line">
+                    <span className="prompt">&gt;</span>
+                    <input
+                      type="text"
+                      className="terminal-input"
+                      value={terminalInput}
+                      onChange={(e) => setTerminalInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          const command = terminalInput.trim().toLowerCase();
+                          const newOutput = [
+                            ...terminalOutput,
+                            `>${terminalInput}`,
+                          ];
 
-                        if (command === "help") {
-                          newOutput.push("");
-                          newOutput.push(
-                            "Switch back to the main website theme to explore",
-                          );
-                          newOutput.push(
-                            "my projects, services, and portfolio.",
-                          );
-                          newOutput.push(
-                            "Type 'help' to see list of available commands.",
-                          );
-                          newOutput.push("");
-                        } else if (command === "clear") {
-                          setTerminalOutput([
-                            "Type 'help' to see list of available commands.",
-                          ]);
+                          if (command === "help") {
+                            newOutput.push("");
+                            newOutput.push(
+                              "Switch back to the main website theme to explore",
+                            );
+                            newOutput.push(
+                              "my projects, services, and portfolio.",
+                            );
+                            newOutput.push(
+                              "Type 'help' to see list of available commands.",
+                            );
+                            newOutput.push("");
+                          } else if (command === "clear") {
+                            setTerminalOutput([
+                              "Type 'help' to see list of available commands.",
+                            ]);
+                            setTerminalInput("");
+                            return;
+                          } else if (command !== "") {
+                            newOutput.push(`Command '${command}' not found.`);
+                            newOutput.push("");
+                            newOutput.push(
+                              "Type 'help' to see list of available commands.",
+                            );
+                          }
+                          setTerminalOutput(newOutput);
                           setTerminalInput("");
-                          return;
-                        } else if (command !== "") {
-                          newOutput.push(`Command '${command}' not found.`);
-                          newOutput.push("");
-                          newOutput.push(
-                            "Type 'help' to see list of available commands.",
-                          );
                         }
-                        setTerminalOutput(newOutput);
-                        setTerminalInput("");
-                      }
-                    }}
-                    placeholder="Type command..."
-                    autoFocus
-                  />
+                      }}
+                      placeholder="Type command..."
+                      autoFocus
+                    />
+                  </div>
                 </div>
               </div>
             </motion.div>
