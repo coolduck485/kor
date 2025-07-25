@@ -186,9 +186,11 @@ export default function Index() {
       animate={isLoaded ? "visible" : "hidden"}
     >
       {/* Theme Toggle */}
-      <ThemeToggle />
+      <div className="cursor-none">
+        <ThemeToggle />
+      </div>
 
-      {/* Custom Blue Glowy Orb Cursor */}
+      {/* Custom Blue Glowy Orb Cursor - Diffuse Style */}
       <div
         className={`fixed pointer-events-none z-[60] transition-opacity duration-300 ${
           customCursor.visible ? 'opacity-100' : 'opacity-0'
@@ -199,55 +201,57 @@ export default function Index() {
           transform: 'translate(-50%, -50%)',
         }}
       >
-        {/* Main cursor orb */}
+        {/* Diffuse cursor orb with multiple glow layers */}
         <div className="relative">
-          {/* Outer glow rings */}
-          <div
-            className="absolute rounded-full animate-pulse"
-            style={{
-              width: '32px',
-              height: '32px',
-              background: 'radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, rgba(73, 146, 255, 0.1) 50%, transparent 100%)',
-              transform: 'translate(-50%, -50%)',
-              animation: 'gentle-pulse 2s ease-in-out infinite',
-            }}
-          />
-          <div
-            className="absolute rounded-full animate-pulse"
-            style={{
-              width: '20px',
-              height: '20px',
-              background: 'radial-gradient(circle, rgba(73, 146, 255, 0.5) 0%, rgba(73, 146, 255, 0.2) 50%, transparent 100%)',
-              transform: 'translate(-50%, -50%)',
-              animation: 'gentle-pulse 2s ease-in-out infinite 0.3s',
-            }}
-          />
-          {/* Core orb */}
+          {/* Outermost diffuse glow */}
           <div
             className="absolute rounded-full"
             style={{
-              width: '12px',
-              height: '12px',
-              background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(73, 146, 255, 0.9) 30%, rgba(57, 135, 227, 1) 100%)',
+              width: '80px',
+              height: '80px',
+              background: 'radial-gradient(circle, rgba(73, 146, 255, 0.15) 0%, rgba(73, 146, 255, 0.08) 30%, rgba(73, 146, 255, 0.03) 60%, transparent 100%)',
               transform: 'translate(-50%, -50%)',
-              boxShadow: `
-                0 0 15px rgba(73, 146, 255, 0.8),
-                0 0 25px rgba(73, 146, 255, 0.6),
-                0 0 35px rgba(73, 146, 255, 0.4),
-                inset 0 1px 2px rgba(255, 255, 255, 0.3)
-              `,
+              filter: 'blur(4px)',
+              animation: 'gentle-pulse 3s ease-in-out infinite',
+            }}
+          />
+          {/* Secondary glow layer */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: '50px',
+              height: '50px',
+              background: 'radial-gradient(circle, rgba(73, 146, 255, 0.25) 0%, rgba(73, 146, 255, 0.15) 40%, rgba(73, 146, 255, 0.05) 70%, transparent 100%)',
+              transform: 'translate(-50%, -50%)',
+              filter: 'blur(2px)',
+              animation: 'gentle-pulse 3s ease-in-out infinite 0.5s',
+            }}
+          />
+          {/* Main glow */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: '30px',
+              height: '30px',
+              background: 'radial-gradient(circle, rgba(73, 146, 255, 0.4) 0%, rgba(73, 146, 255, 0.25) 50%, rgba(73, 146, 255, 0.1) 80%, transparent 100%)',
+              transform: 'translate(-50%, -50%)',
+              filter: 'blur(1px)',
               animation: 'orb-pulse 3s ease-in-out infinite',
             }}
           />
-          {/* Inner highlight */}
+          {/* Core bright center */}
           <div
             className="absolute rounded-full"
             style={{
-              width: '4px',
-              height: '4px',
-              background: 'rgba(255, 255, 255, 0.9)',
-              transform: 'translate(-30%, -30%)',
-              filter: 'blur(0.5px)',
+              width: '8px',
+              height: '8px',
+              background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(73, 146, 255, 0.8) 40%, rgba(57, 135, 227, 0.9) 100%)',
+              transform: 'translate(-50%, -50%)',
+              boxShadow: `
+                0 0 20px rgba(73, 146, 255, 0.6),
+                0 0 40px rgba(73, 146, 255, 0.4),
+                0 0 60px rgba(73, 146, 255, 0.2)
+              `,
             }}
           />
         </div>
@@ -1657,7 +1661,7 @@ function OrbFloatingButton({
         }}
       />
       <button
-        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
+        className={`group relative cursor-none ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
           theme === "light"
             ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
             : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
