@@ -428,9 +428,25 @@ export default function Index() {
           />
         </div>
 
-        {/* Central Glowing Orb - SVG Based */}
+        {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative animate-float">
+          <div
+            className="relative animate-float cursor-pointer group"
+            onMouseMove={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              const centerX = rect.left + rect.width / 2;
+              const centerY = rect.top + rect.height / 2;
+              const deltaX = (e.clientX - centerX) * 0.1;
+              const deltaY = (e.clientY - centerY) * 0.1;
+              e.currentTarget.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.02)`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translate(0px, 0px) scale(1)';
+            }}
+            style={{
+              transition: 'transform 0.3s ease-out',
+            }}
+          >
             <svg
               width="292"
               height="308"
