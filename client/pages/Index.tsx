@@ -201,6 +201,47 @@ export default function Index() {
 
       {/* Main Content Container */}
       <div className="relative flex items-center justify-center min-h-screen">
+        {/* Energy Rings Around Orb */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {[...Array(3)].map((_, i) => (
+            <div
+              key={`ring-${i}`}
+              className="absolute rounded-full border opacity-20"
+              style={{
+                width: `${400 + i * 120}px`,
+                height: `${400 + i * 120}px`,
+                border: `1px solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
+                animation: `pulse ${5 + i}s ease-in-out infinite ${i * 0.8}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Rotating Light Beams */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+          <div
+            className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-blue-400/25 to-transparent"
+            style={{
+              animation: "spin 15s linear infinite",
+              transformOrigin: "center 50%",
+            }}
+          />
+          <div
+            className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent"
+            style={{
+              animation: "spin 20s linear infinite reverse",
+              transformOrigin: "center 50%",
+            }}
+          />
+          <div
+            className="absolute h-1 w-96 bg-gradient-to-r from-transparent via-blue-300/15 to-transparent"
+            style={{
+              animation: "spin 25s linear infinite",
+              transformOrigin: "50% center",
+            }}
+          />
+        </div>
+
         {/* Central Glowing Orb - SVG Based */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative animate-float">
