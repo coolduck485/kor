@@ -464,21 +464,7 @@
   animation: wavy-letter 4s ease-in-out infinite 0.5s;
 }
 
-/* Cartoon shine overlay */
-.chrome-wavy-text::after {
-  content: '';
-  position: absolute;
-  top: -10%;
-  left: -30%;
-  width: 20%;
-  height: 120%;
-  background: rgba(255, 255, 255, 0.8);
-  animation: cartoon-shine-sweep 4s ease-in-out infinite 1s;
-  z-index: 2;
-  pointer-events: none;
-  transform: skewX(-20deg);
-  mix-blend-mode: color-dodge;
-}
+
 
 /* Enhanced shine text styling */
 .shine-text-enhanced {
