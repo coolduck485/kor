@@ -310,6 +310,17 @@ export default function Index() {
             </div>
           </motion.div>
 
+          {/* Dimmed Background Overlay */}
+          {showTerminal && (
+            <motion.div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setShowTerminal(false)}
+            />
+          )}
+
           {/* Interactive Terminal */}
           {showTerminal && (
             <motion.div
@@ -360,14 +371,14 @@ export default function Index() {
 
                         if (command === "help") {
                           newOutput.push("");
-                          newOutput.push("AVAILABLE COMMANDS:");
-                          newOutput.push("help - show this help message");
-                          newOutput.push("");
                           newOutput.push(
-                            "TIP: Switch back to the main website theme to explore",
+                            "Switch back to the main website theme to explore",
                           );
                           newOutput.push(
                             "my projects, services, and portfolio.",
+                          );
+                          newOutput.push(
+                            "Type 'help' to see list of available commands.",
                           );
                           newOutput.push("");
                         } else if (command === "clear") {
@@ -740,7 +751,7 @@ export default function Index() {
             background: #0a0a0a;
             border: 3px solid #00ff41;
             box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
-            z-index: 1000;
+            z-index: 9999;
             overflow: hidden;
           }
 
