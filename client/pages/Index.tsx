@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { useTheme } from "@/hooks/use-theme";
 
 export default function Index() {
+  const { theme } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
@@ -153,11 +156,17 @@ export default function Index() {
 
   return (
     <motion.div
-      className="relative min-h-screen bg-black overflow-hidden"
+      className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
+        theme === "light"
+          ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
+          : "bg-black"
+      }`}
       variants={containerVariants}
       initial="hidden"
       animate={isLoaded ? "visible" : "hidden"}
     >
+      {/* Theme Toggle */}
+      <ThemeToggle />
       {/* Enhanced Background Elements */}
 
       {/* Dynamic Gradient Overlays */}
@@ -275,41 +284,45 @@ export default function Index() {
           >
             <path
               d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z"
-              stroke="#22D3EE"
+              stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M5 3.5V7.5"
-              stroke="#22D3EE"
+              stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M19 17.5V21.5"
-              stroke="#22D3EE"
+              stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M3 5.5H7"
-              stroke="#22D3EE"
+              stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M17 19.5H21"
-              stroke="#22D3EE"
+              stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
-          <span className="font-inter text-white/80 text-xs md:text-sm font-normal text-center animate-textGlow">
+          <span
+            className={`font-inter text-xs md:text-sm font-normal text-center animate-textGlow ${
+              theme === "light" ? "text-gray-700" : "text-white/80"
+            }`}
+          >
             Future-Ready Solutions, Custom-Built
           </span>
         </div>
@@ -516,7 +529,11 @@ export default function Index() {
             className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20"
             style={{ marginLeft: "-5px" }}
           >
-            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight relative">
+            <h1
+              className={`font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+                theme === "light" ? "text-gray-900" : "text-white"
+              }`}
+            >
               <span
                 className="inline-block relative"
                 style={{
@@ -553,69 +570,174 @@ export default function Index() {
             </h1>
           </div>
 
-          {/* Development services - keeping same position */}
+          {/* Development services - enhanced with dramatic effects */}
           <div
             className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4"
             style={{ marginLeft: "5px", marginTop: "-5px" }}
           >
-            <p className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative">
-              <span
-                className="relative inline-block shine-text-base"
+            <div className="relative">
+              {/* Background glow effect */}
+              <div
+                className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
                 style={{
-                  animationName: `shine-${SHINE_CONFIG.direction}`,
-                  animationDuration: SHINE_CONFIG.duration,
-                  animationDelay: SHINE_CONFIG.delay,
-                  animationIterationCount: "infinite",
-                  animationTimingFunction: "ease-in-out",
+                  background:
+                    theme === "light"
+                      ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
+                      : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
+                  transform: "scale(1.5)",
                 }}
-              >
-                Development services
-                {/* Simple 4-Point Stars - Match Figma Design */}
-                {SHINE_CONFIG.showSparkles &&
-                  [
-                    // Upper right
-                    { x: 95, y: -35, size: 0.6 },
+              />
 
-                    // Right middle
-                    { x: 75, y: -10, size: 0.4 },
+              {/* Floating energy particles around text */}
+              {[...Array(12)].map((_, i) => (
+                <div
+                  key={`energy-${i}`}
+                  className="absolute rounded-full pointer-events-none"
+                  style={{
+                    left: `${20 + ((i * 60) % 160)}%`,
+                    top: `${30 + ((i * 40) % 60)}%`,
+                    width: `${3 + (i % 2)}px`,
+                    height: `${3 + (i % 2)}px`,
+                    background:
+                      theme === "light"
+                        ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
+                        : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
+                    animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                    filter: "blur(0.5px)",
+                    animationFillMode: "both",
+                    animationTimingFunction: "ease-in-out",
+                  }}
+                />
+              ))}
 
-                    // Lower right
-                    { x: 120, y: 50, size: 0.5 },
-                    { x: 90, y: 80, size: 0.7 },
-
-                    // Lower center
-                    { x: 25, y: 85, size: 0.4 },
-
-                    // Lower left
-                    { x: -40, y: 60, size: 0.5 },
-
-                    // Far right
-                    { x: 165, y: 15, size: 0.8 },
-                  ].map((sparkle, i) => (
+              <p className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                <span
+                  className={`relative inline-block ${
+                    theme === "light" ? "text-gray-900" : "text-white"
+                  }`}
+                  style={{
+                    animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
+                    filter:
+                      theme === "light"
+                        ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
+                        : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
+                    animationFillMode: "both",
+                  }}
+                >
+                  {/* Holographic scan lines */}
+                  <div className="absolute inset-0 overflow-hidden">
                     <div
-                      key={`sparkle-${i}`}
-                      className="absolute animate-sparkle-twinkle pointer-events-none"
+                      className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-scan-line"
                       style={{
-                        left: `calc(50% + ${sparkle.x}px)`,
-                        top: `calc(50% + ${sparkle.y}px)`,
-                        animationDelay: `${i * 0.2 + 2}s`,
-                        animationDuration: `${3 + Math.random() * 1.5}s`,
-                        transform: `scale(${sparkle.size}) rotate(${Math.random() * 360}deg)`,
-                        opacity: 0.9,
+                        top: "20%",
+                        animationDelay: "2s",
+                      }}
+                    />
+                    <div
+                      className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-scan-line"
+                      style={{
+                        top: "80%",
+                        animationDelay: "2.5s",
+                      }}
+                    />
+                  </div>
+
+                  {/* Enhanced text with letter-by-letter animation */}
+                  {"Development services".split("").map((letter, i) => (
+                    <span
+                      key={i}
+                      className={`inline-block ${
+                        theme === "light" ? "text-gray-900" : "text-white"
+                      }`}
+                      style={{
+                        animation: `letter-float 2s ease-in-out infinite ${i * 0.1 + 1}s`,
+                        textShadow:
+                          theme === "light"
+                            ? `0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(147, 51, 234, 0.4)`
+                            : `0 0 20px rgba(73, 146, 255, 0.8), 0 0 40px rgba(34, 211, 238, 0.5)`,
+                        animationFillMode: "both",
+                        color: theme === "light" ? "#1f2937" : "#ffffff", // Explicit color fallback
                       }}
                     >
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-full h-full"
-                      />
-                    </div>
+                      {letter === " " ? "\u00A0" : letter}
+                    </span>
                   ))}
-              </span>
-            </p>
+
+                  {/* Enhanced sparkles with more variety */}
+                  {SHINE_CONFIG.showSparkles &&
+                    [
+                      // Upper sparkles
+                      { x: 95, y: -35, size: 0.8, type: "star" },
+                      { x: 75, y: -10, size: 0.6, type: "diamond" },
+                      { x: 120, y: 50, size: 0.7, type: "plus" },
+                      { x: 90, y: 80, size: 0.9, type: "star" },
+                      { x: 25, y: 85, size: 0.5, type: "diamond" },
+                      { x: -40, y: 60, size: 0.6, type: "plus" },
+                      { x: 165, y: 15, size: 1.0, type: "star" },
+                      // Additional sparkles for more drama
+                      { x: -20, y: -20, size: 0.7, type: "diamond" },
+                      { x: 140, y: -15, size: 0.5, type: "plus" },
+                      { x: 50, y: 100, size: 0.8, type: "star" },
+                    ].map((sparkle, i) => (
+                      <div
+                        key={`enhanced-sparkle-${i}`}
+                        className="absolute pointer-events-none"
+                        style={{
+                          left: `calc(50% + ${sparkle.x}px)`,
+                          top: `calc(50% + ${sparkle.y}px)`,
+                          animation: `sparkle-enhanced ${2.5 + (i % 3) * 0.5}s ease-in-out infinite ${i * 0.15 + 2}s`,
+                          transform: `scale(${sparkle.size})`,
+                          opacity: 0.9,
+                          animationFillMode: "both",
+                        }}
+                      >
+                        {sparkle.type === "star" && (
+                          <div
+                            className="w-6 h-6"
+                            style={{
+                              background:
+                                theme === "light"
+                                  ? "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)"
+                                  : "radial-gradient(circle, rgba(73, 146, 255, 0.9) 0%, transparent 70%)",
+                              clipPath:
+                                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              animation: "spin-slow 8s linear infinite",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "diamond" && (
+                          <div
+                            className="w-4 h-4"
+                            style={{
+                              background:
+                                theme === "light"
+                                  ? "linear-gradient(45deg, rgba(147, 51, 234, 0.8), rgba(59, 130, 246, 0.6))"
+                                  : "linear-gradient(45deg, rgba(34, 211, 238, 0.8), rgba(73, 146, 255, 0.7))",
+                              clipPath:
+                                "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              animation: "pulse-fast 1.5s ease-in-out infinite",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "plus" && (
+                          <div
+                            className="w-5 h-5"
+                            style={{
+                              background:
+                                theme === "light"
+                                  ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.6), rgba(59, 130, 246, 0.8))"
+                                  : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.7), rgba(73, 146, 255, 0.8))",
+                              clipPath:
+                                "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              animation: "rotate-slow 6s linear infinite",
+                            }}
+                          />
+                        )}
+                      </div>
+                    ))}
+                </span>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -670,11 +792,19 @@ export default function Index() {
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center space-y-3 animate-button-float">
           {/* Desktop: Scroll Down */}
-          <span className="hidden lg:block font-inter text-white/70 text-sm font-medium animate-text-glow">
+          <span
+            className={`hidden lg:block font-inter text-sm font-medium animate-text-glow ${
+              theme === "light" ? "text-gray-600" : "text-white/70"
+            }`}
+          >
             Scroll Down
           </span>
           {/* Mobile/Tablet: Swipe Down */}
-          <span className="lg:hidden font-inter text-white/70 text-sm font-medium animate-text-glow">
+          <span
+            className={`lg:hidden font-inter text-sm font-medium animate-text-glow ${
+              theme === "light" ? "text-gray-600" : "text-white/70"
+            }`}
+          >
             Swipe Down
           </span>
 
@@ -1201,6 +1331,7 @@ const ORB_BUTTON_CONFIG = {
 // ========================================
 
 function OrbFloatingButtons() {
+  const { theme } = useTheme();
   return (
     <>
       {ORB_BUTTON_CONFIG.buttons.map((button) => (
@@ -1216,6 +1347,7 @@ function OrbFloatingButtons() {
           customRadiusMultiplier={button.customRadiusMultiplier}
           size={button.size}
           accent={button.accent}
+          theme={theme}
         />
       ))}
     </>
@@ -1233,6 +1365,7 @@ interface OrbFloatingButtonProps {
   customRadiusMultiplier: number | null;
   size: string;
   accent: string;
+  theme: "light" | "dark";
 }
 
 function OrbFloatingButton({
@@ -1246,6 +1379,7 @@ function OrbFloatingButton({
   customRadiusMultiplier,
   size,
   accent,
+  theme,
 }: OrbFloatingButtonProps) {
   // Calculate base position from angle
   const radian = (angle * Math.PI) / 180;
@@ -1360,11 +1494,18 @@ function OrbFloatingButton({
         }}
       />
       <button
-        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 border-blue-300/30 bg-blue-400/5 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:border-white/40 hover:shadow-2xl active:scale-95 overflow-hidden`}
+        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
+          theme === "light"
+            ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
+            : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
+        }`}
         style={{
           transitionDuration: ORB_BUTTON_CONFIG.global.animationDuration,
           transform: `scale(1)`,
-          background: `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+          background:
+            theme === "light"
+              ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+              : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = `scale(${ORB_BUTTON_CONFIG.global.hoverScale}) rotateY(5deg)`;
@@ -1407,9 +1548,16 @@ function OrbFloatingButton({
 
         {/* Button text with enhanced styling and glow animation */}
         <span
-          className={`relative text-white/90 ${currentSize.text} font-semibold group-hover:text-white transition-all duration-500 drop-shadow-lg whitespace-nowrap tracking-wide font-poppins`}
+          className={`relative ${currentSize.text} font-semibold transition-all duration-500 drop-shadow-lg whitespace-nowrap tracking-wide font-poppins ${
+            theme === "light"
+              ? "text-gray-800 group-hover:text-gray-900"
+              : "text-white/90 group-hover:text-white"
+          }`}
           style={{
-            textShadow: `0 0 10px rgba(73, 146, 255, 0.6), 0 0 20px rgba(73, 146, 255, 0.4)`,
+            textShadow:
+              theme === "light"
+                ? `0 0 10px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.2)`
+                : `0 0 10px rgba(73, 146, 255, 0.6), 0 0 20px rgba(73, 146, 255, 0.4)`,
           }}
         >
           {text}
