@@ -359,22 +359,34 @@ export default function Index() {
             className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20"
             style={{ marginLeft: "-5px" }}
           >
-            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-reveal">
+            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-reveal relative">
               <span
-                className="inline-block animate-text-bounce"
-                style={{ animationDelay: "0.8s" }}
+                className="inline-block animate-text-bounce relative"
+                style={{
+                  animationDelay: "0.8s",
+                  textShadow: "0 0 20px rgba(73, 146, 255, 0.6), 0 0 40px rgba(73, 146, 255, 0.4)",
+                  animation: "textGlow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.8s both"
+                }}
               >
                 K
               </span>
               <span
-                className="inline-block animate-text-bounce"
-                style={{ animationDelay: "1.4s" }}
+                className="inline-block animate-text-bounce relative"
+                style={{
+                  animationDelay: "1.4s",
+                  textShadow: "0 0 20px rgba(63, 186, 255, 0.6), 0 0 40px rgba(63, 186, 255, 0.4)",
+                  animation: "textGlow 3s ease-in-out infinite 1s, text-bounce 2s ease-in-out 1.4s both"
+                }}
               >
                 o
               </span>
               <span
-                className="inline-block animate-text-bounce"
-                style={{ animationDelay: "2.0s" }}
+                className="inline-block animate-text-bounce relative"
+                style={{
+                  animationDelay: "2.0s",
+                  textShadow: "0 0 20px rgba(57, 135, 227, 0.6), 0 0 40px rgba(57, 135, 227, 0.4)",
+                  animation: "textGlow 3s ease-in-out infinite 2s, text-bounce 2s ease-in-out 2.0s both"
+                }}
               >
                 r
               </span>
