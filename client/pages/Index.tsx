@@ -13,7 +13,11 @@ export default function Index() {
   });
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [customCursor, setCustomCursor] = useState({ x: 0, y: 0, visible: false });
+  const [customCursor, setCustomCursor] = useState({
+    x: 0,
+    y: 0,
+    visible: false,
+  });
   const cursorRef = useRef<HTMLDivElement>(null);
 
   // Framer Motion animation variants
@@ -114,16 +118,16 @@ export default function Index() {
       }
 
       if (!customCursor.visible) {
-        setCustomCursor(prev => ({ ...prev, visible: true }));
+        setCustomCursor((prev) => ({ ...prev, visible: true }));
       }
     };
 
     const handleMouseEnter = () => {
-      setCustomCursor(prev => ({ ...prev, visible: true }));
+      setCustomCursor((prev) => ({ ...prev, visible: true }));
     };
 
     const handleMouseLeave = () => {
-      setCustomCursor(prev => ({ ...prev, visible: false }));
+      setCustomCursor((prev) => ({ ...prev, visible: false }));
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -197,23 +201,24 @@ export default function Index() {
       <div
         ref={cursorRef}
         className={`fixed pointer-events-none z-[60] transition-opacity duration-300 ${
-          customCursor.visible ? 'opacity-100' : 'opacity-0'
+          customCursor.visible ? "opacity-100" : "opacity-0"
         }`}
         style={{
           left: 0,
           top: 0,
-          transform: 'translate3d(0px, 0px, 0)',
-          willChange: 'transform',
+          transform: "translate3d(0px, 0px, 0)",
+          willChange: "transform",
         }}
       >
         {/* Figma-matched cursor orb */}
         <div
           className="absolute rounded-full"
           style={{
-            width: '18px',
-            height: '19px',
-            borderRadius: '19px',
-            background: 'linear-gradient(90deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)',
+            width: "18px",
+            height: "19px",
+            borderRadius: "19px",
+            background:
+              "linear-gradient(90deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
             boxShadow: `
               0 0 31px 0 #4992FF,
               0 0 18px 0 #4992FF,
@@ -221,8 +226,8 @@ export default function Index() {
               0 0 5px 0 #4992FF,
               0 0 1.5px 0 #4992FF
             `,
-            filter: 'blur(1.1px)',
-            transform: 'translate(-50%, -50%)',
+            filter: "blur(1.1px)",
+            transform: "translate(-50%, -50%)",
           }}
         />
       </div>
