@@ -52,70 +52,32 @@ export default function Index() {
         />
       </div>
 
-      {/* Enhanced Floating Elements */}
+      {/* Subtle Shooting Stars */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Small Particles */}
-        {[...Array(25)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-blue-400/20 rounded-full animate-float-particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${15 + Math.random() * 10}s`,
-            }}
-          />
-        ))}
-
-        {/* Medium Glowing Orbs */}
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={`orb-${i}`}
-            className="absolute w-3 h-3 bg-blue-500/10 rounded-full animate-pulse-glow"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 8}s`,
-              animationDuration: `${8 + Math.random() * 4}s`,
-              boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)',
-            }}
-          />
-        ))}
-
-        {/* Geometric Shapes */}
         {[...Array(6)].map((_, i) => (
           <div
-            key={`shape-${i}`}
-            className={`absolute animate-rotate-slow ${
-              i % 3 === 0 ? 'w-4 h-4 border border-cyan-400/20' :
-              i % 3 === 1 ? 'w-3 h-3 bg-purple-500/10' :
-              'w-2 h-6 bg-blue-400/15'
-            } ${i % 2 === 0 ? 'rounded-full' : 'rounded-sm'}`}
+            key={`star-${i}`}
+            className="absolute animate-shooting-star"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 15}s`,
-              animationDuration: `${20 + Math.random() * 10}s`,
+              left: `${Math.random() * 50}%`,
+              top: `${Math.random() * 50}%`,
+              animationDelay: `${Math.random() * 8 + 2}s`,
+              animationDuration: `${3 + Math.random() * 2}s`,
             }}
-          />
-        ))}
-
-        {/* Pulsing Lines */}
-        {[...Array(4)].map((_, i) => (
-          <div
-            key={`line-${i}`}
-            className="absolute bg-gradient-to-r from-transparent via-blue-400/20 to-transparent animate-pulse-line"
-            style={{
-              left: `${Math.random() * 80 + 10}%`,
-              top: `${Math.random() * 80 + 10}%`,
-              width: `${100 + Math.random() * 200}px`,
-              height: '1px',
-              animationDelay: `${Math.random() * 6}s`,
-              animationDuration: `${4 + Math.random() * 3}s`,
-              transform: `rotate(${Math.random() * 360}deg)`,
-            }}
-          />
+          >
+            <div className="relative">
+              {/* Star body */}
+              <div className="w-1 h-1 bg-white rounded-full opacity-80"></div>
+              {/* Star trail */}
+              <div
+                className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-white/60 via-blue-200/40 to-transparent"
+                style={{
+                  width: `${40 + Math.random() * 60}px`,
+                  transform: 'translateX(-100%)',
+                }}
+              ></div>
+            </div>
+          </div>
         ))}
       </div>
 
