@@ -201,7 +201,6 @@ export default function Index() {
             transition={{ delay: 1, duration: 1 }}
           >
             <div className="terminal-header">
-              <span>■ ■ ■</span>
               <span>TERMINAL</span>
             </div>
             <div className="terminal-content">
@@ -245,10 +244,10 @@ export default function Index() {
             transition={{ delay: 2, duration: 1 }}
           >
             <button
-              className="pixel-button terminal-button"
+              className="pixel-button"
               onClick={() => setShowTerminal(true)}
             >
-              ▓ TERMINAL ▓
+              TERMINAL
             </button>
           </motion.div>
 
@@ -263,19 +262,19 @@ export default function Index() {
               className="pixel-button social-button"
               onClick={() => window.open("https://instagram.com", "_blank")}
             >
-              ▓ INSTAGRAM ▓
+              INSTAGRAM
             </button>
             <button
               className="pixel-button social-button"
               onClick={() => window.open("https://discord.com", "_blank")}
             >
-              ▓ DISCORD ▓
+              DISCORD
             </button>
             <button
               className="pixel-button social-button"
               onClick={() => window.open("https://telegram.org", "_blank")}
             >
-              ▓ TELEGRAM ▓
+              TELEGRAM
             </button>
           </motion.div>
 
@@ -326,8 +325,7 @@ export default function Index() {
               transition={{ duration: 0.5 }}
             >
               <div className="terminal-header">
-                <span>■ ■ ■</span>
-                <span>INTERACTIVE TERMINAL</span>
+                <span>TERMINAL</span>
                 <button
                   className="close-terminal"
                   onClick={() => setShowTerminal(false)}
@@ -622,27 +620,36 @@ export default function Index() {
             left: 0;
             height: 100%;
             background: #00ff41;
-            animation: random-memory-usage 4s ease-in-out infinite;
+            animation: random-memory-usage 8s ease-in-out infinite;
           }
 
           @keyframes random-memory-usage {
             0% {
               width: 25%;
             }
-            15% {
-              width: 45%;
+            10% {
+              width: 28%;
             }
-            30% {
+            20% {
               width: 35%;
             }
-            45% {
-              width: 65%;
+            30% {
+              width: 32%;
+            }
+            40% {
+              width: 45%;
+            }
+            50% {
+              width: 42%;
             }
             60% {
-              width: 40%;
+              width: 38%;
             }
-            75% {
+            70% {
               width: 55%;
+            }
+            80% {
+              width: 48%;
             }
             90% {
               width: 30%;
@@ -689,49 +696,30 @@ export default function Index() {
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
-            box-shadow: 4px 4px 0px #00ff41;
             border-radius: 0;
-            transition: none;
+            transition: background-color 0.2s ease;
             position: relative;
           }
 
           .pixel-button:hover {
             background: #00ff41;
             color: #0a0a0a;
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #00ff41;
           }
 
           .pixel-button:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px #00ff41;
+            background: #00cc33;
           }
 
-          .terminal-button {
-            border: 3px solid #00ff41 !important;
-            box-shadow: 6px 6px 0px #00ff41 !important;
-            font-size: 14px !important;
-            padding: 16px 32px !important;
-            text-shadow: 0 0 10px #00ff41;
-          }
 
-          .terminal-button:hover {
-            box-shadow: 8px 8px 0px #00ff41 !important;
-            transform: translate(-3px, -3px) !important;
-          }
 
           .social-button {
             border: 2px solid #00ff41 !important;
             color: #00ff41 !important;
-            box-shadow: 4px 4px 0px #00ff41 !important;
-            text-shadow: 0 0 8px #00ff41;
           }
 
           .social-button:hover {
             background: #00ff41 !important;
             color: #0a0a0a !important;
-            box-shadow: 6px 6px 0px #00ff41 !important;
-            transform: translate(-2px, -2px) !important;
           }
 
           .interactive-terminal {
