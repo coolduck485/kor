@@ -4,6 +4,7 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { RetroToggle } from "@/components/ui/retro-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
+import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
 
 export default function Index() {
   const { theme, setTheme } = useTheme();
