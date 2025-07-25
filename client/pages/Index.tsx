@@ -310,7 +310,7 @@ export default function Index() {
       {/* Interactive Glass Badge at Top */}
       <div
         className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce"
-        style={{ marginTop: "10px" }}
+        style={{ marginTop: "160px" }}
       >
         <div
           ref={badgeRef}
@@ -383,7 +383,7 @@ export default function Index() {
             />
           </svg>
           <span
-            className={`font-inter text-xs md:text-sm font-normal text-center animate-textGlow ${
+            className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${
               theme === "light" ? "text-gray-700" : "text-white/80"
             }`}
           >
@@ -460,7 +460,7 @@ export default function Index() {
               viewBox="0 0 1284 810"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-[45rem] h-[45rem] sm:w-[60rem] sm:h-[60rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem]"
+              className="w-[58rem] h-[58rem] sm:w-[78rem] sm:h-[78rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem]"
               style={{
                 position: "absolute",
                 left: "50%",
@@ -610,7 +610,7 @@ export default function Index() {
             style={{ marginLeft: "-5px" }}
           >
             <h1
-              className={`font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+              className={`font-poppins text-6xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
                 theme === "light" ? "text-gray-900" : "text-white"
               }`}
             >
@@ -684,7 +684,7 @@ export default function Index() {
                 />
               ))}
 
-              <p className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+              <p className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                 <span
                   className={`relative inline-block ${
                     theme === "light" ? "text-gray-900" : "text-white"
