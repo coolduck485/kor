@@ -420,15 +420,7 @@
   }
 }
 
-/* Cartoon window shine sweep animation */
-@keyframes cartoon-shine-sweep {
-  0% {
-    left: -50%;
-  }
-  100% {
-    left: 100%;
-  }
-}
+
 
 /* Chrome text styling with wavy letters and contained shine */
 .chrome-wavy-text {
