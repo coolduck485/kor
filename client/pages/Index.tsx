@@ -680,34 +680,37 @@ export default function Index() {
                       >
                         {sparkle.type === "star" && (
                           <div
-                            className="w-6 h-6 animate-spin-slow"
+                            className="w-6 h-6"
                             style={{
                               background: theme === "light"
                                 ? "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)"
                                 : "radial-gradient(circle, rgba(73, 146, 255, 0.9) 0%, transparent 70%)",
                               clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              animation: "spin-slow 8s linear infinite",
                             }}
                           />
                         )}
                         {sparkle.type === "diamond" && (
                           <div
-                            className="w-4 h-4 animate-pulse-fast"
+                            className="w-4 h-4"
                             style={{
                               background: theme === "light"
                                 ? "linear-gradient(45deg, rgba(147, 51, 234, 0.8), rgba(59, 130, 246, 0.6))"
                                 : "linear-gradient(45deg, rgba(34, 211, 238, 0.8), rgba(73, 146, 255, 0.7))",
                               clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              animation: "pulse-fast 1.5s ease-in-out infinite",
                             }}
                           />
                         )}
                         {sparkle.type === "plus" && (
                           <div
-                            className="w-5 h-5 animate-rotate-slow"
+                            className="w-5 h-5"
                             style={{
                               background: theme === "light"
                                 ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.6), rgba(59, 130, 246, 0.8))"
                                 : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.7), rgba(73, 146, 255, 0.8))",
                               clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              animation: "rotate-slow 6s linear infinite",
                             }}
                           />
                         )}
