@@ -1416,7 +1416,7 @@ function OrbFloatingButton({
 
         {/* Pulsing border effect */}
         <div
-          className={`absolute inset-0 ${currentSize.radius} border border-white/10 group-hover:border-white/30 transition-all duration-500 animate-pulse opacity-50`}
+          className={`absolute inset-0 ${currentSize.radius} border border-white/10 group-hover:border-white/30 transition-all duration-500 opacity-30`}
           style={{ left: "-50px" }}
         />
 
