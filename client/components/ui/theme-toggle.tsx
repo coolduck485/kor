@@ -1,4 +1,4 @@
-import { Moon, Sun } from "lucide-react";
+import { Palette, RotateCcw } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 import { Button } from "@/components/ui/button";
 
@@ -19,11 +19,11 @@ export function ThemeToggle() {
       }}
     >
       {theme === "light" ? (
-        <Moon className="h-5 w-5 text-gray-800 transition-all" />
+        <RotateCcw className="h-5 w-5 text-purple-600 transition-all" />
       ) : (
-        <Sun className="h-5 w-5 text-yellow-400 transition-all" />
+        <Palette className="h-5 w-5 text-cyan-400 transition-all" />
       )}
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">Invert colors</span>
     </Button>
   );
 }
