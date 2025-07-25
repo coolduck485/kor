@@ -1,9 +1,9 @@
-import { Gamepad2, Monitor } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useRetroMode } from "@/hooks/use-retro-mode"
+import { Gamepad2, Monitor } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useRetroMode } from "@/hooks/use-retro-mode";
 
 export function RetroToggle() {
-  const { mode, toggleMode } = useRetroMode()
+  const { mode, toggleMode } = useRetroMode();
 
   return (
     <Button
@@ -19,5 +19,5 @@ export function RetroToggle() {
       )}
       <span className="sr-only">Toggle retro mode</span>
     </Button>
-  )
+  );
 }

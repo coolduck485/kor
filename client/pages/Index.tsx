@@ -170,7 +170,9 @@ export default function Index() {
               <div className="pixel-dot bg-yellow-400"></div>
               <div className="pixel-dot bg-red-400"></div>
             </div>
-            <div className="terminal-glow font-bold text-green-400">KOR SYSTEMS v2.1</div>
+            <div className="terminal-glow font-bold text-green-400">
+              KOR SYSTEMS v2.1
+            </div>
           </div>
           <div className="flex flex-col space-y-2">
             <ThemeToggle />
@@ -178,7 +180,7 @@ export default function Index() {
             <div
               className="power-button"
               onClick={() => {
-                document.body.style.opacity = '0';
+                document.body.style.opacity = "0";
                 setTimeout(() => location.reload(), 1000);
               }}
             >
@@ -189,7 +191,6 @@ export default function Index() {
 
         {/* Main Content */}
         <div className="retro-main">
-
           {/* ASCII Logo */}
           <motion.div
             className="retro-logo-container"
@@ -198,16 +199,14 @@ export default function Index() {
             transition={{ duration: 2 }}
           >
             <pre className="ascii-logo">
-{`██╗  ██╗ ██████╗ ██████╗
+              {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██���  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
-            <div className="retro-subtitle">
-              RETRO DEVELOPMENT SYSTEMS
-            </div>
+            <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
           </motion.div>
 
           {/* Terminal Window */}
@@ -222,15 +221,21 @@ export default function Index() {
               <span>TERMINAL</span>
             </div>
             <div className="terminal-content">
-              <div className="text-amber-400 font-bold mb-2">SYSTEM STATUS: ONLINE</div>
-              <div className="typewriter mb-2">LOADING DEVELOPMENT SERVICES...</div>
+              <div className="text-amber-400 font-bold mb-2">
+                SYSTEM STATUS: ONLINE
+              </div>
+              <div className="typewriter mb-2">
+                LOADING DEVELOPMENT SERVICES...
+              </div>
               <div className="terminal-line">
                 <span className="prompt">&gt;</span>
                 <span className="cursor-text">CUSTOM SOFTWARE SOLUTIONS</span>
               </div>
               <div className="terminal-line">
                 <span className="prompt">&gt;</span>
-                <span className="cursor-text text-amber-400">RETRO SYSTEM ARCHITECTURE</span>
+                <span className="cursor-text text-amber-400">
+                  RETRO SYSTEM ARCHITECTURE
+                </span>
               </div>
               <div className="terminal-line">
                 <span className="prompt">&gt;</span>
@@ -238,12 +243,16 @@ export default function Index() {
               </div>
               <div className="terminal-line mb-4">
                 <span className="prompt">&gt;</span>
-                <span className="cursor-text text-amber-400">LEGACY SYSTEM MODERNIZATION</span>
+                <span className="cursor-text text-amber-400">
+                  LEGACY SYSTEM MODERNIZATION
+                </span>
               </div>
               <div className="memory-section">
                 <div className="text-xs mb-2">MEMORY USAGE:</div>
                 <div className="loading-bar"></div>
-                <div className="text-xs text-amber-400 mt-1">64KB / 640KB AVAILABLE</div>
+                <div className="text-xs text-amber-400 mt-1">
+                  64KB / 640KB AVAILABLE
+                </div>
               </div>
             </div>
           </motion.div>
@@ -255,22 +264,40 @@ export default function Index() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 2, duration: 1 }}
           >
-            <button className="pixel-button" onClick={() => console.log('About')}>
+            <button
+              className="pixel-button"
+              onClick={() => console.log("About")}
+            >
               ▓ ABOUT ▓
             </button>
-            <button className="pixel-button" onClick={() => console.log('Services')}>
+            <button
+              className="pixel-button"
+              onClick={() => console.log("Services")}
+            >
               ▓ SERVICES ▓
             </button>
-            <button className="pixel-button" onClick={() => console.log('Portfolio')}>
+            <button
+              className="pixel-button"
+              onClick={() => console.log("Portfolio")}
+            >
               ▓ PORTFOLIO ▓
             </button>
-            <button className="pixel-button" onClick={() => console.log('Contact')}>
+            <button
+              className="pixel-button"
+              onClick={() => console.log("Contact")}
+            >
               ▓ CONTACT ▓
             </button>
-            <button className="pixel-button" onClick={() => console.log('Terminal')}>
+            <button
+              className="pixel-button"
+              onClick={() => console.log("Terminal")}
+            >
               ▓ TERMINAL ▓
             </button>
-            <button className="pixel-button" onClick={() => console.log('Archives')}>
+            <button
+              className="pixel-button"
+              onClick={() => console.log("Archives")}
+            >
               ▓ ARCHIVES ▓
             </button>
           </motion.div>
@@ -305,8 +332,12 @@ export default function Index() {
 
         {/* Footer */}
         <div className="retro-footer">
-          <div className="text-green-400">COPYRIGHT (C) 2024 KOR SYSTEMS - ALL RIGHTS RESERVED</div>
-          <div className="text-amber-400">TERMINAL EMULATION MODE - PHOSPHOR DISPLAY ACTIVE</div>
+          <div className="text-green-400">
+            COPYRIGHT (C) 2024 KOR SYSTEMS - ALL RIGHTS RESERVED
+          </div>
+          <div className="text-amber-400">
+            TERMINAL EMULATION MODE - PHOSPHOR DISPLAY ACTIVE
+          </div>
           <div className="text-red-400 blink">WARNING: RETRO MODE ENGAGED</div>
         </div>
 
@@ -315,7 +346,7 @@ export default function Index() {
           .retro-container {
             background: #0a0a0a;
             color: #00ff41;
-            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-family: "JetBrains Mono", "Fira Code", monospace;
             image-rendering: pixelated;
             image-rendering: crisp-edges;
             -webkit-font-smoothing: none;
@@ -329,28 +360,31 @@ export default function Index() {
           }
 
           .retro-container::before {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background:
-              repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(0, 255, 65, 0.03) 2px,
-                rgba(0, 255, 65, 0.03) 4px
-              );
+            background: repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 2px,
+              rgba(0, 255, 65, 0.03) 2px,
+              rgba(0, 255, 65, 0.03) 4px
+            );
             pointer-events: none;
             animation: scanlines 0.1s linear infinite;
             z-index: 100;
           }
 
           @keyframes scanlines {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(4px); }
+            0% {
+              transform: translateY(0px);
+            }
+            100% {
+              transform: translateY(4px);
+            }
           }
 
           .retro-header {
@@ -388,7 +422,7 @@ export default function Index() {
           }
 
           .ascii-logo {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: "JetBrains Mono", monospace;
             font-weight: 800;
             font-size: clamp(8px, 2.5vw, 18px);
             line-height: 0.9;
@@ -463,8 +497,12 @@ export default function Index() {
           }
 
           @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
+            from {
+              width: 0;
+            }
+            to {
+              width: 100%;
+            }
           }
 
           .memory-section {
@@ -481,7 +519,7 @@ export default function Index() {
           }
 
           .loading-bar::before {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
@@ -491,9 +529,15 @@ export default function Index() {
           }
 
           @keyframes loading-progress {
-            0% { width: 0%; }
-            50% { width: 70%; }
-            100% { width: 100%; }
+            0% {
+              width: 0%;
+            }
+            50% {
+              width: 70%;
+            }
+            100% {
+              width: 100%;
+            }
           }
 
           .button-grid {
@@ -517,7 +561,7 @@ export default function Index() {
             border: 2px solid #00ff41;
             color: #00ff41;
             padding: 12px 16px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: "JetBrains Mono", monospace;
             font-weight: 700;
             font-size: 12px;
             text-transform: uppercase;
@@ -612,8 +656,14 @@ export default function Index() {
           }
 
           @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+            0%,
+            50% {
+              opacity: 1;
+            }
+            51%,
+            100% {
+              opacity: 0;
+            }
           }
 
           .blink {
@@ -621,8 +671,15 @@ export default function Index() {
           }
 
           @keyframes terminal-glow {
-            0%, 100% { text-shadow: 0 0 10px currentColor; }
-            50% { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+            0%,
+            100% {
+              text-shadow: 0 0 10px currentColor;
+            }
+            50% {
+              text-shadow:
+                0 0 20px currentColor,
+                0 0 30px currentColor;
+            }
           }
 
           .terminal-glow {
@@ -630,8 +687,13 @@ export default function Index() {
           }
 
           @keyframes pixel-float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-4px); }
+            0%,
+            100% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-4px);
+            }
           }
         `}</style>
       </div>
