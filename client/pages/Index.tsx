@@ -475,24 +475,19 @@ export default function Index() {
           0% {
             background: linear-gradient(
               90deg,
-              rgba(178, 227, 255, 0.8) 0%,
-              rgba(178, 227, 255, 0.8) 20%,
-              rgba(255, 255, 255, 1) 40%,
-              rgba(255, 255, 255, 1) 60%,
-              rgba(178, 227, 255, 0.8) 80%,
-              rgba(178, 227, 255, 0.8) 100%
+              rgba(178, 227, 255, 0.9) 0%,
+              rgba(178, 227, 255, 0.9) 30%,
+              rgba(255, 255, 255, 1) 45%,
+              rgba(255, 255, 255, 1) 50%,
+              rgba(255, 255, 255, 1) 55%,
+              rgba(178, 227, 255, 0.9) 70%,
+              rgba(178, 227, 255, 0.9) 100%
             );
-            background-size: 200% 100%;
-            background-position: -200% 0;
+            background-size: 300% 100%;
+            background-position: -100% 0;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-          }
-          20% {
-            background-position: -100% 0;
-          }
-          80% {
-            background-position: 100% 0;
           }
           100% {
             background-position: 200% 0;
