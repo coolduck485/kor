@@ -566,69 +566,156 @@ export default function Index() {
             </h1>
           </div>
 
-          {/* Development services - keeping same position */}
+          {/* Development services - enhanced with dramatic effects */}
           <div
             className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4"
             style={{ marginLeft: "5px", marginTop: "-5px" }}
           >
-            <p className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative">
-              <span
-                className="relative inline-block shine-text-base"
+            <div className="relative">
+              {/* Background glow effect */}
+              <div
+                className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
                 style={{
-                  animationName: `shine-${SHINE_CONFIG.direction}`,
-                  animationDuration: SHINE_CONFIG.duration,
-                  animationDelay: SHINE_CONFIG.delay,
-                  animationIterationCount: "infinite",
-                  animationTimingFunction: "ease-in-out",
+                  background: theme === "light"
+                    ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
+                    : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
+                  transform: "scale(1.5)",
                 }}
-              >
-                Development services
-                {/* Simple 4-Point Stars - Match Figma Design */}
-                {SHINE_CONFIG.showSparkles &&
-                  [
-                    // Upper right
-                    { x: 95, y: -35, size: 0.6 },
+              />
 
-                    // Right middle
-                    { x: 75, y: -10, size: 0.4 },
+              {/* Floating energy particles around text */}
+              {[...Array(12)].map((_, i) => (
+                <div
+                  key={`energy-${i}`}
+                  className="absolute rounded-full animate-energy-float pointer-events-none"
+                  style={{
+                    left: `${20 + ((i * 60) % 160)}%`,
+                    top: `${30 + ((i * 40) % 60)}%`,
+                    width: `${3 + (i % 2)}px`,
+                    height: `${3 + (i % 2)}px`,
+                    background: theme === "light"
+                      ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
+                      : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
+                    animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                    filter: "blur(0.5px)",
+                  }}
+                />
+              ))}
 
-                    // Lower right
-                    { x: 120, y: 50, size: 0.5 },
-                    { x: 90, y: 80, size: 0.7 },
-
-                    // Lower center
-                    { x: 25, y: 85, size: 0.4 },
-
-                    // Lower left
-                    { x: -40, y: 60, size: 0.5 },
-
-                    // Far right
-                    { x: 165, y: 15, size: 0.8 },
-                  ].map((sparkle, i) => (
+              <p className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                <span
+                  className="relative inline-block shine-text-enhanced animate-text-pop"
+                  style={{
+                    animationName: `shine-${SHINE_CONFIG.direction}, text-pop, text-glow-pulse`,
+                    animationDuration: `${SHINE_CONFIG.duration}, 2s, 3s`,
+                    animationDelay: `${SHINE_CONFIG.delay}, 0.5s, 1s`,
+                    animationIterationCount: "infinite",
+                    animationTimingFunction: "ease-in-out",
+                    filter: theme === "light"
+                      ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
+                      : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
+                  }}
+                >
+                  {/* Holographic scan lines */}
+                  <div className="absolute inset-0 overflow-hidden">
                     <div
-                      key={`sparkle-${i}`}
-                      className="absolute animate-sparkle-twinkle pointer-events-none"
+                      className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-scan-line"
                       style={{
-                        left: `calc(50% + ${sparkle.x}px)`,
-                        top: `calc(50% + ${sparkle.y}px)`,
-                        animationDelay: `${i * 0.2 + 2}s`,
-                        animationDuration: `${3 + Math.random() * 1.5}s`,
-                        transform: `scale(${sparkle.size}) rotate(${Math.random() * 360}deg)`,
-                        opacity: 0.9,
+                        top: "20%",
+                        animationDelay: "2s",
+                      }}
+                    />
+                    <div
+                      className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-scan-line"
+                      style={{
+                        top: "80%",
+                        animationDelay: "2.5s",
+                      }}
+                    />
+                  </div>
+
+                  {/* Enhanced text with letter-by-letter animation */}
+                  {"Development services".split("").map((letter, i) => (
+                    <span
+                      key={i}
+                      className="inline-block animate-letter-float"
+                      style={{
+                        animationDelay: `${i * 0.1 + 1}s`,
+                        textShadow: theme === "light"
+                          ? `0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(147, 51, 234, 0.4)`
+                          : `0 0 20px rgba(73, 146, 255, 0.8), 0 0 40px rgba(34, 211, 238, 0.5)`,
                       }}
                     >
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-full h-full"
-                      />
-                    </div>
+                      {letter === " " ? "\u00A0" : letter}
+                    </span>
                   ))}
-              </span>
-            </p>
+
+                  {/* Enhanced sparkles with more variety */}
+                  {SHINE_CONFIG.showSparkles &&
+                    [
+                      // Upper sparkles
+                      { x: 95, y: -35, size: 0.8, type: "star" },
+                      { x: 75, y: -10, size: 0.6, type: "diamond" },
+                      { x: 120, y: 50, size: 0.7, type: "plus" },
+                      { x: 90, y: 80, size: 0.9, type: "star" },
+                      { x: 25, y: 85, size: 0.5, type: "diamond" },
+                      { x: -40, y: 60, size: 0.6, type: "plus" },
+                      { x: 165, y: 15, size: 1.0, type: "star" },
+                      // Additional sparkles for more drama
+                      { x: -20, y: -20, size: 0.7, type: "diamond" },
+                      { x: 140, y: -15, size: 0.5, type: "plus" },
+                      { x: 50, y: 100, size: 0.8, type: "star" },
+                    ].map((sparkle, i) => (
+                      <div
+                        key={`enhanced-sparkle-${i}`}
+                        className="absolute animate-sparkle-enhanced pointer-events-none"
+                        style={{
+                          left: `calc(50% + ${sparkle.x}px)`,
+                          top: `calc(50% + ${sparkle.y}px)`,
+                          animationDelay: `${i * 0.15 + 2}s`,
+                          animationDuration: `${2.5 + Math.random() * 2}s`,
+                          transform: `scale(${sparkle.size}) rotate(${Math.random() * 360}deg)`,
+                          opacity: 0.9,
+                        }}
+                      >
+                        {sparkle.type === "star" && (
+                          <div
+                            className="w-6 h-6 animate-spin-slow"
+                            style={{
+                              background: theme === "light"
+                                ? "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)"
+                                : "radial-gradient(circle, rgba(73, 146, 255, 0.9) 0%, transparent 70%)",
+                              clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "diamond" && (
+                          <div
+                            className="w-4 h-4 animate-pulse-fast"
+                            style={{
+                              background: theme === "light"
+                                ? "linear-gradient(45deg, rgba(147, 51, 234, 0.8), rgba(59, 130, 246, 0.6))"
+                                : "linear-gradient(45deg, rgba(34, 211, 238, 0.8), rgba(73, 146, 255, 0.7))",
+                              clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "plus" && (
+                          <div
+                            className="w-5 h-5 animate-rotate-slow"
+                            style={{
+                              background: theme === "light"
+                                ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.6), rgba(59, 130, 246, 0.8))"
+                                : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.7), rgba(73, 146, 255, 0.8))",
+                              clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                            }}
+                          />
+                        )}
+                      </div>
+                    ))}
+                </span>
+              </p>
+            </div>
           </div>
         </div>
 
