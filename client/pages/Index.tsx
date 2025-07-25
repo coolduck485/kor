@@ -423,7 +423,7 @@ export default function Index() {
           >
             <pre className="ascii-logo">
               {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔══██���
+██║ ██╔╝██╔═══██��██╔══██���
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║��█╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -443,9 +443,7 @@ export default function Index() {
               <span>TERMINAL</span>
             </div>
             <div className="terminal-content">
-              <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╔════════════════════════════════════════════════════════╗
-              </div>
+
               <div className="text-green-400 font-bold mb-2 terminal-glow">
                 ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
               </div>
