@@ -547,7 +547,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████��███████ 50%
+                      RAM: ██████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1706,6 +1706,14 @@ export default function Index() {
           initial={{ opacity: 0, scaleY: 0 }}
           animate={animationStep >= 1 ? { opacity: 1, scaleY: 1 } : {}}
           transition={{ delay: 3, duration: 1.5 }}
+        />
+
+        {/* Connecting line to center (desktop only) */}
+        <motion.div
+          className="hidden lg:block absolute top-8 left-4 w-32 h-px bg-gradient-to-r from-blue-400/30 to-transparent"
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={animationStep >= 1 ? { opacity: 1, scaleX: 1 } : {}}
+          transition={{ delay: 3.5, duration: 1 }}
         />
       </div>
 
