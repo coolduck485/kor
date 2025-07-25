@@ -605,7 +605,7 @@ export default function Index() {
         <div className="relative z-10 px-4 -mt-16">
           {/* Kor - moved further to the left */}
           <div
-            className="text-center transform -translate-x-9 sm:-translate-x-8 md:-translate-x-16 lg:-translate-x-20"
+            className="text-center transform -translate-x-14 sm:-translate-x-8 md:-translate-x-16 lg:-translate-x-20"
             style={{ marginLeft: "-5px" }}
           >
             <h1
