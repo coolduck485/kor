@@ -397,7 +397,7 @@ export default function Index() {
       >
         <div
           ref={badgeRef}
-          className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
+          className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden cursor-none"
           style={{
             background: "rgba(255, 255, 255, 0.1)",
             border: "2px solid transparent",
