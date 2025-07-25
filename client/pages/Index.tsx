@@ -1235,10 +1235,8 @@ export default function Index() {
       animate={!isLoading && isLoaded ? "visible" : "hidden"}
     >
 
-      {/* Main Content - Only show after loading */}
-      {!isLoading && isLoaded && (
-        <>
-          {/* Theme Toggle Container with Tooltip */}
+      {/* Main Content - Always visible with orchestrated animations */}
+      {/* Theme Toggle Container with Tooltip */}
       <div className="fixed top-6 right-6 z-50">
         <div className="group relative">
           {/* Tooltip */}
@@ -2424,8 +2422,6 @@ export default function Index() {
           animation: fade-in-word 0.8s ease-out forwards;
         }
       `}</style>
-        </>
-      )}
     </motion.div>
   );
 }
