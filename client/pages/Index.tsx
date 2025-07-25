@@ -542,11 +542,25 @@ export default function Index() {
         }
 
         .animate-shine-text-only {
-          color: rgba(178, 227, 255, 0.9);
+          background: linear-gradient(
+            90deg,
+            rgba(178, 227, 255, 0.9) 0%,
+            rgba(178, 227, 255, 0.9) 30%,
+            rgba(255, 255, 255, 1) 45%,
+            rgba(255, 255, 255, 1) 50%,
+            rgba(255, 255, 255, 1) 55%,
+            rgba(178, 227, 255, 0.9) 70%,
+            rgba(178, 227, 255, 0.9) 100%
+          );
+          background-size: 300% 100%;
+          background-position: 0% 0;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
           text-shadow:
-            0 0 5px rgba(34, 211, 238, 0.3),
-            0 0 10px rgba(34, 211, 238, 0.2);
-          animation: shine-text-sweep 4s ease-in-out infinite 2s;
+            0 0 10px rgba(255, 255, 255, 0.3),
+            0 0 20px rgba(34, 211, 238, 0.2);
+          animation: shine-text-sweep 3s ease-in-out infinite 1s;
         }
 
         .animate-text-reveal {
