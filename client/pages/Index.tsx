@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
 
 export default function Index() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
