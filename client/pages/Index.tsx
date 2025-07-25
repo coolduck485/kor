@@ -378,36 +378,27 @@ export default function Index() {
                 }}
               >
                 Development services
-                {/* Figma Star Sparkles - Positioned like reference image */}
+                {/* Figma Star Sparkles - Exact Figma positioning */}
                 {SHINE_CONFIG.showSparkles &&
                   [
-                    // Upper left area
-                    { x: -140, y: -45, size: 0.6 },
-                    { x: -90, y: -70, size: 0.4 },
+                    // Upper right - main star
+                    { x: 100, y: -40, size: 0.3 },
 
-                    // Upper right area
-                    { x: 120, y: -50, size: 0.5 },
-                    { x: 160, y: -25, size: 0.7 },
+                    // Right side - smaller star
+                    { x: 80, y: -15, size: 0.2 },
 
-                    // Right side
-                    { x: 180, y: 15, size: 0.4 },
-                    { x: 200, y: 45, size: 0.6 },
+                    // Lower right area
+                    { x: 110, y: 40, size: 0.25 },
+                    { x: 140, y: 60, size: 0.35 },
 
-                    // Lower right
-                    { x: 140, y: 75, size: 0.5 },
-                    { x: 90, y: 95, size: 0.8 },
+                    // Lower center-right
+                    { x: 70, y: 70, size: 0.2 },
 
-                    // Lower center
-                    { x: 20, y: 100, size: 0.4 },
-                    { x: -30, y: 110, size: 0.6 },
+                    // Lower left area
+                    { x: -60, y: 45, size: 0.25 },
 
-                    // Lower left
-                    { x: -110, y: 85, size: 0.5 },
-                    { x: -150, y: 60, size: 0.4 },
-
-                    // Left side
-                    { x: -170, y: 20, size: 0.7 },
-                    { x: -180, y: -15, size: 0.5 },
+                    // Far right
+                    { x: 180, y: 20, size: 0.4 },
                   ].map((sparkle, i) => (
                     <div
                       key={`sparkle-${i}`}
