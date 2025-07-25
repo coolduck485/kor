@@ -135,6 +135,21 @@ export default function Index() {
     };
   }, []);
 
+  // Dynamic system stats updates
+  useEffect(() => {
+    const updateStats = () => {
+      setSystemStats({
+        cpu: Math.floor(Math.random() * 25) + 70, // 70-95%
+        ram: Math.floor(Math.random() * 30) + 65, // 65-95%
+        networkUp: Math.round((Math.random() * 0.8 + 0.8) * 10) / 10, // 0.8-1.6 GB/s
+        networkDown: Math.floor(Math.random() * 300) + 700, // 700-1000 MB/s
+      });
+    };
+
+    const interval = setInterval(updateStats, 2000); // Update every 2 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   const handleBadgeMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!badgeRef.current) return;
 
@@ -219,7 +234,7 @@ export default function Index() {
           >
             <pre className="ascii-logo">
               {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔══██╗
+██║ ██╔╝██╔══���██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
