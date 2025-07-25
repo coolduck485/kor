@@ -3160,6 +3160,7 @@ interface OrbFloatingButtonProps {
   size: string;
   accent: string;
   theme: "light" | "dark";
+  onClick?: () => void;
 }
 
 function OrbFloatingButton({
