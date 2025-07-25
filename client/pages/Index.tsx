@@ -190,7 +190,7 @@ export default function Index() {
       <div className="fixed inset-0 pointer-events-none z-50">
         {cursorTrails.map((trail, index) => (
           <div
-            key={trail.id}
+            key={`${trail.id}-${index}`}
             className="absolute w-3 h-3 rounded-full"
             style={{
               left: trail.x - 6,
