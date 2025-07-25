@@ -152,7 +152,12 @@ export default function Index() {
   };
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
+    <motion.div
+      className="relative min-h-screen bg-black overflow-hidden"
+      variants={containerVariants}
+      initial="hidden"
+      animate={isLoaded ? "visible" : "hidden"}
+    >
       {/* Enhanced Background Elements */}
       {/* Animated Grid Pattern */}
       <div className="absolute inset-0 opacity-20">
@@ -1059,7 +1064,7 @@ export default function Index() {
           animation: fade-in-word 0.8s ease-out forwards;
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 }
 
