@@ -1401,11 +1401,8 @@ function OrbFloatingButton({
 
         {/* Futuristic circuit-like patterns */}
         <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-          <div className="absolute top-1 left-1 w-2 h-2 bg-white/30 rounded-full animate-pulse" />
-          <div
-            className="absolute bottom-1 right-1 w-1 h-1 bg-white/40 rounded-full animate-pulse"
-            style={{ animationDelay: "0.5s" }}
-          />
+          <div className="absolute top-1 left-1 w-2 h-2 bg-white/30 rounded-full" />
+          <div className="absolute bottom-1 right-1 w-1 h-1 bg-white/40 rounded-full" />
           <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         </div>
 
