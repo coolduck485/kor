@@ -624,10 +624,20 @@ export default function Index() {
                     animationFillMode: "both",
                   }}
                 >
-                  {/* Enhanced text with shine effect */}
-                  <span className="shine-text-enhanced">
-                    Development services
-                  </span>
+                  {/* Chrome wavy text with letter-by-letter animation */}
+                  <div className="chrome-wavy-text">
+                    {"Development services".split("").map((letter, i) => (
+                      <span
+                        key={i}
+                        className="wavy-letter"
+                        style={{
+                          animationDelay: `${i * 0.1}s, ${i * 0.05}s`,
+                        }}
+                      >
+                        {letter === " " ? "\u00A0" : letter}
+                      </span>
+                    ))}
+                  </div>
 
                   {/* Enhanced sparkles with more variety */}
                   {SHINE_CONFIG.showSparkles &&
