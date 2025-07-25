@@ -2,7 +2,11 @@ import { useState, useEffect, useRef } from "react";
 
 export default function Index() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [badgeMousePosition, setBadgeMousePosition] = useState({ x: 0, y: 0, isNear: false });
+  const [badgeMousePosition, setBadgeMousePosition] = useState({
+    x: 0,
+    y: 0,
+    isNear: false,
+  });
   const badgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -29,7 +33,7 @@ export default function Index() {
     setBadgeMousePosition({
       x: mouseX,
       y: mouseY,
-      isNear: true
+      isNear: true,
     });
   };
 
@@ -41,10 +45,10 @@ export default function Index() {
   // SHINE ANIMATION CONFIGURATION
   // ========================================
   const SHINE_CONFIG = {
-    direction: 'right-to-left', // 'left-to-right' or 'right-to-left'
-    duration: '6s', // Animation duration (slowed down more)
-    delay: '1s', // Initial delay
-    interval: '8s', // Time between shine sweeps (total cycle time)
+    direction: "right-to-left", // 'left-to-right' or 'right-to-left'
+    duration: "6s", // Animation duration (slowed down more)
+    delay: "1s", // Initial delay
+    interval: "8s", // Time between shine sweeps (total cycle time)
     intensity: 0.9, // Brightness of the shine (0-1)
     width: 30, // Width of the shine effect (percentage)
     showSparkles: true, // Enable/disable sparkles
@@ -66,16 +70,10 @@ export default function Index() {
         />
       </div>
 
-
-
       {/* Dynamic Gradient Overlays */}
       <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse"
-        />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
+        <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
       </div>
 
       {/* Animated Noise Texture */}
@@ -109,9 +107,9 @@ export default function Index() {
           ref={badgeRef}
           className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
           style={{
-            background: 'rgba(255, 255, 255, 0.1)',
-            border: '2px solid transparent',
-            backgroundClip: 'padding-box',
+            background: "rgba(255, 255, 255, 0.1)",
+            border: "2px solid transparent",
+            backgroundClip: "padding-box",
           }}
           onMouseMove={handleBadgeMouseMove}
           onMouseLeave={handleBadgeMouseLeave}
@@ -121,14 +119,15 @@ export default function Index() {
             className="absolute inset-0 rounded-full pointer-events-none transition-all duration-300"
             style={{
               background: badgeMousePosition.isNear
-                ? `conic-gradient(from ${Math.atan2(badgeMousePosition.y, badgeMousePosition.x) * 180 / Math.PI + 90}deg, rgba(73, 146, 255, 0.8) 0deg, rgba(73, 146, 255, 0.4) 90deg, rgba(255, 255, 255, 0.2) 180deg, rgba(255, 255, 255, 0.2) 270deg, rgba(73, 146, 255, 0.8) 360deg)`
-                : 'conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(255, 255, 255, 0.2) 360deg)',
-              padding: '2px',
-              borderRadius: 'inherit',
-              mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-              maskComposite: 'xor',
-              WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-              WebkitMaskComposite: 'xor',
+                ? `conic-gradient(from ${(Math.atan2(badgeMousePosition.y, badgeMousePosition.x) * 180) / Math.PI + 90}deg, rgba(73, 146, 255, 0.8) 0deg, rgba(73, 146, 255, 0.4) 90deg, rgba(255, 255, 255, 0.2) 180deg, rgba(255, 255, 255, 0.2) 270deg, rgba(73, 146, 255, 0.8) 360deg)`
+                : "conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(255, 255, 255, 0.2) 360deg)",
+              padding: "2px",
+              borderRadius: "inherit",
+              mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+              maskComposite: "xor",
+              WebkitMask:
+                "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+              WebkitMaskComposite: "xor",
             }}
           />
           {/* Animated Sparkle Icon */}
@@ -341,9 +340,24 @@ export default function Index() {
             style={{ marginLeft: "-5px" }}
           >
             <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-reveal">
-              <span className="inline-block animate-text-bounce" style={{ animationDelay: '0.8s' }}>K</span>
-              <span className="inline-block animate-text-bounce" style={{ animationDelay: '1.4s' }}>o</span>
-              <span className="inline-block animate-text-bounce" style={{ animationDelay: '2.0s' }}>r</span>
+              <span
+                className="inline-block animate-text-bounce"
+                style={{ animationDelay: "0.8s" }}
+              >
+                K
+              </span>
+              <span
+                className="inline-block animate-text-bounce"
+                style={{ animationDelay: "1.4s" }}
+              >
+                o
+              </span>
+              <span
+                className="inline-block animate-text-bounce"
+                style={{ animationDelay: "2.0s" }}
+              >
+                r
+              </span>
             </h1>
           </div>
 
@@ -359,65 +373,128 @@ export default function Index() {
                   animationName: `shine-${SHINE_CONFIG.direction}`,
                   animationDuration: SHINE_CONFIG.duration,
                   animationDelay: SHINE_CONFIG.delay,
-                  animationIterationCount: 'infinite',
-                  animationTimingFunction: 'ease-out',
+                  animationIterationCount: "infinite",
+                  animationTimingFunction: "ease-out",
                 }}
               >
                 Development services
                 {/* Figma Star Sparkles */}
-                {SHINE_CONFIG.showSparkles && [...Array(SHINE_CONFIG.sparkleCount)].map((_, i) => (
-                  <div
-                    key={`sparkle-${i}`}
-                    className="absolute animate-sparkle-twinkle pointer-events-none"
-                    style={{
-                      left: `${-5 + (i * 110 / SHINE_CONFIG.sparkleCount)}%`,
-                      top: `${-25 + (i % 4) * -8}px`,
-                      animationDelay: `${i * 0.4 + 2}s`,
-                      animationDuration: `${2 + Math.random() * 1.5}s`,
-                      transform: `scale(${0.2 + Math.random() * 0.15}) rotate(${Math.random() * 360}deg)`,
-                      opacity: 0.9,
-                    }}
-                  >
-                    <svg
-                      width="30"
-                      height="30"
-                      viewBox="0 0 1134 1152"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-full h-full"
+                {SHINE_CONFIG.showSparkles &&
+                  [...Array(SHINE_CONFIG.sparkleCount)].map((_, i) => (
+                    <div
+                      key={`sparkle-${i}`}
+                      className="absolute animate-sparkle-twinkle pointer-events-none"
+                      style={{
+                        left: `${-5 + (i * 110) / SHINE_CONFIG.sparkleCount}%`,
+                        top: `${-25 + (i % 4) * -8}px`,
+                        animationDelay: `${i * 0.4 + 2}s`,
+                        animationDuration: `${2 + Math.random() * 1.5}s`,
+                        transform: `scale(${0.2 + Math.random() * 0.15}) rotate(${Math.random() * 360}deg)`,
+                        opacity: 0.9,
+                      }}
                     >
-                      <defs>
-                        <filter id={`filter_sparkle_${i}`} x="0.215881" y="0.612473" width="1133.4" height="1151.31" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                          <feFlood floodOpacity="0" result="BackgroundImageFix"/>
-                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                          <feOffset/>
-                          <feGaussianBlur stdDeviation="11.79"/>
-                          <feColorMatrix type="matrix" values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"/>
-                          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                          <feOffset/>
-                          <feGaussianBlur stdDeviation="41.265"/>
-                          <feColorMatrix type="matrix" values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"/>
-                          <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow"/>
-                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                          <feOffset/>
-                          <feGaussianBlur stdDeviation="82.53"/>
-                          <feColorMatrix type="matrix" values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"/>
-                          <feBlend mode="normal" in2="effect2_dropShadow" result="effect3_dropShadow"/>
-                          <feBlend mode="normal" in="SourceGraphic" in2="effect3_dropShadow" result="shape"/>
-                        </filter>
-                        <linearGradient id={`gradient_sparkle_${i}`} x1="504.394" y1="628.011" x2="679.912" y2="578.083" gradientUnits="userSpaceOnUse">
-                          <stop stopColor="#1E40AF"/>
-                          <stop offset="0.493374" stopColor="#1D4ED8"/>
-                          <stop offset="1" stopColor="#1E3A8A"/>
-                        </linearGradient>
-                      </defs>
-                      <g filter={`url(#filter_sparkle_${i})`}>
-                        <path d="M537.254 557.616L495.396 597.059L554.801 617.972L590.311 656.741L599.501 604.977L638.435 555.474L581.954 544.621L543.519 495.792L537.254 557.616Z" fill={`url(#gradient_sparkle_${i})`}/>
-                      </g>
-                    </svg>
-                  </div>
-                ))}
+                      <svg
+                        width="30"
+                        height="30"
+                        viewBox="0 0 1134 1152"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-full h-full"
+                      >
+                        <defs>
+                          <filter
+                            id={`filter_sparkle_${i}`}
+                            x="0.215881"
+                            y="0.612473"
+                            width="1133.4"
+                            height="1151.31"
+                            filterUnits="userSpaceOnUse"
+                            colorInterpolationFilters="sRGB"
+                          >
+                            <feFlood
+                              floodOpacity="0"
+                              result="BackgroundImageFix"
+                            />
+                            <feColorMatrix
+                              in="SourceAlpha"
+                              type="matrix"
+                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                              result="hardAlpha"
+                            />
+                            <feOffset />
+                            <feGaussianBlur stdDeviation="11.79" />
+                            <feColorMatrix
+                              type="matrix"
+                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                            />
+                            <feBlend
+                              mode="normal"
+                              in2="BackgroundImageFix"
+                              result="effect1_dropShadow"
+                            />
+                            <feColorMatrix
+                              in="SourceAlpha"
+                              type="matrix"
+                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                              result="hardAlpha"
+                            />
+                            <feOffset />
+                            <feGaussianBlur stdDeviation="41.265" />
+                            <feColorMatrix
+                              type="matrix"
+                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                            />
+                            <feBlend
+                              mode="normal"
+                              in2="effect1_dropShadow"
+                              result="effect2_dropShadow"
+                            />
+                            <feColorMatrix
+                              in="SourceAlpha"
+                              type="matrix"
+                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                              result="hardAlpha"
+                            />
+                            <feOffset />
+                            <feGaussianBlur stdDeviation="82.53" />
+                            <feColorMatrix
+                              type="matrix"
+                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                            />
+                            <feBlend
+                              mode="normal"
+                              in2="effect2_dropShadow"
+                              result="effect3_dropShadow"
+                            />
+                            <feBlend
+                              mode="normal"
+                              in="SourceGraphic"
+                              in2="effect3_dropShadow"
+                              result="shape"
+                            />
+                          </filter>
+                          <linearGradient
+                            id={`gradient_sparkle_${i}`}
+                            x1="504.394"
+                            y1="628.011"
+                            x2="679.912"
+                            y2="578.083"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stopColor="#1E40AF" />
+                            <stop offset="0.493374" stopColor="#1D4ED8" />
+                            <stop offset="1" stopColor="#1E3A8A" />
+                          </linearGradient>
+                        </defs>
+                        <g filter={`url(#filter_sparkle_${i})`}>
+                          <path
+                            d="M537.254 557.616L495.396 597.059L554.801 617.972L590.311 656.741L599.501 604.977L638.435 555.474L581.954 544.621L543.519 495.792L537.254 557.616Z"
+                            fill={`url(#gradient_sparkle_${i})`}
+                          />
+                        </g>
+                      </svg>
+                    </div>
+                  ))}
               </span>
             </p>
           </div>
@@ -488,14 +565,24 @@ export default function Index() {
       {/* Enhanced Background Animations */}
       <style jsx>{`
         @keyframes backgroundShift {
-          0%, 100% { transform: translateX(0) translateY(0); }
-          25% { transform: translateX(10px) translateY(-5px); }
-          50% { transform: translateX(-5px) translateY(10px); }
-          75% { transform: translateX(15px) translateY(5px); }
+          0%,
+          100% {
+            transform: translateX(0) translateY(0);
+          }
+          25% {
+            transform: translateX(10px) translateY(-5px);
+          }
+          50% {
+            transform: translateX(-5px) translateY(10px);
+          }
+          75% {
+            transform: translateX(15px) translateY(5px);
+          }
         }
 
         @keyframes float-particle {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0px) translateX(0px) scale(1);
             opacity: 0.2;
           }
@@ -514,22 +601,47 @@ export default function Index() {
         }
 
         @keyframes gradient-shift {
-          0%, 100% { transform: translateX(0%) translateY(0%) rotate(0deg); }
-          25% { transform: translateX(10%) translateY(-5%) rotate(1deg); }
-          50% { transform: translateX(-5%) translateY(10%) rotate(-1deg); }
-          75% { transform: translateX(15%) translateY(-10%) rotate(0.5deg); }
+          0%,
+          100% {
+            transform: translateX(0%) translateY(0%) rotate(0deg);
+          }
+          25% {
+            transform: translateX(10%) translateY(-5%) rotate(1deg);
+          }
+          50% {
+            transform: translateX(-5%) translateY(10%) rotate(-1deg);
+          }
+          75% {
+            transform: translateX(15%) translateY(-10%) rotate(0.5deg);
+          }
         }
 
         @keyframes gradient-shift-reverse {
-          0%, 100% { transform: translateX(0%) translateY(0%) rotate(0deg); }
-          25% { transform: translateX(-10%) translateY(5%) rotate(-1deg); }
-          50% { transform: translateX(5%) translateY(-10%) rotate(1deg); }
-          75% { transform: translateX(-15%) translateY(10%) rotate(-0.5deg); }
+          0%,
+          100% {
+            transform: translateX(0%) translateY(0%) rotate(0deg);
+          }
+          25% {
+            transform: translateX(-10%) translateY(5%) rotate(-1deg);
+          }
+          50% {
+            transform: translateX(5%) translateY(-10%) rotate(1deg);
+          }
+          75% {
+            transform: translateX(-15%) translateY(10%) rotate(-0.5deg);
+          }
         }
 
         @keyframes noise {
-          0%, 100% { opacity: 0.05; transform: translateX(0) translateY(0); }
-          50% { opacity: 0.1; transform: translateX(2px) translateY(1px); }
+          0%,
+          100% {
+            opacity: 0.05;
+            transform: translateX(0) translateY(0);
+          }
+          50% {
+            opacity: 0.1;
+            transform: translateX(2px) translateY(1px);
+          }
         }
 
         .animate-float-particle {
@@ -603,7 +715,8 @@ export default function Index() {
         }
 
         @keyframes sparkle-twinkle {
-          0%, 100% {
+          0%,
+          100% {
             opacity: 0.4;
             transform: scale(0.9) rotate(0deg);
           }
@@ -638,7 +751,8 @@ export default function Index() {
         }
 
         @keyframes text-bounce {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0px) scale(1);
           }
           50% {
@@ -688,7 +802,8 @@ export default function Index() {
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
-          filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.4));
+          filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6))
+            drop-shadow(0 0 40px rgba(34, 211, 238, 0.4));
         }
 
         .animate-sparkle-twinkle {
