@@ -158,6 +158,139 @@ export default function Index() {
     sparkleCount: 7, // Precise positioning like Figma design
   };
 
+  // If retro mode is enabled, show retro version
+  if (mode === "retro") {
+    return (
+      <div style={{
+        background: '#0a0a0a',
+        color: '#00ff41',
+        fontFamily: 'JetBrains Mono, monospace',
+        minHeight: '100vh',
+        padding: '20px',
+        border: '4px solid #00ff41',
+        margin: '8px',
+        position: 'relative'
+      }}>
+        {/* Simple retro header */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          borderBottom: '2px solid #00ff41',
+          paddingBottom: '16px',
+          marginBottom: '32px'
+        }}>
+          <div style={{ fontWeight: 'bold', fontSize: '18px' }}>KOR SYSTEMS v2.1</div>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <RetroToggle />
+            <ThemeToggle />
+          </div>
+        </div>
+
+        {/* ASCII Logo */}
+        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <pre style={{
+            fontFamily: 'JetBrains Mono, monospace',
+            fontSize: 'clamp(8px, 2.5vw, 18px)',
+            lineHeight: '0.9',
+            textShadow: '0 0 10px #00ff41',
+            margin: 0
+          }}>
+{`██╗  ██╗ ██████╗ ██████╗
+██║ ██╔╝██╔═══██╗██╔══██╗
+█████╔╝ ██║   ██║██████╔╝
+██╔═██╗ ██║   ██║██╔══██╗
+██║  ██╗╚██████╔╝██║  ██║
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+          </pre>
+          <div style={{
+            color: '#ffaa00',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            marginTop: '16px',
+            textShadow: '0 0 10px #ffaa00'
+          }}>
+            RETRO DEVELOPMENT SYSTEMS
+          </div>
+        </div>
+
+        {/* Terminal Window */}
+        <div style={{
+          background: '#0a0a0a',
+          border: '2px solid #00ff41',
+          maxWidth: '600px',
+          margin: '0 auto 32px',
+          boxShadow: '0 0 20px rgba(0, 255, 65, 0.3)'
+        }}>
+          <div style={{
+            background: '#00ff41',
+            color: '#0a0a0a',
+            padding: '8px 16px',
+            fontWeight: 'bold',
+            fontSize: '12px'
+          }}>
+            TERMINAL
+          </div>
+          <div style={{ padding: '16px', fontSize: '14px', lineHeight: '1.4' }}>
+            <div style={{ color: '#ffaa00', fontWeight: 'bold', marginBottom: '8px' }}>
+              SYSTEM STATUS: ONLINE
+            </div>
+            <div style={{ marginBottom: '4px' }}>
+              <span style={{ color: '#00ff41', fontWeight: 'bold' }}>&gt;</span> CUSTOM SOFTWARE SOLUTIONS
+            </div>
+            <div style={{ marginBottom: '4px' }}>
+              <span style={{ color: '#00ff41', fontWeight: 'bold' }}>&gt;</span>
+              <span style={{ color: '#ffaa00' }}> RETRO SYSTEM ARCHITECTURE</span>
+            </div>
+            <div style={{ marginBottom: '4px' }}>
+              <span style={{ color: '#00ff41', fontWeight: 'bold' }}>&gt;</span> WEB APPLICATION DEVELOPMENT
+            </div>
+            <div style={{ marginBottom: '16px' }}>
+              <span style={{ color: '#00ff41', fontWeight: 'bold' }}>&gt;</span>
+              <span style={{ color: '#ffaa00' }}> LEGACY SYSTEM MODERNIZATION</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Status */}
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '12px', color: '#ffaa00' }}>
+            ◄ ► RETRO MODE ACTIVE ◄ ►
+          </div>
+          <div style={{ fontSize: '10px', marginTop: '16px' }}>
+            COPYRIGHT (C) 2024 KOR SYSTEMS - RETRO TERMINAL EMULATION
+          </div>
+        </div>
+
+        {/* Scanlines effect */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: `repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 65, 0.03) 2px,
+            rgba(0, 255, 65, 0.03) 4px
+          )`,
+          pointerEvents: 'none',
+          animation: 'scanlines 0.1s linear infinite'
+        }} />
+
+        <style>{`
+          @keyframes scanlines {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(4px); }
+          }
+        `}</style>
+      </div>
+    );
+  }
+
+  // Modern mode - original design
   return (
     <motion.div
       className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
