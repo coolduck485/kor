@@ -4,7 +4,7 @@ export const useFloatingNotifications = () => {
   const { addNotification, removeNotification, clearAll, notifications } = useNotifications();
 
   // Helper functions for different notification types
-  const showSuccess = (title: string, description: string, duration?: number) => {
+  const showSuccess = (title: string, description: string, duration: number = 0) => {
     addNotification({
       title,
       description,
@@ -13,7 +13,7 @@ export const useFloatingNotifications = () => {
     });
   };
 
-  const showError = (title: string, description: string, duration?: number) => {
+  const showError = (title: string, description: string, duration: number = 0) => {
     addNotification({
       title,
       description,
@@ -22,7 +22,7 @@ export const useFloatingNotifications = () => {
     });
   };
 
-  const showWarning = (title: string, description: string, duration?: number) => {
+  const showWarning = (title: string, description: string, duration: number = 0) => {
     addNotification({
       title,
       description,
@@ -31,7 +31,7 @@ export const useFloatingNotifications = () => {
     });
   };
 
-  const showInfo = (title: string, description: string, duration?: number) => {
+  const showInfo = (title: string, description: string, duration: number = 0) => {
     addNotification({
       title,
       description,
