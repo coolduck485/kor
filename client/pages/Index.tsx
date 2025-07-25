@@ -16,6 +16,8 @@ export default function Index() {
   });
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingStep, setLoadingStep] = useState(0); // 0: initial, 1: K, 2: Ko, 3: Kor, 4: complete
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
@@ -257,7 +259,7 @@ export default function Index() {
                 ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╚════════════════════════════════════════════════════════╝
+                ╚═══════════════════════════════════════════════���════════╝
               </div>
               <div className="text-amber-400 font-bold mb-3 mt-4">
                 SYSTEM STATUS:{" "}
