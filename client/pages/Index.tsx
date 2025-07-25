@@ -541,7 +541,8 @@ export default function Index() {
                   </div>
                   <div className="terminal-line mb-1">
                     <span className="text-cyan-400">MEM:</span>&nbsp;
-                    <span className="text-yellow-400">██��█████░░</span>&nbsp;78%
+                    <span className="text-yellow-400">██��█████░░</span>
+                    &nbsp;78%
                   </div>
                   <div className="terminal-line mb-3">
                     <span className="text-cyan-400">NET:</span>&nbsp;
