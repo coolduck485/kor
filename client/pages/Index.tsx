@@ -667,7 +667,7 @@ export default function Index() {
         </div>
 
         {/* Retro Styles */}
-        <style jsx>{`
+        <style jsx={true}>{`
           .retro-container {
             background: #0a0a0a;
             color: #00ff41;
@@ -2245,7 +2245,7 @@ export default function Index() {
       </div>
 
       {/* Enhanced Background Animations */}
-      <style jsx>{`
+      <style jsx={true}>{`
         :root {
           --badge-margin-top: 140px;
         }
