@@ -52,34 +52,7 @@ export default function Index() {
         />
       </div>
 
-      {/* Subtle Shooting Stars */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={`star-${i}`}
-            className="absolute animate-shooting-star"
-            style={{
-              left: `${Math.random() * 50}%`,
-              top: `${Math.random() * 50}%`,
-              animationDelay: `${Math.random() * 8 + 2}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
-            }}
-          >
-            <div className="relative">
-              {/* Star body */}
-              <div className="w-1 h-1 bg-white rounded-full opacity-80"></div>
-              {/* Star trail */}
-              <div
-                className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-white/60 via-blue-200/40 to-transparent"
-                style={{
-                  width: `${40 + Math.random() * 60}px`,
-                  transform: 'translateX(-100%)',
-                }}
-              ></div>
-            </div>
-          </div>
-        ))}
-      </div>
+
 
       {/* Dynamic Gradient Overlays */}
       <div className="absolute inset-0 opacity-10">
