@@ -23,6 +23,15 @@ export default function Index() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
+
+  // Test notification on load
+  useEffect(() => {
+    if (animationStep >= 2) {
+      setTimeout(() => {
+        showInfo("Welcome!", "Notification system is working perfectly!");
+      }, 2000);
+    }
+  }, [animationStep, showInfo]);
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
