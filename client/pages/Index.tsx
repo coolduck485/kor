@@ -419,13 +419,7 @@ export default function Index() {
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-full h-full"
-                      >
-                        <path
-                          d="M12 1L14.5 8.5L22 11L14.5 13.5L12 21L9.5 13.5L2 11L9.5 8.5L12 1Z"
-                          fill="#4992FF"
-                          stroke="none"
-                        />
-                      </svg>
+                      />
                     </div>
                   ))}
               </span>
