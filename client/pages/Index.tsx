@@ -6,8 +6,8 @@ import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 
 export default function Index() {
-  const { theme } = useTheme();
-  const { mode } = useRetroMode();
+  const { theme, setTheme } = useTheme();
+  const { mode, toggleMode } = useRetroMode();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
@@ -167,10 +167,39 @@ export default function Index() {
   if (mode === "retro") {
     return (
       <div className="retro-container min-h-screen">
-        {/* Toggle Buttons */}
-        <div className="fixed top-6 right-6 z-[9999] flex flex-col gap-4 pointer-events-auto">
-          <ThemeToggle />
-          <RetroToggle />
+        {/* Toggle Buttons Container */}
+        <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
+          <div className="group relative">
+            {/* Tooltip */}
+            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+              <div
+                className="px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap border-green-300/30 bg-green-400/10 text-green-400"
+                style={{
+                  background: `linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,255,65,0.05) 50%, transparent 100%)`,
+                  boxShadow: "0 0 15px rgba(0, 255, 65, 0.3)",
+                }}
+              >
+                Click to change the site's appearance
+                {/* Tooltip arrow */}
+                <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-green-400/10" />
+              </div>
+            </div>
+
+            {/* Container for existing toggles */}
+            <div
+              className="rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 border-green-300/30 bg-green-400/5"
+              style={{
+                background: `linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,255,65,0.05) 50%, transparent 100%)`,
+                boxShadow:
+                  "0 0 25px rgba(0, 255, 65, 0.4), 0 0 50px rgba(0, 255, 65, 0.2)",
+              }}
+            >
+              {/* Original Toggle Buttons */}
+              <div className="flex flex-col gap-2 sm:gap-3">
+                <RetroToggle />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Main Content */}
@@ -201,7 +230,6 @@ export default function Index() {
             transition={{ delay: 1, duration: 1 }}
           >
             <div className="terminal-header">
-              <span>■ ■ ■</span>
               <span>TERMINAL</span>
             </div>
             <div className="terminal-content">
@@ -212,21 +240,17 @@ export default function Index() {
                 LOADING DEVELOPMENT SERVICES...
               </div>
               <div className="terminal-line">
-                <span className="prompt">&gt;</span>
                 <span className="cursor-text">CUSTOM SOFTWARE SOLUTIONS</span>
               </div>
               <div className="terminal-line">
-                <span className="prompt">&gt;</span>
                 <span className="cursor-text text-amber-400">
                   RETRO SYSTEM ARCHITECTURE
                 </span>
               </div>
               <div className="terminal-line">
-                <span className="prompt">&gt;</span>
                 <span className="cursor-text">WEB APPLICATION DEVELOPMENT</span>
               </div>
               <div className="terminal-line mb-4">
-                <span className="prompt">&gt;</span>
                 <span className="cursor-text text-amber-400">
                   LEGACY SYSTEM MODERNIZATION
                 </span>
@@ -249,10 +273,10 @@ export default function Index() {
             transition={{ delay: 2, duration: 1 }}
           >
             <button
-              className="pixel-button terminal-button"
+              className="pixel-button"
               onClick={() => setShowTerminal(true)}
             >
-              ▓ TERMINAL ▓
+              TERMINAL
             </button>
           </motion.div>
 
@@ -267,19 +291,19 @@ export default function Index() {
               className="pixel-button social-button"
               onClick={() => window.open("https://instagram.com", "_blank")}
             >
-              ▓ INSTAGRAM ▓
+              INSTAGRAM
             </button>
             <button
               className="pixel-button social-button"
               onClick={() => window.open("https://discord.com", "_blank")}
             >
-              ▓ DISCORD ▓
+              DISCORD
             </button>
             <button
               className="pixel-button social-button"
               onClick={() => window.open("https://telegram.org", "_blank")}
             >
-              ▓ TELEGRAM ▓
+              TELEGRAM
             </button>
           </motion.div>
 
@@ -310,6 +334,17 @@ export default function Index() {
             </div>
           </motion.div>
 
+          {/* Dimmed Background Overlay */}
+          {showTerminal && (
+            <motion.div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setShowTerminal(false)}
+            />
+          )}
+
           {/* Interactive Terminal */}
           {showTerminal && (
             <motion.div
@@ -319,8 +354,7 @@ export default function Index() {
               transition={{ duration: 0.5 }}
             >
               <div className="terminal-header">
-                <span>■ ■ ■</span>
-                <span>INTERACTIVE TERMINAL</span>
+                <span>TERMINAL</span>
                 <button
                   className="close-terminal"
                   onClick={() => setShowTerminal(false)}
@@ -360,14 +394,14 @@ export default function Index() {
 
                         if (command === "help") {
                           newOutput.push("");
-                          newOutput.push("AVAILABLE COMMANDS:");
-                          newOutput.push("help - show this help message");
-                          newOutput.push("");
                           newOutput.push(
-                            "TIP: Switch back to the main website theme to explore",
+                            "Switch back to the main website theme to explore",
                           );
                           newOutput.push(
                             "my projects, services, and portfolio.",
+                          );
+                          newOutput.push(
+                            "Type 'help' to see list of available commands.",
                           );
                           newOutput.push("");
                         } else if (command === "clear") {
@@ -379,11 +413,10 @@ export default function Index() {
                         } else if (command !== "") {
                           newOutput.push(`Command '${command}' not found.`);
                           newOutput.push("");
+                          newOutput.push(
+                            "Type 'help' to see list of available commands.",
+                          );
                         }
-
-                        newOutput.push(
-                          "Type 'help' to see list of available commands.",
-                        );
                         setTerminalOutput(newOutput);
                         setTerminalInput("");
                       }
@@ -616,27 +649,36 @@ export default function Index() {
             left: 0;
             height: 100%;
             background: #00ff41;
-            animation: random-memory-usage 4s ease-in-out infinite;
+            animation: random-memory-usage 8s ease-in-out infinite;
           }
 
           @keyframes random-memory-usage {
             0% {
               width: 25%;
             }
-            15% {
-              width: 45%;
+            10% {
+              width: 28%;
             }
-            30% {
+            20% {
               width: 35%;
             }
-            45% {
-              width: 65%;
+            30% {
+              width: 32%;
+            }
+            40% {
+              width: 45%;
+            }
+            50% {
+              width: 42%;
             }
             60% {
-              width: 40%;
+              width: 38%;
             }
-            75% {
+            70% {
               width: 55%;
+            }
+            80% {
+              width: 48%;
             }
             90% {
               width: 30%;
@@ -683,65 +725,45 @@ export default function Index() {
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
-            box-shadow: 4px 4px 0px #00ff41;
             border-radius: 0;
-            transition: none;
+            transition: background-color 0.2s ease;
             position: relative;
           }
 
           .pixel-button:hover {
             background: #00ff41;
             color: #0a0a0a;
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #00ff41;
           }
 
           .pixel-button:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px #00ff41;
-          }
-
-          .terminal-button {
-            border: 3px solid #00ff41 !important;
-            box-shadow: 6px 6px 0px #00ff41 !important;
-            font-size: 14px !important;
-            padding: 16px 32px !important;
-            text-shadow: 0 0 10px #00ff41;
-          }
-
-          .terminal-button:hover {
-            box-shadow: 8px 8px 0px #00ff41 !important;
-            transform: translate(-3px, -3px) !important;
+            background: #00cc33;
           }
 
           .social-button {
-            border: 2px solid #ffaa00 !important;
-            color: #ffaa00 !important;
-            box-shadow: 4px 4px 0px #ffaa00 !important;
-            text-shadow: 0 0 8px #ffaa00;
+            border: 2px solid #00ff41 !important;
+            color: #00ff41 !important;
           }
 
           .social-button:hover {
-            background: #ffaa00 !important;
+            background: #00ff41 !important;
             color: #0a0a0a !important;
-            box-shadow: 6px 6px 0px #ffaa00 !important;
-            transform: translate(-2px, -2px) !important;
           }
 
           .interactive-terminal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 800px;
-            height: 70%;
-            max-height: 600px;
-            background: #0a0a0a;
-            border: 3px solid #00ff41;
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
-            z-index: 1000;
-            overflow: hidden;
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: 90% !important;
+            max-width: 800px !important;
+            height: 70% !important;
+            max-height: 600px !important;
+            background: #0a0a0a !important;
+            border: 3px solid #00ff41 !important;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4) !important;
+            z-index: 9999 !important;
+            overflow: hidden !important;
+            margin: 0 !important;
           }
 
           .interactive-terminal .terminal-header {
@@ -955,10 +977,60 @@ export default function Index() {
       initial="hidden"
       animate={isLoaded ? "visible" : "hidden"}
     >
-      {/* Theme Toggle and Retro Toggle */}
-      <div className="fixed top-6 right-6 z-50 flex flex-col gap-4">
-        <ThemeToggle />
-        <RetroToggle />
+      {/* Theme Toggle Container with Tooltip */}
+      <div className="fixed top-6 right-6 z-50">
+        <div className="group relative">
+          {/* Tooltip */}
+          <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+            <div
+              className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
+                theme === "light"
+                  ? "border-blue-400/40 bg-white/80 text-gray-800"
+                  : "border-blue-300/30 bg-blue-400/10 text-white/90"
+              }`}
+              style={{
+                background:
+                  theme === "light"
+                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+              }}
+            >
+              Click any theme to change the site's appearance
+              {/* Tooltip arrow */}
+              <div
+                className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                  theme === "light"
+                    ? "border-l-white/80"
+                    : "border-l-blue-400/10"
+                }`}
+              />
+            </div>
+          </div>
+
+          {/* Container for existing toggles */}
+          <div
+            className={`rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/30"
+                : "border-blue-300/30 bg-blue-400/5"
+            }`}
+            style={{
+              background:
+                theme === "light"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+              boxShadow:
+                "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
+            }}
+          >
+            {/* Original Toggle Buttons */}
+            <div className="flex flex-col gap-2 sm:gap-3">
+              <ThemeToggle />
+              <RetroToggle />
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Enhanced Background Elements */}
