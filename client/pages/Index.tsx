@@ -13,6 +13,7 @@ export default function Index() {
   });
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [cursorTrails, setCursorTrails] = useState<Array<{id: number, x: number, y: number}>>([]);
 
   // Framer Motion animation variants
   const containerVariants = {
