@@ -7,6 +7,7 @@ import { useRetroMode } from "@/hooks/use-retro-mode";
 
 export default function Index() {
   const { theme } = useTheme();
+  const { mode } = useRetroMode();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
