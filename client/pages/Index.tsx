@@ -945,6 +945,14 @@ export default function Index() {
 
       {/* Enhanced Background Animations */}
       <style jsx>{`
+        :root {
+          --badge-margin-top: 140px;
+        }
+        @media (min-width: 640px) {
+          :root {
+            --badge-margin-top: 10px;
+          }
+        }
         @keyframes backgroundShift {
           0%,
           100% {
