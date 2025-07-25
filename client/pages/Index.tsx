@@ -548,23 +548,25 @@ export default function Index() {
         .animate-shine-text-only {
           background: linear-gradient(
             90deg,
-            rgba(178, 227, 255, 0.9) 0%,
-            rgba(178, 227, 255, 0.9) 30%,
+            rgba(178, 227, 255, 0.7) 0%,
+            rgba(178, 227, 255, 0.7) 20%,
+            rgba(255, 255, 255, 1) 35%,
+            rgba(255, 255, 255, 1) 40%,
             rgba(255, 255, 255, 1) 45%,
             rgba(255, 255, 255, 1) 50%,
             rgba(255, 255, 255, 1) 55%,
-            rgba(178, 227, 255, 0.9) 70%,
-            rgba(178, 227, 255, 0.9) 100%
+            rgba(255, 255, 255, 1) 60%,
+            rgba(255, 255, 255, 1) 65%,
+            rgba(178, 227, 255, 0.7) 80%,
+            rgba(178, 227, 255, 0.7) 100%
           );
-          background-size: 300% 100%;
+          background-size: 400% 100%;
           background-position: 0% 0;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
-          text-shadow:
-            0 0 10px rgba(255, 255, 255, 0.3),
-            0 0 20px rgba(34, 211, 238, 0.2);
-          animation: shine-text-sweep 3s ease-in-out infinite 1s;
+          filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.4));
+          animation: shine-text-sweep 2.5s ease-out infinite 1s;
         }
 
         .animate-text-reveal {
