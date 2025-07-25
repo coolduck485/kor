@@ -91,11 +91,11 @@ export default function Index() {
             key={`particle-${i}`}
             className="absolute rounded-full opacity-60"
             style={{
-              left: `${10 + (i * 70) % 90}%`,
-              top: `${15 + (i * 40) % 80}%`,
+              left: `${10 + ((i * 70) % 90)}%`,
+              top: `${15 + ((i * 40) % 80)}%`,
               width: `${2 + (i % 3)}px`,
               height: `${2 + (i % 3)}px`,
-              background: `rgba(${73 + (i * 20) % 50}, ${146 + (i * 10) % 30}, 255, ${0.3 + (i % 3) * 0.2})`,
+              background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.3 + (i % 3) * 0.2})`,
               animation: `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
               filter: "blur(0.5px)",
             }}
@@ -125,7 +125,8 @@ export default function Index() {
           style={{
             left: "10%",
             top: "20%",
-            background: "linear-gradient(45deg, rgba(73, 146, 255, 0.4), rgba(63, 186, 255, 0.2))",
+            background:
+              "linear-gradient(45deg, rgba(73, 146, 255, 0.4), rgba(63, 186, 255, 0.2))",
             filter: "blur(60px)",
             animation: "aurora 12s ease-in-out infinite",
           }}
@@ -135,7 +136,8 @@ export default function Index() {
           style={{
             right: "15%",
             bottom: "25%",
-            background: "linear-gradient(-45deg, rgba(57, 135, 227, 0.3), rgba(73, 146, 255, 0.1))",
+            background:
+              "linear-gradient(-45deg, rgba(57, 135, 227, 0.3), rgba(73, 146, 255, 0.1))",
             filter: "blur(80px)",
             animation: "aurora 15s ease-in-out infinite 3s",
           }}
@@ -429,8 +431,10 @@ export default function Index() {
                 className="inline-block animate-text-bounce relative"
                 style={{
                   animationDelay: "0.8s",
-                  textShadow: "0 0 20px rgba(73, 146, 255, 0.6), 0 0 40px rgba(73, 146, 255, 0.4)",
-                  animation: "textGlow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.8s both"
+                  textShadow:
+                    "0 0 20px rgba(73, 146, 255, 0.6), 0 0 40px rgba(73, 146, 255, 0.4)",
+                  animation:
+                    "textGlow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.8s both",
                 }}
               >
                 K
@@ -439,8 +443,10 @@ export default function Index() {
                 className="inline-block animate-text-bounce relative"
                 style={{
                   animationDelay: "1.4s",
-                  textShadow: "0 0 20px rgba(63, 186, 255, 0.6), 0 0 40px rgba(63, 186, 255, 0.4)",
-                  animation: "textGlow 3s ease-in-out infinite 1s, text-bounce 2s ease-in-out 1.4s both"
+                  textShadow:
+                    "0 0 20px rgba(63, 186, 255, 0.6), 0 0 40px rgba(63, 186, 255, 0.4)",
+                  animation:
+                    "textGlow 3s ease-in-out infinite 1s, text-bounce 2s ease-in-out 1.4s both",
                 }}
               >
                 o
@@ -449,8 +455,10 @@ export default function Index() {
                 className="inline-block animate-text-bounce relative"
                 style={{
                   animationDelay: "2.0s",
-                  textShadow: "0 0 20px rgba(57, 135, 227, 0.6), 0 0 40px rgba(57, 135, 227, 0.4)",
-                  animation: "textGlow 3s ease-in-out infinite 2s, text-bounce 2s ease-in-out 2.0s both"
+                  textShadow:
+                    "0 0 20px rgba(57, 135, 227, 0.6), 0 0 40px rgba(57, 135, 227, 0.4)",
+                  animation:
+                    "textGlow 3s ease-in-out infinite 2s, text-bounce 2s ease-in-out 2.0s both",
                 }}
               >
                 r
@@ -538,14 +546,16 @@ export default function Index() {
         <div
           className="absolute top-10 left-10 w-32 h-32 rounded-full opacity-30"
           style={{
-            background: "radial-gradient(circle, rgba(73, 146, 255, 0.2) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(73, 146, 255, 0.2) 0%, transparent 70%)",
             animation: "pulse 6s ease-in-out infinite",
           }}
         />
         <div
           className="absolute top-20 right-16 w-24 h-24 rounded-full opacity-25"
           style={{
-            background: "radial-gradient(circle, rgba(63, 186, 255, 0.3) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(63, 186, 255, 0.3) 0%, transparent 70%)",
             animation: "pulse 4s ease-in-out infinite 1s",
           }}
         />
@@ -554,14 +564,16 @@ export default function Index() {
         <div
           className="absolute bottom-16 left-20 w-28 h-28 rounded-full opacity-20"
           style={{
-            background: "radial-gradient(circle, rgba(57, 135, 227, 0.4) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(57, 135, 227, 0.4) 0%, transparent 70%)",
             animation: "pulse 7s ease-in-out infinite 2s",
           }}
         />
         <div
           className="absolute bottom-12 right-12 w-20 h-20 rounded-full opacity-35"
           style={{
-            background: "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
             animation: "pulse 5s ease-in-out infinite 0.5s",
           }}
         />
@@ -878,7 +890,8 @@ export default function Index() {
         }
 
         @keyframes energy-pulse {
-          0%, 100% {
+          0%,
+          100% {
             opacity: 0.3;
             transform: scale(1);
           }
@@ -889,26 +902,32 @@ export default function Index() {
         }
 
         @keyframes aurora {
-          0%, 100% {
+          0%,
+          100% {
             opacity: 0.4;
             transform: translateX(-50%) translateY(-50%) rotate(0deg) scale(1);
           }
           33% {
             opacity: 0.7;
-            transform: translateX(-45%) translateY(-55%) rotate(120deg) scale(1.2);
+            transform: translateX(-45%) translateY(-55%) rotate(120deg)
+              scale(1.2);
           }
           66% {
             opacity: 0.5;
-            transform: translateX(-55%) translateY(-45%) rotate(240deg) scale(0.9);
+            transform: translateX(-55%) translateY(-45%) rotate(240deg)
+              scale(0.9);
           }
         }
 
         @keyframes ambient-glow {
-          0%, 100% {
+          0%,
+          100% {
             box-shadow: 0 0 20px rgba(73, 146, 255, 0.3);
           }
           50% {
-            box-shadow: 0 0 40px rgba(73, 146, 255, 0.6), 0 0 60px rgba(63, 186, 255, 0.3);
+            box-shadow:
+              0 0 40px rgba(73, 146, 255, 0.6),
+              0 0 60px rgba(63, 186, 255, 0.3);
           }
         }
 
