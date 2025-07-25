@@ -547,7 +547,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: ██████████████��███████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1333,6 +1333,21 @@ export default function Index() {
       animate={!isLoading && isLoaded ? "visible" : "hidden"}
     >
       {/* Main Content - Always visible with orchestrated animations */}
+      {/* Left Corner Visual Elements for Mobile Balance */}
+      <div className="fixed top-6 left-6 z-40 block sm:hidden">
+        <motion.div
+          className="flex flex-col space-y-2"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={animationStep >= 1 ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 1.5, duration: 0.8 }}
+        >
+          {/* Status indicators */}
+          <div className="w-2 h-2 rounded-full bg-green-400/60 animate-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-blue-400/40 animate-pulse" style={{ animationDelay: "0.5s" }} />
+          <div className="w-1 h-1 rounded-full bg-purple-400/30 animate-pulse" style={{ animationDelay: "1s" }} />
+        </motion.div>
+      </div>
+
       {/* Theme Toggle Container with Tooltip */}
       <div className="fixed top-6 right-6 z-50">
         <div
