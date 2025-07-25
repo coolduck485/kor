@@ -165,11 +165,11 @@ export default function Index() {
         variants={fadeInScale}
       >
         <div
-          className="absolute inset-0 animate-pulse"
+          className="absolute inset-0"
           style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
             backgroundSize: "50px 50px",
-            animation: "backgroundShift 20s ease-in-out infinite alternate",
+            animation: "backgroundShift 30s ease-in-out infinite alternate",
           }}
         />
       </motion.div>
