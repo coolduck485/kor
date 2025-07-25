@@ -156,11 +156,17 @@ export default function Index() {
 
   return (
     <motion.div
-      className="relative min-h-screen bg-black overflow-hidden"
+      className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
+        theme === "light"
+          ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
+          : "bg-black"
+      }`}
       variants={containerVariants}
       initial="hidden"
       animate={isLoaded ? "visible" : "hidden"}
     >
+      {/* Theme Toggle */}
+      <ThemeToggle />
       {/* Enhanced Background Elements */}
 
       {/* Dynamic Gradient Overlays */}
