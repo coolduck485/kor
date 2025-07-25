@@ -439,8 +439,13 @@ export default function Index() {
                 animate={{ opacity: isLoaded ? 1 : 0 }}
                 transition={{ duration: 2 }}
               >
-                <div className="ascii-logo text-8xl font-bold text-center mb-4 text-green-400 terminal-glow"
-                     style={{fontFamily: 'JetBrains Mono, monospace', letterSpacing: '0.2em'}}>
+                <div
+                  className="ascii-logo text-8xl font-bold text-center mb-4 text-green-400 terminal-glow"
+                  style={{
+                    fontFamily: "JetBrains Mono, monospace",
+                    letterSpacing: "0.2em",
+                  }}
+                >
                   KOR
                 </div>
                 <pre className="hidden">
@@ -466,7 +471,8 @@ export default function Index() {
                 </div>
                 <div className="terminal-content">
                   <div className="text-amber-400 font-bold mb-1">
-                    <span className="text-gray-500">$</span> system-info --status
+                    <span className="text-gray-500">$</span> system-info
+                    --status
                   </div>
                   <div className="text-amber-400 font-bold mb-3 mt-2">
                     SYSTEM STATUS:{" "}
@@ -517,7 +523,9 @@ export default function Index() {
                   </div>
                   <div className="terminal-line mb-3">
                     <span className="text-cyan-400">NET:</span>&nbsp;
-                    <span className="text-green-400 terminal-glow">CONNECTED</span>
+                    <span className="text-green-400 terminal-glow">
+                      CONNECTED
+                    </span>
                   </div>
                   <div className="terminal-line mb-4">
                     <span className="text-green-400 blink">█</span>
