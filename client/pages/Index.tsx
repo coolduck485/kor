@@ -956,6 +956,156 @@ export default function Index() {
         <RetroToggle />
       </div>
 
+      {/* Visible Theme Selector Container */}
+      <div className="fixed bottom-6 left-6 z-50">
+        <div
+          className="group relative"
+          onMouseEnter={() => {}}
+          onMouseLeave={() => {}}
+        >
+          {/* Tooltip */}
+          <div className="absolute bottom-full left-0 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div
+              className={`px-3 py-2 rounded-lg border backdrop-blur-xl text-sm font-medium whitespace-nowrap ${
+                theme === "light"
+                  ? "border-blue-400/40 bg-white/80 text-gray-800"
+                  : "border-blue-300/30 bg-blue-400/10 text-white/90"
+              }`}
+              style={{
+                background:
+                  theme === "light"
+                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+              }}
+            >
+              Click any theme to change the site's appearance
+              {/* Tooltip arrow */}
+              <div
+                className={`absolute top-full left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
+                  theme === "light"
+                    ? "border-t-white/80"
+                    : "border-t-blue-400/10"
+                }`}
+              />
+            </div>
+          </div>
+
+          {/* Theme Container */}
+          <div
+            className={`rounded-2xl border-2 backdrop-blur-2xl p-4 w-[200px] ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/30"
+                : "border-blue-300/30 bg-blue-400/5"
+            }`}
+            style={{
+              background:
+                theme === "light"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+              boxShadow:
+                "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
+            }}
+          >
+            {/* Container Title */}
+            <div
+              className={`text-center font-poppins font-semibold mb-3 text-sm ${
+                theme === "light" ? "text-gray-800" : "text-white/90"
+              }`}
+            >
+              Website Themes
+            </div>
+
+            {/* Theme Options */}
+            <div className="space-y-2">
+              {/* Light Theme */}
+              <button
+                onClick={() => {
+                  const { setTheme } = useTheme();
+                  setTheme("light");
+                }}
+                className={`group w-full px-3 py-2 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-300 hover:shadow-xl active:scale-95 overflow-hidden relative ${
+                  theme === "light"
+                    ? "border-blue-500/60 bg-blue-100/50"
+                    : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
+                } ${
+                  theme === "light"
+                    ? "text-gray-900"
+                    : "text-white/90 hover:text-white"
+                }`}
+                style={{
+                  background:
+                    theme === "light"
+                      ? `linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)`
+                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-gradient-to-br from-yellow-400 to-orange-400"></div>
+                  <span className="font-poppins font-medium text-sm">Light Mode</span>
+                </div>
+              </button>
+
+              {/* Dark Theme */}
+              <button
+                onClick={() => {
+                  const { setTheme } = useTheme();
+                  setTheme("dark");
+                }}
+                className={`group w-full px-3 py-2 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-300 hover:shadow-xl active:scale-95 overflow-hidden relative ${
+                  theme === "dark"
+                    ? "border-purple-500/60 bg-purple-100/20"
+                    : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
+                } ${
+                  theme === "light"
+                    ? "text-gray-800 hover:text-gray-900"
+                    : "text-white/90 hover:text-white"
+                }`}
+                style={{
+                  background:
+                    theme === "dark"
+                      ? `linear-gradient(135deg, rgba(147,51,234,0.2) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)`
+                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
+                  <span className="font-poppins font-medium text-sm">Dark Mode</span>
+                </div>
+              </button>
+
+              {/* Retro Theme */}
+              <button
+                onClick={() => {
+                  const { toggleMode } = useRetroMode();
+                  toggleMode();
+                }}
+                className={`group w-full px-3 py-2 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-300 hover:shadow-xl active:scale-95 overflow-hidden relative ${
+                  mode === "retro"
+                    ? "border-green-500/60 bg-green-100/20"
+                    : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
+                } ${
+                  theme === "light"
+                    ? "text-gray-800 hover:text-gray-900"
+                    : "text-white/90 hover:text-white"
+                }`}
+                style={{
+                  background:
+                    mode === "retro"
+                      ? `linear-gradient(135deg, rgba(34,197,94,0.2) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)`
+                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-gradient-to-br from-green-400 to-cyan-400"></div>
+                  <span className="font-poppins font-medium text-sm">Retro Mode</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Enhanced Background Elements */}
 
       {/* Dynamic Gradient Overlays */}
