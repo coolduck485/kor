@@ -13,7 +13,9 @@ export default function Index() {
   });
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [cursorTrails, setCursorTrails] = useState<Array<{id: number, x: number, y: number}>>([]);
+  const [cursorTrails, setCursorTrails] = useState<
+    Array<{ id: number; x: number; y: number }>
+  >([]);
 
   // Framer Motion animation variants
   const containerVariants = {
@@ -108,11 +110,11 @@ export default function Index() {
       });
 
       // Add cursor trail effect
-      setCursorTrails(prev => {
+      setCursorTrails((prev) => {
         const newTrail = {
           id: Date.now(),
           x: e.clientX,
-          y: e.clientY
+          y: e.clientY,
         };
         return [...prev.slice(-8), newTrail]; // Keep only last 8 trails
       });
@@ -127,7 +129,7 @@ export default function Index() {
 
     // Clean up old cursor trails
     const trailCleanup = setInterval(() => {
-      setCursorTrails(prev => prev.slice(-5));
+      setCursorTrails((prev) => prev.slice(-5));
     }, 100);
 
     return () => {
@@ -286,7 +288,7 @@ export default function Index() {
               top: `${20 + ((i * 60) % 60)}%`,
               width: `${20 + (i % 3) * 15}px`,
               height: `${20 + (i % 3) * 15}px`,
-              background: `radial-gradient(circle, rgba(${73 + (i * 10)}, ${146 + (i * 5)}, 255, 0.3) 0%, transparent 70%)`,
+              background: `radial-gradient(circle, rgba(${73 + i * 10}, ${146 + i * 5}, 255, 0.3) 0%, transparent 70%)`,
               animation: `breath ${6 + (i % 4)}s ease-in-out infinite ${i * 0.4}s`,
               filter: `blur(${2 + (i % 3)}px)`,
             }}
@@ -476,10 +478,10 @@ export default function Index() {
               e.currentTarget.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.02)`;
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translate(0px, 0px) scale(1)';
+              e.currentTarget.style.transform = "translate(0px, 0px) scale(1)";
             }}
             style={{
-              transition: 'transform 0.3s ease-out',
+              transition: "transform 0.3s ease-out",
             }}
           >
             <svg
@@ -824,7 +826,12 @@ export default function Index() {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative">
             {/* Animated Connection Lines Between Buttons */}
-            <svg className="absolute inset-0 pointer-events-none" width="600" height="600" style={{ left: "-300px", top: "-300px" }}>
+            <svg
+              className="absolute inset-0 pointer-events-none"
+              width="600"
+              height="600"
+              style={{ left: "-300px", top: "-300px" }}
+            >
               <circle
                 cx="300"
                 cy="300"
@@ -1578,7 +1585,7 @@ function OrbFloatingButton({
           marginTop: "var(--mobile-y)",
           animationDelay: `${delay}s`,
           transform: `scale(${currentSize.scale})`,
-          animation: `gentleFloat 4s ease-in-out infinite ${delay}s, button-drift ${8 + (delay * 2)}s ease-in-out infinite ${delay * 1.5}s`,
+          animation: `gentleFloat 4s ease-in-out infinite ${delay}s, button-drift ${8 + delay * 2}s ease-in-out infinite ${delay * 1.5}s`,
         } as React.CSSProperties
       }
     >

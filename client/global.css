@@ -364,7 +364,8 @@
 }
 
 @keyframes gentle-pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.4;
     transform: scale(1);
   }
@@ -375,7 +376,8 @@
 }
 
 @keyframes button-drift {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0px, 0px);
   }
   25% {
@@ -401,7 +403,8 @@
 }
 
 @keyframes magnetic-pull {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1) translate(0px, 0px);
   }
   50% {
@@ -410,7 +413,8 @@
 }
 
 @keyframes color-shift {
-  0%, 100% {
+  0%,
+  100% {
     filter: hue-rotate(0deg) saturate(1);
   }
   25% {
@@ -425,7 +429,8 @@
 }
 
 @keyframes geometric-pulse {
-  0%, 100% {
+  0%,
+  100% {
     stroke-dashoffset: 0;
     opacity: 0.3;
   }
@@ -436,7 +441,8 @@
 }
 
 @keyframes breath {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1) rotate(0deg);
     opacity: 0.4;
   }
@@ -447,15 +453,18 @@
 }
 
 @keyframes warm-glow-pulse {
-  0%, 100% {
-    text-shadow: 0 0 15px rgba(73, 146, 255, 0.6),
-                 0 0 25px rgba(63, 186, 255, 0.4),
-                 0 0 35px rgba(57, 135, 227, 0.3);
+  0%,
+  100% {
+    text-shadow:
+      0 0 15px rgba(73, 146, 255, 0.6),
+      0 0 25px rgba(63, 186, 255, 0.4),
+      0 0 35px rgba(57, 135, 227, 0.3);
   }
   50% {
-    text-shadow: 0 0 20px rgba(73, 146, 255, 0.9),
-                 0 0 30px rgba(63, 186, 255, 0.7),
-                 0 0 45px rgba(57, 135, 227, 0.5);
+    text-shadow:
+      0 0 20px rgba(73, 146, 255, 0.9),
+      0 0 30px rgba(63, 186, 255, 0.7),
+      0 0 45px rgba(57, 135, 227, 0.5);
   }
 }
 
@@ -554,18 +563,20 @@
 
 /* Blue glow development text matching site theme */
 .warm-glow-text {
-  color: #93C5FD; /* Light blue to match site palette */
-  text-shadow: 0 0 15px rgba(73, 146, 255, 0.6),
-               0 0 25px rgba(63, 186, 255, 0.4),
-               0 0 35px rgba(57, 135, 227, 0.3);
+  color: #93c5fd; /* Light blue to match site palette */
+  text-shadow:
+    0 0 15px rgba(73, 146, 255, 0.6),
+    0 0 25px rgba(63, 186, 255, 0.4),
+    0 0 35px rgba(57, 135, 227, 0.3);
 }
 
 /* Dark mode version */
 .dark .warm-glow-text {
-  color: #DBEAFE; /* Very light blue for dark mode */
-  text-shadow: 0 0 20px rgba(73, 146, 255, 0.8),
-               0 0 30px rgba(63, 186, 255, 0.6),
-               0 0 40px rgba(57, 135, 227, 0.4);
+  color: #dbeafe; /* Very light blue for dark mode */
+  text-shadow:
+    0 0 20px rgba(73, 146, 255, 0.8),
+    0 0 30px rgba(63, 186, 255, 0.6),
+    0 0 40px rgba(57, 135, 227, 0.4);
 }
 
 /* Light mode chrome */
