@@ -37,6 +37,20 @@ export default function Index() {
     setBadgeMousePosition({ x: 0, y: 0, isNear: false });
   };
 
+  // ========================================
+  // SHINE ANIMATION CONFIGURATION
+  // ========================================
+  const SHINE_CONFIG = {
+    direction: 'right-to-left', // 'left-to-right' or 'right-to-left'
+    duration: '2.5s', // Animation duration
+    delay: '1s', // Initial delay
+    interval: '4s', // Time between shine sweeps (total cycle time)
+    intensity: 0.9, // Brightness of the shine (0-1)
+    width: 30, // Width of the shine effect (percentage)
+    showSparkles: true, // Enable/disable sparkles
+    sparkleCount: 8, // Number of sparkles
+  };
+
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
       {/* Enhanced Background Elements */}
