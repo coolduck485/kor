@@ -411,8 +411,7 @@ export default function Index() {
                       )}
                     </div>
                   ))}
-                </div>
-                <div className="terminal-input-line">
+                  <div className="terminal-input-line">
                   <span className="prompt">&gt;</span>
                   <input
                     type="text"
@@ -459,6 +458,7 @@ export default function Index() {
                     placeholder="Type command..."
                     autoFocus
                   />
+                  </div>
                 </div>
               </div>
             </motion.div>
