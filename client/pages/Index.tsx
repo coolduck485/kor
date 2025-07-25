@@ -115,6 +115,31 @@ export default function Index() {
     },
   };
 
+  const triggerLoadingSequence = () => {
+    setIsLoading(true);
+    setIsLoaded(false);
+    setLoadingStep(0);
+
+    const loadingSequence = [
+      { delay: 600, step: 1 }, // Show "K"
+      { delay: 1000, step: 2 }, // Show "Ko"
+      { delay: 1400, step: 3 }, // Show "Kor"
+      { delay: 2200, step: 4 }, // Complete loading
+    ];
+
+    const timeouts = loadingSequence.map(({ delay, step }) =>
+      setTimeout(() => {
+        setLoadingStep(step);
+        if (step === 4) {
+          setIsLoading(false);
+          setTimeout(() => setIsLoaded(true), 400);
+        }
+      }, delay)
+    );
+
+    return timeouts;
+  };
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
@@ -125,29 +150,25 @@ export default function Index() {
 
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Loading sequence animation
-    const loadingSequence = [
-      { delay: 800, step: 1 }, // Show "K"
-      { delay: 1400, step: 2 }, // Show "Ko"
-      { delay: 2000, step: 3 }, // Show "Kor"
-      { delay: 3200, step: 4 }, // Complete loading
-    ];
-
-    const timeouts = loadingSequence.map(({ delay, step }) =>
-      setTimeout(() => {
-        setLoadingStep(step);
-        if (step === 4) {
-          setIsLoading(false);
-          setTimeout(() => setIsLoaded(true), 500);
-        }
-      }, delay)
-    );
+    // Initial loading sequence
+    const timeouts = triggerLoadingSequence();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       timeouts.forEach(clearTimeout);
     };
   }, []);
+
+  // Trigger loading animation when switching modes
+  useEffect(() => {
+    if (previousMode !== mode) {
+      setPreviousMode(mode);
+      // Only trigger loading if it's not the initial load
+      if (previousMode !== null) {
+        triggerLoadingSequence();
+      }
+    }
+  }, [mode, previousMode]);
 
   // Dynamic network stats updates
   useEffect(() => {
@@ -404,7 +425,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║��█╔══██╗
-██║  ██╗╚██���███╔╝██║  ██║
+██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -422,7 +443,7 @@ export default function Index() {
             </div>
             <div className="terminal-content">
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╔════════════════════════════════════════════════════════╗
+                ╔═════════════════════════════��══════════════════════════╗
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
                 ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
