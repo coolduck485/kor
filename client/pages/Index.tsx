@@ -378,18 +378,46 @@ export default function Index() {
                 }}
               >
                 Development services
-                {/* Figma Star Sparkles */}
+                {/* Figma Star Sparkles - Positioned like reference image */}
                 {SHINE_CONFIG.showSparkles &&
-                  [...Array(SHINE_CONFIG.sparkleCount)].map((_, i) => (
+                  [
+                    // Upper left area
+                    { x: -140, y: -45, size: 0.6 },
+                    { x: -90, y: -70, size: 0.4 },
+
+                    // Upper right area
+                    { x: 120, y: -50, size: 0.5 },
+                    { x: 160, y: -25, size: 0.7 },
+
+                    // Right side
+                    { x: 180, y: 15, size: 0.4 },
+                    { x: 200, y: 45, size: 0.6 },
+
+                    // Lower right
+                    { x: 140, y: 75, size: 0.5 },
+                    { x: 90, y: 95, size: 0.8 },
+
+                    // Lower center
+                    { x: 20, y: 100, size: 0.4 },
+                    { x: -30, y: 110, size: 0.6 },
+
+                    // Lower left
+                    { x: -110, y: 85, size: 0.5 },
+                    { x: -150, y: 60, size: 0.4 },
+
+                    // Left side
+                    { x: -170, y: 20, size: 0.7 },
+                    { x: -180, y: -15, size: 0.5 },
+                  ].map((sparkle, i) => (
                     <div
                       key={`sparkle-${i}`}
                       className="absolute animate-sparkle-twinkle pointer-events-none"
                       style={{
-                        left: `calc(50% + ${Math.cos((i / SHINE_CONFIG.sparkleCount) * 360 * Math.PI / 180) * 120}px)`,
-                        top: `calc(50% + ${Math.sin((i / SHINE_CONFIG.sparkleCount) * 360 * Math.PI / 180) * 60}px)`,
-                        animationDelay: `${i * 0.3 + 2}s`,
-                        animationDuration: `${3 + Math.random() * 2}s`,
-                        transform: `scale(${0.4 + Math.random() * 0.3}) rotate(${Math.random() * 360}deg)`,
+                        left: `calc(50% + ${sparkle.x}px)`,
+                        top: `calc(50% + ${sparkle.y}px)`,
+                        animationDelay: `${i * 0.2 + 2}s`,
+                        animationDuration: `${3 + Math.random() * 1.5}s`,
+                        transform: `scale(${sparkle.size}) rotate(${Math.random() * 360}deg)`,
                         opacity: 0.9,
                       }}
                     >
