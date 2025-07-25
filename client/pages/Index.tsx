@@ -475,19 +475,34 @@ export default function Index() {
           animation: noise 3s ease-in-out infinite;
         }
 
-        @keyframes shooting-star {
+        @keyframes shine-text {
+          0%, 100% {
+            text-shadow:
+              0 0 5px rgba(34, 211, 238, 0.3),
+              0 0 10px rgba(34, 211, 238, 0.2),
+              0 0 15px rgba(34, 211, 238, 0.1);
+          }
+          50% {
+            text-shadow:
+              0 0 10px rgba(34, 211, 238, 0.6),
+              0 0 20px rgba(34, 211, 238, 0.4),
+              0 0 30px rgba(34, 211, 238, 0.2);
+          }
+        }
+
+        @keyframes shine-sweep {
           0% {
-            transform: translate(0, 0) rotate(45deg);
+            transform: translateX(-100%) skewX(-12deg);
             opacity: 0;
           }
-          5% {
+          20% {
             opacity: 1;
           }
-          95% {
+          80% {
             opacity: 1;
           }
           100% {
-            transform: translate(300px, 300px) rotate(45deg);
+            transform: translateX(300%) skewX(-12deg);
             opacity: 0;
           }
         }
