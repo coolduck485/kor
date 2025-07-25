@@ -4,6 +4,7 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useTheme } from "@/hooks/use-theme";
 
 export default function Index() {
+  const { theme } = useTheme();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
