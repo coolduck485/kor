@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { RetroModeProvider } from "@/hooks/use-retro-mode";
+import { NotificationProvider } from "@/components/ui/floating-notification";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
