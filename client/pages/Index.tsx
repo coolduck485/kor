@@ -19,7 +19,9 @@ export default function Index() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
-  const [terminalOutput, setTerminalOutput] = useState<string[]>(["Type 'help' to see list of available commands."]);
+  const [terminalOutput, setTerminalOutput] = useState<string[]>([
+    "Type 'help' to see list of available commands.",
+  ]);
 
   // Framer Motion animation variants
   const containerVariants = {
@@ -330,7 +332,7 @@ export default function Index() {
                 <div className="terminal-output">
                   {terminalOutput.map((line, index) => (
                     <div key={index} className="terminal-line">
-                      {line.startsWith('>') ? (
+                      {line.startsWith(">") ? (
                         <>
                           <span className="prompt">&gt;</span>
                           <span className="command">{line.slice(1)}</span>
@@ -349,30 +351,41 @@ export default function Index() {
                     value={terminalInput}
                     onChange={(e) => setTerminalInput(e.target.value)}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
+                      if (e.key === "Enter") {
                         const command = terminalInput.trim().toLowerCase();
-                        const newOutput = [...terminalOutput, `>${terminalInput}`];
+                        const newOutput = [
+                          ...terminalOutput,
+                          `>${terminalInput}`,
+                        ];
 
-                        if (command === 'help') {
-                          newOutput.push('');
-                          newOutput.push('AVAILABLE COMMANDS:');
-                          newOutput.push('help - show this help message');
-                          newOutput.push('');
-                          newOutput.push('TIP: Switch back to the main website theme to explore');
-                          newOutput.push('my projects, services, and portfolio.');
-                          newOutput.push('');
-                        } else if (command === 'clear') {
-                          setTerminalOutput(["Type 'help' to see list of available commands."]);
-                          setTerminalInput('');
+                        if (command === "help") {
+                          newOutput.push("");
+                          newOutput.push("AVAILABLE COMMANDS:");
+                          newOutput.push("help - show this help message");
+                          newOutput.push("");
+                          newOutput.push(
+                            "TIP: Switch back to the main website theme to explore",
+                          );
+                          newOutput.push(
+                            "my projects, services, and portfolio.",
+                          );
+                          newOutput.push("");
+                        } else if (command === "clear") {
+                          setTerminalOutput([
+                            "Type 'help' to see list of available commands.",
+                          ]);
+                          setTerminalInput("");
                           return;
-                        } else if (command !== '') {
+                        } else if (command !== "") {
                           newOutput.push(`Command '${command}' not found.`);
-                          newOutput.push('');
+                          newOutput.push("");
                         }
 
-                        newOutput.push("Type 'help' to see list of available commands.");
+                        newOutput.push(
+                          "Type 'help' to see list of available commands.",
+                        );
                         setTerminalOutput(newOutput);
-                        setTerminalInput('');
+                        setTerminalInput("");
                       }
                     }}
                     placeholder="Type command..."
@@ -441,8 +454,6 @@ export default function Index() {
             }
           }
 
-
-
           .retro-header {
             display: flex;
             justify-content: space-between;
@@ -480,9 +491,11 @@ export default function Index() {
             font-family: "JetBrains Mono", "Courier New", monospace;
             font-weight: 700;
             font-size: clamp(8px, 2.5vw, 18px);
-            line-height: 1.0;
+            line-height: 1;
             color: #00ff41;
-            text-shadow: 0 0 8px #00ff41, 0 0 15px #00ff41;
+            text-shadow:
+              0 0 8px #00ff41,
+              0 0 15px #00ff41;
             margin: 0;
             white-space: pre;
             letter-spacing: 1px;
@@ -497,8 +510,14 @@ export default function Index() {
           }
 
           @keyframes terminal-cursor {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+            0%,
+            50% {
+              opacity: 1;
+            }
+            51%,
+            100% {
+              opacity: 0;
+            }
           }
 
           .retro-subtitle {
@@ -506,7 +525,10 @@ export default function Index() {
             font-size: clamp(12px, 3vw, 18px);
             font-weight: bold;
             margin-top: 12px;
-            text-shadow: 0 0 10px #ffaa00, 0 0 20px #ffaa00, 0 0 30px #ffaa00;
+            text-shadow:
+              0 0 10px #ffaa00,
+              0 0 20px #ffaa00,
+              0 0 30px #ffaa00;
             letter-spacing: 2px;
           }
 
