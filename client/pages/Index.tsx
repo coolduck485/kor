@@ -23,8 +23,6 @@ export default function Index() {
     "Type 'help' to see list of available commands.",
   ]);
   const [systemStats, setSystemStats] = useState({
-    cpu: 80,
-    ram: 70,
     networkUp: 1.2,
     networkDown: 847,
   });
