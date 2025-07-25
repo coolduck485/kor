@@ -484,6 +484,19 @@ export default function Index() {
             margin: 0;
             white-space: pre;
             letter-spacing: 1px;
+            position: relative;
+          }
+
+          .ascii-logo::after {
+            content: "█";
+            color: #00ff41;
+            animation: terminal-cursor 1s infinite;
+            margin-left: 8px;
+          }
+
+          @keyframes terminal-cursor {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
           }
 
           .retro-subtitle {
