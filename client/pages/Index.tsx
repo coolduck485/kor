@@ -241,7 +241,7 @@ export default function Index() {
   // If retro mode is enabled, show retro version
   if (mode === "retro") {
     return (
-      <div className="retro-container min-h-screen">
+      <div className="retro-container min-h-screen max-h-screen overflow-y-auto overflow-x-hidden">
         {/* Retro Loading Screen */}
         <AnimatePresence>
           {isLoading && (
