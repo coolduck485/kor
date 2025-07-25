@@ -624,14 +624,14 @@ export default function Index() {
                     animationFillMode: "both",
                   }}
                 >
-                  {/* Chrome wavy text with letter-by-letter animation */}
-                  <div className="chrome-wavy-text">
+                  {/* Warm glow text with iOS-inspired styling */}
+                  <div className="warm-glow-text animate-warm-glow-pulse">
                     {"Development services".split("").map((letter, i) => (
                       <span
                         key={i}
-                        className="wavy-letter"
+                        className="animate-letter-float"
                         style={{
-                          animationDelay: `${i * 0.1}s, ${i * 0.05}s`,
+                          animationDelay: `${i * 0.1}s`,
                         }}
                       >
                         {letter === " " ? "\u00A0" : letter}
