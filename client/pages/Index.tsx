@@ -683,11 +683,15 @@ export default function Index() {
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center space-y-3 animate-button-float">
           {/* Desktop: Scroll Down */}
-          <span className="hidden lg:block font-inter text-white/70 text-sm font-medium animate-text-glow">
+          <span className={`hidden lg:block font-inter text-sm font-medium animate-text-glow ${
+            theme === "light" ? "text-gray-600" : "text-white/70"
+          }`}>
             Scroll Down
           </span>
           {/* Mobile/Tablet: Swipe Down */}
-          <span className="lg:hidden font-inter text-white/70 text-sm font-medium animate-text-glow">
+          <span className={`lg:hidden font-inter text-sm font-medium animate-text-glow ${
+            theme === "light" ? "text-gray-600" : "text-white/70"
+          }`}>
             Swipe Down
           </span>
 
