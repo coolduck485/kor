@@ -537,6 +537,111 @@ export default function Index() {
         .animate-noise {
           animation: noise 3s ease-in-out infinite;
         }
+
+        @keyframes pulse-glow {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 0.3;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+          }
+          50% {
+            transform: scale(1.5);
+            opacity: 0.8;
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+          }
+        }
+
+        @keyframes rotate-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse-line {
+          0%, 100% {
+            opacity: 0.1;
+            transform: scaleX(0.5);
+          }
+          50% {
+            opacity: 0.6;
+            transform: scaleX(1.2);
+          }
+        }
+
+        @keyframes text-reveal {
+          0% {
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            text-shadow: 0 0 0px rgba(73, 146, 255, 0);
+          }
+          50% {
+            text-shadow: 0 0 30px rgba(73, 146, 255, 0.8);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0px) scale(1);
+            text-shadow: 0 0 20px rgba(73, 146, 255, 0.4);
+          }
+        }
+
+        @keyframes text-bounce {
+          0%, 100% {
+            transform: translateY(0px) scale(1);
+          }
+          50% {
+            transform: translateY(-5px) scale(1.05);
+          }
+        }
+
+        @keyframes type-writer {
+          0% {
+            opacity: 0;
+            transform: translateX(-10px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0px);
+          }
+        }
+
+        @keyframes fade-in-word {
+          0% {
+            opacity: 0;
+            transform: translateY(10px) blur(2px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0px) blur(0px);
+          }
+        }
+
+        .animate-pulse-glow {
+          animation: pulse-glow ease-in-out infinite;
+        }
+
+        .animate-rotate-slow {
+          animation: rotate-slow linear infinite;
+        }
+
+        .animate-pulse-line {
+          animation: pulse-line ease-in-out infinite;
+        }
+
+        .animate-text-reveal {
+          animation: text-reveal 1.5s ease-out forwards;
+        }
+
+        .animate-text-bounce {
+          animation: text-bounce 2s ease-in-out infinite;
+        }
+
+        .animate-type-writer {
+          animation: type-writer 1s ease-out forwards;
+        }
+
+        .animate-fade-in-word {
+          opacity: 0;
+          animation: fade-in-word 0.8s ease-out forwards;
+        }
       `}</style>
     </div>
   );
