@@ -546,12 +546,12 @@ export default function Index() {
           }
         }
 
-        .animate-shine-text {
-          animation: shine-text 3s ease-in-out infinite;
-        }
-
-        .animate-shine-sweep {
-          animation: shine-sweep 4s ease-in-out infinite 2s;
+        .animate-shine-text-only {
+          color: rgba(178, 227, 255, 0.9);
+          text-shadow:
+            0 0 5px rgba(34, 211, 238, 0.3),
+            0 0 10px rgba(34, 211, 238, 0.2);
+          animation: shine-text-sweep 4s ease-in-out infinite 2s;
         }
 
         .animate-text-reveal {
