@@ -438,11 +438,11 @@
   }
 }
 
-/* Chrome text styling with wavy letters and cartoon shine */
+/* Chrome text styling with wavy letters and contained shine */
 .chrome-wavy-text {
   display: inline-block;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .chrome-wavy-text .wavy-letter {
@@ -472,28 +472,36 @@
   animation: wavy-letter 4s ease-in-out infinite 0.5s;
 }
 
-/* Cartoon shine overlay */
-.chrome-wavy-text::after {
-  content: '';
+/* Cartoon shine overlay - masked to text content */
+.chrome-wavy-text::before {
+  content: 'Development services';
   position: absolute;
-  top: -10%;
-  left: -20%;
-  width: 30%;
-  height: 120%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(
     75deg,
     transparent 0%,
     transparent 40%,
-    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.9) 50%,
     rgba(255, 255, 255, 1) 52%,
-    rgba(255, 255, 255, 0.8) 54%,
+    rgba(255, 255, 255, 0.9) 54%,
     transparent 60%,
     transparent 100%
   );
+  background-size: 300% 100%;
+  background-position: -300% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   animation: cartoon-shine-sweep 4s ease-in-out infinite 1s;
   z-index: 2;
   pointer-events: none;
-  transform: skewX(-20deg);
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  line-height: inherit;
 }
 
 /* Enhanced shine text styling */
