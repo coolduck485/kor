@@ -545,7 +545,7 @@ export default function Index() {
                   textShadow:
                     "0 0 20px rgba(57, 135, 227, 0.6), 0 0 40px rgba(57, 135, 227, 0.4)",
                   animation:
-                    "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s both",
+                    "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s infinite both",
                 }}
               >
                 r
