@@ -233,33 +233,45 @@ export default function Index() {
               <span>TERMINAL</span>
             </div>
             <div className="terminal-content">
-              <div className="text-amber-400 font-bold mb-2">
-                SYSTEM STATUS: ONLINE
+              <div className="text-green-400 font-bold mb-2 terminal-glow">
+                ╔════════════════════════════════════════════════════════╗
               </div>
-              <div className="typewriter mb-2">
-                LOADING DEVELOPMENT SERVICES...
+              <div className="text-green-400 font-bold mb-2 terminal-glow">
+                ║           KOR DEVELOPMENT SYSTEMS v2.4.7             ║
               </div>
-              <div className="terminal-line">
-                <span className="cursor-text">CUSTOM SOFTWARE SOLUTIONS</span>
+              <div className="text-green-400 font-bold mb-2 terminal-glow">
+                ╚════════════════════════════════════════════════════════╝
               </div>
-              <div className="terminal-line">
-                <span className="cursor-text text-amber-400">
-                  RETRO SYSTEM ARCHITECTURE
-                </span>
+              <div className="text-amber-400 font-bold mb-3 mt-4">
+                SYSTEM STATUS: <span className="text-green-400 terminal-glow">OPERATIONAL</span>
               </div>
               <div className="terminal-line">
-                <span className="cursor-text">WEB APPLICATION DEVELOPMENT</span>
+                <span className="text-green-400">[ACTIVE]</span> CUSTOM SOFTWARE SOLUTIONS
               </div>
-              <div className="terminal-line mb-4">
-                <span className="cursor-text text-amber-400">
+              <div className="terminal-line">
+                <span className="text-green-400">[ACTIVE]</span> <span className="text-cyan-400">WEB APPLICATION DEVELOPMENT</span>
+              </div>
+              <div className="terminal-line">
+                <span className="text-green-400">[ACTIVE]</span> AI/ML INTEGRATION SERVICES
+              </div>
+              <div className="terminal-line mb-2">
+                <span className="text-green-400">[ACTIVE]</span> CLOUD INFRASTRUCTURE DESIGN
+              </div>
+              <div className="terminal-line mb-2">
+                <span className="text-yellow-400">[PRIORITY]</span> <span className="typewriter text-red-400 font-bold">
                   LEGACY SYSTEM MODERNIZATION
                 </span>
               </div>
+              <div className="terminal-line mb-4">
+                <span className="text-green-400">[ACTIVE]</span> <span className="text-purple-400">ENTERPRISE AUTOMATION</span>
+              </div>
               <div className="memory-section">
-                <div className="text-xs mb-2">MEMORY USAGE:</div>
+                <div className="text-xs mb-2 text-cyan-400">SYSTEM RESOURCES:</div>
+                <div className="text-xs text-green-400 mb-1">CPU: ████████████████░░░░ 80%</div>
+                <div className="text-xs text-amber-400 mb-1">RAM: ██████████████░░░░░░ 70%</div>
                 <div className="loading-bar"></div>
-                <div className="text-xs text-amber-400 mt-1">
-                  64KB / 640KB AVAILABLE
+                <div className="text-xs text-green-400 mt-1">
+                  NETWORK: 1.2GB/s ↑ | 847MB/s ↓
                 </div>
               </div>
             </div>
