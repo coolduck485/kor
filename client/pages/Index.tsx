@@ -274,7 +274,7 @@ export default function Index() {
                     <motion.span
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
-                      animate={loadingStep >= 1 ? {
+                      animate={animationStep >= 1 ? {
                         opacity: 1,
                         scale: 1,
                         rotateY: 0
@@ -293,7 +293,7 @@ export default function Index() {
                     <motion.span
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
-                      animate={loadingStep >= 2 ? {
+                      animate={animationStep >= 2 ? {
                         opacity: 1,
                         scale: 1,
                         rotateY: 0
@@ -313,7 +313,7 @@ export default function Index() {
                     <motion.span
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
-                      animate={loadingStep >= 3 ? {
+                      animate={animationStep >= 3 ? {
                         opacity: 1,
                         scale: 1,
                         rotateY: 0
@@ -334,7 +334,7 @@ export default function Index() {
                 {/* Loading subtitle */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
-                  animate={loadingStep >= 3 ? { opacity: 1, y: 0 } : {}}
+                  animate={animationStep >= 3 ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.5 }}
                   className="font-mono text-sm md:text-lg text-amber-400"
                   style={{
@@ -422,7 +422,7 @@ export default function Index() {
             transition={{ duration: 2 }}
           >
             <pre className="ascii-logo">
-              {`█���╗  ██╗ ██████╗ ██████╗
+              {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██���
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║��█╔══██╗
