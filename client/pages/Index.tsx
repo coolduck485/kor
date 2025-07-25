@@ -392,21 +392,26 @@ export default function Index() {
           <>
             {/* Toggle Buttons Container */}
             <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
-              <div className="group relative">
-                {/* Tooltip */}
-                <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
-                  <div
-                    className="px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap border-green-300/30 bg-green-400/10 text-green-400"
-                    style={{
-                      background: `linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,255,65,0.05) 50%, transparent 100%)`,
-                      boxShadow: "0 0 15px rgba(0, 255, 65, 0.3)",
-                    }}
-                  >
-                    Click to change the site's appearance
-                    {/* Tooltip arrow */}
-                    <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-green-400/10" />
+              <div
+                className="group relative"
+                onMouseEnter={() => setIsTooltipDismissed(true)}
+              >
+                {/* Tooltip - only show in modern mode and if not dismissed */}
+                {mode === "modern" && !isTooltipDismissed && (
+                  <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+                    <div
+                      className="px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap border-green-300/30 bg-green-400/10 text-green-400"
+                      style={{
+                        background: `linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,255,65,0.05) 50%, transparent 100%)`,
+                        boxShadow: "0 0 15px rgba(0, 255, 65, 0.3)",
+                      }}
+                    >
+                      Click to change the site's appearance
+                      {/* Tooltip arrow */}
+                      <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-green-400/10" />
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Container for existing toggles */}
                 <div
@@ -434,13 +439,22 @@ export default function Index() {
                 animate={{ opacity: isLoaded ? 1 : 0 }}
                 transition={{ duration: 2 }}
               >
-                <pre className="ascii-logo">
+                <div
+                  className="ascii-logo text-8xl font-bold text-center mb-4 text-green-400 terminal-glow"
+                  style={{
+                    fontFamily: "JetBrains Mono, monospace",
+                    letterSpacing: "0.2em",
+                  }}
+                >
+                  KOR
+                </div>
+                <pre className="hidden">
                   {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔══██���
+██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██║��█╔══██╗
+██╔═██╗ ██║   ██���██��══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚��╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -456,7 +470,11 @@ export default function Index() {
                   <span>TERMINAL</span>
                 </div>
                 <div className="terminal-content">
-                  <div className="text-amber-400 font-bold mb-3 mt-4">
+                  <div className="text-amber-400 font-bold mb-1">
+                    <span className="text-gray-500">$</span> system-info
+                    --status
+                  </div>
+                  <div className="text-amber-400 font-bold mb-3 mt-2">
                     SYSTEM STATUS:{" "}
                     <span className="text-green-400 terminal-glow">
                       OPERATIONAL
@@ -490,6 +508,23 @@ export default function Index() {
                     <span className="text-green-400">[ACTIVE]</span>&nbsp;
                     <span className="text-purple-400">
                       ENTERPRISE AUTOMATION
+                    </span>
+                  </div>
+                  <div className="terminal-line mb-4">
+                    <span className="text-gray-500">---</span>
+                  </div>
+                  <div className="terminal-line mb-1">
+                    <span className="text-cyan-400">CPU:</span>&nbsp;
+                    <span className="text-green-400">██████████</span>&nbsp;100%
+                  </div>
+                  <div className="terminal-line mb-1">
+                    <span className="text-cyan-400">MEM:</span>&nbsp;
+                    <span className="text-yellow-400">████████░░</span>&nbsp;78%
+                  </div>
+                  <div className="terminal-line mb-3">
+                    <span className="text-cyan-400">NET:</span>&nbsp;
+                    <span className="text-green-400 terminal-glow">
+                      CONNECTED
                     </span>
                   </div>
                   <div className="terminal-line mb-4">
@@ -569,7 +604,7 @@ export default function Index() {
                 transition={{ delay: 3, duration: 1 }}
               >
                 <div className="status-indicators">
-                  <span className="status-dot text-red-400 blink">●</span>
+                  <span className="status-dot text-red-400">●</span>
                   <span>READY</span>
                   <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
@@ -580,12 +615,13 @@ export default function Index() {
                 </div>
 
                 <div className="continue-prompt">
-                  ◄ ��� PRESS [SPACE] TO CONTINUE ◄ ►
+                  <span className="text-cyan-400">[SYSTEM READY]</span>
+                  <span className="text-green-400 ml-4">◄►◄►◄►</span>
                 </div>
 
                 <div className="loading-indicators">
                   <span>█▓▒░</span>
-                  <span className="blink">LOADING...</span>
+                  <span className="text-amber-400">PROCESSING...</span>
                   <span>░▒▓█</span>
                 </div>
               </motion.div>
@@ -1222,6 +1258,54 @@ export default function Index() {
               transform: translateY(-4px);
             }
           }
+
+          @keyframes scanlines {
+            0% {
+              transform: translateY(-100%);
+            }
+            100% {
+              transform: translateY(100vh);
+            }
+          }
+
+          .retro-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 2px,
+              rgba(0, 255, 65, 0.03) 2px,
+              rgba(0, 255, 65, 0.03) 4px
+            );
+            pointer-events: none;
+            opacity: 0.8;
+          }
+
+          .retro-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 1px,
+              rgba(0, 255, 65, 0.1) 1px,
+              rgba(0, 255, 65, 0.1) 2px,
+              transparent 2px,
+              transparent 8px
+            );
+            animation: scanlines 4s linear infinite;
+            pointer-events: none;
+            opacity: 0.4;
+          }
         `}</style>
           </>
         )}
@@ -1244,34 +1328,39 @@ export default function Index() {
       {/* Main Content - Always visible with orchestrated animations */}
       {/* Theme Toggle Container with Tooltip */}
       <div className="fixed top-6 right-6 z-50">
-        <div className="group relative">
-          {/* Tooltip */}
-          <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
-            <div
-              className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
-                theme === "light"
-                  ? "border-blue-400/40 bg-white/80 text-gray-800"
-                  : "border-blue-300/30 bg-blue-400/10 text-white/90"
-              }`}
-              style={{
-                background:
-                  theme === "light"
-                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
-              }}
-            >
-              Click any theme to change the site's appearance
-              {/* Tooltip arrow */}
+        <div
+          className="group relative"
+          onMouseEnter={() => setIsTooltipDismissed(true)}
+        >
+          {/* Tooltip - only show in modern mode and if not dismissed */}
+          {mode === "modern" && !isTooltipDismissed && (
+            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
               <div
-                className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
                   theme === "light"
-                    ? "border-l-white/80"
-                    : "border-l-blue-400/10"
+                    ? "border-blue-400/40 bg-white/80 text-gray-800"
+                    : "border-blue-300/30 bg-blue-400/10 text-white/90"
                 }`}
-              />
+                style={{
+                  background:
+                    theme === "light"
+                      ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                  boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+                }}
+              >
+                Click any theme to change the site's appearance
+                {/* Tooltip arrow */}
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/80"
+                      : "border-l-blue-400/10"
+                  }`}
+                />
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Container for existing toggles */}
           <div
