@@ -17,7 +17,7 @@ export default function Index() {
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [loadingStep, setLoadingStep] = useState(0); // 0: initial, 1: K, 2: Ko, 3: Kor, 4: complete
+  const [animationStep, setAnimationStep] = useState(0); // 0: initial, 1: orb, 2: text, 3: buttons, 4: background, 5: complete
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
   const [showTerminal, setShowTerminal] = useState(false);
