@@ -2266,15 +2266,15 @@ export default function Index() {
           }}
         />
 
-        {/* Demo Notification Section - Shows after full animation */}
+        {/* Demo Notification Section - Bottom Right */}
         <AnimatePresence>
-          {animationStep >= 5 && (
+          {animationStep >= 2 && (
             <motion.div
-              className="fixed bottom-20 left-4 z-[9998]"
-              initial={{ scale: 0.8, opacity: 0, x: -50 }}
+              className="fixed bottom-20 right-4 z-[9998]"
+              initial={{ scale: 0.8, opacity: 0, x: 50 }}
               animate={{ scale: 1, opacity: 1, x: 0 }}
-              exit={{ scale: 0.8, opacity: 0, x: -50 }}
-              transition={{ delay: 3, type: "spring", stiffness: 300 }}
+              exit={{ scale: 0.8, opacity: 0, x: 50 }}
+              transition={{ delay: 1, type: "spring", stiffness: 300 }}
             >
               <div className="flex flex-col gap-2 p-4 rounded-xl backdrop-blur-xl bg-black/20 border border-white/10">
                 <p className="text-white/80 text-xs mb-2 font-mono">Notification Demo</p>
