@@ -1042,7 +1042,8 @@ export default function Index() {
         }
 
         @keyframes subtle-glow {
-          0%, 100% {
+          0%,
+          100% {
             opacity: 0.15;
           }
           50% {
@@ -1051,8 +1052,9 @@ export default function Index() {
         }
 
         @keyframes gentle-glow {
-          0%, 100% {
-            opacity: 0.20;
+          0%,
+          100% {
+            opacity: 0.2;
           }
           50% {
             opacity: 0.35;
