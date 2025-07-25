@@ -370,11 +370,12 @@ export default function Index() {
                     key={`sparkle-${i}`}
                     className="absolute animate-sparkle-twinkle pointer-events-none"
                     style={{
-                      left: `${5 + (i * 90 / SHINE_CONFIG.sparkleCount)}%`,
-                      top: `${-20 + (i % 3) * -10}px`,
-                      animationDelay: `${i * 0.5 + 2}s`,
+                      left: `${-5 + (i * 110 / SHINE_CONFIG.sparkleCount)}%`,
+                      top: `${-25 + (i % 4) * -8}px`,
+                      animationDelay: `${i * 0.4 + 2}s`,
                       animationDuration: `${2 + Math.random() * 1.5}s`,
-                      transform: `scale(${0.15 + Math.random() * 0.1}) rotate(${Math.random() * 360}deg)`,
+                      transform: `scale(${0.2 + Math.random() * 0.15}) rotate(${Math.random() * 360}deg)`,
+                      opacity: 0.9,
                     }}
                   >
                     <svg
