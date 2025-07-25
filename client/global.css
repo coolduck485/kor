@@ -460,19 +460,20 @@
 
 /* Light mode chrome */
 .light .chrome-wavy-text .wavy-letter {
-  color: #404040;
   background: linear-gradient(
-    135deg,
-    #404040 0%,
-    #606060 30%,
-    #808080 50%,
-    #606060 70%,
-    #404040 100%
+    145deg,
+    #2c2c2e 0%,
+    #48484a 25%,
+    #6d6d70 45%,
+    #8e8e93 50%,
+    #6d6d70 55%,
+    #48484a 75%,
+    #2c2c2e 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 
