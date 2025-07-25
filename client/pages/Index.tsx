@@ -187,7 +187,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██████╔╝██║  ██║
+██║  ██╗╚█��████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1070,10 +1070,7 @@ export default function Index() {
 
               {/* Retro Theme */}
               <button
-                onClick={() => {
-                  const { toggleMode } = useRetroMode();
-                  toggleMode();
-                }}
+                onClick={() => toggleMode()}
                 className={`group w-full px-3 py-2 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-300 hover:shadow-xl active:scale-95 overflow-hidden relative ${
                   mode === "retro"
                     ? "border-green-500/60 bg-green-100/20"
