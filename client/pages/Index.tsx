@@ -234,9 +234,9 @@ export default function Index() {
                 transition: { duration: 1, ease: "easeInOut" },
               }}
             >
-              {/* Matrix-style background */}
+              {/* Matrix-style background - reduced for performance */}
               <div className="absolute inset-0 overflow-hidden">
-                {[...Array(15)].map((_, i) => (
+                {[...Array(8)].map((_, i) => (
                   <motion.div
                     key={`matrix-${i}`}
                     className="absolute text-green-400 font-mono text-xs opacity-20"
@@ -452,7 +452,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██████╔╝██║  ██║
+██���  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
