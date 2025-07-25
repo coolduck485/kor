@@ -116,26 +116,29 @@ export default function Index() {
   };
 
   const triggerLoadingSequence = () => {
-    console.log('🎬 Triggering loading sequence for theme:', theme, 'mode:', mode);
+    console.log('🎬 Triggering orchestrated page animation for theme:', theme, 'mode:', mode);
     setIsLoading(true);
     setIsLoaded(false);
-    setLoadingStep(0);
+    setAnimationStep(0);
 
-    const loadingSequence = [
-      { delay: 600, step: 1 }, // Show "K"
-      { delay: 1000, step: 2 }, // Show "Ko"
-      { delay: 1400, step: 3 }, // Show "Kor"
-      { delay: 2200, step: 4 }, // Complete loading
+    const animationSequence = [
+      { delay: 300, step: 1 },  // Show central orb
+      { delay: 800, step: 2 },  // Show text (KOR + subtitle)
+      { delay: 1400, step: 3 }, // Show buttons one by one
+      { delay: 2000, step: 4 }, // Show background elements
+      { delay: 2600, step: 5 }, // Complete - show everything else
     ];
 
-    const timeouts = loadingSequence.map(({ delay, step }) =>
+    const timeouts = animationSequence.map(({ delay, step }) =>
       setTimeout(() => {
-        console.log(`🎯 Loading step ${step} activated`);
-        setLoadingStep(step);
-        if (step === 4) {
-          console.log('✅ Loading complete, showing content');
+        console.log(`🎯 Animation step ${step} activated:`, [
+          'Initial', 'Orb', 'Text', 'Buttons', 'Background', 'Complete'
+        ][step]);
+        setAnimationStep(step);
+        if (step === 5) {
+          console.log('✅ Page animation complete');
           setIsLoading(false);
-          setTimeout(() => setIsLoaded(true), 400);
+          setTimeout(() => setIsLoaded(true), 200);
         }
       }, delay)
     );
