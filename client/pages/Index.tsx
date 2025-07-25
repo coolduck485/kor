@@ -500,32 +500,20 @@ export default function Index() {
           animation: noise 3s ease-in-out infinite;
         }
 
-        @keyframes pulse-glow {
-          0%, 100% {
-            transform: scale(1);
-            opacity: 0.3;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        @keyframes shooting-star {
+          0% {
+            transform: translate(0, 0) rotate(45deg);
+            opacity: 0;
           }
-          50% {
-            transform: scale(1.5);
-            opacity: 0.8;
-            box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+          5% {
+            opacity: 1;
           }
-        }
-
-        @keyframes rotate-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse-line {
-          0%, 100% {
-            opacity: 0.1;
-            transform: scaleX(0.5);
+          95% {
+            opacity: 1;
           }
-          50% {
-            opacity: 0.6;
-            transform: scaleX(1.2);
+          100% {
+            transform: translate(300px, 300px) rotate(45deg);
+            opacity: 0;
           }
         }
 
