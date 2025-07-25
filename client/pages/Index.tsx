@@ -52,7 +52,7 @@ export default function Index() {
     intensity: 0.9, // Brightness of the shine (0-1)
     width: 30, // Width of the shine effect (percentage)
     showSparkles: true, // Enable/disable sparkles
-    sparkleCount: 16, // More sparkles for all-around coverage
+    sparkleCount: 7, // Precise positioning like Figma design
   };
 
   return (
