@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import retro monospace fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Fira+Code:wght@400;700&display=swap');
+
 @layer base {
   /**
-   * Tailwind CSS theme
-   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
-   * A different format will require also updating the theme in tailwind.config.ts.
+   * PIXELATED RETRO THEME
+   * CRT Terminal aesthetic with green phosphor display
   */
   :root {
     --background: 0 0% 100%;
