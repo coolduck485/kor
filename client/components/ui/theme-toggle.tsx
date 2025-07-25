@@ -12,12 +12,10 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       className="fixed top-6 right-6 z-50 h-10 w-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110"
       style={{
-        background: theme === "light" 
-          ? "rgba(0, 0, 0, 0.1)" 
-          : "rgba(255, 255, 255, 0.1)",
-        borderColor: theme === "light" 
-          ? "rgba(0, 0, 0, 0.2)" 
-          : "rgba(255, 255, 255, 0.2)",
+        background:
+          theme === "light" ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)",
+        borderColor:
+          theme === "light" ? "rgba(0, 0, 0, 0.2)" : "rgba(255, 255, 255, 0.2)",
       }}
     >
       {theme === "light" ? (

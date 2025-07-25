@@ -318,9 +318,11 @@ export default function Index() {
               strokeLinejoin="round"
             />
           </svg>
-          <span className={`font-inter text-xs md:text-sm font-normal text-center animate-textGlow ${
-            theme === "light" ? "text-gray-700" : "text-white/80"
-          }`}>
+          <span
+            className={`font-inter text-xs md:text-sm font-normal text-center animate-textGlow ${
+              theme === "light" ? "text-gray-700" : "text-white/80"
+            }`}
+          >
             Future-Ready Solutions, Custom-Built
           </span>
         </div>
@@ -527,9 +529,11 @@ export default function Index() {
             className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20"
             style={{ marginLeft: "-5px" }}
           >
-            <h1 className={`font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
-              theme === "light" ? "text-gray-900" : "text-white"
-            }`}>
+            <h1
+              className={`font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+                theme === "light" ? "text-gray-900" : "text-white"
+              }`}
+            >
               <span
                 className="inline-block relative"
                 style={{
@@ -576,9 +580,10 @@ export default function Index() {
               <div
                 className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
                 style={{
-                  background: theme === "light"
-                    ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
-                    : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
+                  background:
+                    theme === "light"
+                      ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
+                      : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
                   transform: "scale(1.5)",
                 }}
               />
@@ -593,9 +598,10 @@ export default function Index() {
                     top: `${30 + ((i * 40) % 60)}%`,
                     width: `${3 + (i % 2)}px`,
                     height: `${3 + (i % 2)}px`,
-                    background: theme === "light"
-                      ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
-                      : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
+                    background:
+                      theme === "light"
+                        ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
+                        : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
                     animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
                     filter: "blur(0.5px)",
                     animationFillMode: "both",
@@ -611,9 +617,10 @@ export default function Index() {
                   }`}
                   style={{
                     animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
-                    filter: theme === "light"
-                      ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
-                      : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
+                    filter:
+                      theme === "light"
+                        ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
+                        : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
                     animationFillMode: "both",
                   }}
                 >
@@ -644,9 +651,10 @@ export default function Index() {
                       }`}
                       style={{
                         animation: `letter-float 2s ease-in-out infinite ${i * 0.1 + 1}s`,
-                        textShadow: theme === "light"
-                          ? `0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(147, 51, 234, 0.4)`
-                          : `0 0 20px rgba(73, 146, 255, 0.8), 0 0 40px rgba(34, 211, 238, 0.5)`,
+                        textShadow:
+                          theme === "light"
+                            ? `0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(147, 51, 234, 0.4)`
+                            : `0 0 20px rgba(73, 146, 255, 0.8), 0 0 40px rgba(34, 211, 238, 0.5)`,
                         animationFillMode: "both",
                         color: theme === "light" ? "#1f2937" : "#ffffff", // Explicit color fallback
                       }}
@@ -687,10 +695,12 @@ export default function Index() {
                           <div
                             className="w-6 h-6"
                             style={{
-                              background: theme === "light"
-                                ? "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)"
-                                : "radial-gradient(circle, rgba(73, 146, 255, 0.9) 0%, transparent 70%)",
-                              clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              background:
+                                theme === "light"
+                                  ? "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)"
+                                  : "radial-gradient(circle, rgba(73, 146, 255, 0.9) 0%, transparent 70%)",
+                              clipPath:
+                                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                               animation: "spin-slow 8s linear infinite",
                             }}
                           />
@@ -699,10 +709,12 @@ export default function Index() {
                           <div
                             className="w-4 h-4"
                             style={{
-                              background: theme === "light"
-                                ? "linear-gradient(45deg, rgba(147, 51, 234, 0.8), rgba(59, 130, 246, 0.6))"
-                                : "linear-gradient(45deg, rgba(34, 211, 238, 0.8), rgba(73, 146, 255, 0.7))",
-                              clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              background:
+                                theme === "light"
+                                  ? "linear-gradient(45deg, rgba(147, 51, 234, 0.8), rgba(59, 130, 246, 0.6))"
+                                  : "linear-gradient(45deg, rgba(34, 211, 238, 0.8), rgba(73, 146, 255, 0.7))",
+                              clipPath:
+                                "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                               animation: "pulse-fast 1.5s ease-in-out infinite",
                             }}
                           />
@@ -711,10 +723,12 @@ export default function Index() {
                           <div
                             className="w-5 h-5"
                             style={{
-                              background: theme === "light"
-                                ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.6), rgba(59, 130, 246, 0.8))"
-                                : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.7), rgba(73, 146, 255, 0.8))",
-                              clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              background:
+                                theme === "light"
+                                  ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.6), rgba(59, 130, 246, 0.8))"
+                                  : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.7), rgba(73, 146, 255, 0.8))",
+                              clipPath:
+                                "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                               animation: "rotate-slow 6s linear infinite",
                             }}
                           />
@@ -778,15 +792,19 @@ export default function Index() {
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center space-y-3 animate-button-float">
           {/* Desktop: Scroll Down */}
-          <span className={`hidden lg:block font-inter text-sm font-medium animate-text-glow ${
-            theme === "light" ? "text-gray-600" : "text-white/70"
-          }`}>
+          <span
+            className={`hidden lg:block font-inter text-sm font-medium animate-text-glow ${
+              theme === "light" ? "text-gray-600" : "text-white/70"
+            }`}
+          >
             Scroll Down
           </span>
           {/* Mobile/Tablet: Swipe Down */}
-          <span className={`lg:hidden font-inter text-sm font-medium animate-text-glow ${
-            theme === "light" ? "text-gray-600" : "text-white/70"
-          }`}>
+          <span
+            className={`lg:hidden font-inter text-sm font-medium animate-text-glow ${
+              theme === "light" ? "text-gray-600" : "text-white/70"
+            }`}
+          >
             Swipe Down
           </span>
 
@@ -1484,9 +1502,10 @@ function OrbFloatingButton({
         style={{
           transitionDuration: ORB_BUTTON_CONFIG.global.animationDuration,
           transform: `scale(1)`,
-          background: theme === "light"
-            ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
-            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+          background:
+            theme === "light"
+              ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+              : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = `scale(${ORB_BUTTON_CONFIG.global.hoverScale}) rotateY(5deg)`;
@@ -1535,9 +1554,10 @@ function OrbFloatingButton({
               : "text-white/90 group-hover:text-white"
           }`}
           style={{
-            textShadow: theme === "light"
-              ? `0 0 10px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.2)`
-              : `0 0 10px rgba(73, 146, 255, 0.6), 0 0 20px rgba(73, 146, 255, 0.4)`,
+            textShadow:
+              theme === "light"
+                ? `0 0 10px rgba(59, 130, 246, 0.3), 0 0 20px rgba(59, 130, 246, 0.2)`
+                : `0 0 10px rgba(73, 146, 255, 0.6), 0 0 20px rgba(73, 146, 255, 0.4)`,
           }}
         >
           {text}
