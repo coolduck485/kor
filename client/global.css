@@ -420,13 +420,21 @@
   }
 }
 
-/* Chrome shine sweep animation */
-@keyframes chrome-shine {
+/* Cartoon window shine sweep animation */
+@keyframes cartoon-shine-sweep {
   0% {
-    background-position: -200% center;
+    left: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
   }
   100% {
-    background-position: 200% center;
+    left: 120%;
+    opacity: 0;
   }
 }
 
