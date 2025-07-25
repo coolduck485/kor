@@ -106,6 +106,16 @@ export default function Index() {
         x: e.clientX / window.innerWidth,
         y: e.clientY / window.innerHeight,
       });
+
+      // Add cursor trail effect
+      setCursorTrails(prev => {
+        const newTrail = {
+          id: Date.now(),
+          x: e.clientX,
+          y: e.clientY
+        };
+        return [...prev.slice(-8), newTrail]; // Keep only last 8 trails
+      });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -115,9 +125,15 @@ export default function Index() {
       setIsLoaded(true);
     }, 300);
 
+    // Clean up old cursor trails
+    const trailCleanup = setInterval(() => {
+      setCursorTrails(prev => prev.slice(-5));
+    }, 100);
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       clearTimeout(loadTimer);
+      clearInterval(trailCleanup);
     };
   }, []);
 
