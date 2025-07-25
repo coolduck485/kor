@@ -1058,6 +1058,24 @@ export default function Index() {
           }
         }
 
+        @keyframes subtle-glow {
+          0%, 100% {
+            opacity: 0.15;
+          }
+          50% {
+            opacity: 0.25;
+          }
+        }
+
+        @keyframes gentle-glow {
+          0%, 100% {
+            opacity: 0.20;
+          }
+          50% {
+            opacity: 0.35;
+          }
+        }
+
         .animate-type-writer {
           animation: type-writer 1s ease-out forwards;
         }
