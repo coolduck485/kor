@@ -471,35 +471,31 @@ export default function Index() {
           animation: noise 3s ease-in-out infinite;
         }
 
-        @keyframes shine-text {
-          0%, 100% {
-            text-shadow:
-              0 0 5px rgba(34, 211, 238, 0.3),
-              0 0 10px rgba(34, 211, 238, 0.2),
-              0 0 15px rgba(34, 211, 238, 0.1);
-          }
-          50% {
-            text-shadow:
-              0 0 10px rgba(34, 211, 238, 0.6),
-              0 0 20px rgba(34, 211, 238, 0.4),
-              0 0 30px rgba(34, 211, 238, 0.2);
-          }
-        }
-
-        @keyframes shine-sweep {
+        @keyframes shine-text-sweep {
           0% {
-            transform: translateX(-100%) skewX(-12deg);
-            opacity: 0;
+            background: linear-gradient(
+              90deg,
+              rgba(178, 227, 255, 0.8) 0%,
+              rgba(178, 227, 255, 0.8) 20%,
+              rgba(255, 255, 255, 1) 40%,
+              rgba(255, 255, 255, 1) 60%,
+              rgba(178, 227, 255, 0.8) 80%,
+              rgba(178, 227, 255, 0.8) 100%
+            );
+            background-size: 200% 100%;
+            background-position: -200% 0;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
           }
           20% {
-            opacity: 1;
+            background-position: -100% 0;
           }
           80% {
-            opacity: 1;
+            background-position: 100% 0;
           }
           100% {
-            transform: translateX(300%) skewX(-12deg);
-            opacity: 0;
+            background-position: 200% 0;
           }
         }
 
