@@ -162,7 +162,11 @@ export default function Index() {
   if (mode === "retro") {
     return (
       <div className="retro-container min-h-screen">
-
+        {/* Toggle Buttons */}
+        <div className="fixed top-6 right-6 z-50 flex flex-col gap-4">
+          <ThemeToggle />
+          <RetroToggle />
+        </div>
 
         {/* Main Content */}
         <div className="retro-main">
