@@ -523,7 +523,7 @@ export default function Index() {
                   textShadow:
                     "0 0 20px rgba(73, 146, 255, 0.6), 0 0 40px rgba(73, 146, 255, 0.4)",
                   animation:
-                    "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s both",
+                    "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s infinite both",
                 }}
               >
                 K
