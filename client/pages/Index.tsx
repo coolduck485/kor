@@ -587,7 +587,7 @@ export default function Index() {
               {[...Array(12)].map((_, i) => (
                 <div
                   key={`energy-${i}`}
-                  className="absolute rounded-full animate-energy-float pointer-events-none"
+                  className="absolute rounded-full pointer-events-none"
                   style={{
                     left: `${20 + ((i * 60) % 160)}%`,
                     top: `${30 + ((i * 40) % 60)}%`,
@@ -598,6 +598,8 @@ export default function Index() {
                       : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
                     animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
                     filter: "blur(0.5px)",
+                    animationFillMode: "both",
+                    animationTimingFunction: "ease-in-out",
                   }}
                 />
               ))}
