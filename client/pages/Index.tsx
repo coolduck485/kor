@@ -13,9 +13,7 @@ export default function Index() {
   });
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [cursorTrails, setCursorTrails] = useState<
-    Array<{ id: number; x: number; y: number }>
-  >([]);
+  const [customCursor, setCustomCursor] = useState({ x: 0, y: 0, visible: false });
 
   // Framer Motion animation variants
   const containerVariants = {
@@ -109,33 +107,36 @@ export default function Index() {
         y: e.clientY / window.innerHeight,
       });
 
-      // Add cursor trail effect
-      setCursorTrails((prev) => {
-        const newTrail = {
-          id: Date.now(),
-          x: e.clientX,
-          y: e.clientY,
-        };
-        return [...prev.slice(-8), newTrail]; // Keep only last 8 trails
+      // Update custom cursor position
+      setCustomCursor({
+        x: e.clientX,
+        y: e.clientY,
+        visible: true,
       });
     };
 
+    const handleMouseEnter = () => {
+      setCustomCursor(prev => ({ ...prev, visible: true }));
+    };
+
+    const handleMouseLeave = () => {
+      setCustomCursor(prev => ({ ...prev, visible: false }));
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseenter", handleMouseEnter);
+    window.addEventListener("mouseleave", handleMouseLeave);
 
     // Trigger loading animation after a short delay
     const loadTimer = setTimeout(() => {
       setIsLoaded(true);
     }, 300);
 
-    // Clean up old cursor trails
-    const trailCleanup = setInterval(() => {
-      setCursorTrails((prev) => prev.slice(-5));
-    }, 100);
-
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseenter", handleMouseEnter);
+      window.removeEventListener("mouseleave", handleMouseLeave);
       clearTimeout(loadTimer);
-      clearInterval(trailCleanup);
     };
   }, []);
 
@@ -175,7 +176,7 @@ export default function Index() {
 
   return (
     <motion.div
-      className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
+      className={`relative min-h-screen overflow-hidden transition-all duration-500 cursor-none ${
         theme === "light"
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
@@ -186,22 +187,70 @@ export default function Index() {
     >
       {/* Theme Toggle */}
       <ThemeToggle />
-      {/* Cursor Trail Effects */}
-      <div className="fixed inset-0 pointer-events-none z-50">
-        {cursorTrails.map((trail, index) => (
+
+      {/* Custom Blue Glowy Orb Cursor */}
+      <div
+        className={`fixed pointer-events-none z-[60] transition-opacity duration-300 ${
+          customCursor.visible ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          left: customCursor.x,
+          top: customCursor.y,
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
+        {/* Main cursor orb */}
+        <div className="relative">
+          {/* Outer glow rings */}
           <div
-            key={`${trail.id}-${index}`}
-            className="absolute w-3 h-3 rounded-full"
+            className="absolute rounded-full animate-pulse"
             style={{
-              left: trail.x - 6,
-              top: trail.y - 6,
-              background: `radial-gradient(circle, rgba(73, 146, 255, ${0.8 - index * 0.1}) 0%, transparent 70%)`,
-              animation: `cursor-trail 0.8s ease-out forwards`,
-              animationDelay: `${index * 0.05}s`,
-              transform: `scale(${1 - index * 0.1})`,
+              width: '32px',
+              height: '32px',
+              background: 'radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, rgba(73, 146, 255, 0.1) 50%, transparent 100%)',
+              transform: 'translate(-50%, -50%)',
+              animation: 'gentle-pulse 2s ease-in-out infinite',
             }}
           />
-        ))}
+          <div
+            className="absolute rounded-full animate-pulse"
+            style={{
+              width: '20px',
+              height: '20px',
+              background: 'radial-gradient(circle, rgba(73, 146, 255, 0.5) 0%, rgba(73, 146, 255, 0.2) 50%, transparent 100%)',
+              transform: 'translate(-50%, -50%)',
+              animation: 'gentle-pulse 2s ease-in-out infinite 0.3s',
+            }}
+          />
+          {/* Core orb */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: '12px',
+              height: '12px',
+              background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(73, 146, 255, 0.9) 30%, rgba(57, 135, 227, 1) 100%)',
+              transform: 'translate(-50%, -50%)',
+              boxShadow: `
+                0 0 15px rgba(73, 146, 255, 0.8),
+                0 0 25px rgba(73, 146, 255, 0.6),
+                0 0 35px rgba(73, 146, 255, 0.4),
+                inset 0 1px 2px rgba(255, 255, 255, 0.3)
+              `,
+              animation: 'orb-pulse 3s ease-in-out infinite',
+            }}
+          />
+          {/* Inner highlight */}
+          <div
+            className="absolute rounded-full"
+            style={{
+              width: '4px',
+              height: '4px',
+              background: 'rgba(255, 255, 255, 0.9)',
+              transform: 'translate(-30%, -30%)',
+              filter: 'blur(0.5px)',
+            }}
+          />
+        </div>
       </div>
 
       {/* Enhanced Background Elements */}
