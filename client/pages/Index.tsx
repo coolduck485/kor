@@ -13,6 +13,7 @@ export default function Index() {
   });
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 
   // Framer Motion animation variants
@@ -791,8 +792,19 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Orb-Floating Navigation Buttons - positioned relative to orb */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        {/* Mobile Hamburger Menu */}
+        <div className="md:hidden absolute inset-0 flex items-center justify-center">
+          <div className="relative">
+            <MobileHamburgerMenu
+              isOpen={isMobileMenuOpen}
+              setIsOpen={setIsMobileMenuOpen}
+              theme={theme}
+            />
+          </div>
+        </div>
+
+        {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
+        <div className="hidden md:flex absolute inset-0 items-center justify-center">
           <div className="relative">
             {/* Animated Connection Lines Between Buttons */}
             <svg
@@ -871,7 +883,7 @@ export default function Index() {
       </div>
 
       {/* Scroll/Swipe Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+      <div className="absolute bottom-8 lg:bottom-8 md:bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center space-y-3 animate-button-float">
           {/* Desktop: Scroll Down */}
           <span
