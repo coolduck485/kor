@@ -22,6 +22,12 @@ export default function Index() {
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
     "Type 'help' to see list of available commands.",
   ]);
+  const [systemStats, setSystemStats] = useState({
+    cpu: 80,
+    ram: 70,
+    networkUp: 1.2,
+    networkDown: 847,
+  });
 
   // Framer Motion animation variants
   const containerVariants = {
