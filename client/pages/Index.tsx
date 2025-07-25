@@ -541,7 +541,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��██████████████████ 60%
+                      CPU: ████████████████████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1307,9 +1307,11 @@ export default function Index() {
               transparent 2px,
               transparent 8px
             );
-            animation: scanlines 4s linear infinite;
+            animation: scanlines 6s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
             pointer-events: none;
-            opacity: 0.4;
+            opacity: 0.3;
           }
         `}</style>
           </>
