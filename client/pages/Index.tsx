@@ -46,13 +46,13 @@ export default function Index() {
   // ========================================
   const SHINE_CONFIG = {
     direction: "right-to-left", // 'left-to-right' or 'right-to-left'
-    duration: "6s", // Animation duration (slowed down more)
+    duration: "4s", // Animation duration - slower consistent shine
     delay: "1s", // Initial delay
     interval: "8s", // Time between shine sweeps (total cycle time)
     intensity: 0.9, // Brightness of the shine (0-1)
     width: 30, // Width of the shine effect (percentage)
     showSparkles: true, // Enable/disable sparkles
-    sparkleCount: 10, // Number of sparkles (increased for more visibility)
+    sparkleCount: 7, // Precise positioning like Figma design
   };
 
   return (
@@ -84,19 +84,65 @@ export default function Index() {
         }}
       />
 
-      {/* Mouse Follower Effect */}
-      <div
-        className="absolute pointer-events-none opacity-30 transition-all duration-1000 ease-out"
-        style={{
-          left: `${mousePosition.x * 100}%`,
-          top: `${mousePosition.y * 100}%`,
-          transform: "translate(-50%, -50%)",
-          background:
-            "radial-gradient(circle, rgba(73, 146, 255, 0.1) 0%, transparent 70%)",
-          width: "600px",
-          height: "600px",
-        }}
-      />
+      {/* Floating Ambient Particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={`particle-${i}`}
+            className="absolute rounded-full opacity-60"
+            style={{
+              left: `${10 + ((i * 70) % 90)}%`,
+              top: `${15 + ((i * 40) % 80)}%`,
+              width: `${2 + (i % 3)}px`,
+              height: `${2 + (i % 3)}px`,
+              background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.3 + (i % 3) * 0.2})`,
+              animation: `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+              filter: "blur(0.5px)",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Dynamic Background Waves */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 80%, rgba(73, 146, 255, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(63, 186, 255, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(57, 135, 227, 0.1) 0%, transparent 50%)
+            `,
+            animation: "pulse 8s ease-in-out infinite alternate",
+          }}
+        />
+      </div>
+
+      {/* Aurora-like Moving Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute w-96 h-96 rounded-full opacity-15"
+          style={{
+            left: "10%",
+            top: "20%",
+            background:
+              "linear-gradient(45deg, rgba(73, 146, 255, 0.4), rgba(63, 186, 255, 0.2))",
+            filter: "blur(60px)",
+            animation: "aurora 12s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute w-80 h-80 rounded-full opacity-10"
+          style={{
+            right: "15%",
+            bottom: "25%",
+            background:
+              "linear-gradient(-45deg, rgba(57, 135, 227, 0.3), rgba(73, 146, 255, 0.1))",
+            filter: "blur(80px)",
+            animation: "aurora 15s ease-in-out infinite 3s",
+          }}
+        />
+      </div>
 
       {/* Interactive Glass Badge at Top */}
       <div
@@ -181,6 +227,47 @@ export default function Index() {
 
       {/* Main Content Container */}
       <div className="relative flex items-center justify-center min-h-screen">
+        {/* Energy Rings Around Orb */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {[...Array(3)].map((_, i) => (
+            <div
+              key={`ring-${i}`}
+              className="absolute rounded-full border opacity-20"
+              style={{
+                width: `${400 + i * 120}px`,
+                height: `${400 + i * 120}px`,
+                border: `1px solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
+                animation: `energy-ripple 3s ease-out infinite ${i * 0.4}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Rotating Light Beams */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+          <div
+            className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-blue-400/25 to-transparent"
+            style={{
+              animation: "spin 15s linear infinite",
+              transformOrigin: "center 50%",
+            }}
+          />
+          <div
+            className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent"
+            style={{
+              animation: "spin 20s linear infinite reverse",
+              transformOrigin: "center 50%",
+            }}
+          />
+          <div
+            className="absolute h-1 w-96 bg-gradient-to-r from-transparent via-blue-300/15 to-transparent"
+            style={{
+              animation: "spin 25s linear infinite",
+              transformOrigin: "50% center",
+            }}
+          />
+        </div>
+
         {/* Central Glowing Orb - SVG Based */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative animate-float">
@@ -339,22 +426,40 @@ export default function Index() {
             className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20"
             style={{ marginLeft: "-5px" }}
           >
-            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-reveal">
+            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-reveal relative">
               <span
-                className="inline-block animate-text-bounce"
-                style={{ animationDelay: "0.8s" }}
+                className="inline-block animate-text-bounce relative"
+                style={{
+                  animationDelay: "0.8s",
+                  textShadow:
+                    "0 0 20px rgba(73, 146, 255, 0.6), 0 0 40px rgba(73, 146, 255, 0.4)",
+                  animation:
+                    "textGlow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.8s both",
+                }}
               >
                 K
               </span>
               <span
-                className="inline-block animate-text-bounce"
-                style={{ animationDelay: "1.4s" }}
+                className="inline-block animate-text-bounce relative"
+                style={{
+                  animationDelay: "1.4s",
+                  textShadow:
+                    "0 0 20px rgba(63, 186, 255, 0.6), 0 0 40px rgba(63, 186, 255, 0.4)",
+                  animation:
+                    "textGlow 3s ease-in-out infinite 1s, text-bounce 2s ease-in-out 1.4s both",
+                }}
               >
                 o
               </span>
               <span
-                className="inline-block animate-text-bounce"
-                style={{ animationDelay: "2.0s" }}
+                className="inline-block animate-text-bounce relative"
+                style={{
+                  animationDelay: "2.0s",
+                  textShadow:
+                    "0 0 20px rgba(57, 135, 227, 0.6), 0 0 40px rgba(57, 135, 227, 0.4)",
+                  animation:
+                    "textGlow 3s ease-in-out infinite 2s, text-bounce 2s ease-in-out 2.0s both",
+                }}
               >
                 r
               </span>
@@ -374,125 +479,52 @@ export default function Index() {
                   animationDuration: SHINE_CONFIG.duration,
                   animationDelay: SHINE_CONFIG.delay,
                   animationIterationCount: "infinite",
-                  animationTimingFunction: "ease-out",
+                  animationTimingFunction: "ease-in-out",
                 }}
               >
                 Development services
-                {/* Figma Star Sparkles */}
+                {/* Simple 4-Point Stars - Match Figma Design */}
                 {SHINE_CONFIG.showSparkles &&
-                  [...Array(SHINE_CONFIG.sparkleCount)].map((_, i) => (
+                  [
+                    // Upper right
+                    { x: 95, y: -35, size: 0.6 },
+
+                    // Right middle
+                    { x: 75, y: -10, size: 0.4 },
+
+                    // Lower right
+                    { x: 120, y: 50, size: 0.5 },
+                    { x: 90, y: 80, size: 0.7 },
+
+                    // Lower center
+                    { x: 25, y: 85, size: 0.4 },
+
+                    // Lower left
+                    { x: -40, y: 60, size: 0.5 },
+
+                    // Far right
+                    { x: 165, y: 15, size: 0.8 },
+                  ].map((sparkle, i) => (
                     <div
                       key={`sparkle-${i}`}
                       className="absolute animate-sparkle-twinkle pointer-events-none"
                       style={{
-                        left: `${-5 + (i * 110) / SHINE_CONFIG.sparkleCount}%`,
-                        top: `${-25 + (i % 4) * -8}px`,
-                        animationDelay: `${i * 0.4 + 2}s`,
-                        animationDuration: `${2 + Math.random() * 1.5}s`,
-                        transform: `scale(${0.2 + Math.random() * 0.15}) rotate(${Math.random() * 360}deg)`,
+                        left: `calc(50% + ${sparkle.x}px)`,
+                        top: `calc(50% + ${sparkle.y}px)`,
+                        animationDelay: `${i * 0.2 + 2}s`,
+                        animationDuration: `${3 + Math.random() * 1.5}s`,
+                        transform: `scale(${sparkle.size}) rotate(${Math.random() * 360}deg)`,
                         opacity: 0.9,
                       }}
                     >
                       <svg
-                        width="30"
-                        height="30"
-                        viewBox="0 0 1134 1152"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-full h-full"
-                      >
-                        <defs>
-                          <filter
-                            id={`filter_sparkle_${i}`}
-                            x="0.215881"
-                            y="0.612473"
-                            width="1133.4"
-                            height="1151.31"
-                            filterUnits="userSpaceOnUse"
-                            colorInterpolationFilters="sRGB"
-                          >
-                            <feFlood
-                              floodOpacity="0"
-                              result="BackgroundImageFix"
-                            />
-                            <feColorMatrix
-                              in="SourceAlpha"
-                              type="matrix"
-                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                              result="hardAlpha"
-                            />
-                            <feOffset />
-                            <feGaussianBlur stdDeviation="11.79" />
-                            <feColorMatrix
-                              type="matrix"
-                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
-                            />
-                            <feBlend
-                              mode="normal"
-                              in2="BackgroundImageFix"
-                              result="effect1_dropShadow"
-                            />
-                            <feColorMatrix
-                              in="SourceAlpha"
-                              type="matrix"
-                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                              result="hardAlpha"
-                            />
-                            <feOffset />
-                            <feGaussianBlur stdDeviation="41.265" />
-                            <feColorMatrix
-                              type="matrix"
-                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
-                            />
-                            <feBlend
-                              mode="normal"
-                              in2="effect1_dropShadow"
-                              result="effect2_dropShadow"
-                            />
-                            <feColorMatrix
-                              in="SourceAlpha"
-                              type="matrix"
-                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                              result="hardAlpha"
-                            />
-                            <feOffset />
-                            <feGaussianBlur stdDeviation="82.53" />
-                            <feColorMatrix
-                              type="matrix"
-                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
-                            />
-                            <feBlend
-                              mode="normal"
-                              in2="effect2_dropShadow"
-                              result="effect3_dropShadow"
-                            />
-                            <feBlend
-                              mode="normal"
-                              in="SourceGraphic"
-                              in2="effect3_dropShadow"
-                              result="shape"
-                            />
-                          </filter>
-                          <linearGradient
-                            id={`gradient_sparkle_${i}`}
-                            x1="504.394"
-                            y1="628.011"
-                            x2="679.912"
-                            y2="578.083"
-                            gradientUnits="userSpaceOnUse"
-                          >
-                            <stop stopColor="#1E40AF" />
-                            <stop offset="0.493374" stopColor="#1D4ED8" />
-                            <stop offset="1" stopColor="#1E3A8A" />
-                          </linearGradient>
-                        </defs>
-                        <g filter={`url(#filter_sparkle_${i})`}>
-                          <path
-                            d="M537.254 557.616L495.396 597.059L554.801 617.972L590.311 656.741L599.501 604.977L638.435 555.474L581.954 544.621L543.519 495.792L537.254 557.616Z"
-                            fill={`url(#gradient_sparkle_${i})`}
-                          />
-                        </g>
-                      </svg>
+                      />
                     </div>
                   ))}
               </span>
@@ -506,6 +538,45 @@ export default function Index() {
             <OrbFloatingButtons />
           </div>
         </div>
+      </div>
+
+      {/* Floating Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Top corner accent lights */}
+        <div
+          className="absolute top-10 left-10 w-32 h-32 rounded-full opacity-30"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(73, 146, 255, 0.2) 0%, transparent 70%)",
+            animation: "pulse 6s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute top-20 right-16 w-24 h-24 rounded-full opacity-25"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(63, 186, 255, 0.3) 0%, transparent 70%)",
+            animation: "pulse 4s ease-in-out infinite 1s",
+          }}
+        />
+
+        {/* Bottom corner lights */}
+        <div
+          className="absolute bottom-16 left-20 w-28 h-28 rounded-full opacity-20"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(57, 135, 227, 0.4) 0%, transparent 70%)",
+            animation: "pulse 7s ease-in-out infinite 2s",
+          }}
+        />
+        <div
+          className="absolute bottom-12 right-12 w-20 h-20 rounded-full opacity-35"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
+            animation: "pulse 5s ease-in-out infinite 0.5s",
+          }}
+        />
       </div>
 
       {/* Scroll/Swipe Indicator */}
@@ -816,6 +887,71 @@ export default function Index() {
 
         .animate-text-bounce {
           animation: text-bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes energy-pulse {
+          0%,
+          100% {
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.8;
+            transform: scale(1.1);
+          }
+        }
+
+        @keyframes aurora {
+          0%,
+          100% {
+            opacity: 0.4;
+            transform: translateX(-50%) translateY(-50%) rotate(0deg) scale(1);
+          }
+          33% {
+            opacity: 0.7;
+            transform: translateX(-45%) translateY(-55%) rotate(120deg)
+              scale(1.2);
+          }
+          66% {
+            opacity: 0.5;
+            transform: translateX(-55%) translateY(-45%) rotate(240deg)
+              scale(0.9);
+          }
+        }
+
+        @keyframes ambient-glow {
+          0%,
+          100% {
+            box-shadow: 0 0 20px rgba(73, 146, 255, 0.3);
+          }
+          50% {
+            box-shadow:
+              0 0 40px rgba(73, 146, 255, 0.6),
+              0 0 60px rgba(63, 186, 255, 0.3);
+          }
+        }
+
+        @keyframes energy-ripple {
+          0% {
+            transform: scale(0.8);
+            opacity: 0;
+            border-width: 3px;
+          }
+          30% {
+            transform: scale(1);
+            opacity: 0.6;
+            border-width: 2px;
+          }
+          70% {
+            transform: scale(1.1);
+            opacity: 0.3;
+            border-width: 1px;
+          }
+          100% {
+            transform: scale(1.2);
+            opacity: 0;
+            border-width: 1px;
+          }
         }
 
         .animate-type-writer {
