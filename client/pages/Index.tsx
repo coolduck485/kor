@@ -1266,6 +1266,7 @@ function OrbFloatingButton({
   customRadiusMultiplier,
   size,
   accent,
+  theme,
 }: OrbFloatingButtonProps) {
   // Calculate base position from angle
   const radian = (angle * Math.PI) / 180;
