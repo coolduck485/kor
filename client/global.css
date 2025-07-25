@@ -374,6 +374,21 @@
   }
 }
 
+@keyframes button-drift {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(3px, -2px);
+  }
+  50% {
+    transform: translate(-2px, 4px);
+  }
+  75% {
+    transform: translate(2px, 1px);
+  }
+}
+
 @keyframes warm-glow-pulse {
   0%, 100% {
     text-shadow: 0 0 15px rgba(73, 146, 255, 0.6),
