@@ -24,12 +24,16 @@ export default function Index() {
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
 
-  // Test notification on load
+  // Welcome notification - shows once per session
   useEffect(() => {
     if (animationStep >= 2) {
-      setTimeout(() => {
-        showInfo("Welcome!", "Notification system is working perfectly!");
-      }, 2000);
+      const hasShownWelcome = sessionStorage.getItem('welcomeNotificationShown');
+      if (!hasShownWelcome) {
+        setTimeout(() => {
+          showInfo("Welcome to KOR!", "Experience the future of modern web development. Click the X to dismiss.");
+          sessionStorage.setItem('welcomeNotificationShown', 'true');
+        }, 3000);
+      }
     }
   }, [animationStep, showInfo]);
   const [showTerminal, setShowTerminal] = useState(false);
