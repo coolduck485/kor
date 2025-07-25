@@ -394,7 +394,7 @@ export default function Index() {
             </div>
 
             <div className="continue-prompt">
-              ◄ ► PRESS [SPACE] TO CONTINUE ◄ ►
+              ◄ ��� PRESS [SPACE] TO CONTINUE ◄ ►
             </div>
 
             <div className="loading-indicators">
@@ -1047,6 +1047,215 @@ export default function Index() {
       initial="hidden"
       animate={isLoaded ? "visible" : "hidden"}
     >
+      {/* Loading Screen */}
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            className="fixed inset-0 z-[9999] flex items-center justify-center"
+            style={{
+              background: theme === "light"
+                ? "linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #e8f4f8 100%)"
+                : "linear-gradient(135deg, #000000 0%, #0f172a 50%, #020617 100%)"
+            }}
+            initial={{ opacity: 1 }}
+            exit={{
+              opacity: 0,
+              scale: 1.1,
+              transition: {
+                duration: 1.2,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }
+            }}
+          >
+            {/* Background particles */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(20)].map((_, i) => (
+                <motion.div
+                  key={`loading-particle-${i}`}
+                  className="absolute rounded-full"
+                  style={{
+                    left: `${10 + (i * 80) % 90}%`,
+                    top: `${15 + (i * 60) % 80}%`,
+                    width: `${2 + (i % 3)}px`,
+                    height: `${2 + (i % 3)}px`,
+                    background: theme === "light"
+                      ? `rgba(59, 130, 246, ${0.2 + (i % 3) * 0.1})`
+                      : `rgba(73, 146, 255, ${0.3 + (i % 3) * 0.15})`,
+                  }}
+                  animate={{
+                    y: [0, -20, 0],
+                    opacity: [0.2, 0.6, 0.2],
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 3 + (i % 4),
+                    repeat: Infinity,
+                    delay: i * 0.1,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Central loading area */}
+            <div className="relative z-10 text-center">
+              {/* Loading KOR text */}
+              <div className="mb-8">
+                <motion.h1
+                  className={`font-poppins text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight ${
+                    theme === "light" ? "text-gray-900" : "text-white"
+                  }`}
+                >
+                  {/* K */}
+                  <motion.span
+                    className="inline-block relative"
+                    initial={{
+                      opacity: 0,
+                      y: 100,
+                      rotateX: -90,
+                      scale: 0.5
+                    }}
+                    animate={loadingStep >= 1 ? {
+                      opacity: 1,
+                      y: 0,
+                      rotateX: 0,
+                      scale: 1
+                    } : {}}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 15
+                    }}
+                    style={{
+                      textShadow: theme === "light"
+                        ? "0 0 30px rgba(59, 130, 246, 0.5)"
+                        : "0 0 30px rgba(73, 146, 255, 0.8), 0 0 60px rgba(73, 146, 255, 0.4)",
+                    }}
+                  >
+                    K
+                  </motion.span>
+
+                  {/* o */}
+                  <motion.span
+                    className="inline-block relative"
+                    initial={{
+                      opacity: 0,
+                      y: 100,
+                      rotateX: -90,
+                      scale: 0.5
+                    }}
+                    animate={loadingStep >= 2 ? {
+                      opacity: 1,
+                      y: 0,
+                      rotateX: 0,
+                      scale: 1
+                    } : {}}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 15,
+                      delay: 0.1
+                    }}
+                    style={{
+                      textShadow: theme === "light"
+                        ? "0 0 30px rgba(59, 130, 246, 0.5)"
+                        : "0 0 30px rgba(73, 146, 255, 0.8), 0 0 60px rgba(73, 146, 255, 0.4)",
+                    }}
+                  >
+                    o
+                  </motion.span>
+
+                  {/* r */}
+                  <motion.span
+                    className="inline-block relative"
+                    initial={{
+                      opacity: 0,
+                      y: 100,
+                      rotateX: -90,
+                      scale: 0.5
+                    }}
+                    animate={loadingStep >= 3 ? {
+                      opacity: 1,
+                      y: 0,
+                      rotateX: 0,
+                      scale: 1
+                    } : {}}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      type: "spring",
+                      stiffness: 100,
+                      damping: 15,
+                      delay: 0.2
+                    }}
+                    style={{
+                      textShadow: theme === "light"
+                        ? "0 0 30px rgba(59, 130, 246, 0.5)"
+                        : "0 0 30px rgba(73, 146, 255, 0.8), 0 0 60px rgba(73, 146, 255, 0.4)",
+                    }}
+                  >
+                    r
+                  </motion.span>
+                </motion.h1>
+              </div>
+
+              {/* Loading subtitle */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={loadingStep >= 3 ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className={`font-poppins text-lg md:text-xl lg:text-2xl font-medium ${
+                  theme === "light" ? "text-gray-600" : "text-white/70"
+                }`}
+              >
+                Development Services
+              </motion.div>
+
+              {/* Loading progress indicator */}
+              <motion.div
+                className="mt-12 flex justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+              >
+                <div className="flex space-x-2">
+                  {[0, 1, 2].map((i) => (
+                    <motion.div
+                      key={i}
+                      className={`w-2 h-2 rounded-full ${
+                        theme === "light" ? "bg-blue-500" : "bg-blue-400"
+                      }`}
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [0.3, 1, 0.3],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: i * 0.2,
+                      }}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Subtle glow effect */}
+            <div
+              className="absolute inset-0 opacity-30"
+              style={{
+                background: theme === "light"
+                  ? "radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)"
+                  : "radial-gradient(circle at 50% 50%, rgba(73, 146, 255, 0.2) 0%, transparent 50%)",
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Theme Toggle Container with Tooltip */}
       <div className="fixed top-6 right-6 z-50">
         <div className="group relative">
