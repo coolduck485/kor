@@ -116,7 +116,6 @@ export default function Index() {
   };
 
   const triggerLoadingSequence = () => {
-    console.log('🎬 Triggering orchestrated page animation for theme:', theme, 'mode:', mode);
     setIsLoading(true);
     setIsLoaded(false);
     setAnimationStep(0);
@@ -131,12 +130,8 @@ export default function Index() {
 
     const timeouts = animationSequence.map(({ delay, step }) =>
       setTimeout(() => {
-        console.log(`🎯 Animation step ${step} activated:`, [
-          'Initial', 'Orb', 'Text', 'Buttons', 'Background', 'Complete'
-        ][step]);
         setAnimationStep(step);
         if (step === 5) {
-          console.log('✅ Page animation complete');
           setIsLoading(false);
           setTimeout(() => setIsLoaded(true), 200);
         }
@@ -451,7 +446,7 @@ export default function Index() {
             </div>
             <div className="terminal-content">
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╔════════════════════════════════════════════════════════╗
+                ╔════════════════════════════════════════���═══════════════╗
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
                 ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
@@ -504,7 +499,7 @@ export default function Index() {
                   className="text-xs text-green-400 mb-1"
                   style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                 >
-                  CPU: ████████████████████ 60%
+                  CPU: ██████████��█████████ 60%
                 </div>
                 <div
                   className="text-xs text-amber-400 mb-1"
