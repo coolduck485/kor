@@ -430,6 +430,38 @@
   }
 }
 
+/* Chrome text styling with wavy letters */
+.chrome-wavy-text {
+  display: inline-block;
+}
+
+.chrome-wavy-text .wavy-letter {
+  display: inline-block;
+  background: linear-gradient(
+    110deg,
+    #b8b8b8 0%,
+    #e8e8e8 25%,
+    #ffffff 45%,
+    #ffffff 55%,
+    #e8e8e8 75%,
+    #b8b8b8 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: chrome-shine 3s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.chrome-wavy-text .wavy-letter:nth-child(odd) {
+  animation: wavy-letter 4s ease-in-out infinite, chrome-shine 3s ease-in-out infinite;
+}
+
+.chrome-wavy-text .wavy-letter:nth-child(even) {
+  animation: wavy-letter 4s ease-in-out infinite 0.5s, chrome-shine 3s ease-in-out infinite 0.2s;
+}
+
 /* Enhanced shine text styling */
 .shine-text-enhanced {
   color: white; /* Fallback color */
@@ -448,7 +480,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: wavy-shine 8s ease-in-out infinite;
 }
 
 /* Light mode version */
