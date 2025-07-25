@@ -84,19 +84,39 @@ export default function Index() {
         }}
       />
 
-      {/* Mouse Follower Effect */}
-      <div
-        className="absolute pointer-events-none opacity-30 transition-all duration-1000 ease-out"
-        style={{
-          left: `${mousePosition.x * 100}%`,
-          top: `${mousePosition.y * 100}%`,
-          transform: "translate(-50%, -50%)",
-          background:
-            "radial-gradient(circle, rgba(73, 146, 255, 0.1) 0%, transparent 70%)",
-          width: "600px",
-          height: "600px",
-        }}
-      />
+      {/* Floating Ambient Particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={`particle-${i}`}
+            className="absolute rounded-full opacity-60"
+            style={{
+              left: `${10 + (i * 70) % 90}%`,
+              top: `${15 + (i * 40) % 80}%`,
+              width: `${2 + (i % 3)}px`,
+              height: `${2 + (i % 3)}px`,
+              background: `rgba(${73 + (i * 20) % 50}, ${146 + (i * 10) % 30}, 255, ${0.3 + (i % 3) * 0.2})`,
+              animation: `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+              filter: "blur(0.5px)",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Dynamic Background Waves */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 80%, rgba(73, 146, 255, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(63, 186, 255, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(57, 135, 227, 0.1) 0%, transparent 50%)
+            `,
+            animation: "pulse 8s ease-in-out infinite alternate",
+          }}
+        />
+      </div>
 
       {/* Interactive Glass Badge at Top */}
       <div
