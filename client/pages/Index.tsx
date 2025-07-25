@@ -118,6 +118,30 @@ export default function Index() {
         />
       </div>
 
+      {/* Aurora-like Moving Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute w-96 h-96 rounded-full opacity-15"
+          style={{
+            left: "10%",
+            top: "20%",
+            background: "linear-gradient(45deg, rgba(73, 146, 255, 0.4), rgba(63, 186, 255, 0.2))",
+            filter: "blur(60px)",
+            animation: "aurora 12s ease-in-out infinite",
+          }}
+        />
+        <div
+          className="absolute w-80 h-80 rounded-full opacity-10"
+          style={{
+            right: "15%",
+            bottom: "25%",
+            background: "linear-gradient(-45deg, rgba(57, 135, 227, 0.3), rgba(73, 146, 255, 0.1))",
+            filter: "blur(80px)",
+            animation: "aurora 15s ease-in-out infinite 3s",
+          }}
+        />
+      </div>
+
       {/* Interactive Glass Badge at Top */}
       <div
         className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce"
