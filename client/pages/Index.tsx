@@ -306,7 +306,7 @@ export default function Index() {
 
       {/* Interactive Glass Badge at Top */}
       <div
-        className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-75 sm:scale-100"
+        className="absolute top-8 sm:top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-50 sm:scale-100"
         style={{
           marginTop: "var(--badge-margin-top, 140px)",
         }}
@@ -605,11 +605,11 @@ export default function Index() {
         <div className="relative z-10 px-4 -mt-16">
           {/* Kor - moved further to the left */}
           <div
-            className="text-center transform -translate-x-4 sm:-translate-x-8 md:-translate-x-16 lg:-translate-x-20"
+            className="text-center transform -translate-x-6 sm:-translate-x-8 md:-translate-x-16 lg:-translate-x-20"
             style={{ marginLeft: "-5px" }}
           >
             <h1
-              className={`font-poppins text-6xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+              className={`font-poppins text-8xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
                 theme === "light" ? "text-gray-900" : "text-white"
               }`}
             >
@@ -882,7 +882,7 @@ export default function Index() {
       </div>
 
       {/* Scroll/Swipe Indicator */}
-      <div className="absolute bottom-16 lg:bottom-16 md:bottom-32 sm:bottom-36 left-1/2 transform -translate-x-1/2 z-20">
+      <div className="absolute bottom-28 lg:bottom-16 md:bottom-32 sm:bottom-36 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center space-y-3 animate-button-float">
           {/* Desktop: Scroll Down */}
           <span
