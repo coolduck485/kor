@@ -378,27 +378,27 @@ export default function Index() {
                 }}
               >
                 Development services
-                {/* Figma Star Sparkles - Exact Figma positioning */}
+                {/* Simple 4-Point Stars - Match Figma Design */}
                 {SHINE_CONFIG.showSparkles &&
                   [
-                    // Upper right - main star
-                    { x: 100, y: -40, size: 0.3 },
+                    // Upper right
+                    { x: 95, y: -35, size: 0.6 },
 
-                    // Right side - smaller star
-                    { x: 80, y: -15, size: 0.2 },
+                    // Right middle
+                    { x: 75, y: -10, size: 0.4 },
 
-                    // Lower right area
-                    { x: 110, y: 40, size: 0.25 },
-                    { x: 140, y: 60, size: 0.35 },
+                    // Lower right
+                    { x: 120, y: 50, size: 0.5 },
+                    { x: 90, y: 80, size: 0.7 },
 
-                    // Lower center-right
-                    { x: 70, y: 70, size: 0.2 },
+                    // Lower center
+                    { x: 25, y: 85, size: 0.4 },
 
-                    // Lower left area
-                    { x: -60, y: 45, size: 0.25 },
+                    // Lower left
+                    { x: -40, y: 60, size: 0.5 },
 
                     // Far right
-                    { x: 180, y: 20, size: 0.4 },
+                    { x: 165, y: 15, size: 0.8 },
                   ].map((sparkle, i) => (
                     <div
                       key={`sparkle-${i}`}
