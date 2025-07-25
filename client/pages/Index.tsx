@@ -475,7 +475,7 @@ export default function Index() {
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚���════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -3049,6 +3049,10 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 0.6,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
+      onClick: () => {
+        console.log("Services clicked");
+        alert("Services section - Coming soon!");
+      },
 
       // Custom positioning for Services button
       xOffset: 0, // Centered positioning
@@ -3066,6 +3070,10 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 1.0,
       size: "medium", // Consistent sizing for uniform look
       accent: "blue", // Color accent - unified to blue
+      onClick: () => {
+        console.log("Portfolio clicked");
+        alert("Portfolio section - Coming soon!");
+      },
 
       xOffset: 0, // Centered positioning
       yOffset: 15, // Adjusted for mobile balance
@@ -3081,6 +3089,10 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 1.4,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
+      onClick: () => {
+        console.log("Contact us clicked");
+        alert("Contact us section - Coming soon!");
+      },
 
       xOffset: -20, // Mobile-friendly spacing
       yOffset: -75, // Moved up 50px from -25 to -75
