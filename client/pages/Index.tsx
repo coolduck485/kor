@@ -424,7 +424,7 @@ export default function Index() {
               {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██���
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██║��█╔══██╗
+██╔═██�� ██║   ██║��█╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
@@ -1554,7 +1554,7 @@ export default function Index() {
         )}
       </AnimatePresence>
       {/* Main Content - Only show after loading */}
-      {!isLoading && (
+      {!isLoading && isLoaded && (
         <>
           {/* Theme Toggle Container with Tooltip */}
       <div className="fixed top-6 right-6 z-50">
