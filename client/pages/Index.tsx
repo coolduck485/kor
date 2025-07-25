@@ -212,21 +212,17 @@ export default function Index() {
                 LOADING DEVELOPMENT SERVICES...
               </div>
               <div className="terminal-line">
-                <span className="prompt">&gt;</span>
                 <span className="cursor-text">CUSTOM SOFTWARE SOLUTIONS</span>
               </div>
               <div className="terminal-line">
-                <span className="prompt">&gt;</span>
                 <span className="cursor-text text-amber-400">
                   RETRO SYSTEM ARCHITECTURE
                 </span>
               </div>
               <div className="terminal-line">
-                <span className="prompt">&gt;</span>
                 <span className="cursor-text">WEB APPLICATION DEVELOPMENT</span>
               </div>
               <div className="terminal-line mb-4">
-                <span className="prompt">&gt;</span>
                 <span className="cursor-text text-amber-400">
                   LEGACY SYSTEM MODERNIZATION
                 </span>
@@ -390,11 +386,10 @@ export default function Index() {
                         } else if (command !== "") {
                           newOutput.push(`Command '${command}' not found.`);
                           newOutput.push("");
+                          newOutput.push(
+                            "Type 'help' to see list of available commands.",
+                          );
                         }
-
-                        newOutput.push(
-                          "Type 'help' to see list of available commands.",
-                        );
                         setTerminalOutput(newOutput);
                         setTerminalInput("");
                       }
@@ -726,16 +721,16 @@ export default function Index() {
           }
 
           .social-button {
-            border: 2px solid #ffaa00 !important;
-            color: #ffaa00 !important;
-            box-shadow: 4px 4px 0px #ffaa00 !important;
-            text-shadow: 0 0 8px #ffaa00;
+            border: 2px solid #00ff41 !important;
+            color: #00ff41 !important;
+            box-shadow: 4px 4px 0px #00ff41 !important;
+            text-shadow: 0 0 8px #00ff41;
           }
 
           .social-button:hover {
-            background: #ffaa00 !important;
+            background: #00ff41 !important;
             color: #0a0a0a !important;
-            box-shadow: 6px 6px 0px #ffaa00 !important;
+            box-shadow: 6px 6px 0px #00ff41 !important;
             transform: translate(-2px, -2px) !important;
           }
 
@@ -2509,7 +2504,7 @@ const ORB_BUTTON_CONFIG = {
 // ========================================
 //
 // To move "Services" button 50px to the right:
-// Change: xOffset: 0  ��  xOffset: 50
+// Change: xOffset: 0  →  xOffset: 50
 //
 // To move "About us" button 30px up:
 // Change: yOffset: 0  →  yOffset: -30
