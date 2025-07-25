@@ -1168,7 +1168,7 @@ export default function Index() {
                 />
               ))}
 
-              <p className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+              <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                 <span
                   className={`relative inline-block ${
                     theme === "light" ? "text-gray-900" : "text-white"
@@ -1183,7 +1183,7 @@ export default function Index() {
                   }}
                 >
                   {/* Warm glow text with iOS-inspired styling */}
-                  <div className="warm-glow-text animate-warm-glow-pulse">
+                  <span className="warm-glow-text animate-warm-glow-pulse">
                     {"Development services".split("").map((letter, i) => (
                       <span
                         key={i}
@@ -1195,7 +1195,7 @@ export default function Index() {
                         {letter === " " ? "\u00A0" : letter}
                       </span>
                     ))}
-                  </div>
+                  </span>
 
                   {/* Enhanced sparkles with more variety */}
                   {SHINE_CONFIG.showSparkles &&
@@ -1271,7 +1271,7 @@ export default function Index() {
                       </div>
                     ))}
                 </span>
-              </p>
+              </div>
             </div>
           </div>
         </div>
