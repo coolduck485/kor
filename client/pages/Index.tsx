@@ -116,6 +116,7 @@ export default function Index() {
   };
 
   const triggerLoadingSequence = () => {
+    console.log('🎬 Triggering loading sequence for theme:', theme, 'mode:', mode);
     setIsLoading(true);
     setIsLoaded(false);
     setLoadingStep(0);
@@ -129,8 +130,10 @@ export default function Index() {
 
     const timeouts = loadingSequence.map(({ delay, step }) =>
       setTimeout(() => {
+        console.log(`🎯 Loading step ${step} activated`);
         setLoadingStep(step);
         if (step === 4) {
+          console.log('✅ Loading complete, showing content');
           setIsLoading(false);
           setTimeout(() => setIsLoaded(true), 400);
         }
@@ -424,7 +427,7 @@ export default function Index() {
               {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██���
 █████╔╝ ██║   ██║██████╔╝
-██╔═██�� ██║   ██║��█╔══██╗
+██╔═██╗ ██║   ██║��█╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
@@ -449,7 +452,7 @@ export default function Index() {
                 ║ KOR DEVELOPMENT SYSTEMS v2.4.7 ║
               </div>
               <div className="text-green-400 font-bold mb-2 terminal-glow">
-                ╚══════════════════════════════��═════════════════════════╝
+                ╚════════════════════��═════════��═════════════════════════╝
               </div>
               <div className="text-amber-400 font-bold mb-3 mt-4">
                 SYSTEM STATUS:{" "}
