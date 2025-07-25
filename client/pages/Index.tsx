@@ -441,21 +441,7 @@ export default function Index() {
             }
           }
 
-          /* Enhanced terminal glow effects */
-          .retro-subtitle, .terminal-content, .terminal-header span {
-            text-shadow:
-              0 0 5px currentColor,
-              0 0 10px currentColor,
-              0 0 15px currentColor;
-          }
 
-          /* Terminal window enhancement */
-          .terminal-window {
-            box-shadow:
-              0 0 20px rgba(0, 255, 65, 0.3),
-              inset 0 0 20px rgba(0, 255, 65, 0.1),
-              0 0 40px rgba(0, 255, 65, 0.2);
-          }
 
           .retro-header {
             display: flex;
