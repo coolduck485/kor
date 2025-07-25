@@ -185,7 +185,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██��███╔╝██║  ██║
+██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -307,6 +307,81 @@ export default function Index() {
               <span>░▒▓█</span>
             </div>
           </motion.div>
+
+          {/* Interactive Terminal */}
+          {showTerminal && (
+            <motion.div
+              className="interactive-terminal"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="terminal-header">
+                <span>■ ■ ■</span>
+                <span>INTERACTIVE TERMINAL</span>
+                <button
+                  className="close-terminal"
+                  onClick={() => setShowTerminal(false)}
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="terminal-body">
+                <div className="terminal-output">
+                  {terminalOutput.map((line, index) => (
+                    <div key={index} className="terminal-line">
+                      {line.startsWith('>') ? (
+                        <>
+                          <span className="prompt">&gt;</span>
+                          <span className="command">{line.slice(1)}</span>
+                        </>
+                      ) : (
+                        <span className="output">{line}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className="terminal-input-line">
+                  <span className="prompt">&gt;</span>
+                  <input
+                    type="text"
+                    className="terminal-input"
+                    value={terminalInput}
+                    onChange={(e) => setTerminalInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        const command = terminalInput.trim().toLowerCase();
+                        const newOutput = [...terminalOutput, `>${terminalInput}`];
+
+                        if (command === 'help') {
+                          newOutput.push('');
+                          newOutput.push('AVAILABLE COMMANDS:');
+                          newOutput.push('help - show this help message');
+                          newOutput.push('');
+                          newOutput.push('TIP: Switch back to the main website theme to explore');
+                          newOutput.push('my projects, services, and portfolio.');
+                          newOutput.push('');
+                        } else if (command === 'clear') {
+                          setTerminalOutput(["Type 'help' to see list of available commands."]);
+                          setTerminalInput('');
+                          return;
+                        } else if (command !== '') {
+                          newOutput.push(`Command '${command}' not found.`);
+                          newOutput.push('');
+                        }
+
+                        newOutput.push("Type 'help' to see list of available commands.");
+                        setTerminalOutput(newOutput);
+                        setTerminalInput('');
+                      }
+                    }}
+                    placeholder="Type command..."
+                    autoFocus
+                  />
+                </div>
+              </div>
+            </motion.div>
+          )}
         </div>
 
         {/* Footer */}
