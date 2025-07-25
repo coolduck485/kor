@@ -39,16 +39,52 @@ export default function Index() {
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden">
-      {/* Background Grid Pattern */}
+      {/* Enhanced Background Elements */}
+      {/* Animated Grid Pattern */}
       <div className="absolute inset-0 opacity-20">
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 animate-pulse"
           style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
             backgroundSize: "50px 50px",
+            animation: "backgroundShift 20s ease-in-out infinite alternate",
           }}
         />
       </div>
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-400/20 rounded-full animate-float-particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${15 + Math.random() * 10}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Dynamic Gradient Overlays */}
+      <div className="absolute inset-0 opacity-10">
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse"
+        />
+      </div>
+
+      {/* Animated Noise Texture */}
+      <div
+        className="absolute inset-0 opacity-5 animate-noise"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+        }}
+      />
 
       {/* Mouse Follower Effect */}
       <div
