@@ -105,7 +105,16 @@ export default function Index() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    // Trigger loading animation after a short delay
+    const loadTimer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      clearTimeout(loadTimer);
+    };
   }, []);
 
   const handleBadgeMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
