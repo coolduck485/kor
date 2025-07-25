@@ -186,7 +186,7 @@ export default function Index() {
               {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ █���║   ██║██╔══██╗
+██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
@@ -954,9 +954,9 @@ export default function Index() {
       <div className="fixed top-6 right-6 z-50">
         <div className="group relative">
           {/* Tooltip */}
-          <div className="absolute right-full top-1/2 -translate-y-1/2 mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+          <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
             <div
-              className={`px-3 py-2 rounded-lg border backdrop-blur-xl text-sm font-medium whitespace-nowrap ${
+              className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
                 theme === "light"
                   ? "border-blue-400/40 bg-white/80 text-gray-800"
                   : "border-blue-300/30 bg-blue-400/10 text-white/90"
