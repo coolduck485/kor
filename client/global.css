@@ -438,36 +438,62 @@
   }
 }
 
-/* Chrome text styling with wavy letters */
+/* Chrome text styling with wavy letters and cartoon shine */
 .chrome-wavy-text {
   display: inline-block;
+  position: relative;
+  overflow: hidden;
 }
 
 .chrome-wavy-text .wavy-letter {
   display: inline-block;
+  color: #c0c0c0;
   background: linear-gradient(
-    110deg,
-    #b8b8b8 0%,
-    #e8e8e8 25%,
-    #ffffff 45%,
-    #ffffff 55%,
-    #e8e8e8 75%,
-    #b8b8b8 100%
+    135deg,
+    #a0a0a0 0%,
+    #d0d0d0 30%,
+    #f0f0f0 50%,
+    #d0d0d0 70%,
+    #a0a0a0 100%
   );
-  background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: chrome-shine 3s ease-in-out infinite;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
 }
 
 .chrome-wavy-text .wavy-letter:nth-child(odd) {
-  animation: wavy-letter 4s ease-in-out infinite, chrome-shine 3s ease-in-out infinite;
+  animation: wavy-letter 4s ease-in-out infinite;
 }
 
 .chrome-wavy-text .wavy-letter:nth-child(even) {
-  animation: wavy-letter 4s ease-in-out infinite 0.5s, chrome-shine 3s ease-in-out infinite 0.2s;
+  animation: wavy-letter 4s ease-in-out infinite 0.5s;
+}
+
+/* Cartoon shine overlay */
+.chrome-wavy-text::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -20%;
+  width: 30%;
+  height: 120%;
+  background: linear-gradient(
+    75deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 1) 52%,
+    rgba(255, 255, 255, 0.8) 54%,
+    transparent 60%,
+    transparent 100%
+  );
+  animation: cartoon-shine-sweep 4s ease-in-out infinite 1s;
+  z-index: 2;
+  pointer-events: none;
+  transform: skewX(-20deg);
 }
 
 /* Enhanced shine text styling */
