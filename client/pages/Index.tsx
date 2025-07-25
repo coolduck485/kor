@@ -13,12 +13,7 @@ export default function Index() {
   });
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [customCursor, setCustomCursor] = useState({
-    x: 0,
-    y: 0,
-    visible: false,
-  });
-  const cursorRef = useRef<HTMLDivElement>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Framer Motion animation variants
   const containerVariants = {
@@ -111,28 +106,9 @@ export default function Index() {
         x: e.clientX / window.innerWidth,
         y: e.clientY / window.innerHeight,
       });
-
-      // Update custom cursor position with direct transform for better performance
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-      }
-
-      if (!customCursor.visible) {
-        setCustomCursor((prev) => ({ ...prev, visible: true }));
-      }
-    };
-
-    const handleMouseEnter = () => {
-      setCustomCursor((prev) => ({ ...prev, visible: true }));
-    };
-
-    const handleMouseLeave = () => {
-      setCustomCursor((prev) => ({ ...prev, visible: false }));
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseenter", handleMouseEnter);
-    window.addEventListener("mouseleave", handleMouseLeave);
 
     // Trigger loading animation after a short delay
     const loadTimer = setTimeout(() => {
@@ -141,8 +117,6 @@ export default function Index() {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseenter", handleMouseEnter);
-      window.removeEventListener("mouseleave", handleMouseLeave);
       clearTimeout(loadTimer);
     };
   }, []);
@@ -183,7 +157,7 @@ export default function Index() {
 
   return (
     <motion.div
-      className={`relative min-h-screen overflow-hidden transition-all duration-500 cursor-none ${
+      className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
         theme === "light"
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
@@ -193,43 +167,8 @@ export default function Index() {
       animate={isLoaded ? "visible" : "hidden"}
     >
       {/* Theme Toggle */}
-      <div className="cursor-none">
+      <div>
         <ThemeToggle />
-      </div>
-
-      {/* Custom Blue Glowy Orb Cursor - Optimized for Performance */}
-      <div
-        ref={cursorRef}
-        className={`fixed pointer-events-none z-[60] transition-opacity duration-300 ${
-          customCursor.visible ? "opacity-100" : "opacity-0"
-        }`}
-        style={{
-          left: 0,
-          top: 0,
-          transform: "translate3d(0px, 0px, 0)",
-          willChange: "transform",
-        }}
-      >
-        {/* Figma-matched cursor orb */}
-        <div
-          className="absolute rounded-full"
-          style={{
-            width: "18px",
-            height: "19px",
-            borderRadius: "19px",
-            background:
-              "linear-gradient(90deg, #3FBAFF 0.45%, #4992FF 60.5%, #3987E3 122.16%)",
-            boxShadow: `
-              0 0 31px 0 #4992FF,
-              0 0 18px 0 #4992FF,
-              0 0 10px 0 #4992FF,
-              0 0 5px 0 #4992FF,
-              0 0 1.5px 0 #4992FF
-            `,
-            filter: "blur(1.1px)",
-            transform: "translate(-50%, -50%)",
-          }}
-        />
       </div>
 
       {/* Enhanced Background Elements */}
@@ -368,11 +307,11 @@ export default function Index() {
       {/* Interactive Glass Badge at Top */}
       <div
         className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce"
-        style={{ marginTop: "10px" }}
+        style={{ marginTop: "110px" }}
       >
         <div
           ref={badgeRef}
-          className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden cursor-none"
+          className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
           style={{
             background: "rgba(255, 255, 255, 0.1)",
             border: "2px solid transparent",
@@ -441,7 +380,7 @@ export default function Index() {
             />
           </svg>
           <span
-            className={`font-inter text-xs md:text-sm font-normal text-center animate-textGlow ${
+            className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${
               theme === "light" ? "text-gray-700" : "text-white/80"
             }`}
           >
@@ -518,7 +457,7 @@ export default function Index() {
               viewBox="0 0 1284 810"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-[45rem] h-[45rem] sm:w-[60rem] sm:h-[60rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem]"
+              className="w-[58rem] h-[58rem] sm:w-[78rem] sm:h-[78rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem]"
               style={{
                 position: "absolute",
                 left: "50%",
@@ -664,11 +603,11 @@ export default function Index() {
         <div className="relative z-10 px-4 -mt-16">
           {/* Kor - moved further to the left */}
           <div
-            className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20"
+            className="text-center transform -translate-x-4 sm:-translate-x-8 md:-translate-x-16 lg:-translate-x-20"
             style={{ marginLeft: "-5px" }}
           >
             <h1
-              className={`font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+              className={`font-poppins text-6xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
                 theme === "light" ? "text-gray-900" : "text-white"
               }`}
             >
@@ -742,7 +681,7 @@ export default function Index() {
                 />
               ))}
 
-              <p className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+              <p className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                 <span
                   className={`relative inline-block ${
                     theme === "light" ? "text-gray-900" : "text-white"
@@ -850,8 +789,19 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Orb-Floating Navigation Buttons - positioned relative to orb */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        {/* Mobile Hamburger Menu - Only on mobile (640px and below) */}
+        <div className="sm:hidden absolute inset-0 flex items-center justify-center">
+          <div className="relative">
+            <MobileHamburgerMenu
+              isOpen={isMobileMenuOpen}
+              setIsOpen={setIsMobileMenuOpen}
+              theme={theme}
+            />
+          </div>
+        </div>
+
+        {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
+        <div className="hidden sm:flex absolute inset-0 items-center justify-center">
           <div className="relative">
             {/* Animated Connection Lines Between Buttons */}
             <svg
@@ -930,7 +880,7 @@ export default function Index() {
       </div>
 
       {/* Scroll/Swipe Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+      <div className="absolute bottom-16 lg:bottom-16 md:bottom-32 sm:bottom-36 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center space-y-3 animate-button-float">
           {/* Desktop: Scroll Down */}
           <span
@@ -1346,6 +1296,298 @@ export default function Index() {
 }
 
 // ========================================
+// MOBILE HAMBURGER MENU COMPONENT
+// ========================================
+
+interface MobileHamburgerMenuProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  theme: "light" | "dark";
+}
+
+function MobileHamburgerMenu({
+  isOpen,
+  setIsOpen,
+  theme,
+}: MobileHamburgerMenuProps) {
+  const [menuPosition, setMenuPosition] = useState({ left: 70, top: -80 });
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const menuItems = [
+    { text: "About us" },
+    { text: "Services" },
+    { text: "Portfolio" },
+    { text: "Contact us" },
+  ];
+
+  // Calculate safe menu position to avoid screen overflow
+  const calculateMenuPosition = () => {
+    const menuWidth = 200; // Approximate menu width
+    const menuHeight = 280; // Increased height for button-style items
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const buttonX = viewportWidth / 2 + 70; // Button position
+    const buttonY = viewportHeight / 2 - 130; // Button position
+
+    let left = 70;
+    let top = -80; // Closer to button
+
+    // Check right boundary
+    if (buttonX + menuWidth > viewportWidth - 20) {
+      left = 70 - (menuWidth + 40); // Move menu to left of button
+    }
+
+    // Check bottom boundary
+    if (buttonY + menuHeight > viewportHeight - 20) {
+      top = -menuHeight - 20; // Move menu above button
+    }
+
+    // Check top boundary
+    if (buttonY + top < 20) {
+      top = 20 - buttonY; // Move menu down to stay in view
+    }
+
+    // Check left boundary
+    if (buttonX + left < 20) {
+      left = 20 - viewportWidth / 2; // Adjust to stay in view
+    }
+
+    return { left, top };
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      const position = calculateMenuPosition();
+      setMenuPosition(position);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => setShowTooltip(true), 500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowTooltip(false);
+    }
+  }, [isOpen]);
+
+  return (
+    <>
+      {/* Hamburger Button - adjusted position: down 150px, left 50px */}
+      <div
+        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
+        style={{
+          marginLeft: "70px", // Moved left 50px from 120px
+          marginTop: "-130px", // Moved down 150px from -280px
+          animationDelay: "0.2s",
+          animation:
+            "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s",
+        }}
+      >
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          onMouseEnter={() => setShowTooltip(true)}
+          onMouseLeave={() => !isOpen && setShowTooltip(false)}
+          className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
+            theme === "light"
+              ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
+              : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
+          }`}
+          style={{
+            background:
+              theme === "light"
+                ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+          }}
+        >
+          {/* Animated background layers */}
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50 group-hover:opacity-70 transition-all duration-500" />
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500" />
+
+          {/* Hamburger Icon */}
+          <div className="relative w-6 h-6 flex flex-col justify-center items-center space-y-1">
+            <div
+              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+                isOpen ? "rotate-45 translate-y-1.5" : ""
+              } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
+            />
+            <div
+              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+                isOpen ? "opacity-0" : ""
+              } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
+            />
+            <div
+              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+                isOpen ? "-rotate-45 -translate-y-1.5" : ""
+              } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
+            />
+          </div>
+
+          {/* Tooltip */}
+          <AnimatePresence>
+            {showTooltip && (
+              <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+                className="absolute -top-14 left-1/2 -translate-x-1/2 pointer-events-none z-40"
+              >
+                <div
+                  className={`px-3 py-2 rounded-lg border backdrop-blur-xl text-xs font-medium whitespace-nowrap ${
+                    theme === "light"
+                      ? "border-blue-400/40 bg-white/80 text-gray-800"
+                      : "border-blue-300/30 bg-blue-400/10 text-white/90"
+                  }`}
+                  style={{
+                    background:
+                      theme === "light"
+                        ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                        : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                    boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+                  }}
+                >
+                  {isOpen ? "Click to close menu" : "Click to open menu"}
+                  {/* Tooltip arrow */}
+                  <div
+                    className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
+                      theme === "light"
+                        ? "border-t-white/80"
+                        : "border-t-blue-400/10"
+                    }`}
+                  />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </button>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
+            style={{
+              marginLeft: `${menuPosition.left}px`, // Dynamic positioning to stay in bounds
+              marginTop: `${menuPosition.top}px`, // Dynamic positioning to stay in bounds
+            }}
+          >
+            <div
+              className={`relative rounded-2xl border-2 backdrop-blur-2xl p-4 w-[200px] max-w-[90vw] ${
+                theme === "light"
+                  ? "border-blue-400/40 bg-white/30"
+                  : "border-blue-300/30 bg-blue-400/5"
+              }`}
+              style={{
+                background:
+                  theme === "light"
+                    ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                boxShadow:
+                  "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
+              }}
+            >
+              {/* Animated background layers */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30" />
+
+              {/* Menu Items - Styled like original floating buttons */}
+              <div className="relative space-y-2">
+                {menuItems.map((item, index) => (
+                  <motion.button
+                    key={item.text}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.3 }}
+                    className={`group w-full px-4 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-500 hover:shadow-xl active:scale-95 overflow-hidden relative ${
+                      theme === "light"
+                        ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60 text-gray-800 hover:text-gray-900"
+                        : "border-blue-300/30 bg-blue-400/5 hover:border-white/40 text-white/90 hover:text-white"
+                    }`}
+                    style={{
+                      background:
+                        theme === "light"
+                          ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                          : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                    }}
+                    onClick={() => setIsOpen(false)}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = `scale(1.05)`;
+                      e.currentTarget.style.boxShadow =
+                        "0 0 20px rgba(73, 146, 255, 0.4)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = `scale(1)`;
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
+                  >
+                    {/* Animated background layers */}
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50 group-hover:opacity-70 transition-all duration-500" />
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500" />
+
+                    {/* Futuristic circuit-like patterns */}
+                    <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                      <div className="absolute top-1 left-1 w-1 h-1 bg-white/30 rounded-full" />
+                      <div className="absolute bottom-1 right-1 w-0.5 h-0.5 bg-white/40 rounded-full" />
+                      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                    </div>
+
+                    {/* Holographic scanning line effect */}
+                    <div className="absolute inset-0 overflow-hidden rounded-inherit">
+                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                    </div>
+
+                    {/* Button text */}
+                    <span className="relative font-poppins font-semibold text-sm tracking-wide drop-shadow-lg">
+                      {item.text}
+                    </span>
+
+                    {/* Holographic shimmer effect */}
+                    <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
+
+                    {/* Bottom reflection */}
+                    <div className="absolute bottom-0.5 left-0.5 right-0.5 h-1/4 rounded-xl bg-gradient-to-t from-white/15 to-transparent opacity-30 group-hover:opacity-50 transition-all duration-500" />
+                  </motion.button>
+                ))}
+              </div>
+
+              {/* Holographic shimmer effect */}
+              <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-2xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40" />
+
+              {/* Bottom reflection */}
+              <div className="absolute bottom-0.5 left-0.5 right-0.5 h-1/4 rounded-2xl bg-gradient-to-t from-white/15 to-transparent opacity-30" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Enhanced Backdrop overlay that blurs all content */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/30 z-40"
+            onClick={() => setIsOpen(false)}
+            style={{
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+            }}
+          />
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+// ========================================
 // BUTTON POSITIONING CONFIGURATION
 // ========================================
 // Edit these values to easily adjust button positions
@@ -1636,7 +1878,7 @@ function OrbFloatingButton({
         }}
       />
       <button
-        className={`group relative cursor-none ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
+        className={`group relative ${currentSize.padding} ${currentSize.radius} border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
           theme === "light"
             ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
             : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
