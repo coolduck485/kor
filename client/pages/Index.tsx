@@ -606,9 +606,11 @@ export default function Index() {
 
               <p className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                 <span
-                  className="relative inline-block shine-text-enhanced"
+                  className={`relative inline-block ${
+                    theme === "light" ? "text-gray-900" : "text-white"
+                  }`}
                   style={{
-                    animation: `shine-${SHINE_CONFIG.direction} ${SHINE_CONFIG.duration} ease-in-out infinite ${SHINE_CONFIG.delay}, text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
+                    animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
                     filter: theme === "light"
                       ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                       : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
