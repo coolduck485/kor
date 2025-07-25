@@ -1443,6 +1443,7 @@ function OrbFloatingButton({
           marginTop: "var(--mobile-y)",
           animationDelay: `${delay}s`,
           transform: `scale(${currentSize.scale})`,
+          animation: `gentleFloat 4s ease-in-out infinite ${delay}s, button-drift ${8 + (delay * 2)}s ease-in-out infinite ${delay * 1.5}s`,
         } as React.CSSProperties
       }
     >
