@@ -420,98 +420,11 @@ export default function Index() {
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-full h-full"
                       >
-                        <defs>
-                          <filter
-                            id={`filter_sparkle_${i}`}
-                            x="0.215881"
-                            y="0.612473"
-                            width="1133.4"
-                            height="1151.31"
-                            filterUnits="userSpaceOnUse"
-                            colorInterpolationFilters="sRGB"
-                          >
-                            <feFlood
-                              floodOpacity="0"
-                              result="BackgroundImageFix"
-                            />
-                            <feColorMatrix
-                              in="SourceAlpha"
-                              type="matrix"
-                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                              result="hardAlpha"
-                            />
-                            <feOffset />
-                            <feGaussianBlur stdDeviation="11.79" />
-                            <feColorMatrix
-                              type="matrix"
-                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
-                            />
-                            <feBlend
-                              mode="normal"
-                              in2="BackgroundImageFix"
-                              result="effect1_dropShadow"
-                            />
-                            <feColorMatrix
-                              in="SourceAlpha"
-                              type="matrix"
-                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                              result="hardAlpha"
-                            />
-                            <feOffset />
-                            <feGaussianBlur stdDeviation="41.265" />
-                            <feColorMatrix
-                              type="matrix"
-                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
-                            />
-                            <feBlend
-                              mode="normal"
-                              in2="effect1_dropShadow"
-                              result="effect2_dropShadow"
-                            />
-                            <feColorMatrix
-                              in="SourceAlpha"
-                              type="matrix"
-                              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                              result="hardAlpha"
-                            />
-                            <feOffset />
-                            <feGaussianBlur stdDeviation="82.53" />
-                            <feColorMatrix
-                              type="matrix"
-                              values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
-                            />
-                            <feBlend
-                              mode="normal"
-                              in2="effect2_dropShadow"
-                              result="effect3_dropShadow"
-                            />
-                            <feBlend
-                              mode="normal"
-                              in="SourceGraphic"
-                              in2="effect3_dropShadow"
-                              result="shape"
-                            />
-                          </filter>
-                          <linearGradient
-                            id={`gradient_sparkle_${i}`}
-                            x1="504.394"
-                            y1="628.011"
-                            x2="679.912"
-                            y2="578.083"
-                            gradientUnits="userSpaceOnUse"
-                          >
-                            <stop stopColor="#1E40AF" />
-                            <stop offset="0.493374" stopColor="#1D4ED8" />
-                            <stop offset="1" stopColor="#1E3A8A" />
-                          </linearGradient>
-                        </defs>
-                        <g filter={`url(#filter_sparkle_${i})`}>
-                          <path
-                            d="M12 1L14.5 8.5L22 11L14.5 13.5L12 21L9.5 13.5L2 11L9.5 8.5L12 1Z"
-                            fill="#4992FF"
-                            stroke="none"
-                          />
-                        </g>
+                        <path
+                          d="M12 1L14.5 8.5L22 11L14.5 13.5L12 21L9.5 13.5L2 11L9.5 8.5L12 1Z"
+                          fill="#4992FF"
+                          stroke="none"
+                        />
                       </svg>
                     </div>
                   ))}
