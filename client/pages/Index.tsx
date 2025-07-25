@@ -507,8 +507,8 @@ export default function Index() {
                         </defs>
                         <g filter={`url(#filter_sparkle_${i})`}>
                           <path
-                            d="M537.254 557.616L495.396 597.059L554.801 617.972L590.311 656.741L599.501 604.977L638.435 555.474L581.954 544.621L543.519 495.792L537.254 557.616Z"
-                            fill={`url(#gradient_sparkle_${i})`}
+                            d="M12 1L14.5 8.5L22 11L14.5 13.5L12 21L9.5 13.5L2 11L9.5 8.5L12 1Z"
+                            fill="white"
                           />
                         </g>
                       </svg>
