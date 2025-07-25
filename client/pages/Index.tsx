@@ -27,6 +27,8 @@ export default function Index() {
   // Welcome notification - shows once per session
   useEffect(() => {
     if (animationStep >= 2) {
+      // Clear previous session storage to ensure notification shows
+      sessionStorage.removeItem('welcomeNotificationShown');
       const hasShownWelcome = sessionStorage.getItem('welcomeNotificationShown');
       if (!hasShownWelcome) {
         setTimeout(() => {
