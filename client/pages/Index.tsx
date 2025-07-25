@@ -159,20 +159,6 @@ export default function Index() {
       animate={isLoaded ? "visible" : "hidden"}
     >
       {/* Enhanced Background Elements */}
-      {/* Animated Grid Pattern */}
-      <motion.div
-        className="absolute inset-0 opacity-20"
-        variants={fadeInScale}
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)`,
-            backgroundSize: "50px 50px",
-            animation: "backgroundShift 30s ease-in-out infinite alternate",
-          }}
-        />
-      </motion.div>
 
       {/* Dynamic Gradient Overlays */}
       <div className="absolute inset-0 opacity-10">
