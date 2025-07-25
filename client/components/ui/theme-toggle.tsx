@@ -9,7 +9,10 @@ export function ThemeToggle() {
     <Button
       variant="ghost"
       size="icon"
-      onClick={toggleTheme}
+      onClick={() => {
+        console.log("Theme toggle clicked!");
+        toggleTheme();
+      }}
       className="h-10 w-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110 cursor-pointer"
       style={{
         background:
