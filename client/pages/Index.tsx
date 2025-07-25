@@ -14,6 +14,7 @@ export default function Index() {
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [customCursor, setCustomCursor] = useState({ x: 0, y: 0, visible: false });
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   // Framer Motion animation variants
   const containerVariants = {
@@ -107,12 +108,14 @@ export default function Index() {
         y: e.clientY / window.innerHeight,
       });
 
-      // Update custom cursor position
-      setCustomCursor({
-        x: e.clientX,
-        y: e.clientY,
-        visible: true,
-      });
+      // Update custom cursor position with direct transform for better performance
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      }
+
+      if (!customCursor.visible) {
+        setCustomCursor(prev => ({ ...prev, visible: true }));
+      }
     };
 
     const handleMouseEnter = () => {
@@ -190,15 +193,17 @@ export default function Index() {
         <ThemeToggle />
       </div>
 
-      {/* Custom Blue Glowy Orb Cursor - Figma Design Match */}
+      {/* Custom Blue Glowy Orb Cursor - Optimized for Performance */}
       <div
+        ref={cursorRef}
         className={`fixed pointer-events-none z-[60] transition-opacity duration-300 ${
           customCursor.visible ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
-          left: customCursor.x,
-          top: customCursor.y,
-          transform: 'translate(-50%, -50%)',
+          left: 0,
+          top: 0,
+          transform: 'translate3d(0px, 0px, 0)',
+          willChange: 'transform',
         }}
       >
         {/* Figma-matched cursor orb */}
