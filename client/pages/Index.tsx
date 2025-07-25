@@ -167,10 +167,38 @@ export default function Index() {
   if (mode === "retro") {
     return (
       <div className="retro-container min-h-screen">
-        {/* Toggle Buttons */}
-        <div className="fixed top-6 right-6 z-[9999] flex flex-col gap-4 pointer-events-auto">
-          <ThemeToggle />
-          <RetroToggle />
+        {/* Toggle Buttons Container */}
+        <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
+          <div className="group relative">
+            {/* Tooltip */}
+            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+              <div
+                className="px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap border-green-300/30 bg-green-400/10 text-green-400"
+                style={{
+                  background: `linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,255,65,0.05) 50%, transparent 100%)`,
+                  boxShadow: "0 0 15px rgba(0, 255, 65, 0.3)",
+                }}
+              >
+                Click to change the site's appearance
+                {/* Tooltip arrow */}
+                <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-green-400/10" />
+              </div>
+            </div>
+
+            {/* Container for existing toggles */}
+            <div
+              className="rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 border-green-300/30 bg-green-400/5"
+              style={{
+                background: `linear-gradient(135deg, rgba(0,255,65,0.1) 0%, rgba(0,255,65,0.05) 50%, transparent 100%)`,
+                boxShadow: "0 0 25px rgba(0, 255, 65, 0.4), 0 0 50px rgba(0, 255, 65, 0.2)",
+              }}
+            >
+              {/* Original Toggle Buttons */}
+              <div className="flex flex-col gap-2 sm:gap-3">
+                <RetroToggle />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Main Content */}
