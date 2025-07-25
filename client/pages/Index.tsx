@@ -52,9 +52,10 @@ export default function Index() {
         />
       </div>
 
-      {/* Floating Particles */}
+      {/* Enhanced Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+        {/* Small Particles */}
+        {[...Array(25)].map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-blue-400/20 rounded-full animate-float-particle"
@@ -63,6 +64,56 @@ export default function Index() {
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 10}s`,
               animationDuration: `${15 + Math.random() * 10}s`,
+            }}
+          />
+        ))}
+
+        {/* Medium Glowing Orbs */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`orb-${i}`}
+            className="absolute w-3 h-3 bg-blue-500/10 rounded-full animate-pulse-glow"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 8}s`,
+              animationDuration: `${8 + Math.random() * 4}s`,
+              boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)',
+            }}
+          />
+        ))}
+
+        {/* Geometric Shapes */}
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={`shape-${i}`}
+            className={`absolute animate-rotate-slow ${
+              i % 3 === 0 ? 'w-4 h-4 border border-cyan-400/20' :
+              i % 3 === 1 ? 'w-3 h-3 bg-purple-500/10' :
+              'w-2 h-6 bg-blue-400/15'
+            } ${i % 2 === 0 ? 'rounded-full' : 'rounded-sm'}`}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 15}s`,
+              animationDuration: `${20 + Math.random() * 10}s`,
+            }}
+          />
+        ))}
+
+        {/* Pulsing Lines */}
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={`line-${i}`}
+            className="absolute bg-gradient-to-r from-transparent via-blue-400/20 to-transparent animate-pulse-line"
+            style={{
+              left: `${Math.random() * 80 + 10}%`,
+              top: `${Math.random() * 80 + 10}%`,
+              width: `${100 + Math.random() * 200}px`,
+              height: '1px',
+              animationDelay: `${Math.random() * 6}s`,
+              animationDuration: `${4 + Math.random() * 3}s`,
+              transform: `rotate(${Math.random() * 360}deg)`,
             }}
           />
         ))}
@@ -340,8 +391,10 @@ export default function Index() {
             className="text-center transform -translate-x-8 sm:-translate-x-12 md:-translate-x-16 lg:-translate-x-20"
             style={{ marginLeft: "-5px" }}
           >
-            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-glow">
-              Kor
+            <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white tracking-tight animate-text-reveal">
+              <span className="inline-block animate-text-bounce" style={{ animationDelay: '0.2s' }}>K</span>
+              <span className="inline-block animate-text-bounce" style={{ animationDelay: '0.4s' }}>o</span>
+              <span className="inline-block animate-text-bounce" style={{ animationDelay: '0.6s' }}>r</span>
             </h1>
           </div>
 
@@ -351,10 +404,11 @@ export default function Index() {
             style={{ marginLeft: "5px", marginTop: "-5px" }}
           >
             <p
-              className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-glow-text-light animate-text-glow"
-              style={{ animationDelay: "1s" }}
+              className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-glow-text-light animate-type-writer"
+              style={{ animationDelay: "1.5s" }}
             >
-              Development services
+              <span className="animate-fade-in-word" style={{ animationDelay: '1.5s' }}>Development</span>
+              <span className="animate-fade-in-word" style={{ animationDelay: '2s' }}> services</span>
             </p>
           </div>
         </div>
