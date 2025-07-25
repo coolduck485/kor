@@ -422,7 +422,7 @@ export default function Index() {
           >
             <pre className="ascii-logo">
               {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔══██╗
+██║ ██╔╝██╔═══██╗██╔══██���
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║��█╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -1224,7 +1224,7 @@ export default function Index() {
       }`}
       variants={containerVariants}
       initial="hidden"
-      animate={isLoaded ? "visible" : "hidden"}
+      animate={!isLoading && isLoaded ? "visible" : "hidden"}
     >
       {/* Loading Screen */}
       <AnimatePresence>
