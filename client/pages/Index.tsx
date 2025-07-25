@@ -100,12 +100,37 @@ export default function Index() {
         }}
       />
 
-      {/* Animated Glass Badge at Top */}
+      {/* Interactive Glass Badge at Top */}
       <div
         className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce"
         style={{ marginTop: "10px" }}
       >
-        <div className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full border border-white/20 bg-white/10 backdrop-blur-xs hover:bg-white/15 hover:border-white/30 transition-all duration-500 hover:scale-105">
+        <div
+          ref={badgeRef}
+          className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
+          style={{
+            background: 'rgba(255, 255, 255, 0.1)',
+            border: '2px solid transparent',
+            backgroundClip: 'padding-box',
+          }}
+          onMouseMove={handleBadgeMouseMove}
+          onMouseLeave={handleBadgeMouseLeave}
+        >
+          {/* Dynamic Border Effect */}
+          <div
+            className="absolute inset-0 rounded-full pointer-events-none transition-all duration-300"
+            style={{
+              background: badgeMousePosition.isNear
+                ? `conic-gradient(from ${Math.atan2(badgeMousePosition.y, badgeMousePosition.x) * 180 / Math.PI + 90}deg, rgba(73, 146, 255, 0.8) 0deg, rgba(73, 146, 255, 0.4) 90deg, rgba(255, 255, 255, 0.2) 180deg, rgba(255, 255, 255, 0.2) 270deg, rgba(73, 146, 255, 0.8) 360deg)`
+                : 'conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(255, 255, 255, 0.2) 360deg)',
+              padding: '2px',
+              borderRadius: 'inherit',
+              mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+              maskComposite: 'xor',
+              WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+              WebkitMaskComposite: 'xor',
+            }}
+          />
           {/* Animated Sparkle Icon */}
           <svg
             className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle"
