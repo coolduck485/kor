@@ -160,7 +160,10 @@ export default function Index() {
     >
       {/* Enhanced Background Elements */}
       {/* Animated Grid Pattern */}
-      <div className="absolute inset-0 opacity-20">
+      <motion.div
+        className="absolute inset-0 opacity-20"
+        variants={fadeInScale}
+      >
         <div
           className="absolute inset-0 animate-pulse"
           style={{
@@ -169,7 +172,7 @@ export default function Index() {
             animation: "backgroundShift 20s ease-in-out infinite alternate",
           }}
         />
-      </div>
+      </motion.div>
 
       {/* Dynamic Gradient Overlays */}
       <div className="absolute inset-0 opacity-10">
