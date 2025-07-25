@@ -9,6 +9,7 @@ import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
 export default function Index() {
   const { theme, setTheme } = useTheme();
   const { mode, toggleMode } = useRetroMode();
+  const { showSuccess, showError, showWarning, showInfo } = useFloatingNotifications();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
