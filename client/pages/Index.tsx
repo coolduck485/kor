@@ -339,13 +339,9 @@ export default function Index() {
             style={{ marginLeft: "5px", marginTop: "-5px" }}
           >
             <p
-              className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-glow-text-light relative overflow-hidden"
+              className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative animate-shine-text-only"
             >
-              <span className="relative inline-block animate-shine-text">
-                Development services
-                {/* Shine overlay */}
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shine-sweep -skew-x-12"></span>
-              </span>
+              Development services
             </p>
           </div>
         </div>
