@@ -186,7 +186,7 @@ export default function Index() {
               {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══██╗
+██╔═██╗ █���║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
@@ -997,15 +997,6 @@ export default function Index() {
                 "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
             }}
           >
-            {/* Container Title */}
-            <div
-              className={`text-center font-poppins font-semibold mb-3 text-sm ${
-                theme === "light" ? "text-gray-800" : "text-white/90"
-              }`}
-            >
-              Website Themes
-            </div>
-
             {/* Original Toggle Buttons */}
             <div className="flex flex-col gap-3">
               <ThemeToggle />
@@ -2557,7 +2548,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: yOffset: 0  →  yOffset: -30
 //
 // To make all buttons closer to center on mobile:
-// Change: mobileRadiusMultiplier: 0.5  ��  mobileRadiusMultiplier: 0.3
+// Change: mobileRadiusMultiplier: 0.5  →  mobileRadiusMultiplier: 0.3
 //
 // To make "Portfolio" button appear at the top:
 // Change: angle: 125  →  angle: -90
