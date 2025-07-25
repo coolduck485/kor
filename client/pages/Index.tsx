@@ -609,7 +609,7 @@ export default function Index() {
             style={{ marginLeft: "-5px" }}
           >
             <h1
-              className={`font-poppins text-7xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+              className={`font-poppins text-8xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
                 theme === "light" ? "text-gray-900" : "text-white"
               }`}
             >
