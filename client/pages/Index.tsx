@@ -285,10 +285,10 @@ export default function Index() {
               <div className="memory-section">
                 <div className="text-xs mb-2 text-cyan-400">SYSTEM RESOURCES:</div>
                 <div className="text-xs text-green-400 mb-1">
-                  CPU: {Array.from({ length: 20 }, (_, i) => i < Math.floor(systemStats.cpu / 5) ? '█' : '░').join('')} {systemStats.cpu}%
+                  CPU: ████████████████░░░░ 80%
                 </div>
                 <div className="text-xs text-amber-400 mb-1">
-                  RAM: {Array.from({ length: 20 }, (_, i) => i < Math.floor(systemStats.ram / 5) ? '█' : '░').join('')} {systemStats.ram}%
+                  RAM: ██████████████░░░░░░ 70%
                 </div>
                 <div className="loading-bar"></div>
                 <div className="text-xs text-green-400 mt-1">
