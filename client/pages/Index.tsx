@@ -35,7 +35,8 @@ export default function Index() {
         }, 3000);
       }
     }
-  }, [animationStep, showInfo]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animationStep]);
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
