@@ -303,9 +303,9 @@ export default function Index() {
       animate={isLoaded ? "visible" : "hidden"}
     >
       {/* Theme Toggle and Retro Toggle */}
-      <div className="absolute top-4 right-4 flex space-x-2 z-50">
-        <RetroToggle />
+      <div className="absolute top-4 right-4 flex flex-col space-y-2 z-50">
         <ThemeToggle />
+        <RetroToggle />
       </div>
 
       {/* Enhanced Background Elements */}
