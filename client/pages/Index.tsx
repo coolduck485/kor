@@ -46,13 +46,13 @@ export default function Index() {
   // ========================================
   const SHINE_CONFIG = {
     direction: "right-to-left", // 'left-to-right' or 'right-to-left'
-    duration: "6s", // Animation duration (slowed down more)
+    duration: "4s", // Animation duration - slower consistent shine
     delay: "1s", // Initial delay
     interval: "8s", // Time between shine sweeps (total cycle time)
     intensity: 0.9, // Brightness of the shine (0-1)
     width: 30, // Width of the shine effect (percentage)
     showSparkles: true, // Enable/disable sparkles
-    sparkleCount: 10, // Number of sparkles (increased for more visibility)
+    sparkleCount: 16, // More sparkles for all-around coverage
   };
 
   return (
