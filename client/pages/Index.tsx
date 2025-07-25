@@ -439,7 +439,8 @@ export default function Index() {
                 animate={{ opacity: isLoaded ? 1 : 0 }}
                 transition={{ duration: 2 }}
               >
-                <pre className="ascii-logo">
+                <div className="ascii-logo text-6xl font-bold text-center mb-4 text-green-400">KOR</div>
+                <pre className="hidden">
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
