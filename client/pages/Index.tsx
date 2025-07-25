@@ -2265,6 +2265,49 @@ export default function Index() {
             animation: "gentle-glow 12s ease-in-out infinite 1s",
           }}
         />
+
+        {/* Demo Notification Section - Shows after full animation */}
+        <AnimatePresence>
+          {animationStep >= 5 && (
+            <motion.div
+              className="fixed bottom-20 left-4 z-[9998]"
+              initial={{ scale: 0.8, opacity: 0, x: -50 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ scale: 0.8, opacity: 0, x: -50 }}
+              transition={{ delay: 3, type: "spring", stiffness: 300 }}
+            >
+              <div className="flex flex-col gap-2 p-4 rounded-xl backdrop-blur-xl bg-black/20 border border-white/10">
+                <p className="text-white/80 text-xs mb-2 font-mono">Notification Demo</p>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    onClick={() => showSuccess("Success!", "Your action completed successfully.")}
+                    className="px-3 py-1.5 text-xs bg-green-500/20 hover:bg-green-500/30 border border-green-500/30 rounded-md text-green-200 transition-all duration-200 hover:scale-105"
+                  >
+                    Success
+                  </button>
+                  <button
+                    onClick={() => showError("Error!", "Something went wrong. Please try again.")}
+                    className="px-3 py-1.5 text-xs bg-red-500/20 hover:bg-red-500/30 border border-red-500/30 rounded-md text-red-200 transition-all duration-200 hover:scale-105"
+                  >
+                    Error
+                  </button>
+                  <button
+                    onClick={() => showWarning("Warning!", "Please check your input before proceeding.")}
+                    className="px-3 py-1.5 text-xs bg-yellow-500/20 hover:bg-yellow-500/30 border border-yellow-500/30 rounded-md text-yellow-200 transition-all duration-200 hover:scale-105"
+                  >
+                    Warning
+                  </button>
+                  <button
+                    onClick={() => showInfo("Info", "Here's some useful information for you.")}
+                    className="px-3 py-1.5 text-xs bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 rounded-md text-blue-200 transition-all duration-200 hover:scale-105"
+                  >
+                    Info
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
 
       {/* Scroll/Swipe Indicator */}
