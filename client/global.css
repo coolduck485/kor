@@ -534,14 +534,23 @@
   text-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.light .chrome-wavy-text::before {
+.light .chrome-wavy-text::after {
   background: linear-gradient(
-    75deg,
+    90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.9) 50%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.95) 48%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 1) 52%,
+    rgba(255, 255, 255, 0.95) 54%,
+    transparent 60%,
     transparent 100%
   );
-  mix-blend-mode: overlay;
+  background-size: 300% 100%;
+  background-position: -300% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Light mode version */
