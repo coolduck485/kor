@@ -184,6 +184,24 @@ export default function Index() {
     >
       {/* Theme Toggle */}
       <ThemeToggle />
+      {/* Cursor Trail Effects */}
+      <div className="fixed inset-0 pointer-events-none z-50">
+        {cursorTrails.map((trail, index) => (
+          <div
+            key={trail.id}
+            className="absolute w-3 h-3 rounded-full"
+            style={{
+              left: trail.x - 6,
+              top: trail.y - 6,
+              background: `radial-gradient(circle, rgba(73, 146, 255, ${0.8 - index * 0.1}) 0%, transparent 70%)`,
+              animation: `cursor-trail 0.8s ease-out forwards`,
+              animationDelay: `${index * 0.05}s`,
+              transform: `scale(${1 - index * 0.1})`,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Enhanced Background Elements */}
 
       {/* Dynamic Gradient Overlays */}
