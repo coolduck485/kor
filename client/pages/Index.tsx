@@ -1557,8 +1557,27 @@ export default function Index() {
 
         {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div
+          <motion.div
             className="relative animate-float cursor-pointer group"
+            initial={{
+              opacity: 0,
+              scale: 0.3,
+              y: 100,
+              filter: "blur(20px)"
+            }}
+            animate={animationStep >= 1 ? {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              filter: "blur(0px)"
+            } : {}}
+            transition={{
+              duration: 1.5,
+              ease: [0.16, 1, 0.3, 1],
+              type: "spring",
+              stiffness: 80,
+              damping: 15
+            }}
             onMouseMove={(e) => {
               const rect = e.currentTarget.getBoundingClientRect();
               const centerX = rect.left + rect.width / 2;
@@ -1719,7 +1738,7 @@ export default function Index() {
                 <ellipse cx="642" cy="390" rx="146" ry="154" stroke="black" />
               </g>
             </svg>
-          </div>
+          </motion.div>
         </div>
 
         {/* Text Content - Moved up */}
