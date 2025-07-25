@@ -187,7 +187,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚█��████╔╝██║  ██║
+██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -950,21 +950,11 @@ export default function Index() {
       initial="hidden"
       animate={isLoaded ? "visible" : "hidden"}
     >
-      {/* Theme Toggle and Retro Toggle */}
-      <div className="fixed top-6 right-6 z-50 flex flex-col gap-4">
-        <ThemeToggle />
-        <RetroToggle />
-      </div>
-
-      {/* Visible Theme Selector Container */}
-      <div className="fixed bottom-6 left-6 z-50">
-        <div
-          className="group relative"
-          onMouseEnter={() => {}}
-          onMouseLeave={() => {}}
-        >
+      {/* Theme Selector Container with Tooltip */}
+      <div className="fixed top-6 right-6 z-50">
+        <div className="group relative">
           {/* Tooltip */}
-          <div className="absolute bottom-full left-0 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <div className="absolute bottom-full right-0 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
             <div
               className={`px-3 py-2 rounded-lg border backdrop-blur-xl text-sm font-medium whitespace-nowrap ${
                 theme === "light"
@@ -982,7 +972,7 @@ export default function Index() {
               Click any theme to change the site's appearance
               {/* Tooltip arrow */}
               <div
-                className={`absolute top-full left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
+                className={`absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
                   theme === "light"
                     ? "border-t-white/80"
                     : "border-t-blue-400/10"
