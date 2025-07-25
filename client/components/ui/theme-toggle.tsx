@@ -12,6 +12,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={() => {
+        if (mode === "retro") return; // Disable in retro mode
         console.log("Theme toggle clicked!");
         toggleTheme();
       }}
