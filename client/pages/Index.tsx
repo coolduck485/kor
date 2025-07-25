@@ -883,7 +883,7 @@ export default function Index() {
       </div>
 
       {/* Scroll/Swipe Indicator */}
-      <div className="absolute bottom-16 lg:bottom-16 md:bottom-24 sm:bottom-28 left-1/2 transform -translate-x-1/2 z-20">
+      <div className="absolute bottom-16 lg:bottom-16 md:bottom-32 sm:bottom-36 left-1/2 transform -translate-x-1/2 z-20">
         <div className="flex flex-col items-center space-y-3 animate-button-float">
           {/* Desktop: Scroll Down */}
           <span
@@ -1374,7 +1374,7 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
     <>
       {/* Hamburger Button - adjusted position: down 150px, left 50px */}
       <div
-        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30"
+        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-60"
         style={{
           marginLeft: "70px", // Moved left 50px from 120px
           marginTop: "-130px", // Moved down 150px from -280px
@@ -1457,13 +1457,6 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
             )}
           </AnimatePresence>
 
-          {/* Holographic scanning line effect */}
-          <div className="absolute inset-0 overflow-hidden rounded-inherit">
-            <div
-              className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"
-              style={{ animationDelay: "0.2s", left: "-50px" }}
-            />
-          </div>
         </button>
       </div>
 
@@ -1475,7 +1468,7 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: -20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+            className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-60"
             style={{
               marginLeft: `${menuPosition.left}px`, // Dynamic positioning to stay in bounds
               marginTop: `${menuPosition.top}px`, // Dynamic positioning to stay in bounds
@@ -1576,11 +1569,11 @@ function MobileHamburgerMenu({ isOpen, setIsOpen, theme }: MobileHamburgerMenuPr
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/20 backdrop-blur-md z-10"
+            className="fixed inset-0 bg-black/30 z-50"
             onClick={() => setIsOpen(false)}
             style={{
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
             }}
           />
         )}
