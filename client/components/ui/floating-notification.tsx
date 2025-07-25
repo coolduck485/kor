@@ -91,7 +91,7 @@ interface FloatingNotificationItemProps {
   onClose: () => void;
 }
 
-const FloatingNotificationItem: React.FC<FloatingNotificationItemProps> = ({ notification, onClose }) => {
+const FloatingNotificationItem = React.forwardRef<HTMLDivElement, FloatingNotificationItemProps>(({ notification, onClose }, ref) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0, isNear: false });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -174,6 +174,7 @@ const FloatingNotificationItem: React.FC<FloatingNotificationItemProps> = ({ not
       className="relative group pointer-events-auto animate-float"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      ref={ref}
       style={{
         willChange: "transform",
       }}
@@ -278,7 +279,7 @@ const FloatingNotificationItem: React.FC<FloatingNotificationItemProps> = ({ not
       </div>
     </motion.div>
   );
-};
+});
 
 // Utility function for easy notification usage
 export const showNotification = (notification: Omit<FloatingNotification, 'id'>) => {
