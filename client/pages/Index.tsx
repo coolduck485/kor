@@ -183,11 +183,11 @@ export default function Index() {
             transition={{ duration: 2 }}
           >
             <pre className="ascii-logo">
-              {`██╗  ██╗ ██████╗ ██████╗
+              {`██╗  ██╗ ██████╗ ███���██╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██████╔╝██║  ██║
+██║  ���█╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -950,7 +950,7 @@ export default function Index() {
       initial="hidden"
       animate={isLoaded ? "visible" : "hidden"}
     >
-      {/* Theme Selector Container with Tooltip */}
+      {/* Theme Toggle Container with Tooltip */}
       <div className="fixed top-6 right-6 z-50">
         <div className="group relative">
           {/* Tooltip */}
@@ -981,9 +981,9 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Theme Container */}
+          {/* Container for existing toggles */}
           <div
-            className={`rounded-2xl border-2 backdrop-blur-2xl p-4 w-[200px] ${
+            className={`rounded-2xl border-2 backdrop-blur-2xl p-4 ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/30"
                 : "border-blue-300/30 bg-blue-400/5"
@@ -1006,82 +1006,10 @@ export default function Index() {
               Website Themes
             </div>
 
-            {/* Theme Options */}
-            <div className="space-y-2">
-              {/* Light Theme */}
-              <button
-                onClick={() => setTheme("light")}
-                className={`group w-full px-3 py-2 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-300 hover:shadow-xl active:scale-95 overflow-hidden relative ${
-                  theme === "light"
-                    ? "border-blue-500/60 bg-blue-100/50"
-                    : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
-                } ${
-                  theme === "light"
-                    ? "text-gray-900"
-                    : "text-white/90 hover:text-white"
-                }`}
-                style={{
-                  background:
-                    theme === "light"
-                      ? `linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(255,255,255,0.4) 50%, transparent 100%)`
-                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-gradient-to-br from-yellow-400 to-orange-400"></div>
-                  <span className="font-poppins font-medium text-sm">Light Mode</span>
-                </div>
-              </button>
-
-              {/* Dark Theme */}
-              <button
-                onClick={() => setTheme("dark")}
-                className={`group w-full px-3 py-2 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-300 hover:shadow-xl active:scale-95 overflow-hidden relative ${
-                  theme === "dark"
-                    ? "border-purple-500/60 bg-purple-100/20"
-                    : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
-                } ${
-                  theme === "light"
-                    ? "text-gray-800 hover:text-gray-900"
-                    : "text-white/90 hover:text-white"
-                }`}
-                style={{
-                  background:
-                    theme === "dark"
-                      ? `linear-gradient(135deg, rgba(147,51,234,0.2) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)`
-                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-gradient-to-br from-purple-500 to-blue-600"></div>
-                  <span className="font-poppins font-medium text-sm">Dark Mode</span>
-                </div>
-              </button>
-
-              {/* Retro Theme */}
-              <button
-                onClick={() => toggleMode()}
-                className={`group w-full px-3 py-2 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-300 hover:shadow-xl active:scale-95 overflow-hidden relative ${
-                  mode === "retro"
-                    ? "border-green-500/60 bg-green-100/20"
-                    : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
-                } ${
-                  theme === "light"
-                    ? "text-gray-800 hover:text-gray-900"
-                    : "text-white/90 hover:text-white"
-                }`}
-                style={{
-                  background:
-                    mode === "retro"
-                      ? `linear-gradient(135deg, rgba(34,197,94,0.2) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)`
-                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-gradient-to-br from-green-400 to-cyan-400"></div>
-                  <span className="font-poppins font-medium text-sm">Retro Mode</span>
-                </div>
-              </button>
+            {/* Original Toggle Buttons */}
+            <div className="flex flex-col gap-3">
+              <ThemeToggle />
+              <RetroToggle />
             </div>
           </div>
         </div>
