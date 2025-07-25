@@ -912,6 +912,29 @@ export default function Index() {
           }
         }
 
+        @keyframes energy-ripple {
+          0% {
+            transform: scale(0.8);
+            opacity: 0;
+            border-width: 3px;
+          }
+          30% {
+            transform: scale(1);
+            opacity: 0.6;
+            border-width: 2px;
+          }
+          70% {
+            transform: scale(1.1);
+            opacity: 0.3;
+            border-width: 1px;
+          }
+          100% {
+            transform: scale(1.2);
+            opacity: 0;
+            border-width: 1px;
+          }
+        }
+
         .animate-type-writer {
           animation: type-writer 1s ease-out forwards;
         }
