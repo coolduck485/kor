@@ -17,6 +17,11 @@ export default function Index() {
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showTerminal, setShowTerminal] = useState(false);
+  const [terminalInput, setTerminalInput] = useState("");
+  const [terminalOutput, setTerminalOutput] = useState<string[]>([
+    "Type 'help' to see list of available commands.",
+  ]);
 
   // Framer Motion animation variants
   const containerVariants = {
@@ -162,31 +167,10 @@ export default function Index() {
   if (mode === "retro") {
     return (
       <div className="retro-container min-h-screen">
-        {/* Header Bar */}
-        <div className="retro-header">
-          <div className="flex items-center space-x-4">
-            <div className="flex space-x-1">
-              <div className="pixel-dot bg-green-400"></div>
-              <div className="pixel-dot bg-yellow-400"></div>
-              <div className="pixel-dot bg-red-400"></div>
-            </div>
-            <div className="terminal-glow font-bold text-green-400">
-              KOR SYSTEMS v2.1
-            </div>
-          </div>
-          <div className="flex flex-col space-y-2">
-            <ThemeToggle />
-            <RetroToggle />
-            <div
-              className="power-button"
-              onClick={() => {
-                document.body.style.opacity = "0";
-                setTimeout(() => location.reload(), 1000);
-              }}
-            >
-              ■
-            </div>
-          </div>
+        {/* Toggle Buttons */}
+        <div className="fixed top-6 right-6 z-[9999] flex flex-col gap-4 pointer-events-auto">
+          <ThemeToggle />
+          <RetroToggle />
         </div>
 
         {/* Main Content */}
@@ -203,7 +187,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██████╔╝██���  ██║
+██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
             </pre>
             <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -259,46 +243,43 @@ export default function Index() {
 
           {/* Navigation Buttons */}
           <motion.div
-            className="button-grid"
+            className="button-grid-single"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 2, duration: 1 }}
           >
             <button
-              className="pixel-button"
-              onClick={() => console.log("About")}
-            >
-              ▓ ABOUT ▓
-            </button>
-            <button
-              className="pixel-button"
-              onClick={() => console.log("Services")}
-            >
-              ▓ SERVICES ▓
-            </button>
-            <button
-              className="pixel-button"
-              onClick={() => console.log("Portfolio")}
-            >
-              ▓ PORTFOLIO ▓
-            </button>
-            <button
-              className="pixel-button"
-              onClick={() => console.log("Contact")}
-            >
-              ▓ CONTACT ▓
-            </button>
-            <button
-              className="pixel-button"
-              onClick={() => console.log("Terminal")}
+              className="pixel-button terminal-button"
+              onClick={() => setShowTerminal(true)}
             >
               ▓ TERMINAL ▓
             </button>
+          </motion.div>
+
+          {/* Social Media Buttons */}
+          <motion.div
+            className="social-button-grid"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 2.5, duration: 1 }}
+          >
             <button
-              className="pixel-button"
-              onClick={() => console.log("Archives")}
+              className="pixel-button social-button"
+              onClick={() => window.open("https://instagram.com", "_blank")}
             >
-              ▓ ARCHIVES ▓
+              ▓ INSTAGRAM ▓
+            </button>
+            <button
+              className="pixel-button social-button"
+              onClick={() => window.open("https://discord.com", "_blank")}
+            >
+              ▓ DISCORD ▓
+            </button>
+            <button
+              className="pixel-button social-button"
+              onClick={() => window.open("https://telegram.org", "_blank")}
+            >
+              ▓ TELEGRAM ▓
             </button>
           </motion.div>
 
@@ -328,6 +309,92 @@ export default function Index() {
               <span>░▒▓█</span>
             </div>
           </motion.div>
+
+          {/* Interactive Terminal */}
+          {showTerminal && (
+            <motion.div
+              className="interactive-terminal"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="terminal-header">
+                <span>■ ■ ■</span>
+                <span>INTERACTIVE TERMINAL</span>
+                <button
+                  className="close-terminal"
+                  onClick={() => setShowTerminal(false)}
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="terminal-body">
+                <div className="terminal-output">
+                  {terminalOutput.map((line, index) => (
+                    <div key={index} className="terminal-line">
+                      {line.startsWith(">") ? (
+                        <>
+                          <span className="prompt">&gt;</span>
+                          <span className="command">{line.slice(1)}</span>
+                        </>
+                      ) : (
+                        <span className="output">{line}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className="terminal-input-line">
+                  <span className="prompt">&gt;</span>
+                  <input
+                    type="text"
+                    className="terminal-input"
+                    value={terminalInput}
+                    onChange={(e) => setTerminalInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        const command = terminalInput.trim().toLowerCase();
+                        const newOutput = [
+                          ...terminalOutput,
+                          `>${terminalInput}`,
+                        ];
+
+                        if (command === "help") {
+                          newOutput.push("");
+                          newOutput.push("AVAILABLE COMMANDS:");
+                          newOutput.push("help - show this help message");
+                          newOutput.push("");
+                          newOutput.push(
+                            "TIP: Switch back to the main website theme to explore",
+                          );
+                          newOutput.push(
+                            "my projects, services, and portfolio.",
+                          );
+                          newOutput.push("");
+                        } else if (command === "clear") {
+                          setTerminalOutput([
+                            "Type 'help' to see list of available commands.",
+                          ]);
+                          setTerminalInput("");
+                          return;
+                        } else if (command !== "") {
+                          newOutput.push(`Command '${command}' not found.`);
+                          newOutput.push("");
+                        }
+
+                        newOutput.push(
+                          "Type 'help' to see list of available commands.",
+                        );
+                        setTerminalOutput(newOutput);
+                        setTerminalInput("");
+                      }
+                    }}
+                    placeholder="Type command..."
+                    autoFocus
+                  />
+                </div>
+              </div>
+            </motion.div>
+          )}
         </div>
 
         {/* Footer */}
@@ -418,18 +485,39 @@ export default function Index() {
           .retro-logo-container {
             text-align: center;
             margin-bottom: 32px;
-            animation: pixel-float 3s ease-in-out infinite;
           }
 
           .ascii-logo {
-            font-family: "JetBrains Mono", monospace;
-            font-weight: 800;
+            font-family: "JetBrains Mono", "Courier New", monospace;
+            font-weight: 700;
             font-size: clamp(8px, 2.5vw, 18px);
-            line-height: 0.9;
+            line-height: 1;
             color: #00ff41;
-            text-shadow: 0 0 10px #00ff41;
+            text-shadow:
+              0 0 8px #00ff41,
+              0 0 15px #00ff41;
             margin: 0;
             white-space: pre;
+            letter-spacing: 1px;
+            position: relative;
+          }
+
+          .ascii-logo::after {
+            content: "█";
+            color: #00ff41;
+            animation: terminal-cursor 1s infinite;
+            margin-left: 8px;
+          }
+
+          @keyframes terminal-cursor {
+            0%,
+            50% {
+              opacity: 1;
+            }
+            51%,
+            100% {
+              opacity: 0;
+            }
           }
 
           .retro-subtitle {
@@ -437,8 +525,11 @@ export default function Index() {
             font-size: clamp(12px, 3vw, 18px);
             font-weight: bold;
             margin-top: 12px;
-            text-shadow: 0 0 10px #ffaa00;
-            animation: terminal-glow 2s ease-in-out infinite;
+            text-shadow:
+              0 0 10px #ffaa00,
+              0 0 20px #ffaa00,
+              0 0 30px #ffaa00;
+            letter-spacing: 2px;
           }
 
           .terminal-window {
@@ -525,34 +616,59 @@ export default function Index() {
             left: 0;
             height: 100%;
             background: #00ff41;
-            animation: loading-progress 3s ease-in-out infinite;
+            animation: random-memory-usage 4s ease-in-out infinite;
           }
 
-          @keyframes loading-progress {
+          @keyframes random-memory-usage {
             0% {
-              width: 0%;
+              width: 25%;
             }
-            50% {
-              width: 70%;
+            15% {
+              width: 45%;
+            }
+            30% {
+              width: 35%;
+            }
+            45% {
+              width: 65%;
+            }
+            60% {
+              width: 40%;
+            }
+            75% {
+              width: 55%;
+            }
+            90% {
+              width: 30%;
             }
             100% {
-              width: 100%;
+              width: 48%;
             }
           }
 
-          .button-grid {
+          .button-grid-single {
+            display: flex;
+            justify-content: center;
+            margin: 32px auto 16px;
+            max-width: 600px;
+            position: relative;
+            z-index: 106;
+          }
+
+          .social-button-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            max-width: 600px;
-            margin-bottom: 32px;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto 32px;
             position: relative;
             z-index: 106;
           }
 
           @media (max-width: 640px) {
-            .button-grid {
-              grid-template-columns: repeat(2, 1fr);
+            .social-button-grid {
+              grid-template-columns: repeat(1, 1fr);
+              max-width: 300px;
             }
           }
 
@@ -583,6 +699,133 @@ export default function Index() {
           .pixel-button:active {
             transform: translate(2px, 2px);
             box-shadow: 2px 2px 0px #00ff41;
+          }
+
+          .terminal-button {
+            border: 3px solid #00ff41 !important;
+            box-shadow: 6px 6px 0px #00ff41 !important;
+            font-size: 14px !important;
+            padding: 16px 32px !important;
+            text-shadow: 0 0 10px #00ff41;
+          }
+
+          .terminal-button:hover {
+            box-shadow: 8px 8px 0px #00ff41 !important;
+            transform: translate(-3px, -3px) !important;
+          }
+
+          .social-button {
+            border: 2px solid #ffaa00 !important;
+            color: #ffaa00 !important;
+            box-shadow: 4px 4px 0px #ffaa00 !important;
+            text-shadow: 0 0 8px #ffaa00;
+          }
+
+          .social-button:hover {
+            background: #ffaa00 !important;
+            color: #0a0a0a !important;
+            box-shadow: 6px 6px 0px #ffaa00 !important;
+            transform: translate(-2px, -2px) !important;
+          }
+
+          .interactive-terminal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            height: 70%;
+            max-height: 600px;
+            background: #0a0a0a;
+            border: 3px solid #00ff41;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+            z-index: 1000;
+            overflow: hidden;
+          }
+
+          .interactive-terminal .terminal-header {
+            background: #00ff41;
+            color: #0a0a0a;
+            padding: 8px 16px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: "JetBrains Mono", monospace;
+          }
+
+          .close-terminal {
+            background: none;
+            border: none;
+            color: #0a0a0a;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 4px 8px;
+          }
+
+          .close-terminal:hover {
+            background: rgba(10, 10, 10, 0.2);
+          }
+
+          .terminal-body {
+            height: calc(100% - 40px);
+            padding: 16px;
+            overflow-y: auto;
+            background: #0a0a0a;
+          }
+
+          .terminal-output {
+            margin-bottom: 16px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            min-height: 200px;
+          }
+
+          .terminal-output .terminal-line {
+            margin-bottom: 4px;
+          }
+
+          .terminal-output .prompt {
+            color: #00ff41;
+            margin-right: 8px;
+          }
+
+          .terminal-output .command {
+            color: #ffffff;
+          }
+
+          .terminal-output .output {
+            color: #ffaa00;
+          }
+
+          .terminal-input-line {
+            display: flex;
+            align-items: center;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 14px;
+          }
+
+          .terminal-input-line .prompt {
+            color: #00ff41;
+            margin-right: 8px;
+          }
+
+          .terminal-input {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 14px;
+            outline: none;
+            flex: 1;
+            caret-color: #00ff41;
+          }
+
+          .terminal-input::placeholder {
+            color: #666;
           }
 
           .status-bar {
@@ -713,7 +956,7 @@ export default function Index() {
       animate={isLoaded ? "visible" : "hidden"}
     >
       {/* Theme Toggle and Retro Toggle */}
-      <div className="absolute top-4 right-4 flex flex-col space-y-2 z-50">
+      <div className="fixed top-6 right-6 z-50 flex flex-col gap-4">
         <ThemeToggle />
         <RetroToggle />
       </div>
