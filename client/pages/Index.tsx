@@ -670,14 +670,14 @@ export default function Index() {
                     ].map((sparkle, i) => (
                       <div
                         key={`enhanced-sparkle-${i}`}
-                        className="absolute animate-sparkle-enhanced pointer-events-none"
+                        className="absolute pointer-events-none"
                         style={{
                           left: `calc(50% + ${sparkle.x}px)`,
                           top: `calc(50% + ${sparkle.y}px)`,
-                          animationDelay: `${i * 0.15 + 2}s`,
-                          animationDuration: `${2.5 + Math.random() * 2}s`,
-                          transform: `scale(${sparkle.size}) rotate(${Math.random() * 360}deg)`,
+                          animation: `sparkle-enhanced ${2.5 + (i % 3) * 0.5}s ease-in-out infinite ${i * 0.15 + 2}s`,
+                          transform: `scale(${sparkle.size})`,
                           opacity: 0.9,
+                          animationFillMode: "both",
                         }}
                       >
                         {sparkle.type === "star" && (
