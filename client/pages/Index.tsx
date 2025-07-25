@@ -853,6 +853,41 @@ export default function Index() {
           animation: text-bounce 2s ease-in-out infinite;
         }
 
+        @keyframes energy-pulse {
+          0%, 100% {
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.8;
+            transform: scale(1.1);
+          }
+        }
+
+        @keyframes aurora {
+          0%, 100% {
+            opacity: 0.4;
+            transform: translateX(-50%) translateY(-50%) rotate(0deg) scale(1);
+          }
+          33% {
+            opacity: 0.7;
+            transform: translateX(-45%) translateY(-55%) rotate(120deg) scale(1.2);
+          }
+          66% {
+            opacity: 0.5;
+            transform: translateX(-55%) translateY(-45%) rotate(240deg) scale(0.9);
+          }
+        }
+
+        @keyframes ambient-glow {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(73, 146, 255, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 40px rgba(73, 146, 255, 0.6), 0 0 60px rgba(63, 186, 255, 0.3);
+          }
+        }
+
         .animate-type-writer {
           animation: type-writer 1s ease-out forwards;
         }
