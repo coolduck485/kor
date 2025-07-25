@@ -13,6 +13,9 @@ export default function Index() {
   });
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [cursorTrails, setCursorTrails] = useState<
+    Array<{ id: number; x: number; y: number }>
+  >([]);
 
   // Framer Motion animation variants
   const containerVariants = {
@@ -105,6 +108,16 @@ export default function Index() {
         x: e.clientX / window.innerWidth,
         y: e.clientY / window.innerHeight,
       });
+
+      // Add cursor trail effect
+      setCursorTrails((prev) => {
+        const newTrail = {
+          id: Date.now(),
+          x: e.clientX,
+          y: e.clientY,
+        };
+        return [...prev.slice(-8), newTrail]; // Keep only last 8 trails
+      });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -114,9 +127,15 @@ export default function Index() {
       setIsLoaded(true);
     }, 300);
 
+    // Clean up old cursor trails
+    const trailCleanup = setInterval(() => {
+      setCursorTrails((prev) => prev.slice(-5));
+    }, 100);
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       clearTimeout(loadTimer);
+      clearInterval(trailCleanup);
     };
   }, []);
 
@@ -167,6 +186,24 @@ export default function Index() {
     >
       {/* Theme Toggle */}
       <ThemeToggle />
+      {/* Cursor Trail Effects */}
+      <div className="fixed inset-0 pointer-events-none z-50">
+        {cursorTrails.map((trail, index) => (
+          <div
+            key={trail.id}
+            className="absolute w-3 h-3 rounded-full"
+            style={{
+              left: trail.x - 6,
+              top: trail.y - 6,
+              background: `radial-gradient(circle, rgba(73, 146, 255, ${0.8 - index * 0.1}) 0%, transparent 70%)`,
+              animation: `cursor-trail 0.8s ease-out forwards`,
+              animationDelay: `${index * 0.05}s`,
+              transform: `scale(${1 - index * 0.1})`,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Enhanced Background Elements */}
 
       {/* Dynamic Gradient Overlays */}
@@ -183,20 +220,77 @@ export default function Index() {
         }}
       />
 
-      {/* Floating Ambient Particles */}
+      {/* Enhanced Floating Ambient Particles with Color Shifting */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+        {[...Array(25)].map((_, i) => (
           <div
             key={`particle-${i}`}
             className="absolute rounded-full opacity-60"
             style={{
-              left: `${10 + ((i * 70) % 90)}%`,
-              top: `${15 + ((i * 40) % 80)}%`,
-              width: `${2 + (i % 3)}px`,
-              height: `${2 + (i % 3)}px`,
-              background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.3 + (i % 3) * 0.2})`,
-              animation: `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
-              filter: "blur(0.5px)",
+              left: `${5 + ((i * 60) % 95)}%`,
+              top: `${10 + ((i * 35) % 85)}%`,
+              width: `${1 + (i % 4)}px`,
+              height: `${1 + (i % 4)}px`,
+              background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.2 + (i % 4) * 0.15})`,
+              animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
+              filter: "blur(0.3px)",
+              transform: `scale(${0.5 + (i % 3) * 0.3})`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Animated Geometric Patterns */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+        <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
+          {/* Animated hexagon grid */}
+          {[...Array(6)].map((_, i) => (
+            <polygon
+              key={`hex-${i}`}
+              points="100,20 140,40 140,80 100,100 60,80 60,40"
+              fill="none"
+              stroke="rgba(73, 146, 255, 0.3)"
+              strokeWidth="1"
+              strokeDasharray="10 5"
+              style={{
+                transform: `translate(${100 + i * 200}px, ${100 + (i % 2) * 150}px)`,
+                animation: `geometric-pulse ${8 + i}s ease-in-out infinite ${i * 0.5}s`,
+              }}
+            />
+          ))}
+          {/* Animated connecting lines */}
+          {[...Array(4)].map((_, i) => (
+            <line
+              key={`line-${i}`}
+              x1={50 + i * 300}
+              y1={200}
+              x2={250 + i * 300}
+              y2={400}
+              stroke="rgba(63, 186, 255, 0.2)"
+              strokeWidth="1"
+              strokeDasharray="15 10"
+              style={{
+                animation: `geometric-pulse ${10 + i * 2}s ease-in-out infinite ${i * 0.7}s`,
+              }}
+            />
+          ))}
+        </svg>
+      </div>
+
+      {/* Breathing Orbs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`breath-orb-${i}`}
+            className="absolute rounded-full"
+            style={{
+              left: `${15 + ((i * 80) % 70)}%`,
+              top: `${20 + ((i * 60) % 60)}%`,
+              width: `${20 + (i % 3) * 15}px`,
+              height: `${20 + (i % 3) * 15}px`,
+              background: `radial-gradient(circle, rgba(${73 + i * 10}, ${146 + i * 5}, 255, 0.3) 0%, transparent 70%)`,
+              animation: `breath ${6 + (i % 4)}s ease-in-out infinite ${i * 0.4}s`,
+              filter: `blur(${2 + (i % 3)}px)`,
             }}
           />
         ))}
@@ -371,9 +465,25 @@ export default function Index() {
           />
         </div>
 
-        {/* Central Glowing Orb - SVG Based */}
+        {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative animate-float">
+          <div
+            className="relative animate-float cursor-pointer group"
+            onMouseMove={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              const centerX = rect.left + rect.width / 2;
+              const centerY = rect.top + rect.height / 2;
+              const deltaX = (e.clientX - centerX) * 0.1;
+              const deltaY = (e.clientY - centerY) * 0.1;
+              e.currentTarget.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.02)`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translate(0px, 0px) scale(1)";
+            }}
+            style={{
+              transition: "transform 0.3s ease-out",
+            }}
+          >
             <svg
               width="292"
               height="308"
@@ -535,34 +645,28 @@ export default function Index() {
               }`}
             >
               <span
-                className="inline-block relative"
+                className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                 style={{
-                  textShadow:
-                    "0 0 20px rgba(73, 146, 255, 0.6), 0 0 40px rgba(73, 146, 255, 0.4)",
                   animation:
-                    "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s infinite both",
+                    "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s infinite both, warm-glow-pulse 3s ease-in-out infinite",
                 }}
               >
                 K
               </span>
               <span
-                className="inline-block relative"
+                className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                 style={{
-                  textShadow:
-                    "0 0 20px rgba(63, 186, 255, 0.6), 0 0 40px rgba(63, 186, 255, 0.4)",
                   animation:
-                    "text-glow 3s ease-in-out infinite 0.3s, text-bounce 2s ease-in-out 0.8s infinite both",
+                    "text-glow 3s ease-in-out infinite 0.3s, text-bounce 2s ease-in-out 0.8s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.3s",
                 }}
               >
                 o
               </span>
               <span
-                className="inline-block relative"
+                className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                 style={{
-                  textShadow:
-                    "0 0 20px rgba(57, 135, 227, 0.6), 0 0 40px rgba(57, 135, 227, 0.4)",
                   animation:
-                    "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s infinite both",
+                    "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.6s",
                 }}
               >
                 r
@@ -624,14 +728,14 @@ export default function Index() {
                     animationFillMode: "both",
                   }}
                 >
-                  {/* Chrome wavy text with letter-by-letter animation */}
-                  <div className="chrome-wavy-text">
+                  {/* Warm glow text with iOS-inspired styling */}
+                  <div className="warm-glow-text animate-warm-glow-pulse">
                     {"Development services".split("").map((letter, i) => (
                       <span
                         key={i}
-                        className="wavy-letter"
+                        className="animate-letter-float"
                         style={{
-                          animationDelay: `${i * 0.1}s, ${i * 0.05}s`,
+                          animationDelay: `${i * 0.1}s`,
                         }}
                       >
                         {letter === " " ? "\u00A0" : letter}
@@ -661,10 +765,11 @@ export default function Index() {
                         style={{
                           left: `calc(50% + ${sparkle.x}px)`,
                           top: `calc(50% + ${sparkle.y}px)`,
-                          animation: `sparkle-enhanced ${2.5 + (i % 3) * 0.5}s ease-in-out infinite ${i * 0.15 + 2}s`,
+                          animation: `sparkle-enhanced ${6 + (i % 4) * 2}s ease-in-out infinite ${i * 0.8}s`,
                           transform: `scale(${sparkle.size})`,
-                          opacity: 0.9,
+                          opacity: 0.6,
                           animationFillMode: "both",
+                          zIndex: -1,
                         }}
                       >
                         {sparkle.type === "star" && (
@@ -673,11 +778,11 @@ export default function Index() {
                             style={{
                               background:
                                 theme === "light"
-                                  ? "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)"
-                                  : "radial-gradient(circle, rgba(73, 146, 255, 0.9) 0%, transparent 70%)",
+                                  ? "radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%)"
+                                  : "radial-gradient(circle, rgba(73, 146, 255, 0.6) 0%, transparent 70%)",
                               clipPath:
                                 "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-                              animation: "spin-slow 8s linear infinite",
+                              animation: "spin-slow 15s linear infinite",
                             }}
                           />
                         )}
@@ -687,11 +792,11 @@ export default function Index() {
                             style={{
                               background:
                                 theme === "light"
-                                  ? "linear-gradient(45deg, rgba(147, 51, 234, 0.8), rgba(59, 130, 246, 0.6))"
-                                  : "linear-gradient(45deg, rgba(34, 211, 238, 0.8), rgba(73, 146, 255, 0.7))",
+                                  ? "linear-gradient(45deg, rgba(147, 51, 234, 0.5), rgba(59, 130, 246, 0.4))"
+                                  : "linear-gradient(45deg, rgba(34, 211, 238, 0.5), rgba(73, 146, 255, 0.4))",
                               clipPath:
                                 "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                              animation: "pulse-fast 1.5s ease-in-out infinite",
+                              animation: "gentle-pulse 4s ease-in-out infinite",
                             }}
                           />
                         )}
@@ -701,11 +806,11 @@ export default function Index() {
                             style={{
                               background:
                                 theme === "light"
-                                  ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.6), rgba(59, 130, 246, 0.8))"
-                                  : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.7), rgba(73, 146, 255, 0.8))",
+                                  ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.5), rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.5))"
+                                  : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.5), rgba(34, 211, 238, 0.4), rgba(73, 146, 255, 0.5))",
                               clipPath:
                                 "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
-                              animation: "rotate-slow 6s linear infinite",
+                              animation: "rotate-slow 12s linear infinite",
                             }}
                           />
                         )}
@@ -720,6 +825,38 @@ export default function Index() {
         {/* Orb-Floating Navigation Buttons - positioned relative to orb */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative">
+            {/* Animated Connection Lines Between Buttons */}
+            <svg
+              className="absolute inset-0 pointer-events-none"
+              width="600"
+              height="600"
+              style={{ left: "-300px", top: "-300px" }}
+            >
+              <circle
+                cx="300"
+                cy="300"
+                r="280"
+                fill="none"
+                stroke="rgba(73, 146, 255, 0.1)"
+                strokeWidth="1"
+                strokeDasharray="5 10"
+                style={{
+                  animation: "geometric-pulse 15s ease-in-out infinite",
+                }}
+              />
+              <circle
+                cx="300"
+                cy="300"
+                r="320"
+                fill="none"
+                stroke="rgba(63, 186, 255, 0.08)"
+                strokeWidth="1"
+                strokeDasharray="8 15"
+                style={{
+                  animation: "geometric-pulse 20s ease-in-out infinite 2s",
+                }}
+              />
+            </svg>
             <OrbFloatingButtons />
           </div>
         </div>
@@ -1448,6 +1585,7 @@ function OrbFloatingButton({
           marginTop: "var(--mobile-y)",
           animationDelay: `${delay}s`,
           transform: `scale(${currentSize.scale})`,
+          animation: `gentleFloat 4s ease-in-out infinite ${delay}s, button-drift ${8 + delay * 2}s ease-in-out infinite ${delay * 1.5}s`,
         } as React.CSSProperties
       }
     >

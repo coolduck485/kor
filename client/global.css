@@ -363,6 +363,111 @@
   }
 }
 
+@keyframes gentle-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes button-drift {
+  0%,
+  100% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(3px, -2px);
+  }
+  50% {
+    transform: translate(-2px, 4px);
+  }
+  75% {
+    transform: translate(2px, 1px);
+  }
+}
+
+@keyframes cursor-trail {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
+@keyframes magnetic-pull {
+  0%,
+  100% {
+    transform: scale(1) translate(0px, 0px);
+  }
+  50% {
+    transform: scale(1.02) translate(2px, -1px);
+  }
+}
+
+@keyframes color-shift {
+  0%,
+  100% {
+    filter: hue-rotate(0deg) saturate(1);
+  }
+  25% {
+    filter: hue-rotate(5deg) saturate(1.1);
+  }
+  50% {
+    filter: hue-rotate(10deg) saturate(1.2);
+  }
+  75% {
+    filter: hue-rotate(5deg) saturate(1.1);
+  }
+}
+
+@keyframes geometric-pulse {
+  0%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.3;
+  }
+  50% {
+    stroke-dashoffset: -50;
+    opacity: 0.7;
+  }
+}
+
+@keyframes breath {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.05) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes warm-glow-pulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 15px rgba(73, 146, 255, 0.6),
+      0 0 25px rgba(63, 186, 255, 0.4),
+      0 0 35px rgba(57, 135, 227, 0.3);
+  }
+  50% {
+    text-shadow:
+      0 0 20px rgba(73, 146, 255, 0.9),
+      0 0 30px rgba(63, 186, 255, 0.7),
+      0 0 45px rgba(57, 135, 227, 0.5);
+  }
+}
+
 /* Animation classes */
 .animate-text-pop {
   animation: text-pop 2s ease-in-out infinite;
@@ -402,6 +507,10 @@
 
 .animate-rotate-slow {
   animation: rotate-slow 6s linear infinite;
+}
+
+.animate-warm-glow-pulse {
+  animation: warm-glow-pulse 3s ease-in-out infinite;
 }
 
 /* Modern chrome text styling */
@@ -450,6 +559,24 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Blue glow development text matching site theme */
+.warm-glow-text {
+  color: #93c5fd; /* Light blue to match site palette */
+  text-shadow:
+    0 0 15px rgba(73, 146, 255, 0.6),
+    0 0 25px rgba(63, 186, 255, 0.4),
+    0 0 35px rgba(57, 135, 227, 0.3);
+}
+
+/* Dark mode version */
+.dark .warm-glow-text {
+  color: #dbeafe; /* Very light blue for dark mode */
+  text-shadow:
+    0 0 20px rgba(73, 146, 255, 0.8),
+    0 0 30px rgba(63, 186, 255, 0.6),
+    0 0 40px rgba(57, 135, 227, 0.4);
 }
 
 /* Light mode chrome */
