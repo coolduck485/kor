@@ -143,10 +143,49 @@
 @layer base {
   * {
     @apply border-border;
+    /* Pixel-perfect rendering */
+    image-rendering: pixelated !important;
+    image-rendering: crisp-edges !important;
+    -webkit-font-smoothing: none !important;
+    -moz-osx-font-smoothing: unset !important;
+    text-rendering: optimizeSpeed !important;
   }
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  /* Remove all rounded corners for pixel aesthetic */
+  * {
+    border-radius: 0 !important;
+  }
+
+  /* CRT Screen scanlines effect */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 65, 0.03) 2px,
+      rgba(0, 255, 65, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+    animation: scanlines 0.1s linear infinite;
+  }
+
+  @keyframes scanlines {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(4px); }
   }
 }
 
