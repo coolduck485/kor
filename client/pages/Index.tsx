@@ -387,9 +387,9 @@ export default function Index() {
                       style={{
                         left: `calc(50% + ${Math.cos((i / SHINE_CONFIG.sparkleCount) * 360 * Math.PI / 180) * 120}px)`,
                         top: `calc(50% + ${Math.sin((i / SHINE_CONFIG.sparkleCount) * 360 * Math.PI / 180) * 60}px)`,
-                        animationDelay: `${i * 0.4 + 2}s`,
-                        animationDuration: `${2 + Math.random() * 1.5}s`,
-                        transform: `scale(${0.2 + Math.random() * 0.15}) rotate(${Math.random() * 360}deg)`,
+                        animationDelay: `${i * 0.3 + 2}s`,
+                        animationDuration: `${3 + Math.random() * 2}s`,
+                        transform: `scale(${0.4 + Math.random() * 0.3}) rotate(${Math.random() * 360}deg)`,
                         opacity: 0.9,
                       }}
                     >
