@@ -508,7 +508,8 @@ export default function Index() {
                         <g filter={`url(#filter_sparkle_${i})`}>
                           <path
                             d="M12 1L14.5 8.5L22 11L14.5 13.5L12 21L9.5 13.5L2 11L9.5 8.5L12 1Z"
-                            fill="white"
+                            fill="#4992FF"
+                            stroke="none"
                           />
                         </g>
                       </svg>
