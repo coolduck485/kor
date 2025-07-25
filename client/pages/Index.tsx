@@ -306,8 +306,10 @@ export default function Index() {
 
       {/* Interactive Glass Badge at Top */}
       <div
-        className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce"
-        style={{ marginTop: "110px" }}
+        className="absolute top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-75 sm:scale-100"
+        style={{
+          marginTop: "var(--badge-margin-top, 140px)",
+        }}
       >
         <div
           ref={badgeRef}
@@ -943,6 +945,14 @@ export default function Index() {
 
       {/* Enhanced Background Animations */}
       <style jsx>{`
+        :root {
+          --badge-margin-top: 140px;
+        }
+        @media (min-width: 640px) {
+          :root {
+            --badge-margin-top: 10px;
+          }
+        }
         @keyframes backgroundShift {
           0%,
           100% {
