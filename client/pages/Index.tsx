@@ -162,32 +162,7 @@ export default function Index() {
   if (mode === "retro") {
     return (
       <div className="retro-container min-h-screen">
-        {/* Header Bar */}
-        <div className="retro-header">
-          <div className="flex items-center space-x-4">
-            <div className="flex space-x-1">
-              <div className="pixel-dot bg-green-400"></div>
-              <div className="pixel-dot bg-yellow-400"></div>
-              <div className="pixel-dot bg-red-400"></div>
-            </div>
-            <div className="terminal-glow font-bold text-green-400">
-              KOR SYSTEMS v2.1
-            </div>
-          </div>
-          <div className="flex flex-col space-y-2">
-            <ThemeToggle />
-            <RetroToggle />
-            <div
-              className="power-button"
-              onClick={() => {
-                document.body.style.opacity = "0";
-                setTimeout(() => location.reload(), 1000);
-              }}
-            >
-              ■
-            </div>
-          </div>
-        </div>
+
 
         {/* Main Content */}
         <div className="retro-main">
@@ -430,10 +405,6 @@ export default function Index() {
             margin: 0;
             white-space: pre;
             letter-spacing: 1px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 16px;
-            border: 1px solid #00ff41;
-            border-radius: 4px;
           }
 
           .retro-subtitle {
