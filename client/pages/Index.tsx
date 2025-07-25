@@ -1800,7 +1800,7 @@ export default function Index() {
               viewBox="0 0 1284 810"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-[58rem] h-[58rem] sm:w-[78rem] sm:h-[78rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem]"
+              className="w-[58rem] h-[58rem] sm:w-[78rem] sm:h-[78rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem] pointer-events-none"
               style={{
                 position: "absolute",
                 left: "50%",
