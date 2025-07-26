@@ -817,7 +817,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���██��███��█████████████ 50%
+                      RAM: █���██████��█████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -6155,9 +6155,21 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 </span>
               </h2>
               <p
-                className={`text-sm sm:text-base ${theme === "light" ? "text-gray-600" : "text-white/60"}`}
+                className={`text-sm sm:text-base font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
               >
-                Tell us about it.
+                <span className="warm-glow-text animate-warm-glow-pulse">
+                  {"Tell us about it.".split("").map((letter, i) => (
+                    <span
+                      key={i}
+                      className="inline-block relative"
+                      style={{
+                        animationDelay: `${i * 0.1}s`,
+                      }}
+                    >
+                      {letter === " " ? "\u00A0" : letter}
+                    </span>
+                  ))}
+                </span>
               </p>
             </div>
 
