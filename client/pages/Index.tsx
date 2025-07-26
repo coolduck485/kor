@@ -5802,8 +5802,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Animated Geometric Patterns */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
           <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
-            {/* Animated hexagon grid - Reduced for mobile */}
-            {[...Array(isMobile ? 2 : 4)].map((_, i) => (
+            {/* Animated hexagon grid - Full experience */}
+            {[...Array(4)].map((_, i) => (
               <polygon
                 key={`hex-${i}`}
                 points="100,20 140,40 140,80 100,100 60,80 60,40"
