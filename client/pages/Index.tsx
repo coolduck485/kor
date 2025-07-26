@@ -1459,8 +1459,6 @@ export default function Index() {
       }`}
       style={{ height: "100vh", overflow: "hidden", maxWidth: "100vw" }}
     >
-
-
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
         <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
@@ -1547,7 +1545,7 @@ export default function Index() {
                 className="w-1 h-3 bg-gradient-to-t from-glow-blue to-white/80 rounded-full mb-2 animate-float shadow-lg"
                 style={{
                   boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
-                  alignSelf: "flex-end"
+                  alignSelf: "flex-end",
                 }}
               />
               <div className="absolute inset-0 rounded-full bg-gradient-to-t from-white/10 to-transparent" />
@@ -1601,7 +1599,9 @@ export default function Index() {
             {/* Icon */}
             <ChevronUp
               className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${
-                theme === "light" ? "text-blue-600 group-hover:text-blue-700" : "text-white group-hover:text-blue-300"
+                theme === "light"
+                  ? "text-blue-600 group-hover:text-blue-700"
+                  : "text-white group-hover:text-blue-300"
               }`}
             />
 
@@ -1610,15 +1610,21 @@ export default function Index() {
 
             {/* Tooltip */}
             <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
-              <div className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                theme === "light"
-                  ? "border-blue-400/40 bg-white/90 text-gray-800"
-                  : "border-blue-300/30 bg-black/80 text-white"
-              }`}>
+              <div
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
+                }`}
+              >
                 Back to Top
-                <div className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
-                  theme === "light" ? "border-l-white/90" : "border-l-black/80"
-                }`} />
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
+                  }`}
+                />
               </div>
             </div>
           </button>
@@ -2578,8 +2584,6 @@ export default function Index() {
               }}
             />
           </motion.div>
-
-
         </motion.div>
 
         {/* About Us Section */}
@@ -4765,8 +4769,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
     useEffect(() => {
       const checkMobile = () => setIsMobile(window.innerWidth <= 640);
       checkMobile();
-      window.addEventListener('resize', checkMobile);
-      return () => window.removeEventListener('resize', checkMobile);
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
     }, []);
 
     const projectsPerPage = isMobile ? 2 : 4;
