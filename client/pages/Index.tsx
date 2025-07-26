@@ -749,7 +749,7 @@ export default function Index() {
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████���╝██║  ██║
-╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ����═╝`}
+╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -3459,12 +3459,12 @@ function MobileHamburgerMenu({
 
   return (
     <>
-      {/* Hamburger Button - adjusted position: down 150px, left 50px */}
+      {/* Hamburger Button - mobile: down 30px + left 30px, hidden on desktop/tablet */}
       <div
-        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
+        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:hidden"
         style={{
-          marginLeft: "70px", // Moved left 50px from 120px
-          marginTop: "-130px", // Moved down 150px from -280px
+          marginLeft: "40px", // Mobile: moved left 30px from 70px
+          marginTop: "-100px", // Mobile: moved down 30px from -130px
           animationDelay: "0.2s",
           animation:
             "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s",
