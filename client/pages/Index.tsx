@@ -1945,6 +1945,112 @@ export default function Index() {
             </div>
           )}
 
+          {/* Custom Mobile/Tablet Effects - Lively and Energetic (Under 992px) */}
+          {isHighPerformance && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden lg:hidden">
+              {/* Animated Gradient Waves - Mobile/Tablet Only */}
+              <div className="absolute inset-0">
+                {[...Array(3)].map((_, i) => (
+                  <div
+                    key={`mobile-wave-${i}`}
+                    className="absolute w-full h-32 opacity-40"
+                    style={{
+                      top: `${20 + i * 25}%`,
+                      background: `linear-gradient(90deg,
+                        transparent 0%,
+                        rgba(34, 197, 94, ${0.3 + i * 0.1}) 25%,
+                        rgba(59, 130, 246, ${0.4 + i * 0.1}) 50%,
+                        rgba(147, 51, 234, ${0.3 + i * 0.1}) 75%,
+                        transparent 100%)`,
+                      borderRadius: `${60 + i * 10}% ${40 - i * 5}% ${30 + i * 15}% ${70 - i * 10}% / ${50 + i * 20}% ${30 - i * 5}% ${40 + i * 10}% ${60 - i * 15}%`,
+                      filter: `blur(${8 + i * 2}px)`,
+                      animation: `mobile-wave-${i + 1} ${4 + i}s ease-in-out infinite`,
+                      transform: `skewY(${-2 + i}deg) rotate(${i * 2}deg)`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Floating Energy Dots - Mobile/Tablet Only */}
+              <div className="absolute inset-0">
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={`mobile-dot-${i}`}
+                    className="absolute rounded-full"
+                    style={{
+                      left: `${10 + (i * 11) % 80}%`,
+                      top: `${15 + (i * 13) % 70}%`,
+                      width: `${4 + (i % 3)}px`,
+                      height: `${4 + (i % 3)}px`,
+                      background: [
+                        'radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, transparent 70%)',
+                        'radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)',
+                        'radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, transparent 70%)',
+                        'radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, transparent 70%)',
+                      ][i % 4],
+                      animation: `mobile-float-${(i % 3) + 1} ${3 + (i % 2)}s ease-in-out infinite ${i * 0.2}s`,
+                      filter: `blur(${0.5 + (i % 2) * 0.5}px)`,
+                      boxShadow: `0 0 ${8 + (i % 3) * 4}px currentColor`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Pulsing Corner Accents - Mobile/Tablet Only */}
+              <div className="absolute top-4 left-4 w-16 h-16 rounded-full opacity-60">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(34, 197, 94, 0.6) 0%, rgba(59, 130, 246, 0.4) 50%, transparent 80%)',
+                    animation: 'mobile-pulse-corner 3s ease-in-out infinite',
+                    filter: 'blur(4px)',
+                  }}
+                />
+              </div>
+              <div className="absolute top-4 right-4 w-12 h-12 rounded-full opacity-50">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(147, 51, 234, 0.6) 0%, rgba(236, 72, 153, 0.4) 50%, transparent 80%)',
+                    animation: 'mobile-pulse-corner 2.5s ease-in-out infinite 0.5s',
+                    filter: 'blur(3px)',
+                  }}
+                />
+              </div>
+              <div className="absolute bottom-4 left-4 w-14 h-14 rounded-full opacity-55">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, rgba(34, 197, 94, 0.4) 50%, transparent 80%)',
+                    animation: 'mobile-pulse-corner 3.5s ease-in-out infinite 1s',
+                    filter: 'blur(5px)',
+                  }}
+                />
+              </div>
+
+              {/* Dynamic Scan Lines - Mobile/Tablet Only */}
+              <div className="absolute inset-0">
+                {[...Array(2)].map((_, i) => (
+                  <div
+                    key={`mobile-scan-${i}`}
+                    className="absolute w-full h-0.5 opacity-30"
+                    style={{
+                      background: `linear-gradient(90deg,
+                        transparent 0%,
+                        rgba(34, 197, 94, 0.8) 20%,
+                        rgba(59, 130, 246, 1) 50%,
+                        rgba(147, 51, 234, 0.8) 80%,
+                        transparent 100%)`,
+                      animation: `mobile-scan-line ${6 + i * 2}s linear infinite ${i * 3}s`,
+                      filter: 'blur(1px)',
+                      boxShadow: '0 0 10px currentColor',
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Optimized Floating Ambient Particles - Reduced count for 60fps */}
           <motion.div
             className="absolute inset-0 pointer-events-none overflow-hidden will-change-transform"
