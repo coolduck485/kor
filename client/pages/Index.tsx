@@ -1875,9 +1875,9 @@ export default function Index() {
             />
           )}
 
-          {/* Spectacular Full-Width Wavy Aurora Curtains - Responsive for mobile/tablet */}
+          {/* Spectacular Full-Width Wavy Aurora Curtains - Desktop Only (992px+) */}
           {isHighPerformance && (
-            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 scale-90 sm:scale-95 lg:scale-100">
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 hidden lg:block">
               {/* Primary aurora curtain - Top layer */}
               <div
                 className="absolute aurora-curtain-1"
