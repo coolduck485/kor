@@ -3493,7 +3493,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  →  hoverScale: 1.15
+// Change: hoverScale: 1.05  ���  hoverScale: 1.15
 //
 // ========================================
 
@@ -4589,7 +4589,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 mt-16 responsive-grid">
+            <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6 lg:gap-8 xl:gap-10 mt-16 responsive-grid">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
