@@ -329,6 +329,7 @@ export default function Index() {
 
     setIsScrolling(true);
     setIsScrollingActive(true);
+    setTransitioningSectionIndex(index);
 
     // Start black transition animation
     setIsBlackTransition(true);
@@ -676,9 +677,9 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
-██╔═██╗ ��█║   ██║██╔══█����
+██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
+��═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
