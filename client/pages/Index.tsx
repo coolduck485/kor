@@ -570,7 +570,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
-█████╔╝ ██║   ██║██████╔���
+█████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
@@ -641,7 +641,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ████████████████████ 60%
+                      CPU: ████████████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4907,76 +4907,105 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <div className="flex justify-between items-center mb-8">
                 {/* Left Navigation */}
                 <motion.button
-                  onClick={prevSlide}
-                  className="group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 hover:scale-110 z-20"
+                  onClick={prevPage}
+                  disabled={currentPage === 0}
+                  className={`group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
+                    currentPage === 0
+                      ? 'opacity-30 cursor-not-allowed'
+                      : 'hover:scale-110 cursor-pointer'
+                  }`}
                   style={{
                     background: "rgba(255, 255, 255, 0.05)",
                     border: "2px solid rgba(255, 255, 255, 0.1)",
-                    boxShadow: "0 0 20px rgba(73, 146, 255, 0.2)"
+                    boxShadow: currentPage === 0 ? "none" : "0 0 20px rgba(73, 146, 255, 0.2)"
                   }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={currentPage === 0 ? {} : { scale: 1.05 }}
+                  whileTap={currentPage === 0 ? {} : { scale: 0.95 }}
                 >
-                  <ChevronLeft className={`w-6 h-6 ${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400 transition-colors`} />
+                  <ChevronLeft className={`w-6 h-6 transition-colors ${
+                    currentPage === 0
+                      ? 'text-gray-500'
+                      : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
+                  }`} />
 
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background: "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
-                      boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)"
-                    }}
-                  />
+                  {/* Glow effect on hover - only when enabled */}
+                  {currentPage > 0 && (
+                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        background: "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)"
+                      }}
+                    />
+                  )}
 
-                  {/* Scanning line effect */}
-                  <div className="absolute inset-0 overflow-hidden rounded-full">
-                    <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                  </div>
+                  {/* Scanning line effect - only when enabled */}
+                  {currentPage > 0 && (
+                    <div className="absolute inset-0 overflow-hidden rounded-full">
+                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                    </div>
+                  )}
                 </motion.button>
 
-                {/* Slide Indicators */}
-                <div className="flex space-x-2">
-                  {Array.from({ length: totalSlides }).map((_, index) => (
+                {/* Page Indicators */}
+                <div className="flex space-x-3 items-center">
+                  {Array.from({ length: totalPages }).map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        currentSlide === index
-                          ? 'bg-blue-400 scale-125'
-                          : 'bg-white/20 hover:bg-white/40'
+                      onClick={() => setCurrentPage(index)}
+                      className={`transition-all duration-300 ${
+                        currentPage === index
+                          ? 'w-8 h-2 bg-blue-400 rounded-full scale-125'
+                          : 'w-2 h-2 bg-white/20 hover:bg-white/40 rounded-full'
                       }`}
                       style={{
-                        boxShadow: currentSlide === index ? '0 0 10px rgba(73, 146, 255, 0.8)' : 'none'
+                        boxShadow: currentPage === index ? '0 0 10px rgba(73, 146, 255, 0.8)' : 'none'
                       }}
                     />
                   ))}
+                  <span className={`text-xs font-mono ml-2 ${theme === "light" ? "text-gray-600" : "text-white/60"}`}>
+                    {currentPage + 1} / {totalPages}
+                  </span>
                 </div>
 
                 {/* Right Navigation */}
                 <motion.button
-                  onClick={nextSlide}
-                  className="group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 hover:scale-110 z-20"
+                  onClick={nextPage}
+                  disabled={currentPage === totalPages - 1}
+                  className={`group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
+                    currentPage === totalPages - 1
+                      ? 'opacity-30 cursor-not-allowed'
+                      : 'hover:scale-110 cursor-pointer'
+                  }`}
                   style={{
                     background: "rgba(255, 255, 255, 0.05)",
                     border: "2px solid rgba(255, 255, 255, 0.1)",
-                    boxShadow: "0 0 20px rgba(73, 146, 255, 0.2)"
+                    boxShadow: currentPage === totalPages - 1 ? "none" : "0 0 20px rgba(73, 146, 255, 0.2)"
                   }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={currentPage === totalPages - 1 ? {} : { scale: 1.05 }}
+                  whileTap={currentPage === totalPages - 1 ? {} : { scale: 0.95 }}
                 >
-                  <ChevronRight className={`w-6 h-6 ${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400 transition-colors`} />
+                  <ChevronRight className={`w-6 h-6 transition-colors ${
+                    currentPage === totalPages - 1
+                      ? 'text-gray-500'
+                      : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
+                  }`} />
 
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background: "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
-                      boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)"
-                    }}
-                  />
+                  {/* Glow effect on hover - only when enabled */}
+                  {currentPage < totalPages - 1 && (
+                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        background: "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)"
+                      }}
+                    />
+                  )}
 
-                  {/* Scanning line effect */}
-                  <div className="absolute inset-0 overflow-hidden rounded-full">
-                    <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                  </div>
+                  {/* Scanning line effect - only when enabled */}
+                  {currentPage < totalPages - 1 && (
+                    <div className="absolute inset-0 overflow-hidden rounded-full">
+                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                    </div>
+                  )}
                 </motion.button>
               </div>
 
