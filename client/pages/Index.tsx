@@ -5700,7 +5700,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   </div>
                   <motion.button
                     type="submit"
-                    className="w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-300 hover:scale-105 text-sm sm:text-base"
+                    className="w-full p-4 sm:p-4 rounded-xl sm:rounded-2xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-200 hover:scale-[1.02] sm:hover:scale-105 text-base sm:text-base will-change-transform"
                     style={{
                       background:
                         "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
