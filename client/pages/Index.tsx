@@ -477,11 +477,11 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔═══██╗
-█████╔╝ ██║   ██║█████���╔╝
+██║ ██╔╝██��═══██╗██╔═══██╗
+█████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═���`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1414,6 +1414,16 @@ export default function Index() {
       };
     }
   }, [currentSection, isScrolling, sections.length, mode]);
+
+  // Listen for scroll events from buttons
+  useEffect(() => {
+    const handleScrollToSection = (e: CustomEvent) => {
+      scrollToSection(e.detail);
+    };
+
+    window.addEventListener('scrollToSection', handleScrollToSection as EventListener);
+    return () => window.removeEventListener('scrollToSection', handleScrollToSection as EventListener);
+  }, []);
 
   // Modern mode - original design
   return (
