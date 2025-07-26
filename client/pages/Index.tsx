@@ -2579,7 +2579,7 @@ export default function Index() {
                         animation: `energy-float ${4 + (i % 2)}s ease-in-out infinite ${i * 0.5}s`,
                         willChange: "transform, opacity",
                         transform: "translateZ(0)",
-                        animationFillMode: "both",
+  
                         animationTimingFunction: "ease-in-out",
                       }}
                     />
@@ -2642,7 +2642,7 @@ export default function Index() {
                               animation: `sparkle-enhanced ${isMobile ? 4 : 6 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
                               transform: `translateZ(0) scale(${sparkle.size})`,
                               opacity: 0.6,
-                              animationFillMode: "both",
+        
                               zIndex: -1,
                               willChange: "transform, opacity",
                             }}
@@ -4329,7 +4329,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-                      animationFillMode: "both",
+
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
@@ -4917,7 +4917,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
                       animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
                       filter: "blur(0.5px)",
-                      animationFillMode: "both",
+
                       animationTimingFunction: "ease-in-out",
                     }}
                   />
@@ -4934,7 +4934,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-                      animationFillMode: "both",
+
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
@@ -5372,7 +5372,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
                       animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
                       filter: "blur(0.5px)",
-                      animationFillMode: "both",
+
                     }}
                   />
                 ))}
@@ -5385,7 +5385,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-                      animationFillMode: "both",
+
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
