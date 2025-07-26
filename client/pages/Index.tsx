@@ -600,12 +600,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ███���������╗
+                  {`██╗  ██╗ ██████╗ ███������█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -5631,7 +5631,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Contact Content Grid */}
-            <div className="contact-grid grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 items-start mt-8 sm:mt-12 px-2 sm:px-4 lg:px-0 max-w-7xl mx-auto">
+            <div className="contact-grid grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6 items-start mt-6 sm:mt-8 px-2 sm:px-4 max-w-6xl mx-auto">
               {/* Main Contact Form - Takes 2 columns */}
               <motion.div
                 className="lg:col-span-2"
