@@ -236,14 +236,10 @@ export default function Index() {
     };
   }, []);
 
-  // Trigger loading animation when switching modes
+  // Mode switch handler - no loading animation
   useEffect(() => {
     if (previousMode !== mode) {
       setPreviousMode(mode);
-      // Only trigger loading if it's not the initial load
-      if (previousMode !== null) {
-        triggerLoadingSequence();
-      }
     }
   }, [mode, previousMode]);
 
