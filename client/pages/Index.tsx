@@ -2436,22 +2436,23 @@ export default function Index() {
                     }}
                   />
 
-                  {/* Floating energy particles around text */}
-                  {[...Array(12)].map((_, i) => (
+                  {/* Optimized floating energy particles around text */}
+                  {[...Array(isMobile ? 4 : 8)].map((_, i) => (
                     <div
                       key={`energy-${i}`}
-                      className="absolute rounded-full pointer-events-none"
+                      className="absolute rounded-full pointer-events-none gpu-accelerated"
                       style={{
-                        left: `${20 + ((i * 60) % 160)}%`,
-                        top: `${30 + ((i * 40) % 60)}%`,
-                        width: `${3 + (i % 2)}px`,
-                        height: `${3 + (i % 2)}px`,
+                        left: `${20 + ((i * 80) % 160)}%`,
+                        top: `${30 + ((i * 50) % 60)}%`,
+                        width: `${4 + (i % 2)}px`,
+                        height: `${4 + (i % 2)}px`,
                         background:
                           theme === "light"
-                            ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
-                            : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
-                        animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
-                        filter: "blur(0.5px)",
+                            ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.7 + (i % 2) * 0.2})`
+                            : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.7 + (i % 2) * 0.2})`,
+                        animation: `energy-float ${4 + (i % 2)}s ease-in-out infinite ${i * 0.5}s`,
+                        willChange: "transform, opacity",
+                        transform: "translateZ(0)",
                         animationFillMode: "both",
                         animationTimingFunction: "ease-in-out",
                       }}
