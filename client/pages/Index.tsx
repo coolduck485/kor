@@ -591,7 +591,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ █████���╗ ████���█╗
+                  {`██╗  ██╗ ██████╗ ████���█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -5652,7 +5652,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 outline-none text-sm sm:text-base"
+                      className="w-full p-4 sm:p-4 rounded-xl sm:rounded-2xl border backdrop-blur-lg transition-all duration-200 focus:scale-[1.02] sm:focus:scale-105 outline-none text-base sm:text-base will-change-transform"
                       style={{
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "2px solid rgba(255, 255, 255, 0.1)",
