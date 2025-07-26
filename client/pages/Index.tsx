@@ -647,7 +647,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: ████████████████��█████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -709,7 +709,7 @@ export default function Index() {
                 <div className="status-indicators">
                   <span className="status-dot text-red-400">●</span>
                   <span>READY</span>
-                  <span className="status-dot text-amber-400">���</span>
+                  <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
                   <span className="status-dot text-green-400 terminal-glow">
                     ●
@@ -3846,8 +3846,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         ref={ref}
         className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
-            ? "bg-gradient-to-br from-indigo-50 via-white to-cyan-50"
-            : "bg-gradient-to-br from-black via-blue-950 to-purple-950"
+            ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
+            : "bg-black"
         }`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
