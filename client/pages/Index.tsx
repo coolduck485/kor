@@ -823,7 +823,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���██████��█████��███████ 50%
+                      RAM: █���██████��█████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -2554,13 +2554,13 @@ export default function Index() {
                 damping: 18,
               }}
             >
-              {/* Kor - mobile: 50px left + 20% bigger, desktop: moved further to the left */}
+              {/* Kor - mobile: 50px left + 20px down + bigger, desktop: moved further to the left */}
               <div
-                className="text-center transform -translate-x-[50px] sm:-translate-x-6 md:-translate-x-12 lg:-translate-x-16 xl:-translate-x-20"
+                className="text-center transform -translate-x-[50px] translate-y-[20px] sm:-translate-x-6 sm:translate-y-0 md:-translate-x-12 lg:-translate-x-16 xl:-translate-x-20"
                 style={{ marginLeft: "-5px" }}
               >
                 <h1
-                  className={`font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+                  className={`font-poppins text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
                     theme === "light" ? "text-gray-900" : "text-white"
                   }`}
                 >
@@ -2586,9 +2586,9 @@ export default function Index() {
                 </h1>
               </div>
 
-              {/* Development services - mobile: 10px right, desktop: enhanced with dramatic effects */}
+              {/* Development services - mobile: 10px right + 10px down, desktop: enhanced with dramatic effects */}
               <div
-                className="text-center transform translate-x-[10px] sm:translate-x-8 md:translate-x-12 lg:translate-x-16 mt-2 md:mt-4"
+                className="text-center transform translate-x-[10px] translate-y-[10px] sm:translate-x-8 sm:translate-y-0 md:translate-x-12 lg:translate-x-16 mt-2 md:mt-4"
                 style={{ marginLeft: "5px", marginTop: "-5px" }}
               >
                 <div className="relative">
@@ -3459,9 +3459,9 @@ function MobileHamburgerMenu({
 
   return (
     <>
-      {/* Hamburger Button - adjusted position: down 150px, left 50px - hidden on mobile */}
+      {/* Hamburger Button - adjusted position: down 150px, left 50px */}
       <div
-        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 hidden sm:block"
+        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
         style={{
           marginLeft: "70px", // Moved left 50px from 120px
           marginTop: "-130px", // Moved down 150px from -280px
