@@ -5793,6 +5793,91 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 ))}
               </motion.div>
             </div>
+
+            {/* Social Media Buttons */}
+            <motion.div
+              className="text-center mt-8 sm:mt-12 lg:mt-16"
+              initial={{ y: 50, opacity: 0 }}
+              animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
+              <h3
+                className={`text-lg sm:text-xl font-semibold mb-4 sm:mb-6 warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                style={{
+                  textShadow: "0 0 8px rgba(73, 146, 255, 0.5)",
+                }}
+              >
+                Connect With Us
+              </h3>
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6">
+                {[
+                  {
+                    name: "Instagram",
+                    url: "https://instagram.com",
+                    color: "from-pink-500 to-purple-500",
+                  },
+                  {
+                    name: "Discord",
+                    url: "https://discord.com",
+                    color: "from-indigo-500 to-blue-500",
+                  },
+                  {
+                    name: "Telegram",
+                    url: "https://telegram.org",
+                    color: "from-blue-500 to-cyan-500",
+                  },
+                ].map((social, index) => (
+                  <motion.button
+                    key={social.name}
+                    onClick={() => window.open(social.url, "_blank")}
+                    className="group relative px-4 py-2 sm:px-6 sm:py-3 rounded-xl sm:rounded-2xl backdrop-blur-lg border transition-all duration-500 hover:scale-105 overflow-hidden min-w-[120px] sm:min-w-[140px]"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.05)",
+                      border: "2px solid rgba(255, 255, 255, 0.1)",
+                      boxShadow: "0 0 25px rgba(73, 146, 255, 0.2)",
+                    }}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                    transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {/* Animated background gradient */}
+                    <div
+                      className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${social.color}`}
+                    />
+
+                    {/* Scanning line effect */}
+                    <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                    </div>
+
+                    {/* Button text */}
+                    <span
+                      className={`relative font-semibold warm-glow-text text-sm sm:text-base ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
+                      style={{
+                        textShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
+                      }}
+                    >
+                      {social.name}
+                    </span>
+
+                    {/* Circuit decorations */}
+                    <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                      <div className="absolute top-1 left-1 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+                      <div
+                        className="absolute bottom-1 right-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
+                        style={{ animationDelay: "0.5s" }}
+                      />
+                      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
+                    </div>
+
+                    {/* Holographic shimmer effect */}
+                    <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-2xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </motion.div>
