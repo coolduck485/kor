@@ -162,20 +162,22 @@ export default function Index() {
     setIsLoaded(false);
     setAnimationStep(0);
 
+    // YouTube intro-style animation sequence - more dynamic and professional
     const animationSequence = [
-      { delay: 300, step: 1 }, // Show central orb
-      { delay: 800, step: 2 }, // Show text (KOR + subtitle)
-      { delay: 1400, step: 3 }, // Show buttons one by one
-      { delay: 2000, step: 4 }, // Show background elements
-      { delay: 2600, step: 5 }, // Complete - show everything else
+      { delay: 200, step: 1 }, // Particles and background elements burst in
+      { delay: 600, step: 2 }, // Central orb explodes into view with energy rings
+      { delay: 1000, step: 3 }, // Text slides in with shine effects
+      { delay: 1400, step: 4 }, // Buttons cascade in with bounce
+      { delay: 1800, step: 5 }, // Navigation elements slide in
+      { delay: 2200, step: 6 }, // Final polish - everything locks into place
     ];
 
     const timeouts = animationSequence.map(({ delay, step }) =>
       setTimeout(() => {
         setAnimationStep(step);
-        if (step === 5) {
+        if (step === 6) {
           setIsLoading(false);
-          setTimeout(() => setIsLoaded(true), 200);
+          setTimeout(() => setIsLoaded(true), 300);
         }
       }, delay),
     );
@@ -631,7 +633,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ███��������█╗
+                  {`██╗  ██╗ ██████╗ ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -1706,9 +1708,9 @@ export default function Index() {
               ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
               : "bg-black"
           }`}
-          variants={containerVariants}
-          initial="hidden"
-          animate={!isLoading && isLoaded ? "visible" : "hidden"}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: animationStep >= 1 ? 1 : 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
           {/* Left Corner Visual Elements for Mobile Balance */}
@@ -1795,10 +1797,19 @@ export default function Index() {
             }}
           />
 
-          {/* Enhanced Floating Ambient Particles with Color Shifting */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Enhanced Floating Ambient Particles with Color Shifting - YouTube Intro Style */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none overflow-hidden"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={
+              animationStep >= 1
+                ? { opacity: 1, scale: 1 }
+                : { opacity: 0, scale: 0.5 }
+            }
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          >
             {[...Array(25)].map((_, i) => (
-              <div
+              <motion.div
                 key={`particle-${i}`}
                 className="absolute rounded-full opacity-60"
                 style={{
@@ -1811,9 +1822,22 @@ export default function Index() {
                   filter: "blur(0.3px)",
                   transform: `scale(${0.5 + (i % 3) * 0.3})`,
                 }}
+                initial={{ scale: 0, rotate: 0 }}
+                animate={
+                  animationStep >= 1
+                    ? { scale: 1, rotate: 360 }
+                    : { scale: 0, rotate: 0 }
+                }
+                transition={{
+                  duration: 0.8,
+                  delay: i * 0.03,
+                  ease: "backOut",
+                  type: "spring",
+                  stiffness: 200,
+                }}
               />
             ))}
-          </div>
+          </motion.div>
 
           {/* Animated Geometric Patterns */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
@@ -2049,23 +2073,44 @@ export default function Index() {
                 {/* Primary indicator */}
                 <motion.div
                   className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-400/30 animate-gentle-pulse"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 2, duration: 1 }}
+                  initial={{ opacity: 0, x: -50, scale: 0 }}
+                  animate={
+                    animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}
+                  }
+                  transition={{
+                    delay: 0.2,
+                    duration: 0.8,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
                 />
                 {/* Secondary indicators */}
                 <motion.div
                   className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-blue-300/20 animate-gentle-pulse"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 2.3, duration: 1 }}
+                  initial={{ opacity: 0, x: -50, scale: 0 }}
+                  animate={
+                    animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}
+                  }
+                  transition={{
+                    delay: 0.4,
+                    duration: 0.8,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
                   style={{ animationDelay: "1s" }}
                 />
                 <motion.div
                   className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-200/25 animate-gentle-pulse"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 2.6, duration: 1 }}
+                  initial={{ opacity: 0, x: -50, scale: 0 }}
+                  animate={
+                    animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}
+                  }
+                  transition={{
+                    delay: 0.6,
+                    duration: 0.8,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
                   style={{ animationDelay: "2s" }}
                 />
               </div>
@@ -2115,32 +2160,34 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
+            {/* Central Glowing Orb - SVG Based with Magnetic Effect - YouTube Intro Style */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
                 className="relative animate-float cursor-pointer group pointer-events-none"
                 initial={{
                   opacity: 0,
-                  scale: 0.3,
-                  y: 100,
-                  filter: "blur(20px)",
+                  scale: 0,
+                  y: -200,
+                  filter: "blur(30px)",
+                  rotateX: 90,
                 }}
                 animate={
-                  animationStep >= 1
+                  animationStep >= 2
                     ? {
                         opacity: 1,
                         scale: 1,
                         y: 0,
                         filter: "blur(0px)",
+                        rotateX: 0,
                       }
                     : {}
                 }
                 transition={{
-                  duration: 1.5,
-                  ease: [0.16, 1, 0.3, 1],
+                  duration: 1.2,
+                  ease: "backOut",
                   type: "spring",
-                  stiffness: 80,
-                  damping: 15,
+                  stiffness: 100,
+                  damping: 12,
                 }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
@@ -2312,27 +2359,33 @@ export default function Index() {
               </motion.div>
             </div>
 
-            {/* Text Content - Moved up */}
+            {/* Text Content - YouTube Intro Style */}
             <motion.div
               className="relative z-10 px-4 -mt-16"
               initial={{
                 opacity: 0,
-                y: 80,
-                filter: "blur(10px)",
+                y: 150,
+                scale: 0.8,
+                filter: "blur(20px)",
+                rotateX: 45,
               }}
               animate={
-                animationStep >= 2
+                animationStep >= 3
                   ? {
                       opacity: 1,
                       y: 0,
+                      scale: 1,
                       filter: "blur(0px)",
+                      rotateX: 0,
                     }
                   : {}
               }
               transition={{
-                duration: 1.2,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 0.2,
+                duration: 1.0,
+                ease: "backOut",
+                type: "spring",
+                stiffness: 120,
+                damping: 15,
               }}
             >
               {/* Kor - moved further to the left */}
@@ -3347,139 +3400,114 @@ function MobileHamburgerMenu({
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
-      <AnimatePresence>
+      {/* Enhanced Backdrop overlay with synchronized menu content */}
+      <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: -20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
-            style={{
-              marginLeft: `${menuPosition.left}px`, // Dynamic positioning to stay in bounds
-              marginTop: `${menuPosition.top}px`, // Dynamic positioning to stay in bounds
-            }}
-          >
-            <div
-              className={`relative rounded-2xl border-2 backdrop-blur-2xl p-4 w-[200px] max-w-[90vw] ${
-                theme === "light"
-                  ? "border-blue-400/40 bg-white/30"
-                  : "border-blue-300/30 bg-blue-400/5"
-              }`}
-              style={{
-                background:
-                  theme === "light"
-                    ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
-                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                boxShadow:
-                  "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
-              }}
-            >
-              {/* Animated background layers */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50" />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30" />
-
-              {/* Menu Items - Styled like original floating buttons */}
-              <div className="relative space-y-2">
-                {menuItems.map((item, index) => (
-                  <motion.button
-                    key={item.text}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.3 }}
-                    className={`group w-full px-4 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-500 hover:shadow-xl active:scale-95 overflow-hidden relative ${
-                      theme === "light"
-                        ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60 text-gray-800 hover:text-gray-900"
-                        : "border-blue-300/30 bg-blue-400/5 hover:border-white/40 text-white/90 hover:text-white"
-                    }`}
-                    style={{
-                      background:
-                        theme === "light"
-                          ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
-                          : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                    }}
-                    onClick={() => {
-                      setIsOpen(false);
-                      const sectionMap: { [key: string]: number } = {
-                        "About us": 1,
-                        Services: 2,
-                        Portfolio: 3,
-                        "Contact us": 4,
-                      };
-                      const sectionIndex = sectionMap[item.text];
-                      if (sectionIndex) {
-                        const event = new CustomEvent("scrollToSection", {
-                          detail: sectionIndex,
-                        });
-                        window.dispatchEvent(event);
-                      }
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = `scale(1.05)`;
-                      e.currentTarget.style.boxShadow =
-                        "0 0 20px rgba(73, 146, 255, 0.4)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = `scale(1)`;
-                      e.currentTarget.style.boxShadow = "none";
-                    }}
-                  >
-                    {/* Animated background layers */}
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50 group-hover:opacity-70 transition-all duration-500" />
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500" />
-
-                    {/* Futuristic circuit-like patterns */}
-                    <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-                      <div className="absolute top-1 left-1 w-1 h-1 bg-white/30 rounded-full" />
-                      <div className="absolute bottom-1 right-1 w-0.5 h-0.5 bg-white/40 rounded-full" />
-                      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                    </div>
-
-                    {/* Holographic scanning line effect */}
-                    <div className="absolute inset-0 overflow-hidden rounded-inherit">
-                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                    </div>
-
-                    {/* Button text */}
-                    <span className="relative font-poppins font-semibold text-sm tracking-wide drop-shadow-lg">
-                      {item.text}
-                    </span>
-
-                    {/* Holographic shimmer effect */}
-                    <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
-
-                    {/* Bottom reflection */}
-                    <div className="absolute bottom-0.5 left-0.5 right-0.5 h-1/4 rounded-xl bg-gradient-to-t from-white/15 to-transparent opacity-30 group-hover:opacity-50 transition-all duration-500" />
-                  </motion.button>
-                ))}
-              </div>
-
-              {/* Holographic shimmer effect */}
-              <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-2xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40" />
-
-              {/* Bottom reflection */}
-              <div className="absolute bottom-0.5 left-0.5 right-0.5 h-1/4 rounded-2xl bg-gradient-to-t from-white/15 to-transparent opacity-30" />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Enhanced Backdrop overlay that blurs all content */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="fixed inset-0 bg-black/30 z-40"
             onClick={() => setIsOpen(false)}
             style={{
-              backdropFilter: "blur(12px)",
               WebkitBackdropFilter: "blur(12px)",
             }}
-          />
+          >
+            {/* Mobile Menu Content - Synchronized with backdrop */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -10 }}
+              transition={{ duration: 0.2, ease: "easeOut", delay: 0.05 }}
+              className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
+              style={{
+                marginLeft: `${menuPosition.left}px`,
+                marginTop: `${menuPosition.top}px`,
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div
+                className={`relative rounded-2xl border-2 p-4 w-[200px] max-w-[90vw] will-change-transform ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/30"
+                    : "border-blue-300/30 bg-blue-400/5"
+                }`}
+                style={{
+                  background:
+                    theme === "light"
+                      ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                  boxShadow:
+                    "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                }}
+              >
+                {/* Animated background layers */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30" />
+
+                {/* Menu Items - Optimized for performance */}
+                <div className="relative space-y-2">
+                  {menuItems.map((item, index) => (
+                    <motion.button
+                      key={item.text}
+                      initial={{ opacity: 0, x: -15 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + index * 0.05, duration: 0.2 }}
+                      className={`group w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 hover:shadow-xl active:scale-95 overflow-hidden relative will-change-transform ${
+                        theme === "light"
+                          ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60 text-gray-800 hover:text-gray-900"
+                          : "border-blue-300/30 bg-blue-400/5 hover:border-white/40 text-white/90 hover:text-white"
+                      }`}
+                      style={{
+                        background:
+                          theme === "light"
+                            ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)",
+                      }}
+                      onClick={() => {
+                        setIsOpen(false);
+                        const sectionMap: { [key: string]: number } = {
+                          "About us": 1,
+                          Services: 2,
+                          Portfolio: 3,
+                          "Contact us": 4,
+                        };
+                        const sectionIndex = sectionMap[item.text];
+                        if (sectionIndex) {
+                          const event = new CustomEvent("scrollToSection", {
+                            detail: sectionIndex,
+                          });
+                          window.dispatchEvent(event);
+                        }
+                      }}
+                    >
+                      {/* Simplified background layers for performance */}
+                      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-200" />
+
+                      {/* Button text */}
+                      <span className="relative font-poppins font-semibold text-sm tracking-wide">
+                        {item.text}
+                      </span>
+
+                      {/* Subtle highlight */}
+                      <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-xl bg-gradient-to-b from-white/15 via-white/5 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-200" />
+                    </motion.button>
+                  ))}
+                </div>
+
+                {/* Holographic shimmer effect */}
+                <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-2xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40" />
+
+                {/* Bottom reflection */}
+                <div className="absolute bottom-0.5 left-0.5 right-0.5 h-1/4 rounded-2xl bg-gradient-to-t from-white/15 to-transparent opacity-30" />
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
@@ -5791,362 +5819,563 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Contact Content Grid */}
-            <div className="contact-grid grid grid-cols-1 lg:grid-cols-5 gap-3 sm:gap-4 items-start mt-1 sm:mt-2 px-1 sm:px-2 max-w-5xl mx-auto">
-              {/* Main Contact Form - Takes 3 columns */}
+            <div className="contact-grid max-w-5xl mx-auto px-1 sm:px-2 mt-1 sm:mt-2">
+              {/* Desktop Layout - Form + Sidebar */}
+              <div className="hidden lg:grid lg:grid-cols-5 gap-3 sm:gap-4 items-start">
+                {/* Main Contact Form - Takes 3 columns */}
+                <motion.div
+                  className="lg:col-span-3"
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={
+                    isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }
+                  }
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  <div
+                    className="p-2 sm:p-3 lg:p-4 rounded-xl backdrop-blur-lg border"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.05)",
+                      border: "2px solid rgba(255, 255, 255, 0.1)",
+                      boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
+                    }}
+                  >
+                    <form
+                      onSubmit={handleSubmit}
+                      className="contact-form space-y-2 sm:space-y-3"
+                    >
+                      {/* Name Fields Row */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                        <div>
+                          <input
+                            type="text"
+                            placeholder="First Name"
+                            value={formData.firstName}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                firstName: e.target.value,
+                              })
+                            }
+                            className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
+                            style={{
+                              background: "rgba(255, 255, 255, 0.08)",
+                              border: "2px solid rgba(255, 255, 255, 0.15)",
+                              color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                            }}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <input
+                            type="text"
+                            placeholder="Last Name"
+                            value={formData.lastName}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                lastName: e.target.value,
+                              })
+                            }
+                            className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
+                            style={{
+                              background: "rgba(255, 255, 255, 0.08)",
+                              border: "2px solid rgba(255, 255, 255, 0.15)",
+                              color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                            }}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      {/* Email and Phone Row */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                        <div>
+                          <input
+                            type="email"
+                            placeholder="Your Email"
+                            value={formData.email}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                email: e.target.value,
+                              })
+                            }
+                            className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
+                            style={{
+                              background: "rgba(255, 255, 255, 0.08)",
+                              border: "2px solid rgba(255, 255, 255, 0.15)",
+                              color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                            }}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <input
+                            type="tel"
+                            placeholder="Phone Number"
+                            value={formData.phone}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                phone: e.target.value,
+                              })
+                            }
+                            className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
+                            style={{
+                              background: "rgba(255, 255, 255, 0.08)",
+                              border: "2px solid rgba(255, 255, 255, 0.15)",
+                              color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                            }}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      {/* Interest Selection */}
+                      <div>
+                        <h3
+                          className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
+                        >
+                          I'm interested in...
+                        </h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1">
+                          {interests.map((interest) => (
+                            <button
+                              key={interest}
+                              type="button"
+                              onClick={() => handleInterestSelect(interest)}
+                              className={`p-1 sm:p-1.5 text-xs rounded-md border transition-all duration-200 hover:scale-105 will-change-transform ${
+                                selectedInterest === interest
+                                  ? "border-blue-400 text-blue-400"
+                                  : "border-white/20 hover:border-white/40"
+                              }`}
+                              style={{
+                                background:
+                                  selectedInterest === interest
+                                    ? "rgba(59, 130, 246, 0.1)"
+                                    : "rgba(255, 255, 255, 0.05)",
+                                color:
+                                  selectedInterest === interest
+                                    ? theme === "light"
+                                      ? "#2563eb"
+                                      : "#60a5fa"
+                                    : theme === "light"
+                                      ? "#4b5563"
+                                      : "#d1d5db",
+                              }}
+                            >
+                              {interest}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Budget Selection */}
+                      <div>
+                        <h3
+                          className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
+                        >
+                          Project Budget (USD)
+                        </h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1">
+                          {budgets.map((budget) => (
+                            <button
+                              key={budget}
+                              type="button"
+                              onClick={() => handleBudgetSelect(budget)}
+                              className={`p-1 sm:p-1.5 text-xs rounded-md border transition-all duration-200 hover:scale-105 will-change-transform ${
+                                selectedBudget === budget
+                                  ? "border-green-400 text-green-400"
+                                  : "border-white/20 hover:border-white/40"
+                              }`}
+                              style={{
+                                background:
+                                  selectedBudget === budget
+                                    ? "rgba(34, 197, 94, 0.1)"
+                                    : "rgba(255, 255, 255, 0.05)",
+                                color:
+                                  selectedBudget === budget
+                                    ? theme === "light"
+                                      ? "#059669"
+                                      : "#34d399"
+                                    : theme === "light"
+                                      ? "#4b5563"
+                                      : "#d1d5db",
+                              }}
+                            >
+                              {budget}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Project Description */}
+                      <div>
+                        <h3
+                          className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
+                        >
+                          Tell us more about your project
+                        </h3>
+                        <textarea
+                          placeholder="Something about your great idea..."
+                          value={formData.description}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              description: e.target.value,
+                            })
+                          }
+                          rows={2}
+                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] resize-none outline-none text-xs sm:text-sm will-change-transform"
+                          style={{
+                            background: "rgba(255, 255, 255, 0.08)",
+                            border: "2px solid rgba(255, 255, 255, 0.15)",
+                            color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                          }}
+                          required
+                        />
+                      </div>
+
+                      {/* Submit Button */}
+                      <motion.button
+                        type="submit"
+                        className="w-full p-2 sm:p-3 rounded-xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-200 hover:scale-[1.02] text-xs sm:text-sm will-change-transform"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
+                          boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
+                        }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        <span>Submit Your Request</span>
+                      </motion.button>
+                    </form>
+                  </div>
+                </motion.div>
+
+                {/* Desktop Sidebar */}
+                <motion.div
+                  className="lg:col-span-2"
+                  initial={{ x: 50, opacity: 0 }}
+                  animate={
+                    isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
+                  }
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  <div className="space-y-4">
+                    {/* Message Us Header */}
+                    <div>
+                      <h3
+                        className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                      >
+                        Message us:
+                      </h3>
+                      <div className="grid grid-cols-1 gap-2">
+                        {[
+                          {
+                            name: "Instagram",
+                            url: "https://instagram.com",
+                            icon: "📷",
+                            color: "from-pink-500 to-purple-500",
+                          },
+                          {
+                            name: "Discord",
+                            url: "https://discord.com",
+                            icon: "💬",
+                            color: "from-indigo-500 to-blue-500",
+                          },
+                          {
+                            name: "Telegram",
+                            url: "https://telegram.org",
+                            icon: "📱",
+                            color: "from-blue-500 to-cyan-500",
+                          },
+                        ].map((social) => (
+                          <motion.button
+                            key={social.name}
+                            onClick={() => window.open(social.url, "_blank")}
+                            className="group relative p-2 rounded-lg backdrop-blur-lg border transition-all duration-200 hover:scale-[1.02] overflow-hidden will-change-transform text-left"
+                            style={{
+                              background: "rgba(255, 255, 255, 0.05)",
+                              border: "2px solid rgba(255, 255, 255, 0.1)",
+                              boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
+                            }}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            {/* Animated background gradient */}
+                            <div
+                              className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${social.color}`}
+                            />
+
+                            {/* Scanning line effect */}
+                            <div className="absolute inset-0 overflow-hidden rounded-xl">
+                              <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                            </div>
+
+                            <div className="flex items-center space-x-2 relative z-10">
+                              <div
+                                className={`w-8 h-8 rounded-lg bg-gradient-to-br ${social.color} flex items-center justify-center`}
+                              >
+                                <span className="text-white text-sm">
+                                  {social.icon}
+                                </span>
+                              </div>
+                              <div>
+                                <p
+                                  className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
+                                >
+                                  {social.name}
+                                </p>
+                                <p
+                                  className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
+                                >
+                                  Message us on {social.name}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Circuit decorations */}
+                            <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                              <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+                              <div
+                                className="absolute bottom-1 left-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
+                                style={{ animationDelay: "0.5s" }}
+                              />
+                            </div>
+                          </motion.button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Contact Us Header */}
+                    <div>
+                      <h3
+                        className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                      >
+                        Contact us:
+                      </h3>
+                      <div
+                        className="p-2 rounded-lg backdrop-blur-lg border"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.05)",
+                          border: "2px solid rgba(255, 255, 255, 0.1)",
+                          boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
+                        }}
+                      >
+                        <div className="flex items-center space-x-2">
+                          <div className="w-6 h-6 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+                            <Mail className="w-3 h-3 text-white" />
+                          </div>
+                          <div>
+                            <p
+                              className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
+                            >
+                              Email us at
+                            </p>
+                            <p
+                              className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                            >
+                              contact@kor.dev
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Mobile/Tablet Layout - Social Buttons Only */}
               <motion.div
-                className="lg:col-span-3"
-                initial={{ x: -50, opacity: 0 }}
+                className="lg:hidden"
+                initial={{ y: 50, opacity: 0 }}
                 animate={
-                  isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }
+                  isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
                 }
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <div
-                  className="p-2 sm:p-3 lg:p-4 rounded-xl backdrop-blur-lg border"
-                  style={{
-                    background: "rgba(255, 255, 255, 0.05)",
-                    border: "2px solid rgba(255, 255, 255, 0.1)",
-                    boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
-                  }}
-                >
-                  <form
-                    onSubmit={handleSubmit}
-                    className="contact-form space-y-2 sm:space-y-3"
-                  >
-                    {/* Name Fields Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                      <div>
-                        <input
-                          type="text"
-                          placeholder="First Name"
-                          value={formData.firstName}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              firstName: e.target.value,
-                            })
-                          }
-                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
-                          style={{
-                            background: "rgba(255, 255, 255, 0.08)",
-                            border: "2px solid rgba(255, 255, 255, 0.15)",
-                            color: theme === "light" ? "#1f2937" : "#e5e7eb",
-                          }}
-                          required
-                        />
-                      </div>
-                      <div>
-                        <input
-                          type="text"
-                          placeholder="Last Name"
-                          value={formData.lastName}
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              lastName: e.target.value,
-                            })
-                          }
-                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
-                          style={{
-                            background: "rgba(255, 255, 255, 0.08)",
-                            border: "2px solid rgba(255, 255, 255, 0.15)",
-                            color: theme === "light" ? "#1f2937" : "#e5e7eb",
-                          }}
-                          required
-                        />
-                      </div>
-                    </div>
+                <div className="space-y-6">
+                  {/* Mobile Contact Header */}
+                  <div className="text-center">
+                    <h3
+                      className={`text-lg sm:text-xl font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                    >
+                      Get in touch
+                    </h3>
+                    <p
+                      className={`text-sm sm:text-base ${theme === "light" ? "text-gray-600" : "text-white/60"}`}
+                    >
+                      Choose your preferred way to reach us
+                    </p>
+                  </div>
 
-                    {/* Email and Phone Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                      <div>
-                        <input
-                          type="email"
-                          placeholder="Your Email"
-                          value={formData.email}
-                          onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
-                          }
-                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
-                          style={{
-                            background: "rgba(255, 255, 255, 0.08)",
-                            border: "2px solid rgba(255, 255, 255, 0.15)",
-                            color: theme === "light" ? "#1f2937" : "#e5e7eb",
-                          }}
-                          required
-                        />
-                      </div>
-                      <div>
-                        <input
-                          type="tel"
-                          placeholder="Phone Number"
-                          value={formData.phone}
-                          onChange={(e) =>
-                            setFormData({ ...formData, phone: e.target.value })
-                          }
-                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
-                          style={{
-                            background: "rgba(255, 255, 255, 0.08)",
-                            border: "2px solid rgba(255, 255, 255, 0.15)",
-                            color: theme === "light" ? "#1f2937" : "#e5e7eb",
-                          }}
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    {/* Interest Selection */}
-                    <div>
-                      <h3
-                        className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
-                      >
-                        I'm interested in...
-                      </h3>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1">
-                        {interests.map((interest) => (
-                          <button
-                            key={interest}
-                            type="button"
-                            onClick={() => handleInterestSelect(interest)}
-                            className={`p-1 sm:p-1.5 text-xs rounded-md border transition-all duration-200 hover:scale-105 will-change-transform ${
-                              selectedInterest === interest
-                                ? "border-blue-400 text-blue-400"
-                                : "border-white/20 hover:border-white/40"
-                            }`}
-                            style={{
-                              background:
-                                selectedInterest === interest
-                                  ? "rgba(59, 130, 246, 0.1)"
-                                  : "rgba(255, 255, 255, 0.05)",
-                              color:
-                                selectedInterest === interest
-                                  ? theme === "light"
-                                    ? "#2563eb"
-                                    : "#60a5fa"
-                                  : theme === "light"
-                                    ? "#4b5563"
-                                    : "#d1d5db",
-                            }}
-                          >
-                            {interest}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Budget Selection */}
-                    <div>
-                      <h3
-                        className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
-                      >
-                        Project Budget (USD)
-                      </h3>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1">
-                        {budgets.map((budget) => (
-                          <button
-                            key={budget}
-                            type="button"
-                            onClick={() => handleBudgetSelect(budget)}
-                            className={`p-1 sm:p-1.5 text-xs rounded-md border transition-all duration-200 hover:scale-105 will-change-transform ${
-                              selectedBudget === budget
-                                ? "border-green-400 text-green-400"
-                                : "border-white/20 hover:border-white/40"
-                            }`}
-                            style={{
-                              background:
-                                selectedBudget === budget
-                                  ? "rgba(34, 197, 94, 0.1)"
-                                  : "rgba(255, 255, 255, 0.05)",
-                              color:
-                                selectedBudget === budget
-                                  ? theme === "light"
-                                    ? "#059669"
-                                    : "#34d399"
-                                  : theme === "light"
-                                    ? "#4b5563"
-                                    : "#d1d5db",
-                            }}
-                          >
-                            {budget}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Project Description */}
-                    <div>
-                      <h3
-                        className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
-                      >
-                        Tell us more about your project
-                      </h3>
-                      <textarea
-                        placeholder="Something about your great idea..."
-                        value={formData.description}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            description: e.target.value,
-                          })
-                        }
-                        rows={2}
-                        className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] resize-none outline-none text-xs sm:text-sm will-change-transform"
+                  {/* Social Media Buttons - Redesigned for Mobile */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      {
+                        name: "Instagram",
+                        subtitle: "Follow us for updates",
+                        url: "https://instagram.com",
+                        icon: "📷",
+                        color: "from-pink-500 via-purple-500 to-indigo-500",
+                        shadowColor: "rgba(236, 72, 153, 0.3)",
+                      },
+                      {
+                        name: "Discord",
+                        subtitle: "Join our community",
+                        url: "https://discord.com",
+                        icon: "💬",
+                        color: "from-indigo-500 via-blue-500 to-purple-500",
+                        shadowColor: "rgba(99, 102, 241, 0.3)",
+                      },
+                      {
+                        name: "Telegram",
+                        subtitle: "Quick messaging",
+                        url: "https://telegram.org",
+                        icon: "📱",
+                        color: "from-blue-500 via-cyan-500 to-teal-500",
+                        shadowColor: "rgba(34, 211, 238, 0.3)",
+                      },
+                      {
+                        name: "Email",
+                        subtitle: "contact@kor.dev",
+                        url: "mailto:contact@kor.dev",
+                        icon: "✉️",
+                        color: "from-emerald-500 via-green-500 to-lime-500",
+                        shadowColor: "rgba(16, 185, 129, 0.3)",
+                      },
+                    ].map((contact, index) => (
+                      <motion.button
+                        key={contact.name}
+                        onClick={() => window.open(contact.url, "_blank")}
+                        className="group relative rounded-2xl backdrop-blur-lg border transition-all duration-300 hover:scale-[1.02] overflow-hidden will-change-transform p-4 sm:p-6"
                         style={{
                           background: "rgba(255, 255, 255, 0.08)",
                           border: "2px solid rgba(255, 255, 255, 0.15)",
-                          color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                          boxShadow: `0 0 40px ${contact.shadowColor}`,
                         }}
-                        required
-                      />
-                    </div>
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.1 * index }}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        {/* Animated background gradient */}
+                        <div
+                          className={`absolute inset-0 opacity-0 group-hover:opacity-30 transition-all duration-500 bg-gradient-to-br ${contact.color}`}
+                        />
 
-                    {/* Submit Button */}
-                    <motion.button
-                      type="submit"
-                      className="w-full p-2 sm:p-3 rounded-xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-200 hover:scale-[1.02] text-xs sm:text-sm will-change-transform"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
-                        boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
-                      }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      <span>Submit Your Request</span>
-                    </motion.button>
-                  </form>
-                </div>
-              </motion.div>
+                        {/* Scanning line effect */}
+                        <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                          <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                        </div>
 
-              {/* Message Us Section */}
-              <motion.div
-                className="lg:col-span-2"
-                initial={{ x: 50, opacity: 0 }}
-                animate={
-                  isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
-                }
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <div className="space-y-4">
-                  {/* Message Us Header */}
-                  <div>
-                    <h3
-                      className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
-                    >
-                      Message us:
-                    </h3>
-                    <div className="grid grid-cols-1 gap-2">
-                      {[
-                        {
-                          name: "Instagram",
-                          url: "https://instagram.com",
-                          icon: "📷",
-                          color: "from-pink-500 to-purple-500",
-                        },
-                        {
-                          name: "Discord",
-                          url: "https://discord.com",
-                          icon: "💬",
-                          color: "from-indigo-500 to-blue-500",
-                        },
-                        {
-                          name: "Telegram",
-                          url: "https://telegram.org",
-                          icon: "📱",
-                          color: "from-blue-500 to-cyan-500",
-                        },
-                      ].map((social) => (
-                        <motion.button
-                          key={social.name}
-                          onClick={() => window.open(social.url, "_blank")}
-                          className="group relative p-2 rounded-lg backdrop-blur-lg border transition-all duration-200 hover:scale-[1.02] overflow-hidden will-change-transform text-left"
-                          style={{
-                            background: "rgba(255, 255, 255, 0.05)",
-                            border: "2px solid rgba(255, 255, 255, 0.1)",
-                            boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
-                          }}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          {/* Animated background gradient */}
-                          <div
-                            className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${social.color}`}
-                          />
-
-                          {/* Scanning line effect */}
-                          <div className="absolute inset-0 overflow-hidden rounded-xl">
-                            <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                          </div>
-
-                          <div className="flex items-center space-x-2 relative z-10">
+                        {/* Main Content - Responsive Layout */}
+                        <div className="relative z-10">
+                          {/* Mobile Layout - Vertical Stack */}
+                          <div className="sm:hidden flex flex-col items-center text-center space-y-2">
                             <div
-                              className={`w-8 h-8 rounded-lg bg-gradient-to-br ${social.color} flex items-center justify-center`}
+                              className={`w-12 h-12 rounded-xl bg-gradient-to-br ${contact.color} flex items-center justify-center shadow-lg`}
+                              style={{
+                                boxShadow: `0 6px 20px ${contact.shadowColor}`,
+                              }}
                             >
-                              <span className="text-white text-sm">
-                                {social.icon}
+                              <span className="text-white text-lg animate-gentleBounce">
+                                {contact.icon}
                               </span>
                             </div>
                             <div>
-                              <p
-                                className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
+                              <h4
+                                className={`font-bold text-sm ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
                               >
-                                {social.name}
-                              </p>
+                                {contact.name}
+                              </h4>
                               <p
-                                className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
+                                className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"} group-hover:text-blue-200 transition-colors duration-300 mt-1`}
                               >
-                                Message us on {social.name}
+                                {contact.name === "Email"
+                                  ? "contact@kor.dev"
+                                  : contact.subtitle}
                               </p>
                             </div>
                           </div>
 
-                          {/* Circuit decorations */}
-                          <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-                            <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+                          {/* Tablet+ Layout - Horizontal */}
+                          <div className="hidden sm:flex items-center space-x-4">
                             <div
-                              className="absolute bottom-1 left-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-                              style={{ animationDelay: "0.5s" }}
-                            />
+                              className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center shadow-lg`}
+                              style={{
+                                boxShadow: `0 8px 25px ${contact.shadowColor}`,
+                              }}
+                            >
+                              <span className="text-white text-2xl animate-gentleBounce">
+                                {contact.icon}
+                              </span>
+                            </div>
+                            <div className="flex-1 text-left">
+                              <h4
+                                className={`font-bold text-lg ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
+                              >
+                                {contact.name}
+                              </h4>
+                              <p
+                                className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-400"} group-hover:text-blue-200 transition-colors duration-300`}
+                              >
+                                {contact.subtitle}
+                              </p>
+                            </div>
+                            <div className="text-blue-400 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                              <svg
+                                className="w-6 h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 5l7 7-7 7"
+                                />
+                              </svg>
+                            </div>
                           </div>
-                        </motion.button>
-                      ))}
-                    </div>
+                        </div>
+
+                        {/* Circuit decorations */}
+                        <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                          <div className="absolute top-2 right-2 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full animate-pulse" />
+                          <div
+                            className="absolute bottom-2 left-2 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-cyan-400 rounded-full animate-pulse"
+                            style={{ animationDelay: "0.5s" }}
+                          />
+                          <div
+                            className="absolute top-1/2 right-4 sm:right-6 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-purple-400 rounded-full animate-pulse"
+                            style={{ animationDelay: "1s" }}
+                          />
+                        </div>
+
+                        {/* Glow effect */}
+                        <div
+                          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                          style={{
+                            background: `radial-gradient(circle at center, ${contact.shadowColor}, transparent 70%)`,
+                          }}
+                        />
+                      </motion.button>
+                    ))}
                   </div>
 
-                  {/* Contact Us Header */}
-                  <div>
-                    <h3
-                      className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                  {/* Additional Info for Mobile */}
+                  <div className="text-center pt-4">
+                    <p
+                      className={`text-xs ${theme === "light" ? "text-gray-500" : "text-white/40"}`}
                     >
-                      Contact us:
-                    </h3>
-                    <div
-                      className="p-2 rounded-lg backdrop-blur-lg border"
-                      style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        border: "2px solid rgba(255, 255, 255, 0.1)",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
-                      }}
-                    >
-                      <div className="flex items-center space-x-2">
-                        <div className="w-6 h-6 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
-                          <Mail className="w-3 h-3 text-white" />
-                        </div>
-                        <div>
-                          <p
-                            className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
-                          >
-                            Email us at
-                          </p>
-                          <p
-                            className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"}`}
-                          >
-                            contact@kor.dev
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                      We typically respond within 24 hours
+                    </p>
                   </div>
                 </div>
               </motion.div>
