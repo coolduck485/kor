@@ -5720,16 +5720,16 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <div
-                  className="p-3 sm:p-4 rounded-xl backdrop-blur-lg border"
+                  className="p-2 sm:p-3 lg:p-4 rounded-xl backdrop-blur-lg border"
                   style={{
                     background: "rgba(255, 255, 255, 0.05)",
                     border: "2px solid rgba(255, 255, 255, 0.1)",
                     boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
                   }}
                 >
-                  <form onSubmit={handleSubmit} className="contact-form space-y-3">
+                  <form onSubmit={handleSubmit} className="contact-form space-y-2 sm:space-y-3">
                     {/* Name Fields Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                       <div>
                         <input
                           type="text"
@@ -5767,7 +5767,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     </div>
 
                     {/* Email and Phone Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                       <div>
                         <input
                           type="email"
