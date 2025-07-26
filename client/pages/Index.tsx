@@ -747,7 +747,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█���██████��█████��█ 60%
+                      CPU: ███��█���██████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2908,13 +2908,14 @@ export default function Index() {
           }`}
           animate={{
             opacity: isContentVisible && currentSection === 2 ? 1 : currentSection === 2 ? 0 : 1,
-            y: isContentVisible && currentSection === 2 ? 0 : currentSection === 2 ? 30 : 0,
-            scale: isContentVisible && currentSection === 2 ? 1 : currentSection === 2 ? 0.95 : 1
+            y: isContentVisible && currentSection === 2 ? 0 : currentSection === 2 ? 40 : 0,
+            scale: isContentVisible && currentSection === 2 ? 1 : currentSection === 2 ? 0.95 : 1,
+            filter: isContentVisible && currentSection === 2 ? "blur(0px)" : currentSection === 2 ? "blur(8px)" : "blur(0px)"
           }}
           transition={{
-            duration: 0.8,
-            ease: "easeOut",
-            delay: currentSection === 2 ? 0.3 : 0
+            duration: 0.9,
+            ease: [0.25, 0.46, 0.45, 0.94],
+            delay: currentSection === 2 ? 0.5 : 0
           }}
         >
           <ServicesSection
@@ -2931,13 +2932,14 @@ export default function Index() {
           }`}
           animate={{
             opacity: isContentVisible && currentSection === 3 ? 1 : currentSection === 3 ? 0 : 1,
-            y: isContentVisible && currentSection === 3 ? 0 : currentSection === 3 ? 30 : 0,
-            scale: isContentVisible && currentSection === 3 ? 1 : currentSection === 3 ? 0.95 : 1
+            y: isContentVisible && currentSection === 3 ? 0 : currentSection === 3 ? 40 : 0,
+            scale: isContentVisible && currentSection === 3 ? 1 : currentSection === 3 ? 0.95 : 1,
+            filter: isContentVisible && currentSection === 3 ? "blur(0px)" : currentSection === 3 ? "blur(8px)" : "blur(0px)"
           }}
           transition={{
-            duration: 0.8,
-            ease: "easeOut",
-            delay: currentSection === 3 ? 0.3 : 0
+            duration: 0.9,
+            ease: [0.25, 0.46, 0.45, 0.94],
+            delay: currentSection === 3 ? 0.6 : 0
           }}
         >
           <PortfolioSection
@@ -2954,13 +2956,14 @@ export default function Index() {
           }`}
           animate={{
             opacity: isContentVisible && currentSection === 4 ? 1 : currentSection === 4 ? 0 : 1,
-            y: isContentVisible && currentSection === 4 ? 0 : currentSection === 4 ? 30 : 0,
-            scale: isContentVisible && currentSection === 4 ? 1 : currentSection === 4 ? 0.95 : 1
+            y: isContentVisible && currentSection === 4 ? 0 : currentSection === 4 ? 40 : 0,
+            scale: isContentVisible && currentSection === 4 ? 1 : currentSection === 4 ? 0.95 : 1,
+            filter: isContentVisible && currentSection === 4 ? "blur(0px)" : currentSection === 4 ? "blur(8px)" : "blur(0px)"
           }}
           transition={{
-            duration: 0.8,
-            ease: "easeOut",
-            delay: currentSection === 4 ? 0.3 : 0
+            duration: 0.9,
+            ease: [0.25, 0.46, 0.45, 0.94],
+            delay: currentSection === 4 ? 0.7 : 0
           }}
         >
           <ContactUsSection
