@@ -722,7 +722,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█���██████��█���█████ 60%
+                      CPU: ███��█���██████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1510,12 +1510,20 @@ export default function Index() {
   return (
     <div
       ref={containerRef}
-      className={`relative transition-all duration-500 ${
+      className={`relative transition-all duration-500 gpu-accelerated composite-layer scroll-optimized ${
+        isScrollingActive ? "scroll-simplified" : ""
+      } ${
         theme === "light"
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
       }`}
-      style={{ height: "100vh", overflow: "hidden", maxWidth: "100vw" }}
+      style={{
+        height: "100vh",
+        overflow: "hidden",
+        maxWidth: "100vw",
+        willChange: isScrollingActive ? "auto" : "transform",
+        contain: "layout style paint"
+      }}
     >
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
