@@ -816,7 +816,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ██�����█������█████��███████ 60%
+                      CPU: █��������█������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1628,19 +1628,11 @@ export default function Index() {
         >
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             <span
-              className={`font-inter text-sm font-medium animate-text-glow wavy-text ${
+              className={`font-inter text-sm font-medium animate-text-glow ${
                 theme === "light" ? "text-gray-600" : "text-white/70"
               }`}
             >
-              {"Scroll Down".split("").map((char, index) => (
-                <span
-                  key={index}
-                  className="inline-block animate-wavy-text"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
+              Scroll Down
             </span>
 
             {/* Mouse scroll indicator - now visible on all devices */}
@@ -1666,19 +1658,11 @@ export default function Index() {
         >
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             <span
-              className={`font-inter text-sm font-medium animate-text-glow wavy-text ${
+              className={`font-inter text-sm font-medium animate-text-glow ${
                 theme === "light" ? "text-gray-600" : "text-white/70"
               }`}
             >
-              {"Scroll Up".split("").map((char, index) => (
-                <span
-                  key={index}
-                  className="inline-block animate-wavy-text"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
+              Scroll Up
             </span>
 
             {/* Mouse scroll indicator - pointing up - now visible on all devices */}
@@ -2843,9 +2827,9 @@ export default function Index() {
                         {"Development services".split("").map((letter, i) => (
                           <span
                             key={i}
-                            className="animate-letter-float animate-wavy-text"
+                            className="animate-letter-float animate-dev-services-text"
                             style={{
-                              animationDelay: `${i * 0.1}s`,
+                              animationDelay: `${i * 0.15}s`,
                             }}
                           >
                             {letter === " " ? "\u00A0" : letter}
