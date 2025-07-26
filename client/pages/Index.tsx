@@ -4263,10 +4263,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 </span>
                 <span
                   className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  style={{
-                    animation:
-                      "text-glow 3s ease-in-out infinite 0.4s, text-bounce 2s ease-in-out 0.9s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.4s",
-                  }}
+                  className="animate-warm-glow-pulse"
+                  style={{ animationDelay: "0.4s" }}
                 >
                   o
                 </span>
