@@ -696,8 +696,13 @@
   }
 
   /* Move scroll indicators higher on short screens */
-  .fixed.bottom-8 {
+  .scroll-indicator.fixed.bottom-8 {
     bottom: 40px !important;
+  }
+
+  /* Move back to top button higher on short screens */
+  .back-to-top.fixed.bottom-8 {
+    bottom: 140px !important; /* 40px + 100px */
   }
 }
 
