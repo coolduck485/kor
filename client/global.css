@@ -1728,3 +1728,31 @@
     transform: translateX(100%) scaleX(0.3);
   }
 }
+
+/* Wavy Text Animation - Works on all breakpoints */
+@keyframes wavy-text {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  40% {
+    transform: translateY(-4px) rotate(-0.5deg);
+  }
+  60% {
+    transform: translateY(-12px) rotate(0.5deg);
+  }
+  80% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+}
+
+.animate-wavy-text {
+  animation: wavy-text 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+.wavy-text {
+  /* Container for wavy text elements */
+}
