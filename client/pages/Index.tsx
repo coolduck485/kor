@@ -817,7 +817,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█������█████��███████ 60%
+                      CPU: ███��█������█████��██���████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -5817,8 +5817,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 }}
               />
             ))}
-            {/* Animated connecting lines - Reduced for mobile */}
-            {[...Array(isMobile ? 2 : 4)].map((_, i) => (
+            {/* Animated connecting lines - Full experience */}
+            {[...Array(4)].map((_, i) => (
               <line
                 key={`line-${i}`}
                 x1={50 + i * 300}
