@@ -2015,17 +2015,19 @@ export default function Index() {
 
           {/* Main Content Container */}
           <div className="relative flex items-center justify-center min-h-screen">
-            {/* Energy Rings Around Orb */}
+            {/* Energy Rings Around Orb - Optimized for performance */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              {[...Array(3)].map((_, i) => (
+              {[...Array(isMobile ? 2 : 3)].map((_, i) => (
                 <div
                   key={`ring-${i}`}
-                  className="absolute rounded-full border opacity-20"
+                  className="absolute rounded-full border opacity-20 gpu-accelerated"
                   style={{
                     width: `${400 + i * 120}px`,
                     height: `${400 + i * 120}px`,
                     border: `1px solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
-                    animation: `energy-ripple 3s ease-out infinite ${i * 0.4}s`,
+                    animation: `energy-ripple ${isMobile ? 2 : 3}s ease-out infinite ${i * 0.5}s`,
+                    willChange: "transform, opacity",
+                    transform: "translateZ(0)",
                   }}
                 />
               ))}
