@@ -641,13 +641,13 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ████████████████��███ 60%
+                      CPU: ████████████████████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: ███████���██████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1424,98 +1424,6 @@ export default function Index() {
       </div>
     );
   }
-
-  // Section data
-  const sections = [
-    { id: 'home', title: 'Home', component: 'home' },
-    { id: 'about', title: 'About Us', component: 'about' },
-    { id: 'services', title: 'Services', component: 'services' },
-    { id: 'portfolio', title: 'Portfolio', component: 'portfolio' },
-    { id: 'contact', title: 'Contact Us', component: 'contact' }
-  ];
-
-  // Scroll to section function
-  const scrollToSection = (index: number) => {
-    if (isScrolling || !containerRef.current) return;
-
-    setIsScrolling(true);
-    setCurrentSection(index);
-
-    const targetSection = sectionsRef.current[index];
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-
-    setTimeout(() => setIsScrolling(false), 1000);
-  };
-
-  // Handle wheel scroll
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      if (isScrolling || mode === 'retro') return;
-
-      e.preventDefault();
-
-      if (e.deltaY > 0 && currentSection < sections.length - 1) {
-        scrollToSection(currentSection + 1);
-      } else if (e.deltaY < 0 && currentSection > 0) {
-        scrollToSection(currentSection - 1);
-      }
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('wheel', handleWheel, { passive: false });
-      return () => container.removeEventListener('wheel', handleWheel);
-    }
-  }, [currentSection, isScrolling, sections.length, mode]);
-
-  // Handle touch scroll for mobile
-  useEffect(() => {
-    let touchStartY = 0;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0].clientY;
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      if (isScrolling || mode === 'retro') return;
-
-      const touchEndY = e.changedTouches[0].clientY;
-      const deltaY = touchStartY - touchEndY;
-
-      if (Math.abs(deltaY) > 50) {
-        if (deltaY > 0 && currentSection < sections.length - 1) {
-          scrollToSection(currentSection + 1);
-        } else if (deltaY < 0 && currentSection > 0) {
-          scrollToSection(currentSection - 1);
-        }
-      }
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('touchstart', handleTouchStart);
-      container.addEventListener('touchend', handleTouchEnd);
-      return () => {
-        container.removeEventListener('touchstart', handleTouchStart);
-        container.removeEventListener('touchend', handleTouchEnd);
-      };
-    }
-  }, [currentSection, isScrolling, sections.length, mode]);
-
-  // Listen for scroll events from buttons
-  useEffect(() => {
-    const handleScrollToSection = (e: CustomEvent) => {
-      scrollToSection(e.detail);
-    };
-
-    window.addEventListener('scrollToSection', handleScrollToSection as EventListener);
-    return () => window.removeEventListener('scrollToSection', handleScrollToSection as EventListener);
-  }, []);
 
   // Modern mode - original design
   return (
