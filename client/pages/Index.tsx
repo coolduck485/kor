@@ -2522,15 +2522,13 @@ export default function Index() {
                     theme === "light" ? "text-gray-900" : "text-white"
                   }`}
                 >
-                  <span
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  >
+                  <span className="inline-block relative warm-glow-text animate-warm-glow-pulse">
                     K
                   </span>
                   <span
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animationDelay: "0.3s"
+                      animationDelay: "0.3s",
                     }}
                   >
                     o
@@ -2538,7 +2536,7 @@ export default function Index() {
                   <span
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animationDelay: "0.6s"
+                      animationDelay: "0.6s",
                     }}
                   >
                     r
@@ -2581,8 +2579,6 @@ export default function Index() {
                         animation: `energy-float ${4 + (i % 2)}s ease-in-out infinite ${i * 0.5}s`,
                         willChange: "transform, opacity",
                         transform: "translateZ(0)",
-  
-
                       }}
                     />
                   ))}
@@ -2644,7 +2640,7 @@ export default function Index() {
                               animation: `sparkle-enhanced ${isMobile ? 4 : 6 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
                               transform: `translateZ(0) scale(${sparkle.size})`,
                               opacity: 0.6,
-        
+
                               zIndex: -1,
                               willChange: "transform, opacity",
                             }}
@@ -4311,12 +4307,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       theme === "light" ? "text-gray-900" : "text-white"
                     }`}
                     style={{
-
                       filter:
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
@@ -4916,12 +4910,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       theme === "light" ? "text-gray-900" : "text-white"
                     }`}
                     style={{
-
                       filter:
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
@@ -5359,7 +5351,6 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
                       animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
                       filter: "blur(0.5px)",
-
                     }}
                   />
                 ))}
@@ -5367,12 +5358,10 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
-
                       filter:
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
