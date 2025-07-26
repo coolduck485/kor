@@ -644,7 +644,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ███����������█╗
+                  {`██╗  ██╗ ██████�� ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
@@ -1846,42 +1846,44 @@ export default function Index() {
             ))}
           </motion.div>
 
-          {/* Animated Geometric Patterns */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-            <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
-              {/* Animated hexagon grid */}
-              {[...Array(6)].map((_, i) => (
-                <polygon
-                  key={`hex-${i}`}
-                  points="100,20 140,40 140,80 100,100 60,80 60,40"
-                  fill="none"
-                  stroke="rgba(73, 146, 255, 0.3)"
-                  strokeWidth="1"
-                  strokeDasharray="10 5"
-                  style={{
-                    transform: `translate(${100 + i * 200}px, ${100 + (i % 2) * 150}px)`,
-                    animation: `geometric-pulse ${8 + i}s ease-in-out infinite ${i * 0.5}s`,
-                  }}
-                />
-              ))}
-              {/* Animated connecting lines */}
-              {[...Array(4)].map((_, i) => (
-                <line
-                  key={`line-${i}`}
-                  x1={50 + i * 300}
-                  y1={200}
-                  x2={250 + i * 300}
-                  y2={400}
-                  stroke="rgba(63, 186, 255, 0.2)"
-                  strokeWidth="1"
-                  strokeDasharray="15 10"
-                  style={{
-                    animation: `geometric-pulse ${10 + i * 2}s ease-in-out infinite ${i * 0.7}s`,
-                  }}
-                />
-              ))}
-            </svg>
-          </div>
+          {/* Animated Geometric Patterns - Only on high performance devices */}
+          {!isMobile && isHighPerformance && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+              <svg className="absolute w-full h-full gpu-accelerated" viewBox="0 0 1200 800">
+                {/* Animated hexagon grid - Reduced count */}
+                {[...Array(4)].map((_, i) => (
+                  <polygon
+                    key={`hex-${i}`}
+                    points="100,20 140,40 140,80 100,100 60,80 60,40"
+                    fill="none"
+                    stroke="rgba(73, 146, 255, 0.3)"
+                    strokeWidth="1"
+                    strokeDasharray="10 5"
+                    style={{
+                      transform: `translate(${100 + i * 250}px, ${100 + (i % 2) * 150}px)`,
+                      animation: `geometric-pulse ${10 + i * 2}s ease-in-out infinite ${i * 0.8}s`,
+                    }}
+                  />
+                ))}
+                {/* Animated connecting lines - Reduced count */}
+                {[...Array(2)].map((_, i) => (
+                  <line
+                    key={`line-${i}`}
+                    x1={50 + i * 400}
+                    y1={200}
+                    x2={300 + i * 400}
+                    y2={400}
+                    stroke="rgba(63, 186, 255, 0.2)"
+                    strokeWidth="1"
+                    strokeDasharray="15 10"
+                    style={{
+                      animation: `geometric-pulse ${12 + i * 3}s ease-in-out infinite ${i * 1}s`,
+                    }}
+                  />
+                ))}
+              </svg>
+            </div>
+          )}
 
           {/* Optimized Breathing Orbs - Reduced count for performance */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
