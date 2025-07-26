@@ -4369,55 +4369,17 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                >
-                  A
-                </span>
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "0.2s" }}
-                >
-                  b
-                </span>
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "0.4s" }}
-                >
-                  o
-                </span>
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "0.6s" }}
-                >
-                  u
-                </span>
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "0.8s" }}
-                >
-                  t
-                </span>
-                <span className="mx-4" />
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "1.0s" }}
-                >
-                  U
-                </span>
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "1.2s" }}
-                >
-                  s
-                </span>
+                {"About Us".split("").map((letter, i) => (
+                  <span
+                    key={i}
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    style={{
+                      animationDelay: `${i * 0.15}s`,
+                    }}
+                  >
+                    {letter === " " ? "\u00A0" : letter}
+                  </span>
+                ))}
               </h1>
             </div>
 
