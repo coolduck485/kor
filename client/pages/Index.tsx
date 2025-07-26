@@ -629,7 +629,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ███������█╗
+                  {`██╗  ██╗ ██████╗ ███��������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -1675,6 +1675,8 @@ export default function Index() {
         <motion.div
           ref={(el) => (sectionsRef.current[0] = el!)}
           className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          } ${
             theme === "light"
               ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
               : "bg-black"
@@ -1688,7 +1690,9 @@ export default function Index() {
           <div className="fixed top-6 left-6 z-40 block sm:hidden"></div>
 
           {/* Theme Toggle Container with Tooltip */}
-          <div className="fixed top-6 right-6 z-50">
+          <div className={`fixed top-6 right-6 z-50 transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}>
             <div
               className="group relative"
               onMouseEnter={() => setIsTooltipDismissed(true)}
@@ -2493,22 +2497,8 @@ export default function Index() {
               </div>
             </motion.div>
 
-            {/* Mobile Hamburger Menu Backdrop Blur */}
-            <AnimatePresence>
-              {isMobileMenuOpen && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="fixed inset-0 z-40 backdrop-blur-md bg-black/20"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                />
-              )}
-            </AnimatePresence>
-
-            {/* Mobile Hamburger Menu - Only on mobile (640px and below) */}
-            <div className="sm:hidden absolute inset-0 flex items-center justify-center">
+            {/* Mobile Hamburger Menu - Only on mobile (640px and below) - NO BLUR */}
+            <div className="sm:hidden absolute inset-0 flex items-center justify-center z-60">
               <div className="relative">
                 <MobileHamburgerMenu
                   isOpen={isMobileMenuOpen}
