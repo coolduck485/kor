@@ -670,7 +670,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █████████████████��████ 50%
+                      RAM: ██████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1523,13 +1523,12 @@ export default function Index() {
       {/* Scroll Up Indicator - Last Section */}
       {currentSection === sections.length - 1 && (
         <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-          <div className="flex flex-col items-center space-y-3 animate-button-float" style={{ transform: 'rotate(180deg)' }}>
+          <div className="flex flex-col items-center space-y-3 animate-button-float">
             {/* Desktop: Scroll Up */}
             <span
               className={`hidden sm:block font-inter text-sm font-medium animate-text-glow ${
                 theme === "light" ? "text-gray-600" : "text-white/70"
               }`}
-              style={{ transform: 'rotate(180deg)' }}
             >
               Scroll Up
             </span>
@@ -1538,28 +1537,28 @@ export default function Index() {
               className={`sm:hidden font-inter text-sm font-medium animate-text-glow ${
                 theme === "light" ? "text-gray-600" : "text-white/70"
               }`}
-              style={{ transform: 'rotate(180deg)' }}
             >
               Swipe Up
             </span>
 
-            {/* Desktop: Mouse scroll indicator (rotated) */}
+            {/* Desktop: Mouse scroll indicator - pointing up */}
             <div className="hidden sm:flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
               <div
-                className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
+                className="w-1 h-3 bg-gradient-to-t from-glow-blue to-white/80 rounded-full mb-2 animate-float shadow-lg"
                 style={{
                   boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
+                  alignSelf: "flex-end"
                 }}
               />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-white/10 to-transparent" />
             </div>
 
-            {/* Mobile: Phone with swipe indicator (rotated) */}
+            {/* Mobile: Phone with swipe up indicator */}
             <div className="sm:hidden relative">
               <div className="relative w-8 h-12 border-2 border-white/40 rounded-lg backdrop-blur-sm bg-white/5 flex items-center justify-center">
                 <div className="w-4 h-7 bg-white/10 rounded-sm relative overflow-hidden">
                   <div
-                    className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-down shadow-lg"
+                    className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-up shadow-lg"
                     style={{
                       left: "50%",
                       transform: "translateX(-50%)",
@@ -1567,7 +1566,7 @@ export default function Index() {
                     }}
                   />
                   <div
-                    className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-down-delayed"
+                    className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-up-delayed"
                     style={{
                       left: "50%",
                       transform: "translateX(-50%)",
