@@ -1680,29 +1680,7 @@ export default function Index() {
               <div className="absolute inset-0 rounded-full bg-gradient-to-t from-white/10 to-transparent" />
             </div>
 
-            {/* Mobile: Phone with swipe up indicator */}
-            <div className="sm:hidden relative">
-              <div className="relative w-8 h-12 border-2 border-white/40 rounded-lg backdrop-blur-sm bg-white/5 flex items-center justify-center">
-                <div className="w-4 h-7 bg-white/10 rounded-sm relative overflow-hidden">
-                  <div
-                    className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-up shadow-lg"
-                    style={{
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      boxShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
-                    }}
-                  />
-                  <div
-                    className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-up-delayed"
-                    style={{
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                    }}
-                  />
-                </div>
-                <div className="absolute top-1 w-2 h-0.5 bg-white/30 rounded-full"></div>
-              </div>
-            </div>
+
           </div>
         </div>
       )}
