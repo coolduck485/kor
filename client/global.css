@@ -712,8 +712,13 @@
   }
 
   /* Move scroll indicators even higher on very short screens */
-  .fixed.bottom-8 {
+  .scroll-indicator.fixed.bottom-8 {
     bottom: 20px !important;
+  }
+
+  /* Move back to top button even higher on very short screens */
+  .back-to-top.fixed.bottom-8 {
+    bottom: 120px !important; /* 20px + 100px */
   }
 }
 
