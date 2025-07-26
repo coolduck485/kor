@@ -5382,15 +5382,55 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible, isMobile = false }, ref) => {
     const [formData, setFormData] = useState({
-      name: "",
+      firstName: "",
+      lastName: "",
       email: "",
-      message: "",
+      phone: "",
+      interest: "",
+      budget: "",
+      description: "",
     });
+
+    const [selectedInterest, setSelectedInterest] = useState("");
+    const [selectedBudget, setSelectedBudget] = useState("");
+
+    const interests = [
+      "Web Design",
+      "Web Development",
+      "Software/App Development",
+      "E-commerce Solutions",
+      "UI/UX Design",
+      "Digital Marketing",
+      "Other"
+    ];
+
+    const budgets = [
+      "$0 - $1K",
+      "$1K - $5K",
+      "$5K - $10K",
+      "$10K - $25K",
+      "$25K - $50K",
+      "$50K+"
+    ];
 
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
-      console.log("Form submitted:", formData);
+      console.log("Form submitted:", {
+        ...formData,
+        interest: selectedInterest,
+        budget: selectedBudget
+      });
       // Add your form submission logic here
+    };
+
+    const handleInterestSelect = (interest: string) => {
+      setSelectedInterest(interest);
+      setFormData({ ...formData, interest });
+    };
+
+    const handleBudgetSelect = (budget: string) => {
+      setSelectedBudget(budget);
+      setFormData({ ...formData, budget });
     };
 
     return (
