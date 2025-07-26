@@ -1729,7 +1729,7 @@
   }
 }
 
-/* Wavy Text Animation - Works on all breakpoints */
+/* Wavy Text Animation - Slowed down for better readability */
 @keyframes wavy-text {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
@@ -1749,10 +1749,65 @@
 }
 
 .animate-wavy-text {
-  animation: wavy-text 3s ease-in-out infinite;
+  animation: wavy-text 6s ease-in-out infinite;
   display: inline-block;
 }
 
 .wavy-text {
   /* Container for wavy text elements */
+}
+
+/* Development Services Text Animation - Eye-catching for customers */
+@keyframes dev-services-text {
+  0%, 100% {
+    transform: translateY(0px) scale(1) skewX(0deg);
+    opacity: 1;
+    filter: brightness(1) saturate(1);
+  }
+  12.5% {
+    transform: translateY(-3px) scale(1.02) skewX(0.5deg);
+    opacity: 0.95;
+    filter: brightness(1.1) saturate(1.1);
+  }
+  25% {
+    transform: translateY(-6px) scale(1.05) skewX(-0.3deg);
+    opacity: 0.9;
+    filter: brightness(1.2) saturate(1.2);
+  }
+  37.5% {
+    transform: translateY(-4px) scale(1.03) skewX(0.8deg);
+    opacity: 0.95;
+    filter: brightness(1.15) saturate(1.15);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.08) skewX(0deg);
+    opacity: 1;
+    filter: brightness(1.3) saturate(1.3);
+  }
+  62.5% {
+    transform: translateY(-5px) scale(1.04) skewX(-0.6deg);
+    opacity: 0.95;
+    filter: brightness(1.15) saturate(1.15);
+  }
+  75% {
+    transform: translateY(-7px) scale(1.06) skewX(0.4deg);
+    opacity: 0.9;
+    filter: brightness(1.25) saturate(1.25);
+  }
+  87.5% {
+    transform: translateY(-2px) scale(1.01) skewX(-0.2deg);
+    opacity: 0.95;
+    filter: brightness(1.05) saturate(1.05);
+  }
+}
+
+.animate-dev-services-text {
+  animation: dev-services-text 8s ease-in-out infinite;
+  display: inline-block;
+  transition: transform 0.3s ease-out;
+}
+
+.animate-dev-services-text:hover {
+  transform: scale(1.1) !important;
+  filter: brightness(1.4) saturate(1.4) !important;
 }
