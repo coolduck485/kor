@@ -2330,27 +2330,33 @@ export default function Index() {
               </motion.div>
             </div>
 
-            {/* Text Content - Moved up */}
+            {/* Text Content - YouTube Intro Style */}
             <motion.div
               className="relative z-10 px-4 -mt-16"
               initial={{
                 opacity: 0,
-                y: 80,
-                filter: "blur(10px)",
+                y: 150,
+                scale: 0.8,
+                filter: "blur(20px)",
+                rotateX: 45,
               }}
               animate={
-                animationStep >= 2
+                animationStep >= 3
                   ? {
                       opacity: 1,
                       y: 0,
+                      scale: 1,
                       filter: "blur(0px)",
+                      rotateX: 0,
                     }
                   : {}
               }
               transition={{
-                duration: 1.2,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 0.2,
+                duration: 1.0,
+                ease: "backOut",
+                type: "spring",
+                stiffness: 120,
+                damping: 15,
               }}
             >
               {/* Kor - moved further to the left */}
