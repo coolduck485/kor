@@ -3347,7 +3347,7 @@ function MobileHamburgerMenu({
         </button>
       </div>
 
-      {/* Enhanced Backdrop overlay that blurs all content - Show FIRST for seamless transition */}
+      {/* Enhanced Backdrop overlay with synchronized menu content */}
       <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
@@ -3360,7 +3360,101 @@ function MobileHamburgerMenu({
             style={{
               WebkitBackdropFilter: "blur(12px)",
             }}
-          />
+          >
+            {/* Mobile Menu Content - Synchronized with backdrop */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -10 }}
+              transition={{ duration: 0.2, ease: "easeOut", delay: 0.05 }}
+              className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
+              style={{
+                marginLeft: `${menuPosition.left}px`,
+                marginTop: `${menuPosition.top}px`,
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div
+                className={`relative rounded-2xl border-2 p-4 w-[200px] max-w-[90vw] will-change-transform ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/30"
+                    : "border-blue-300/30 bg-blue-400/5"
+                }`}
+                style={{
+                  background:
+                    theme === "light"
+                      ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                  boxShadow:
+                    "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
+                  backdropFilter: "blur(20px)",
+                  WebkitBackdropFilter: "blur(20px)",
+                }}
+              >
+                {/* Animated background layers */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30" />
+
+                {/* Menu Items - Optimized for performance */}
+                <div className="relative space-y-2">
+                  {menuItems.map((item, index) => (
+                    <motion.button
+                      key={item.text}
+                      initial={{ opacity: 0, x: -15 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + index * 0.05, duration: 0.2 }}
+                      className={`group w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 hover:shadow-xl active:scale-95 overflow-hidden relative will-change-transform ${
+                        theme === "light"
+                          ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60 text-gray-800 hover:text-gray-900"
+                          : "border-blue-300/30 bg-blue-400/5 hover:border-white/40 text-white/90 hover:text-white"
+                      }`}
+                      style={{
+                        background:
+                          theme === "light"
+                            ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                        backdropFilter: "blur(10px)",
+                        WebkitBackdropFilter: "blur(10px)",
+                      }}
+                      onClick={() => {
+                        setIsOpen(false);
+                        const sectionMap: { [key: string]: number } = {
+                          "About us": 1,
+                          Services: 2,
+                          Portfolio: 3,
+                          "Contact us": 4,
+                        };
+                        const sectionIndex = sectionMap[item.text];
+                        if (sectionIndex) {
+                          const event = new CustomEvent("scrollToSection", {
+                            detail: sectionIndex,
+                          });
+                          window.dispatchEvent(event);
+                        }
+                      }}
+                    >
+                      {/* Simplified background layers for performance */}
+                      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-200" />
+
+                      {/* Button text */}
+                      <span className="relative font-poppins font-semibold text-sm tracking-wide">
+                        {item.text}
+                      </span>
+
+                      {/* Subtle highlight */}
+                      <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-xl bg-gradient-to-b from-white/15 via-white/5 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-200" />
+                    </motion.button>
+                  ))}
+                </div>
+
+                {/* Holographic shimmer effect */}
+                <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-2xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40" />
+
+                {/* Bottom reflection */}
+                <div className="absolute bottom-0.5 left-0.5 right-0.5 h-1/4 rounded-2xl bg-gradient-to-t from-white/15 to-transparent opacity-30" />
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
