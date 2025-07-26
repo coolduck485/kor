@@ -664,7 +664,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ████████████��███████ 60%
+                      CPU: ████████████��██████��� 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4545,20 +4545,6 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -10 }}
                 >
-                  {/* Service Title - positioned above the card */}
-                  <div className="mb-4">
-                    <h3
-                      className={`text-xl font-bold warm-glow-text text-center ${
-                        theme === "light" ? "text-gray-900" : "text-white"
-                      }`}
-                      style={{
-                        textShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
-                      }}
-                    >
-                      {service.title}
-                    </h3>
-                  </div>
-
                   {/* Service Card */}
                   <div
                     className="relative p-8 rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
@@ -4578,7 +4564,21 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     </div>
 
-                    {/* Icon - centered at top */}
+                    {/* Service Title - positioned at top of card */}
+                    <div className="relative z-10 mb-6">
+                      <h3
+                        className={`text-xl font-bold warm-glow-text text-center ${
+                          theme === "light" ? "text-gray-900" : "text-white"
+                        }`}
+                        style={{
+                          textShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
+                        }}
+                      >
+                        {service.title}
+                      </h3>
+                    </div>
+
+                    {/* Icon - centered */}
                     <motion.div
                       className="relative z-10 mb-6 flex justify-center"
                       whileHover={{ rotate: 10, scale: 1.2 }}
