@@ -723,9 +723,9 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ��██����������█╗
+                  {`██╗  ██╗ ██████╗ ███����������█╗
 ██║ ██╔╝��█╔═���═██╗██╔��══██╗
-█████╔╝ █������   ██║██████╔╝
+█████╔╝ █������   █��║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
@@ -880,7 +880,7 @@ export default function Index() {
                 <div className="loading-indicators">
                   <span>█▓▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░▒▓█</span>
+                  <span>░���▓█</span>
                 </div>
               </motion.div>
 
@@ -4625,7 +4625,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // ========================================
 
 const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible }, ref) => {
+  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
     const services = [
       {
         icon: Globe,
