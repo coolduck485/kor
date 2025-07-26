@@ -5,7 +5,7 @@ import { RetroToggle } from "@/components/ui/retro-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
-import { ChevronUp, ChevronDown, Mail, Phone, MapPin, Send, Star, Code, Palette, Zap, Smartphone, Globe, Users } from "lucide-react";
+import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Mail, Phone, MapPin, Send, Star, Code, Palette, Zap, Smartphone, Globe, Users } from "lucide-react";
 
 export default function Index() {
   const { theme, setTheme } = useTheme();
