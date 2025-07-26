@@ -5621,7 +5621,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle */}
-            <div className="text-center mb-8 sm:mb-12">
+            <div className="text-center mb-4 sm:mb-6">
               <h2 className={`text-lg sm:text-xl md:text-2xl font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"} mb-2`}>
                 Have a great idea?
               </h2>
