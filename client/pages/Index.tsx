@@ -724,7 +724,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
-█████╔╝ █�����   ██║██████╔╝
+█████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
@@ -4285,10 +4285,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 <span className="mx-4" />
                 <span
                   className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  style={{
-                    animation:
-                      "text-glow 3s ease-in-out infinite 1.0s, text-bounce 2s ease-in-out 1.5s infinite both, warm-glow-pulse 3s ease-in-out infinite 1.0s",
-                  }}
+                  className="animate-warm-glow-pulse"
+                  style={{ animationDelay: "1.0s" }}
                 >
                   U
                 </span>
