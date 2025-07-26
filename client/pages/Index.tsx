@@ -4500,7 +4500,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="relative min-h-screen py-2 sm:py-3 lg:py-4 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-1 pb-2"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-2"
             initial={{
               opacity: 0,
               y: 80,
@@ -4614,7 +4614,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="flex justify-center mt-6">
+            <div className="flex justify-center mt-12 sm:mt-16 lg:mt-20">
               <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-3 lg:gap-4 xl:gap-5 responsive-grid w-full max-w-4xl">
               {services.map((service, index) => (
                 <motion.div
