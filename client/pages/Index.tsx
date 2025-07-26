@@ -235,10 +235,14 @@ export default function Index() {
     };
   }, []);
 
-  // Mode switch handler - no loading animation
+  // Trigger loading animation when switching to retro mode
   useEffect(() => {
     if (previousMode !== mode) {
       setPreviousMode(mode);
+      // Only trigger loading for retro mode
+      if (mode === "retro" && previousMode !== null) {
+        triggerLoadingSequence();
+      }
     }
   }, [mode, previousMode]);
 
