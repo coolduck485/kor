@@ -4089,8 +4089,13 @@ function OrbFloatingButton({
   size,
   accent,
   theme,
+  animationStep,
   onClick,
 }: OrbFloatingButtonProps) {
+  // Only render button if animation step is 4 or higher
+  if (animationStep < 4) {
+    return null;
+  }
   // Calculate base position from angle
   const radian = (angle * Math.PI) / 180;
   const x = Math.cos(radian);
