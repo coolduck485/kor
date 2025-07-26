@@ -724,7 +724,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
-█████╔╝ ██���   ██║██████╔╝
+█���███╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
@@ -785,7 +785,7 @@ export default function Index() {
                   </div>
 
                   <div className="terminal-line mb-4">
-                    <span className="text-green-400 blink">���</span>
+                    <span className="text-green-400 blink">█</span>
                   </div>
                   <div className="memory-section">
                     <div className="text-xs mb-2 text-cyan-400">
@@ -4862,7 +4862,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     key={i}
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animation: `text-glow 3s ease-in-out infinite ${i * 0.2}s, text-bounce 2s ease-in-out ${0.5 + i * 0.2}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.2}s`,
+                      animationDelay: `${i * 0.2}s`,
                     }}
                   >
                     {letter}
