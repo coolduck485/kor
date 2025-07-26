@@ -5464,8 +5464,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 }}
               />
             ))}
-            {/* Animated circuit lines for Contact section */}
-            {[...Array(4)].map((_, i) => (
+            {/* Animated circuit lines for Contact section - Reduced for mobile */}
+            {[...Array(2)].map((_, i) => (
               <motion.path
                 key={`circuit-${i}`}
                 d={`M${100 + i * 200},100 L${200 + i * 200},200 L${150 + i * 200},300 L${250 + i * 200},400`}
