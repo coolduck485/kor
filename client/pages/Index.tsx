@@ -226,11 +226,8 @@ export default function Index() {
       }
     };
 
-    // Initial loading sequence
-    const timeouts = triggerLoadingSequence();
-
-    // Check initial section after loading
-    setTimeout(checkInitialSection, 600);
+    // Skip loading sequence - go directly to checking initial section
+    checkInitialSection();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
