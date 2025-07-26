@@ -2173,7 +2173,7 @@ export default function Index() {
 
           {/* Interactive Glass Badge at Top */}
           <div
-            className="absolute top-8 sm:top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-50 sm:scale-100"
+            className="absolute top-8 sm:top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-75 sm:scale-100"
             style={{
               marginTop: "var(--badge-margin-top, 140px)",
             }}
