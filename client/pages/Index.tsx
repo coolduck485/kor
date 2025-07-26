@@ -51,6 +51,7 @@ export default function Index() {
   // Performance optimization state
   const [isHighPerformance, setIsHighPerformance] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [isScrollingActive, setIsScrollingActive] = useState(false);
 
   // Welcome notification - shows once per page load
   useEffect(() => {
@@ -644,7 +645,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████�� ███����������█╗
+                  {`██╗  ██╗ ██████╗ ███����������█���
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
