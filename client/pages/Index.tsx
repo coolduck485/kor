@@ -4795,7 +4795,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           >
             {/* Portfolio Title */}
             <div className="text-center mb-16">
-              <h1 className={`font-poppins text-6xl sm:text-7xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+              <h1 className={`font-poppins text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}>
                 {"Portfolio".split("").map((letter, i) => (
                   <span key={i} className="inline-block relative warm-glow-text animate-warm-glow-pulse" style={{ animation: `text-glow 3s ease-in-out infinite ${i * 0.15}s, text-bounce 2s ease-in-out ${0.5 + i * 0.15}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.15}s` }}>
                     {letter}
