@@ -679,7 +679,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ███████████████████���██ 50%
+                      RAM: ██████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -5643,7 +5643,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           onChange={(e) =>
                             setFormData({ ...formData, lastName: e.target.value })
                           }
-                          className="w-full p-3 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
