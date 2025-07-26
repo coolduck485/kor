@@ -2153,7 +2153,7 @@ export default function Index() {
             {/* Central Glowing Orb - SVG Based with Magnetic Effect - YouTube Intro Style */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
-                className="relative animate-float cursor-pointer group pointer-events-none"
+                className="relative animate-float cursor-pointer group pointer-events-none gpu-accelerated will-change-transform"
                 initial={{
                   opacity: 0,
                   scale: 0,
