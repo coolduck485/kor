@@ -811,7 +811,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█�������█████��███████ 60%
+                      CPU: ███��█������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -5844,37 +5844,62 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Enhanced Background Elements - Copy from Home Section */}
+        {/* Enhanced Background Elements - Contact Section Eye Candy */}
 
-        {/* Dynamic Gradient Overlays */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
-          <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
+        {/* Multi-layered Dynamic Gradient Overlays for Eye Candy */}
+        <div className="absolute inset-0">
+          {/* Primary animated gradients */}
+          <div className="absolute inset-0 opacity-15">
+            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/30 via-purple-500/20 to-blue-500/25 animate-gradient-shift gpu-accelerated" />
+            <div className="absolute inset-0 bg-gradient-to-tl from-cyan-400/20 via-emerald-500/15 to-yellow-400/20 animate-gradient-shift-reverse gpu-accelerated" />
+          </div>
+          {/* Secondary color layers */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 bg-gradient-to-tr from-orange-400/25 via-transparent to-indigo-500/20 animate-gradient-shift gpu-accelerated" style={{ animationDelay: '2s' }} />
+            <div className="absolute inset-0 bg-gradient-to-bl from-rose-400/20 via-transparent to-teal-500/25 animate-gradient-shift-reverse gpu-accelerated" style={{ animationDelay: '4s' }} />
+          </div>
+          {/* Tertiary shimmer layer */}
+          <div className="absolute inset-0 opacity-8">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-scan-line" />
+          </div>
         </div>
 
-        {/* Animated Noise Texture */}
-        <div
-          className="absolute inset-0 opacity-5 animate-noise"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-          }}
-        />
+        {/* Animated Noise Texture - Enhanced for contact */}
+        {!isMobile && (
+          <div
+            className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+            }}
+          />
+        )}
 
-        {/* Enhanced Floating Ambient Particles with Color Shifting */}
+        {/* Colorful Floating Particles - Same as main section */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(isMobile ? 3 : 6)].map((_, i) => (
+          {[...Array(animationConfig?.enableBackgroundParticles ? (isMobile ? 3 : 15) : 6)].map((_, i) => (
             <div
               key={`particle-${i}`}
-              className="absolute rounded-full opacity-60"
+              className="absolute rounded-full opacity-70 gpu-accelerated"
               style={{
                 left: `${5 + ((i * 60) % 95)}%`,
                 top: `${10 + ((i * 35) % 85)}%`,
-                width: `${1 + (i % 4)}px`,
-                height: `${1 + (i % 4)}px`,
-                background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.2 + (i % 4) * 0.15})`,
-                animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
-                filter: "blur(0.3px)",
-                transform: `scale(${0.5 + (i % 3) * 0.3})`,
+                width: `${3 + (i % 4)}px`,
+                height: `${3 + (i % 4)}px`,
+                background: (() => {
+                  const colorPalettes = [
+                    `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`,  // Pink-Orange
+                    `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`,  // Green-Blue
+                    `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`,  // Purple-Yellow
+                    `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`,  // Blue-Green
+                    `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`,  // Orange-Purple
+                    `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`,  // Pink-Mint
+                  ];
+                  return colorPalettes[i % colorPalettes.length];
+                })(),
+                animation: `gentleFloat ${isMobile ? 2 + (i % 2) : 4 + (i % 3)}s ease-in-out infinite ${i * (isMobile ? 0.2 : 0.4)}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
+                filter: `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
+                boxShadow: `0 0 ${4 + (i % 3) * 2}px rgba(255, 255, 255, 0.3)`,
+                transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
                 willChange: "transform",
               }}
             />
