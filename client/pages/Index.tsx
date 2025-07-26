@@ -724,8 +724,8 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ███����������█╗
-██║ ��█╔╝��█╔═���═██╗██╔��══██╗
-█████╔╝ ██���   ██║██████╔╝
+██║ ██╔╝��█╔═���═██╗██╔��══██╗
+█████╔╝ █������   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
@@ -4070,7 +4070,7 @@ interface SectionProps {
 }
 
 const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible }, ref) => {
+  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
     return (
       <motion.div
         ref={ref}
