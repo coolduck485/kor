@@ -4135,24 +4135,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       >
         {/* Enhanced Background Elements - Ultra Cool About Us Edition */}
 
-        {/* Multi-layered Cool Gradient System */}
-        <div className="absolute inset-0">
-          {/* Primary ice-blue gradients */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/30 via-blue-600/20 to-indigo-800/25 animate-gradient-shift" />
-            <div className="absolute inset-0 bg-gradient-to-tl from-teal-400/25 via-transparent to-cyan-500/20 animate-gradient-shift-reverse" />
-          </div>
-          {/* Secondary cool tones */}
-          <div className="absolute inset-0 opacity-15">
-            <div className="absolute inset-0 bg-gradient-to-tr from-slate-400/20 via-transparent to-blue-500/25 animate-gradient-shift" style={{ animationDelay: '3s' }} />
-            <div className="absolute inset-0 bg-gradient-to-bl from-emerald-400/15 via-transparent to-cyan-600/20 animate-gradient-shift-reverse" style={{ animationDelay: '6s' }} />
-          </div>
-          {/* Crystalline shimmer effects */}
-          <div className="absolute inset-0 opacity-12">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-300/15 to-transparent animate-scan-line" style={{ animationDuration: '8s' }} />
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-blue-300/10 to-transparent animate-scan-line" style={{ animationDuration: '12s', animationDelay: '4s' }} />
-          </div>
-        </div>
+
 
         {/* Animated Noise Texture */}
         <div
@@ -4703,11 +4686,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
       >
         {/* Enhanced Background Elements - Copy from Home Section */}
 
-        {/* Dynamic Gradient Overlays */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
-          <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
-        </div>
+
 
         {/* Animated Noise Texture */}
         <div
@@ -5178,11 +5157,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
       >
         {/* Enhanced Background Elements - Copy from Home Section */}
 
-        {/* Dynamic Gradient Overlays */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
-          <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
-        </div>
+
 
         {/* Animated Noise Texture */}
         <div
