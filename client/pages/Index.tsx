@@ -2266,7 +2266,7 @@ export default function Index() {
                     width: `${400 + i * 120}px`,
                     height: `${400 + i * 120}px`,
                     border: `1px solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
-                    animation: `energy-ripple ${isMobile ? 2 : 3}s ease-out infinite ${i * 0.5}s`,
+                    animation: `energy-ripple 3s ease-out infinite ${i * 0.5}s`,
                     willChange: "transform, opacity",
                     transform: "translateZ(0)",
                   }}
