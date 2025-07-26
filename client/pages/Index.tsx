@@ -5605,7 +5605,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Contact Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 items-start mt-6 sm:mt-8 lg:mt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-6 lg:gap-12 items-start mt-4 sm:mt-8 lg:mt-16">
               {/* Contact Form */}
               <motion.div
                 initial={{ x: -50, opacity: 0 }}
