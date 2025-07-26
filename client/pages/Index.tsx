@@ -232,7 +232,6 @@ export default function Index() {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", checkMobile);
-      timeouts.forEach(clearTimeout);
     };
   }, []);
 
