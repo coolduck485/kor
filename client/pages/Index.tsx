@@ -2691,7 +2691,7 @@ export default function Index() {
                     />
                   ))}
 
-                  <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                  <div className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                     <span
                       className={`relative inline-block ${
                         theme === "light" ? "text-gray-900" : "text-white"
