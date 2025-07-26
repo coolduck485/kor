@@ -873,7 +873,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►◄►</span>
+                  <span className="text-green-400 ml-4">◄���◄►��►</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -4222,7 +4222,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="relative min-h-screen py-4 sm:py-6 lg:py-8 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-4"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-16"
             initial={{
               opacity: 0,
               y: 80,
