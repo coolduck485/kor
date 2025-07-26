@@ -5,7 +5,23 @@ import { RetroToggle } from "@/components/ui/retro-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
-import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Mail, Phone, MapPin, Send, Star, Code, Palette, Zap, Smartphone, Globe, Users } from "lucide-react";
+import {
+  ChevronUp,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Star,
+  Code,
+  Palette,
+  Zap,
+  Smartphone,
+  Globe,
+  Users,
+} from "lucide-react";
 
 export default function Index() {
   const { theme, setTheme } = useTheme();
@@ -245,11 +261,11 @@ export default function Index() {
 
   // Section data
   const sections = [
-    { id: 'home', title: 'Home', component: 'home' },
-    { id: 'about', title: 'About Us', component: 'about' },
-    { id: 'services', title: 'Services', component: 'services' },
-    { id: 'portfolio', title: 'Portfolio', component: 'portfolio' },
-    { id: 'contact', title: 'Contact Us', component: 'contact' }
+    { id: "home", title: "Home", component: "home" },
+    { id: "about", title: "About Us", component: "about" },
+    { id: "services", title: "Services", component: "services" },
+    { id: "portfolio", title: "Portfolio", component: "portfolio" },
+    { id: "contact", title: "Contact Us", component: "contact" },
   ];
 
   // Scroll to section function
@@ -262,8 +278,8 @@ export default function Index() {
     const targetSection = sectionsRef.current[index];
     if (targetSection) {
       targetSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+        behavior: "smooth",
+        block: "start",
       });
     }
 
@@ -273,7 +289,7 @@ export default function Index() {
   // Handle wheel scroll
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      if (isScrolling || mode === 'retro') return;
+      if (isScrolling || mode === "retro") return;
 
       e.preventDefault();
 
@@ -286,8 +302,8 @@ export default function Index() {
 
     const container = containerRef.current;
     if (container) {
-      container.addEventListener('wheel', handleWheel, { passive: false });
-      return () => container.removeEventListener('wheel', handleWheel);
+      container.addEventListener("wheel", handleWheel, { passive: false });
+      return () => container.removeEventListener("wheel", handleWheel);
     }
   }, [currentSection, isScrolling, sections.length, mode]);
 
@@ -300,7 +316,7 @@ export default function Index() {
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
-      if (isScrolling || mode === 'retro') return;
+      if (isScrolling || mode === "retro") return;
 
       const touchEndY = e.changedTouches[0].clientY;
       const deltaY = touchStartY - touchEndY;
@@ -316,11 +332,11 @@ export default function Index() {
 
     const container = containerRef.current;
     if (container) {
-      container.addEventListener('touchstart', handleTouchStart);
-      container.addEventListener('touchend', handleTouchEnd);
+      container.addEventListener("touchstart", handleTouchStart);
+      container.addEventListener("touchend", handleTouchEnd);
       return () => {
-        container.removeEventListener('touchstart', handleTouchStart);
-        container.removeEventListener('touchend', handleTouchEnd);
+        container.removeEventListener("touchstart", handleTouchStart);
+        container.removeEventListener("touchend", handleTouchEnd);
       };
     }
   }, [currentSection, isScrolling, sections.length, mode]);
@@ -331,8 +347,15 @@ export default function Index() {
       scrollToSection(e.detail);
     };
 
-    window.addEventListener('scrollToSection', handleScrollToSection as EventListener);
-    return () => window.removeEventListener('scrollToSection', handleScrollToSection as EventListener);
+    window.addEventListener(
+      "scrollToSection",
+      handleScrollToSection as EventListener,
+    );
+    return () =>
+      window.removeEventListener(
+        "scrollToSection",
+        handleScrollToSection as EventListener,
+      );
   }, []);
 
   // If retro mode is enabled, show retro version
@@ -1434,7 +1457,7 @@ export default function Index() {
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
       }`}
-      style={{ height: '100vh', overflow: 'hidden', maxWidth: '100vw' }}
+      style={{ height: "100vh", overflow: "hidden", maxWidth: "100vw" }}
     >
       {/* Section Navigation Dots */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 space-y-3">
@@ -1444,23 +1467,24 @@ export default function Index() {
             onClick={() => scrollToSection(index)}
             className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
               currentSection === index
-                ? 'bg-blue-400 border-blue-400 scale-125'
-                : 'bg-transparent border-white/40 hover:border-blue-400/60'
+                ? "bg-blue-400 border-blue-400 scale-125"
+                : "bg-transparent border-white/40 hover:border-blue-400/60"
             }`}
             style={{
-              boxShadow: currentSection === index ? '0 0 15px rgba(73, 146, 255, 0.6)' : 'none'
+              boxShadow:
+                currentSection === index
+                  ? "0 0 15px rgba(73, 146, 255, 0.6)"
+                  : "none",
             }}
           />
         ))}
       </div>
 
-
-
       {/* Sections Container */}
       <div className="h-full">
         {/* Home Section */}
         <motion.div
-          ref={el => sectionsRef.current[0] = el!}
+          ref={(el) => (sectionsRef.current[0] = el!)}
           className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
             theme === "light"
               ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
@@ -1470,423 +1494,899 @@ export default function Index() {
           initial="hidden"
           animate={!isLoading && isLoaded ? "visible" : "hidden"}
         >
-      {/* Main Content - Always visible with orchestrated animations */}
-      {/* Left Corner Visual Elements for Mobile Balance */}
-      <div className="fixed top-6 left-6 z-40 block sm:hidden"></div>
+          {/* Main Content - Always visible with orchestrated animations */}
+          {/* Left Corner Visual Elements for Mobile Balance */}
+          <div className="fixed top-6 left-6 z-40 block sm:hidden"></div>
 
-      {/* Theme Toggle Container with Tooltip */}
-      <div className="fixed top-6 right-6 z-50">
-        <div
-          className="group relative"
-          onMouseEnter={() => setIsTooltipDismissed(true)}
-        >
-          {/* Tooltip - only show in modern mode and if not dismissed */}
-          {mode === "modern" && !isTooltipDismissed && (
-            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+          {/* Theme Toggle Container with Tooltip */}
+          <div className="fixed top-6 right-6 z-50">
+            <div
+              className="group relative"
+              onMouseEnter={() => setIsTooltipDismissed(true)}
+            >
+              {/* Tooltip - only show in modern mode and if not dismissed */}
+              {mode === "modern" && !isTooltipDismissed && (
+                <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+                  <div
+                    className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
+                      theme === "light"
+                        ? "border-blue-400/40 bg-white/80 text-gray-800"
+                        : "border-blue-300/30 bg-blue-400/10 text-white/90"
+                    }`}
+                    style={{
+                      background:
+                        theme === "light"
+                          ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                          : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                      boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+                    }}
+                  >
+                    Click any theme to change the site's appearance
+                    {/* Tooltip arrow */}
+                    <div
+                      className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                        theme === "light"
+                          ? "border-l-white/80"
+                          : "border-l-blue-400/10"
+                      }`}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Container for existing toggles */}
               <div
-                className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
+                className={`rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 ${
                   theme === "light"
-                    ? "border-blue-400/40 bg-white/80 text-gray-800"
-                    : "border-blue-300/30 bg-blue-400/10 text-white/90"
+                    ? "border-blue-400/40 bg-white/30"
+                    : "border-blue-300/30 bg-blue-400/5"
                 }`}
                 style={{
                   background:
                     theme === "light"
-                      ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                      ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
                       : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                  boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+                  boxShadow:
+                    "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
                 }}
               >
-                Click any theme to change the site's appearance
-                {/* Tooltip arrow */}
-                <div
-                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
-                    theme === "light"
-                      ? "border-l-white/80"
-                      : "border-l-blue-400/10"
-                  }`}
-                />
+                {/* Original Toggle Buttons */}
+                <div className="flex flex-col gap-2 sm:gap-3">
+                  <ThemeToggle />
+                  <RetroToggle />
+                </div>
               </div>
             </div>
-          )}
-
-          {/* Container for existing toggles */}
-          <div
-            className={`rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 ${
-              theme === "light"
-                ? "border-blue-400/40 bg-white/30"
-                : "border-blue-300/30 bg-blue-400/5"
-            }`}
-            style={{
-              background:
-                theme === "light"
-                  ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
-                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-              boxShadow:
-                "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
-            }}
-          >
-            {/* Original Toggle Buttons */}
-            <div className="flex flex-col gap-2 sm:gap-3">
-              <ThemeToggle />
-              <RetroToggle />
-            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Enhanced Background Elements */}
+          {/* Enhanced Background Elements */}
 
-      {/* Dynamic Gradient Overlays */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
-        <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
-      </div>
+          {/* Dynamic Gradient Overlays */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
+            <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
+          </div>
 
-      {/* Animated Noise Texture */}
-      <div
-        className="absolute inset-0 opacity-5 animate-noise"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* Enhanced Floating Ambient Particles with Color Shifting */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(25)].map((_, i) => (
+          {/* Animated Noise Texture */}
           <div
-            key={`particle-${i}`}
-            className="absolute rounded-full opacity-60"
+            className="absolute inset-0 opacity-5 animate-noise"
             style={{
-              left: `${5 + ((i * 60) % 95)}%`,
-              top: `${10 + ((i * 35) % 85)}%`,
-              width: `${1 + (i % 4)}px`,
-              height: `${1 + (i % 4)}px`,
-              background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.2 + (i % 4) * 0.15})`,
-              animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
-              filter: "blur(0.3px)",
-              transform: `scale(${0.5 + (i % 3) * 0.3})`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
             }}
           />
-        ))}
-      </div>
 
-      {/* Animated Geometric Patterns */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-        <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
-          {/* Animated hexagon grid */}
-          {[...Array(6)].map((_, i) => (
-            <polygon
-              key={`hex-${i}`}
-              points="100,20 140,40 140,80 100,100 60,80 60,40"
-              fill="none"
-              stroke="rgba(73, 146, 255, 0.3)"
-              strokeWidth="1"
-              strokeDasharray="10 5"
+          {/* Enhanced Floating Ambient Particles with Color Shifting */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(25)].map((_, i) => (
+              <div
+                key={`particle-${i}`}
+                className="absolute rounded-full opacity-60"
+                style={{
+                  left: `${5 + ((i * 60) % 95)}%`,
+                  top: `${10 + ((i * 35) % 85)}%`,
+                  width: `${1 + (i % 4)}px`,
+                  height: `${1 + (i % 4)}px`,
+                  background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.2 + (i % 4) * 0.15})`,
+                  animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
+                  filter: "blur(0.3px)",
+                  transform: `scale(${0.5 + (i % 3) * 0.3})`,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Animated Geometric Patterns */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+            <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
+              {/* Animated hexagon grid */}
+              {[...Array(6)].map((_, i) => (
+                <polygon
+                  key={`hex-${i}`}
+                  points="100,20 140,40 140,80 100,100 60,80 60,40"
+                  fill="none"
+                  stroke="rgba(73, 146, 255, 0.3)"
+                  strokeWidth="1"
+                  strokeDasharray="10 5"
+                  style={{
+                    transform: `translate(${100 + i * 200}px, ${100 + (i % 2) * 150}px)`,
+                    animation: `geometric-pulse ${8 + i}s ease-in-out infinite ${i * 0.5}s`,
+                  }}
+                />
+              ))}
+              {/* Animated connecting lines */}
+              {[...Array(4)].map((_, i) => (
+                <line
+                  key={`line-${i}`}
+                  x1={50 + i * 300}
+                  y1={200}
+                  x2={250 + i * 300}
+                  y2={400}
+                  stroke="rgba(63, 186, 255, 0.2)"
+                  strokeWidth="1"
+                  strokeDasharray="15 10"
+                  style={{
+                    animation: `geometric-pulse ${10 + i * 2}s ease-in-out infinite ${i * 0.7}s`,
+                  }}
+                />
+              ))}
+            </svg>
+          </div>
+
+          {/* Breathing Orbs */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={`breath-orb-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${15 + ((i * 80) % 70)}%`,
+                  top: `${20 + ((i * 60) % 60)}%`,
+                  width: `${20 + (i % 3) * 15}px`,
+                  height: `${20 + (i % 3) * 15}px`,
+                  background: `radial-gradient(circle, rgba(${73 + i * 10}, ${146 + i * 5}, 255, 0.3) 0%, transparent 70%)`,
+                  animation: `breath ${6 + (i % 4)}s ease-in-out infinite ${i * 0.4}s`,
+                  filter: `blur(${2 + (i % 3)}px)`,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Dynamic Background Waves */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div
+              className="absolute inset-0 opacity-20"
               style={{
-                transform: `translate(${100 + i * 200}px, ${100 + (i % 2) * 150}px)`,
-                animation: `geometric-pulse ${8 + i}s ease-in-out infinite ${i * 0.5}s`,
-              }}
-            />
-          ))}
-          {/* Animated connecting lines */}
-          {[...Array(4)].map((_, i) => (
-            <line
-              key={`line-${i}`}
-              x1={50 + i * 300}
-              y1={200}
-              x2={250 + i * 300}
-              y2={400}
-              stroke="rgba(63, 186, 255, 0.2)"
-              strokeWidth="1"
-              strokeDasharray="15 10"
-              style={{
-                animation: `geometric-pulse ${10 + i * 2}s ease-in-out infinite ${i * 0.7}s`,
-              }}
-            />
-          ))}
-        </svg>
-      </div>
-
-      {/* Breathing Orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={`breath-orb-${i}`}
-            className="absolute rounded-full"
-            style={{
-              left: `${15 + ((i * 80) % 70)}%`,
-              top: `${20 + ((i * 60) % 60)}%`,
-              width: `${20 + (i % 3) * 15}px`,
-              height: `${20 + (i % 3) * 15}px`,
-              background: `radial-gradient(circle, rgba(${73 + i * 10}, ${146 + i * 5}, 255, 0.3) 0%, transparent 70%)`,
-              animation: `breath ${6 + (i % 4)}s ease-in-out infinite ${i * 0.4}s`,
-              filter: `blur(${2 + (i % 3)}px)`,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Dynamic Background Waves */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            background: `
+                background: `
               radial-gradient(circle at 20% 80%, rgba(73, 146, 255, 0.3) 0%, transparent 50%),
               radial-gradient(circle at 80% 20%, rgba(63, 186, 255, 0.2) 0%, transparent 50%),
               radial-gradient(circle at 40% 40%, rgba(57, 135, 227, 0.1) 0%, transparent 50%)
             `,
-            animation: "subtle-glow 12s ease-in-out infinite alternate",
-          }}
-        />
-      </div>
-
-      {/* Aurora-like Moving Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute w-96 h-96 rounded-full opacity-15"
-          style={{
-            left: "10%",
-            top: "20%",
-            background:
-              "linear-gradient(45deg, rgba(73, 146, 255, 0.4), rgba(63, 186, 255, 0.2))",
-            filter: "blur(60px)",
-            animation: "aurora 12s ease-in-out infinite",
-          }}
-        />
-        <div
-          className="absolute w-80 h-80 rounded-full opacity-10"
-          style={{
-            right: "15%",
-            bottom: "25%",
-            background:
-              "linear-gradient(-45deg, rgba(57, 135, 227, 0.3), rgba(73, 146, 255, 0.1))",
-            filter: "blur(80px)",
-            animation: "aurora 15s ease-in-out infinite 3s",
-          }}
-        />
-      </div>
-
-      {/* Interactive Glass Badge at Top */}
-      <div
-        className="absolute top-8 sm:top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-50 sm:scale-100"
-        style={{
-          marginTop: "var(--badge-margin-top, 140px)",
-        }}
-      >
-        <div
-          ref={badgeRef}
-          className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
-          style={{
-            background: "rgba(255, 255, 255, 0.1)",
-            border: "2px solid transparent",
-            backgroundClip: "padding-box",
-          }}
-          onMouseMove={handleBadgeMouseMove}
-          onMouseLeave={handleBadgeMouseLeave}
-        >
-          {/* Dynamic Border Effect */}
-          <div
-            className="absolute inset-0 rounded-full pointer-events-none transition-all duration-300"
-            style={{
-              background: badgeMousePosition.isNear
-                ? `conic-gradient(from ${(Math.atan2(badgeMousePosition.y, badgeMousePosition.x) * 180) / Math.PI + 90}deg, rgba(73, 146, 255, 0.8) 0deg, rgba(73, 146, 255, 0.4) 90deg, rgba(255, 255, 255, 0.2) 180deg, rgba(255, 255, 255, 0.2) 270deg, rgba(73, 146, 255, 0.8) 360deg)`
-                : "conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(255, 255, 255, 0.2) 360deg)",
-              padding: "2px",
-              borderRadius: "inherit",
-              mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-              maskComposite: "xor",
-              WebkitMask:
-                "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-              WebkitMaskComposite: "xor",
-            }}
-          />
-          {/* Animated Sparkle Icon */}
-          <svg
-            className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle"
-            viewBox="0 0 24 25"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z"
-              stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M5 3.5V7.5"
-              stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M19 17.5V21.5"
-              stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M3 5.5H7"
-              stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M17 19.5H21"
-              stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span
-            className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${
-              theme === "light" ? "text-gray-700" : "text-white/80"
-            }`}
-          >
-            Future-Ready Solutions, Custom-Built
-          </span>
-        </div>
-      </div>
-
-      {/* Main Content Container */}
-      <div className="relative flex items-center justify-center min-h-screen">
-        {/* Energy Rings Around Orb */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          {[...Array(3)].map((_, i) => (
-            <div
-              key={`ring-${i}`}
-              className="absolute rounded-full border opacity-20"
-              style={{
-                width: `${400 + i * 120}px`,
-                height: `${400 + i * 120}px`,
-                border: `1px solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
-                animation: `energy-ripple 3s ease-out infinite ${i * 0.4}s`,
+                animation: "subtle-glow 12s ease-in-out infinite alternate",
               }}
             />
-          ))}
-        </div>
+          </div>
 
-        {/* Rotating Light Beams */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-          <div
-            className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-blue-400/25 to-transparent"
-            style={{
-              animation: "spin 15s linear infinite",
-              transformOrigin: "center 50%",
-            }}
-          />
-          <div
-            className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent"
-            style={{
-              animation: "spin 20s linear infinite reverse",
-              transformOrigin: "center 50%",
-            }}
-          />
-          <div
-            className="absolute h-1 w-96 bg-gradient-to-r from-transparent via-blue-300/15 to-transparent"
-            style={{
-              animation: "spin 25s linear infinite",
-              transformOrigin: "50% center",
-            }}
-          />
-        </div>
-
-        {/* Left Side Visual Balance Elements */}
-        <div className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 pointer-events-none">
-          {/* Floating geometric indicators */}
-          <div className="space-y-4 sm:space-y-8">
-            {/* Primary indicator */}
-            <motion.div
-              className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-400/30 animate-gentle-pulse"
-              initial={{ opacity: 0, x: -20 }}
-              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 2, duration: 1 }}
+          {/* Aurora-like Moving Background */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div
+              className="absolute w-96 h-96 rounded-full opacity-15"
+              style={{
+                left: "10%",
+                top: "20%",
+                background:
+                  "linear-gradient(45deg, rgba(73, 146, 255, 0.4), rgba(63, 186, 255, 0.2))",
+                filter: "blur(60px)",
+                animation: "aurora 12s ease-in-out infinite",
+              }}
             />
-            {/* Secondary indicators */}
-            <motion.div
-              className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-blue-300/20 animate-gentle-pulse"
-              initial={{ opacity: 0, x: -20 }}
-              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 2.3, duration: 1 }}
-              style={{ animationDelay: "1s" }}
-            />
-            <motion.div
-              className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-200/25 animate-gentle-pulse"
-              initial={{ opacity: 0, x: -20 }}
-              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 2.6, duration: 1 }}
-              style={{ animationDelay: "2s" }}
+            <div
+              className="absolute w-80 h-80 rounded-full opacity-10"
+              style={{
+                right: "15%",
+                bottom: "25%",
+                background:
+                  "linear-gradient(-45deg, rgba(57, 135, 227, 0.3), rgba(73, 146, 255, 0.1))",
+                filter: "blur(80px)",
+                animation: "aurora 15s ease-in-out infinite 3s",
+              }}
             />
           </div>
 
-          {/* Vertical progress line */}
-          <motion.div
-            className="absolute left-1/2 -translate-x-1/2 top-12 sm:top-16 w-px h-16 sm:h-24 bg-gradient-to-b from-blue-400/40 via-blue-300/20 to-transparent"
-            initial={{ opacity: 0, scaleY: 0 }}
-            animate={animationStep >= 1 ? { opacity: 1, scaleY: 1 } : {}}
-            transition={{ delay: 3, duration: 1.5 }}
-          />
-
-          {/* Connecting line to center (desktop only) */}
-          <motion.div
-            className="hidden lg:block absolute top-8 left-4 w-32 h-px bg-gradient-to-r from-blue-400/30 to-transparent"
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={animationStep >= 1 ? { opacity: 1, scaleX: 1 } : {}}
-            transition={{ delay: 3.5, duration: 1 }}
-          />
-        </div>
-
-        {/* Right Side Balance Elements */}
-        <div className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 pointer-events-none">
-          {/* Floating geometric indicators mirrored */}
-          <div className="space-y-4 sm:space-y-8">
-            <motion.div
-              className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-purple-400/25 animate-gentle-pulse"
-              initial={{ opacity: 0, x: 20 }}
-              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 2.2, duration: 1 }}
-              style={{ animationDelay: "0.5s" }}
-            />
-            <motion.div
-              className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-purple-300/20 animate-gentle-pulse"
-              initial={{ opacity: 0, x: 20 }}
-              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 2.5, duration: 1 }}
-              style={{ animationDelay: "1.5s" }}
-            />
-            <motion.div
-              className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-purple-200/30 animate-gentle-pulse"
-              initial={{ opacity: 0, x: 20 }}
-              animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 2.8, duration: 1 }}
-              style={{ animationDelay: "2.5s" }}
-            />
+          {/* Interactive Glass Badge at Top */}
+          <div
+            className="absolute top-8 sm:top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-50 sm:scale-100"
+            style={{
+              marginTop: "var(--badge-margin-top, 140px)",
+            }}
+          >
+            <div
+              ref={badgeRef}
+              className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
+              style={{
+                background: "rgba(255, 255, 255, 0.1)",
+                border: "2px solid transparent",
+                backgroundClip: "padding-box",
+              }}
+              onMouseMove={handleBadgeMouseMove}
+              onMouseLeave={handleBadgeMouseLeave}
+            >
+              {/* Dynamic Border Effect */}
+              <div
+                className="absolute inset-0 rounded-full pointer-events-none transition-all duration-300"
+                style={{
+                  background: badgeMousePosition.isNear
+                    ? `conic-gradient(from ${(Math.atan2(badgeMousePosition.y, badgeMousePosition.x) * 180) / Math.PI + 90}deg, rgba(73, 146, 255, 0.8) 0deg, rgba(73, 146, 255, 0.4) 90deg, rgba(255, 255, 255, 0.2) 180deg, rgba(255, 255, 255, 0.2) 270deg, rgba(73, 146, 255, 0.8) 360deg)`
+                    : "conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(255, 255, 255, 0.2) 360deg)",
+                  padding: "2px",
+                  borderRadius: "inherit",
+                  mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                  maskComposite: "xor",
+                  WebkitMask:
+                    "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                  WebkitMaskComposite: "xor",
+                }}
+              />
+              {/* Animated Sparkle Icon */}
+              <svg
+                className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle"
+                viewBox="0 0 24 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z"
+                  stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M5 3.5V7.5"
+                  stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M19 17.5V21.5"
+                  stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M3 5.5H7"
+                  stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M17 19.5H21"
+                  stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span
+                className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${
+                  theme === "light" ? "text-gray-700" : "text-white/80"
+                }`}
+              >
+                Future-Ready Solutions, Custom-Built
+              </span>
+            </div>
           </div>
-        </div>
 
-        {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
-        <div className="absolute inset-0 flex items-center justify-center">
+          {/* Main Content Container */}
+          <div className="relative flex items-center justify-center min-h-screen">
+            {/* Energy Rings Around Orb */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              {[...Array(3)].map((_, i) => (
+                <div
+                  key={`ring-${i}`}
+                  className="absolute rounded-full border opacity-20"
+                  style={{
+                    width: `${400 + i * 120}px`,
+                    height: `${400 + i * 120}px`,
+                    border: `1px solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
+                    animation: `energy-ripple 3s ease-out infinite ${i * 0.4}s`,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Rotating Light Beams */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+              <div
+                className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-blue-400/25 to-transparent"
+                style={{
+                  animation: "spin 15s linear infinite",
+                  transformOrigin: "center 50%",
+                }}
+              />
+              <div
+                className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent"
+                style={{
+                  animation: "spin 20s linear infinite reverse",
+                  transformOrigin: "center 50%",
+                }}
+              />
+              <div
+                className="absolute h-1 w-96 bg-gradient-to-r from-transparent via-blue-300/15 to-transparent"
+                style={{
+                  animation: "spin 25s linear infinite",
+                  transformOrigin: "50% center",
+                }}
+              />
+            </div>
+
+            {/* Left Side Visual Balance Elements */}
+            <div className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 pointer-events-none">
+              {/* Floating geometric indicators */}
+              <div className="space-y-4 sm:space-y-8">
+                {/* Primary indicator */}
+                <motion.div
+                  className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-400/30 animate-gentle-pulse"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 2, duration: 1 }}
+                />
+                {/* Secondary indicators */}
+                <motion.div
+                  className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-blue-300/20 animate-gentle-pulse"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 2.3, duration: 1 }}
+                  style={{ animationDelay: "1s" }}
+                />
+                <motion.div
+                  className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-200/25 animate-gentle-pulse"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 2.6, duration: 1 }}
+                  style={{ animationDelay: "2s" }}
+                />
+              </div>
+
+              {/* Vertical progress line */}
+              <motion.div
+                className="absolute left-1/2 -translate-x-1/2 top-12 sm:top-16 w-px h-16 sm:h-24 bg-gradient-to-b from-blue-400/40 via-blue-300/20 to-transparent"
+                initial={{ opacity: 0, scaleY: 0 }}
+                animate={animationStep >= 1 ? { opacity: 1, scaleY: 1 } : {}}
+                transition={{ delay: 3, duration: 1.5 }}
+              />
+
+              {/* Connecting line to center (desktop only) */}
+              <motion.div
+                className="hidden lg:block absolute top-8 left-4 w-32 h-px bg-gradient-to-r from-blue-400/30 to-transparent"
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={animationStep >= 1 ? { opacity: 1, scaleX: 1 } : {}}
+                transition={{ delay: 3.5, duration: 1 }}
+              />
+            </div>
+
+            {/* Right Side Balance Elements */}
+            <div className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 pointer-events-none">
+              {/* Floating geometric indicators mirrored */}
+              <div className="space-y-4 sm:space-y-8">
+                <motion.div
+                  className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-purple-400/25 animate-gentle-pulse"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 2.2, duration: 1 }}
+                  style={{ animationDelay: "0.5s" }}
+                />
+                <motion.div
+                  className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-purple-300/20 animate-gentle-pulse"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 2.5, duration: 1 }}
+                  style={{ animationDelay: "1.5s" }}
+                />
+                <motion.div
+                  className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-purple-200/30 animate-gentle-pulse"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 2.8, duration: 1 }}
+                  style={{ animationDelay: "2.5s" }}
+                />
+              </div>
+            </div>
+
+            {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div
+                className="relative animate-float cursor-pointer group pointer-events-none"
+                initial={{
+                  opacity: 0,
+                  scale: 0.3,
+                  y: 100,
+                  filter: "blur(20px)",
+                }}
+                animate={
+                  animationStep >= 1
+                    ? {
+                        opacity: 1,
+                        scale: 1,
+                        y: 0,
+                        filter: "blur(0px)",
+                      }
+                    : {}
+                }
+                transition={{
+                  duration: 1.5,
+                  ease: [0.16, 1, 0.3, 1],
+                  type: "spring",
+                  stiffness: 80,
+                  damping: 15,
+                }}
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const centerX = rect.left + rect.width / 2;
+                  const centerY = rect.top + rect.height / 2;
+                  const deltaX = (e.clientX - centerX) * 0.1;
+                  const deltaY = (e.clientY - centerY) * 0.1;
+                  e.currentTarget.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.02)`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform =
+                    "translate(0px, 0px) scale(1)";
+                }}
+                style={{
+                  transition: "transform 0.3s ease-out",
+                }}
+              >
+                <svg
+                  width="292"
+                  height="308"
+                  viewBox="0 0 1284 810"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-[58rem] h-[58rem] sm:w-[78rem] sm:h-[78rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem] pointer-events-none"
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <defs>
+                    <filter
+                      id="orbFilter"
+                      x="0.820007"
+                      y="-259.18"
+                      width="1282.36"
+                      height="1298.36"
+                      filterUnits="userSpaceOnUse"
+                      colorInterpolationFilters="sRGB"
+                    >
+                      <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      />
+                      <feOffset />
+                      <feGaussianBlur stdDeviation="11.79" />
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                      />
+                      <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow"
+                      />
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      />
+                      <feOffset />
+                      <feGaussianBlur stdDeviation="41.265" />
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                      />
+                      <feBlend
+                        mode="normal"
+                        in2="effect1_dropShadow"
+                        result="effect2_dropShadow"
+                      />
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      />
+                      <feOffset />
+                      <feGaussianBlur stdDeviation="82.53" />
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                      />
+                      <feBlend
+                        mode="normal"
+                        in2="effect2_dropShadow"
+                        result="effect3_dropShadow"
+                      />
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      />
+                      <feOffset />
+                      <feGaussianBlur stdDeviation="141.48" />
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                      />
+                      <feBlend
+                        mode="normal"
+                        in2="effect3_dropShadow"
+                        result="effect4_dropShadow"
+                      />
+                      <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                      />
+                      <feOffset />
+                      <feGaussianBlur stdDeviation="247.59" />
+                      <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                      />
+                      <feBlend
+                        mode="normal"
+                        in2="effect4_dropShadow"
+                        result="effect5_dropShadow"
+                      />
+                      <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect5_dropShadow"
+                        result="shape"
+                      />
+                      <feGaussianBlur
+                        stdDeviation="17.5"
+                        result="effect6_foregroundBlur"
+                      />
+                    </filter>
+                    <linearGradient
+                      id="orbGradient"
+                      x1="496"
+                      y1="449.231"
+                      x2="853.699"
+                      y2="451.438"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stopColor="#3FBAFF" />
+                      <stop offset="0.493374" stopColor="#4992FF" />
+                      <stop offset="1" stopColor="#3987E3" />
+                    </linearGradient>
+                  </defs>
+                  <g filter="url(#orbFilter)">
+                    <ellipse
+                      cx="642"
+                      cy="390"
+                      rx="146"
+                      ry="154"
+                      fill="url(#orbGradient)"
+                    />
+                    <ellipse
+                      cx="642"
+                      cy="390"
+                      rx="146"
+                      ry="154"
+                      stroke="black"
+                    />
+                  </g>
+                </svg>
+              </motion.div>
+            </div>
+
+            {/* Text Content - Moved up */}
+            <motion.div
+              className="relative z-10 px-4 -mt-16"
+              initial={{
+                opacity: 0,
+                y: 80,
+                filter: "blur(10px)",
+              }}
+              animate={
+                animationStep >= 2
+                  ? {
+                      opacity: 1,
+                      y: 0,
+                      filter: "blur(0px)",
+                    }
+                  : {}
+              }
+              transition={{
+                duration: 1.2,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.2,
+              }}
+            >
+              {/* Kor - moved further to the left */}
+              <div
+                className="text-center transform -translate-x-6 sm:-translate-x-8 md:-translate-x-16 lg:-translate-x-20"
+                style={{ marginLeft: "-5px" }}
+              >
+                <h1
+                  className={`font-poppins text-8xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+                    theme === "light" ? "text-gray-900" : "text-white"
+                  }`}
+                >
+                  <span
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    style={{
+                      animation:
+                        "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s infinite both, warm-glow-pulse 3s ease-in-out infinite",
+                    }}
+                  >
+                    K
+                  </span>
+                  <span
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    style={{
+                      animation:
+                        "text-glow 3s ease-in-out infinite 0.3s, text-bounce 2s ease-in-out 0.8s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.3s",
+                    }}
+                  >
+                    o
+                  </span>
+                  <span
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    style={{
+                      animation:
+                        "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.6s",
+                    }}
+                  >
+                    r
+                  </span>
+                </h1>
+              </div>
+
+              {/* Development services - enhanced with dramatic effects */}
+              <div
+                className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4"
+                style={{ marginLeft: "5px", marginTop: "-5px" }}
+              >
+                <div className="relative">
+                  {/* Background glow effect */}
+                  <div
+                    className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
+                    style={{
+                      background:
+                        theme === "light"
+                          ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
+                          : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
+                      transform: "scale(1.5)",
+                    }}
+                  />
+
+                  {/* Floating energy particles around text */}
+                  {[...Array(12)].map((_, i) => (
+                    <div
+                      key={`energy-${i}`}
+                      className="absolute rounded-full pointer-events-none"
+                      style={{
+                        left: `${20 + ((i * 60) % 160)}%`,
+                        top: `${30 + ((i * 40) % 60)}%`,
+                        width: `${3 + (i % 2)}px`,
+                        height: `${3 + (i % 2)}px`,
+                        background:
+                          theme === "light"
+                            ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
+                            : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
+                        animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                        filter: "blur(0.5px)",
+                        animationFillMode: "both",
+                        animationTimingFunction: "ease-in-out",
+                      }}
+                    />
+                  ))}
+
+                  <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                    <span
+                      className={`relative inline-block ${
+                        theme === "light" ? "text-gray-900" : "text-white"
+                      }`}
+                      style={{
+                        animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
+                        filter:
+                          theme === "light"
+                            ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
+                            : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
+                        animationFillMode: "both",
+                      }}
+                    >
+                      {/* Warm glow text with iOS-inspired styling */}
+                      <span className="warm-glow-text animate-warm-glow-pulse">
+                        {"Development services".split("").map((letter, i) => (
+                          <span
+                            key={i}
+                            className="animate-letter-float"
+                            style={{
+                              animationDelay: `${i * 0.1}s`,
+                            }}
+                          >
+                            {letter === " " ? "\u00A0" : letter}
+                          </span>
+                        ))}
+                      </span>
+
+                      {/* Enhanced sparkles with more variety */}
+                      {SHINE_CONFIG.showSparkles &&
+                        [
+                          // Upper sparkles
+                          { x: 95, y: -35, size: 0.8, type: "star" },
+                          { x: 75, y: -10, size: 0.6, type: "diamond" },
+                          { x: 120, y: 50, size: 0.7, type: "plus" },
+                          { x: 90, y: 80, size: 0.9, type: "star" },
+                          { x: 25, y: 85, size: 0.5, type: "diamond" },
+                          { x: -40, y: 60, size: 0.6, type: "plus" },
+                          { x: 165, y: 15, size: 1.0, type: "star" },
+                          // Additional sparkles for more drama
+                          { x: -20, y: -20, size: 0.7, type: "diamond" },
+                          { x: 140, y: -15, size: 0.5, type: "plus" },
+                          { x: 50, y: 100, size: 0.8, type: "star" },
+                        ].map((sparkle, i) => (
+                          <div
+                            key={`enhanced-sparkle-${i}`}
+                            className="absolute pointer-events-none"
+                            style={{
+                              left: `calc(50% + ${sparkle.x}px)`,
+                              top: `calc(50% + ${sparkle.y}px)`,
+                              animation: `sparkle-enhanced ${6 + (i % 4) * 2}s ease-in-out infinite ${i * 0.8}s`,
+                              transform: `scale(${sparkle.size})`,
+                              opacity: 0.6,
+                              animationFillMode: "both",
+                              zIndex: -1,
+                            }}
+                          >
+                            {sparkle.type === "star" && (
+                              <div
+                                className="w-6 h-6"
+                                style={{
+                                  background:
+                                    theme === "light"
+                                      ? "radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%)"
+                                      : "radial-gradient(circle, rgba(73, 146, 255, 0.6) 0%, transparent 70%)",
+                                  clipPath:
+                                    "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                                  animation: "spin-slow 15s linear infinite",
+                                }}
+                              />
+                            )}
+                            {sparkle.type === "diamond" && (
+                              <div
+                                className="w-4 h-4"
+                                style={{
+                                  background:
+                                    theme === "light"
+                                      ? "linear-gradient(45deg, rgba(147, 51, 234, 0.5), rgba(59, 130, 246, 0.4))"
+                                      : "linear-gradient(45deg, rgba(34, 211, 238, 0.5), rgba(73, 146, 255, 0.4))",
+                                  clipPath:
+                                    "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                                  animation:
+                                    "gentle-pulse 4s ease-in-out infinite",
+                                }}
+                              />
+                            )}
+                            {sparkle.type === "plus" && (
+                              <div
+                                className="w-5 h-5"
+                                style={{
+                                  background:
+                                    theme === "light"
+                                      ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.5), rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.5))"
+                                      : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.5), rgba(34, 211, 238, 0.4), rgba(73, 146, 255, 0.5))",
+                                  clipPath:
+                                    "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                                  animation: "rotate-slow 12s linear infinite",
+                                }}
+                              />
+                            )}
+                          </div>
+                        ))}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Mobile Hamburger Menu - Only on mobile (640px and below) */}
+            <div className="sm:hidden absolute inset-0 flex items-center justify-center">
+              <div className="relative">
+                <MobileHamburgerMenu
+                  isOpen={isMobileMenuOpen}
+                  setIsOpen={setIsMobileMenuOpen}
+                  theme={theme}
+                />
+              </div>
+            </div>
+
+            {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
+            <motion.div
+              className="hidden sm:flex absolute inset-0 items-center justify-center"
+              initial={{
+                opacity: 0,
+                scale: 0.8,
+                filter: "blur(5px)",
+              }}
+              animate={
+                animationStep >= 3
+                  ? {
+                      opacity: 1,
+                      scale: 1,
+                      filter: "blur(0px)",
+                    }
+                  : {}
+              }
+              transition={{
+                duration: 1,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.3,
+              }}
+            >
+              <div className="relative">
+                {/* Animated Connection Lines Between Buttons */}
+                <svg
+                  className="absolute inset-0 pointer-events-none"
+                  width="600"
+                  height="600"
+                  style={{ left: "-300px", top: "-300px" }}
+                >
+                  <circle
+                    cx="300"
+                    cy="300"
+                    r="280"
+                    fill="none"
+                    stroke="rgba(73, 146, 255, 0.1)"
+                    strokeWidth="1"
+                    strokeDasharray="5 10"
+                    style={{
+                      animation: "geometric-pulse 15s ease-in-out infinite",
+                    }}
+                  />
+                  <circle
+                    cx="300"
+                    cy="300"
+                    r="320"
+                    fill="none"
+                    stroke="rgba(63, 186, 255, 0.08)"
+                    strokeWidth="1"
+                    strokeDasharray="8 15"
+                    style={{
+                      animation: "geometric-pulse 20s ease-in-out infinite 2s",
+                    }}
+                  />
+                </svg>
+                <OrbFloatingButtons />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Floating Decorative Elements */}
           <motion.div
-            className="relative animate-float cursor-pointer group pointer-events-none"
+            className="absolute inset-0 pointer-events-none overflow-hidden"
             initial={{
               opacity: 0,
-              scale: 0.3,
-              y: 100,
-              filter: "blur(20px)",
+              filter: "blur(10px)",
             }}
             animate={
-              animationStep >= 1
+              animationStep >= 4
                 ? {
                     opacity: 1,
-                    scale: 1,
-                    y: 0,
                     filter: "blur(0px)",
                   }
                 : {}
@@ -1894,602 +2394,133 @@ export default function Index() {
             transition={{
               duration: 1.5,
               ease: [0.16, 1, 0.3, 1],
-              type: "spring",
-              stiffness: 80,
-              damping: 15,
-            }}
-            onMouseMove={(e) => {
-              const rect = e.currentTarget.getBoundingClientRect();
-              const centerX = rect.left + rect.width / 2;
-              const centerY = rect.top + rect.height / 2;
-              const deltaX = (e.clientX - centerX) * 0.1;
-              const deltaY = (e.clientY - centerY) * 0.1;
-              e.currentTarget.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.02)`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translate(0px, 0px) scale(1)";
-            }}
-            style={{
-              transition: "transform 0.3s ease-out",
+              delay: 0.4,
             }}
           >
-            <svg
-              width="292"
-              height="308"
-              viewBox="0 0 1284 810"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-[58rem] h-[58rem] sm:w-[78rem] sm:h-[78rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem] pointer-events-none"
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              <defs>
-                <filter
-                  id="orbFilter"
-                  x="0.820007"
-                  y="-259.18"
-                  width="1282.36"
-                  height="1298.36"
-                  filterUnits="userSpaceOnUse"
-                  colorInterpolationFilters="sRGB"
-                >
-                  <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                  <feColorMatrix
-                    in="SourceAlpha"
-                    type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
-                  />
-                  <feOffset />
-                  <feGaussianBlur stdDeviation="11.79" />
-                  <feColorMatrix
-                    type="matrix"
-                    values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in2="BackgroundImageFix"
-                    result="effect1_dropShadow"
-                  />
-                  <feColorMatrix
-                    in="SourceAlpha"
-                    type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
-                  />
-                  <feOffset />
-                  <feGaussianBlur stdDeviation="41.265" />
-                  <feColorMatrix
-                    type="matrix"
-                    values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in2="effect1_dropShadow"
-                    result="effect2_dropShadow"
-                  />
-                  <feColorMatrix
-                    in="SourceAlpha"
-                    type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
-                  />
-                  <feOffset />
-                  <feGaussianBlur stdDeviation="82.53" />
-                  <feColorMatrix
-                    type="matrix"
-                    values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in2="effect2_dropShadow"
-                    result="effect3_dropShadow"
-                  />
-                  <feColorMatrix
-                    in="SourceAlpha"
-                    type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
-                  />
-                  <feOffset />
-                  <feGaussianBlur stdDeviation="141.48" />
-                  <feColorMatrix
-                    type="matrix"
-                    values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in2="effect3_dropShadow"
-                    result="effect4_dropShadow"
-                  />
-                  <feColorMatrix
-                    in="SourceAlpha"
-                    type="matrix"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
-                  />
-                  <feOffset />
-                  <feGaussianBlur stdDeviation="247.59" />
-                  <feColorMatrix
-                    type="matrix"
-                    values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in2="effect4_dropShadow"
-                    result="effect5_dropShadow"
-                  />
-                  <feBlend
-                    mode="normal"
-                    in="SourceGraphic"
-                    in2="effect5_dropShadow"
-                    result="shape"
-                  />
-                  <feGaussianBlur
-                    stdDeviation="17.5"
-                    result="effect6_foregroundBlur"
-                  />
-                </filter>
-                <linearGradient
-                  id="orbGradient"
-                  x1="496"
-                  y1="449.231"
-                  x2="853.699"
-                  y2="451.438"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#3FBAFF" />
-                  <stop offset="0.493374" stopColor="#4992FF" />
-                  <stop offset="1" stopColor="#3987E3" />
-                </linearGradient>
-              </defs>
-              <g filter="url(#orbFilter)">
-                <ellipse
-                  cx="642"
-                  cy="390"
-                  rx="146"
-                  ry="154"
-                  fill="url(#orbGradient)"
-                />
-                <ellipse cx="642" cy="390" rx="146" ry="154" stroke="black" />
-              </g>
-            </svg>
-          </motion.div>
-        </div>
-
-        {/* Text Content - Moved up */}
-        <motion.div
-          className="relative z-10 px-4 -mt-16"
-          initial={{
-            opacity: 0,
-            y: 80,
-            filter: "blur(10px)",
-          }}
-          animate={
-            animationStep >= 2
-              ? {
-                  opacity: 1,
-                  y: 0,
-                  filter: "blur(0px)",
-                }
-              : {}
-          }
-          transition={{
-            duration: 1.2,
-            ease: [0.16, 1, 0.3, 1],
-            delay: 0.2,
-          }}
-        >
-          {/* Kor - moved further to the left */}
-          <div
-            className="text-center transform -translate-x-6 sm:-translate-x-8 md:-translate-x-16 lg:-translate-x-20"
-            style={{ marginLeft: "-5px" }}
-          >
-            <h1
-              className={`font-poppins text-8xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
-                theme === "light" ? "text-gray-900" : "text-white"
-              }`}
-            >
-              <span
-                className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                style={{
-                  animation:
-                    "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s infinite both, warm-glow-pulse 3s ease-in-out infinite",
-                }}
-              >
-                K
-              </span>
-              <span
-                className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                style={{
-                  animation:
-                    "text-glow 3s ease-in-out infinite 0.3s, text-bounce 2s ease-in-out 0.8s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.3s",
-                }}
-              >
-                o
-              </span>
-              <span
-                className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                style={{
-                  animation:
-                    "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.6s",
-                }}
-              >
-                r
-              </span>
-            </h1>
-          </div>
-
-          {/* Development services - enhanced with dramatic effects */}
-          <div
-            className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4"
-            style={{ marginLeft: "5px", marginTop: "-5px" }}
-          >
-            <div className="relative">
-              {/* Background glow effect */}
-              <div
-                className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
-                style={{
-                  background:
-                    theme === "light"
-                      ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
-                      : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
-                  transform: "scale(1.5)",
-                }}
-              />
-
-              {/* Floating energy particles around text */}
-              {[...Array(12)].map((_, i) => (
-                <div
-                  key={`energy-${i}`}
-                  className="absolute rounded-full pointer-events-none"
-                  style={{
-                    left: `${20 + ((i * 60) % 160)}%`,
-                    top: `${30 + ((i * 40) % 60)}%`,
-                    width: `${3 + (i % 2)}px`,
-                    height: `${3 + (i % 2)}px`,
-                    background:
-                      theme === "light"
-                        ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
-                        : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
-                    animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
-                    filter: "blur(0.5px)",
-                    animationFillMode: "both",
-                    animationTimingFunction: "ease-in-out",
-                  }}
-                />
-              ))}
-
-              <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
-                <span
-                  className={`relative inline-block ${
-                    theme === "light" ? "text-gray-900" : "text-white"
-                  }`}
-                  style={{
-                    animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
-                    filter:
-                      theme === "light"
-                        ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
-                        : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-                    animationFillMode: "both",
-                  }}
-                >
-                  {/* Warm glow text with iOS-inspired styling */}
-                  <span className="warm-glow-text animate-warm-glow-pulse">
-                    {"Development services".split("").map((letter, i) => (
-                      <span
-                        key={i}
-                        className="animate-letter-float"
-                        style={{
-                          animationDelay: `${i * 0.1}s`,
-                        }}
-                      >
-                        {letter === " " ? "\u00A0" : letter}
-                      </span>
-                    ))}
-                  </span>
-
-                  {/* Enhanced sparkles with more variety */}
-                  {SHINE_CONFIG.showSparkles &&
-                    [
-                      // Upper sparkles
-                      { x: 95, y: -35, size: 0.8, type: "star" },
-                      { x: 75, y: -10, size: 0.6, type: "diamond" },
-                      { x: 120, y: 50, size: 0.7, type: "plus" },
-                      { x: 90, y: 80, size: 0.9, type: "star" },
-                      { x: 25, y: 85, size: 0.5, type: "diamond" },
-                      { x: -40, y: 60, size: 0.6, type: "plus" },
-                      { x: 165, y: 15, size: 1.0, type: "star" },
-                      // Additional sparkles for more drama
-                      { x: -20, y: -20, size: 0.7, type: "diamond" },
-                      { x: 140, y: -15, size: 0.5, type: "plus" },
-                      { x: 50, y: 100, size: 0.8, type: "star" },
-                    ].map((sparkle, i) => (
-                      <div
-                        key={`enhanced-sparkle-${i}`}
-                        className="absolute pointer-events-none"
-                        style={{
-                          left: `calc(50% + ${sparkle.x}px)`,
-                          top: `calc(50% + ${sparkle.y}px)`,
-                          animation: `sparkle-enhanced ${6 + (i % 4) * 2}s ease-in-out infinite ${i * 0.8}s`,
-                          transform: `scale(${sparkle.size})`,
-                          opacity: 0.6,
-                          animationFillMode: "both",
-                          zIndex: -1,
-                        }}
-                      >
-                        {sparkle.type === "star" && (
-                          <div
-                            className="w-6 h-6"
-                            style={{
-                              background:
-                                theme === "light"
-                                  ? "radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%)"
-                                  : "radial-gradient(circle, rgba(73, 146, 255, 0.6) 0%, transparent 70%)",
-                              clipPath:
-                                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-                              animation: "spin-slow 15s linear infinite",
-                            }}
-                          />
-                        )}
-                        {sparkle.type === "diamond" && (
-                          <div
-                            className="w-4 h-4"
-                            style={{
-                              background:
-                                theme === "light"
-                                  ? "linear-gradient(45deg, rgba(147, 51, 234, 0.5), rgba(59, 130, 246, 0.4))"
-                                  : "linear-gradient(45deg, rgba(34, 211, 238, 0.5), rgba(73, 146, 255, 0.4))",
-                              clipPath:
-                                "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                              animation: "gentle-pulse 4s ease-in-out infinite",
-                            }}
-                          />
-                        )}
-                        {sparkle.type === "plus" && (
-                          <div
-                            className="w-5 h-5"
-                            style={{
-                              background:
-                                theme === "light"
-                                  ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.5), rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.5))"
-                                  : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.5), rgba(34, 211, 238, 0.4), rgba(73, 146, 255, 0.5))",
-                              clipPath:
-                                "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
-                              animation: "rotate-slow 12s linear infinite",
-                            }}
-                          />
-                        )}
-                      </div>
-                    ))}
-                </span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Mobile Hamburger Menu - Only on mobile (640px and below) */}
-        <div className="sm:hidden absolute inset-0 flex items-center justify-center">
-          <div className="relative">
-            <MobileHamburgerMenu
-              isOpen={isMobileMenuOpen}
-              setIsOpen={setIsMobileMenuOpen}
-              theme={theme}
-            />
-          </div>
-        </div>
-
-        {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
-        <motion.div
-          className="hidden sm:flex absolute inset-0 items-center justify-center"
-          initial={{
-            opacity: 0,
-            scale: 0.8,
-            filter: "blur(5px)",
-          }}
-          animate={
-            animationStep >= 3
-              ? {
-                  opacity: 1,
-                  scale: 1,
-                  filter: "blur(0px)",
-                }
-              : {}
-          }
-          transition={{
-            duration: 1,
-            ease: [0.16, 1, 0.3, 1],
-            delay: 0.3,
-          }}
-        >
-          <div className="relative">
-            {/* Animated Connection Lines Between Buttons */}
-            <svg
-              className="absolute inset-0 pointer-events-none"
-              width="600"
-              height="600"
-              style={{ left: "-300px", top: "-300px" }}
-            >
-              <circle
-                cx="300"
-                cy="300"
-                r="280"
-                fill="none"
-                stroke="rgba(73, 146, 255, 0.1)"
-                strokeWidth="1"
-                strokeDasharray="5 10"
-                style={{
-                  animation: "geometric-pulse 15s ease-in-out infinite",
-                }}
-              />
-              <circle
-                cx="300"
-                cy="300"
-                r="320"
-                fill="none"
-                stroke="rgba(63, 186, 255, 0.08)"
-                strokeWidth="1"
-                strokeDasharray="8 15"
-                style={{
-                  animation: "geometric-pulse 20s ease-in-out infinite 2s",
-                }}
-              />
-            </svg>
-            <OrbFloatingButtons />
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Floating Decorative Elements */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none overflow-hidden"
-        initial={{
-          opacity: 0,
-          filter: "blur(10px)",
-        }}
-        animate={
-          animationStep >= 4
-            ? {
-                opacity: 1,
-                filter: "blur(0px)",
-              }
-            : {}
-        }
-        transition={{
-          duration: 1.5,
-          ease: [0.16, 1, 0.3, 1],
-          delay: 0.4,
-        }}
-      >
-        {/* Top corner accent lights */}
-        <div
-          className="absolute top-10 left-10 w-32 h-32 rounded-full opacity-30"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(73, 146, 255, 0.2) 0%, transparent 70%)",
-            animation: "gentle-glow 8s ease-in-out infinite",
-          }}
-        />
-        <div
-          className="absolute top-20 right-16 w-24 h-24 rounded-full opacity-25"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(63, 186, 255, 0.3) 0%, transparent 70%)",
-            animation: "gentle-glow 10s ease-in-out infinite 2s",
-          }}
-        />
-
-        {/* Bottom corner lights */}
-        <div
-          className="absolute bottom-16 left-20 w-28 h-28 rounded-full opacity-20"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(57, 135, 227, 0.4) 0%, transparent 70%)",
-            animation: "gentle-glow 14s ease-in-out infinite 4s",
-          }}
-        />
-        <div
-          className="absolute bottom-12 right-12 w-20 h-20 rounded-full opacity-35"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
-            animation: "gentle-glow 12s ease-in-out infinite 1s",
-          }}
-        />
-      </motion.div>
-
-      {/* Scroll/Swipe Indicator */}
-      <div className="absolute bottom-28 lg:bottom-16 md:bottom-32 sm:bottom-36 left-1/2 transform -translate-x-1/2 z-20">
-        <div className="flex flex-col items-center space-y-3 animate-button-float">
-          {/* Desktop: Scroll Down */}
-          <span
-            className={`hidden lg:block font-inter text-sm font-medium animate-text-glow ${
-              theme === "light" ? "text-gray-600" : "text-white/70"
-            }`}
-          >
-            Scroll Down
-          </span>
-          {/* Mobile/Tablet: Swipe Down */}
-          <span
-            className={`lg:hidden font-inter text-sm font-medium animate-text-glow ${
-              theme === "light" ? "text-gray-600" : "text-white/70"
-            }`}
-          >
-            Swipe Down
-          </span>
-
-          {/* Desktop: Mouse scroll indicator */}
-          <div className="hidden lg:flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
+            {/* Top corner accent lights */}
             <div
-              className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
+              className="absolute top-10 left-10 w-32 h-32 rounded-full opacity-30"
               style={{
-                boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
+                background:
+                  "radial-gradient(circle, rgba(73, 146, 255, 0.2) 0%, transparent 70%)",
+                animation: "gentle-glow 8s ease-in-out infinite",
               }}
             />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
-          </div>
+            <div
+              className="absolute top-20 right-16 w-24 h-24 rounded-full opacity-25"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(63, 186, 255, 0.3) 0%, transparent 70%)",
+                animation: "gentle-glow 10s ease-in-out infinite 2s",
+              }}
+            />
 
-          {/* Mobile/Tablet: Phone with swipe indicator */}
-          <div className="lg:hidden relative">
-            {/* Phone Icon */}
-            <div className="relative w-8 h-12 border-2 border-white/40 rounded-lg backdrop-blur-sm bg-white/5 flex items-center justify-center">
-              {/* Phone screen */}
-              <div className="w-4 h-7 bg-white/10 rounded-sm relative overflow-hidden">
-                {/* Swipe gesture indicator */}
+            {/* Bottom corner lights */}
+            <div
+              className="absolute bottom-16 left-20 w-28 h-28 rounded-full opacity-20"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(57, 135, 227, 0.4) 0%, transparent 70%)",
+                animation: "gentle-glow 14s ease-in-out infinite 4s",
+              }}
+            />
+            <div
+              className="absolute bottom-12 right-12 w-20 h-20 rounded-full opacity-35"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
+                animation: "gentle-glow 12s ease-in-out infinite 1s",
+              }}
+            />
+          </motion.div>
+
+          {/* Scroll/Swipe Indicator */}
+          <div className="absolute bottom-28 lg:bottom-16 md:bottom-32 sm:bottom-36 left-1/2 transform -translate-x-1/2 z-20">
+            <div className="flex flex-col items-center space-y-3 animate-button-float">
+              {/* Desktop: Scroll Down */}
+              <span
+                className={`hidden lg:block font-inter text-sm font-medium animate-text-glow ${
+                  theme === "light" ? "text-gray-600" : "text-white/70"
+                }`}
+              >
+                Scroll Down
+              </span>
+              {/* Mobile/Tablet: Swipe Down */}
+              <span
+                className={`lg:hidden font-inter text-sm font-medium animate-text-glow ${
+                  theme === "light" ? "text-gray-600" : "text-white/70"
+                }`}
+              >
+                Swipe Down
+              </span>
+
+              {/* Desktop: Mouse scroll indicator */}
+              <div className="hidden lg:flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
                 <div
-                  className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-down shadow-lg"
+                  className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
                   style={{
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    boxShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
+                    boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
                   }}
                 />
-                {/* Second swipe line for better effect */}
-                <div
-                  className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-down-delayed"
-                  style={{
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                  }}
-                />
+                <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
               </div>
-              {/* Phone speaker */}
-              <div className="absolute top-1 w-2 h-0.5 bg-white/30 rounded-full"></div>
+
+              {/* Mobile/Tablet: Phone with swipe indicator */}
+              <div className="lg:hidden relative">
+                {/* Phone Icon */}
+                <div className="relative w-8 h-12 border-2 border-white/40 rounded-lg backdrop-blur-sm bg-white/5 flex items-center justify-center">
+                  {/* Phone screen */}
+                  <div className="w-4 h-7 bg-white/10 rounded-sm relative overflow-hidden">
+                    {/* Swipe gesture indicator */}
+                    <div
+                      className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-down shadow-lg"
+                      style={{
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        boxShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
+                      }}
+                    />
+                    {/* Second swipe line for better effect */}
+                    <div
+                      className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-down-delayed"
+                      style={{
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                      }}
+                    />
+                  </div>
+                  {/* Phone speaker */}
+                  <div className="absolute top-1 w-2 h-0.5 bg-white/30 rounded-full"></div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
         </motion.div>
 
         {/* About Us Section */}
         <AboutUsSection
-          ref={el => sectionsRef.current[1] = el!}
+          ref={(el) => (sectionsRef.current[1] = el!)}
           theme={theme}
           isVisible={currentSection === 1}
         />
 
         {/* Services Section */}
         <ServicesSection
-          ref={el => sectionsRef.current[2] = el!}
+          ref={(el) => (sectionsRef.current[2] = el!)}
           theme={theme}
           isVisible={currentSection === 2}
         />
 
         {/* Portfolio Section */}
         <PortfolioSection
-          ref={el => sectionsRef.current[3] = el!}
+          ref={(el) => (sectionsRef.current[3] = el!)}
           theme={theme}
           isVisible={currentSection === 3}
         />
 
         {/* Contact Us Section */}
         <ContactUsSection
-          ref={el => sectionsRef.current[4] = el!}
+          ref={(el) => (sectionsRef.current[4] = el!)}
           theme={theme}
           isVisible={currentSection === 4}
         />
@@ -3155,14 +3186,16 @@ function MobileHamburgerMenu({
                     onClick={() => {
                       setIsOpen(false);
                       const sectionMap: { [key: string]: number } = {
-                        'About us': 1,
-                        'Services': 2,
-                        'Portfolio': 3,
-                        'Contact us': 4
+                        "About us": 1,
+                        Services: 2,
+                        Portfolio: 3,
+                        "Contact us": 4,
                       };
                       const sectionIndex = sectionMap[item.text];
                       if (sectionIndex) {
-                        const event = new CustomEvent('scrollToSection', { detail: sectionIndex });
+                        const event = new CustomEvent("scrollToSection", {
+                          detail: sectionIndex,
+                        });
                         window.dispatchEvent(event);
                       }
                     }}
@@ -3384,7 +3417,7 @@ function OrbFloatingButtons() {
 
   // Access the parent component's scrollToSection function
   const scrollToSection = (index: number) => {
-    const event = new CustomEvent('scrollToSection', { detail: index });
+    const event = new CustomEvent("scrollToSection", { detail: index });
     window.dispatchEvent(event);
   };
   return (
@@ -3404,10 +3437,10 @@ function OrbFloatingButtons() {
           accent={button.accent}
           theme={theme}
           onClick={() => {
-            if (button.text === 'About us') scrollToSection(1);
-            else if (button.text === 'Services') scrollToSection(2);
-            else if (button.text === 'Portfolio') scrollToSection(3);
-            else if (button.text === 'Contact us') scrollToSection(4);
+            if (button.text === "About us") scrollToSection(1);
+            else if (button.text === "Services") scrollToSection(2);
+            else if (button.text === "Portfolio") scrollToSection(3);
+            else if (button.text === "Contact us") scrollToSection(4);
             else button.onClick?.();
           }}
         />
@@ -3808,8 +3841,6 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         </div>
 
-
-
         {/* Main Content Container */}
         <div className="relative flex items-center justify-center min-h-screen section-container">
           {/* Text Content */}
@@ -3961,17 +3992,19 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
-                      {"Crafting Digital Excellence".split("").map((letter, i) => (
-                        <span
-                          key={i}
-                          className="animate-letter-float"
-                          style={{
-                            animationDelay: `${i * 0.1}s`,
-                          }}
-                        >
-                          {letter === " " ? "\u00A0" : letter}
-                        </span>
-                      ))}
+                      {"Crafting Digital Excellence"
+                        .split("")
+                        .map((letter, i) => (
+                          <span
+                            key={i}
+                            className="animate-letter-float"
+                            style={{
+                              animationDelay: `${i * 0.1}s`,
+                            }}
+                          >
+                            {letter === " " ? "\u00A0" : letter}
+                          </span>
+                        ))}
                     </span>
                   </span>
                 </div>
@@ -3984,7 +4017,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <motion.div
                 className="space-y-6 lg:space-y-8 text-left"
                 initial={{ x: -50, opacity: 0 }}
-                animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
+                animate={
+                  isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }
+                }
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
                 <div className="space-y-6">
@@ -3993,23 +4028,32 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       theme === "light" ? "text-gray-600" : "text-gray-300"
                     }`}
                     style={{
-                      textShadow: theme === "dark" ? "0 0 10px rgba(255, 255, 255, 0.1)" : "none",
+                      textShadow:
+                        theme === "dark"
+                          ? "0 0 10px rgba(255, 255, 255, 0.1)"
+                          : "none",
                     }}
                   >
-                    We are a cutting-edge software development company dedicated to transforming
-                    innovative ideas into powerful digital solutions. Our team of expert developers,
-                    designers, and strategists work collaboratively to deliver exceptional results.
+                    We are a cutting-edge software development company dedicated
+                    to transforming innovative ideas into powerful digital
+                    solutions. Our team of expert developers, designers, and
+                    strategists work collaboratively to deliver exceptional
+                    results.
                   </p>
                   <p
                     className={`text-lg leading-relaxed ${
                       theme === "light" ? "text-gray-600" : "text-gray-300"
                     }`}
                     style={{
-                      textShadow: theme === "dark" ? "0 0 10px rgba(255, 255, 255, 0.1)" : "none",
+                      textShadow:
+                        theme === "dark"
+                          ? "0 0 10px rgba(255, 255, 255, 0.1)"
+                          : "none",
                     }}
                   >
-                    With years of experience in modern web development, mobile applications, and
-                    AI integration, we bring your vision to life with precision and creativity.
+                    With years of experience in modern web development, mobile
+                    applications, and AI integration, we bring your vision to
+                    life with precision and creativity.
                   </p>
                 </div>
 
@@ -4024,11 +4068,16 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       key={index}
                       className="text-center group cursor-pointer"
                       initial={{ scale: 0, opacity: 0 }}
-                      animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                      animate={
+                        isVisible
+                          ? { scale: 1, opacity: 1 }
+                          : { scale: 0, opacity: 0 }
+                      }
                       transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
                       whileHover={{ scale: 1.05 }}
                     >
-                      <div className="relative p-6 rounded-2xl backdrop-blur-lg border border-white/20 hover:border-blue-400/40 transition-all duration-500"
+                      <div
+                        className="relative p-6 rounded-2xl backdrop-blur-lg border border-white/20 hover:border-blue-400/40 transition-all duration-500"
                         style={{
                           background: "rgba(255, 255, 255, 0.05)",
                           boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
@@ -4042,7 +4091,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         >
                           {stat.number}
                         </div>
-                        <div className={`text-sm font-medium ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
+                        <div
+                          className={`text-sm font-medium ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
+                        >
                           {stat.label}
                         </div>
                       </div>
@@ -4055,10 +4106,13 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <motion.div
                 className="relative"
                 initial={{ x: 50, opacity: 0 }}
-                animate={isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
+                animate={
+                  isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
+                }
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <div className="relative w-full h-96 rounded-3xl overflow-hidden backdrop-blur-lg border border-white/20"
+                <div
+                  className="relative w-full h-96 rounded-3xl overflow-hidden backdrop-blur-lg border border-white/20"
                   style={{
                     background: "rgba(255, 255, 255, 0.05)",
                     boxShadow: "0 0 40px rgba(73, 146, 255, 0.2)",
@@ -4073,19 +4127,26 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         key={i}
                         className="flex items-center space-x-3"
                         initial={{ x: -50, opacity: 0 }}
-                        animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
+                        animate={
+                          isVisible
+                            ? { x: 0, opacity: 1 }
+                            : { x: -50, opacity: 0 }
+                        }
                         transition={{ duration: 0.5, delay: 1 + i * 0.1 }}
                       >
-                        <div className="w-3 h-3 rounded-full bg-blue-400 animate-pulse"
+                        <div
+                          className="w-3 h-3 rounded-full bg-blue-400 animate-pulse"
                           style={{
                             boxShadow: "0 0 10px rgba(73, 146, 255, 0.8)",
                           }}
                         />
                         <div
                           className={`h-2 rounded-full ${
-                            i % 3 === 0 ? "w-32 bg-gradient-to-r from-blue-400 to-cyan-400" :
-                            i % 3 === 1 ? "w-24 bg-gradient-to-r from-purple-400 to-pink-400" :
-                            "w-28 bg-gradient-to-r from-cyan-400 to-blue-400"
+                            i % 3 === 0
+                              ? "w-32 bg-gradient-to-r from-blue-400 to-cyan-400"
+                              : i % 3 === 1
+                                ? "w-24 bg-gradient-to-r from-purple-400 to-pink-400"
+                                : "w-28 bg-gradient-to-r from-cyan-400 to-blue-400"
                           }`}
                           style={{
                             boxShadow: "0 0 8px rgba(73, 146, 255, 0.4)",
@@ -4115,9 +4176,11 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         delay: index * 0.7,
                       }}
                     >
-                      <Icon className="w-10 h-10 text-blue-400 opacity-80"
+                      <Icon
+                        className="w-10 h-10 text-blue-400 opacity-80"
                         style={{
-                          filter: "drop-shadow(0 0 10px rgba(73, 146, 255, 0.6))",
+                          filter:
+                            "drop-shadow(0 0 10px rgba(73, 146, 255, 0.6))",
                         }}
                       />
                     </motion.div>
@@ -4129,7 +4192,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
       </motion.div>
     );
-  }
+  },
 );
 
 // ========================================
@@ -4142,7 +4205,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
       {
         icon: Globe,
         title: "Web Development",
-        description: "Modern, responsive websites built with cutting-edge technologies",
+        description:
+          "Modern, responsive websites built with cutting-edge technologies",
         color: "from-blue-500 to-cyan-500",
       },
       {
@@ -4322,8 +4386,6 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         </div>
 
-
-
         {/* Main Content Container */}
         <div className="relative flex items-center justify-center min-h-screen section-container">
           {/* Text Content */}
@@ -4361,8 +4423,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     key={i}
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animation:
-                        `text-glow 3s ease-in-out infinite ${i * 0.2}s, text-bounce 2s ease-in-out ${0.5 + i * 0.2}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.2}s`,
+                      animation: `text-glow 3s ease-in-out infinite ${i * 0.2}s, text-bounce 2s ease-in-out ${0.5 + i * 0.2}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.2}s`,
                     }}
                   >
                     {letter}
@@ -4423,17 +4484,19 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
-                      {"Digital Innovation Solutions".split("").map((letter, i) => (
-                        <span
-                          key={i}
-                          className="animate-letter-float"
-                          style={{
-                            animationDelay: `${i * 0.1}s`,
-                          }}
-                        >
-                          {letter === " " ? "\u00A0" : letter}
-                        </span>
-                      ))}
+                      {"Digital Innovation Solutions"
+                        .split("")
+                        .map((letter, i) => (
+                          <span
+                            key={i}
+                            className="animate-letter-float"
+                            style={{
+                              animationDelay: `${i * 0.1}s`,
+                            }}
+                          >
+                            {letter === " " ? "\u00A0" : letter}
+                          </span>
+                        ))}
                     </span>
                   </span>
                 </div>
@@ -4447,7 +4510,11 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   key={index}
                   className="group relative"
                   initial={{ y: 50, opacity: 0, scale: 0.9 }}
-                  animate={isVisible ? { y: 0, opacity: 1, scale: 1 } : { y: 50, opacity: 0, scale: 0.9 }}
+                  animate={
+                    isVisible
+                      ? { y: 0, opacity: 1, scale: 1 }
+                      : { y: 50, opacity: 0, scale: 0.9 }
+                  }
                   transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -10 }}
                 >
@@ -4502,7 +4569,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           theme === "light" ? "text-gray-600" : "text-gray-300"
                         }`}
                         style={{
-                          textShadow: theme === "dark" ? "0 0 5px rgba(255, 255, 255, 0.1)" : "none",
+                          textShadow:
+                            theme === "dark"
+                              ? "0 0 5px rgba(255, 255, 255, 0.1)"
+                              : "none",
                         }}
                       >
                         {service.description}
@@ -4512,7 +4582,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     {/* Circuit-like decorative elements */}
                     <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
                       <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                      <div className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
+                      <div
+                        className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
                         style={{ animationDelay: "0.5s" }}
                       />
                       <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
@@ -4528,7 +4599,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
       </motion.div>
     );
-  }
+  },
 );
 
 // ========================================
@@ -4766,8 +4837,6 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         </div>
 
-
-
         {/* Main Content Container */}
         <div className="relative flex items-center justify-center min-h-screen section-container">
           <motion.div
@@ -4778,9 +4847,17 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           >
             {/* Portfolio Title */}
             <div className="text-center mb-16">
-              <h1 className={`font-poppins text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+              <h1
+                className={`font-poppins text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
+              >
                 {"Portfolio".split("").map((letter, i) => (
-                  <span key={i} className="inline-block relative warm-glow-text animate-warm-glow-pulse" style={{ animation: `text-glow 3s ease-in-out infinite ${i * 0.15}s, text-bounce 2s ease-in-out ${0.5 + i * 0.15}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.15}s` }}>
+                  <span
+                    key={i}
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    style={{
+                      animation: `text-glow 3s ease-in-out infinite ${i * 0.15}s, text-bounce 2s ease-in-out ${0.5 + i * 0.15}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.15}s`,
+                    }}
+                  >
                     {letter}
                   </span>
                 ))}
@@ -4790,15 +4867,54 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Subtitle */}
             <div className="text-center mb-16">
               <div className="relative">
-                <div className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow" style={{ background: theme === "light" ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)" : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)", transform: "scale(1.5)" }} />
+                <div
+                  className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
+                  style={{
+                    background:
+                      theme === "light"
+                        ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
+                        : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
+                    transform: "scale(1.5)",
+                  }}
+                />
                 {[...Array(8)].map((_, i) => (
-                  <div key={`energy-${i}`} className="absolute rounded-full pointer-events-none" style={{ left: `${20 + ((i * 60) % 160)}%`, top: `${30 + ((i * 40) % 60)}%`, width: `${3 + (i % 2)}px`, height: `${3 + (i % 2)}px`, background: theme === "light" ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})` : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`, animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`, filter: "blur(0.5px)", animationFillMode: "both" }} />
+                  <div
+                    key={`energy-${i}`}
+                    className="absolute rounded-full pointer-events-none"
+                    style={{
+                      left: `${20 + ((i * 60) % 160)}%`,
+                      top: `${30 + ((i * 40) % 60)}%`,
+                      width: `${3 + (i % 2)}px`,
+                      height: `${3 + (i % 2)}px`,
+                      background:
+                        theme === "light"
+                          ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
+                          : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
+                      animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                      filter: "blur(0.5px)",
+                      animationFillMode: "both",
+                    }}
+                  />
                 ))}
                 <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
-                  <span className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`} style={{ animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`, filter: theme === "light" ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))` : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`, animationFillMode: "both" }}>
+                  <span
+                    className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                    style={{
+                      animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
+                      filter:
+                        theme === "light"
+                          ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
+                          : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
+                      animationFillMode: "both",
+                    }}
+                  >
                     <span className="warm-glow-text animate-warm-glow-pulse">
                       {"Our Featured Work".split("").map((letter, i) => (
-                        <span key={i} className="animate-letter-float" style={{ animationDelay: `${i * 0.1}s` }}>
+                        <span
+                          key={i}
+                          className="animate-letter-float"
+                          style={{ animationDelay: `${i * 0.1}s` }}
+                        >
                           {letter === " " ? "\u00A0" : letter}
                         </span>
                       ))}
@@ -4818,29 +4934,36 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   disabled={currentPage === 0}
                   className={`group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
                     currentPage === 0
-                      ? 'opacity-30 cursor-not-allowed'
-                      : 'hover:scale-110 cursor-pointer'
+                      ? "opacity-30 cursor-not-allowed"
+                      : "hover:scale-110 cursor-pointer"
                   }`}
                   style={{
                     background: "rgba(255, 255, 255, 0.05)",
                     border: "2px solid rgba(255, 255, 255, 0.1)",
-                    boxShadow: currentPage === 0 ? "none" : "0 0 20px rgba(73, 146, 255, 0.2)"
+                    boxShadow:
+                      currentPage === 0
+                        ? "none"
+                        : "0 0 20px rgba(73, 146, 255, 0.2)",
                   }}
                   whileHover={currentPage === 0 ? {} : { scale: 1.05 }}
                   whileTap={currentPage === 0 ? {} : { scale: 0.95 }}
                 >
-                  <ChevronLeft className={`w-6 h-6 transition-colors ${
-                    currentPage === 0
-                      ? 'text-gray-500'
-                      : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
-                  }`} />
+                  <ChevronLeft
+                    className={`w-6 h-6 transition-colors ${
+                      currentPage === 0
+                        ? "text-gray-500"
+                        : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
+                    }`}
+                  />
 
                   {/* Glow effect on hover - only when enabled */}
                   {currentPage > 0 && (
-                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    <div
+                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       style={{
-                        background: "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)"
+                        background:
+                          "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)",
                       }}
                     />
                   )}
@@ -4861,15 +4984,20 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       onClick={() => setCurrentPage(index)}
                       className={`transition-all duration-300 ${
                         currentPage === index
-                          ? 'w-8 h-2 bg-blue-400 rounded-full scale-125'
-                          : 'w-2 h-2 bg-white/20 hover:bg-white/40 rounded-full'
+                          ? "w-8 h-2 bg-blue-400 rounded-full scale-125"
+                          : "w-2 h-2 bg-white/20 hover:bg-white/40 rounded-full"
                       }`}
                       style={{
-                        boxShadow: currentPage === index ? '0 0 10px rgba(73, 146, 255, 0.8)' : 'none'
+                        boxShadow:
+                          currentPage === index
+                            ? "0 0 10px rgba(73, 146, 255, 0.8)"
+                            : "none",
                       }}
                     />
                   ))}
-                  <span className={`text-xs font-mono ml-2 ${theme === "light" ? "text-gray-600" : "text-white/60"}`}>
+                  <span
+                    className={`text-xs font-mono ml-2 ${theme === "light" ? "text-gray-600" : "text-white/60"}`}
+                  >
                     {currentPage + 1} / {totalPages}
                   </span>
                 </div>
@@ -4880,29 +5008,40 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   disabled={currentPage === totalPages - 1}
                   className={`group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
                     currentPage === totalPages - 1
-                      ? 'opacity-30 cursor-not-allowed'
-                      : 'hover:scale-110 cursor-pointer'
+                      ? "opacity-30 cursor-not-allowed"
+                      : "hover:scale-110 cursor-pointer"
                   }`}
                   style={{
                     background: "rgba(255, 255, 255, 0.05)",
                     border: "2px solid rgba(255, 255, 255, 0.1)",
-                    boxShadow: currentPage === totalPages - 1 ? "none" : "0 0 20px rgba(73, 146, 255, 0.2)"
+                    boxShadow:
+                      currentPage === totalPages - 1
+                        ? "none"
+                        : "0 0 20px rgba(73, 146, 255, 0.2)",
                   }}
-                  whileHover={currentPage === totalPages - 1 ? {} : { scale: 1.05 }}
-                  whileTap={currentPage === totalPages - 1 ? {} : { scale: 0.95 }}
+                  whileHover={
+                    currentPage === totalPages - 1 ? {} : { scale: 1.05 }
+                  }
+                  whileTap={
+                    currentPage === totalPages - 1 ? {} : { scale: 0.95 }
+                  }
                 >
-                  <ChevronRight className={`w-6 h-6 transition-colors ${
-                    currentPage === totalPages - 1
-                      ? 'text-gray-500'
-                      : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
-                  }`} />
+                  <ChevronRight
+                    className={`w-6 h-6 transition-colors ${
+                      currentPage === totalPages - 1
+                        ? "text-gray-500"
+                        : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
+                    }`}
+                  />
 
                   {/* Glow effect on hover - only when enabled */}
                   {currentPage < totalPages - 1 && (
-                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    <div
+                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       style={{
-                        background: "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)"
+                        background:
+                          "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)",
                       }}
                     />
                   )}
@@ -4927,96 +5066,176 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
                   {getCurrentPageProjects().map((project, index) => (
+                    <motion.div
+                      key={`page-${currentPage}-${index}`}
+                      className="group relative w-full"
+                      initial={{ scale: 0.8, opacity: 0, y: 50 }}
+                      animate={
+                        isVisible
+                          ? { scale: 1, opacity: 1, y: 0 }
+                          : { scale: 0.8, opacity: 0, y: 50 }
+                      }
+                      transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+                      whileHover={{ scale: 1.02, y: -3 }}
+                    >
+                      <div
+                        className="relative p-4 sm:p-6 rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.05)",
+                          border: "2px solid rgba(255, 255, 255, 0.1)",
+                          boxShadow: "0 0 30px rgba(73, 146, 255, 0.15)",
+                        }}
+                      >
+                        {/* Scanning line effect */}
+                        <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                          <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                        </div>
+
+                        {/* Project Visual - Inspired by the provided image */}
+                        <div
+                          className="w-full h-32 sm:h-36 rounded-xl mb-4 relative overflow-hidden"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, rgba(30, 30, 50, 0.9) 0%, rgba(10, 10, 30, 0.9) 100%)",
+                            boxShadow: "0 0 15px rgba(73, 146, 255, 0.25)",
+                          }}
+                        >
+                          {/* Dark mesh background similar to provided image */}
+                          <div
+                            className="absolute inset-0"
+                            style={{
+                              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E")`,
+                              backgroundSize: "20px 20px",
+                            }}
+                          />
+
+                          {/* Gradient overlay */}
+                          <div
+                            className={`absolute inset-0 bg-gradient-to-br ${project.image} opacity-60`}
+                          />
+
+                          {/* Scanning effect */}
                           <motion.div
-                            key={`page-${currentPage}-${index}`}
-                            className="group relative w-full"
-                            initial={{ scale: 0.8, opacity: 0, y: 50 }}
-                            animate={isVisible ? { scale: 1, opacity: 1, y: 0 } : { scale: 0.8, opacity: 0, y: 50 }}
-                            transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                            whileHover={{ scale: 1.02, y: -3 }}
-                          >
-                            <div className="relative p-4 sm:p-6 rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full" style={{ background: "rgba(255, 255, 255, 0.05)", border: "2px solid rgba(255, 255, 255, 0.1)", boxShadow: "0 0 30px rgba(73, 146, 255, 0.15)" }}>
-                              {/* Scanning line effect */}
-                              <div className="absolute inset-0 overflow-hidden rounded-2xl">
-                                <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                              </div>
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                            initial={{ x: "-100%" }}
+                            animate={isVisible ? { x: "100%" } : { x: "-100%" }}
+                            transition={{
+                              duration: 1.5,
+                              delay: 0.8 + index * 0.2,
+                            }}
+                          />
 
-                              {/* Project Visual - Inspired by the provided image */}
-                              <div className="w-full h-32 sm:h-36 rounded-xl mb-4 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(30, 30, 50, 0.9) 0%, rgba(10, 10, 30, 0.9) 100%)", boxShadow: "0 0 15px rgba(73, 146, 255, 0.25)" }}>
-                                {/* Dark mesh background similar to provided image */}
-                                <div className="absolute inset-0" style={{
-                                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E")`,
-                                  backgroundSize: "20px 20px"
-                                }} />
-
-                                {/* Gradient overlay */}
-                                <div className={`absolute inset-0 bg-gradient-to-br ${project.image} opacity-60`} />
-
-                                {/* Scanning effect */}
-                                <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" initial={{ x: '-100%' }} animate={isVisible ? { x: '100%' } : { x: '-100%' }} transition={{ duration: 1.5, delay: 0.8 + index * 0.2 }} />
-
-                                {/* Content overlay similar to the provided image style */}
-                                <div className="absolute inset-0 flex flex-col justify-between p-3">
-                                  {/* Top indicator */}
-                                  <div className="flex justify-between items-start">
-                                    <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(73, 146, 255, 0.8)" }} />
-                                    <div className="text-xs text-white/60 font-mono">
-                                      {String(currentPage * projectsPerPage + index + 1).padStart(2, '0')}
-                                    </div>
-                                  </div>
-
-                                  {/* Bottom status bar */}
-                                  <div className="flex items-center space-x-2">
-                                    <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-                                      <motion.div
-                                        className="h-full bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
-                                        initial={{ width: "0%" }}
-                                        animate={isVisible ? { width: "75%" } : { width: "0%" }}
-                                        transition={{ duration: 2, delay: 1 + index * 0.3 }}
-                                      />
-                                    </div>
-                                    <div className="text-xs text-white/60 font-mono">LIVE</div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              {/* Project Info - Compact */}
-                              <h3 className={`text-base sm:text-lg font-bold mb-2 warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"} line-clamp-2`} style={{ textShadow: "0 0 8px rgba(73, 146, 255, 0.6)" }}>
-                                {project.title}
-                              </h3>
-                              <p className={`text-xs sm:text-sm mb-3 ${theme === "light" ? "text-gray-600" : "text-gray-300"} line-clamp-2`} style={{ textShadow: theme === "dark" ? "0 0 5px rgba(255, 255, 255, 0.1)" : "none" }}>
-                                {project.description}
-                              </p>
-
-                              {/* Tech Stack - Compact */}
-                              <div className="flex flex-wrap gap-1 sm:gap-2">
-                                {project.tech.slice(0, 3).map((tech, techIndex) => (
-                                  <motion.span
-                                    key={techIndex}
-                                    className="px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border"
-                                    style={{ background: "rgba(73, 146, 255, 0.1)", border: "1px solid rgba(73, 146, 255, 0.3)", color: theme === "light" ? "#1f2937" : "#e5e7eb", boxShadow: "0 0 6px rgba(73, 146, 255, 0.2)" }}
-                                    initial={{ scale: 0 }}
-                                    animate={isVisible ? { scale: 1 } : { scale: 0 }}
-                                    transition={{ duration: 0.3, delay: 1 + techIndex * 0.1 }}
-                                  >
-                                    {tech}
-                                  </motion.span>
-                                ))}
-                                {project.tech.length > 3 && (
-                                  <span className="px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border" style={{ background: "rgba(73, 146, 255, 0.1)", border: "1px solid rgba(73, 146, 255, 0.3)", color: theme === "light" ? "#1f2937" : "#e5e7eb" }}>
-                                    +{project.tech.length - 3}
-                                  </span>
-                                )}
-                              </div>
-
-                              {/* Circuit decorations */}
-                              <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-                                <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
-                                <div className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }} />
-                                <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
+                          {/* Content overlay similar to the provided image style */}
+                          <div className="absolute inset-0 flex flex-col justify-between p-3">
+                            {/* Top indicator */}
+                            <div className="flex justify-between items-start">
+                              <div
+                                className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"
+                                style={{
+                                  boxShadow: "0 0 8px rgba(73, 146, 255, 0.8)",
+                                }}
+                              />
+                              <div className="text-xs text-white/60 font-mono">
+                                {String(
+                                  currentPage * projectsPerPage + index + 1,
+                                ).padStart(2, "0")}
                               </div>
                             </div>
-                          </motion.div>
+
+                            {/* Bottom status bar */}
+                            <div className="flex items-center space-x-2">
+                              <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+                                <motion.div
+                                  className="h-full bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
+                                  initial={{ width: "0%" }}
+                                  animate={
+                                    isVisible
+                                      ? { width: "75%" }
+                                      : { width: "0%" }
+                                  }
+                                  transition={{
+                                    duration: 2,
+                                    delay: 1 + index * 0.3,
+                                  }}
+                                />
+                              </div>
+                              <div className="text-xs text-white/60 font-mono">
+                                LIVE
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Project Info - Compact */}
+                        <h3
+                          className={`text-base sm:text-lg font-bold mb-2 warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"} line-clamp-2`}
+                          style={{
+                            textShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
+                          }}
+                        >
+                          {project.title}
+                        </h3>
+                        <p
+                          className={`text-xs sm:text-sm mb-3 ${theme === "light" ? "text-gray-600" : "text-gray-300"} line-clamp-2`}
+                          style={{
+                            textShadow:
+                              theme === "dark"
+                                ? "0 0 5px rgba(255, 255, 255, 0.1)"
+                                : "none",
+                          }}
+                        >
+                          {project.description}
+                        </p>
+
+                        {/* Tech Stack - Compact */}
+                        <div className="flex flex-wrap gap-1 sm:gap-2">
+                          {project.tech.slice(0, 3).map((tech, techIndex) => (
+                            <motion.span
+                              key={techIndex}
+                              className="px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border"
+                              style={{
+                                background: "rgba(73, 146, 255, 0.1)",
+                                border: "1px solid rgba(73, 146, 255, 0.3)",
+                                color:
+                                  theme === "light" ? "#1f2937" : "#e5e7eb",
+                                boxShadow: "0 0 6px rgba(73, 146, 255, 0.2)",
+                              }}
+                              initial={{ scale: 0 }}
+                              animate={isVisible ? { scale: 1 } : { scale: 0 }}
+                              transition={{
+                                duration: 0.3,
+                                delay: 1 + techIndex * 0.1,
+                              }}
+                            >
+                              {tech}
+                            </motion.span>
+                          ))}
+                          {project.tech.length > 3 && (
+                            <span
+                              className="px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border"
+                              style={{
+                                background: "rgba(73, 146, 255, 0.1)",
+                                border: "1px solid rgba(73, 146, 255, 0.3)",
+                                color:
+                                  theme === "light" ? "#1f2937" : "#e5e7eb",
+                              }}
+                            >
+                              +{project.tech.length - 3}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Circuit decorations */}
+                        <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                          <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+                          <div
+                            className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
+                            style={{ animationDelay: "0.5s" }}
+                          />
+                          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
+                        </div>
+                      </div>
+                    </motion.div>
                   ))}
                 </motion.div>
               </div>
@@ -5025,7 +5244,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
       </motion.div>
     );
-  }
+  },
 );
 
 // ========================================
@@ -5035,14 +5254,14 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible }, ref) => {
     const [formData, setFormData] = useState({
-      name: '',
-      email: '',
-      message: ''
+      name: "",
+      email: "",
+      message: "",
     });
 
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
-      console.log('Form submitted:', formData);
+      console.log("Form submitted:", formData);
       // Add your form submission logic here
     };
 
@@ -5205,8 +5424,6 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         </div>
 
-
-
         {/* Main Content Container */}
         <div className="relative flex items-center justify-center min-h-screen section-container">
           <motion.div
@@ -5217,9 +5434,17 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           >
             {/* Contact Title */}
             <div className="text-center mb-16">
-              <h1 className={`font-poppins text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+              <h1
+                className={`font-poppins text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
+              >
                 {"Contact".split("").map((letter, i) => (
-                  <span key={i} className="inline-block relative warm-glow-text animate-warm-glow-pulse" style={{ animation: `text-glow 3s ease-in-out infinite ${i * 0.15}s, text-bounce 2s ease-in-out ${0.5 + i * 0.15}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.15}s` }}>
+                  <span
+                    key={i}
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    style={{
+                      animation: `text-glow 3s ease-in-out infinite ${i * 0.15}s, text-bounce 2s ease-in-out ${0.5 + i * 0.15}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.15}s`,
+                    }}
+                  >
                     {letter}
                   </span>
                 ))}
@@ -5229,18 +5454,59 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Subtitle */}
             <div className="text-center mb-16">
               <div className="relative">
-                <div className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow" style={{ background: theme === "light" ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)" : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)", transform: "scale(1.5)" }} />
+                <div
+                  className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
+                  style={{
+                    background:
+                      theme === "light"
+                        ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
+                        : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
+                    transform: "scale(1.5)",
+                  }}
+                />
                 {[...Array(8)].map((_, i) => (
-                  <div key={`energy-${i}`} className="absolute rounded-full pointer-events-none" style={{ left: `${20 + ((i * 60) % 160)}%`, top: `${30 + ((i * 40) % 60)}%`, width: `${3 + (i % 2)}px`, height: `${3 + (i % 2)}px`, background: theme === "light" ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})` : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`, animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`, filter: "blur(0.5px)", animationFillMode: "both" }} />
+                  <div
+                    key={`energy-${i}`}
+                    className="absolute rounded-full pointer-events-none"
+                    style={{
+                      left: `${20 + ((i * 60) % 160)}%`,
+                      top: `${30 + ((i * 40) % 60)}%`,
+                      width: `${3 + (i % 2)}px`,
+                      height: `${3 + (i % 2)}px`,
+                      background:
+                        theme === "light"
+                          ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
+                          : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
+                      animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                      filter: "blur(0.5px)",
+                      animationFillMode: "both",
+                    }}
+                  />
                 ))}
                 <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
-                  <span className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`} style={{ animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`, filter: theme === "light" ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))` : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`, animationFillMode: "both" }}>
+                  <span
+                    className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                    style={{
+                      animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
+                      filter:
+                        theme === "light"
+                          ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
+                          : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
+                      animationFillMode: "both",
+                    }}
+                  >
                     <span className="warm-glow-text animate-warm-glow-pulse">
-                      {"Ready to Build Something Amazing?".split("").map((letter, i) => (
-                        <span key={i} className="animate-letter-float" style={{ animationDelay: `${i * 0.05}s` }}>
-                          {letter === " " ? "\u00A0" : letter}
-                        </span>
-                      ))}
+                      {"Ready to Build Something Amazing?"
+                        .split("")
+                        .map((letter, i) => (
+                          <span
+                            key={i}
+                            className="animate-letter-float"
+                            style={{ animationDelay: `${i * 0.05}s` }}
+                          >
+                            {letter === " " ? "\u00A0" : letter}
+                          </span>
+                        ))}
                     </span>
                   </span>
                 </div>
@@ -5252,22 +5518,29 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               {/* Contact Form */}
               <motion.div
                 initial={{ x: -50, opacity: 0 }}
-                animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
+                animate={
+                  isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }
+                }
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4 sm:space-y-6"
+                >
                   <div>
                     <input
                       type="text"
                       placeholder="Your Name"
                       value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       className="w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 outline-none text-sm sm:text-base"
                       style={{
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "2px solid rgba(255, 255, 255, 0.1)",
                         color: theme === "light" ? "#1f2937" : "#e5e7eb",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)"
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
                       }}
                       required
                     />
@@ -5277,13 +5550,15 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       type="email"
                       placeholder="Your Email"
                       value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       className="w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 outline-none text-sm sm:text-base"
                       style={{
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "2px solid rgba(255, 255, 255, 0.1)",
                         color: theme === "light" ? "#1f2937" : "#e5e7eb",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)"
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
                       }}
                       required
                     />
@@ -5292,14 +5567,16 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     <textarea
                       placeholder="Your Message"
                       value={formData.message}
-                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
                       rows={5}
                       className="w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 resize-none outline-none text-sm sm:text-base"
                       style={{
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "2px solid rgba(255, 255, 255, 0.1)",
                         color: theme === "light" ? "#1f2937" : "#e5e7eb",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)"
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
                       }}
                       required
                     />
@@ -5308,8 +5585,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     type="submit"
                     className="w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-300 hover:scale-105 text-sm sm:text-base"
                     style={{
-                      background: "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
-                      boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)"
+                      background:
+                        "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
+                      boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
                     }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -5324,13 +5602,30 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <motion.div
                 className="space-y-4 sm:space-y-6 lg:space-y-8"
                 initial={{ x: 50, opacity: 0 }}
-                animate={isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
+                animate={
+                  isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
+                }
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
                 {[
-                  { icon: Mail, title: "Email Us", info: "contact@kor.dev", color: "from-blue-500 to-cyan-500" },
-                  { icon: Phone, title: "Call Us", info: "+1 (555) 123-4567", color: "from-green-500 to-emerald-500" },
-                  { icon: MapPin, title: "Visit Us", info: "123 Tech Street, Digital City", color: "from-purple-500 to-pink-500" },
+                  {
+                    icon: Mail,
+                    title: "Email Us",
+                    info: "contact@kor.dev",
+                    color: "from-blue-500 to-cyan-500",
+                  },
+                  {
+                    icon: Phone,
+                    title: "Call Us",
+                    info: "+1 (555) 123-4567",
+                    color: "from-green-500 to-emerald-500",
+                  },
+                  {
+                    icon: MapPin,
+                    title: "Visit Us",
+                    info: "123 Tech Street, Digital City",
+                    color: "from-purple-500 to-pink-500",
+                  },
                 ].map((contact, index) => (
                   <motion.div
                     key={index}
@@ -5338,10 +5633,12 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     style={{
                       background: "rgba(255, 255, 255, 0.05)",
                       border: "2px solid rgba(255, 255, 255, 0.1)",
-                      boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)"
+                      boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
                     }}
                     initial={{ y: 30, opacity: 0 }}
-                    animate={isVisible ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+                    animate={
+                      isVisible ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }
+                    }
                     transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
                   >
                     {/* Scanning line effect */}
@@ -5350,14 +5647,32 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     </div>
 
                     <div className="flex items-center space-x-4 relative z-10">
-                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center`} style={{ boxShadow: "0 0 15px rgba(73, 146, 255, 0.4)" }}>
+                      <div
+                        className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center`}
+                        style={{
+                          boxShadow: "0 0 15px rgba(73, 146, 255, 0.4)",
+                        }}
+                      >
                         <contact.icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className={`font-semibold warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"}`} style={{ textShadow: "0 0 8px rgba(73, 146, 255, 0.5)" }}>
+                        <h4
+                          className={`font-semibold warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                          style={{
+                            textShadow: "0 0 8px rgba(73, 146, 255, 0.5)",
+                          }}
+                        >
                           {contact.title}
                         </h4>
-                        <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`} style={{ textShadow: theme === "dark" ? "0 0 5px rgba(255, 255, 255, 0.1)" : "none" }}>
+                        <p
+                          className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}
+                          style={{
+                            textShadow:
+                              theme === "dark"
+                                ? "0 0 5px rgba(255, 255, 255, 0.1)"
+                                : "none",
+                          }}
+                        >
                           {contact.info}
                         </p>
                       </div>
@@ -5366,7 +5681,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     {/* Circuit decorations */}
                     <div className="absolute inset-0 opacity-20 hover:opacity-40 transition-all duration-500">
                       <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                      <div className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }} />
+                      <div
+                        className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
+                        style={{ animationDelay: "0.5s" }}
+                      />
                     </div>
                   </motion.div>
                 ))}
@@ -5376,5 +5694,5 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
       </motion.div>
     );
-  }
+  },
 );
