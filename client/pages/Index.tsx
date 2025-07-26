@@ -5762,13 +5762,13 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <h3 className={`text-sm font-medium mb-3 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
                         Project Budget (USD)
                       </h3>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3">
+                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                         {budgets.map((budget) => (
                           <button
                             key={budget}
                             type="button"
                             onClick={() => handleBudgetSelect(budget)}
-                            className={`p-3 text-sm rounded-lg border transition-all duration-200 hover:scale-105 will-change-transform ${
+                            className={`p-2 text-xs sm:text-sm rounded-lg border transition-all duration-200 hover:scale-105 will-change-transform ${
                               selectedBudget === budget
                                 ? "border-green-400 text-green-400"
                                 : "border-white/20 hover:border-white/40"
