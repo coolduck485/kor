@@ -72,40 +72,40 @@ export default function Index() {
     networkDown: 847,
   });
 
-  // Framer Motion animation variants
+  // Optimized Framer Motion animation variants for 60fps
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.5,
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
+        duration: 0.4,
+        staggerChildren: 0.15,
+        delayChildren: 0.05,
       },
     },
   };
 
   const fadeInUp = {
-    hidden: { opacity: 0, y: 60, scale: 0.9 },
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 0.6,
+        ease: "easeOut",
       },
     },
   };
 
   const fadeInScale = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 1.2,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 0.8,
+        ease: "easeOut",
       },
     },
   };
