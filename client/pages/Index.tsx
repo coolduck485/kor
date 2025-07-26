@@ -54,6 +54,14 @@ export default function Index() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isScrollingActive, setIsScrollingActive] = useState(false);
 
+  // Mobile Performance Wrapper Component
+  const MobileOptimizedWrapper = ({ children, condition = true }: { children: React.ReactNode, condition?: boolean }) => {
+    if (isMobile && !condition) {
+      return null; // Don't render expensive components on mobile
+    }
+    return <>{children}</>;
+  };
+
   // Black transition animation state
   const [isBlackTransition, setIsBlackTransition] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(true);
