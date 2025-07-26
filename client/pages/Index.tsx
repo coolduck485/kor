@@ -2039,8 +2039,8 @@ export default function Index() {
             </div>
           )}
 
-          {/* Optimized Breathing Orbs - Reduced count for performance */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Optimized Breathing Orbs - Reduced count for performance - Responsive for mobile/tablet */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden scale-75 sm:scale-85 lg:scale-100">
             {[
               ...Array(
                 animationConfig.enableFloatingOrbs ? 6 : 0,
