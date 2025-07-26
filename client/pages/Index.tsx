@@ -5552,7 +5552,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Contact Title */}
             <div className="text-center mb-10 sm:mb-16">
               <h1
-                className={`font-poppins text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                className={`contact-title font-poppins text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
               >
                 {"Contact".split("").map((letter, i) => (
                   <span
