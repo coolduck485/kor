@@ -1949,7 +1949,7 @@ export default function Index() {
                   right: "-15%",
                   height: "120px",
                   background:
-                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.3) 15%, rgba(20, 184, 166, 0.4) 30%, rgba(34, 197, 94, 0.3) 50%, rgba(6, 182, 212, 0.4) 70%, rgba(20, 184, 166, 0.3) 85%, transparent 100%)",
+                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.4) 15%, rgba(20, 184, 166, 0.5) 30%, rgba(34, 197, 94, 0.4) 50%, rgba(6, 182, 212, 0.5) 70%, rgba(20, 184, 166, 0.4) 85%, transparent 100%)",
                   borderRadius: "40% 60% 80% 20% / 60% 40% 80% 20%",
                   filter: "blur(15px)",
                   animation: "aurora-wave-subtle-1 28s ease-in-out infinite",
