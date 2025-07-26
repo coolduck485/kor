@@ -2764,11 +2764,11 @@ export default function Index() {
                     theme === "light" ? "text-gray-900" : "text-white"
                   }`}
                 >
-                  <span className="inline-block relative warm-glow-text animate-warm-glow-pulse">
+                  <span className="inline-block relative warm-glow-text animate-warm-glow-pulse animate-wavy-text">
                     K
                   </span>
                   <span
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse animate-wavy-text"
                     style={{
                       animationDelay: "0.3s",
                     }}
@@ -2776,7 +2776,7 @@ export default function Index() {
                     o
                   </span>
                   <span
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse animate-wavy-text"
                     style={{
                       animationDelay: "0.6s",
                     }}
@@ -2843,7 +2843,7 @@ export default function Index() {
                         {"Development services".split("").map((letter, i) => (
                           <span
                             key={i}
-                            className="animate-letter-float"
+                            className="animate-letter-float animate-wavy-text"
                             style={{
                               animationDelay: `${i * 0.1}s`,
                             }}
