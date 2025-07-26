@@ -602,7 +602,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ███������█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
-��████╔╝ ██���   ██║██████╔╝
+█████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
@@ -4122,7 +4122,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center mt-12 sm:mt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center mt-6 sm:mt-8">
               {/* Left Content */}
               <motion.div
                 className="space-y-4 sm:space-y-6 lg:space-y-8 text-left"
