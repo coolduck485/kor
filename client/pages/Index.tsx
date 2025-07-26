@@ -1587,6 +1587,8 @@ export default function Index() {
       className={`relative transition-all duration-500 gpu-accelerated composite-layer scroll-optimized ${
         isScrollingActive ? "scroll-simplified" : ""
       } ${
+        isMobile ? "mobile-optimized performance-optimized" : ""
+      } ${
         theme === "light"
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
