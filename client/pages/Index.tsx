@@ -5594,7 +5594,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       animationFillMode: "both",
                     }}
                   >
-                    <span className="warm-glow-text animate-warm-glow-pulse">
+                    <span className="warm-glow-text animate-warm-glow-pulse text-center block">
                       {"Ready to Build Something Amazing?"
                         .split("")
                         .map((letter, i) => (
