@@ -673,7 +673,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███���█���██████��███████ 60%
+                      CPU: █████���██████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2621,6 +2621,7 @@ export default function Index() {
           ref={(el) => (sectionsRef.current[4] = el!)}
           theme={theme}
           isVisible={currentSection === 4}
+          isMobile={isMobile}
         />
       </div>
 
@@ -3550,7 +3551,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ����  hoverScale: 1.15
+// Change: hoverScale: 1.05  ���  hoverScale: 1.15
 //
 // ========================================
 
