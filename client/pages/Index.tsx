@@ -601,7 +601,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ███������█╗
-██║ ██╔╝██╔═══██╗██╔═══██╗
+██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -4614,7 +4614,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-3 lg:gap-4 xl:gap-5 mt-6 responsive-grid w-full">
+            <div className="flex justify-center mt-6">
+              <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-3 lg:gap-4 xl:gap-5 responsive-grid w-full max-w-4xl">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
@@ -4709,6 +4710,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   </div>
                 </motion.div>
               ))}
+              </div>
             </div>
           </motion.div>
         </div>
