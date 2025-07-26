@@ -2667,15 +2667,21 @@ export default function Index() {
                               <div
                                 className="w-6 h-6"
                                 style={{
-                                  background:
-                                    theme === "light"
-                                      ? "radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%)"
-                                      : "radial-gradient(circle, rgba(73, 146, 255, 0.6) 0%, transparent 70%)",
+                                  background: (() => {
+                                    const colors = [
+                                      "radial-gradient(circle, rgba(255, 100, 150, 0.8) 0%, rgba(255, 180, 100, 0.5) 70%, transparent 90%)",  // Pink-Orange
+                                      "radial-gradient(circle, rgba(100, 255, 200, 0.8) 0%, rgba(100, 200, 255, 0.5) 70%, transparent 90%)",  // Mint-Blue
+                                      "radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 150, 200, 0.5) 70%, transparent 90%)",  // Purple-Pink
+                                      "radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 255, 150, 0.5) 70%, transparent 90%)",  // Orange-Green
+                                    ];
+                                    return colors[i % colors.length];
+                                  })(),
                                   clipPath:
                                     "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                                   animation: isMobile
                                     ? "spin-slow 8s linear infinite"
                                     : "spin-slow 15s linear infinite",
+                                  filter: "drop-shadow(0 0 8px currentColor)",
                                 }}
                               />
                             )}
@@ -2683,15 +2689,21 @@ export default function Index() {
                               <div
                                 className="w-4 h-4"
                                 style={{
-                                  background:
-                                    theme === "light"
-                                      ? "linear-gradient(45deg, rgba(147, 51, 234, 0.5), rgba(59, 130, 246, 0.4))"
-                                      : "linear-gradient(45deg, rgba(34, 211, 238, 0.5), rgba(73, 146, 255, 0.4))",
+                                  background: (() => {
+                                    const colors = [
+                                      "linear-gradient(45deg, rgba(255, 100, 200, 0.7), rgba(100, 255, 150, 0.6))",  // Pink-Green
+                                      "linear-gradient(45deg, rgba(150, 100, 255, 0.7), rgba(255, 200, 100, 0.6))",  // Purple-Orange
+                                      "linear-gradient(45deg, rgba(100, 200, 255, 0.7), rgba(255, 150, 100, 0.6))",  // Blue-Orange
+                                      "linear-gradient(45deg, rgba(200, 255, 100, 0.7), rgba(255, 100, 150, 0.6))",  // Green-Pink
+                                    ];
+                                    return colors[i % colors.length];
+                                  })(),
                                   clipPath:
                                     "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                                   animation: isMobile
                                     ? "gentle-pulse 3s ease-in-out infinite"
                                     : "gentle-pulse 4s ease-in-out infinite",
+                                  filter: "drop-shadow(0 0 6px currentColor)",
                                 }}
                               />
                             )}
@@ -2699,15 +2711,21 @@ export default function Index() {
                               <div
                                 className="w-5 h-5"
                                 style={{
-                                  background:
-                                    theme === "light"
-                                      ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.5), rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.5))"
-                                      : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.5), rgba(34, 211, 238, 0.4), rgba(73, 146, 255, 0.5))",
+                                  background: (() => {
+                                    const colors = [
+                                      "conic-gradient(from 0deg, rgba(255, 150, 100, 0.7), rgba(100, 255, 200, 0.6), rgba(200, 100, 255, 0.7), rgba(255, 200, 150, 0.6))",  // Warm Rainbow
+                                      "conic-gradient(from 90deg, rgba(100, 255, 150, 0.7), rgba(255, 100, 200, 0.6), rgba(150, 200, 255, 0.7), rgba(255, 180, 100, 0.6))",  // Cool Rainbow
+                                      "conic-gradient(from 180deg, rgba(200, 150, 255, 0.7), rgba(255, 200, 100, 0.6), rgba(100, 255, 180, 0.7), rgba(255, 150, 200, 0.6))",  // Pastel Rainbow
+                                      "conic-gradient(from 270deg, rgba(255, 200, 150, 0.7), rgba(150, 255, 200, 0.6), rgba(200, 150, 255, 0.7), rgba(255, 180, 150, 0.6))",  // Sunset Rainbow
+                                    ];
+                                    return colors[i % colors.length];
+                                  })(),
                                   clipPath:
                                     "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                                   animation: isMobile
                                     ? "rotate-slow 8s linear infinite"
                                     : "rotate-slow 12s linear infinite",
+                                  filter: "drop-shadow(0 0 10px currentColor)",
                                 }}
                               />
                             )}
