@@ -55,7 +55,13 @@ export default function Index() {
   const [isScrollingActive, setIsScrollingActive] = useState(false);
 
   // Mobile Performance Wrapper Component
-  const MobileOptimizedWrapper = ({ children, condition = true }: { children: React.ReactNode, condition?: boolean }) => {
+  const MobileOptimizedWrapper = ({
+    children,
+    condition = true,
+  }: {
+    children: React.ReactNode;
+    condition?: boolean;
+  }) => {
     if (isMobile && !condition) {
       return null; // Don't render expensive components on mobile
     }
@@ -71,8 +77,8 @@ export default function Index() {
       transition: {
         ...desktopProps.transition,
         duration: Math.min(desktopProps.transition?.duration || 0.5, 0.3),
-        ease: "easeOut"
-      }
+        ease: "easeOut",
+      },
     };
   };
 
@@ -1601,9 +1607,7 @@ export default function Index() {
       ref={containerRef}
       className={`relative transition-all duration-500 gpu-accelerated composite-layer scroll-optimized ${
         isScrollingActive ? "scroll-simplified" : ""
-      } ${
-        isMobile ? "mobile-optimized performance-optimized" : ""
-      } ${
+      } ${isMobile ? "mobile-optimized performance-optimized" : ""} ${
         theme === "light"
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
@@ -1923,9 +1927,7 @@ export default function Index() {
 
           {/* Enhanced Background Elements - Performance optimized */}
 
-
-
-        {/* Animated Noise Texture - Only on desktop high performance */}
+          {/* Animated Noise Texture - Only on desktop high performance */}
           {!isMobile && isHighPerformance && (
             <div
               className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
@@ -1942,60 +1944,64 @@ export default function Index() {
               <div
                 className="absolute aurora-curtain-1"
                 style={{
-                  top: '15%',
-                  left: '-20%',
-                  right: '-20%',
-                  height: '300px',
-                  background: 'linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.8) 15%, rgba(20, 184, 166, 0.9) 30%, rgba(34, 197, 94, 0.8) 50%, rgba(6, 182, 212, 0.9) 70%, rgba(20, 184, 166, 0.7) 85%, transparent 100%)',
-                  borderRadius: '50% 50% 80% 80% / 30% 30% 15% 15%',
-                  filter: 'blur(20px)',
-                  animation: 'aurora-wave-1 24s ease-in-out infinite',
-                  transform: 'skewY(-2deg)',
+                  top: "15%",
+                  left: "-20%",
+                  right: "-20%",
+                  height: "300px",
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.8) 15%, rgba(20, 184, 166, 0.9) 30%, rgba(34, 197, 94, 0.8) 50%, rgba(6, 182, 212, 0.9) 70%, rgba(20, 184, 166, 0.7) 85%, transparent 100%)",
+                  borderRadius: "50% 50% 80% 80% / 30% 30% 15% 15%",
+                  filter: "blur(20px)",
+                  animation: "aurora-wave-1 24s ease-in-out infinite",
+                  transform: "skewY(-2deg)",
                 }}
               />
               {/* Secondary aurora curtain - Middle layer */}
               <div
                 className="absolute aurora-curtain-2"
                 style={{
-                  top: '35%',
-                  left: '-25%',
-                  right: '-25%',
-                  height: '400px',
-                  background: 'linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.7) 10%, rgba(6, 182, 212, 0.9) 25%, rgba(16, 185, 129, 0.8) 40%, rgba(20, 184, 166, 0.9) 60%, rgba(34, 197, 94, 0.8) 75%, rgba(6, 182, 212, 0.6) 90%, transparent 100%)',
-                  borderRadius: '80% 80% 50% 50% / 20% 20% 25% 25%',
-                  filter: 'blur(25px)',
-                  animation: 'aurora-wave-2 30s ease-in-out infinite',
-                  transform: 'skewY(1deg)',
+                  top: "35%",
+                  left: "-25%",
+                  right: "-25%",
+                  height: "400px",
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.7) 10%, rgba(6, 182, 212, 0.9) 25%, rgba(16, 185, 129, 0.8) 40%, rgba(20, 184, 166, 0.9) 60%, rgba(34, 197, 94, 0.8) 75%, rgba(6, 182, 212, 0.6) 90%, transparent 100%)",
+                  borderRadius: "80% 80% 50% 50% / 20% 20% 25% 25%",
+                  filter: "blur(25px)",
+                  animation: "aurora-wave-2 30s ease-in-out infinite",
+                  transform: "skewY(1deg)",
                 }}
               />
               {/* Tertiary aurora curtain - Back layer */}
               <div
                 className="absolute aurora-curtain-3"
                 style={{
-                  top: '55%',
-                  left: '-30%',
-                  right: '-30%',
-                  height: '350px',
-                  background: 'linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.6) 20%, rgba(34, 197, 94, 0.8) 35%, rgba(6, 182, 212, 0.7) 50%, rgba(16, 185, 129, 0.8) 65%, rgba(20, 184, 166, 0.6) 80%, transparent 100%)',
-                  borderRadius: '70% 70% 60% 60% / 25% 25% 20% 20%',
-                  filter: 'blur(30px)',
-                  animation: 'aurora-wave-3 36s ease-in-out infinite',
-                  transform: 'skewY(-1.5deg)',
+                  top: "55%",
+                  left: "-30%",
+                  right: "-30%",
+                  height: "350px",
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.6) 20%, rgba(34, 197, 94, 0.8) 35%, rgba(6, 182, 212, 0.7) 50%, rgba(16, 185, 129, 0.8) 65%, rgba(20, 184, 166, 0.6) 80%, transparent 100%)",
+                  borderRadius: "70% 70% 60% 60% / 25% 25% 20% 20%",
+                  filter: "blur(30px)",
+                  animation: "aurora-wave-3 36s ease-in-out infinite",
+                  transform: "skewY(-1.5deg)",
                 }}
               />
               {/* Ultra-wide flowing base curtain */}
               <div
                 className="absolute aurora-base-flow"
                 style={{
-                  top: '10%',
-                  left: '-40%',
-                  right: '-40%',
-                  height: '500px',
-                  background: 'linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.3) 12%, rgba(34, 197, 94, 0.5) 25%, rgba(20, 184, 166, 0.4) 37%, rgba(16, 185, 129, 0.5) 50%, rgba(6, 182, 212, 0.4) 62%, rgba(34, 197, 94, 0.3) 75%, rgba(20, 184, 166, 0.2) 87%, transparent 100%)',
-                  borderRadius: '60% 60% 40% 40% / 15% 15% 30% 30%',
-                  filter: 'blur(35px)',
-                  animation: 'aurora-base-flow 42s ease-in-out infinite',
-                  transform: 'skewY(0.5deg)',
+                  top: "10%",
+                  left: "-40%",
+                  right: "-40%",
+                  height: "500px",
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.3) 12%, rgba(34, 197, 94, 0.5) 25%, rgba(20, 184, 166, 0.4) 37%, rgba(16, 185, 129, 0.5) 50%, rgba(6, 182, 212, 0.4) 62%, rgba(34, 197, 94, 0.3) 75%, rgba(20, 184, 166, 0.2) 87%, transparent 100%)",
+                  borderRadius: "60% 60% 40% 40% / 15% 15% 30% 30%",
+                  filter: "blur(35px)",
+                  animation: "aurora-base-flow 42s ease-in-out infinite",
+                  transform: "skewY(0.5deg)",
                 }}
               />
             </div>
@@ -2008,7 +2014,15 @@ export default function Index() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
-            {[...Array(animationConfig.enableBackgroundParticles ? (isMobile ? 3 : 15) : 0)].map((_, i) => (
+            {[
+              ...Array(
+                animationConfig.enableBackgroundParticles
+                  ? isMobile
+                    ? 3
+                    : 15
+                  : 0,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`particle-${i}`}
                 className="absolute rounded-full opacity-70 gpu-accelerated"
@@ -2019,12 +2033,12 @@ export default function Index() {
                   height: `${3 + (i % 4)}px`,
                   background: (() => {
                     const colorPalettes = [
-                      `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`,  // Pink-Orange
-                      `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`,  // Green-Blue
-                      `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`,  // Purple-Yellow
-                      `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`,  // Blue-Green
-                      `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`,  // Orange-Purple
-                      `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`,  // Pink-Mint
+                      `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`, // Pink-Orange
+                      `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`, // Green-Blue
+                      `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`, // Purple-Yellow
+                      `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`, // Blue-Green
+                      `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`, // Orange-Purple
+                      `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`, // Pink-Mint
                     ];
                     return colorPalettes[i % colorPalettes.length];
                   })(),
@@ -2091,13 +2105,13 @@ export default function Index() {
             </div>
           )}
 
-
-
-
-
           {/* Optimized Breathing Orbs - Reduced count for performance */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[...Array(animationConfig.enableFloatingOrbs ? (isMobile ? 2 : 6) : 0)].map((_, i) => (
+            {[
+              ...Array(
+                animationConfig.enableFloatingOrbs ? (isMobile ? 2 : 6) : 0,
+              ),
+            ].map((_, i) => (
               <div
                 key={`breath-orb-${i}`}
                 className="absolute rounded-full gpu-accelerated"
@@ -2745,10 +2759,10 @@ export default function Index() {
                                 style={{
                                   background: (() => {
                                     const colors = [
-                                      "radial-gradient(circle, rgba(255, 100, 150, 0.8) 0%, rgba(255, 180, 100, 0.5) 70%, transparent 90%)",  // Pink-Orange
-                                      "radial-gradient(circle, rgba(100, 255, 200, 0.8) 0%, rgba(100, 200, 255, 0.5) 70%, transparent 90%)",  // Mint-Blue
-                                      "radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 150, 200, 0.5) 70%, transparent 90%)",  // Purple-Pink
-                                      "radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 255, 150, 0.5) 70%, transparent 90%)",  // Orange-Green
+                                      "radial-gradient(circle, rgba(255, 100, 150, 0.8) 0%, rgba(255, 180, 100, 0.5) 70%, transparent 90%)", // Pink-Orange
+                                      "radial-gradient(circle, rgba(100, 255, 200, 0.8) 0%, rgba(100, 200, 255, 0.5) 70%, transparent 90%)", // Mint-Blue
+                                      "radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 150, 200, 0.5) 70%, transparent 90%)", // Purple-Pink
+                                      "radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 255, 150, 0.5) 70%, transparent 90%)", // Orange-Green
                                     ];
                                     return colors[i % colors.length];
                                   })(),
@@ -2767,10 +2781,10 @@ export default function Index() {
                                 style={{
                                   background: (() => {
                                     const colors = [
-                                      "linear-gradient(45deg, rgba(255, 100, 200, 0.7), rgba(100, 255, 150, 0.6))",  // Pink-Green
-                                      "linear-gradient(45deg, rgba(150, 100, 255, 0.7), rgba(255, 200, 100, 0.6))",  // Purple-Orange
-                                      "linear-gradient(45deg, rgba(100, 200, 255, 0.7), rgba(255, 150, 100, 0.6))",  // Blue-Orange
-                                      "linear-gradient(45deg, rgba(200, 255, 100, 0.7), rgba(255, 100, 150, 0.6))",  // Green-Pink
+                                      "linear-gradient(45deg, rgba(255, 100, 200, 0.7), rgba(100, 255, 150, 0.6))", // Pink-Green
+                                      "linear-gradient(45deg, rgba(150, 100, 255, 0.7), rgba(255, 200, 100, 0.6))", // Purple-Orange
+                                      "linear-gradient(45deg, rgba(100, 200, 255, 0.7), rgba(255, 150, 100, 0.6))", // Blue-Orange
+                                      "linear-gradient(45deg, rgba(200, 255, 100, 0.7), rgba(255, 100, 150, 0.6))", // Green-Pink
                                     ];
                                     return colors[i % colors.length];
                                   })(),
@@ -2789,10 +2803,10 @@ export default function Index() {
                                 style={{
                                   background: (() => {
                                     const colors = [
-                                      "conic-gradient(from 0deg, rgba(255, 150, 100, 0.7), rgba(100, 255, 200, 0.6), rgba(200, 100, 255, 0.7), rgba(255, 200, 150, 0.6))",  // Warm Rainbow
-                                      "conic-gradient(from 90deg, rgba(100, 255, 150, 0.7), rgba(255, 100, 200, 0.6), rgba(150, 200, 255, 0.7), rgba(255, 180, 100, 0.6))",  // Cool Rainbow
-                                      "conic-gradient(from 180deg, rgba(200, 150, 255, 0.7), rgba(255, 200, 100, 0.6), rgba(100, 255, 180, 0.7), rgba(255, 150, 200, 0.6))",  // Pastel Rainbow
-                                      "conic-gradient(from 270deg, rgba(255, 200, 150, 0.7), rgba(150, 255, 200, 0.6), rgba(200, 150, 255, 0.7), rgba(255, 180, 150, 0.6))",  // Sunset Rainbow
+                                      "conic-gradient(from 0deg, rgba(255, 150, 100, 0.7), rgba(100, 255, 200, 0.6), rgba(200, 100, 255, 0.7), rgba(255, 200, 150, 0.6))", // Warm Rainbow
+                                      "conic-gradient(from 90deg, rgba(100, 255, 150, 0.7), rgba(255, 100, 200, 0.6), rgba(150, 200, 255, 0.7), rgba(255, 180, 100, 0.6))", // Cool Rainbow
+                                      "conic-gradient(from 180deg, rgba(200, 150, 255, 0.7), rgba(255, 200, 100, 0.6), rgba(100, 255, 180, 0.7), rgba(255, 150, 200, 0.6))", // Pastel Rainbow
+                                      "conic-gradient(from 270deg, rgba(255, 200, 150, 0.7), rgba(150, 255, 200, 0.6), rgba(200, 150, 255, 0.7), rgba(255, 180, 150, 0.6))", // Sunset Rainbow
                                     ];
                                     return colors[i % colors.length];
                                   })(),
@@ -4165,8 +4179,6 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       >
         {/* Enhanced Background Elements - Ultra Cool About Us Edition */}
 
-
-
         {/* Animated Noise Texture */}
         <div
           className="absolute inset-0 opacity-5 animate-noise"
@@ -4639,8 +4651,6 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           }}
                         />
                       ))}
-
-
                     </div>
 
                     {/* Glass Reflection */}
@@ -4715,8 +4725,6 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         transition={{ duration: 1 }}
       >
         {/* Enhanced Background Elements - Copy from Home Section */}
-
-
 
         {/* Animated Noise Texture */}
         <div
@@ -5186,8 +5194,6 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         transition={{ duration: 1 }}
       >
         {/* Enhanced Background Elements - Copy from Home Section */}
-
-
 
         {/* Animated Noise Texture */}
         <div
@@ -5755,8 +5761,6 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       >
         {/* Enhanced Background Elements - Contact Section Eye Candy */}
 
-
-
         {/* Animated Noise Texture - Enhanced for contact */}
         {!isMobile && (
           <div
@@ -5769,7 +5773,15 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Colorful Floating Particles - Same as main section */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(animationConfig?.enableBackgroundParticles ? (isMobile ? 3 : 15) : 6)].map((_, i) => (
+          {[
+            ...Array(
+              animationConfig?.enableBackgroundParticles
+                ? isMobile
+                  ? 3
+                  : 15
+                : 6,
+            ),
+          ].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute rounded-full opacity-70 gpu-accelerated"
@@ -5780,12 +5792,12 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 height: `${3 + (i % 4)}px`,
                 background: (() => {
                   const colorPalettes = [
-                    `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`,  // Pink-Orange
-                    `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`,  // Green-Blue
-                    `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`,  // Purple-Yellow
-                    `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`,  // Blue-Green
-                    `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`,  // Orange-Purple
-                    `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`,  // Pink-Mint
+                    `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`, // Pink-Orange
+                    `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`, // Green-Blue
+                    `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`, // Purple-Yellow
+                    `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`, // Blue-Green
+                    `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`, // Orange-Purple
+                    `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`, // Pink-Mint
                   ];
                   return colorPalettes[i % colorPalettes.length];
                 })(),
@@ -5909,8 +5921,6 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             }}
           />
         </div>
-
-
 
         {/* Main Content Container */}
         <div className="relative min-h-screen py-2 sm:py-4 lg:py-6 section-container">
