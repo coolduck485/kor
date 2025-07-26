@@ -571,7 +571,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██��� ██║   ██║██╔══██╗
+██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
@@ -4842,13 +4842,41 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     </div>
 
-                    {/* Project Visual - Smaller */}
-                    <div className={`w-full h-32 sm:h-36 rounded-xl mb-4 bg-gradient-to-br ${project.image} relative overflow-hidden`} style={{ boxShadow: "0 0 15px rgba(73, 146, 255, 0.25)" }}>
-                      <div className="absolute inset-0 bg-black/20" />
-                      <motion.div className="absolute inset-0 bg-white/20" initial={{ x: '-100%' }} animate={isVisible ? { x: '100%' } : { x: '-100%' }} transition={{ duration: 1.5, delay: 0.8 + index * 0.2 }} />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-lg flex items-center justify-center" style={{ boxShadow: "0 0 12px rgba(255, 255, 255, 0.3)" }}>
-                          <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(73, 146, 255, 0.8)" }} />
+                    {/* Project Visual - Inspired by the provided image */}
+                    <div className="w-full h-32 sm:h-36 rounded-xl mb-4 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(30, 30, 50, 0.9) 0%, rgba(10, 10, 30, 0.9) 100%)", boxShadow: "0 0 15px rgba(73, 146, 255, 0.25)" }}>
+                      {/* Dark mesh background similar to provided image */}
+                      <div className="absolute inset-0" style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E")`,
+                        backgroundSize: "20px 20px"
+                      }} />
+
+                      {/* Gradient overlay */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${project.image} opacity-60`} />
+
+                      {/* Scanning effect */}
+                      <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" initial={{ x: '-100%' }} animate={isVisible ? { x: '100%' } : { x: '-100%' }} transition={{ duration: 1.5, delay: 0.8 + index * 0.2 }} />
+
+                      {/* Content overlay similar to the provided image style */}
+                      <div className="absolute inset-0 flex flex-col justify-between p-3">
+                        {/* Top indicator */}
+                        <div className="flex justify-between items-start">
+                          <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(73, 146, 255, 0.8)" }} />
+                          <div className="text-xs text-white/60 font-mono">
+                            {String(index + 1).padStart(2, '0')}
+                          </div>
+                        </div>
+
+                        {/* Bottom status bar */}
+                        <div className="flex items-center space-x-2">
+                          <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+                            <motion.div
+                              className="h-full bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
+                              initial={{ width: "0%" }}
+                              animate={isVisible ? { width: "75%" } : { width: "0%" }}
+                              transition={{ duration: 2, delay: 1 + index * 0.3 }}
+                            />
+                          </div>
+                          <div className="text-xs text-white/60 font-mono">LIVE</div>
                         </div>
                       </div>
                     </div>
