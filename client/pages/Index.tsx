@@ -1744,7 +1744,7 @@ export default function Index() {
 
       {/* Mobile Hamburger Menu - Only show in home section */}
       {currentSection === 0 && (
-        <div className="sm:hidden fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
+        <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
           <div className="relative pointer-events-auto">
             <MobileHamburgerMenu
               isOpen={isMobileMenuOpen}
