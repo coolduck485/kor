@@ -725,7 +725,7 @@ export default function Index() {
                 <div className="loading-indicators">
                   <span>█▓▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░▒▓█</span>
+                  <span>░▒▓��</span>
                 </div>
               </motion.div>
 
@@ -5147,7 +5147,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div>
                     <input
                       type="text"
