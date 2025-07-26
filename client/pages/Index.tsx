@@ -2755,7 +2755,7 @@ export default function Index() {
 
             {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
             <motion.div
-              className="hidden sm:flex absolute inset-0 items-center justify-center"
+              className="flex absolute inset-0 items-center justify-center"
               initial={{
                 opacity: 0,
                 scale: 0.8,
