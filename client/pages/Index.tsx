@@ -4605,7 +4605,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 >
                   {/* Service Card */}
                   <div
-                    className="relative p-8 rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
+                    className="relative p-2 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl lg:rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
                     style={{
                       background: "rgba(255, 255, 255, 0.05)",
                       border: "2px solid rgba(255, 255, 255, 0.1)",
@@ -4623,9 +4623,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     </div>
 
                     {/* Service Title - positioned at top of card */}
-                    <div className="relative z-10 mb-6">
+                    <div className="relative z-10 mb-2 sm:mb-4 lg:mb-6">
                       <h3
-                        className={`text-xl font-bold warm-glow-text text-center ${
+                        className={`text-sm sm:text-lg lg:text-xl font-bold warm-glow-text text-center ${
                           theme === "light" ? "text-gray-900" : "text-white"
                         }`}
                         style={{
@@ -4638,24 +4638,24 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                     {/* Icon - centered */}
                     <motion.div
-                      className="relative z-10 mb-6 flex justify-center"
+                      className="relative z-10 mb-2 sm:mb-4 lg:mb-6 flex justify-center"
                       whileHover={{ rotate: 10, scale: 1.2 }}
                       transition={{ duration: 0.3 }}
                     >
                       <div
-                        className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
+                        className={`w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
                         style={{
                           boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
                         }}
                       >
-                        <service.icon className="w-8 h-8 text-white" />
+                        <service.icon className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
                       </div>
                     </motion.div>
 
                     {/* Description Content */}
                     <div className="relative z-10 text-center">
                       <p
-                        className={`text-sm leading-relaxed ${
+                        className={`text-xs sm:text-sm leading-relaxed ${
                           theme === "light" ? "text-gray-600" : "text-gray-300"
                         }`}
                         style={{
