@@ -702,9 +702,6 @@
   .scroll-indicator.fixed.bottom-8 {
     bottom: 40px !important;
     z-index: 9999 !important;
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
   }
 
   /* Move back to top button higher on short screens */
