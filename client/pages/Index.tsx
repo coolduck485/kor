@@ -3060,6 +3060,28 @@ export default function Index() {
             min-height: 200px !important;
             border-radius: 0.75rem !important;
           }
+
+          /* iPhone 14 specific optimizations */
+          .section-container {
+            min-height: 100vh !important;
+            padding-top: 3rem !important;
+            padding-bottom: 5rem !important;
+          }
+
+          .section-content {
+            padding-top: 1.5rem !important;
+            padding-bottom: 4rem !important;
+          }
+
+          /* Reduce vertical spacing on small screens */
+          h1 {
+            margin-bottom: 1.5rem !important;
+          }
+
+          /* Optimize text sizing for readability */
+          .warm-glow-text {
+            line-height: 1.2 !important;
+          }
         }
 
         /* Improve button tap targets on mobile */
