@@ -817,7 +817,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█������█████����██████ 60%
+                      CPU: ███��█������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2105,7 +2105,7 @@ export default function Index() {
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {[
               ...Array(
-                animationConfig.enableFloatingOrbs ? (isMobile ? 2 : 6) : 0,
+                animationConfig.enableFloatingOrbs ? 6 : 0,
               ),
             ].map((_, i) => (
               <div
