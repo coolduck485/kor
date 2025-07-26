@@ -316,28 +316,7 @@
   }
 }
 
-@keyframes cosmic-drift {
-  0% {
-    transform: translate(0px, 0px) rotate(0deg) scale(1);
-    opacity: 0.6;
-  }
-  25% {
-    transform: translate(20px, -15px) rotate(90deg) scale(1.1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: translate(-10px, -30px) rotate(180deg) scale(1.2);
-    opacity: 1;
-  }
-  75% {
-    transform: translate(-25px, -10px) rotate(270deg) scale(1.1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(0px, 0px) rotate(360deg) scale(1);
-    opacity: 0.6;
-  }
-}
+
 
 
 
@@ -357,9 +336,7 @@
 }
 
 /* Eye-catching utility classes */
-.cosmic-particles {
-  animation: cosmic-drift 12s ease-in-out infinite;
-}
+
 
 .rainbow-glow {
   background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
