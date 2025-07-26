@@ -56,6 +56,7 @@ export default function Index() {
   // Black transition animation state
   const [isBlackTransition, setIsBlackTransition] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(true);
+  const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
 
   // Welcome notification - shows once per page load
   useEffect(() => {
@@ -675,7 +676,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══█����
+██╔═██╗ ��█║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
