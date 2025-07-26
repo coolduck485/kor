@@ -1870,7 +1870,7 @@ export default function Index() {
             />
           )}
 
-          {/* Spectacular Full-Width Wavy Aurora Curtains - Desktop Only (992px+) */}
+          {/* Enhanced Spectacular Full-Width Wavy Aurora Curtains - Desktop Only (992px+) */}
           {isHighPerformance && (
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 hidden lg:block">
               {/* Primary aurora curtain - Top layer */}
@@ -1937,6 +1937,126 @@ export default function Index() {
                   transform: "skewY(0.3deg)",
                 }}
               />
+
+              {/* NEW DESKTOP EYE CANDY - Enhanced Effects */}
+
+              {/* Floating Energy Orbs - Desktop Only */}
+              <div className="absolute inset-0">
+                {[...Array(12)].map((_, i) => (
+                  <div
+                    key={`desktop-orb-${i}`}
+                    className="absolute rounded-full"
+                    style={{
+                      left: `${8 + ((i * 7) % 84)}%`,
+                      top: `${12 + ((i * 11) % 76)}%`,
+                      width: `${6 + (i % 4) * 2}px`,
+                      height: `${6 + (i % 4) * 2}px`,
+                      background: [
+                        "radial-gradient(circle, rgba(34, 197, 94, 0.9) 0%, rgba(34, 197, 94, 0.2) 60%, transparent 80%)",
+                        "radial-gradient(circle, rgba(59, 130, 246, 0.9) 0%, rgba(59, 130, 246, 0.2) 60%, transparent 80%)",
+                        "radial-gradient(circle, rgba(147, 51, 234, 0.9) 0%, rgba(147, 51, 234, 0.2) 60%, transparent 80%)",
+                        "radial-gradient(circle, rgba(236, 72, 153, 0.9) 0%, rgba(236, 72, 153, 0.2) 60%, transparent 80%)",
+                        "radial-gradient(circle, rgba(6, 182, 212, 0.9) 0%, rgba(6, 182, 212, 0.2) 60%, transparent 80%)",
+                        "radial-gradient(circle, rgba(245, 158, 11, 0.9) 0%, rgba(245, 158, 11, 0.2) 60%, transparent 80%)",
+                      ][i % 6],
+                      animation: `desktop-float-${(i % 4) + 1} ${4 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                      filter: `blur(${1 + (i % 2) * 0.5}px)`,
+                      boxShadow: `0 0 ${12 + (i % 3) * 6}px currentColor`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Pulsing Corner Accents - Desktop Enhanced */}
+              <div className="absolute top-8 left-8 w-24 h-24 rounded-full opacity-40">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, rgba(59, 130, 246, 0.6) 40%, rgba(147, 51, 234, 0.3) 70%, transparent 90%)",
+                    animation: "desktop-pulse-corner 4s ease-in-out infinite",
+                    filter: "blur(6px)",
+                  }}
+                />
+              </div>
+              <div className="absolute top-8 right-8 w-20 h-20 rounded-full opacity-35">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(236, 72, 153, 0.6) 40%, rgba(59, 130, 246, 0.3) 70%, transparent 90%)",
+                    animation: "desktop-pulse-corner 3.5s ease-in-out infinite 0.7s",
+                    filter: "blur(5px)",
+                  }}
+                />
+              </div>
+              <div className="absolute bottom-8 left-8 w-28 h-28 rounded-full opacity-45">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(34, 197, 94, 0.6) 40%, rgba(6, 182, 212, 0.3) 70%, transparent 90%)",
+                    animation: "desktop-pulse-corner 4.5s ease-in-out infinite 1.2s",
+                    filter: "blur(7px)",
+                  }}
+                />
+              </div>
+              <div className="absolute bottom-8 right-8 w-22 h-22 rounded-full opacity-38">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(245, 158, 11, 0.6) 40%, rgba(34, 197, 94, 0.3) 70%, transparent 90%)",
+                    animation: "desktop-pulse-corner 3.8s ease-in-out infinite 0.4s",
+                    filter: "blur(4px)",
+                  }}
+                />
+              </div>
+
+              {/* Animated Wave Patterns - Desktop Only */}
+              <div className="absolute inset-0">
+                {[...Array(4)].map((_, i) => (
+                  <div
+                    key={`desktop-wave-${i}`}
+                    className="absolute w-full h-40 opacity-30"
+                    style={{
+                      top: `${15 + i * 20}%`,
+                      background: `linear-gradient(120deg,
+                        transparent 0%,
+                        rgba(34, 197, 94, ${0.25 + i * 0.08}) 20%,
+                        rgba(59, 130, 246, ${0.35 + i * 0.08}) 40%,
+                        rgba(147, 51, 234, ${0.3 + i * 0.08}) 60%,
+                        rgba(236, 72, 153, ${0.25 + i * 0.08}) 80%,
+                        transparent 100%)`,
+                      borderRadius: `${50 + i * 15}% ${70 - i * 8}% ${40 + i * 12}% ${80 - i * 12}% / ${60 + i * 10}% ${30 - i * 4}% ${50 + i * 8}% ${70 - i * 15}%`,
+                      filter: `blur(${10 + i * 3}px)`,
+                      animation: `desktop-wave-${i + 1} ${8 + i * 2}s ease-in-out infinite`,
+                      transform: `skewY(${-1.5 + i * 0.5}deg) rotate(${i * 1.5}deg)`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Desktop Shimmer Lines */}
+              <div className="absolute inset-0">
+                {[...Array(3)].map((_, i) => (
+                  <div
+                    key={`desktop-shimmer-${i}`}
+                    className="absolute w-full h-1 opacity-25"
+                    style={{
+                      background: `linear-gradient(90deg,
+                        transparent 0%,
+                        rgba(255, 255, 255, 0.8) 30%,
+                        rgba(59, 130, 246, 0.9) 50%,
+                        rgba(255, 255, 255, 0.8) 70%,
+                        transparent 100%)`,
+                      animation: `desktop-shimmer ${10 + i * 3}s linear infinite ${i * 2}s`,
+                      filter: "blur(2px)",
+                      boxShadow: "0 0 15px rgba(255, 255, 255, 0.5)",
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           )}
 
@@ -2028,26 +2148,7 @@ export default function Index() {
                 />
               </div>
 
-              {/* Dynamic Scan Lines - Mobile/Tablet Only */}
-              <div className="absolute inset-0">
-                {[...Array(2)].map((_, i) => (
-                  <div
-                    key={`mobile-scan-${i}`}
-                    className="absolute w-full h-0.5 opacity-30"
-                    style={{
-                      background: `linear-gradient(90deg,
-                        transparent 0%,
-                        rgba(34, 197, 94, 0.8) 20%,
-                        rgba(59, 130, 246, 1) 50%,
-                        rgba(147, 51, 234, 0.8) 80%,
-                        transparent 100%)`,
-                      animation: `mobile-scan-line ${6 + i * 2}s linear infinite ${i * 3}s`,
-                      filter: "blur(1px)",
-                      boxShadow: "0 0 10px currentColor",
-                    }}
-                  />
-                ))}
-              </div>
+              {/* Scanlines removed for mobile/tablet devices */}
             </div>
           )}
 
