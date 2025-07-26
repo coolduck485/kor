@@ -5806,10 +5806,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 <div className="space-y-4">
                   {/* Message Us Header */}
                   <div>
-                    <h3 className={`text-base font-semibold mb-3 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                    <h3 className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
                       Message us:
                     </h3>
-                    <div className="grid grid-cols-1 gap-3">
+                    <div className="grid grid-cols-1 gap-2">
                       {[
                         {
                           name: "Instagram",
@@ -5833,7 +5833,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         <motion.button
                           key={social.name}
                           onClick={() => window.open(social.url, "_blank")}
-                          className="group relative p-3 rounded-xl backdrop-blur-lg border transition-all duration-200 hover:scale-[1.02] overflow-hidden will-change-transform text-left"
+                          className="group relative p-2 rounded-lg backdrop-blur-lg border transition-all duration-200 hover:scale-[1.02] overflow-hidden will-change-transform text-left"
                           style={{
                             background: "rgba(255, 255, 255, 0.05)",
                             border: "2px solid rgba(255, 255, 255, 0.1)",
