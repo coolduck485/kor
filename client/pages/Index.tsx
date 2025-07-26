@@ -477,7 +477,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██��═══██╗██╔═══██╗
+██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -3094,7 +3094,20 @@ function MobileHamburgerMenu({
                           ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
                           : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
                     }}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      const sectionMap: { [key: string]: number } = {
+                        'About us': 1,
+                        'Services': 2,
+                        'Portfolio': 3,
+                        'Contact us': 4
+                      };
+                      const sectionIndex = sectionMap[item.text];
+                      if (sectionIndex) {
+                        const event = new CustomEvent('scrollToSection', { detail: sectionIndex });
+                        window.dispatchEvent(event);
+                      }
+                    }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = `scale(1.05)`;
                       e.currentTarget.style.boxShadow =
