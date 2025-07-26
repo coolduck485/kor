@@ -593,7 +593,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
-█████╔╝ ██║   ██║██████╔╝
+█████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
@@ -4785,17 +4785,25 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
       },
     ];
 
-    // Responsive projects per page: 2 on mobile, 4 on desktop
-    const [isMobile, setIsMobile] = useState(false);
+    // Responsive projects per page: 2 on mobile/tablet, 3 on desktop
+    const [screenSize, setScreenSize] = useState('desktop');
 
     useEffect(() => {
-      const checkMobile = () => setIsMobile(window.innerWidth <= 640);
-      checkMobile();
-      window.addEventListener("resize", checkMobile);
-      return () => window.removeEventListener("resize", checkMobile);
+      const checkScreenSize = () => {
+        if (window.innerWidth <= 640) {
+          setScreenSize('mobile');
+        } else if (window.innerWidth <= 991) {
+          setScreenSize('tablet');
+        } else {
+          setScreenSize('desktop');
+        }
+      };
+      checkScreenSize();
+      window.addEventListener("resize", checkScreenSize);
+      return () => window.removeEventListener("resize", checkScreenSize);
     }, []);
 
-    const projectsPerPage = isMobile ? 2 : 4;
+    const projectsPerPage = screenSize === 'desktop' ? 3 : 2;
     const totalPages = Math.ceil(allProjects.length / projectsPerPage);
 
     // Get current page projects
