@@ -739,7 +739,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
-██║ █��╔╝��█╔═���═██╗█���╔��══██╗
+██║ █��╔╝��█���═���═██╗█���╔��══██╗
 █████╔╝ █������   █��║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████���╝██║  ██║
@@ -1933,6 +1933,54 @@ export default function Index() {
                 backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
               }}
             />
+          )}
+
+          {/* Wavy Blue Aurora - Northern Lights Effect */}
+          {!isMobile && isHighPerformance && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40">
+              {/* Primary aurora wave */}
+              <div
+                className="absolute aurora-wave-1"
+                style={{
+                  top: '20%',
+                  left: '-20%',
+                  right: '-20%',
+                  height: '200px',
+                  background: 'linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), rgba(34, 197, 94, 0.4), rgba(14, 165, 233, 0.5), transparent)',
+                  borderRadius: '50% 50% 50% 50% / 20% 20% 20% 20%',
+                  filter: 'blur(30px)',
+                  animation: 'aurora-flow-1 20s ease-in-out infinite',
+                }}
+              />
+              {/* Secondary aurora wave */}
+              <div
+                className="absolute aurora-wave-2"
+                style={{
+                  top: '40%',
+                  left: '-30%',
+                  right: '-30%',
+                  height: '150px',
+                  background: 'linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.5), rgba(59, 130, 246, 0.7), rgba(34, 197, 94, 0.3), transparent)',
+                  borderRadius: '50% 50% 50% 50% / 30% 30% 30% 30%',
+                  filter: 'blur(25px)',
+                  animation: 'aurora-flow-2 25s ease-in-out infinite',
+                }}
+              />
+              {/* Tertiary aurora wave */}
+              <div
+                className="absolute aurora-wave-3"
+                style={{
+                  top: '60%',
+                  left: '-25%',
+                  right: '-25%',
+                  height: '180px',
+                  background: 'linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.4), rgba(14, 165, 233, 0.6), rgba(59, 130, 246, 0.5), transparent)',
+                  borderRadius: '50% 50% 50% 50% / 25% 25% 25% 25%',
+                  filter: 'blur(35px)',
+                  animation: 'aurora-flow-3 30s ease-in-out infinite',
+                }}
+              />
+            </div>
           )}
 
           {/* Optimized Floating Ambient Particles - Reduced count for 60fps */}
