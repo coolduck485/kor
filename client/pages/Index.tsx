@@ -5602,7 +5602,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
             {/* Contact Title */}
-            <div className="text-center mb-10 sm:mb-16">
+            <div className="text-center mb-4 sm:mb-8">
               <h1
                 className={`contact-title font-poppins text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
               >
