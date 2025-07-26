@@ -62,6 +62,20 @@ export default function Index() {
     return <>{children}</>;
   };
 
+  // Mobile-optimized animation config
+  const getMobileAnimationProps = (desktopProps: any) => {
+    if (!isMobile) return desktopProps;
+
+    return {
+      ...desktopProps,
+      transition: {
+        ...desktopProps.transition,
+        duration: Math.min(desktopProps.transition?.duration || 0.5, 0.3),
+        ease: "easeOut"
+      }
+    };
+  };
+
   // Black transition animation state
   const [isBlackTransition, setIsBlackTransition] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(true);
@@ -810,7 +824,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ████████��█████████████ 50%
+                      RAM: █���██████��█████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
