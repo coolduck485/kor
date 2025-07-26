@@ -5699,7 +5699,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
               {/* Contact Info */}
               <motion.div
-                className="space-y-3 sm:space-y-4 lg:space-y-6 mt-2 sm:mt-4 lg:mt-0"
+                className="grid grid-cols-1 sm:space-y-4 lg:space-y-6 gap-3 sm:gap-0 mt-2 sm:mt-4 lg:mt-0 sm:block"
                 initial={{ x: 50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
