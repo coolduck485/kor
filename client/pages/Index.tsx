@@ -3949,7 +3949,7 @@ function OrbFloatingButton({
 
   return (
     <div
-      className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] animate-gentleFloat hidden sm:block"
+      className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] animate-gentleFloat lg:hidden"
       style={
         {
           "--mobile-x": `${Math.max(-120, Math.min(120, x * radius * mobileMultiplier + xOffset))}px`,
