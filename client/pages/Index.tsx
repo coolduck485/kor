@@ -710,7 +710,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: █████████████████████�� 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -6023,7 +6023,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                 {/* Desktop Sidebar */}
                 <motion.div
-                  className="xl:col-span-2"
+                  className="lg:col-span-2"
                   initial={{ x: 50, opacity: 0 }}
                   animate={
                     isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
