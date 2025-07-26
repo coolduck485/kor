@@ -5642,7 +5642,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               >
                 <form
                   onSubmit={handleSubmit}
-                  className="space-y-4 sm:space-y-6"
+                  className="contact-form space-y-4 sm:space-y-6"
                 >
                   <div>
                     <input
