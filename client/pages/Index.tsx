@@ -749,7 +749,7 @@ export default function Index() {
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████���╝██║  ██║
-╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ���═╝`}
+╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1875,9 +1875,9 @@ export default function Index() {
             />
           )}
 
-          {/* Spectacular Full-Width Wavy Aurora Curtains */}
+          {/* Spectacular Full-Width Wavy Aurora Curtains - Responsive for mobile/tablet */}
           {isHighPerformance && (
-            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 scale-90 sm:scale-95 lg:scale-100">
               {/* Primary aurora curtain - Top layer */}
               <div
                 className="absolute aurora-curtain-1"
