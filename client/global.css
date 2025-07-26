@@ -605,6 +605,9 @@
   /* Ensure scroll indicators don't block content */
   .scroll-indicator.fixed.bottom-8 {
     bottom: 60px !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   /* Move back to top button up by 100px on mobile */
