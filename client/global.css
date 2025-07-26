@@ -583,6 +583,14 @@
   animation: spin-slow 4s linear infinite;
 }
 
+.animate-swipe-up {
+  animation: swipeUp 2s ease-in-out infinite;
+}
+
+.animate-swipe-up-delayed {
+  animation: swipeUpDelayed 2s ease-in-out infinite 0.3s;
+}
+
 /* Mobile-friendly section styling */
 @media (max-width: 640px) {
   .section-container {
