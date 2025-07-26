@@ -113,16 +113,16 @@ export default function Index() {
   const slideInFromSide = (direction: "left" | "right") => ({
     hidden: {
       opacity: 0,
-      x: direction === "left" ? -100 : 100,
-      scale: 0.9,
+      x: direction === "left" ? -60 : 60,
+      scale: 0.95,
     },
     visible: {
       opacity: 1,
       x: 0,
       scale: 1,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 0.6,
+        ease: "easeOut",
       },
     },
   });
