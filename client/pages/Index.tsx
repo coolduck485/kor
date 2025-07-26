@@ -5074,8 +5074,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       onClick={() => setCurrentPage(index)}
                       className={`transition-all duration-300 ${
                         currentPage === index
-                          ? "w-8 h-2 bg-blue-400 rounded-full scale-125"
-                          : "w-2 h-2 bg-white/20 hover:bg-white/40 rounded-full"
+                          ? "w-6 sm:w-8 h-1.5 sm:h-2 bg-blue-400 rounded-full scale-110 sm:scale-125"
+                          : "w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/20 hover:bg-white/40 rounded-full"
                       }`}
                       style={{
                         boxShadow:
