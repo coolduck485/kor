@@ -751,7 +751,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄►◄►◄►</span>
+                  <span className="text-green-400 ml-4">◄��◄►◄►</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -4543,7 +4543,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle - matching development services style */}
-            <div className="text-center mb-6">
+            <div className="text-center mb-3">
               <div className="relative">
                 {/* Background glow effect */}
                 <div
@@ -4579,7 +4579,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   />
                 ))}
 
-                <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10">
                   <span
                     className={`relative inline-block ${
                       theme === "light" ? "text-gray-900" : "text-white"
