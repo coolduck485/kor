@@ -570,7 +570,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
-█████╔╝ ██║   ██║██████╔╝
+█████╔╝ ██║   ██║██████╔���
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
@@ -4609,9 +4609,15 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
 const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible }, ref) => {
-    const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
 
-    const projects = [
+    // ===== PORTFOLIO PROJECTS =====
+    // Easy to add more projects - just add them to this array
+    // Page 1: First 4 projects
+    // Page 2: Next 4 projects
+    // To add more projects, simply add them here and they'll automatically distribute
+    const allProjects = [
+      // === PAGE 1 PROJECTS ===
       {
         title: "E-Commerce Platform",
         description: "Modern shopping experience with AI recommendations",
@@ -4636,6 +4642,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         tech: ["Angular", "IoT", "Cloud"],
         image: "from-orange-500 to-red-500",
       },
+
+      // === PAGE 2 PROJECTS ===
       {
         title: "AI Analytics Suite",
         description: "Machine learning powered business intelligence platform",
@@ -4662,47 +4670,27 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
       },
     ];
 
-    // Calculate items per slide based on screen size
-    const getItemsPerSlide = () => {
-      if (typeof window !== 'undefined') {
-        if (window.innerWidth >= 1280) return 4; // xl
-        if (window.innerWidth >= 1024) return 3; // lg
-        if (window.innerWidth >= 640) return 2; // sm
-        return 1; // mobile
+    // Simple 2-page system: 4 projects per page
+    const projectsPerPage = 4;
+    const totalPages = Math.ceil(allProjects.length / projectsPerPage);
+
+    // Get current page projects
+    const getCurrentPageProjects = () => {
+      const startIndex = currentPage * projectsPerPage;
+      return allProjects.slice(startIndex, startIndex + projectsPerPage);
+    };
+
+    // Navigation functions - only move if there's somewhere to go
+    const nextPage = () => {
+      if (currentPage < totalPages - 1) {
+        setCurrentPage(currentPage + 1);
       }
-      return 4; // default
     };
 
-    const [itemsPerSlide, setItemsPerSlide] = useState(getItemsPerSlide());
-
-    // Update items per slide on window resize and reset slide if needed
-    useEffect(() => {
-      const handleResize = () => {
-        const newItemsPerSlide = getItemsPerSlide();
-        setItemsPerSlide(newItemsPerSlide);
-        // Reset to first slide if current slide would be out of bounds
-        const newTotalSlides = Math.ceil(projects.length / newItemsPerSlide);
-        setCurrentSlide((prev) => Math.min(prev, newTotalSlides - 1));
-      };
-
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, [projects.length]);
-
-    const totalSlides = Math.ceil(projects.length / itemsPerSlide);
-
-    const nextSlide = () => {
-      setCurrentSlide((prev) => {
-        const next = prev + 1;
-        return next >= totalSlides ? 0 : next;
-      });
-    };
-
-    const prevSlide = () => {
-      setCurrentSlide((prev) => {
-        const previous = prev - 1;
-        return previous < 0 ? totalSlides - 1 : previous;
-      });
+    const prevPage = () => {
+      if (currentPage > 0) {
+        setCurrentPage(currentPage - 1);
+      }
     };
 
     return (
