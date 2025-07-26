@@ -594,7 +594,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══██╗
+██╔═██╗ ██���   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
@@ -746,7 +746,7 @@ export default function Index() {
                 </div>
 
                 <div className="loading-indicators">
-                  <span>█▓▒░</span>
+                  <span>█▓���░</span>
                   <span className="text-amber-400">PROCESSING...</span>
                   <span>░▒▓█</span>
                 </div>
@@ -4152,7 +4152,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     results.
                   </p>
                   <p
-                    className={`text-lg leading-relaxed ${
+                    className={`text-sm sm:text-lg leading-relaxed ${
                       theme === "light" ? "text-gray-600" : "text-gray-300"
                     }`}
                     style={{
