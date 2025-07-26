@@ -3040,6 +3040,28 @@ export default function Index() {
           box-sizing: border-box;
         }
 
+        /* Mobile fixes for service cards - fill gaps in corners */
+        @media (max-width: 640px) {
+          .responsive-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.25rem !important;
+            width: 100% !important;
+            padding: 0 !important;
+          }
+
+          .responsive-grid > div {
+            width: 100% !important;
+            height: 100% !important;
+          }
+
+          .responsive-grid > div > div {
+            width: 100% !important;
+            height: 100% !important;
+            min-height: 200px !important;
+            border-radius: 0.75rem !important;
+          }
+        }
+
         /* Improve button tap targets on mobile */
         @media (max-width: 768px) {
           button {
