@@ -1701,7 +1701,7 @@ export default function Index() {
               : "bg-black"
           }`}
           initial={{ opacity: 0 }}
-          animate={{ opacity: animationStep >= 1 ? 1 : 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
@@ -6081,7 +6081,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Telegram",
                             url: "https://telegram.org",
-                            icon: "📱",
+                            icon: "���",
                             color: "from-blue-500 to-cyan-500",
                           },
                         ].map((social) => (
