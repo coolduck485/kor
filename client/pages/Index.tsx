@@ -2043,6 +2043,50 @@ export default function Index() {
             </div>
           )}
 
+          {/* Aurora Light Waves for Eye Candy */}
+          {!isMobile && isHighPerformance && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
+              {[...Array(3)].map((_, i) => (
+                <div
+                  key={`aurora-${i}`}
+                  className="absolute aurora-effect"
+                  style={{
+                    top: `${20 + i * 25}%`,
+                    left: '-100%',
+                    right: '-100%',
+                    height: '150px',
+                    background: `linear-gradient(90deg, transparent, rgba(${255 - i * 50}, ${100 + i * 50}, ${200 + i * 25}, 0.6), rgba(${100 + i * 30}, ${255 - i * 40}, ${150 + i * 50}, 0.4), transparent)`,
+                    borderRadius: '50%',
+                    filter: 'blur(40px)',
+                    animationDelay: `${i * 5}s`,
+                    animationDuration: `${15 + i * 3}s`,
+                  }}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Cosmic Particle Field */}
+          {!isMobile && isHighPerformance && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25">
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={`cosmic-${i}`}
+                  className="absolute cosmic-particles rounded-full"
+                  style={{
+                    left: `${10 + ((i * 70) % 80)}%`,
+                    top: `${15 + ((i * 40) % 70)}%`,
+                    width: `${4 + (i % 3)}px`,
+                    height: `${4 + (i % 3)}px`,
+                    background: `radial-gradient(circle, rgba(${255 - i * 20}, ${150 + i * 15}, ${200 + i * 10}, 0.9) 0%, transparent 70%)`,
+                    animationDelay: `${i * 1.5}s`,
+                    boxShadow: `0 0 ${8 + (i % 3) * 4}px rgba(255, 255, 255, 0.6)`,
+                  }}
+                />
+              ))}
+            </div>
+          )}
+
           {/* Optimized Breathing Orbs - Reduced count for performance */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {[...Array(animationConfig.enableFloatingOrbs ? (isMobile ? 2 : 6) : 0)].map((_, i) => (
