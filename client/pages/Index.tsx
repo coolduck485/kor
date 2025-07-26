@@ -817,7 +817,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ██�����█������█████��███████ 60%
+                      CPU: ██�����█������█████��███��███ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -5289,7 +5289,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 {[...Array(6)].map((_, i) => (
                   <div
                     key={`energy-${i}`}
-                    className="absolute rounded-full pointer-events-none hidden sm:block"
+                    className="absolute rounded-full pointer-events-none"
                     style={{
                       left: `${20 + ((i * 60) % 160)}%`,
                       top: `${30 + ((i * 40) % 60)}%`,
