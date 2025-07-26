@@ -1811,3 +1811,31 @@
   transform: scale(1.1) !important;
   filter: brightness(1.4) saturate(1.4) !important;
 }
+
+/* Smooth Button Scaling Animation */
+@keyframes smooth-scale-in {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+    filter: blur(3px);
+  }
+  30% {
+    transform: scale(0.7);
+    opacity: 0.6;
+    filter: blur(1px);
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 0.9;
+    filter: blur(0px);
+  }
+  80% {
+    transform: scale(0.98);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
