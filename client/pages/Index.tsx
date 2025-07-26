@@ -633,7 +633,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ███��������█╗
+                  {`██╗  ██╗ ██████╗ ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -1708,9 +1708,9 @@ export default function Index() {
               ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
               : "bg-black"
           }`}
-          variants={containerVariants}
-          initial="hidden"
-          animate={!isLoading && isLoaded ? "visible" : "hidden"}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: animationStep >= 1 ? 1 : 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
           {/* Left Corner Visual Elements for Mobile Balance */}
