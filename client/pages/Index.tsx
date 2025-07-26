@@ -781,7 +781,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
-██║  ██╗╚██████���╝██║  ██║
+██║  ██╗╚██████�����╝██║  ██║
 ╚═╝  ╚═╝ ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -4047,6 +4047,7 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
           size={button.size}
           accent={button.accent}
           theme={theme}
+          animationStep={animationStep}
           onClick={() => {
             if (button.text === "About us") scrollToSection(1);
             else if (button.text === "Services") scrollToSection(2);
@@ -4072,6 +4073,7 @@ interface OrbFloatingButtonProps {
   size: string;
   accent: string;
   theme: "light" | "dark";
+  animationStep: number;
   onClick?: () => void;
 }
 
