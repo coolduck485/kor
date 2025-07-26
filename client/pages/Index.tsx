@@ -1801,7 +1801,11 @@ export default function Index() {
           <motion.div
             className="absolute inset-0 pointer-events-none overflow-hidden"
             initial={{ opacity: 0, scale: 0.5 }}
-            animate={animationStep >= 1 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+            animate={
+              animationStep >= 1
+                ? { opacity: 1, scale: 1 }
+                : { opacity: 0, scale: 0.5 }
+            }
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
             {[...Array(25)].map((_, i) => (
@@ -1819,13 +1823,17 @@ export default function Index() {
                   transform: `scale(${0.5 + (i % 3) * 0.3})`,
                 }}
                 initial={{ scale: 0, rotate: 0 }}
-                animate={animationStep >= 1 ? { scale: 1, rotate: 360 } : { scale: 0, rotate: 0 }}
+                animate={
+                  animationStep >= 1
+                    ? { scale: 1, rotate: 360 }
+                    : { scale: 0, rotate: 0 }
+                }
                 transition={{
                   duration: 0.8,
                   delay: i * 0.03,
                   ease: "backOut",
                   type: "spring",
-                  stiffness: 200
+                  stiffness: 200,
                 }}
               />
             ))}
@@ -2064,24 +2072,45 @@ export default function Index() {
               <div className="space-y-4 sm:space-y-8">
                 {/* Primary indicator */}
                 <motion.div
-                className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-400/30 animate-gentle-pulse"
-                initial={{ opacity: 0, x: -50, scale: 0 }}
-                animate={animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}}
-                transition={{ delay: 0.2, duration: 0.8, type: "spring", stiffness: 200 }}
-              />
+                  className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-400/30 animate-gentle-pulse"
+                  initial={{ opacity: 0, x: -50, scale: 0 }}
+                  animate={
+                    animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}
+                  }
+                  transition={{
+                    delay: 0.2,
+                    duration: 0.8,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
+                />
                 {/* Secondary indicators */}
                 <motion.div
                   className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-blue-300/20 animate-gentle-pulse"
                   initial={{ opacity: 0, x: -50, scale: 0 }}
-                  animate={animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}}
-                  transition={{ delay: 0.4, duration: 0.8, type: "spring", stiffness: 200 }}
+                  animate={
+                    animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}
+                  }
+                  transition={{
+                    delay: 0.4,
+                    duration: 0.8,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
                   style={{ animationDelay: "1s" }}
                 />
                 <motion.div
                   className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-200/25 animate-gentle-pulse"
                   initial={{ opacity: 0, x: -50, scale: 0 }}
-                  animate={animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}}
-                  transition={{ delay: 0.6, duration: 0.8, type: "spring", stiffness: 200 }}
+                  animate={
+                    animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}
+                  }
+                  transition={{
+                    delay: 0.6,
+                    duration: 0.8,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
                   style={{ animationDelay: "2s" }}
                 />
               </div>
@@ -5866,7 +5895,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             placeholder="Your Email"
                             value={formData.email}
                             onChange={(e) =>
-                              setFormData({ ...formData, email: e.target.value })
+                              setFormData({
+                                ...formData,
+                                email: e.target.value,
+                              })
                             }
                             className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                             style={{
@@ -5883,7 +5915,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             placeholder="Phone Number"
                             value={formData.phone}
                             onChange={(e) =>
-                              setFormData({ ...formData, phone: e.target.value })
+                              setFormData({
+                                ...formData,
+                                phone: e.target.value,
+                              })
                             }
                             className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                             style={{
@@ -6261,7 +6296,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                               <p
                                 className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"} group-hover:text-blue-200 transition-colors duration-300 mt-1`}
                               >
-                                {contact.name === "Email" ? "contact@kor.dev" : contact.subtitle}
+                                {contact.name === "Email"
+                                  ? "contact@kor.dev"
+                                  : contact.subtitle}
                               </p>
                             </div>
                           </div>
@@ -6291,8 +6328,18 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                               </p>
                             </div>
                             <div className="text-blue-400 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              <svg
+                                className="w-6 h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 5l7 7-7 7"
+                                />
                               </svg>
                             </div>
                           </div>
