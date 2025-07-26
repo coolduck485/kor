@@ -352,7 +352,7 @@ export default function Index() {
             >
               {/* Matrix-style background - reduced for performance */}
               <div className="absolute inset-0 overflow-hidden">
-                {[...Array(8)].map((_, i) => (
+                {[...Array(4)].map((_, i) => (
                   <motion.div
                     key={`matrix-${i}`}
                     className="absolute text-green-400 font-mono text-xs opacity-20"
@@ -3635,7 +3635,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(25)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute rounded-full opacity-60"
@@ -3657,7 +3657,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
           <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
             {/* Animated hexagon grid */}
-            {[...Array(6)].map((_, i) => (
+            {[...Array(4)].map((_, i) => (
               <polygon
                 key={`hex-${i}`}
                 points="100,20 140,40 140,80 100,100 60,80 60,40"
@@ -3692,7 +3692,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Breathing Orbs */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <div
               key={`breath-orb-${i}`}
               className="absolute rounded-full"
@@ -3903,7 +3903,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 />
 
                 {/* Floating energy particles around text */}
-                {[...Array(12)].map((_, i) => (
+                {[...Array(8)].map((_, i) => (
                   <div
                     key={`energy-${i}`}
                     className="absolute rounded-full pointer-events-none"
@@ -4046,7 +4046,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                   {/* Animated Tech Elements */}
                   <div className="absolute inset-4 space-y-4">
-                    {[...Array(8)].map((_, i) => (
+                    {[...Array(4)].map((_, i) => (
                       <motion.div
                         key={i}
                         className="flex items-center space-x-3"
@@ -4185,7 +4185,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(25)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute rounded-full opacity-60"
@@ -4207,7 +4207,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
           <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
             {/* Animated hexagon grid */}
-            {[...Array(6)].map((_, i) => (
+            {[...Array(4)].map((_, i) => (
               <polygon
                 key={`hex-${i}`}
                 points="100,20 140,40 140,80 100,100 60,80 60,40"
@@ -4242,7 +4242,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Breathing Orbs */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <div
               key={`breath-orb-${i}`}
               className="absolute rounded-full"
@@ -4401,7 +4401,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 />
 
                 {/* Floating energy particles around text */}
-                {[...Array(12)].map((_, i) => (
+                {[...Array(8)].map((_, i) => (
                   <div
                     key={`energy-${i}`}
                     className="absolute rounded-full pointer-events-none"
@@ -4608,7 +4608,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(25)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute rounded-full opacity-60"
@@ -4630,7 +4630,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
           <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
             {/* Animated hexagon grid */}
-            {[...Array(6)].map((_, i) => (
+            {[...Array(4)].map((_, i) => (
               <polygon
                 key={`hex-${i}`}
                 points="100,20 140,40 140,80 100,100 60,80 60,40"
@@ -4665,7 +4665,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Breathing Orbs */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <div
               key={`breath-orb-${i}`}
               className="absolute rounded-full"
@@ -4875,7 +4875,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(25)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute rounded-full opacity-60"
@@ -4897,7 +4897,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
           <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
             {/* Animated hexagon grid */}
-            {[...Array(6)].map((_, i) => (
+            {[...Array(4)].map((_, i) => (
               <polygon
                 key={`hex-${i}`}
                 points="100,20 140,40 140,80 100,100 60,80 60,40"
@@ -4928,7 +4928,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               />
             ))}
             {/* Animated circuit lines for Contact section */}
-            {[...Array(6)].map((_, i) => (
+            {[...Array(4)].map((_, i) => (
               <motion.path
                 key={`circuit-${i}`}
                 d={`M${100 + i * 200},100 L${200 + i * 200},200 L${150 + i * 200},300 L${250 + i * 200},400`}
@@ -4946,7 +4946,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Breathing Orbs */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <div
               key={`breath-orb-${i}`}
               className="absolute rounded-full"
