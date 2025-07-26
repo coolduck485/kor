@@ -591,9 +591,9 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ██████╗
+                  {`██╗  ██╗ ██████╗ ████���█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
-█████╔╝ ██║   ██║██████╔╝
+█████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
@@ -1655,9 +1655,9 @@ export default function Index() {
               className="group relative"
               onMouseEnter={() => setIsTooltipDismissed(true)}
             >
-              {/* Tooltip - only show in modern mode and if not dismissed */}
+              {/* Tooltip - only show in modern mode and if not dismissed and not on mobile */}
               {mode === "modern" && !isTooltipDismissed && (
-                <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+                <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none hidden sm:block">
                   <div
                     className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
                       theme === "light"
@@ -3040,6 +3040,50 @@ export default function Index() {
           box-sizing: border-box;
         }
 
+        /* Mobile fixes for service cards - fill gaps in corners */
+        @media (max-width: 640px) {
+          .responsive-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 0.25rem !important;
+            width: 100% !important;
+            padding: 0 !important;
+          }
+
+          .responsive-grid > div {
+            width: 100% !important;
+            height: 100% !important;
+          }
+
+          .responsive-grid > div > div {
+            width: 100% !important;
+            height: 100% !important;
+            min-height: 200px !important;
+            border-radius: 0.75rem !important;
+          }
+
+          /* iPhone 14 specific optimizations */
+          .section-container {
+            min-height: 100vh !important;
+            padding-top: 3rem !important;
+            padding-bottom: 5rem !important;
+          }
+
+          .section-content {
+            padding-top: 1.5rem !important;
+            padding-bottom: 4rem !important;
+          }
+
+          /* Reduce vertical spacing on small screens */
+          h1 {
+            margin-bottom: 1.5rem !important;
+          }
+
+          /* Optimize text sizing for readability */
+          .warm-glow-text {
+            line-height: 1.2 !important;
+          }
+        }
+
         /* Improve button tap targets on mobile */
         @media (max-width: 768px) {
           button {
@@ -3956,9 +4000,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             }}
           >
             {/* About Us Title - matching home style */}
-            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <div className="text-center mb-6 sm:mb-12 lg:mb-16">
               <h1
-                className={`font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight relative ${
+                className={`font-poppins text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight relative ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
@@ -4030,7 +4074,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Our Mission - matching development services style */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-10 sm:mb-16">
               <div className="relative">
                 {/* Background glow effect */}
                 <div
@@ -4044,11 +4088,11 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   }}
                 />
 
-                {/* Floating energy particles around text */}
-                {[...Array(8)].map((_, i) => (
+                {/* Floating energy particles around text - reduced for mobile */}
+                {[...Array(6)].map((_, i) => (
                   <div
                     key={`energy-${i}`}
-                    className="absolute rounded-full pointer-events-none"
+                    className="absolute rounded-full pointer-events-none hidden sm:block"
                     style={{
                       left: `${20 + ((i * 60) % 160)}%`,
                       top: `${30 + ((i * 40) % 60)}%`,
@@ -4066,7 +4110,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   />
                 ))}
 
-                <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                <div className="font-poppins text-lg sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                   <span
                     className={`relative inline-block ${
                       theme === "light" ? "text-gray-900" : "text-white"
@@ -4101,19 +4145,19 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center mt-12 sm:mt-16">
               {/* Left Content */}
               <motion.div
-                className="space-y-6 lg:space-y-8 text-left"
+                className="space-y-4 sm:space-y-6 lg:space-y-8 text-left"
                 initial={{ x: -50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }
                 }
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   <p
-                    className={`text-lg leading-relaxed ${
+                    className={`text-sm sm:text-lg leading-relaxed ${
                       theme === "light" ? "text-gray-600" : "text-gray-300"
                     }`}
                     style={{
@@ -4130,7 +4174,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     results.
                   </p>
                   <p
-                    className={`text-lg leading-relaxed ${
+                    className={`text-sm sm:text-lg leading-relaxed ${
                       theme === "light" ? "text-gray-600" : "text-gray-300"
                     }`}
                     style={{
@@ -4147,7 +4191,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 </div>
 
                 {/* Stats - matching floating button style */}
-                <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mt-6 sm:mt-8 lg:mt-12 max-w-4xl mx-auto">
+                <div className="grid grid-cols-3 gap-1 sm:gap-4 lg:gap-6 mt-4 sm:mt-8 lg:mt-12 max-w-4xl mx-auto">
                   {[
                     { number: "100+", label: "Projects" },
                     { number: "50+", label: "Clients" },
@@ -4593,7 +4637,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6 lg:gap-8 xl:gap-10 mt-16 responsive-grid w-full">
+            <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-6 lg:gap-8 xl:gap-10 mt-16 responsive-grid w-full">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
@@ -4609,7 +4653,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 >
                   {/* Service Card */}
                   <div
-                    className="relative p-2 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl lg:rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
+                    className="relative p-1 sm:p-6 lg:p-8 rounded-lg sm:rounded-2xl lg:rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
                     style={{
                       background: "rgba(255, 255, 255, 0.05)",
                       border: "2px solid rgba(255, 255, 255, 0.1)",
@@ -4763,17 +4807,25 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
       },
     ];
 
-    // Responsive projects per page: 2 on mobile, 4 on desktop
-    const [isMobile, setIsMobile] = useState(false);
+    // Responsive projects per page: 2 on mobile/tablet, 3 on desktop
+    const [screenSize, setScreenSize] = useState("desktop");
 
     useEffect(() => {
-      const checkMobile = () => setIsMobile(window.innerWidth <= 640);
-      checkMobile();
-      window.addEventListener("resize", checkMobile);
-      return () => window.removeEventListener("resize", checkMobile);
+      const checkScreenSize = () => {
+        if (window.innerWidth <= 640) {
+          setScreenSize("mobile");
+        } else if (window.innerWidth <= 991) {
+          setScreenSize("tablet");
+        } else {
+          setScreenSize("desktop");
+        }
+      };
+      checkScreenSize();
+      window.addEventListener("resize", checkScreenSize);
+      return () => window.removeEventListener("resize", checkScreenSize);
     }, []);
 
-    const projectsPerPage = isMobile ? 2 : 4;
+    const projectsPerPage = screenSize === "desktop" ? 3 : 2;
     const totalPages = Math.ceil(allProjects.length / projectsPerPage);
 
     // Get current page projects
@@ -4943,15 +4995,15 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Main Content Container */}
         <div className="relative min-h-screen py-16 sm:py-20 lg:py-24 section-container">
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content pt-8 pb-20"
+            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content pt-6 pb-16"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
             {/* Portfolio Title */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-10 sm:mb-16">
               <h1
-                className={`font-poppins text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                className={`font-poppins text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
               >
                 {"Portfolio".split("").map((letter, i) => (
                   <span
@@ -4968,7 +5020,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-10 sm:mb-16">
               <div className="relative">
                 <div
                   className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
@@ -4980,10 +5032,10 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     transform: "scale(1.5)",
                   }}
                 />
-                {[...Array(8)].map((_, i) => (
+                {[...Array(6)].map((_, i) => (
                   <div
                     key={`energy-${i}`}
-                    className="absolute rounded-full pointer-events-none"
+                    className="absolute rounded-full pointer-events-none hidden sm:block"
                     style={{
                       left: `${20 + ((i * 60) % 160)}%`,
                       top: `${30 + ((i * 40) % 60)}%`,
@@ -4999,7 +5051,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   />
                 ))}
-                <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                <div className="font-poppins text-lg sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
@@ -5028,141 +5080,103 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Portfolio Carousel Container */}
-            <div className="relative mt-16 px-4">
-              {/* Navigation Buttons */}
-              <div className="flex justify-between items-center mb-8">
-                {/* Left Navigation */}
-                <motion.button
-                  onClick={prevPage}
-                  disabled={currentPage === 0}
-                  className={`group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
-                    currentPage === 0
-                      ? "opacity-30 cursor-not-allowed"
-                      : "hover:scale-110 cursor-pointer"
-                  }`}
+            <div className="relative mt-10 sm:mt-16 px-3 sm:px-4">
+              {/* Compact Mobile Navigation */}
+              <div className="flex justify-center items-center mb-6 sm:mb-8">
+                <div
+                  className="flex items-center gap-2 sm:gap-4 px-3 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl backdrop-blur-lg border"
                   style={{
-                    background: "rgba(255, 255, 255, 0.05)",
-                    border: "2px solid rgba(255, 255, 255, 0.1)",
-                    boxShadow:
-                      currentPage === 0
-                        ? "none"
-                        : "0 0 20px rgba(73, 146, 255, 0.2)",
+                    background: "rgba(255, 255, 255, 0.03)",
+                    border: "1px solid rgba(255, 255, 255, 0.08)",
+                    boxShadow: "0 0 15px rgba(73, 146, 255, 0.1)",
                   }}
-                  whileHover={currentPage === 0 ? {} : { scale: 1.05 }}
-                  whileTap={currentPage === 0 ? {} : { scale: 0.95 }}
                 >
-                  <ChevronLeft
-                    className={`w-6 h-6 transition-colors ${
+                  {/* Left Navigation */}
+                  <motion.button
+                    onClick={prevPage}
+                    disabled={currentPage === 0}
+                    className={`group relative p-1 sm:p-1.5 rounded-lg transition-all duration-300 ${
                       currentPage === 0
-                        ? "text-gray-500"
-                        : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
+                        ? "opacity-30 cursor-not-allowed"
+                        : "hover:scale-110 cursor-pointer hover:bg-white/5"
                     }`}
-                  />
-
-                  {/* Glow effect on hover - only when enabled */}
-                  {currentPage > 0 && (
-                    <div
-                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{
-                        background:
-                          "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)",
-                      }}
-                    />
-                  )}
-
-                  {/* Scanning line effect - only when enabled */}
-                  {currentPage > 0 && (
-                    <div className="absolute inset-0 overflow-hidden rounded-full">
-                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                    </div>
-                  )}
-                </motion.button>
-
-                {/* Page Indicators */}
-                <div className="flex space-x-3 items-center">
-                  {Array.from({ length: totalPages }).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentPage(index)}
-                      className={`transition-all duration-300 ${
-                        currentPage === index
-                          ? "w-6 sm:w-8 h-1.5 sm:h-2 bg-blue-400 rounded-full scale-110 sm:scale-125"
-                          : "w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/20 hover:bg-white/40 rounded-full"
-                      }`}
-                      style={{
-                        boxShadow:
-                          currentPage === index
-                            ? "0 0 10px rgba(73, 146, 255, 0.8)"
-                            : "none",
-                      }}
-                    />
-                  ))}
-                  <span
-                    className={`text-xs font-mono ml-2 ${theme === "light" ? "text-gray-600" : "text-white/60"}`}
+                    whileHover={currentPage === 0 ? {} : { scale: 1.1 }}
+                    whileTap={currentPage === 0 ? {} : { scale: 0.9 }}
                   >
-                    {currentPage + 1} / {totalPages}
-                  </span>
-                </div>
-
-                {/* Right Navigation */}
-                <motion.button
-                  onClick={nextPage}
-                  disabled={currentPage === totalPages - 1}
-                  className={`group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
-                    currentPage === totalPages - 1
-                      ? "opacity-30 cursor-not-allowed"
-                      : "hover:scale-110 cursor-pointer"
-                  }`}
-                  style={{
-                    background: "rgba(255, 255, 255, 0.05)",
-                    border: "2px solid rgba(255, 255, 255, 0.1)",
-                    boxShadow:
-                      currentPage === totalPages - 1
-                        ? "none"
-                        : "0 0 20px rgba(73, 146, 255, 0.2)",
-                  }}
-                  whileHover={
-                    currentPage === totalPages - 1 ? {} : { scale: 1.05 }
-                  }
-                  whileTap={
-                    currentPage === totalPages - 1 ? {} : { scale: 0.95 }
-                  }
-                >
-                  <ChevronRight
-                    className={`w-6 h-6 transition-colors ${
-                      currentPage === totalPages - 1
-                        ? "text-gray-500"
-                        : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
-                    }`}
-                  />
-
-                  {/* Glow effect on hover - only when enabled */}
-                  {currentPage < totalPages - 1 && (
-                    <div
-                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{
-                        background:
-                          "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)",
-                      }}
+                    <ChevronLeft
+                      className={`w-3 h-3 sm:w-4 sm:h-4 transition-colors ${
+                        currentPage === 0
+                          ? "text-gray-500"
+                          : `${theme === "light" ? "text-gray-700" : "text-white/80"} group-hover:text-blue-400`
+                      }`}
                     />
-                  )}
+                  </motion.button>
 
-                  {/* Scanning line effect - only when enabled */}
-                  {currentPage < totalPages - 1 && (
-                    <div className="absolute inset-0 overflow-hidden rounded-full">
-                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                    </div>
-                  )}
-                </motion.button>
+                  {/* Compact Page Indicators */}
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }).map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentPage(index)}
+                        className={`transition-all duration-300 rounded-full ${
+                          currentPage === index
+                            ? "w-4 h-1.5 sm:w-5 sm:h-2 bg-blue-400"
+                            : "w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white/20 hover:bg-white/30"
+                        }`}
+                        style={{
+                          boxShadow:
+                            currentPage === index
+                              ? "0 0 6px rgba(73, 146, 255, 0.6)"
+                              : "none",
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Compact Page Counter */}
+                  <span
+                    className={`text-[10px] sm:text-xs font-mono px-1.5 py-0.5 rounded-md ${
+                      theme === "light" ? "text-gray-600" : "text-white/50"
+                    }`}
+                    style={{
+                      background: "rgba(255, 255, 255, 0.05)",
+                    }}
+                  >
+                    {currentPage + 1}/{totalPages}
+                  </span>
+
+                  {/* Right Navigation */}
+                  <motion.button
+                    onClick={nextPage}
+                    disabled={currentPage === totalPages - 1}
+                    className={`group relative p-1 sm:p-1.5 rounded-lg transition-all duration-300 ${
+                      currentPage === totalPages - 1
+                        ? "opacity-30 cursor-not-allowed"
+                        : "hover:scale-110 cursor-pointer hover:bg-white/5"
+                    }`}
+                    whileHover={
+                      currentPage === totalPages - 1 ? {} : { scale: 1.1 }
+                    }
+                    whileTap={
+                      currentPage === totalPages - 1 ? {} : { scale: 0.9 }
+                    }
+                  >
+                    <ChevronRight
+                      className={`w-3 h-3 sm:w-4 sm:h-4 transition-colors ${
+                        currentPage === totalPages - 1
+                          ? "text-gray-500"
+                          : `${theme === "light" ? "text-gray-700" : "text-white/80"} group-hover:text-blue-400`
+                      }`}
+                    />
+                  </motion.button>
+                </div>
               </div>
 
               {/* Simple Page Display */}
               <div className="relative">
                 <motion.div
                   key={currentPage}
-                  className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-4 lg:gap-6"
+                  className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 lg:gap-6"
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
@@ -5528,17 +5542,17 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative min-h-screen py-16 sm:py-20 lg:py-24 section-container">
+        <div className="relative min-h-screen py-12 sm:py-20 lg:py-24 section-container">
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-8 pb-20"
+            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-6 pb-16"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
             {/* Contact Title */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-10 sm:mb-16">
               <h1
-                className={`font-poppins text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                className={`font-poppins text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
               >
                 {"Contact".split("").map((letter, i) => (
                   <span
@@ -5555,7 +5569,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-10 sm:mb-16">
               <div className="relative">
                 <div
                   className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
@@ -5567,10 +5581,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     transform: "scale(1.5)",
                   }}
                 />
-                {[...Array(8)].map((_, i) => (
+                {[...Array(6)].map((_, i) => (
                   <div
                     key={`energy-${i}`}
-                    className="absolute rounded-full pointer-events-none"
+                    className="absolute rounded-full pointer-events-none hidden sm:block"
                     style={{
                       left: `${20 + ((i * 60) % 160)}%`,
                       top: `${30 + ((i * 40) % 60)}%`,
@@ -5586,7 +5600,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   />
                 ))}
-                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10 px-2 sm:px-0">
+                <div className="font-poppins text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10 px-2 sm:px-0">
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
@@ -5617,7 +5631,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Contact Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 items-start mt-6 sm:mt-8 lg:mt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-6 lg:gap-12 items-start mt-4 sm:mt-8 lg:mt-16">
               {/* Contact Form */}
               <motion.div
                 initial={{ x: -50, opacity: 0 }}
@@ -5628,7 +5642,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               >
                 <form
                   onSubmit={handleSubmit}
-                  className="space-y-4 sm:space-y-6"
+                  className="space-y-3 sm:space-y-6"
                 >
                   <div>
                     <input
@@ -5703,7 +5717,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
               {/* Contact Info */}
               <motion.div
-                className="grid grid-cols-1 sm:space-y-4 lg:space-y-6 gap-3 sm:gap-0 mt-2 sm:mt-4 lg:mt-0 sm:block"
+                className="grid grid-cols-1 sm:space-y-4 lg:space-y-6 gap-2 sm:gap-0 mt-1 sm:mt-4 lg:mt-0 sm:block"
                 initial={{ x: 50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
@@ -5793,6 +5807,95 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 ))}
               </motion.div>
             </div>
+
+            {/* Social Media Buttons */}
+            <motion.div
+              className="text-center mt-6 sm:mt-12 lg:mt-16"
+              initial={{ y: 50, opacity: 0 }}
+              animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
+              <h3
+                className={`text-lg sm:text-xl font-semibold mb-4 sm:mb-6 warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                style={{
+                  textShadow: "0 0 8px rgba(73, 146, 255, 0.5)",
+                }}
+              >
+                Connect With Us
+              </h3>
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6">
+                {[
+                  {
+                    name: "Instagram",
+                    url: "https://instagram.com",
+                    color: "from-pink-500 to-purple-500",
+                  },
+                  {
+                    name: "Discord",
+                    url: "https://discord.com",
+                    color: "from-indigo-500 to-blue-500",
+                  },
+                  {
+                    name: "Telegram",
+                    url: "https://telegram.org",
+                    color: "from-blue-500 to-cyan-500",
+                  },
+                ].map((social, index) => (
+                  <motion.button
+                    key={social.name}
+                    onClick={() => window.open(social.url, "_blank")}
+                    className="group relative px-4 py-2 sm:px-6 sm:py-3 rounded-xl sm:rounded-2xl backdrop-blur-lg border transition-all duration-500 hover:scale-105 overflow-hidden min-w-[120px] sm:min-w-[140px]"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.05)",
+                      border: "2px solid rgba(255, 255, 255, 0.1)",
+                      boxShadow: "0 0 25px rgba(73, 146, 255, 0.2)",
+                    }}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={
+                      isVisible
+                        ? { scale: 1, opacity: 1 }
+                        : { scale: 0, opacity: 0 }
+                    }
+                    transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {/* Animated background gradient */}
+                    <div
+                      className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${social.color}`}
+                    />
+
+                    {/* Scanning line effect */}
+                    <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                    </div>
+
+                    {/* Button text */}
+                    <span
+                      className={`relative font-semibold warm-glow-text text-sm sm:text-base ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
+                      style={{
+                        textShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
+                      }}
+                    >
+                      {social.name}
+                    </span>
+
+                    {/* Circuit decorations */}
+                    <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                      <div className="absolute top-1 left-1 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+                      <div
+                        className="absolute bottom-1 right-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
+                        style={{ animationDelay: "0.5s" }}
+                      />
+                      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
+                    </div>
+
+                    {/* Holographic shimmer effect */}
+                    <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-2xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </motion.div>
