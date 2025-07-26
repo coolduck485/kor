@@ -5543,7 +5543,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-10 sm:mb-16">
               <div className="relative">
                 <div
                   className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
@@ -5555,10 +5555,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     transform: "scale(1.5)",
                   }}
                 />
-                {[...Array(8)].map((_, i) => (
+                {[...Array(6)].map((_, i) => (
                   <div
                     key={`energy-${i}`}
-                    className="absolute rounded-full pointer-events-none"
+                    className="absolute rounded-full pointer-events-none hidden sm:block"
                     style={{
                       left: `${20 + ((i * 60) % 160)}%`,
                       top: `${30 + ((i * 40) % 60)}%`,
@@ -5574,7 +5574,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   />
                 ))}
-                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10 px-2 sm:px-0">
+                <div className="font-poppins text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10 px-2 sm:px-0">
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
