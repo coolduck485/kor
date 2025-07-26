@@ -825,7 +825,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄►◄►◄►</span>
+                  <span className="text-green-400 ml-4">◄���◄►◄►</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -4205,7 +4205,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="relative min-h-screen py-4 sm:py-6 lg:py-8 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-2 pb-4"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-4"
             initial={{
               opacity: 0,
               y: 80,
@@ -5305,7 +5305,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Main Content Container */}
         <div className="relative min-h-screen py-4 sm:py-6 lg:py-8 section-container">
           <motion.div
-            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-2 pb-4"
+            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-4"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
