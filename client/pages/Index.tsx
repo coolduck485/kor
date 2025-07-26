@@ -632,7 +632,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ███������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══██╗
+██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
@@ -5738,7 +5738,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           onChange={(e) =>
                             setFormData({ ...formData, firstName: e.target.value })
                           }
-                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
@@ -5755,7 +5755,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           onChange={(e) =>
                             setFormData({ ...formData, lastName: e.target.value })
                           }
-                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
@@ -5776,7 +5776,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
                           }
-                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
@@ -5793,7 +5793,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           onChange={(e) =>
                             setFormData({ ...formData, phone: e.target.value })
                           }
-                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
