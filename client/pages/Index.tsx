@@ -200,6 +200,18 @@ export default function Index() {
       setIsMobile(window.innerWidth <= 768);
     };
 
+    // Performance optimization checks
+    const checkPerformance = () => {
+      // Check for reduced motion preference
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      setReducedMotion(prefersReducedMotion);
+
+      // Check device capabilities for high performance animations
+      const isLowEnd = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
+      const isSlowConnection = navigator.connection && navigator.connection.effectiveType === 'slow-2g';
+      setIsHighPerformance(!isLowEnd && !isSlowConnection && !prefersReducedMotion);
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("resize", checkMobile);
     checkMobile(); // Initial check
@@ -710,7 +722,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █████████████████████�� 50%
+                      RAM: ██████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
