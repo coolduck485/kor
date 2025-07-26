@@ -48,6 +48,16 @@ export default function Index() {
   const sectionsRef = useRef<HTMLDivElement[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Performance optimization state
+  const [isHighPerformance, setIsHighPerformance] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [isScrollingActive, setIsScrollingActive] = useState(false);
+
+  // Black transition animation state
+  const [isBlackTransition, setIsBlackTransition] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(true);
+  const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
+
   // Welcome notification - shows once per page load
   useEffect(() => {
     // Temporarily disabled to test button functionality
@@ -72,40 +82,40 @@ export default function Index() {
     networkDown: 847,
   });
 
-  // Framer Motion animation variants
+  // Optimized Framer Motion animation variants for 60fps
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.5,
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
+        duration: 0.4,
+        staggerChildren: 0.15,
+        delayChildren: 0.05,
       },
     },
   };
 
   const fadeInUp = {
-    hidden: { opacity: 0, y: 60, scale: 0.9 },
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 0.6,
+        ease: "easeOut",
       },
     },
   };
 
   const fadeInScale = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 1.2,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 0.8,
+        ease: "easeOut",
       },
     },
   };
@@ -113,16 +123,16 @@ export default function Index() {
   const slideInFromSide = (direction: "left" | "right") => ({
     hidden: {
       opacity: 0,
-      x: direction === "left" ? -100 : 100,
-      scale: 0.9,
+      x: direction === "left" ? -60 : 60,
+      scale: 0.95,
     },
     visible: {
       opacity: 1,
       x: 0,
       scale: 1,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 0.6,
+        ease: "easeOut",
       },
     },
   });
@@ -132,8 +142,8 @@ export default function Index() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.5,
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
       },
     },
   };
@@ -141,18 +151,16 @@ export default function Index() {
   const letterVariants = {
     hidden: {
       opacity: 0,
-      y: 50,
-      scale: 0.8,
-      rotateX: -90,
+      y: 30,
+      scale: 0.9,
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      rotateX: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        duration: 0.6,
+        ease: "easeOut",
       },
     },
   };
@@ -198,9 +206,29 @@ export default function Index() {
       setIsMobile(window.innerWidth <= 768);
     };
 
+    // Performance optimization checks
+    const checkPerformance = () => {
+      // Check for reduced motion preference
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      setReducedMotion(prefersReducedMotion);
+
+      // Check device capabilities for high performance animations
+      const isLowEnd =
+        navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
+      const isSlowConnection =
+        navigator.connection &&
+        navigator.connection.effectiveType === "slow-2g";
+      setIsHighPerformance(
+        !isLowEnd && !isSlowConnection && !prefersReducedMotion,
+      );
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("resize", checkMobile);
     checkMobile(); // Initial check
+    checkPerformance(); // Performance optimization check
 
     // Check current URL and scroll to appropriate section
     const checkInitialSection = () => {
@@ -302,26 +330,50 @@ export default function Index() {
     { id: "contact", title: "Contact Us", component: "contact" },
   ];
 
-  // Scroll to section function
+  // Scroll to section function with black transition
   const scrollToSection = (index: number) => {
     if (isScrolling || !containerRef.current) return;
 
     setIsScrolling(true);
-    setCurrentSection(index);
+    setIsScrollingActive(true);
+    setTransitioningSectionIndex(index);
 
-    // Update URL based on section
-    const sectionPath = index === 0 ? "/" : `/${sections[index].id}`;
-    window.history.pushState({}, "", sectionPath);
+    // Start black transition animation
+    setIsBlackTransition(true);
+    setIsContentVisible(false);
 
-    const targetSection = sectionsRef.current[index];
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    // Wait for fade to black, then change section
+    setTimeout(() => {
+      setCurrentSection(index);
 
-    setTimeout(() => setIsScrolling(false), 1000);
+      // Update URL based on section
+      const sectionPath = index === 0 ? "/" : `/${sections[index].id}`;
+      window.history.pushState({}, "", sectionPath);
+
+      const targetSection = sectionsRef.current[index];
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: "auto", // Instant scroll during black screen
+          block: "start",
+        });
+      }
+
+      // Start revealing new content after a cinematic pause
+      setTimeout(() => {
+        setIsBlackTransition(false);
+
+        // Delay content visibility for dramatic effect
+        setTimeout(() => {
+          setIsContentVisible(true);
+
+          // Complete the transition
+          setTimeout(() => {
+            setIsScrolling(false);
+            setIsScrollingActive(false);
+          }, 900); // Allow time for content to fully appear
+        }, 150); // Small delay for content to start appearing
+      }, 100); // Short delay to ensure scroll is complete
+    }, 350); // Time for fade to black
   };
 
   // Handle wheel scroll
@@ -345,35 +397,76 @@ export default function Index() {
     }
   }, [currentSection, isScrolling, sections.length, mode]);
 
-  // Handle touch scroll for mobile
+  // Handle touch scroll for mobile - Enhanced with better swipe detection
   useEffect(() => {
     let touchStartY = 0;
+    let touchStartTime = 0;
+    let touchStartX = 0;
+    let isSwiping = false;
 
     const handleTouchStart = (e: TouchEvent) => {
+      if (isScrolling || mode === "retro") return;
+
       touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+      touchStartTime = Date.now();
+      isSwiping = false;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isScrolling || mode === "retro") return;
+
+      const touchY = e.touches[0].clientY;
+      const touchX = e.touches[0].clientX;
+      const deltaY = Math.abs(touchY - touchStartY);
+      const deltaX = Math.abs(touchX - touchStartX);
+
+      // Determine if this is a vertical swipe (not horizontal)
+      if (deltaY > 10 && deltaY > deltaX * 1.5) {
+        isSwiping = true;
+        e.preventDefault(); // Prevent default scrolling only during vertical swipes
+      }
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
-      if (isScrolling || mode === "retro") return;
+      if (isScrolling || mode === "retro" || !isSwiping) return;
 
       const touchEndY = e.changedTouches[0].clientY;
       const deltaY = touchStartY - touchEndY;
+      const touchDuration = Date.now() - touchStartTime;
+      const swipeVelocity = Math.abs(deltaY) / touchDuration;
 
-      if (Math.abs(deltaY) > 50) {
+      // Enhanced swipe detection: require minimum distance AND velocity
+      const minSwipeDistance = 50;
+      const minSwipeVelocity = 0.1; // pixels per millisecond
+
+      if (
+        Math.abs(deltaY) > minSwipeDistance &&
+        swipeVelocity > minSwipeVelocity
+      ) {
         if (deltaY > 0 && currentSection < sections.length - 1) {
           scrollToSection(currentSection + 1);
         } else if (deltaY < 0 && currentSection > 0) {
           scrollToSection(currentSection - 1);
         }
       }
+
+      // Reset
+      isSwiping = false;
     };
 
     const container = containerRef.current;
     if (container) {
-      container.addEventListener("touchstart", handleTouchStart);
-      container.addEventListener("touchend", handleTouchEnd);
+      container.addEventListener("touchstart", handleTouchStart, {
+        passive: true,
+      });
+      container.addEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
+      container.addEventListener("touchend", handleTouchEnd, { passive: true });
       return () => {
         container.removeEventListener("touchstart", handleTouchStart);
+        container.removeEventListener("touchmove", handleTouchMove);
         container.removeEventListener("touchend", handleTouchEnd);
       };
     }
@@ -632,7 +725,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══█��╗
+██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
@@ -708,7 +801,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: ████████��█████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -780,7 +873,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄►◄►◄►</span>
+                  <span className="text-green-400 ml-4">◄���◄►◄►</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -1490,12 +1583,20 @@ export default function Index() {
   return (
     <div
       ref={containerRef}
-      className={`relative transition-all duration-500 ${
+      className={`relative transition-all duration-500 gpu-accelerated composite-layer scroll-optimized ${
+        isScrollingActive ? "scroll-simplified" : ""
+      } ${
         theme === "light"
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
       }`}
-      style={{ height: "100vh", overflow: "hidden", maxWidth: "100vw" }}
+      style={{
+        height: "100vh",
+        overflow: "hidden",
+        maxWidth: "100vw",
+        willChange: isScrollingActive ? "auto" : "transform",
+        contain: "layout style paint",
+      }}
     >
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
@@ -1692,6 +1793,29 @@ export default function Index() {
         </div>
       </div>
 
+      {/* Black Transition Overlay with Cinematic Effects */}
+      <AnimatePresence>
+        {isBlackTransition && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration: 0.3,
+              ease: "easeInOut",
+            }}
+            className="fixed inset-0 z-[9999] pointer-events-none black-overlay-enhanced"
+            style={{
+              willChange: "opacity",
+              transform: "translateZ(0)",
+            }}
+          >
+            {/* Simple black overlay */}
+            <div className="absolute inset-0 bg-black" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Sections Container */}
       <div className="h-full">
         {/* Home Section */}
@@ -1704,9 +1828,9 @@ export default function Index() {
               ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
               : "bg-black"
           }`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          style={{
+            display: currentSection === 0 ? "block" : "none",
+          }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
           {/* Left Corner Visual Elements for Mobile Balance */}
@@ -1777,48 +1901,54 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Enhanced Background Elements */}
+          {/* Enhanced Background Elements - Performance optimized */}
 
-          {/* Dynamic Gradient Overlays */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
-            <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
-          </div>
+          {/* Dynamic Gradient Overlays - Only on high performance devices */}
+          {isHighPerformance && (
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift gpu-accelerated" />
+              <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse gpu-accelerated" />
+            </div>
+          )}
 
-          {/* Animated Noise Texture */}
-          <div
-            className="absolute inset-0 opacity-5 animate-noise"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-            }}
-          />
+          {/* Animated Noise Texture - Only on desktop high performance */}
+          {!isMobile && isHighPerformance && (
+            <div
+              className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+              }}
+            />
+          )}
 
-          {/* Enhanced Floating Ambient Particles with Color Shifting - YouTube Intro Style */}
+          {/* Optimized Floating Ambient Particles - Reduced count for 60fps */}
           <motion.div
-            className="absolute inset-0 pointer-events-none overflow-hidden"
+            className="absolute inset-0 pointer-events-none overflow-hidden will-change-transform"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
-            {[...Array(25)].map((_, i) => (
+            {[...Array(isMobile ? 8 : 15)].map((_, i) => (
               <motion.div
                 key={`particle-${i}`}
-                className="absolute rounded-full opacity-60"
+                className="absolute rounded-full opacity-60 gpu-accelerated"
                 style={{
                   left: `${5 + ((i * 60) % 95)}%`,
                   top: `${10 + ((i * 35) % 85)}%`,
-                  width: `${1 + (i % 4)}px`,
-                  height: `${1 + (i % 4)}px`,
-                  background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.2 + (i % 4) * 0.15})`,
-                  animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
-                  filter: "blur(0.3px)",
-                  transform: `scale(${0.5 + (i % 3) * 0.3})`,
+                  width: `${2 + (i % 3)}px`,
+                  height: `${2 + (i % 3)}px`,
+                  background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.3 + (i % 3) * 0.2})`,
+                  animation: isScrollingActive
+                    ? "none"
+                    : `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s`,
+                  willChange: isScrollingActive ? "auto" : "transform",
+                  transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
                 }}
                 initial={{ scale: 0, rotate: 0 }}
                 animate={{ scale: 1, rotate: 360 }}
                 transition={{
                   duration: 0.8,
-                  delay: i * 0.03,
+                  delay: i * 0.05,
                   ease: "backOut",
                   type: "spring",
                   stiffness: 200,
@@ -1827,57 +1957,64 @@ export default function Index() {
             ))}
           </motion.div>
 
-          {/* Animated Geometric Patterns */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-            <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
-              {/* Animated hexagon grid */}
-              {[...Array(6)].map((_, i) => (
-                <polygon
-                  key={`hex-${i}`}
-                  points="100,20 140,40 140,80 100,100 60,80 60,40"
-                  fill="none"
-                  stroke="rgba(73, 146, 255, 0.3)"
-                  strokeWidth="1"
-                  strokeDasharray="10 5"
-                  style={{
-                    transform: `translate(${100 + i * 200}px, ${100 + (i % 2) * 150}px)`,
-                    animation: `geometric-pulse ${8 + i}s ease-in-out infinite ${i * 0.5}s`,
-                  }}
-                />
-              ))}
-              {/* Animated connecting lines */}
-              {[...Array(4)].map((_, i) => (
-                <line
-                  key={`line-${i}`}
-                  x1={50 + i * 300}
-                  y1={200}
-                  x2={250 + i * 300}
-                  y2={400}
-                  stroke="rgba(63, 186, 255, 0.2)"
-                  strokeWidth="1"
-                  strokeDasharray="15 10"
-                  style={{
-                    animation: `geometric-pulse ${10 + i * 2}s ease-in-out infinite ${i * 0.7}s`,
-                  }}
-                />
-              ))}
-            </svg>
-          </div>
+          {/* Animated Geometric Patterns - Only on high performance devices */}
+          {!isMobile && isHighPerformance && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+              <svg
+                className="absolute w-full h-full gpu-accelerated"
+                viewBox="0 0 1200 800"
+              >
+                {/* Animated hexagon grid - Reduced count */}
+                {[...Array(4)].map((_, i) => (
+                  <polygon
+                    key={`hex-${i}`}
+                    points="100,20 140,40 140,80 100,100 60,80 60,40"
+                    fill="none"
+                    stroke="rgba(73, 146, 255, 0.3)"
+                    strokeWidth="1"
+                    strokeDasharray="10 5"
+                    style={{
+                      transform: `translate(${100 + i * 250}px, ${100 + (i % 2) * 150}px)`,
+                      animation: `geometric-pulse ${10 + i * 2}s ease-in-out infinite ${i * 0.8}s`,
+                    }}
+                  />
+                ))}
+                {/* Animated connecting lines - Reduced count */}
+                {[...Array(2)].map((_, i) => (
+                  <line
+                    key={`line-${i}`}
+                    x1={50 + i * 400}
+                    y1={200}
+                    x2={300 + i * 400}
+                    y2={400}
+                    stroke="rgba(63, 186, 255, 0.2)"
+                    strokeWidth="1"
+                    strokeDasharray="15 10"
+                    style={{
+                      animation: `geometric-pulse ${12 + i * 3}s ease-in-out infinite ${i * 1}s`,
+                    }}
+                  />
+                ))}
+              </svg>
+            </div>
+          )}
 
-          {/* Breathing Orbs */}
+          {/* Optimized Breathing Orbs - Reduced count for performance */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[...Array(8)].map((_, i) => (
+            {[...Array(isMobile ? 3 : 6)].map((_, i) => (
               <div
                 key={`breath-orb-${i}`}
-                className="absolute rounded-full"
+                className="absolute rounded-full gpu-accelerated"
                 style={{
                   left: `${15 + ((i * 80) % 70)}%`,
                   top: `${20 + ((i * 60) % 60)}%`,
-                  width: `${20 + (i % 3) * 15}px`,
-                  height: `${20 + (i % 3) * 15}px`,
-                  background: `radial-gradient(circle, rgba(${73 + i * 10}, ${146 + i * 5}, 255, 0.3) 0%, transparent 70%)`,
-                  animation: `breath ${6 + (i % 4)}s ease-in-out infinite ${i * 0.4}s`,
-                  filter: `blur(${2 + (i % 3)}px)`,
+                  width: `${25 + (i % 2) * 15}px`,
+                  height: `${25 + (i % 2) * 15}px`,
+                  background: `radial-gradient(circle, rgba(${73 + i * 15}, ${146 + i * 8}, 255, 0.4) 0%, transparent 70%)`,
+                  animation: `breath ${8 + (i % 3)}s ease-in-out infinite ${i * 0.6}s`,
+                  filter: `blur(${3 + (i % 2)}px)`,
+                  willChange: "transform, opacity",
+                  transform: "translateZ(0)",
                 }}
               />
             ))}
@@ -2013,46 +2150,47 @@ export default function Index() {
 
           {/* Main Content Container */}
           <div className="relative flex items-center justify-center min-h-screen">
-            {/* Energy Rings Around Orb */}
+            {/* Energy Rings Around Orb - Optimized for performance */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              {[...Array(3)].map((_, i) => (
+              {[...Array(isMobile ? 2 : 3)].map((_, i) => (
                 <div
                   key={`ring-${i}`}
-                  className="absolute rounded-full border opacity-20"
+                  className="absolute rounded-full border opacity-20 gpu-accelerated"
                   style={{
                     width: `${400 + i * 120}px`,
                     height: `${400 + i * 120}px`,
                     border: `1px solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
-                    animation: `energy-ripple 3s ease-out infinite ${i * 0.4}s`,
+                    animation: `energy-ripple ${isMobile ? 2 : 3}s ease-out infinite ${i * 0.5}s`,
+                    willChange: "transform, opacity",
+                    transform: "translateZ(0)",
                   }}
                 />
               ))}
             </div>
 
-            {/* Rotating Light Beams */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-              <div
-                className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-blue-400/25 to-transparent"
-                style={{
-                  animation: "spin 15s linear infinite",
-                  transformOrigin: "center 50%",
-                }}
-              />
-              <div
-                className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent"
-                style={{
-                  animation: "spin 20s linear infinite reverse",
-                  transformOrigin: "center 50%",
-                }}
-              />
-              <div
-                className="absolute h-1 w-96 bg-gradient-to-r from-transparent via-blue-300/15 to-transparent"
-                style={{
-                  animation: "spin 25s linear infinite",
-                  transformOrigin: "50% center",
-                }}
-              />
-            </div>
+            {/* Optimized Rotating Light Beams */}
+            {!isMobile && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+                <div
+                  className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-blue-400/25 to-transparent gpu-accelerated"
+                  style={{
+                    animation: "spin 15s linear infinite",
+                    transformOrigin: "center 50%",
+                    willChange: "transform",
+                    transform: "translateZ(0)",
+                  }}
+                />
+                <div
+                  className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent gpu-accelerated"
+                  style={{
+                    animation: "spin 20s linear infinite reverse",
+                    transformOrigin: "center 50%",
+                    willChange: "transform",
+                    transform: "translateZ(0)",
+                  }}
+                />
+              </div>
+            )}
 
             {/* Left Side Visual Balance Elements */}
             <div className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 pointer-events-none">
@@ -2151,13 +2289,12 @@ export default function Index() {
             {/* Central Glowing Orb - SVG Based with Magnetic Effect - YouTube Intro Style */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
-                className="relative animate-float cursor-pointer group pointer-events-none"
+                className="relative animate-float cursor-pointer group pointer-events-none gpu-accelerated will-change-transform"
                 initial={{
                   opacity: 0,
                   scale: 0,
-                  y: -200,
-                  filter: "blur(30px)",
-                  rotateX: 90,
+                  y: -100,
+                  filter: "blur(15px)",
                 }}
                 animate={
                   animationStep >= 2
@@ -2166,16 +2303,15 @@ export default function Index() {
                         scale: 1,
                         y: 0,
                         filter: "blur(0px)",
-                        rotateX: 0,
                       }
                     : {}
                 }
                 transition={{
-                  duration: 1.2,
-                  ease: "backOut",
+                  duration: 0.8,
+                  ease: "easeOut",
                   type: "spring",
-                  stiffness: 100,
-                  damping: 12,
+                  stiffness: 120,
+                  damping: 15,
                 }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
@@ -2349,13 +2485,12 @@ export default function Index() {
 
             {/* Text Content - YouTube Intro Style */}
             <motion.div
-              className="relative z-10 px-4 -mt-16"
+              className="relative z-10 px-4 -mt-16 gpu-accelerated will-change-transform"
               initial={{
                 opacity: 0,
-                y: 150,
-                scale: 0.8,
-                filter: "blur(20px)",
-                rotateX: 45,
+                y: 80,
+                scale: 0.9,
+                filter: "blur(10px)",
               }}
               animate={
                 animationStep >= 3
@@ -2364,16 +2499,15 @@ export default function Index() {
                       y: 0,
                       scale: 1,
                       filter: "blur(0px)",
-                      rotateX: 0,
                     }
                   : {}
               }
               transition={{
-                duration: 1.0,
-                ease: "backOut",
+                duration: 0.7,
+                ease: "easeOut",
                 type: "spring",
-                stiffness: 120,
-                damping: 15,
+                stiffness: 140,
+                damping: 18,
               }}
             >
               {/* Kor - moved further to the left */}
@@ -2434,22 +2568,23 @@ export default function Index() {
                     }}
                   />
 
-                  {/* Floating energy particles around text */}
-                  {[...Array(12)].map((_, i) => (
+                  {/* Optimized floating energy particles around text */}
+                  {[...Array(isMobile ? 4 : 8)].map((_, i) => (
                     <div
                       key={`energy-${i}`}
-                      className="absolute rounded-full pointer-events-none"
+                      className="absolute rounded-full pointer-events-none gpu-accelerated"
                       style={{
-                        left: `${20 + ((i * 60) % 160)}%`,
-                        top: `${30 + ((i * 40) % 60)}%`,
-                        width: `${3 + (i % 2)}px`,
-                        height: `${3 + (i % 2)}px`,
+                        left: `${20 + ((i * 80) % 160)}%`,
+                        top: `${30 + ((i * 50) % 60)}%`,
+                        width: `${4 + (i % 2)}px`,
+                        height: `${4 + (i % 2)}px`,
                         background:
                           theme === "light"
-                            ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
-                            : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
-                        animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
-                        filter: "blur(0.5px)",
+                            ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.7 + (i % 2) * 0.2})`
+                            : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.7 + (i % 2) * 0.2})`,
+                        animation: `energy-float ${4 + (i % 2)}s ease-in-out infinite ${i * 0.5}s`,
+                        willChange: "transform, opacity",
+                        transform: "translateZ(0)",
                         animationFillMode: "both",
                         animationTimingFunction: "ease-in-out",
                       }}
@@ -2485,33 +2620,38 @@ export default function Index() {
                         ))}
                       </span>
 
-                      {/* Enhanced sparkles with more variety */}
+                      {/* Optimized sparkles for better performance */}
                       {SHINE_CONFIG.showSparkles &&
-                        [
-                          // Upper sparkles
-                          { x: 95, y: -35, size: 0.8, type: "star" },
-                          { x: 75, y: -10, size: 0.6, type: "diamond" },
-                          { x: 120, y: 50, size: 0.7, type: "plus" },
-                          { x: 90, y: 80, size: 0.9, type: "star" },
-                          { x: 25, y: 85, size: 0.5, type: "diamond" },
-                          { x: -40, y: 60, size: 0.6, type: "plus" },
-                          { x: 165, y: 15, size: 1.0, type: "star" },
-                          // Additional sparkles for more drama
-                          { x: -20, y: -20, size: 0.7, type: "diamond" },
-                          { x: 140, y: -15, size: 0.5, type: "plus" },
-                          { x: 50, y: 100, size: 0.8, type: "star" },
-                        ].map((sparkle, i) => (
+                        (isMobile
+                          ? [
+                              { x: 95, y: -35, size: 0.8, type: "star" },
+                              { x: 75, y: -10, size: 0.6, type: "diamond" },
+                              { x: 120, y: 50, size: 0.7, type: "plus" },
+                              { x: 90, y: 80, size: 0.9, type: "star" },
+                            ]
+                          : [
+                              { x: 95, y: -35, size: 0.8, type: "star" },
+                              { x: 75, y: -10, size: 0.6, type: "diamond" },
+                              { x: 120, y: 50, size: 0.7, type: "plus" },
+                              { x: 90, y: 80, size: 0.9, type: "star" },
+                              { x: 25, y: 85, size: 0.5, type: "diamond" },
+                              { x: -40, y: 60, size: 0.6, type: "plus" },
+                              { x: 165, y: 15, size: 1.0, type: "star" },
+                              { x: -20, y: -20, size: 0.7, type: "diamond" },
+                            ]
+                        ).map((sparkle, i) => (
                           <div
                             key={`enhanced-sparkle-${i}`}
-                            className="absolute pointer-events-none"
+                            className="absolute pointer-events-none gpu-accelerated"
                             style={{
                               left: `calc(50% + ${sparkle.x}px)`,
                               top: `calc(50% + ${sparkle.y}px)`,
-                              animation: `sparkle-enhanced ${6 + (i % 4) * 2}s ease-in-out infinite ${i * 0.8}s`,
-                              transform: `scale(${sparkle.size})`,
+                              animation: `sparkle-enhanced ${isMobile ? 4 : 6 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+                              transform: `translateZ(0) scale(${sparkle.size})`,
                               opacity: 0.6,
                               animationFillMode: "both",
                               zIndex: -1,
+                              willChange: "transform, opacity",
                             }}
                           >
                             {sparkle.type === "star" && (
@@ -2524,7 +2664,9 @@ export default function Index() {
                                       : "radial-gradient(circle, rgba(73, 146, 255, 0.6) 0%, transparent 70%)",
                                   clipPath:
                                     "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-                                  animation: "spin-slow 15s linear infinite",
+                                  animation: isMobile
+                                    ? "spin-slow 8s linear infinite"
+                                    : "spin-slow 15s linear infinite",
                                 }}
                               />
                             )}
@@ -2538,8 +2680,9 @@ export default function Index() {
                                       : "linear-gradient(45deg, rgba(34, 211, 238, 0.5), rgba(73, 146, 255, 0.4))",
                                   clipPath:
                                     "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                                  animation:
-                                    "gentle-pulse 4s ease-in-out infinite",
+                                  animation: isMobile
+                                    ? "gentle-pulse 3s ease-in-out infinite"
+                                    : "gentle-pulse 4s ease-in-out infinite",
                                 }}
                               />
                             )}
@@ -2553,7 +2696,9 @@ export default function Index() {
                                       : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.5), rgba(34, 211, 238, 0.4), rgba(73, 146, 255, 0.5))",
                                   clipPath:
                                     "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
-                                  animation: "rotate-slow 12s linear infinite",
+                                  animation: isMobile
+                                    ? "rotate-slow 8s linear infinite"
+                                    : "rotate-slow 12s linear infinite",
                                 }}
                               />
                             )}
@@ -2686,49 +2831,53 @@ export default function Index() {
         </motion.div>
 
         {/* About Us Section */}
-        <div
-          className={`transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
+        <motion.div
+          className={isMobileMenuOpen ? "blur-sm" : ""}
+          style={{
+            display: currentSection === 1 ? "block" : "none",
+          }}
         >
           <AboutUsSection
             ref={(el) => (sectionsRef.current[1] = el!)}
             theme={theme}
             isVisible={currentSection === 1}
           />
-        </div>
+        </motion.div>
 
         {/* Services Section */}
-        <div
-          className={`transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
+        <motion.div
+          className={isMobileMenuOpen ? "blur-sm" : ""}
+          style={{
+            display: currentSection === 2 ? "block" : "none",
+          }}
         >
           <ServicesSection
             ref={(el) => (sectionsRef.current[2] = el!)}
             theme={theme}
             isVisible={currentSection === 2}
           />
-        </div>
+        </motion.div>
 
         {/* Portfolio Section */}
-        <div
-          className={`transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
+        <motion.div
+          className={isMobileMenuOpen ? "blur-sm" : ""}
+          style={{
+            display: currentSection === 3 ? "block" : "none",
+          }}
         >
           <PortfolioSection
             ref={(el) => (sectionsRef.current[3] = el!)}
             theme={theme}
             isVisible={currentSection === 3}
           />
-        </div>
+        </motion.div>
 
         {/* Contact Us Section */}
-        <div
-          className={`transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
+        <motion.div
+          className={isMobileMenuOpen ? "blur-sm" : ""}
+          style={{
+            display: currentSection === 4 ? "block" : "none",
+          }}
         >
           <ContactUsSection
             ref={(el) => (sectionsRef.current[4] = el!)}
@@ -2736,7 +2885,7 @@ export default function Index() {
             isVisible={currentSection === 4}
             isMobile={isMobile}
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* Enhanced Background Animations */}
@@ -4078,7 +4227,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="relative min-h-screen py-4 sm:py-6 lg:py-8 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-2 pb-4"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-4"
             initial={{
               opacity: 0,
               y: 80,
@@ -5178,7 +5327,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Main Content Container */}
         <div className="relative min-h-screen py-4 sm:py-6 lg:py-8 section-container">
           <motion.div
-            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-2 pb-4"
+            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-4"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
@@ -6223,7 +6372,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "📱",
+                        icon: "��",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
