@@ -281,7 +281,6 @@ export default function Index() {
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
@@ -749,7 +748,7 @@ export default function Index() {
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████���╝██║  ██║
-╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ����═╝`}
+╚═╝  ╚═╝ ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
