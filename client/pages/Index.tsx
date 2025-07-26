@@ -664,7 +664,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ████████████��██████��� 60%
+                      CPU: ████████████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1459,53 +1459,7 @@ export default function Index() {
       }`}
       style={{ height: "100vh", overflow: "hidden", maxWidth: "100vw" }}
     >
-      {/* Section Navigation Dots - Enhanced */}
-      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center space-y-2">
-        {/* Navigation Rail */}
-        <div className="absolute inset-0 w-0.5 bg-gradient-to-b from-transparent via-white/20 to-transparent rounded-full" />
 
-        {sections.map((section, index) => (
-          <div key={index} className="relative flex items-center group">
-            {/* Section Label - appears on hover */}
-            <div className="absolute right-full mr-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
-              <div className="px-3 py-1.5 bg-black/80 backdrop-blur-sm text-white text-xs font-medium rounded-lg border border-white/20 whitespace-nowrap">
-                {section.title}
-                {/* Arrow pointing to dot */}
-                <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-black/80" />
-              </div>
-            </div>
-
-            {/* Navigation Dot */}
-            <button
-              onClick={() => scrollToSection(index)}
-              className={`relative w-4 h-4 rounded-full transition-all duration-500 group ${
-                currentSection === index
-                  ? "bg-blue-400 scale-125"
-                  : "bg-white/30 hover:bg-white/50 hover:scale-110"
-              }`}
-              style={{
-                boxShadow:
-                  currentSection === index
-                    ? "0 0 20px rgba(73, 146, 255, 0.8), 0 0 40px rgba(73, 146, 255, 0.4)"
-                    : "0 0 10px rgba(255, 255, 255, 0.2)",
-              }}
-            >
-              {/* Inner glow for active state */}
-              {currentSection === index && (
-                <div className="absolute inset-0 rounded-full bg-blue-300 animate-pulse" />
-              )}
-
-              {/* Progress ring for active state */}
-              {currentSection === index && (
-                <div className="absolute -inset-1 rounded-full border-2 border-blue-400/50 animate-spin-slow" />
-              )}
-
-              {/* Ripple effect on hover */}
-              <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
-            </button>
-          </div>
-        ))}
-      </div>
 
       {/* Sections Container */}
       <div className="h-full">
