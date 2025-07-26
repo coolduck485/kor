@@ -1064,3 +1064,88 @@
   background-size: 300% 100%;
   background-position: 0% 50%;
 }
+
+/* Wavy Blue Aurora - Northern Lights Animations */
+@keyframes aurora-flow-1 {
+  0% {
+    transform: translateX(-50%) translateY(0px) skewX(10deg);
+    opacity: 0.4;
+    filter: hue-rotate(0deg) blur(30px);
+  }
+  25% {
+    transform: translateX(-20%) translateY(-15px) skewX(-5deg);
+    opacity: 0.7;
+    filter: hue-rotate(10deg) blur(25px);
+  }
+  50% {
+    transform: translateX(10%) translateY(-8px) skewX(8deg);
+    opacity: 0.9;
+    filter: hue-rotate(20deg) blur(35px);
+  }
+  75% {
+    transform: translateX(30%) translateY(-20px) skewX(-3deg);
+    opacity: 0.6;
+    filter: hue-rotate(15deg) blur(28px);
+  }
+  100% {
+    transform: translateX(50%) translateY(0px) skewX(10deg);
+    opacity: 0.4;
+    filter: hue-rotate(0deg) blur(30px);
+  }
+}
+
+@keyframes aurora-flow-2 {
+  0% {
+    transform: translateX(-60%) translateY(0px) skewX(-8deg);
+    opacity: 0.3;
+    filter: hue-rotate(0deg) blur(25px);
+  }
+  30% {
+    transform: translateX(-30%) translateY(12px) skewX(6deg);
+    opacity: 0.8;
+    filter: hue-rotate(25deg) blur(20px);
+  }
+  60% {
+    transform: translateX(5%) translateY(18px) skewX(-10deg);
+    opacity: 0.9;
+    filter: hue-rotate(40deg) blur(30px);
+  }
+  90% {
+    transform: translateX(40%) translateY(8px) skewX(4deg);
+    opacity: 0.5;
+    filter: hue-rotate(20deg) blur(25px);
+  }
+  100% {
+    transform: translateX(60%) translateY(0px) skewX(-8deg);
+    opacity: 0.3;
+    filter: hue-rotate(0deg) blur(25px);
+  }
+}
+
+@keyframes aurora-flow-3 {
+  0% {
+    transform: translateX(-40%) translateY(0px) skewX(5deg);
+    opacity: 0.5;
+    filter: hue-rotate(0deg) blur(35px);
+  }
+  20% {
+    transform: translateX(-15%) translateY(-10px) skewX(-7deg);
+    opacity: 0.8;
+    filter: hue-rotate(30deg) blur(30px);
+  }
+  40% {
+    transform: translateX(15%) translateY(5px) skewX(12deg);
+    opacity: 0.7;
+    filter: hue-rotate(50deg) blur(40px);
+  }
+  70% {
+    transform: translateX(35%) translateY(-5px) skewX(-4deg);
+    opacity: 0.9;
+    filter: hue-rotate(35deg) blur(32px);
+  }
+  100% {
+    transform: translateX(40%) translateY(0px) skewX(5deg);
+    opacity: 0.5;
+    filter: hue-rotate(0deg) blur(35px);
+  }
+}
