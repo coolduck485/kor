@@ -2814,17 +2814,27 @@ export default function Index() {
         </motion.div>
 
         {/* Portfolio Section */}
-        <div
+        <motion.div
           className={`transition-all duration-300 ${
             isMobileMenuOpen ? "blur-sm" : ""
           }`}
+          animate={{
+            opacity: isContentVisible && currentSection === 3 ? 1 : currentSection === 3 ? 0 : 1,
+            y: isContentVisible && currentSection === 3 ? 0 : currentSection === 3 ? 30 : 0,
+            scale: isContentVisible && currentSection === 3 ? 1 : currentSection === 3 ? 0.95 : 1
+          }}
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+            delay: currentSection === 3 ? 0.3 : 0
+          }}
         >
           <PortfolioSection
             ref={(el) => (sectionsRef.current[3] = el!)}
             theme={theme}
             isVisible={currentSection === 3}
           />
-        </div>
+        </motion.div>
 
         {/* Contact Us Section */}
         <div
