@@ -1454,24 +1454,7 @@ export default function Index() {
         ))}
       </div>
 
-      {/* Scroll Indicators */}
-      {currentSection > 0 && (
-        <button
-          onClick={() => scrollToSection(currentSection - 1)}
-          className="fixed top-6 left-1/2 -translate-x-1/2 z-50 p-2 rounded-full backdrop-blur-md bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300"
-        >
-          <ChevronUp className="w-5 h-5 text-white" />
-        </button>
-      )}
 
-      {currentSection < sections.length - 1 && (
-        <button
-          onClick={() => scrollToSection(currentSection + 1)}
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 p-2 rounded-full backdrop-blur-md bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300"
-        >
-          <ChevronDown className="w-5 h-5 text-white" />
-        </button>
-      )}
 
       {/* Sections Container */}
       <div className="h-full">
@@ -3783,7 +3766,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 theme === "light" ? "text-gray-700" : "text-white/80"
               }`}
             >
-              Our Story & Vision
+              About Us
             </span>
           </div>
         </div>
@@ -4333,7 +4316,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 theme === "light" ? "text-gray-700" : "text-white/80"
               }`}
             >
-              Technology Solutions Portfolio
+              Services
             </span>
           </div>
         </div>
@@ -4741,7 +4724,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <path d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z" stroke={theme === "light" ? "#3B82F6" : "#22D3EE"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
-              Innovation Showcase
+              Portfolio
             </span>
           </div>
         </div>
@@ -4775,7 +4758,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                   <span className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`} style={{ animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`, filter: theme === "light" ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))` : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`, animationFillMode: "both" }}>
                     <span className="warm-glow-text animate-warm-glow-pulse">
-                      {"Innovation Showcase".split("").map((letter, i) => (
+                      {"Our Featured Work".split("").map((letter, i) => (
                         <span key={i} className="animate-letter-float" style={{ animationDelay: `${i * 0.1}s` }}>
                           {letter === " " ? "\u00A0" : letter}
                         </span>
@@ -4786,49 +4769,49 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
               </div>
             </div>
 
-            {/* Projects Grid */}
-            <div className="grid md:grid-cols-2 gap-8 mt-16">
+            {/* Projects Grid - Now responsive and smaller */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 mt-16 px-4">
               {projects.map((project, index) => (
                 <motion.div
                   key={index}
-                  className="group relative"
+                  className="group relative w-full"
                   initial={{ scale: 0.8, opacity: 0, y: 50 }}
                   animate={isVisible ? { scale: 1, opacity: 1, y: 0 } : { scale: 0.8, opacity: 0, y: 50 }}
-                  transition={{ duration: 0.8, delay: 0.6 + index * 0.2 }}
-                  whileHover={{ scale: 1.03, y: -5 }}
+                  transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+                  whileHover={{ scale: 1.02, y: -3 }}
                 >
-                  <div className="relative p-8 rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500" style={{ background: "rgba(255, 255, 255, 0.05)", border: "2px solid rgba(255, 255, 255, 0.1)", boxShadow: "0 0 40px rgba(73, 146, 255, 0.2)" }}>
+                  <div className="relative p-4 sm:p-6 rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full" style={{ background: "rgba(255, 255, 255, 0.05)", border: "2px solid rgba(255, 255, 255, 0.1)", boxShadow: "0 0 30px rgba(73, 146, 255, 0.15)" }}>
                     {/* Scanning line effect */}
-                    <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                    <div className="absolute inset-0 overflow-hidden rounded-2xl">
                       <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     </div>
 
-                    {/* Project Visual */}
-                    <div className={`w-full h-48 rounded-2xl mb-6 bg-gradient-to-br ${project.image} relative overflow-hidden`} style={{ boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)" }}>
+                    {/* Project Visual - Smaller */}
+                    <div className={`w-full h-32 sm:h-36 rounded-xl mb-4 bg-gradient-to-br ${project.image} relative overflow-hidden`} style={{ boxShadow: "0 0 15px rgba(73, 146, 255, 0.25)" }}>
                       <div className="absolute inset-0 bg-black/20" />
-                      <motion.div className="absolute inset-0 bg-white/20" initial={{ x: '-100%' }} animate={isVisible ? { x: '100%' } : { x: '-100%' }} transition={{ duration: 1.5, delay: 0.8 + index * 0.3 }} />
+                      <motion.div className="absolute inset-0 bg-white/20" initial={{ x: '-100%' }} animate={isVisible ? { x: '100%' } : { x: '-100%' }} transition={{ duration: 1.5, delay: 0.8 + index * 0.2 }} />
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-lg flex items-center justify-center" style={{ boxShadow: "0 0 15px rgba(255, 255, 255, 0.3)" }}>
-                          <div className="w-8 h-8 rounded-full bg-blue-400 animate-pulse" style={{ boxShadow: "0 0 10px rgba(73, 146, 255, 0.8)" }} />
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 backdrop-blur-lg flex items-center justify-center" style={{ boxShadow: "0 0 12px rgba(255, 255, 255, 0.3)" }}>
+                          <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(73, 146, 255, 0.8)" }} />
                         </div>
                       </div>
                     </div>
 
-                    {/* Project Info */}
-                    <h3 className={`text-2xl font-bold mb-3 warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"}`} style={{ textShadow: "0 0 10px rgba(73, 146, 255, 0.6)" }}>
+                    {/* Project Info - Compact */}
+                    <h3 className={`text-base sm:text-lg font-bold mb-2 warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"} line-clamp-2`} style={{ textShadow: "0 0 8px rgba(73, 146, 255, 0.6)" }}>
                       {project.title}
                     </h3>
-                    <p className={`text-sm mb-4 ${theme === "light" ? "text-gray-600" : "text-gray-300"}`} style={{ textShadow: theme === "dark" ? "0 0 5px rgba(255, 255, 255, 0.1)" : "none" }}>
+                    <p className={`text-xs sm:text-sm mb-3 ${theme === "light" ? "text-gray-600" : "text-gray-300"} line-clamp-2`} style={{ textShadow: theme === "dark" ? "0 0 5px rgba(255, 255, 255, 0.1)" : "none" }}>
                       {project.description}
                     </p>
 
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech, techIndex) => (
+                    {/* Tech Stack - Compact */}
+                    <div className="flex flex-wrap gap-1 sm:gap-2">
+                      {project.tech.slice(0, 3).map((tech, techIndex) => (
                         <motion.span
                           key={techIndex}
-                          className="px-3 py-1 rounded-full text-xs font-medium backdrop-blur-lg border"
-                          style={{ background: "rgba(73, 146, 255, 0.1)", border: "1px solid rgba(73, 146, 255, 0.3)", color: theme === "light" ? "#1f2937" : "#e5e7eb", boxShadow: "0 0 8px rgba(73, 146, 255, 0.2)" }}
+                          className="px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border"
+                          style={{ background: "rgba(73, 146, 255, 0.1)", border: "1px solid rgba(73, 146, 255, 0.3)", color: theme === "light" ? "#1f2937" : "#e5e7eb", boxShadow: "0 0 6px rgba(73, 146, 255, 0.2)" }}
                           initial={{ scale: 0 }}
                           animate={isVisible ? { scale: 1 } : { scale: 0 }}
                           transition={{ duration: 0.3, delay: 1 + techIndex * 0.1 }}
@@ -4836,11 +4819,16 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {tech}
                         </motion.span>
                       ))}
+                      {project.tech.length > 3 && (
+                        <span className="px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border" style={{ background: "rgba(73, 146, 255, 0.1)", border: "1px solid rgba(73, 146, 255, 0.3)", color: theme === "light" ? "#1f2937" : "#e5e7eb" }}>
+                          +{project.tech.length - 3}
+                        </span>
+                      )}
                     </div>
 
                     {/* Circuit decorations */}
                     <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-                      <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+                      <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
                       <div className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }} />
                       <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
                     </div>
@@ -5050,7 +5038,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <path d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z" stroke={theme === "light" ? "#3B82F6" : "#22D3EE"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
-              Let's Connect & Collaborate
+              Contact
             </span>
           </div>
         </div>
