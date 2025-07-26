@@ -5,6 +5,7 @@ import { RetroToggle } from "@/components/ui/retro-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
+import { useMobilePerformance } from "@/hooks/use-mobile-performance";
 import {
   ChevronUp,
   ChevronDown,
@@ -723,7 +724,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ███����������█╗
-██║ ██╔╝██╔═���═██╗██╔═══██╗
+██║ ██╔╝██╔═���═██╗██╔���══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
