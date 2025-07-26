@@ -5032,139 +5032,195 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ y: 50, opacity: 0 }}
-            animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+        {/* Interactive Glass Badge at Top */}
+        <div
+          className="absolute top-8 sm:top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-50 sm:scale-100"
+          style={{
+            marginTop: "var(--badge-margin-top, 140px)",
+          }}
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
+            style={{
+              background: "rgba(255, 255, 255, 0.1)",
+              border: "2px solid transparent",
+              backgroundClip: "padding-box",
+            }}
           >
-            <h2
-              className={`text-5xl md:text-7xl font-bold mb-6 ${
-                theme === "light" ? "text-gray-900" : "text-white"
-              }`}
-              style={{
-                background: theme === "light"
-                  ? "linear-gradient(135deg, #059669, #0891b2)"
-                  : "linear-gradient(135deg, #34d399, #06b6d4)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Contact Us
-            </h2>
-            <p
-              className={`text-xl max-w-3xl mx-auto ${
-                theme === "light" ? "text-gray-600" : "text-gray-300"
-              }`}
-            >
-              Ready to start your project? Let's discuss how we can bring your vision to life
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Contact Form */}
-            <motion.div
-              initial={{ x: -50, opacity: 0 }}
-              animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className={`w-full p-4 rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 ${
-                      theme === "light"
-                        ? "bg-white/60 border-white/40 text-gray-900 placeholder-gray-500"
-                        : "bg-white/5 border-white/20 text-white placeholder-gray-400"
-                    }`}
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    placeholder="Your Email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className={`w-full p-4 rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 ${
-                      theme === "light"
-                        ? "bg-white/60 border-white/40 text-gray-900 placeholder-gray-500"
-                        : "bg-white/5 border-white/20 text-white placeholder-gray-400"
-                    }`}
-                    required
-                  />
-                </div>
-                <div>
-                  <textarea
-                    placeholder="Your Message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    rows={5}
-                    className={`w-full p-4 rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 resize-none ${
-                      theme === "light"
-                        ? "bg-white/60 border-white/40 text-gray-900 placeholder-gray-500"
-                        : "bg-white/5 border-white/20 text-white placeholder-gray-400"
-                    }`}
-                    required
-                  />
-                </div>
-                <motion.button
-                  type="submit"
-                  className="w-full p-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-300 hover:scale-105"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  <span>Send Message</span>
-                </motion.button>
-              </form>
-            </motion.div>
-
-            {/* Contact Info */}
-            <motion.div
-              className="space-y-8"
-              initial={{ x: 50, opacity: 0 }}
-              animate={isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              {[
-                { icon: Mail, title: "Email Us", info: "contact@kor.dev", color: "from-blue-500 to-cyan-500" },
-                { icon: Phone, title: "Call Us", info: "+1 (555) 123-4567", color: "from-green-500 to-emerald-500" },
-                { icon: MapPin, title: "Visit Us", info: "123 Tech Street, Digital City", color: "from-purple-500 to-pink-500" },
-              ].map((contact, index) => (
-                <motion.div
-                  key={index}
-                  className={`p-6 rounded-3xl backdrop-blur-lg border ${
-                    theme === "light"
-                      ? "bg-white/60 border-white/40"
-                      : "bg-white/5 border-white/20"
-                  }`}
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={isVisible ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center`}>
-                      <contact.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className={`font-semibold ${theme === "light" ? "text-gray-900" : "text-white"}`}>
-                        {contact.title}
-                      </h4>
-                      <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>
-                        {contact.info}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+            <svg className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle" viewBox="0 0 24 25" fill="none">
+              <path d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z" stroke={theme === "light" ? "#3B82F6" : "#22D3EE"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+              Let's Connect & Collaborate
+            </span>
           </div>
+        </div>
+
+        {/* Main Content Container */}
+        <div className="relative flex items-center justify-center min-h-screen">
+          <motion.div
+            className="relative z-10 px-4 text-center max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
+            animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          >
+            {/* Contact Title */}
+            <div className="text-center mb-16">
+              <h1 className={`font-poppins text-6xl sm:text-7xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                {"Contact".split("").map((letter, i) => (
+                  <span key={i} className="inline-block relative warm-glow-text animate-warm-glow-pulse" style={{ animation: `text-glow 3s ease-in-out infinite ${i * 0.15}s, text-bounce 2s ease-in-out ${0.5 + i * 0.15}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.15}s` }}>
+                    {letter}
+                  </span>
+                ))}
+              </h1>
+            </div>
+
+            {/* Subtitle */}
+            <div className="text-center mb-16">
+              <div className="relative">
+                <div className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow" style={{ background: theme === "light" ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)" : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)", transform: "scale(1.5)" }} />
+                {[...Array(8)].map((_, i) => (
+                  <div key={`energy-${i}`} className="absolute rounded-full pointer-events-none" style={{ left: `${20 + ((i * 60) % 160)}%`, top: `${30 + ((i * 40) % 60)}%`, width: `${3 + (i % 2)}px`, height: `${3 + (i % 2)}px`, background: theme === "light" ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})` : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`, animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`, filter: "blur(0.5px)", animationFillMode: "both" }} />
+                ))}
+                <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                  <span className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`} style={{ animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`, filter: theme === "light" ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))` : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`, animationFillMode: "both" }}>
+                    <span className="warm-glow-text animate-warm-glow-pulse">
+                      {"Ready to Build Something Amazing?".split("").map((letter, i) => (
+                        <span key={i} className="animate-letter-float" style={{ animationDelay: `${i * 0.05}s` }}>
+                          {letter === " " ? "\u00A0" : letter}
+                        </span>
+                      ))}
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Content Grid */}
+            <div className="grid md:grid-cols-2 gap-12 items-start mt-16">
+              {/* Contact Form */}
+              <motion.div
+                initial={{ x: -50, opacity: 0 }}
+                animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      className="w-full p-4 rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 outline-none"
+                      style={{
+                        background: "rgba(255, 255, 255, 0.05)",
+                        border: "2px solid rgba(255, 255, 255, 0.1)",
+                        color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)"
+                      }}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      placeholder="Your Email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      className="w-full p-4 rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 outline-none"
+                      style={{
+                        background: "rgba(255, 255, 255, 0.05)",
+                        border: "2px solid rgba(255, 255, 255, 0.1)",
+                        color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)"
+                      }}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      placeholder="Your Message"
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      rows={5}
+                      className="w-full p-4 rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 resize-none outline-none"
+                      style={{
+                        background: "rgba(255, 255, 255, 0.05)",
+                        border: "2px solid rgba(255, 255, 255, 0.1)",
+                        color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)"
+                      }}
+                      required
+                    />
+                  </div>
+                  <motion.button
+                    type="submit"
+                    className="w-full p-4 rounded-2xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-300 hover:scale-105"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
+                      boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)"
+                    }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <span>Send Message</span>
+                  </motion.button>
+                </form>
+              </motion.div>
+
+              {/* Contact Info */}
+              <motion.div
+                className="space-y-8"
+                initial={{ x: 50, opacity: 0 }}
+                animate={isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                {[
+                  { icon: Mail, title: "Email Us", info: "contact@kor.dev", color: "from-blue-500 to-cyan-500" },
+                  { icon: Phone, title: "Call Us", info: "+1 (555) 123-4567", color: "from-green-500 to-emerald-500" },
+                  { icon: MapPin, title: "Visit Us", info: "123 Tech Street, Digital City", color: "from-purple-500 to-pink-500" },
+                ].map((contact, index) => (
+                  <motion.div
+                    key={index}
+                    className="p-6 rounded-3xl backdrop-blur-lg border transition-all duration-500 hover:scale-105"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.05)",
+                      border: "2px solid rgba(255, 255, 255, 0.1)",
+                      boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)"
+                    }}
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={isVisible ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
+                  >
+                    {/* Scanning line effect */}
+                    <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                    </div>
+
+                    <div className="flex items-center space-x-4 relative z-10">
+                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center`} style={{ boxShadow: "0 0 15px rgba(73, 146, 255, 0.4)" }}>
+                        <contact.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className={`font-semibold warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"}`} style={{ textShadow: "0 0 8px rgba(73, 146, 255, 0.5)" }}>
+                          {contact.title}
+                        </h4>
+                        <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`} style={{ textShadow: theme === "dark" ? "0 0 5px rgba(255, 255, 255, 0.1)" : "none" }}>
+                          {contact.info}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Circuit decorations */}
+                    <div className="absolute inset-0 opacity-20 hover:opacity-40 transition-all duration-500">
+                      <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+                      <div className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }} />
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     );
