@@ -739,7 +739,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
-██║ ██╔╝��█╔═���═██╗█���╔��══██╗
+██║ █��╔╝��█╔═���═██╗█���╔��══██╗
 █████╔╝ █������   █��║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████���╝██║  ██║
@@ -2976,37 +2976,7 @@ export default function Index() {
           }
         }
 
-        @keyframes gradient-shift {
-          0%,
-          100% {
-            transform: translateX(0%) translateY(0%) rotate(0deg);
-          }
-          25% {
-            transform: translateX(10%) translateY(-5%) rotate(1deg);
-          }
-          50% {
-            transform: translateX(-5%) translateY(10%) rotate(-1deg);
-          }
-          75% {
-            transform: translateX(15%) translateY(-10%) rotate(0.5deg);
-          }
-        }
 
-        @keyframes gradient-shift-reverse {
-          0%,
-          100% {
-            transform: translateX(0%) translateY(0%) rotate(0deg);
-          }
-          25% {
-            transform: translateX(-10%) translateY(5%) rotate(-1deg);
-          }
-          50% {
-            transform: translateX(5%) translateY(-10%) rotate(1deg);
-          }
-          75% {
-            transform: translateX(-15%) translateY(10%) rotate(-0.5deg);
-          }
-        }
 
         @keyframes noise {
           0%,
@@ -3024,13 +2994,7 @@ export default function Index() {
           animation: float-particle linear infinite;
         }
 
-        .animate-gradient-shift {
-          animation: gradient-shift 25s ease-in-out infinite;
-        }
 
-        .animate-gradient-shift-reverse {
-          animation: gradient-shift-reverse 30s ease-in-out infinite;
-        }
 
         .animate-noise {
           animation: noise 3s ease-in-out infinite;
