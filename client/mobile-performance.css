@@ -1,0 +1,77 @@
+/* Mobile Performance Optimizations */
+@media (max-width: 768px) {
+  /* Disable expensive animations on mobile */
+  .animate-gradient-shift,
+  .animate-gradient-shift-reverse,
+  .animate-noise,
+  .animate-color-shift {
+    animation: none !important;
+  }
+
+  /* Simplify particle animations */
+  .animate-gentleFloat {
+    animation-duration: 2s !important;
+    animation-timing-function: ease-in-out !important;
+  }
+
+  .animate-breath {
+    animation-duration: 3s !important;
+  }
+
+  /* Reduce blur effects for performance */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(4px) !important;
+  }
+
+  .backdrop-blur-lg {
+    backdrop-filter: blur(3px) !important;
+  }
+
+  .backdrop-blur-md {
+    backdrop-filter: blur(2px) !important;
+  }
+
+  /* Remove complex filters */
+  [style*="filter: blur"] {
+    filter: none !important;
+  }
+
+  /* Optimize transforms for hardware acceleration */
+  .gpu-accelerated,
+  .animate-gentleFloat,
+  .animate-breath,
+  .animate-float,
+  .animate-button-float {
+    will-change: transform !important;
+    transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+  }
+
+  /* Reduce motion for better performance */
+  @media (prefers-reduced-motion: no-preference) {
+    * {
+      animation-duration: 0.5s !important;
+    }
+  }
+
+  /* Hide complex background elements on mobile */
+  .mobile-hide {
+    display: none !important;
+  }
+
+  /* Simplify complex gradients */
+  .bg-gradient-to-br,
+  .bg-gradient-to-tl,
+  .bg-gradient-to-r {
+    background: rgba(73, 146, 255, 0.1) !important;
+  }
+}
+
+/* Hardware acceleration for all devices */
+.performance-optimized {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
