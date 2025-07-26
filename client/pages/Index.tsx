@@ -2504,8 +2504,8 @@ export default function Index() {
             </motion.div>
 
             {/* Mobile Hamburger Menu - Only on mobile (640px and below) - NO BLUR */}
-            <div className="sm:hidden absolute inset-0 flex items-center justify-center z-60">
-              <div className="relative">
+            <div className="sm:hidden absolute inset-0 flex items-center justify-center z-60 blur-none filter-none" style={{ filter: 'none' }}>
+              <div className="relative blur-none filter-none" style={{ filter: 'none' }}>
                 <MobileHamburgerMenu
                   isOpen={isMobileMenuOpen}
                   setIsOpen={setIsMobileMenuOpen}
