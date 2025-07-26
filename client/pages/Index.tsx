@@ -787,7 +787,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: ████████��█████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1820,14 +1820,8 @@ export default function Index() {
               ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
               : "bg-black"
           }`}
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: currentSection === 0 ? 1 : 0,
-            scale: currentSection === 0 ? 1 : 0.95
-          }}
-          transition={{
-            duration: 0.4,
-            ease: "easeOut"
+          style={{
+            display: currentSection === 0 ? 'block' : 'none'
           }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
@@ -2816,16 +2810,9 @@ export default function Index() {
 
         {/* About Us Section */}
         <motion.div
-          className={`transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
-          animate={{
-            opacity: currentSection === 1 ? 1 : 0,
-            scale: currentSection === 1 ? 1 : 0.95
-          }}
-          transition={{
-            duration: 0.4,
-            ease: "easeOut"
+          className={isMobileMenuOpen ? "blur-sm" : ""}
+          style={{
+            display: currentSection === 1 ? 'block' : 'none'
           }}
         >
           <AboutUsSection
@@ -2837,16 +2824,9 @@ export default function Index() {
 
         {/* Services Section */}
         <motion.div
-          className={`transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
-          animate={{
-            opacity: currentSection === 2 ? 1 : 0,
-            scale: currentSection === 2 ? 1 : 0.95
-          }}
-          transition={{
-            duration: 0.4,
-            ease: "easeOut"
+          className={isMobileMenuOpen ? "blur-sm" : ""}
+          style={{
+            display: currentSection === 2 ? 'block' : 'none'
           }}
         >
           <ServicesSection
@@ -2858,16 +2838,9 @@ export default function Index() {
 
         {/* Portfolio Section */}
         <motion.div
-          className={`transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
-          animate={{
-            opacity: currentSection === 3 ? 1 : 0,
-            scale: currentSection === 3 ? 1 : 0.95
-          }}
-          transition={{
-            duration: 0.4,
-            ease: "easeOut"
+          className={isMobileMenuOpen ? "blur-sm" : ""}
+          style={{
+            display: currentSection === 3 ? 'block' : 'none'
           }}
         >
           <PortfolioSection
@@ -2879,16 +2852,9 @@ export default function Index() {
 
         {/* Contact Us Section */}
         <motion.div
-          className={`transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
-          animate={{
-            opacity: currentSection === 4 ? 1 : 0,
-            scale: currentSection === 4 ? 1 : 0.95
-          }}
-          transition={{
-            duration: 0.4,
-            ease: "easeOut"
+          className={isMobileMenuOpen ? "blur-sm" : ""}
+          style={{
+            display: currentSection === 4 ? 'block' : 'none'
           }}
         >
           <ContactUsSection
