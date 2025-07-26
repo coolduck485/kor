@@ -679,7 +679,7 @@ export default function Index() {
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
-��═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1796,27 +1796,57 @@ export default function Index() {
               }}
             />
 
-            {/* Subtle pulse indicator */}
+            {/* Section transition indicator */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{
-                opacity: [0, 0.6, 0],
-                scale: [0.5, 1.2, 0.5]
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
               transition={{
-                duration: 0.8,
-                ease: "easeInOut",
-                delay: 0.15,
-                repeat: 1
+                duration: 0.4,
+                ease: "easeOut",
+                delay: 0.2
               }}
-              className="absolute inset-0 flex items-center justify-center"
+              className="absolute inset-0 flex flex-col items-center justify-center"
             >
-              <div
-                className="w-2 h-2 bg-white/30 rounded-full"
-                style={{
-                  boxShadow: "0 0 20px rgba(255, 255, 255, 0.3)",
+              {/* Section name */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeOut",
+                  delay: 0.25
                 }}
-              />
+                className="text-white/80 text-lg md:text-xl font-light tracking-widest uppercase mb-4"
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  letterSpacing: "0.2em",
+                }}
+              >
+                {sections[transitioningSectionIndex]?.title || "Loading"}
+              </motion.div>
+
+              {/* Subtle pulse indicator */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{
+                  opacity: [0, 0.8, 0],
+                  scale: [0.5, 1.2, 0.5]
+                }}
+                transition={{
+                  duration: 1.2,
+                  ease: "easeInOut",
+                  delay: 0.3,
+                  repeat: Infinity
+                }}
+              >
+                <div
+                  className="w-1 h-1 bg-white/40 rounded-full"
+                  style={{
+                    boxShadow: "0 0 15px rgba(255, 255, 255, 0.4)",
+                  }}
+                />
+              </motion.div>
             </motion.div>
 
             {/* Scanning line effect */}
