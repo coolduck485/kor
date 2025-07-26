@@ -5009,21 +5009,19 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 </motion.button>
               </div>
 
-              {/* Carousel Track */}
-              <div className="overflow-hidden relative">
-                <div
-                  className="flex transition-transform duration-500 ease-in-out"
-                  style={{
-                    transform: `translateX(-${currentSlide * 100}%)`,
-                    width: `${totalSlides * 100}%`
-                  }}
+              {/* Simple Page Display */}
+              <div className="relative">
+                <motion.div
+                  key={currentPage}
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
-                  {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-                    <div key={slideIndex} className="w-full flex-shrink-0" style={{ width: `${100 / totalSlides}%` }}>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-2">
-                        {projects.slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide).map((project, index) => (
+                  {getCurrentPageProjects().map((project, index) => (
                           <motion.div
-                            key={`${slideIndex}-${index}`}
+                            key={`page-${currentPage}-${index}`}
                             className="group relative w-full"
                             initial={{ scale: 0.8, opacity: 0, y: 50 }}
                             animate={isVisible ? { scale: 1, opacity: 1, y: 0 } : { scale: 0.8, opacity: 0, y: 50 }}
@@ -5056,7 +5054,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                                   <div className="flex justify-between items-start">
                                     <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(73, 146, 255, 0.8)" }} />
                                     <div className="text-xs text-white/60 font-mono">
-                                      {String(slideIndex * itemsPerSlide + index + 1).padStart(2, '0')}
+                                      {String(currentPage * projectsPerPage + index + 1).padStart(2, '0')}
                                     </div>
                                   </div>
 
@@ -5112,11 +5110,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                               </div>
                             </div>
                           </motion.div>
-                        ))}
-                      </div>
-                    </div>
                   ))}
-                </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
