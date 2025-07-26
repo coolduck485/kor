@@ -338,7 +338,10 @@ export default function Index() {
       });
     }
 
-    setTimeout(() => setIsScrolling(false), 1000);
+    setTimeout(() => {
+      setIsScrolling(false);
+      setIsScrollingActive(false);
+    }, 1000);
   };
 
   // Handle wheel scroll
@@ -647,10 +650,10 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ███����������█╗
-██║ ██╔╝██╔═����═██╗██╔═══██╗
+██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
-██║  ██╗╚██████╔╝██║  ██║
+██║  ██╗╚██████╔��██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
