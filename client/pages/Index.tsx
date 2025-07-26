@@ -592,7 +592,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ████���█╗
-██��� ██╔╝██╔═══██╗██╔═══██╗
+██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -5844,7 +5844,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <motion.button
                     key={social.name}
                     onClick={() => window.open(social.url, "_blank")}
-                    className="group relative px-4 py-2 sm:px-6 sm:py-3 rounded-xl sm:rounded-2xl backdrop-blur-lg border transition-all duration-500 hover:scale-105 overflow-hidden min-w-[120px] sm:min-w-[140px]"
+                    className="group relative px-6 py-3 sm:px-6 sm:py-3 rounded-xl sm:rounded-2xl backdrop-blur-lg border transition-all duration-200 hover:scale-[1.02] sm:hover:scale-105 overflow-hidden min-w-[140px] sm:min-w-[140px] will-change-transform"
                     style={{
                       background: "rgba(255, 255, 255, 0.05)",
                       border: "2px solid rgba(255, 255, 255, 0.1)",
