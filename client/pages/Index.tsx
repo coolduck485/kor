@@ -817,7 +817,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█������█████��███████ 60%
+                      CPU: ███��█������█████��█���█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2063,8 +2063,8 @@ export default function Index() {
             ))}
           </motion.div>
 
-          {/* Animated Geometric Patterns - Only on high performance devices */}
-          {!isMobile && isHighPerformance && (
+          {/* Animated Geometric Patterns - Now on all devices */}
+          {isHighPerformance && (
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
               <svg
                 className="absolute w-full h-full gpu-accelerated"
