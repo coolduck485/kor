@@ -1459,24 +1459,51 @@ export default function Index() {
       }`}
       style={{ height: "100vh", overflow: "hidden", maxWidth: "100vw" }}
     >
-      {/* Section Navigation Dots */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 space-y-3">
-        {sections.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => scrollToSection(index)}
-            className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
-              currentSection === index
-                ? "bg-blue-400 border-blue-400 scale-125"
-                : "bg-transparent border-white/40 hover:border-blue-400/60"
-            }`}
-            style={{
-              boxShadow:
+      {/* Section Navigation Dots - Enhanced */}
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center space-y-2">
+        {/* Navigation Rail */}
+        <div className="absolute inset-0 w-0.5 bg-gradient-to-b from-transparent via-white/20 to-transparent rounded-full" />
+
+        {sections.map((section, index) => (
+          <div key={index} className="relative flex items-center group">
+            {/* Section Label - appears on hover */}
+            <div className="absolute right-full mr-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
+              <div className="px-3 py-1.5 bg-black/80 backdrop-blur-sm text-white text-xs font-medium rounded-lg border border-white/20 whitespace-nowrap">
+                {section.title}
+                {/* Arrow pointing to dot */}
+                <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-black/80" />
+              </div>
+            </div>
+
+            {/* Navigation Dot */}
+            <button
+              onClick={() => scrollToSection(index)}
+              className={`relative w-4 h-4 rounded-full transition-all duration-500 group ${
                 currentSection === index
-                  ? "0 0 15px rgba(73, 146, 255, 0.6)"
-                  : "none",
-            }}
-          />
+                  ? "bg-blue-400 scale-125"
+                  : "bg-white/30 hover:bg-white/50 hover:scale-110"
+              }`}
+              style={{
+                boxShadow:
+                  currentSection === index
+                    ? "0 0 20px rgba(73, 146, 255, 0.8), 0 0 40px rgba(73, 146, 255, 0.4)"
+                    : "0 0 10px rgba(255, 255, 255, 0.2)",
+              }}
+            >
+              {/* Inner glow for active state */}
+              {currentSection === index && (
+                <div className="absolute inset-0 rounded-full bg-blue-300 animate-pulse" />
+              )}
+
+              {/* Progress ring for active state */}
+              {currentSection === index && (
+                <div className="absolute -inset-1 rounded-full border-2 border-blue-400/50 animate-spin-slow" />
+              )}
+
+              {/* Ripple effect on hover */}
+              <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
+            </button>
+          </div>
         ))}
       </div>
 
@@ -4504,7 +4531,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-16 responsive-grid">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 mt-16 responsive-grid">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
@@ -4518,8 +4545,23 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -10 }}
                 >
+                  {/* Service Title - positioned above the card */}
+                  <div className="mb-4">
+                    <h3
+                      className={`text-xl font-bold warm-glow-text text-center ${
+                        theme === "light" ? "text-gray-900" : "text-white"
+                      }`}
+                      style={{
+                        textShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
+                      }}
+                    >
+                      {service.title}
+                    </h3>
+                  </div>
+
+                  {/* Service Card */}
                   <div
-                    className="relative p-8 rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500"
+                    className="relative p-8 rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
                     style={{
                       background: "rgba(255, 255, 255, 0.05)",
                       border: "2px solid rgba(255, 255, 255, 0.1)",
@@ -4536,9 +4578,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     </div>
 
-                    {/* Icon */}
+                    {/* Icon - centered at top */}
                     <motion.div
-                      className="relative z-10 mb-6"
+                      className="relative z-10 mb-6 flex justify-center"
                       whileHover={{ rotate: 10, scale: 1.2 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -4552,18 +4594,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       </div>
                     </motion.div>
 
-                    {/* Content */}
-                    <div className="relative z-10">
-                      <h3
-                        className={`text-xl font-bold mb-3 warm-glow-text ${
-                          theme === "light" ? "text-gray-900" : "text-white"
-                        }`}
-                        style={{
-                          textShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
-                        }}
-                      >
-                        {service.title}
-                      </h3>
+                    {/* Description Content */}
+                    <div className="relative z-10 text-center">
                       <p
                         className={`text-sm leading-relaxed ${
                           theme === "light" ? "text-gray-600" : "text-gray-300"
