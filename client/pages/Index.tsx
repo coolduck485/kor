@@ -672,7 +672,7 @@ export default function Index() {
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
-██║  ██╗╚██████╔╝██║  █��║
+██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1738,6 +1738,26 @@ export default function Index() {
           />
         </div>
       </div>
+
+      {/* Black Transition Overlay */}
+      <AnimatePresence>
+        {isBlackTransition && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration: 0.4,
+              ease: "easeInOut"
+            }}
+            className="fixed inset-0 bg-black z-[9999] pointer-events-none"
+            style={{
+              willChange: "opacity",
+              transform: "translateZ(0)",
+            }}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Sections Container */}
       <div className="h-full">
