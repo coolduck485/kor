@@ -815,7 +815,7 @@ export default function Index() {
                 <div className="status-indicators">
                   <span className="status-dot text-red-400">●</span>
                   <span>READY</span>
-                  <span className="status-dot text-amber-400">●</span>
+                  <span className="status-dot text-amber-400">��</span>
                   <span>CONNECTED</span>
                   <span className="status-dot text-green-400 terminal-glow">
                     ●
@@ -1882,14 +1882,15 @@ export default function Index() {
           }`}
           initial={{ opacity: 0 }}
           animate={{
-            opacity: isContentVisible && currentSection === 0 ? 1 : currentSection === 0 ? 0.3 : 1,
-            y: isContentVisible && currentSection === 0 ? 0 : currentSection === 0 ? 20 : 0,
-            scale: isContentVisible && currentSection === 0 ? 1 : currentSection === 0 ? 0.98 : 1
+            opacity: isContentVisible && currentSection === 0 ? 1 : currentSection === 0 ? 0 : 1,
+            y: isContentVisible && currentSection === 0 ? 0 : currentSection === 0 ? 40 : 0,
+            scale: isContentVisible && currentSection === 0 ? 1 : currentSection === 0 ? 0.95 : 1,
+            filter: isContentVisible && currentSection === 0 ? "blur(0px)" : currentSection === 0 ? "blur(8px)" : "blur(0px)"
           }}
           transition={{
-            duration: currentSection === 0 ? 0.8 : 0.8,
-            ease: "easeOut",
-            delay: currentSection === 0 ? 0.2 : 0
+            duration: 0.9,
+            ease: [0.25, 0.46, 0.45, 0.94],
+            delay: currentSection === 0 ? 0.3 : 0
           }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
