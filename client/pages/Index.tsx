@@ -670,7 +670,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █████████████���████████ 50%
+                      RAM: █████████████████��████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -4178,7 +4178,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {stat.number}
                         </div>
                         <div
-                          className={`text-sm font-medium ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
+                          className={`text-xs sm:text-sm font-medium ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
                         >
                           {stat.label}
                         </div>
