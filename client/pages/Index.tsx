@@ -4390,38 +4390,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/20 via-white/5 to-transparent pointer-events-none" />
                   </div>
 
-                  {/* External Floating Elements */}
-                  <motion.div
-                    className="absolute -top-4 -right-4 w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 opacity-80 backdrop-blur-sm"
-                    animate={{
-                      y: [0, -10, 0],
-                      rotate: [0, 180, 360],
-                    }}
-                    transition={{
-                      duration: 6,
-                      repeat: Infinity,
-                    }}
-                    style={{
-                      boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)",
-                    }}
-                  />
 
-                  <motion.div
-                    className="absolute -bottom-2 -left-2 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 opacity-70 backdrop-blur-sm"
-                    animate={{
-                      x: [0, 8, 0],
-                      y: [0, -8, 0],
-                      scale: [1, 1.2, 1],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      delay: 1,
-                    }}
-                    style={{
-                      boxShadow: "0 0 15px rgba(168, 85, 247, 0.4)",
-                    }}
-                  />
                 </div>
               </motion.div>
             </div>
