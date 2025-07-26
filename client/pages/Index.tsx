@@ -4637,7 +4637,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-6 lg:gap-8 xl:gap-10 mt-16 responsive-grid w-full">
+            <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-6 lg:gap-8 xl:gap-10 mt-16 responsive-grid w-full">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
