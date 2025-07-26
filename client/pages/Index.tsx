@@ -873,7 +873,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►◄►</span>
+                  <span className="text-green-400 ml-4">◄���◄►��►</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -1782,16 +1782,18 @@ export default function Index() {
         </div>
       )}
 
-      {/* Mobile Hamburger Menu - Positioned at top level to avoid blur */}
-      <div className="sm:hidden fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
-        <div className="relative pointer-events-auto">
-          <MobileHamburgerMenu
-            isOpen={isMobileMenuOpen}
-            setIsOpen={setIsMobileMenuOpen}
-            theme={theme}
-          />
+      {/* Mobile Hamburger Menu - Only show in home section */}
+      {currentSection === 0 && (
+        <div className="sm:hidden fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
+          <div className="relative pointer-events-auto">
+            <MobileHamburgerMenu
+              isOpen={isMobileMenuOpen}
+              setIsOpen={setIsMobileMenuOpen}
+              theme={theme}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Black Transition Overlay with Cinematic Effects */}
       <AnimatePresence>
@@ -2520,20 +2522,13 @@ export default function Index() {
                     theme === "light" ? "text-gray-900" : "text-white"
                   }`}
                 >
-                  <span
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                    style={{
-                      animation:
-                        "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s infinite both, warm-glow-pulse 3s ease-in-out infinite",
-                    }}
-                  >
+                  <span className="inline-block relative warm-glow-text animate-warm-glow-pulse">
                     K
                   </span>
                   <span
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animation:
-                        "text-glow 3s ease-in-out infinite 0.3s, text-bounce 2s ease-in-out 0.8s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.3s",
+                      animationDelay: "0.3s",
                     }}
                   >
                     o
@@ -2541,8 +2536,7 @@ export default function Index() {
                   <span
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animation:
-                        "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.6s",
+                      animationDelay: "0.6s",
                     }}
                   >
                     r
@@ -2585,8 +2579,6 @@ export default function Index() {
                         animation: `energy-float ${4 + (i % 2)}s ease-in-out infinite ${i * 0.5}s`,
                         willChange: "transform, opacity",
                         transform: "translateZ(0)",
-                        animationFillMode: "both",
-                        animationTimingFunction: "ease-in-out",
                       }}
                     />
                   ))}
@@ -2597,13 +2589,12 @@ export default function Index() {
                         theme === "light" ? "text-gray-900" : "text-white"
                       }`}
                       style={{
-                        animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
                         filter:
                           theme === "light"
                             ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                             : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-                        animationFillMode: "both",
                       }}
+                      className="animate-text-pop"
                     >
                       {/* Warm glow text with iOS-inspired styling */}
                       <span className="warm-glow-text animate-warm-glow-pulse">
@@ -2649,7 +2640,7 @@ export default function Index() {
                               animation: `sparkle-enhanced ${isMobile ? 4 : 6 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
                               transform: `translateZ(0) scale(${sparkle.size})`,
                               opacity: 0.6,
-                              animationFillMode: "both",
+
                               zIndex: -1,
                               willChange: "transform, opacity",
                             }}
@@ -4227,7 +4218,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="relative min-h-screen py-4 sm:py-6 lg:py-8 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-4"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-16"
             initial={{
               opacity: 0,
               y: 80,
@@ -4257,65 +4248,50 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               >
                 <span
                   className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  style={{
-                    animation:
-                      "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s infinite both, warm-glow-pulse 3s ease-in-out infinite",
-                  }}
+                  className="animate-warm-glow-pulse"
                 >
                   A
                 </span>
                 <span
                   className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  style={{
-                    animation:
-                      "text-glow 3s ease-in-out infinite 0.2s, text-bounce 2s ease-in-out 0.7s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.2s",
-                  }}
+                  className="animate-warm-glow-pulse"
+                  style={{ animationDelay: "0.2s" }}
                 >
                   b
                 </span>
                 <span
                   className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  style={{
-                    animation:
-                      "text-glow 3s ease-in-out infinite 0.4s, text-bounce 2s ease-in-out 0.9s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.4s",
-                  }}
+                  className="animate-warm-glow-pulse"
+                  style={{ animationDelay: "0.4s" }}
                 >
                   o
                 </span>
                 <span
                   className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  style={{
-                    animation:
-                      "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.6s",
-                  }}
+                  className="animate-warm-glow-pulse"
+                  style={{ animationDelay: "0.6s" }}
                 >
                   u
                 </span>
                 <span
                   className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  style={{
-                    animation:
-                      "text-glow 3s ease-in-out infinite 0.8s, text-bounce 2s ease-in-out 1.3s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.8s",
-                  }}
+                  className="animate-warm-glow-pulse"
+                  style={{ animationDelay: "0.8s" }}
                 >
                   t
                 </span>
                 <span className="mx-4" />
                 <span
                   className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  style={{
-                    animation:
-                      "text-glow 3s ease-in-out infinite 1.0s, text-bounce 2s ease-in-out 1.5s infinite both, warm-glow-pulse 3s ease-in-out infinite 1.0s",
-                  }}
+                  className="animate-warm-glow-pulse"
+                  style={{ animationDelay: "1.0s" }}
                 >
                   U
                 </span>
                 <span
                   className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  style={{
-                    animation:
-                      "text-glow 3s ease-in-out infinite 1.2s, text-bounce 2s ease-in-out 1.7s infinite both, warm-glow-pulse 3s ease-in-out infinite 1.2s",
-                  }}
+                  className="animate-warm-glow-pulse"
+                  style={{ animationDelay: "1.2s" }}
                 >
                   s
                 </span>
@@ -4331,12 +4307,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       theme === "light" ? "text-gray-900" : "text-white"
                     }`}
                     style={{
-                      animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
                       filter:
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-                      animationFillMode: "both",
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
@@ -4459,7 +4433,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 }
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <div className="relative w-full max-w-lg h-80 sm:h-96 lg:h-[28rem]">
+                <div className="relative w-full max-w-md h-64 sm:h-80 lg:h-96">
                   {/* Main Glass Container */}
                   <div
                     className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden backdrop-blur-xl border border-white/30"
@@ -4884,7 +4858,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     key={i}
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animation: `text-glow 3s ease-in-out infinite ${i * 0.2}s, text-bounce 2s ease-in-out ${0.5 + i * 0.2}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.2}s`,
+                      animationDelay: `${i * 0.2}s`,
                     }}
                   >
                     {letter}
@@ -4924,7 +4898,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
                       animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
                       filter: "blur(0.5px)",
-                      animationFillMode: "both",
+
                       animationTimingFunction: "ease-in-out",
                     }}
                   />
@@ -4936,12 +4910,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       theme === "light" ? "text-gray-900" : "text-white"
                     }`}
                     style={{
-                      animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
                       filter:
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-                      animationFillMode: "both",
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
@@ -5342,7 +5314,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     key={i}
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animation: `text-glow 3s ease-in-out infinite ${i * 0.15}s, text-bounce 2s ease-in-out ${0.5 + i * 0.15}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.15}s`,
+                      animationDelay: `${i * 0.15}s`,
                     }}
                   >
                     {letter}
@@ -5379,7 +5351,6 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
                       animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
                       filter: "blur(0.5px)",
-                      animationFillMode: "both",
                     }}
                   />
                 ))}
@@ -5387,12 +5358,10 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
-                      animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
                       filter:
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-                      animationFillMode: "both",
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
@@ -5932,7 +5901,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     key={i}
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animation: `text-glow 3s ease-in-out infinite ${i * 0.15}s, text-bounce 2s ease-in-out ${0.5 + i * 0.15}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.15}s`,
+                      animationDelay: `${i * 0.15}s`,
                     }}
                   >
                     {letter}

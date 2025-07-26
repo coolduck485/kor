@@ -1,9 +1,9 @@
+@import "./performance-addon.css";
+@import "./cinematic-transitions.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "./performance-addon.css";
-@import "./cinematic-transitions.css";
 
 @layer base {
   /**
