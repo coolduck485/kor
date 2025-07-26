@@ -817,7 +817,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█������████����███████ 60%
+                      CPU: ███��█������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2118,7 +2118,7 @@ export default function Index() {
                   height: `${25 + (i % 2) * 15}px`,
                   background: `radial-gradient(circle, rgba(${73 + i * 15}, ${146 + i * 8}, 255, 0.4) 0%, transparent 70%)`,
                   animation: `breath ${8 + (i % 3)}s ease-in-out infinite ${i * 0.6}s`,
-                  filter: `blur(${isMobile ? 2 : 3 + (i % 2)}px)`,
+                  filter: `blur(${3 + (i % 2)}px)`,
                   willChange: "transform, opacity",
                   transform: "translateZ(0)",
                 }}
