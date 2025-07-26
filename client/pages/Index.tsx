@@ -4593,7 +4593,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
               {services.map((service, index) => (
                 <motion.div
                   key={index}
-                  className="group relative flex-shrink-0 w-32 sm:w-auto"
+                  className="group relative"
                   initial={{ y: 50, opacity: 0, scale: 0.9 }}
                   animate={
                     isVisible
