@@ -2791,17 +2791,27 @@ export default function Index() {
         </motion.div>
 
         {/* Services Section */}
-        <div
+        <motion.div
           className={`transition-all duration-300 ${
             isMobileMenuOpen ? "blur-sm" : ""
           }`}
+          animate={{
+            opacity: isContentVisible && currentSection === 2 ? 1 : currentSection === 2 ? 0 : 1,
+            y: isContentVisible && currentSection === 2 ? 0 : currentSection === 2 ? 30 : 0,
+            scale: isContentVisible && currentSection === 2 ? 1 : currentSection === 2 ? 0.95 : 1
+          }}
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+            delay: currentSection === 2 ? 0.3 : 0
+          }}
         >
           <ServicesSection
             ref={(el) => (sectionsRef.current[2] = el!)}
             theme={theme}
             isVisible={currentSection === 2}
           />
-        </div>
+        </motion.div>
 
         {/* Portfolio Section */}
         <div
