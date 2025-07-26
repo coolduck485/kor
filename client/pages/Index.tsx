@@ -4675,29 +4675,34 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
     const [itemsPerSlide, setItemsPerSlide] = useState(getItemsPerSlide());
 
-    // Update items per slide on window resize
+    // Update items per slide on window resize and reset slide if needed
     useEffect(() => {
       const handleResize = () => {
-        setItemsPerSlide(getItemsPerSlide());
+        const newItemsPerSlide = getItemsPerSlide();
+        setItemsPerSlide(newItemsPerSlide);
+        // Reset to first slide if current slide would be out of bounds
+        const newTotalSlides = Math.ceil(projects.length / newItemsPerSlide);
+        setCurrentSlide((prev) => Math.min(prev, newTotalSlides - 1));
       };
 
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [projects.length]);
 
     const totalSlides = Math.ceil(projects.length / itemsPerSlide);
 
     const nextSlide = () => {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
+      setCurrentSlide((prev) => {
+        const next = prev + 1;
+        return next >= totalSlides ? 0 : next;
+      });
     };
 
     const prevSlide = () => {
-      setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-    };
-
-    const getCurrentProjects = () => {
-      const startIndex = currentSlide * itemsPerSlide;
-      return projects.slice(startIndex, startIndex + itemsPerSlide);
+      setCurrentSlide((prev) => {
+        const previous = prev - 1;
+        return previous < 0 ? totalSlides - 1 : previous;
+      });
     };
 
     return (
