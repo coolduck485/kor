@@ -5774,7 +5774,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       </div>
                       <div>
                         <h4
-                          className={`font-semibold warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                          className={`font-semibold text-base sm:text-lg warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"}`}
                           style={{
                             textShadow: "0 0 8px rgba(73, 146, 255, 0.5)",
                           }}
@@ -5782,7 +5782,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {contact.title}
                         </h4>
                         <p
-                          className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}
+                          className={`text-sm sm:text-base ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}
                           style={{
                             textShadow:
                               theme === "dark"
