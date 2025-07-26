@@ -1792,21 +1792,25 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Enhanced Background Elements */}
+          {/* Enhanced Background Elements - Performance optimized */}
 
-          {/* Dynamic Gradient Overlays */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
-            <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
-          </div>
+          {/* Dynamic Gradient Overlays - Only on high performance devices */}
+          {isHighPerformance && (
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift gpu-accelerated" />
+              <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse gpu-accelerated" />
+            </div>
+          )}
 
-          {/* Animated Noise Texture */}
-          <div
-            className="absolute inset-0 opacity-5 animate-noise"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-            }}
-          />
+          {/* Animated Noise Texture - Only on desktop high performance */}
+          {!isMobile && isHighPerformance && (
+            <div
+              className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+              }}
+            />
+          )}
 
           {/* Optimized Floating Ambient Particles - Reduced count for 60fps */}
           <motion.div
