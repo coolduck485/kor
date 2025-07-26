@@ -749,7 +749,7 @@ export default function Index() {
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████���╝██║  ██║
-╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ���═╝`}
+╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -2554,9 +2554,9 @@ export default function Index() {
                 damping: 18,
               }}
             >
-              {/* Kor - mobile: 50px left + 20px down + bigger, desktop: moved further to the left */}
+              {/* Kor - mobile: 50px left + 30px down + bigger, desktop: moved further to the left */}
               <div
-                className="text-center transform -translate-x-[50px] translate-y-[20px] sm:-translate-x-6 sm:translate-y-0 md:-translate-x-12 lg:-translate-x-16 xl:-translate-x-20"
+                className="text-center transform -translate-x-[50px] translate-y-[30px] sm:-translate-x-6 sm:translate-y-0 md:-translate-x-12 lg:-translate-x-16 xl:-translate-x-20"
                 style={{ marginLeft: "-5px" }}
               >
                 <h1
