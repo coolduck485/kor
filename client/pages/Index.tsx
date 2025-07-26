@@ -573,7 +573,7 @@ export default function Index() {
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚���╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -4239,27 +4239,137 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Floating Particles */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={`portfolio-particle-${i}`}
-              className="absolute w-2 h-2 rounded-full bg-blue-400/30"
+        {/* Enhanced Background Elements - Copy from Home Section */}
+
+        {/* Dynamic Gradient Overlays */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
+          <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
+        </div>
+
+        {/* Animated Noise Texture */}
+        <div
+          className="absolute inset-0 opacity-5 animate-noise"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+          }}
+        />
+
+        {/* Enhanced Floating Ambient Particles with Color Shifting */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(25)].map((_, i) => (
+            <div
+              key={`particle-${i}`}
+              className="absolute rounded-full opacity-60"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -100, 0],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
+                left: `${5 + ((i * 60) % 95)}%`,
+                top: `${10 + ((i * 35) % 85)}%`,
+                width: `${1 + (i % 4)}px`,
+                height: `${1 + (i % 4)}px`,
+                background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.2 + (i % 4) * 0.15})`,
+                animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
+                filter: "blur(0.3px)",
+                transform: `scale(${0.5 + (i % 3) * 0.3})`,
               }}
             />
           ))}
+        </div>
+
+        {/* Animated Geometric Patterns */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+          <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
+            {/* Animated hexagon grid */}
+            {[...Array(6)].map((_, i) => (
+              <polygon
+                key={`hex-${i}`}
+                points="100,20 140,40 140,80 100,100 60,80 60,40"
+                fill="none"
+                stroke="rgba(73, 146, 255, 0.3)"
+                strokeWidth="1"
+                strokeDasharray="10 5"
+                style={{
+                  transform: `translate(${100 + i * 200}px, ${100 + (i % 2) * 150}px)`,
+                  animation: `geometric-pulse ${8 + i}s ease-in-out infinite ${i * 0.5}s`,
+                }}
+              />
+            ))}
+            {/* Animated connecting lines */}
+            {[...Array(4)].map((_, i) => (
+              <line
+                key={`line-${i}`}
+                x1={50 + i * 300}
+                y1={200}
+                x2={250 + i * 300}
+                y2={400}
+                stroke="rgba(63, 186, 255, 0.2)"
+                strokeWidth="1"
+                strokeDasharray="15 10"
+                style={{
+                  animation: `geometric-pulse ${10 + i * 2}s ease-in-out infinite ${i * 0.7}s`,
+                }}
+              />
+            ))}
+          </svg>
+        </div>
+
+        {/* Breathing Orbs */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={`breath-orb-${i}`}
+              className="absolute rounded-full"
+              style={{
+                left: `${15 + ((i * 80) % 70)}%`,
+                top: `${20 + ((i * 60) % 60)}%`,
+                width: `${20 + (i % 3) * 15}px`,
+                height: `${20 + (i % 3) * 15}px`,
+                background: `radial-gradient(circle, rgba(${73 + i * 10}, ${146 + i * 5}, 255, 0.3) 0%, transparent 70%)`,
+                animation: `breath ${6 + (i % 4)}s ease-in-out infinite ${i * 0.4}s`,
+                filter: `blur(${2 + (i % 3)}px)`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Dynamic Background Waves */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              background: `
+                radial-gradient(circle at 20% 80%, rgba(73, 146, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(63, 186, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(57, 135, 227, 0.1) 0%, transparent 50%)
+              `,
+              animation: "subtle-glow 12s ease-in-out infinite alternate",
+            }}
+          />
+        </div>
+
+        {/* Aurora-like Moving Background */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div
+            className="absolute w-96 h-96 rounded-full opacity-15"
+            style={{
+              left: "10%",
+              top: "20%",
+              background:
+                "linear-gradient(45deg, rgba(73, 146, 255, 0.4), rgba(63, 186, 255, 0.2))",
+              filter: "blur(60px)",
+              animation: "aurora 12s ease-in-out infinite",
+            }}
+          />
+          <div
+            className="absolute w-80 h-80 rounded-full opacity-10"
+            style={{
+              right: "15%",
+              bottom: "25%",
+              background:
+                "linear-gradient(-45deg, rgba(57, 135, 227, 0.3), rgba(73, 146, 255, 0.1))",
+              filter: "blur(80px)",
+              animation: "aurora 15s ease-in-out infinite 3s",
+            }}
+          />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
