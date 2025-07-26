@@ -602,7 +602,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ███������█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
-█████╔╝ ██���   ██║██████╔╝
+███��█╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
@@ -673,7 +673,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███���█���██████��███████ 60%
+                      CPU: ███��█���██████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -786,7 +786,7 @@ export default function Index() {
                       className="close-terminal"
                       onClick={() => setShowTerminal(false)}
                     >
-                      ✕
+                      ��
                     </button>
                   </div>
                   <div className="terminal-body">
@@ -5608,14 +5608,14 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <div
-                  className="p-4 sm:p-6 rounded-2xl backdrop-blur-lg border"
+                  className="p-3 sm:p-4 rounded-xl backdrop-blur-lg border"
                   style={{
                     background: "rgba(255, 255, 255, 0.05)",
                     border: "2px solid rgba(255, 255, 255, 0.1)",
                     boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
                   }}
                 >
-                  <form onSubmit={handleSubmit} className="contact-form space-y-4">
+                  <form onSubmit={handleSubmit} className="contact-form space-y-3">
                     {/* Name Fields Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
