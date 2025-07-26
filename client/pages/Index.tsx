@@ -349,18 +349,22 @@ export default function Index() {
         });
       }
 
-      // Start revealing new content
+      // Start revealing new content after a cinematic pause
       setTimeout(() => {
         setIsBlackTransition(false);
-        setIsContentVisible(true);
 
-        // Complete the transition
+        // Delay content visibility for dramatic effect
         setTimeout(() => {
-          setIsScrolling(false);
-          setIsScrollingActive(false);
-        }, 800); // Allow time for content to fully appear
-      }, 200); // Short delay to ensure scroll is complete
-    }, 400); // Time for fade to black
+          setIsContentVisible(true);
+
+          // Complete the transition
+          setTimeout(() => {
+            setIsScrolling(false);
+            setIsScrollingActive(false);
+          }, 900); // Allow time for content to fully appear
+        }, 150); // Small delay for content to start appearing
+      }, 100); // Short delay to ensure scroll is complete
+    }, 350); // Time for fade to black
   };
 
   // Handle wheel scroll
