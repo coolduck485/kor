@@ -1,62 +1,6 @@
-/* Mobile Performance Optimizations */
+/* Mobile Performance Optimizations - Removed to enable full experience on all devices */
 @media (max-width: 768px) {
-  /* Disable expensive animations on mobile */
-  .animate-gradient-shift,
-  .animate-gradient-shift-reverse,
-  .animate-noise,
-  .animate-color-shift,
-  .animate-geometric-pulse,
-  .animate-aurora {
-    animation: none !important;
-  }
-
-  /* Simplify particle animations */
-  .animate-gentleFloat,
-  [style*="gentleFloat"] {
-    animation-duration: 2s !important;
-    animation-timing-function: ease-in-out !important;
-    animation-delay: 0s !important;
-  }
-
-  .animate-breath,
-  [style*="breath"] {
-    animation-duration: 3s !important;
-    animation-delay: 0s !important;
-  }
-
-  /* Reduce complex animations */
-  .animate-warm-glow-pulse,
-  .animate-letter-float,
-  .animate-text-pop,
-  .animate-energy-float {
-    animation: none !important;
-  }
-
-  /* Reduce blur effects for performance */
-  .backdrop-blur-xl {
-    backdrop-filter: blur(4px) !important;
-  }
-
-  .backdrop-blur-lg {
-    backdrop-filter: blur(3px) !important;
-  }
-
-  .backdrop-blur-md {
-    backdrop-filter: blur(2px) !important;
-  }
-
-  /* Remove complex filters */
-  [style*="filter: blur"],
-  [style*="drop-shadow"] {
-    filter: none !important;
-  }
-
-  /* Limit particle count by hiding nth children */
-  .absolute.rounded-full:nth-child(n+4) {
-    display: none !important;
-  }
-
-  /* Optimize transforms for hardware acceleration */
+  /* Enable hardware acceleration for smooth performance */
   .gpu-accelerated,
   .animate-gentleFloat,
   .animate-breath,
@@ -70,52 +14,10 @@
     -webkit-backface-visibility: hidden !important;
   }
 
-  /* Disable complex SVG animations */
-  svg * {
-    animation: none !important;
-  }
-
-  /* Reduce motion for better performance */
-  .mobile-optimized * {
-    animation-duration: 0.3s !important;
-    transition-duration: 0.2s !important;
-  }
-
-  /* Hide complex background elements on mobile */
-  .mobile-hide,
-  .animate-scan-line,
-  [style*="animate-scan-line"] {
-    display: none !important;
-    opacity: 0 !important;
-  }
-
-  /* Simplify complex gradients */
-  .bg-gradient-to-br,
-  .bg-gradient-to-tl,
-  .bg-gradient-to-r {
-    background: rgba(73, 146, 255, 0.1) !important;
-  }
-
   /* Optimize scroll performance */
   .scroll-optimized {
     -webkit-overflow-scrolling: touch !important;
     overflow-x: hidden !important;
-  }
-
-  /* Disable expensive text effects */
-  .shine-text-enhanced,
-  .chrome-wavy-text,
-  .warm-glow-text {
-    background: none !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: inherit !important;
-    background-clip: text !important;
-    text-shadow: none !important;
-  }
-
-  /* Simplify motion.div elements */
-  .motion-div {
-    transition: opacity 0.3s ease !important;
   }
 }
 
