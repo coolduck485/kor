@@ -2493,6 +2493,20 @@ export default function Index() {
               </div>
             </motion.div>
 
+            {/* Mobile Hamburger Menu Backdrop Blur */}
+            <AnimatePresence>
+              {isMobileMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="fixed inset-0 z-40 backdrop-blur-md bg-black/20"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                />
+              )}
+            </AnimatePresence>
+
             {/* Mobile Hamburger Menu - Only on mobile (640px and below) */}
             <div className="sm:hidden absolute inset-0 flex items-center justify-center">
               <div className="relative">
@@ -3302,20 +3316,6 @@ function MobileHamburgerMenu({
           </AnimatePresence>
         </button>
       </div>
-
-      {/* Backdrop Blur Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 backdrop-blur-md bg-black/20"
-            onClick={() => setIsOpen(false)}
-          />
-        )}
-      </AnimatePresence>
 
       {/* Mobile Menu Dropdown */}
       <AnimatePresence>
