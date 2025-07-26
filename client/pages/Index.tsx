@@ -200,8 +200,33 @@ export default function Index() {
     window.addEventListener("resize", checkMobile);
     checkMobile(); // Initial check
 
+    // Check current URL and scroll to appropriate section
+    const checkInitialSection = () => {
+      const currentPath = window.location.pathname;
+      const sectionIndex = sections.findIndex(section =>
+        currentPath === `/${section.id}` || (currentPath === '/' && section.id === 'home')
+      );
+
+      if (sectionIndex !== -1 && sectionIndex !== 0) {
+        // Delay to ensure elements are rendered
+        setTimeout(() => {
+          setCurrentSection(sectionIndex);
+          const targetSection = sectionsRef.current[sectionIndex];
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: "auto", // Instant scroll on initial load
+              block: "start",
+            });
+          }
+        }, 100);
+      }
+    };
+
     // Initial loading sequence
     const timeouts = triggerLoadingSequence();
+
+    // Check initial section after loading
+    setTimeout(checkInitialSection, 600);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
