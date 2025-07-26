@@ -1864,20 +1864,22 @@ export default function Index() {
             </svg>
           </div>
 
-          {/* Breathing Orbs */}
+          {/* Optimized Breathing Orbs - Reduced count for performance */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[...Array(8)].map((_, i) => (
+            {[...Array(isMobile ? 3 : 6)].map((_, i) => (
               <div
                 key={`breath-orb-${i}`}
-                className="absolute rounded-full"
+                className="absolute rounded-full gpu-accelerated"
                 style={{
                   left: `${15 + ((i * 80) % 70)}%`,
                   top: `${20 + ((i * 60) % 60)}%`,
-                  width: `${20 + (i % 3) * 15}px`,
-                  height: `${20 + (i % 3) * 15}px`,
-                  background: `radial-gradient(circle, rgba(${73 + i * 10}, ${146 + i * 5}, 255, 0.3) 0%, transparent 70%)`,
-                  animation: `breath ${6 + (i % 4)}s ease-in-out infinite ${i * 0.4}s`,
-                  filter: `blur(${2 + (i % 3)}px)`,
+                  width: `${25 + (i % 2) * 15}px`,
+                  height: `${25 + (i % 2) * 15}px`,
+                  background: `radial-gradient(circle, rgba(${73 + i * 15}, ${146 + i * 8}, 255, 0.4) 0%, transparent 70%)`,
+                  animation: `breath ${8 + (i % 3)}s ease-in-out infinite ${i * 0.6}s`,
+                  filter: `blur(${3 + (i % 2)}px)`,
+                  willChange: "transform, opacity",
+                  transform: "translateZ(0)",
                 }}
               />
             ))}
