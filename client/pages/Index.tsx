@@ -6020,93 +6020,11 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle */}
-            <div className="text-center mb-2 sm:mb-3 relative">
+            <div className="text-center mb-2 sm:mb-3">
               <h2
-                className={`text-base sm:text-lg md:text-xl font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"} mb-1 relative inline-block`}
+                className={`text-base sm:text-lg md:text-xl font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"} mb-1`}
               >
-                <span className="relative">
-                  Have a great idea?
-
-                  {/* Colorful Sparkles around the text */}
-                  {[
-                    { x: -20, y: -15, size: 0.6, type: "star" },
-                    { x: 15, y: -10, size: 0.5, type: "diamond" },
-                    { x: 25, y: 8, size: 0.7, type: "plus" },
-                    { x: -15, y: 15, size: 0.8, type: "star" },
-                    { x: 30, y: -20, size: 0.4, type: "diamond" },
-                    { x: -25, y: -5, size: 0.6, type: "plus" },
-                  ].map((sparkle, i) => (
-                    <div
-                      key={`sparkle-${i}`}
-                      className="absolute pointer-events-none"
-                      style={{
-                        left: `calc(50% + ${sparkle.x}px)`,
-                        top: `calc(50% + ${sparkle.y}px)`,
-                        animation: `sparkle-enhanced ${6 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
-                        transform: `translateZ(0) scale(${sparkle.size})`,
-                        opacity: 0.7,
-                        zIndex: -1,
-                      }}
-                    >
-                      {sparkle.type === "star" && (
-                        <div
-                          className="w-4 h-4"
-                          style={{
-                            background: (() => {
-                              const colors = [
-                                "radial-gradient(circle, rgba(255, 100, 150, 0.8) 0%, rgba(255, 180, 100, 0.5) 70%, transparent 90%)",  // Pink-Orange
-                                "radial-gradient(circle, rgba(100, 255, 200, 0.8) 0%, rgba(100, 200, 255, 0.5) 70%, transparent 90%)",  // Mint-Blue
-                                "radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 150, 200, 0.5) 70%, transparent 90%)",  // Purple-Pink
-                              ];
-                              return colors[i % colors.length];
-                            })(),
-                            clipPath:
-                              "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-                            animation: "spin-slow 8s linear infinite",
-                            filter: "drop-shadow(0 0 6px currentColor)",
-                          }}
-                        />
-                      )}
-                      {sparkle.type === "diamond" && (
-                        <div
-                          className="w-3 h-3"
-                          style={{
-                            background: (() => {
-                              const colors = [
-                                "linear-gradient(45deg, rgba(255, 100, 200, 0.7), rgba(100, 255, 150, 0.6))",  // Pink-Green
-                                "linear-gradient(45deg, rgba(150, 100, 255, 0.7), rgba(255, 200, 100, 0.6))",  // Purple-Orange
-                                "linear-gradient(45deg, rgba(100, 200, 255, 0.7), rgba(255, 150, 100, 0.6))",  // Blue-Orange
-                              ];
-                              return colors[i % colors.length];
-                            })(),
-                            clipPath:
-                              "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                            animation: "gentle-pulse 3s ease-in-out infinite",
-                            filter: "drop-shadow(0 0 4px currentColor)",
-                          }}
-                        />
-                      )}
-                      {sparkle.type === "plus" && (
-                        <div
-                          className="w-4 h-4"
-                          style={{
-                            background: (() => {
-                              const colors = [
-                                "conic-gradient(from 0deg, rgba(255, 150, 100, 0.7), rgba(100, 255, 200, 0.6), rgba(200, 100, 255, 0.7), rgba(255, 200, 150, 0.6))",  // Warm Rainbow
-                                "conic-gradient(from 90deg, rgba(100, 255, 150, 0.7), rgba(255, 100, 200, 0.6), rgba(150, 200, 255, 0.7), rgba(255, 180, 100, 0.6))",  // Cool Rainbow
-                              ];
-                              return colors[i % colors.length];
-                            })(),
-                            clipPath:
-                              "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
-                            animation: "rotate-slow 6s linear infinite",
-                            filter: "drop-shadow(0 0 8px currentColor)",
-                          }}
-                        />
-                      )}
-                    </div>
-                  ))}
-                </span>
+                Have a great idea?
               </h2>
               <p
                 className={`text-sm sm:text-base font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
