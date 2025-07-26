@@ -785,7 +785,7 @@ export default function Index() {
                   </div>
 
                   <div className="terminal-line mb-4">
-                    <span className="text-green-400 blink">█</span>
+                    <span className="text-green-400 blink">���</span>
                   </div>
                   <div className="memory-section">
                     <div className="text-xs mb-2 text-cyan-400">
@@ -4309,7 +4309,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       theme === "light" ? "text-gray-900" : "text-white"
                     }`}
                     style={{
-                      animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
+
                       filter:
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
@@ -4914,7 +4914,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       theme === "light" ? "text-gray-900" : "text-white"
                     }`}
                     style={{
-                      animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
+
                       filter:
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
@@ -5365,7 +5365,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
-                      animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
+
                       filter:
                         theme === "light"
                           ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
