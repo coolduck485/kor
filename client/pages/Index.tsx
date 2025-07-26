@@ -284,6 +284,10 @@ export default function Index() {
     setIsScrolling(true);
     setCurrentSection(index);
 
+    // Update URL based on section
+    const sectionPath = index === 0 ? '/' : `/${sections[index].id}`;
+    window.history.pushState({}, '', sectionPath);
+
     const targetSection = sectionsRef.current[index];
     if (targetSection) {
       targetSection.scrollIntoView({
