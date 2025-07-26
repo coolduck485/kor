@@ -5789,7 +5789,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   ];
                   return colorPalettes[i % colorPalettes.length];
                 })(),
-                animation: `gentleFloat ${isMobile ? 2 + (i % 2) : 4 + (i % 3)}s ease-in-out infinite ${i * (isMobile ? 0.2 : 0.4)}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
+                animation: `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
                 filter: `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
                 boxShadow: `0 0 ${4 + (i % 3) * 2}px rgba(255, 255, 255, 0.3)`,
                 transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
