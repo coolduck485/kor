@@ -1963,18 +1963,30 @@ export default function Index() {
             {[...Array(animationConfig.enableBackgroundParticles ? (isMobile ? 3 : 15) : 0)].map((_, i) => (
               <motion.div
                 key={`particle-${i}`}
-                className="absolute rounded-full opacity-60 gpu-accelerated"
+                className="absolute rounded-full opacity-70 gpu-accelerated"
                 style={{
                   left: `${5 + ((i * 60) % 95)}%`,
                   top: `${10 + ((i * 35) % 85)}%`,
-                  width: `${2 + (i % 3)}px`,
-                  height: `${2 + (i % 3)}px`,
-                  background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.3 + (i % 3) * 0.2})`,
+                  width: `${3 + (i % 4)}px`,
+                  height: `${3 + (i % 4)}px`,
+                  background: (() => {
+                    const colorPalettes = [
+                      `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`,  // Pink-Orange
+                      `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`,  // Green-Blue
+                      `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`,  // Purple-Yellow
+                      `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`,  // Blue-Green
+                      `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`,  // Orange-Purple
+                      `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`,  // Pink-Mint
+                    ];
+                    return colorPalettes[i % colorPalettes.length];
+                  })(),
                   animation: isScrollingActive
                     ? "none"
-                    : `gentleFloat ${isMobile ? 2 + (i % 2) : 4 + (i % 3)}s ease-in-out infinite ${i * (isMobile ? 0.2 : 0.4)}s`,
+                    : `gentleFloat ${isMobile ? 2 + (i % 2) : 4 + (i % 3)}s ease-in-out infinite ${i * (isMobile ? 0.2 : 0.4)}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
                   willChange: isScrollingActive ? "auto" : "transform",
                   transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
+                  filter: `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
+                  boxShadow: `0 0 ${4 + (i % 3) * 2}px rgba(255, 255, 255, 0.3)`,
                 }}
                 initial={{ scale: 0, rotate: 0 }}
                 animate={{ scale: 1, rotate: 360 }}
