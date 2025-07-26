@@ -591,7 +591,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ████���█╗
+                  {`██╗  ██╗ ██��███╗ ████���█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -5616,7 +5616,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               >
                 <form
                   onSubmit={handleSubmit}
-                  className="space-y-4 sm:space-y-6"
+                  className="space-y-3 sm:space-y-6"
                 >
                   <div>
                     <input
