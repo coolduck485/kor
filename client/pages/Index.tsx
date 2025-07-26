@@ -1882,15 +1882,12 @@ export default function Index() {
           }`}
           initial={{ opacity: 0 }}
           animate={{
-            opacity: isContentVisible && currentSection === 0 ? 1 : currentSection === 0 ? 0 : 1,
-            y: isContentVisible && currentSection === 0 ? 0 : currentSection === 0 ? 40 : 0,
-            scale: isContentVisible && currentSection === 0 ? 1 : currentSection === 0 ? 0.95 : 1,
-            filter: isContentVisible && currentSection === 0 ? "blur(0px)" : currentSection === 0 ? "blur(8px)" : "blur(0px)"
+            opacity: currentSection === 0 ? 1 : 0,
+            scale: currentSection === 0 ? 1 : 0.95
           }}
           transition={{
-            duration: 0.9,
-            ease: [0.25, 0.46, 0.45, 0.94],
-            delay: currentSection === 0 ? 0.3 : 0
+            duration: 0.4,
+            ease: "easeOut"
           }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
