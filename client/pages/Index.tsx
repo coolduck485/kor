@@ -739,10 +739,10 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
-██║ █��╔╝��█���═���═██╗█���╔��══██╗
+██║ █��╔╝��█╔═���═██╗�����╔��══██╗
 █████╔╝ █������   █��║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█������
-██║  ██╗╚██████���╝██║  ██║
+██║  ██╗╚████��█���╝██║  ██║
 ╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1935,49 +1935,63 @@ export default function Index() {
             />
           )}
 
-          {/* Wavy Blue Aurora - Northern Lights Effect */}
+          {/* Dramatic Aurora Borealis - Northern Lights Effect */}
           {!isMobile && isHighPerformance && (
-            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40">
-              {/* Primary aurora wave */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-85">
+              {/* Main vertical aurora pillar */}
               <div
-                className="absolute aurora-wave-1"
+                className="absolute aurora-pillar-1"
                 style={{
-                  top: '20%',
-                  left: '-20%',
-                  right: '-20%',
-                  height: '200px',
-                  background: 'linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), rgba(34, 197, 94, 0.4), rgba(14, 165, 233, 0.5), transparent)',
+                  top: '10%',
+                  left: '15%',
+                  width: '120px',
+                  height: '80%',
+                  background: 'linear-gradient(180deg, transparent, rgba(6, 182, 212, 0.9), rgba(20, 184, 166, 0.8), rgba(34, 197, 94, 0.7), rgba(6, 182, 212, 0.6), transparent)',
+                  borderRadius: '80% 80% 80% 80% / 15% 15% 15% 15%',
+                  filter: 'blur(15px)',
+                  animation: 'aurora-dance-1 18s ease-in-out infinite',
+                }}
+              />
+              {/* Second dramatic pillar */}
+              <div
+                className="absolute aurora-pillar-2"
+                style={{
+                  top: '5%',
+                  left: '35%',
+                  width: '150px',
+                  height: '90%',
+                  background: 'linear-gradient(180deg, transparent, rgba(34, 197, 94, 0.9), rgba(6, 182, 212, 0.8), rgba(16, 185, 129, 0.9), rgba(20, 184, 166, 0.7), transparent)',
+                  borderRadius: '70% 70% 70% 70% / 12% 12% 12% 12%',
+                  filter: 'blur(18px)',
+                  animation: 'aurora-dance-2 22s ease-in-out infinite',
+                }}
+              />
+              {/* Third flowing aurora */}
+              <div
+                className="absolute aurora-pillar-3"
+                style={{
+                  top: '15%',
+                  left: '65%',
+                  width: '100px',
+                  height: '70%',
+                  background: 'linear-gradient(180deg, transparent, rgba(20, 184, 166, 0.8), rgba(34, 197, 94, 0.9), rgba(6, 182, 212, 0.7), transparent)',
+                  borderRadius: '90% 90% 90% 90% / 18% 18% 18% 18%',
+                  filter: 'blur(12px)',
+                  animation: 'aurora-dance-3 25s ease-in-out infinite',
+                }}
+              />
+              {/* Horizontal flowing waves for depth */}
+              <div
+                className="absolute aurora-wave-flow"
+                style={{
+                  top: '30%',
+                  left: '-10%',
+                  right: '-10%',
+                  height: '250px',
+                  background: 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.4), rgba(34, 197, 94, 0.6), rgba(20, 184, 166, 0.5), transparent)',
                   borderRadius: '50% 50% 50% 50% / 20% 20% 20% 20%',
-                  filter: 'blur(30px)',
-                  animation: 'aurora-flow-1 20s ease-in-out infinite',
-                }}
-              />
-              {/* Secondary aurora wave */}
-              <div
-                className="absolute aurora-wave-2"
-                style={{
-                  top: '40%',
-                  left: '-30%',
-                  right: '-30%',
-                  height: '150px',
-                  background: 'linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.5), rgba(59, 130, 246, 0.7), rgba(34, 197, 94, 0.3), transparent)',
-                  borderRadius: '50% 50% 50% 50% / 30% 30% 30% 30%',
                   filter: 'blur(25px)',
-                  animation: 'aurora-flow-2 25s ease-in-out infinite',
-                }}
-              />
-              {/* Tertiary aurora wave */}
-              <div
-                className="absolute aurora-wave-3"
-                style={{
-                  top: '60%',
-                  left: '-25%',
-                  right: '-25%',
-                  height: '180px',
-                  background: 'linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.4), rgba(14, 165, 233, 0.6), rgba(59, 130, 246, 0.5), transparent)',
-                  borderRadius: '50% 50% 50% 50% / 25% 25% 25% 25%',
-                  filter: 'blur(35px)',
-                  animation: 'aurora-flow-3 30s ease-in-out infinite',
+                  animation: 'aurora-flow-horizontal 28s ease-in-out infinite',
                 }}
               />
             </div>
