@@ -1923,11 +1923,23 @@ export default function Index() {
 
           {/* Enhanced Background Elements - Performance optimized */}
 
-          {/* Dynamic Gradient Overlays - Only on high performance devices */}
+          {/* Multi-layered Dynamic Gradient Overlays for Eye Candy */}
           {isHighPerformance && (
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift gpu-accelerated" />
-              <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse gpu-accelerated" />
+            <div className="absolute inset-0">
+              {/* Primary animated gradients */}
+              <div className="absolute inset-0 opacity-15">
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/30 via-purple-500/20 to-blue-500/25 animate-gradient-shift gpu-accelerated" />
+                <div className="absolute inset-0 bg-gradient-to-tl from-cyan-400/20 via-emerald-500/15 to-yellow-400/20 animate-gradient-shift-reverse gpu-accelerated" />
+              </div>
+              {/* Secondary color layers */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute inset-0 bg-gradient-to-tr from-orange-400/25 via-transparent to-indigo-500/20 animate-gradient-shift gpu-accelerated" style={{ animationDelay: '2s' }} />
+                <div className="absolute inset-0 bg-gradient-to-bl from-rose-400/20 via-transparent to-teal-500/25 animate-gradient-shift-reverse gpu-accelerated" style={{ animationDelay: '4s' }} />
+              </div>
+              {/* Tertiary shimmer layer */}
+              <div className="absolute inset-0 opacity-8">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-scan-line" />
+              </div>
             </div>
           )}
 
