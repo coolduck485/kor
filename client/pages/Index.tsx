@@ -1672,10 +1672,10 @@ export default function Index() {
                       boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
                     }}
                   >
-                    Click any theme to change the site's appearance
+                    <span className="hidden sm:inline">Click any theme to change the site's appearance</span>
                     {/* Tooltip arrow */}
                     <div
-                      className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                      className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent hidden sm:block ${
                         theme === "light"
                           ? "border-l-white/80"
                           : "border-l-blue-400/10"
