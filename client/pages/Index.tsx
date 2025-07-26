@@ -5,6 +5,7 @@ import { RetroToggle } from "@/components/ui/retro-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
+import { ChevronUp, ChevronDown, Mail, Phone, MapPin, Send, Star, Code, Palette, Zap, Smartphone, Globe, Users } from "lucide-react";
 
 export default function Index() {
   const { theme, setTheme } = useTheme();
@@ -25,6 +26,10 @@ export default function Index() {
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
   const hasShownWelcomeRef = useRef(false);
+  const [currentSection, setCurrentSection] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const sectionsRef = useRef<HTMLDivElement[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Welcome notification - shows once per page load
   useEffect(() => {
@@ -1328,18 +1333,150 @@ export default function Index() {
     );
   }
 
+  // Section data
+  const sections = [
+    { id: 'home', title: 'Home', component: 'home' },
+    { id: 'about', title: 'About Us', component: 'about' },
+    { id: 'services', title: 'Services', component: 'services' },
+    { id: 'portfolio', title: 'Portfolio', component: 'portfolio' },
+    { id: 'contact', title: 'Contact Us', component: 'contact' }
+  ];
+
+  // Scroll to section function
+  const scrollToSection = (index: number) => {
+    if (isScrolling || !containerRef.current) return;
+
+    setIsScrolling(true);
+    setCurrentSection(index);
+
+    const targetSection = sectionsRef.current[index];
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    setTimeout(() => setIsScrolling(false), 1000);
+  };
+
+  // Handle wheel scroll
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (isScrolling || mode === 'retro') return;
+
+      e.preventDefault();
+
+      if (e.deltaY > 0 && currentSection < sections.length - 1) {
+        scrollToSection(currentSection + 1);
+      } else if (e.deltaY < 0 && currentSection > 0) {
+        scrollToSection(currentSection - 1);
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('wheel', handleWheel, { passive: false });
+      return () => container.removeEventListener('wheel', handleWheel);
+    }
+  }, [currentSection, isScrolling, sections.length, mode]);
+
+  // Handle touch scroll for mobile
+  useEffect(() => {
+    let touchStartY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (isScrolling || mode === 'retro') return;
+
+      const touchEndY = e.changedTouches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+
+      if (Math.abs(deltaY) > 50) {
+        if (deltaY > 0 && currentSection < sections.length - 1) {
+          scrollToSection(currentSection + 1);
+        } else if (deltaY < 0 && currentSection > 0) {
+          scrollToSection(currentSection - 1);
+        }
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('touchstart', handleTouchStart);
+      container.addEventListener('touchend', handleTouchEnd);
+      return () => {
+        container.removeEventListener('touchstart', handleTouchStart);
+        container.removeEventListener('touchend', handleTouchEnd);
+      };
+    }
+  }, [currentSection, isScrolling, sections.length, mode]);
+
   // Modern mode - original design
   return (
-    <motion.div
-      className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
+    <div
+      ref={containerRef}
+      className={`relative transition-all duration-500 ${
         theme === "light"
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
       }`}
-      variants={containerVariants}
-      initial="hidden"
-      animate={!isLoading && isLoaded ? "visible" : "hidden"}
+      style={{ height: '100vh', overflow: 'hidden' }}
     >
+      {/* Section Navigation Dots */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 space-y-3">
+        {sections.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => scrollToSection(index)}
+            className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
+              currentSection === index
+                ? 'bg-blue-400 border-blue-400 scale-125'
+                : 'bg-transparent border-white/40 hover:border-blue-400/60'
+            }`}
+            style={{
+              boxShadow: currentSection === index ? '0 0 15px rgba(73, 146, 255, 0.6)' : 'none'
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Scroll Indicators */}
+      {currentSection > 0 && (
+        <button
+          onClick={() => scrollToSection(currentSection - 1)}
+          className="fixed top-6 left-1/2 -translate-x-1/2 z-50 p-2 rounded-full backdrop-blur-md bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300"
+        >
+          <ChevronUp className="w-5 h-5 text-white" />
+        </button>
+      )}
+
+      {currentSection < sections.length - 1 && (
+        <button
+          onClick={() => scrollToSection(currentSection + 1)}
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 p-2 rounded-full backdrop-blur-md bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300"
+        >
+          <ChevronDown className="w-5 h-5 text-white" />
+        </button>
+      )}
+
+      {/* Sections Container */}
+      <div className="h-full">
+        {/* Home Section */}
+        <motion.div
+          ref={el => sectionsRef.current[0] = el!}
+          className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
+            theme === "light"
+              ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
+              : "bg-black"
+          }`}
+          variants={containerVariants}
+          initial="hidden"
+          animate={!isLoading && isLoaded ? "visible" : "hidden"}
+        >
       {/* Main Content - Always visible with orchestrated animations */}
       {/* Left Corner Visual Elements for Mobile Balance */}
       <div className="fixed top-6 left-6 z-40 block sm:hidden"></div>
@@ -2334,6 +2471,37 @@ export default function Index() {
         </div>
       </div>
 
+        </motion.div>
+
+        {/* About Us Section */}
+        <AboutUsSection
+          ref={el => sectionsRef.current[1] = el!}
+          theme={theme}
+          isVisible={currentSection === 1}
+        />
+
+        {/* Services Section */}
+        <ServicesSection
+          ref={el => sectionsRef.current[2] = el!}
+          theme={theme}
+          isVisible={currentSection === 2}
+        />
+
+        {/* Portfolio Section */}
+        <PortfolioSection
+          ref={el => sectionsRef.current[3] = el!}
+          theme={theme}
+          isVisible={currentSection === 3}
+        />
+
+        {/* Contact Us Section */}
+        <ContactUsSection
+          ref={el => sectionsRef.current[4] = el!}
+          theme={theme}
+          isVisible={currentSection === 4}
+        />
+      </div>
+
       {/* Enhanced Background Animations */}
       <style>{`
         :root {
@@ -2692,7 +2860,7 @@ export default function Index() {
           animation: fade-in-word 0.8s ease-out forwards;
         }
       `}</style>
-    </motion.div>
+    </div>
   );
 }
 
@@ -3018,7 +3186,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("About us clicked");
-        alert("About Us section - Coming soon!");
+        scrollToSection(1);
       },
 
       // Custom positioning for About us button
@@ -3039,7 +3207,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("Services clicked");
-        alert("Services section - Coming soon!");
+        scrollToSection(2);
       },
 
       // Custom positioning for Services button
@@ -3060,7 +3228,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("Portfolio clicked");
-        alert("Portfolio section - Coming soon!");
+        scrollToSection(3);
       },
 
       xOffset: 0, // Centered positioning
@@ -3079,7 +3247,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("Contact us clicked");
-        alert("Contact us section - Coming soon!");
+        scrollToSection(4);
       },
 
       xOffset: -20, // Mobile-friendly spacing
@@ -3132,6 +3300,12 @@ const ORB_BUTTON_CONFIG = {
 
 function OrbFloatingButtons() {
   const { theme } = useTheme();
+
+  // Access the parent component's scrollToSection function
+  const scrollToSection = (index: number) => {
+    const event = new CustomEvent('scrollToSection', { detail: index });
+    window.dispatchEvent(event);
+  };
   return (
     <>
       {ORB_BUTTON_CONFIG.buttons.map((button) => (
@@ -3148,7 +3322,13 @@ function OrbFloatingButtons() {
           size={button.size}
           accent={button.accent}
           theme={theme}
-          onClick={button.onClick}
+          onClick={() => {
+            if (button.text === 'About us') scrollToSection(1);
+            else if (button.text === 'Services') scrollToSection(2);
+            else if (button.text === 'Portfolio') scrollToSection(3);
+            else if (button.text === 'Contact us') scrollToSection(4);
+            else button.onClick?.();
+          }}
         />
       ))}
     </>
