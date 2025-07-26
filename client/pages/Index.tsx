@@ -5655,7 +5655,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     </div>
 
                     {/* Email and Phone Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <input
                           type="email"
@@ -5664,7 +5664,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
                           }
-                          className="w-full p-3 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
@@ -5681,7 +5681,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           onChange={(e) =>
                             setFormData({ ...formData, phone: e.target.value })
                           }
-                          className="w-full p-3 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
