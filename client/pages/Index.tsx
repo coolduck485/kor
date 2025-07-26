@@ -748,7 +748,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═���═██╗█���╔��══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
-██║  ██╗╚██████���╝██║  ██║
+��█║  ██╗╚██████���╝██║  ██║
 ╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1660,21 +1660,12 @@ export default function Index() {
           }`}
         >
           <div className="flex flex-col items-center space-y-3 animate-button-float">
-            {/* Desktop: Scroll Up */}
             <span
-              className={`hidden sm:block font-inter text-sm font-medium animate-text-glow ${
+              className={`font-inter text-sm font-medium animate-text-glow ${
                 theme === "light" ? "text-gray-600" : "text-white/70"
               }`}
             >
               Scroll Up
-            </span>
-            {/* Mobile: Swipe Up */}
-            <span
-              className={`sm:hidden font-inter text-sm font-medium animate-text-glow ${
-                theme === "light" ? "text-gray-600" : "text-white/70"
-              }`}
-            >
-              Swipe Up
             </span>
 
             {/* Desktop: Mouse scroll indicator - pointing up */}
