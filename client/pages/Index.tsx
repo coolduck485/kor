@@ -4994,14 +4994,16 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
               {/* Carousel Track */}
               <div className="overflow-hidden relative">
-                <motion.div
+                <div
                   className="flex transition-transform duration-500 ease-in-out"
-                  animate={{ x: `${-currentSlide * 100}%` }}
-                  style={{ width: `${totalSlides * 100}%` }}
+                  style={{
+                    transform: `translateX(-${currentSlide * 100}%)`,
+                    width: `${totalSlides * 100}%`
+                  }}
                 >
                   {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-                    <div key={slideIndex} className="w-full flex-shrink-0">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                    <div key={slideIndex} className="w-full flex-shrink-0" style={{ width: `${100 / totalSlides}%` }}>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 px-2">
                         {projects.slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide).map((project, index) => (
                           <motion.div
                             key={`${slideIndex}-${index}`}
@@ -5097,7 +5099,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       </div>
                     </div>
                   ))}
-                </motion.div>
+                </div>
               </div>
             </div>
           </motion.div>
