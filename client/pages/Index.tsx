@@ -3843,7 +3843,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
     return (
       <motion.div
         ref={ref}
-        className={`relative h-screen flex items-start justify-center overflow-y-auto ${
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
             ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
             : "bg-black"
