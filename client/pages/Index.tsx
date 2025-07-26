@@ -2717,14 +2717,7 @@ export default function Index() {
 
                       {/* Optimized sparkles for better performance */}
                       {SHINE_CONFIG.showSparkles &&
-                        (isMobile
-                          ? [
-                              { x: 95, y: -35, size: 0.8, type: "star" },
-                              { x: 75, y: -10, size: 0.6, type: "diamond" },
-                              { x: 120, y: 50, size: 0.7, type: "plus" },
-                              { x: 90, y: 80, size: 0.9, type: "star" },
-                            ]
-                          : [
+                        [
                               { x: 95, y: -35, size: 0.8, type: "star" },
                               { x: 75, y: -10, size: 0.6, type: "diamond" },
                               { x: 120, y: 50, size: 0.7, type: "plus" },
@@ -2733,8 +2726,7 @@ export default function Index() {
                               { x: -40, y: 60, size: 0.6, type: "plus" },
                               { x: 165, y: 15, size: 1.0, type: "star" },
                               { x: -20, y: -20, size: 0.7, type: "diamond" },
-                            ]
-                        ).map((sparkle, i) => (
+                            ].map((sparkle, i) => (
                           <div
                             key={`enhanced-sparkle-${i}`}
                             className="absolute pointer-events-none gpu-accelerated"
