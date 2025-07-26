@@ -1772,8 +1772,16 @@ export default function Index() {
               : "bg-black"
           }`}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          animate={{
+            opacity: isContentVisible && currentSection === 0 ? 1 : currentSection === 0 ? 0.3 : 1,
+            y: isContentVisible && currentSection === 0 ? 0 : currentSection === 0 ? 20 : 0,
+            scale: isContentVisible && currentSection === 0 ? 1 : currentSection === 0 ? 0.98 : 1
+          }}
+          transition={{
+            duration: currentSection === 0 ? 0.8 : 0.8,
+            ease: "easeOut",
+            delay: currentSection === 0 ? 0.2 : 0
+          }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
           {/* Left Corner Visual Elements for Mobile Balance */}
