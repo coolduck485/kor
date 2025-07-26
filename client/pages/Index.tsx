@@ -2837,10 +2837,20 @@ export default function Index() {
         </motion.div>
 
         {/* Contact Us Section */}
-        <div
+        <motion.div
           className={`transition-all duration-300 ${
             isMobileMenuOpen ? "blur-sm" : ""
           }`}
+          animate={{
+            opacity: isContentVisible && currentSection === 4 ? 1 : currentSection === 4 ? 0 : 1,
+            y: isContentVisible && currentSection === 4 ? 0 : currentSection === 4 ? 30 : 0,
+            scale: isContentVisible && currentSection === 4 ? 1 : currentSection === 4 ? 0.95 : 1
+          }}
+          transition={{
+            duration: 0.8,
+            ease: "easeOut",
+            delay: currentSection === 4 ? 0.3 : 0
+          }}
         >
           <ContactUsSection
             ref={(el) => (sectionsRef.current[4] = el!)}
@@ -2848,7 +2858,7 @@ export default function Index() {
             isVisible={currentSection === 4}
             isMobile={isMobile}
           />
-        </div>
+        </motion.div>
       </div>
 
       {/* Enhanced Background Animations */}
