@@ -292,6 +292,104 @@
   }
 }
 
+/* Exciting new background animations */
+@keyframes rainbow-pulse {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) saturate(1);
+  }
+  25% {
+    background-position: 100% 50%;
+    filter: hue-rotate(90deg) saturate(1.2);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(180deg) saturate(1.4);
+  }
+  75% {
+    background-position: 0% 50%;
+    filter: hue-rotate(270deg) saturate(1.2);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(360deg) saturate(1);
+  }
+}
+
+@keyframes cosmic-drift {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate(20px, -15px) rotate(90deg) scale(1.1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-10px, -30px) rotate(180deg) scale(1.2);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-25px, -10px) rotate(270deg) scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(360deg) scale(1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes aurora-wave {
+  0% {
+    transform: translateX(-100%) scale(1);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0%) scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(100%) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes crystalline-shimmer {
+  0% {
+    background-position: -200% center;
+    opacity: 0.3;
+  }
+  50% {
+    background-position: 200% center;
+    opacity: 0.8;
+  }
+  100% {
+    background-position: 600% center;
+    opacity: 0.3;
+  }
+}
+
+/* Eye-catching utility classes */
+.cosmic-particles {
+  animation: cosmic-drift 12s ease-in-out infinite;
+}
+
+.rainbow-glow {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
+  background-size: 400% 400%;
+  animation: rainbow-pulse 8s ease-in-out infinite;
+}
+
+.aurora-effect {
+  animation: aurora-wave 15s ease-in-out infinite;
+}
+
+.crystalline-effect {
+  background: linear-gradient(90deg, transparent, rgba(79, 209, 197, 0.4), rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: crystalline-shimmer 6s ease-in-out infinite;
+}
+
 @keyframes text-glow-pulse {
   0%,
   100% {
