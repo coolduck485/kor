@@ -4543,7 +4543,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle - matching development services style */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-6">
               <div className="relative">
                 {/* Background glow effect */}
                 <div
