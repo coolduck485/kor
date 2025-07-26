@@ -4170,7 +4170,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         }}
                       >
                         <div
-                          className="text-3xl font-bold mb-2 warm-glow-text"
+                          className="text-2xl sm:text-3xl font-bold mb-2 warm-glow-text"
                           style={{
                             textShadow: "0 0 15px rgba(73, 146, 255, 0.6)",
                           }}
