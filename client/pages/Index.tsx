@@ -5051,133 +5051,91 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
             {/* Portfolio Carousel Container */}
             <div className="relative mt-16 px-4">
-              {/* Navigation Buttons */}
-              <div className="flex justify-between items-center mb-8">
-                {/* Left Navigation */}
-                <motion.button
-                  onClick={prevPage}
-                  disabled={currentPage === 0}
-                  className={`group relative p-1.5 sm:p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
-                    currentPage === 0
-                      ? "opacity-30 cursor-not-allowed"
-                      : "hover:scale-110 cursor-pointer"
-                  }`}
+              {/* Compact Mobile Navigation */}
+              <div className="flex justify-center items-center mb-6 sm:mb-8">
+                <div
+                  className="flex items-center gap-2 sm:gap-4 px-3 py-2 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl backdrop-blur-lg border"
                   style={{
-                    background: "rgba(255, 255, 255, 0.05)",
-                    border: "2px solid rgba(255, 255, 255, 0.1)",
-                    boxShadow:
-                      currentPage === 0
-                        ? "none"
-                        : "0 0 20px rgba(73, 146, 255, 0.2)",
+                    background: "rgba(255, 255, 255, 0.03)",
+                    border: "1px solid rgba(255, 255, 255, 0.08)",
+                    boxShadow: "0 0 15px rgba(73, 146, 255, 0.1)",
                   }}
-                  whileHover={currentPage === 0 ? {} : { scale: 1.05 }}
-                  whileTap={currentPage === 0 ? {} : { scale: 0.95 }}
                 >
-                  <ChevronLeft
-                    className={`w-4 h-4 sm:w-6 sm:h-6 transition-colors ${
+                  {/* Left Navigation */}
+                  <motion.button
+                    onClick={prevPage}
+                    disabled={currentPage === 0}
+                    className={`group relative p-1 sm:p-1.5 rounded-lg transition-all duration-300 ${
                       currentPage === 0
-                        ? "text-gray-500"
-                        : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
+                        ? "opacity-30 cursor-not-allowed"
+                        : "hover:scale-110 cursor-pointer hover:bg-white/5"
                     }`}
-                  />
-
-                  {/* Glow effect on hover - only when enabled */}
-                  {currentPage > 0 && (
-                    <div
-                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{
-                        background:
-                          "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)",
-                      }}
-                    />
-                  )}
-
-                  {/* Scanning line effect - only when enabled */}
-                  {currentPage > 0 && (
-                    <div className="absolute inset-0 overflow-hidden rounded-full">
-                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                    </div>
-                  )}
-                </motion.button>
-
-                {/* Page Indicators */}
-                <div className="flex space-x-1 sm:space-x-3 items-center">
-                  {Array.from({ length: totalPages }).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentPage(index)}
-                      className={`transition-all duration-300 ${
-                        currentPage === index
-                          ? "w-3 sm:w-6 md:w-8 h-1 sm:h-1.5 md:h-2 bg-blue-400 rounded-full scale-110 sm:scale-125"
-                          : "w-1 sm:w-1.5 md:w-2 h-1 sm:h-1.5 md:h-2 bg-white/20 hover:bg-white/40 rounded-full"
-                      }`}
-                      style={{
-                        boxShadow:
-                          currentPage === index
-                            ? "0 0 10px rgba(73, 146, 255, 0.8)"
-                            : "none",
-                      }}
-                    />
-                  ))}
-                  <span
-                    className={`text-xs font-mono ml-1 sm:ml-2 ${theme === "light" ? "text-gray-600" : "text-white/60"}`}
+                    whileHover={currentPage === 0 ? {} : { scale: 1.1 }}
+                    whileTap={currentPage === 0 ? {} : { scale: 0.9 }}
                   >
-                    {currentPage + 1} / {totalPages}
-                  </span>
-                </div>
-
-                {/* Right Navigation */}
-                <motion.button
-                  onClick={nextPage}
-                  disabled={currentPage === totalPages - 1}
-                  className={`group relative p-1.5 sm:p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
-                    currentPage === totalPages - 1
-                      ? "opacity-30 cursor-not-allowed"
-                      : "hover:scale-110 cursor-pointer"
-                  }`}
-                  style={{
-                    background: "rgba(255, 255, 255, 0.05)",
-                    border: "2px solid rgba(255, 255, 255, 0.1)",
-                    boxShadow:
-                      currentPage === totalPages - 1
-                        ? "none"
-                        : "0 0 20px rgba(73, 146, 255, 0.2)",
-                  }}
-                  whileHover={
-                    currentPage === totalPages - 1 ? {} : { scale: 1.05 }
-                  }
-                  whileTap={
-                    currentPage === totalPages - 1 ? {} : { scale: 0.95 }
-                  }
-                >
-                  <ChevronRight
-                    className={`w-4 h-4 sm:w-6 sm:h-6 transition-colors ${
-                      currentPage === totalPages - 1
-                        ? "text-gray-500"
-                        : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
-                    }`}
-                  />
-
-                  {/* Glow effect on hover - only when enabled */}
-                  {currentPage < totalPages - 1 && (
-                    <div
-                      className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{
-                        background:
-                          "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)",
-                      }}
+                    <ChevronLeft
+                      className={`w-3 h-3 sm:w-4 sm:h-4 transition-colors ${
+                        currentPage === 0
+                          ? "text-gray-500"
+                          : `${theme === "light" ? "text-gray-700" : "text-white/80"} group-hover:text-blue-400`
+                      }`}
                     />
-                  )}
+                  </motion.button>
 
-                  {/* Scanning line effect - only when enabled */}
-                  {currentPage < totalPages - 1 && (
-                    <div className="absolute inset-0 overflow-hidden rounded-full">
-                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                    </div>
-                  )}
-                </motion.button>
+                  {/* Compact Page Indicators */}
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }).map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentPage(index)}
+                        className={`transition-all duration-300 rounded-full ${
+                          currentPage === index
+                            ? "w-4 h-1.5 sm:w-5 sm:h-2 bg-blue-400"
+                            : "w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white/20 hover:bg-white/30"
+                        }`}
+                        style={{
+                          boxShadow:
+                            currentPage === index
+                              ? "0 0 6px rgba(73, 146, 255, 0.6)"
+                              : "none",
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Compact Page Counter */}
+                  <span
+                    className={`text-[10px] sm:text-xs font-mono px-1.5 py-0.5 rounded-md ${
+                      theme === "light" ? "text-gray-600" : "text-white/50"
+                    }`}
+                    style={{
+                      background: "rgba(255, 255, 255, 0.05)",
+                    }}
+                  >
+                    {currentPage + 1}/{totalPages}
+                  </span>
+
+                  {/* Right Navigation */}
+                  <motion.button
+                    onClick={nextPage}
+                    disabled={currentPage === totalPages - 1}
+                    className={`group relative p-1 sm:p-1.5 rounded-lg transition-all duration-300 ${
+                      currentPage === totalPages - 1
+                        ? "opacity-30 cursor-not-allowed"
+                        : "hover:scale-110 cursor-pointer hover:bg-white/5"
+                    }`}
+                    whileHover={currentPage === totalPages - 1 ? {} : { scale: 1.1 }}
+                    whileTap={currentPage === totalPages - 1 ? {} : { scale: 0.9 }}
+                  >
+                    <ChevronRight
+                      className={`w-3 h-3 sm:w-4 sm:h-4 transition-colors ${
+                        currentPage === totalPages - 1
+                          ? "text-gray-500"
+                          : `${theme === "light" ? "text-gray-700" : "text-white/80"} group-hover:text-blue-400`
+                      }`}
+                    />
+                  </motion.button>
+                </div>
               </div>
 
               {/* Simple Page Display */}
