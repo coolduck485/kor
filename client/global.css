@@ -603,8 +603,13 @@
   }
 
   /* Ensure scroll indicators don't block content */
-  .fixed.bottom-8 {
+  .scroll-indicator.fixed.bottom-8 {
     bottom: 60px !important;
+  }
+
+  /* Move back to top button up by 100px on mobile */
+  .back-to-top.fixed.bottom-8 {
+    bottom: 160px !important; /* 60px + 100px */
   }
 
   /* Ensure services grid displays in 2 columns on mobile */
