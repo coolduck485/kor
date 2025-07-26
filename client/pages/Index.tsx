@@ -592,7 +592,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ████���█╗
-██║ ██╔╝██╔═══██╗██╔═══██╗
+██��� ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -5823,7 +5823,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               >
                 Connect With Us
               </h3>
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6">
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
                 {[
                   {
                     name: "Instagram",
