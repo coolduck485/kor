@@ -3685,7 +3685,7 @@ function MobileHamburgerMenu({
           marginTop: "-100px", // Mobile: moved down 30px from -130px
           animationDelay: "0.2s",
           animation:
-            "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s",
+            "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s, bubble-pop-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards",
         }}
       >
         <button
@@ -4187,7 +4187,7 @@ function OrbFloatingButton({
           marginTop: "var(--mobile-y)",
           animationDelay: `${delay}s`,
           transform: `scale(${currentSize.scale})`,
-          animation: `gentleFloat 4s ease-in-out infinite ${delay}s, button-drift ${8 + delay * 2}s ease-in-out infinite ${delay * 1.5}s, smooth-scale-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`,
+          animation: `gentleFloat 4s ease-in-out infinite ${delay}s, button-drift ${8 + delay * 2}s ease-in-out infinite ${delay * 1.5}s, bubble-pop-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) ${0.2 + delay}s both`,
         } as React.CSSProperties
       }
     >
