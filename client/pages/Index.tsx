@@ -1675,6 +1675,17 @@ export default function Index() {
         </div>
       )}
 
+      {/* Mobile Hamburger Menu - Positioned at top level to avoid blur */}
+      <div className="sm:hidden fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
+        <div className="relative pointer-events-auto">
+          <MobileHamburgerMenu
+            isOpen={isMobileMenuOpen}
+            setIsOpen={setIsMobileMenuOpen}
+            theme={theme}
+          />
+        </div>
+      </div>
+
       {/* Sections Container */}
       <div className="h-full">
         {/* Home Section */}
@@ -2503,16 +2514,7 @@ export default function Index() {
               </div>
             </motion.div>
 
-            {/* Mobile Hamburger Menu - Only on mobile (640px and below) - NO BLUR */}
-            <div className="sm:hidden absolute inset-0 flex items-center justify-center z-60 blur-none filter-none" style={{ filter: 'none' }}>
-              <div className="relative blur-none filter-none" style={{ filter: 'none' }}>
-                <MobileHamburgerMenu
-                  isOpen={isMobileMenuOpen}
-                  setIsOpen={setIsMobileMenuOpen}
-                  theme={theme}
-                />
-              </div>
-            </div>
+
 
             {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
             <motion.div
