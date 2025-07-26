@@ -53,6 +53,10 @@ export default function Index() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isScrollingActive, setIsScrollingActive] = useState(false);
 
+  // Black transition animation state
+  const [isBlackTransition, setIsBlackTransition] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(true);
+
   // Welcome notification - shows once per page load
   useEffect(() => {
     // Temporarily disabled to test button functionality
