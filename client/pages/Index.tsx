@@ -241,7 +241,7 @@ export default function Index() {
   // If retro mode is enabled, show retro version
   if (mode === "retro") {
     return (
-      <div className="retro-container min-h-screen">
+      <div className="retro-container min-h-screen max-h-screen overflow-y-auto overflow-x-hidden">
         {/* Retro Loading Screen */}
         <AnimatePresence>
           {isLoading && (
@@ -401,7 +401,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      █
+                      ��
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -471,12 +471,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ████���█╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔═��██╗
-█████╔╝ ██║   ���█║██████╔╝
+                  {`██╗  ██╗ ██████╗ ██████╗
+██║ ██╔╝██╔═══██╗██╔═══██╗
+█████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚���════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -532,24 +532,7 @@ export default function Index() {
                       ENTERPRISE AUTOMATION
                     </span>
                   </div>
-                  <div className="terminal-line mb-4">
-                    <span className="text-gray-500">---</span>
-                  </div>
-                  <div className="terminal-line mb-1">
-                    <span className="text-cyan-400">CPU:</span>&nbsp;
-                    <span className="text-green-400">██████████</span>&nbsp;100%
-                  </div>
-                  <div className="terminal-line mb-1">
-                    <span className="text-cyan-400">MEM:</span>&nbsp;
-                    <span className="text-yellow-400">██��█████░░</span>
-                    &nbsp;78%
-                  </div>
-                  <div className="terminal-line mb-3">
-                    <span className="text-cyan-400">NET:</span>&nbsp;
-                    <span className="text-green-400 terminal-glow">
-                      CONNECTED
-                    </span>
-                  </div>
+
                   <div className="terminal-line mb-4">
                     <span className="text-green-400 blink">█</span>
                   </div>
@@ -567,7 +550,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████��██���████████████ 50%
+                      RAM: ██████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -778,6 +761,10 @@ export default function Index() {
             box-shadow:
               inset 0 0 50px rgba(0, 255, 65, 0.1),
               0 0 50px rgba(0, 255, 65, 0.3);
+            height: calc(100vh - 16px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
           }
 
           .retro-container::before {
@@ -831,11 +818,12 @@ export default function Index() {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             min-height: calc(100vh - 160px);
             padding: 32px;
             position: relative;
             z-index: 105;
+            padding-bottom: 100px;
           }
 
           .retro-logo-container {
