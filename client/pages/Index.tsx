@@ -2488,10 +2488,14 @@ export default function Index() {
                         ))}
                       </span>
 
-                      {/* Enhanced sparkles with more variety */}
+                      {/* Optimized sparkles for better performance */}
                       {SHINE_CONFIG.showSparkles &&
-                        [
-                          // Upper sparkles
+                        (isMobile ? [
+                          { x: 95, y: -35, size: 0.8, type: "star" },
+                          { x: 75, y: -10, size: 0.6, type: "diamond" },
+                          { x: 120, y: 50, size: 0.7, type: "plus" },
+                          { x: 90, y: 80, size: 0.9, type: "star" },
+                        ] : [
                           { x: 95, y: -35, size: 0.8, type: "star" },
                           { x: 75, y: -10, size: 0.6, type: "diamond" },
                           { x: 120, y: 50, size: 0.7, type: "plus" },
@@ -2499,22 +2503,20 @@ export default function Index() {
                           { x: 25, y: 85, size: 0.5, type: "diamond" },
                           { x: -40, y: 60, size: 0.6, type: "plus" },
                           { x: 165, y: 15, size: 1.0, type: "star" },
-                          // Additional sparkles for more drama
                           { x: -20, y: -20, size: 0.7, type: "diamond" },
-                          { x: 140, y: -15, size: 0.5, type: "plus" },
-                          { x: 50, y: 100, size: 0.8, type: "star" },
-                        ].map((sparkle, i) => (
+                        ]).map((sparkle, i) => (
                           <div
                             key={`enhanced-sparkle-${i}`}
-                            className="absolute pointer-events-none"
+                            className="absolute pointer-events-none gpu-accelerated"
                             style={{
                               left: `calc(50% + ${sparkle.x}px)`,
                               top: `calc(50% + ${sparkle.y}px)`,
-                              animation: `sparkle-enhanced ${6 + (i % 4) * 2}s ease-in-out infinite ${i * 0.8}s`,
-                              transform: `scale(${sparkle.size})`,
+                              animation: `sparkle-enhanced ${isMobile ? 4 : 6 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+                              transform: `translateZ(0) scale(${sparkle.size})`,
                               opacity: 0.6,
                               animationFillMode: "both",
                               zIndex: -1,
+                              willChange: "transform, opacity",
                             }}
                           >
                             {sparkle.type === "star" && (
@@ -2527,7 +2529,7 @@ export default function Index() {
                                       : "radial-gradient(circle, rgba(73, 146, 255, 0.6) 0%, transparent 70%)",
                                   clipPath:
                                     "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-                                  animation: "spin-slow 15s linear infinite",
+                                  animation: isMobile ? "spin-slow 8s linear infinite" : "spin-slow 15s linear infinite",
                                 }}
                               />
                             )}
@@ -2541,8 +2543,7 @@ export default function Index() {
                                       : "linear-gradient(45deg, rgba(34, 211, 238, 0.5), rgba(73, 146, 255, 0.4))",
                                   clipPath:
                                     "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                                  animation:
-                                    "gentle-pulse 4s ease-in-out infinite",
+                                  animation: isMobile ? "gentle-pulse 3s ease-in-out infinite" : "gentle-pulse 4s ease-in-out infinite",
                                 }}
                               />
                             )}
@@ -2556,7 +2557,7 @@ export default function Index() {
                                       : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.5), rgba(34, 211, 238, 0.4), rgba(73, 146, 255, 0.5))",
                                   clipPath:
                                     "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
-                                  animation: "rotate-slow 12s linear infinite",
+                                  animation: isMobile ? "rotate-slow 8s linear infinite" : "rotate-slow 12s linear infinite",
                                 }}
                               />
                             )}
