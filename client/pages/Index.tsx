@@ -5778,7 +5778,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // ========================================
 
 const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible, isMobile = false }, ref) => {
+  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
     const [formData, setFormData] = useState({
       firstName: "",
       lastName: "",
