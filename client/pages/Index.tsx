@@ -1434,7 +1434,7 @@ export default function Index() {
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
       }`}
-      style={{ height: '100vh', overflow: 'hidden' }}
+      style={{ height: '100vh', overflow: 'hidden', maxWidth: '100vw' }}
     >
       {/* Section Navigation Dots */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 space-y-3">
