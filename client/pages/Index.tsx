@@ -2629,25 +2629,37 @@ export default function Index() {
         </motion.div>
 
         {/* About Us Section */}
-        <AboutUsSection
-          ref={(el) => (sectionsRef.current[1] = el!)}
-          theme={theme}
-          isVisible={currentSection === 1}
-        />
+        <div className={`transition-all duration-300 ${
+          isMobileMenuOpen ? "blur-sm" : ""
+        }`}>
+          <AboutUsSection
+            ref={(el) => (sectionsRef.current[1] = el!)}
+            theme={theme}
+            isVisible={currentSection === 1}
+          />
+        </div>
 
         {/* Services Section */}
-        <ServicesSection
-          ref={(el) => (sectionsRef.current[2] = el!)}
-          theme={theme}
-          isVisible={currentSection === 2}
-        />
+        <div className={`transition-all duration-300 ${
+          isMobileMenuOpen ? "blur-sm" : ""
+        }`}>
+          <ServicesSection
+            ref={(el) => (sectionsRef.current[2] = el!)}
+            theme={theme}
+            isVisible={currentSection === 2}
+          />
+        </div>
 
         {/* Portfolio Section */}
-        <PortfolioSection
-          ref={(el) => (sectionsRef.current[3] = el!)}
-          theme={theme}
-          isVisible={currentSection === 3}
-        />
+        <div className={`transition-all duration-300 ${
+          isMobileMenuOpen ? "blur-sm" : ""
+        }`}>
+          <PortfolioSection
+            ref={(el) => (sectionsRef.current[3] = el!)}
+            theme={theme}
+            isVisible={currentSection === 3}
+          />
+        </div>
 
         {/* Contact Us Section */}
         <ContactUsSection
