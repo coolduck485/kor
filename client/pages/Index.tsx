@@ -1466,7 +1466,7 @@ export default function Index() {
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
       }`}
-      style={{ height: "100vh", overflow: "auto", maxWidth: "100vw" }}
+      style={{ height: "100vh", overflow: "hidden", maxWidth: "100vw" }}
     >
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
