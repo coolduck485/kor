@@ -234,6 +234,43 @@
   }
 }
 
+@keyframes swipeUp {
+  0% {
+    bottom: 10%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 70%;
+    opacity: 0;
+  }
+}
+
+@keyframes swipeUpDelayed {
+  0% {
+    bottom: 5%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    bottom: 75%;
+    opacity: 0;
+  }
+}
+
 /* Enhanced animations for Development services text */
 @keyframes text-pop {
   0%,
