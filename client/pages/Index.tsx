@@ -2662,12 +2662,16 @@ export default function Index() {
         </div>
 
         {/* Contact Us Section */}
-        <ContactUsSection
-          ref={(el) => (sectionsRef.current[4] = el!)}
-          theme={theme}
-          isVisible={currentSection === 4}
-          isMobile={isMobile}
-        />
+        <div className={`transition-all duration-300 ${
+          isMobileMenuOpen ? "blur-sm" : ""
+        }`}>
+          <ContactUsSection
+            ref={(el) => (sectionsRef.current[4] = el!)}
+            theme={theme}
+            isVisible={currentSection === 4}
+            isMobile={isMobile}
+          />
+        </div>
       </div>
 
       {/* Enhanced Background Animations */}
