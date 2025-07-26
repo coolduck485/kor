@@ -572,7 +572,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██████╔╝██║  ██║
+██║  ██╗╚██████╔╝██���  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -5214,7 +5214,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
               {/* Contact Info */}
               <motion.div
-                className="space-y-8"
+                className="space-y-4 sm:space-y-6 lg:space-y-8"
                 initial={{ x: 50, opacity: 0 }}
                 animate={isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
