@@ -2880,15 +2880,12 @@ export default function Index() {
             isMobileMenuOpen ? "blur-sm" : ""
           }`}
           animate={{
-            opacity: isContentVisible && currentSection === 1 ? 1 : currentSection === 1 ? 0 : 1,
-            y: isContentVisible && currentSection === 1 ? 0 : currentSection === 1 ? 40 : 0,
-            scale: isContentVisible && currentSection === 1 ? 1 : currentSection === 1 ? 0.95 : 1,
-            filter: isContentVisible && currentSection === 1 ? "blur(0px)" : currentSection === 1 ? "blur(8px)" : "blur(0px)"
+            opacity: currentSection === 1 ? 1 : 0,
+            scale: currentSection === 1 ? 1 : 0.95
           }}
           transition={{
-            duration: 0.9,
-            ease: [0.25, 0.46, 0.45, 0.94],
-            delay: currentSection === 1 ? 0.4 : 0
+            duration: 0.4,
+            ease: "easeOut"
           }}
         >
           <AboutUsSection
@@ -2904,15 +2901,12 @@ export default function Index() {
             isMobileMenuOpen ? "blur-sm" : ""
           }`}
           animate={{
-            opacity: isContentVisible && currentSection === 2 ? 1 : currentSection === 2 ? 0 : 1,
-            y: isContentVisible && currentSection === 2 ? 0 : currentSection === 2 ? 40 : 0,
-            scale: isContentVisible && currentSection === 2 ? 1 : currentSection === 2 ? 0.95 : 1,
-            filter: isContentVisible && currentSection === 2 ? "blur(0px)" : currentSection === 2 ? "blur(8px)" : "blur(0px)"
+            opacity: currentSection === 2 ? 1 : 0,
+            scale: currentSection === 2 ? 1 : 0.95
           }}
           transition={{
-            duration: 0.9,
-            ease: [0.25, 0.46, 0.45, 0.94],
-            delay: currentSection === 2 ? 0.5 : 0
+            duration: 0.4,
+            ease: "easeOut"
           }}
         >
           <ServicesSection
@@ -2928,15 +2922,12 @@ export default function Index() {
             isMobileMenuOpen ? "blur-sm" : ""
           }`}
           animate={{
-            opacity: isContentVisible && currentSection === 3 ? 1 : currentSection === 3 ? 0 : 1,
-            y: isContentVisible && currentSection === 3 ? 0 : currentSection === 3 ? 40 : 0,
-            scale: isContentVisible && currentSection === 3 ? 1 : currentSection === 3 ? 0.95 : 1,
-            filter: isContentVisible && currentSection === 3 ? "blur(0px)" : currentSection === 3 ? "blur(8px)" : "blur(0px)"
+            opacity: currentSection === 3 ? 1 : 0,
+            scale: currentSection === 3 ? 1 : 0.95
           }}
           transition={{
-            duration: 0.9,
-            ease: [0.25, 0.46, 0.45, 0.94],
-            delay: currentSection === 3 ? 0.6 : 0
+            duration: 0.4,
+            ease: "easeOut"
           }}
         >
           <PortfolioSection
@@ -2952,15 +2943,12 @@ export default function Index() {
             isMobileMenuOpen ? "blur-sm" : ""
           }`}
           animate={{
-            opacity: isContentVisible && currentSection === 4 ? 1 : currentSection === 4 ? 0 : 1,
-            y: isContentVisible && currentSection === 4 ? 0 : currentSection === 4 ? 40 : 0,
-            scale: isContentVisible && currentSection === 4 ? 1 : currentSection === 4 ? 0.95 : 1,
-            filter: isContentVisible && currentSection === 4 ? "blur(0px)" : currentSection === 4 ? "blur(8px)" : "blur(0px)"
+            opacity: currentSection === 4 ? 1 : 0,
+            scale: currentSection === 4 ? 1 : 0.95
           }}
           transition={{
-            duration: 0.9,
-            ease: [0.25, 0.46, 0.45, 0.94],
-            delay: currentSection === 4 ? 0.7 : 0
+            duration: 0.4,
+            ease: "easeOut"
           }}
         >
           <ContactUsSection
