@@ -4980,7 +4980,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Portfolio Title */}
             <div className="text-center mb-4 sm:mb-8">
               <h1
-                className={`font-poppins text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                className={`font-poppins text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
               >
                 {"Portfolio".split("").map((letter, i) => (
                   <span
