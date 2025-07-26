@@ -390,35 +390,69 @@ export default function Index() {
     }
   }, [currentSection, isScrolling, sections.length, mode]);
 
-  // Handle touch scroll for mobile
+  // Handle touch scroll for mobile - Enhanced with better swipe detection
   useEffect(() => {
     let touchStartY = 0;
+    let touchStartTime = 0;
+    let touchStartX = 0;
+    let isSwiping = false;
 
     const handleTouchStart = (e: TouchEvent) => {
+      if (isScrolling || mode === "retro") return;
+
       touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+      touchStartTime = Date.now();
+      isSwiping = false;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isScrolling || mode === "retro") return;
+
+      const touchY = e.touches[0].clientY;
+      const touchX = e.touches[0].clientX;
+      const deltaY = Math.abs(touchY - touchStartY);
+      const deltaX = Math.abs(touchX - touchStartX);
+
+      // Determine if this is a vertical swipe (not horizontal)
+      if (deltaY > 10 && deltaY > deltaX * 1.5) {
+        isSwiping = true;
+        e.preventDefault(); // Prevent default scrolling only during vertical swipes
+      }
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
-      if (isScrolling || mode === "retro") return;
+      if (isScrolling || mode === "retro" || !isSwiping) return;
 
       const touchEndY = e.changedTouches[0].clientY;
       const deltaY = touchStartY - touchEndY;
+      const touchDuration = Date.now() - touchStartTime;
+      const swipeVelocity = Math.abs(deltaY) / touchDuration;
 
-      if (Math.abs(deltaY) > 50) {
+      // Enhanced swipe detection: require minimum distance AND velocity
+      const minSwipeDistance = 50;
+      const minSwipeVelocity = 0.1; // pixels per millisecond
+
+      if (Math.abs(deltaY) > minSwipeDistance && swipeVelocity > minSwipeVelocity) {
         if (deltaY > 0 && currentSection < sections.length - 1) {
           scrollToSection(currentSection + 1);
         } else if (deltaY < 0 && currentSection > 0) {
           scrollToSection(currentSection - 1);
         }
       }
+
+      // Reset
+      isSwiping = false;
     };
 
     const container = containerRef.current;
     if (container) {
-      container.addEventListener("touchstart", handleTouchStart);
-      container.addEventListener("touchend", handleTouchEnd);
+      container.addEventListener("touchstart", handleTouchStart, { passive: true });
+      container.addEventListener("touchmove", handleTouchMove, { passive: false });
+      container.addEventListener("touchend", handleTouchEnd, { passive: true });
       return () => {
         container.removeEventListener("touchstart", handleTouchStart);
+        container.removeEventListener("touchmove", handleTouchMove);
         container.removeEventListener("touchend", handleTouchEnd);
       };
     }
