@@ -673,7 +673,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█���██████��███���███ 60%
+                      CPU: ███��█���██████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -5779,7 +5779,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     {/* Submit Button */}
                     <motion.button
                       type="submit"
-                      className="w-full p-4 rounded-xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-200 hover:scale-[1.02] text-base will-change-transform"
+                      className="w-full p-3 rounded-xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-200 hover:scale-[1.02] text-sm will-change-transform"
                       style={{
                         background: "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
                         boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
@@ -5787,7 +5787,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       <span>Submit Your Request</span>
                     </motion.button>
                   </form>
