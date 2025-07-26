@@ -602,7 +602,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ███������█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
-███��█╔╝ ██���   ██║██████╔╝
+█████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
@@ -679,7 +679,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: ███████████████████���██ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -786,7 +786,7 @@ export default function Index() {
                       className="close-terminal"
                       onClick={() => setShowTerminal(false)}
                     >
-                      ��
+                      ✕
                     </button>
                   </div>
                   <div className="terminal-body">
@@ -5617,7 +5617,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 >
                   <form onSubmit={handleSubmit} className="contact-form space-y-3">
                     {/* Name Fields Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <input
                           type="text"
@@ -5626,7 +5626,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           onChange={(e) =>
                             setFormData({ ...formData, firstName: e.target.value })
                           }
-                          className="w-full p-3 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
