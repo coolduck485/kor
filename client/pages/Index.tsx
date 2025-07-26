@@ -478,10 +478,10 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
-█████╔╝ ██║   ██║██████╔╝
+█████╔╝ ██║   ██║█████���╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═���`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -3570,3 +3570,735 @@ function OrbFloatingButton({
     </div>
   );
 }
+
+// ========================================
+// ABOUT US SECTION COMPONENT
+// ========================================
+
+interface SectionProps {
+  theme: "light" | "dark";
+  isVisible: boolean;
+}
+
+const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
+  ({ theme, isVisible }, ref) => {
+    return (
+      <motion.div
+        ref={ref}
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+          theme === "light"
+            ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
+            : "bg-gradient-to-br from-gray-900 via-blue-950 to-black"
+        }`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Floating Orbs */}
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`about-orb-${i}`}
+              className="absolute rounded-full opacity-20"
+              style={{
+                left: `${10 + ((i * 80) % 80)}%`,
+                top: `${15 + ((i * 60) % 70)}%`,
+                width: `${40 + (i % 3) * 20}px`,
+                height: `${40 + (i % 3) * 20}px`,
+                background: `radial-gradient(circle, rgba(73, 146, 255, 0.4) 0%, transparent 70%)`,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                x: [0, 15, 0],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 6 + (i % 3),
+                repeat: Infinity,
+                delay: i * 0.5,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h2
+              className={`text-5xl md:text-7xl font-bold mb-8 ${
+                theme === "light" ? "text-gray-900" : "text-white"
+              }`}
+              style={{
+                background: theme === "light"
+                  ? "linear-gradient(135deg, #1f2937, #3b82f6)"
+                  : "linear-gradient(135deg, #60a5fa, #a78bfa)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              About Us
+            </h2>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-2 gap-12 items-center"
+            initial={{ y: 50, opacity: 0 }}
+            animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            {/* Left Content */}
+            <div className="space-y-6">
+              <h3
+                className={`text-3xl font-semibold mb-6 ${
+                  theme === "light" ? "text-gray-800" : "text-white"
+                }`}
+              >
+                Crafting the Future of Digital Excellence
+              </h3>
+              <p
+                className={`text-lg leading-relaxed ${
+                  theme === "light" ? "text-gray-600" : "text-gray-300"
+                }`}
+              >
+                We are a cutting-edge software development company dedicated to transforming
+                innovative ideas into powerful digital solutions. Our team of expert developers,
+                designers, and strategists work collaboratively to deliver exceptional results.
+              </p>
+              <p
+                className={`text-lg leading-relaxed ${
+                  theme === "light" ? "text-gray-600" : "text-gray-300"
+                }`}
+              >
+                With years of experience in modern web development, mobile applications, and
+                AI integration, we bring your vision to life with precision and creativity.
+              </p>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-6 mt-8">
+                {[
+                  { number: "100+", label: "Projects Completed" },
+                  { number: "50+", label: "Happy Clients" },
+                  { number: "5+", label: "Years Experience" },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    className="text-center"
+                    initial={{ scale: 0 }}
+                    animate={isVisible ? { scale: 1 } : { scale: 0 }}
+                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                  >
+                    <div
+                      className="text-3xl font-bold"
+                      style={{
+                        background: "linear-gradient(135deg, #60a5fa, #a78bfa)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                      }}
+                    >
+                      {stat.number}
+                    </div>
+                    <div className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Content - Visual Element */}
+            <motion.div
+              className="relative"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <div className="relative w-full h-96 rounded-3xl overflow-hidden backdrop-blur-lg bg-white/10 border border-white/20">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20" />
+
+                {/* Animated Code Lines */}
+                <div className="absolute inset-4 space-y-3">
+                  {[...Array(8)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="flex items-center space-x-2"
+                      initial={{ x: -50, opacity: 0 }}
+                      animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
+                      transition={{ duration: 0.5, delay: 0.8 + i * 0.1 }}
+                    >
+                      <div className="w-2 h-2 rounded-full bg-green-400" />
+                      <div
+                        className={`h-2 rounded ${
+                          i % 3 === 0 ? "w-24 bg-blue-400" :
+                          i % 3 === 1 ? "w-16 bg-purple-400" : "w-20 bg-cyan-400"
+                        }`}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Floating Icons */}
+                {[Code, Zap, Star].map((Icon, index) => (
+                  <motion.div
+                    key={index}
+                    className="absolute"
+                    style={{
+                      right: `${20 + index * 30}px`,
+                      top: `${60 + index * 40}px`,
+                    }}
+                    animate={{
+                      y: [0, -10, 0],
+                      rotate: [0, 5, 0],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: index * 0.5,
+                    }}
+                  >
+                    <Icon className="w-8 h-8 text-blue-400 opacity-60" />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.div>
+    );
+  }
+);
+
+// ========================================
+// SERVICES SECTION COMPONENT
+// ========================================
+
+const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
+  ({ theme, isVisible }, ref) => {
+    const services = [
+      {
+        icon: Globe,
+        title: "Web Development",
+        description: "Modern, responsive websites built with cutting-edge technologies",
+        color: "from-blue-500 to-cyan-500",
+      },
+      {
+        icon: Smartphone,
+        title: "Mobile Apps",
+        description: "Native and cross-platform mobile applications",
+        color: "from-purple-500 to-pink-500",
+      },
+      {
+        icon: Palette,
+        title: "UI/UX Design",
+        description: "Beautiful, intuitive designs that engage and convert",
+        color: "from-green-500 to-emerald-500",
+      },
+      {
+        icon: Zap,
+        title: "AI Integration",
+        description: "Smart solutions powered by artificial intelligence",
+        color: "from-orange-500 to-red-500",
+      },
+      {
+        icon: Users,
+        title: "Consulting",
+        description: "Strategic guidance for your digital transformation",
+        color: "from-indigo-500 to-purple-500",
+      },
+      {
+        icon: Code,
+        title: "Custom Solutions",
+        description: "Tailored software solutions for unique business needs",
+        color: "from-teal-500 to-blue-500",
+      },
+    ];
+
+    return (
+      <motion.div
+        ref={ref}
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+          theme === "light"
+            ? "bg-gradient-to-br from-indigo-50 via-white to-cyan-50"
+            : "bg-gradient-to-br from-black via-blue-950 to-purple-950"
+        }`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Animated Background Grid */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(73, 146, 255, 0.3) 1px, transparent 0)`,
+              backgroundSize: '50px 50px',
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ y: 50, opacity: 0 }}
+            animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h2
+              className={`text-5xl md:text-7xl font-bold mb-6 ${
+                theme === "light" ? "text-gray-900" : "text-white"
+              }`}
+              style={{
+                background: theme === "light"
+                  ? "linear-gradient(135deg, #1f2937, #3b82f6)"
+                  : "linear-gradient(135deg, #60a5fa, #a78bfa)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Our Services
+            </h2>
+            <p
+              className={`text-xl max-w-3xl mx-auto ${
+                theme === "light" ? "text-gray-600" : "text-gray-300"
+              }`}
+            >
+              We offer comprehensive digital solutions to help your business thrive in the modern world
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                className="group relative"
+                initial={{ y: 50, opacity: 0 }}
+                animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+              >
+                <div
+                  className={`relative p-8 rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 group-hover:scale-105 ${
+                    theme === "light"
+                      ? "bg-white/60 border-white/40 hover:bg-white/80"
+                      : "bg-white/5 border-white/10 hover:bg-white/10"
+                  }`}
+                  style={{
+                    boxShadow: theme === "light"
+                      ? "0 10px 40px rgba(0,0,0,0.1)"
+                      : "0 10px 40px rgba(73, 146, 255, 0.1)",
+                  }}
+                >
+                  {/* Animated Background Gradient */}
+                  <div
+                    className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${service.color}`}
+                  />
+
+                  {/* Icon */}
+                  <motion.div
+                    className="relative z-10 mb-6"
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div
+                      className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
+                    >
+                      <service.icon className="w-8 h-8 text-white" />
+                    </div>
+                  </motion.div>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <h3
+                      className={`text-xl font-bold mb-3 ${
+                        theme === "light" ? "text-gray-900" : "text-white"
+                      }`}
+                    >
+                      {service.title}
+                    </h3>
+                    <p
+                      className={`text-sm leading-relaxed ${
+                        theme === "light" ? "text-gray-600" : "text-gray-300"
+                      }`}
+                    >
+                      {service.description}
+                    </p>
+                  </div>
+
+                  {/* Hover Effect Lines */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent" />
+                    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+);
+
+// ========================================
+// PORTFOLIO SECTION COMPONENT
+// ========================================
+
+const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
+  ({ theme, isVisible }, ref) => {
+    const projects = [
+      {
+        title: "E-Commerce Platform",
+        description: "Modern shopping experience with AI recommendations",
+        tech: ["React", "Node.js", "AI/ML"],
+        image: "from-purple-500 to-pink-500",
+      },
+      {
+        title: "Healthcare App",
+        description: "Telemedicine platform connecting patients and doctors",
+        tech: ["React Native", "Firebase", "WebRTC"],
+        image: "from-green-500 to-emerald-500",
+      },
+      {
+        title: "FinTech Dashboard",
+        description: "Real-time financial analytics and trading platform",
+        tech: ["Vue.js", "Python", "WebSocket"],
+        image: "from-blue-500 to-cyan-500",
+      },
+      {
+        title: "Smart IoT System",
+        description: "Connected devices management platform",
+        tech: ["Angular", "IoT", "Cloud"],
+        image: "from-orange-500 to-red-500",
+      },
+    ];
+
+    return (
+      <motion.div
+        ref={ref}
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+          theme === "light"
+            ? "bg-gradient-to-br from-purple-50 via-white to-pink-50"
+            : "bg-gradient-to-br from-purple-950 via-black to-blue-950"
+        }`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Floating Particles */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={`portfolio-particle-${i}`}
+              className="absolute w-2 h-2 rounded-full bg-blue-400/30"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -100, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ y: 50, opacity: 0 }}
+            animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h2
+              className={`text-5xl md:text-7xl font-bold mb-6 ${
+                theme === "light" ? "text-gray-900" : "text-white"
+              }`}
+              style={{
+                background: theme === "light"
+                  ? "linear-gradient(135deg, #7c3aed, #ec4899)"
+                  : "linear-gradient(135deg, #a78bfa, #f472b6)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Portfolio
+            </h2>
+            <p
+              className={`text-xl max-w-3xl mx-auto ${
+                theme === "light" ? "text-gray-600" : "text-gray-300"
+              }`}
+            >
+              Showcasing our latest projects and innovative solutions
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                className="group relative"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
+              >
+                <div
+                  className={`relative p-8 rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 group-hover:scale-105 ${
+                    theme === "light"
+                      ? "bg-white/60 border-white/40"
+                      : "bg-white/5 border-white/10"
+                  }`}
+                >
+                  {/* Project Image Placeholder */}
+                  <div
+                    className={`w-full h-48 rounded-2xl mb-6 bg-gradient-to-br ${project.image} relative overflow-hidden`}
+                  >
+                    <div className="absolute inset-0 bg-black/20" />
+                    <motion.div
+                      className="absolute inset-0 bg-white/20"
+                      initial={{ x: '-100%' }}
+                      animate={isVisible ? { x: '100%' } : { x: '-100%' }}
+                      transition={{ duration: 1.5, delay: 0.8 + index * 0.3 }}
+                    />
+                  </div>
+
+                  {/* Project Info */}
+                  <h3
+                    className={`text-2xl font-bold mb-3 ${
+                      theme === "light" ? "text-gray-900" : "text-white"
+                    }`}
+                  >
+                    {project.title}
+                  </h3>
+                  <p
+                    className={`text-sm mb-4 ${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    }`}
+                  >
+                    {project.description}
+                  </p>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, techIndex) => (
+                      <motion.span
+                        key={techIndex}
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          theme === "light"
+                            ? "bg-blue-100 text-blue-800"
+                            : "bg-blue-900/50 text-blue-300"
+                        }`}
+                        initial={{ scale: 0 }}
+                        animate={isVisible ? { scale: 1 } : { scale: 0 }}
+                        transition={{ duration: 0.3, delay: 1 + techIndex * 0.1 }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+);
+
+// ========================================
+// CONTACT US SECTION COMPONENT
+// ========================================
+
+const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
+  ({ theme, isVisible }, ref) => {
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      message: ''
+    });
+
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      console.log('Form submitted:', formData);
+      // Add your form submission logic here
+    };
+
+    return (
+      <motion.div
+        ref={ref}
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+          theme === "light"
+            ? "bg-gradient-to-br from-emerald-50 via-white to-teal-50"
+            : "bg-gradient-to-br from-emerald-950 via-black to-teal-950"
+        }`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Animated Circuit Lines */}
+        <div className="absolute inset-0 opacity-10">
+          <svg className="w-full h-full" viewBox="0 0 1200 800">
+            {[...Array(6)].map((_, i) => (
+              <motion.path
+                key={i}
+                d={`M${100 + i * 200},100 L${200 + i * 200},200 L${150 + i * 200},300 L${250 + i * 200},400`}
+                stroke="rgba(73, 146, 255, 0.5)"
+                strokeWidth="2"
+                fill="none"
+                strokeDasharray="10 5"
+                initial={{ pathLength: 0 }}
+                animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
+                transition={{ duration: 2, delay: i * 0.3 }}
+              />
+            ))}
+          </svg>
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ y: 50, opacity: 0 }}
+            animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h2
+              className={`text-5xl md:text-7xl font-bold mb-6 ${
+                theme === "light" ? "text-gray-900" : "text-white"
+              }`}
+              style={{
+                background: theme === "light"
+                  ? "linear-gradient(135deg, #059669, #0891b2)"
+                  : "linear-gradient(135deg, #34d399, #06b6d4)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Contact Us
+            </h2>
+            <p
+              className={`text-xl max-w-3xl mx-auto ${
+                theme === "light" ? "text-gray-600" : "text-gray-300"
+              }`}
+            >
+              Ready to start your project? Let's discuss how we can bring your vision to life
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            {/* Contact Form */}
+            <motion.div
+              initial={{ x: -50, opacity: 0 }}
+              animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className={`w-full p-4 rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 ${
+                      theme === "light"
+                        ? "bg-white/60 border-white/40 text-gray-900 placeholder-gray-500"
+                        : "bg-white/5 border-white/20 text-white placeholder-gray-400"
+                    }`}
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className={`w-full p-4 rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 ${
+                      theme === "light"
+                        ? "bg-white/60 border-white/40 text-gray-900 placeholder-gray-500"
+                        : "bg-white/5 border-white/20 text-white placeholder-gray-400"
+                    }`}
+                    required
+                  />
+                </div>
+                <div>
+                  <textarea
+                    placeholder="Your Message"
+                    value={formData.message}
+                    onChange={(e) => setFormData({...formData, message: e.target.value})}
+                    rows={5}
+                    className={`w-full p-4 rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 resize-none ${
+                      theme === "light"
+                        ? "bg-white/60 border-white/40 text-gray-900 placeholder-gray-500"
+                        : "bg-white/5 border-white/20 text-white placeholder-gray-400"
+                    }`}
+                    required
+                  />
+                </div>
+                <motion.button
+                  type="submit"
+                  className="w-full p-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-300 hover:scale-105"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <span>Send Message</span>
+                </motion.button>
+              </form>
+            </motion.div>
+
+            {/* Contact Info */}
+            <motion.div
+              className="space-y-8"
+              initial={{ x: 50, opacity: 0 }}
+              animate={isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              {[
+                { icon: Mail, title: "Email Us", info: "contact@kor.dev", color: "from-blue-500 to-cyan-500" },
+                { icon: Phone, title: "Call Us", info: "+1 (555) 123-4567", color: "from-green-500 to-emerald-500" },
+                { icon: MapPin, title: "Visit Us", info: "123 Tech Street, Digital City", color: "from-purple-500 to-pink-500" },
+              ].map((contact, index) => (
+                <motion.div
+                  key={index}
+                  className={`p-6 rounded-3xl backdrop-blur-lg border ${
+                    theme === "light"
+                      ? "bg-white/60 border-white/40"
+                      : "bg-white/5 border-white/20"
+                  }`}
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={isVisible ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center`}>
+                      <contact.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className={`font-semibold ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                        {contact.title}
+                      </h4>
+                      <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>
+                        {contact.info}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+);
