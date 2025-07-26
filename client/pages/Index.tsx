@@ -2580,7 +2580,7 @@ export default function Index() {
                         willChange: "transform, opacity",
                         transform: "translateZ(0)",
   
-                        animationTimingFunction: "ease-in-out",
+
                       }}
                     />
                   ))}
