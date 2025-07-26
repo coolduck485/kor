@@ -546,6 +546,26 @@
   animation: spin-slow 4s linear infinite;
 }
 
+/* Mobile-friendly section styling */
+@media (max-width: 640px) {
+  .section-container {
+    min-height: calc(100vh - 32px) !important;
+    padding-bottom: 100px !important;
+  }
+
+  .section-content {
+    padding-bottom: 80px !important;
+  }
+}
+
+@media (max-height: 700px) {
+  .section-container {
+    min-height: auto !important;
+    padding-top: 60px !important;
+    padding-bottom: 120px !important;
+  }
+}
+
 /* Modern chrome text styling */
 .chrome-wavy-text {
   display: inline-block;
