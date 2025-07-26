@@ -591,7 +591,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ███���██╗ ████���█╗
+                  {`██╗  ██╗ ██████╗ ████���█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -670,7 +670,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: ██████████████���███████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -5746,7 +5746,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 ].map((contact, index) => (
                   <motion.div
                     key={index}
-                    className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl backdrop-blur-lg border transition-all duration-200 hover:scale-[1.02] sm:hover:scale-105 will-change-transform"
+                    className="contact-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl backdrop-blur-lg border transition-all duration-200 hover:scale-[1.02] sm:hover:scale-105 will-change-transform"
                     style={{
                       background: "rgba(255, 255, 255, 0.05)",
                       border: "2px solid rgba(255, 255, 255, 0.1)",
