@@ -894,7 +894,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►��►</span>
+                  <span className="text-green-400 ml-4">◄���◄►�����</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -2037,26 +2037,7 @@ export default function Index() {
                 ))}
               </div>
 
-              {/* Desktop Shimmer Lines */}
-              <div className="absolute inset-0">
-                {[...Array(3)].map((_, i) => (
-                  <div
-                    key={`desktop-shimmer-${i}`}
-                    className="absolute w-full h-1 opacity-25"
-                    style={{
-                      background: `linear-gradient(90deg,
-                        transparent 0%,
-                        rgba(255, 255, 255, 0.8) 30%,
-                        rgba(59, 130, 246, 0.9) 50%,
-                        rgba(255, 255, 255, 0.8) 70%,
-                        transparent 100%)`,
-                      animation: `desktop-shimmer ${10 + i * 3}s linear infinite ${i * 2}s`,
-                      filter: "blur(2px)",
-                      boxShadow: "0 0 15px rgba(255, 255, 255, 0.5)",
-                    }}
-                  />
-                ))}
-              </div>
+              {/* Desktop shimmer scanlines removed */}
             </div>
           )}
 
