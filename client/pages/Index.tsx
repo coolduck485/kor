@@ -162,20 +162,22 @@ export default function Index() {
     setIsLoaded(false);
     setAnimationStep(0);
 
+    // YouTube intro-style animation sequence - more dynamic and professional
     const animationSequence = [
-      { delay: 300, step: 1 }, // Show central orb
-      { delay: 800, step: 2 }, // Show text (KOR + subtitle)
-      { delay: 1400, step: 3 }, // Show buttons one by one
-      { delay: 2000, step: 4 }, // Show background elements
-      { delay: 2600, step: 5 }, // Complete - show everything else
+      { delay: 200, step: 1 }, // Particles and background elements burst in
+      { delay: 600, step: 2 }, // Central orb explodes into view with energy rings
+      { delay: 1000, step: 3 }, // Text slides in with shine effects
+      { delay: 1400, step: 4 }, // Buttons cascade in with bounce
+      { delay: 1800, step: 5 }, // Navigation elements slide in
+      { delay: 2200, step: 6 }, // Final polish - everything locks into place
     ];
 
     const timeouts = animationSequence.map(({ delay, step }) =>
       setTimeout(() => {
         setAnimationStep(step);
-        if (step === 5) {
+        if (step === 6) {
           setIsLoading(false);
-          setTimeout(() => setIsLoaded(true), 200);
+          setTimeout(() => setIsLoaded(true), 300);
         }
       }, delay),
     );
