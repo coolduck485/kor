@@ -817,7 +817,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█������█████��███████ 60%
+                      CPU: ██�����█������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1607,7 +1607,7 @@ export default function Index() {
       ref={containerRef}
       className={`relative transition-all duration-500 gpu-accelerated composite-layer scroll-optimized ${
         isScrollingActive ? "scroll-simplified" : ""
-      } ${isMobile ? "mobile-optimized performance-optimized" : ""} ${
+      } ${
         theme === "light"
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
