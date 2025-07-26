@@ -706,7 +706,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ���█████████████████████ 50%
+                      RAM: ██████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -778,7 +778,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄►◄►◄►</span>
+                  <span className="text-green-400 ml-4">���►◄►◄►</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -2351,10 +2351,9 @@ export default function Index() {
               className="relative z-10 px-4 -mt-16 gpu-accelerated will-change-transform"
               initial={{
                 opacity: 0,
-                y: 150,
-                scale: 0.8,
-                filter: "blur(20px)",
-                rotateX: 45,
+                y: 80,
+                scale: 0.9,
+                filter: "blur(10px)",
               }}
               animate={
                 animationStep >= 3
@@ -2363,16 +2362,15 @@ export default function Index() {
                       y: 0,
                       scale: 1,
                       filter: "blur(0px)",
-                      rotateX: 0,
                     }
                   : {}
               }
               transition={{
-                duration: 1.0,
-                ease: "backOut",
+                duration: 0.7,
+                ease: "easeOut",
                 type: "spring",
-                stiffness: 120,
-                damping: 15,
+                stiffness: 140,
+                damping: 18,
               }}
             >
               {/* Kor - moved further to the left */}
