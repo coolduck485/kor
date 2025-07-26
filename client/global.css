@@ -1558,7 +1558,8 @@
 
 /* Desktop Eye Candy Animations */
 @keyframes desktop-float-1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px) scale(1);
     opacity: 0.7;
   }
@@ -1577,7 +1578,8 @@
 }
 
 @keyframes desktop-float-2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
     opacity: 0.6;
   }
@@ -1592,7 +1594,8 @@
 }
 
 @keyframes desktop-float-3 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
     opacity: 0.8;
   }
@@ -1607,7 +1610,8 @@
 }
 
 @keyframes desktop-float-4 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px) scale(1);
     opacity: 0.5;
   }
@@ -1618,7 +1622,8 @@
 }
 
 @keyframes desktop-pulse-corner {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1) rotate(0deg);
     opacity: 0.3;
     filter: blur(4px) brightness(1);
@@ -1641,7 +1646,8 @@
 }
 
 @keyframes desktop-wave-1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: skewY(-1.5deg) rotate(0deg) scaleX(1);
     opacity: 0.2;
   }
@@ -1660,7 +1666,8 @@
 }
 
 @keyframes desktop-wave-2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: skewY(-1deg) rotate(1.5deg) scaleY(1);
     opacity: 0.25;
   }
@@ -1675,7 +1682,8 @@
 }
 
 @keyframes desktop-wave-3 {
-  0%, 100% {
+  0%,
+  100% {
     transform: skewY(-0.5deg) rotate(3deg) scaleX(1) scaleY(1);
     opacity: 0.3;
   }
@@ -1686,7 +1694,8 @@
 }
 
 @keyframes desktop-wave-4 {
-  0%, 100% {
+  0%,
+  100% {
     transform: skewY(0deg) rotate(4.5deg) scale(1);
     opacity: 0.2;
   }
@@ -1731,7 +1740,8 @@
 
 /* Wavy Text Animation - Slowed down for better readability */
 @keyframes wavy-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   20% {
@@ -1759,7 +1769,8 @@
 
 /* Development Services Text Animation - Eye-catching for customers */
 @keyframes dev-services-text {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) scale(1) skewX(0deg);
     opacity: 1;
     filter: brightness(1) saturate(1);

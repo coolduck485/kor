@@ -2019,7 +2019,8 @@ export default function Index() {
                   style={{
                     background:
                       "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(236, 72, 153, 0.6) 40%, rgba(59, 130, 246, 0.3) 70%, transparent 90%)",
-                    animation: "desktop-pulse-corner 3.5s ease-in-out infinite 0.7s",
+                    animation:
+                      "desktop-pulse-corner 3.5s ease-in-out infinite 0.7s",
                     filter: "blur(5px)",
                   }}
                 />
@@ -2030,7 +2031,8 @@ export default function Index() {
                   style={{
                     background:
                       "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(34, 197, 94, 0.6) 40%, rgba(6, 182, 212, 0.3) 70%, transparent 90%)",
-                    animation: "desktop-pulse-corner 4.5s ease-in-out infinite 1.2s",
+                    animation:
+                      "desktop-pulse-corner 4.5s ease-in-out infinite 1.2s",
                     filter: "blur(7px)",
                   }}
                 />
@@ -2041,7 +2043,8 @@ export default function Index() {
                   style={{
                     background:
                       "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(245, 158, 11, 0.6) 40%, rgba(34, 197, 94, 0.3) 70%, transparent 90%)",
-                    animation: "desktop-pulse-corner 3.8s ease-in-out infinite 0.4s",
+                    animation:
+                      "desktop-pulse-corner 3.8s ease-in-out infinite 0.4s",
                     filter: "blur(4px)",
                   }}
                 />
@@ -4416,7 +4419,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               style={{
                 background:
                   "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(236, 72, 153, 0.6) 40%, rgba(59, 130, 246, 0.3) 70%, transparent 90%)",
-                animation: "desktop-pulse-corner 3.5s ease-in-out infinite 0.7s",
+                animation:
+                  "desktop-pulse-corner 3.5s ease-in-out infinite 0.7s",
                 filter: "blur(5px)",
               }}
             />
@@ -4427,7 +4431,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               style={{
                 background:
                   "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(34, 197, 94, 0.6) 40%, rgba(6, 182, 212, 0.3) 70%, transparent 90%)",
-                animation: "desktop-pulse-corner 4.5s ease-in-out infinite 1.2s",
+                animation:
+                  "desktop-pulse-corner 4.5s ease-in-out infinite 1.2s",
                 filter: "blur(7px)",
               }}
             />
@@ -4438,7 +4443,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               style={{
                 background:
                   "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(245, 158, 11, 0.6) 40%, rgba(34, 197, 94, 0.3) 70%, transparent 90%)",
-                animation: "desktop-pulse-corner 3.8s ease-in-out infinite 0.4s",
+                animation:
+                  "desktop-pulse-corner 3.8s ease-in-out infinite 0.4s",
                 filter: "blur(4px)",
               }}
             />

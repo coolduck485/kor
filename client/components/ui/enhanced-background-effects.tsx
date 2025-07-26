@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
 
 interface EnhancedBackgroundEffectsProps {
   sectionName: string;
   theme: "light" | "dark";
 }
 
-export const EnhancedBackgroundEffects: React.FC<EnhancedBackgroundEffectsProps> = ({ 
-  sectionName, 
-  theme 
-}) => {
+export const EnhancedBackgroundEffects: React.FC<
+  EnhancedBackgroundEffectsProps
+> = ({ sectionName, theme }) => {
   return (
     <>
       {/* Animated Noise Texture */}
@@ -51,7 +50,7 @@ export const EnhancedBackgroundEffects: React.FC<EnhancedBackgroundEffectsProps>
             transform: "skewY(0.5deg)",
           }}
         />
-        
+
         {/* Desktop Floating Energy Orbs */}
         <div className="absolute inset-0">
           {[...Array(12)].map((_, i) => (
