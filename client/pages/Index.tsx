@@ -1997,7 +1997,7 @@ export default function Index() {
                   right: "-30%",
                   height: "160px",
                   background:
-                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.15) 12%, rgba(34, 197, 94, 0.2) 25%, rgba(20, 184, 166, 0.18) 37%, rgba(16, 185, 129, 0.2) 50%, rgba(6, 182, 212, 0.18) 62%, rgba(34, 197, 94, 0.15) 75%, rgba(20, 184, 166, 0.12) 87%, transparent 100%)",
+                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.25) 12%, rgba(34, 197, 94, 0.3) 25%, rgba(20, 184, 166, 0.28) 37%, rgba(16, 185, 129, 0.3) 50%, rgba(6, 182, 212, 0.28) 62%, rgba(34, 197, 94, 0.25) 75%, rgba(20, 184, 166, 0.22) 87%, transparent 100%)",
                   borderRadius: "50% 80% 30% 70% / 80% 20% 70% 30%",
                   filter: "blur(25px)",
                   animation: "aurora-base-flow-subtle 46s ease-in-out infinite",
