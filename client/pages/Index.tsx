@@ -222,6 +222,35 @@ export default function Index() {
     return timeouts;
   };
 
+  // Optimized loading sequence for better performance
+  const triggerOptimizedLoadingSequence = () => {
+    setIsLoading(true);
+    setIsLoaded(false);
+    setAnimationStep(0);
+
+    // Faster, optimized animation sequence with smoother transitions
+    const optimizedSequence = [
+      { delay: 100, step: 1 }, // Background elements (faster)
+      { delay: 300, step: 2 }, // Central elements
+      { delay: 500, step: 3 }, // Text animations
+      { delay: 700, step: 4 }, // Buttons with smooth scaling
+      { delay: 900, step: 5 }, // Navigation elements
+      { delay: 1100, step: 6 }, // Final state
+    ];
+
+    const timeouts = optimizedSequence.map(({ delay, step }) =>
+      setTimeout(() => {
+        setAnimationStep(step);
+        if (step === 6) {
+          setIsLoading(false);
+          setTimeout(() => setIsLoaded(true), 200); // Faster completion
+        }
+      }, delay),
+    );
+
+    return timeouts;
+  };
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
@@ -377,6 +406,11 @@ export default function Index() {
           behavior: "auto", // Instant scroll during black screen
           block: "start",
         });
+      }
+
+      // If returning to home section (index 0), trigger loading animation
+      if (index === 0) {
+        triggerOptimizedLoadingSequence();
       }
 
       // Start revealing new content after a cinematic pause
@@ -744,10 +778,10 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
-██║ █��╔╝��█╔═���═██╗█���╔��══██╗
+██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
-██║  ██╗╚██████���╝██║  ██║
+██║  ██╗╚██████�����╝██║  ██║
 ╚═╝  ╚═╝ ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -816,13 +850,13 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ██�����█������█████��███████ 60%
+                      CPU: █��������█������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���██████��█████████████ 50%
+                      RAM: █���██████��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -894,7 +928,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►��►</span>
+                  <span className="text-green-400 ml-4">◄���◄►�����</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -1870,7 +1904,7 @@ export default function Index() {
             />
           )}
 
-          {/* Spectacular Full-Width Wavy Aurora Curtains - Desktop Only (992px+) */}
+          {/* Enhanced Spectacular Full-Width Wavy Aurora Curtains - Desktop Only (992px+) */}
           {isHighPerformance && (
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 hidden lg:block">
               {/* Primary aurora curtain - Top layer */}
@@ -1937,6 +1971,110 @@ export default function Index() {
                   transform: "skewY(0.3deg)",
                 }}
               />
+
+              {/* NEW DESKTOP EYE CANDY - Enhanced Effects */}
+
+              {/* Floating Energy Orbs - Desktop Only */}
+              <div className="absolute inset-0">
+                {[...Array(12)].map((_, i) => (
+                  <div
+                    key={`desktop-orb-${i}`}
+                    className="absolute rounded-full"
+                    style={{
+                      left: `${8 + ((i * 7) % 84)}%`,
+                      top: `${12 + ((i * 11) % 76)}%`,
+                      width: `${6 + (i % 4) * 2}px`,
+                      height: `${6 + (i % 4) * 2}px`,
+                      background: [
+                        "radial-gradient(circle, rgba(34, 197, 94, 0.9) 0%, rgba(34, 197, 94, 0.2) 60%, transparent 80%)",
+                        "radial-gradient(circle, rgba(59, 130, 246, 0.9) 0%, rgba(59, 130, 246, 0.2) 60%, transparent 80%)",
+                        "radial-gradient(circle, rgba(147, 51, 234, 0.9) 0%, rgba(147, 51, 234, 0.2) 60%, transparent 80%)",
+                        "radial-gradient(circle, rgba(236, 72, 153, 0.9) 0%, rgba(236, 72, 153, 0.2) 60%, transparent 80%)",
+                        "radial-gradient(circle, rgba(6, 182, 212, 0.9) 0%, rgba(6, 182, 212, 0.2) 60%, transparent 80%)",
+                        "radial-gradient(circle, rgba(245, 158, 11, 0.9) 0%, rgba(245, 158, 11, 0.2) 60%, transparent 80%)",
+                      ][i % 6],
+                      animation: `desktop-float-${(i % 4) + 1} ${4 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                      filter: `blur(${1 + (i % 2) * 0.5}px)`,
+                      boxShadow: `0 0 ${12 + (i % 3) * 6}px currentColor`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Pulsing Corner Accents - Desktop Enhanced */}
+              <div className="absolute top-8 left-8 w-24 h-24 rounded-full opacity-40">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, rgba(59, 130, 246, 0.6) 40%, rgba(147, 51, 234, 0.3) 70%, transparent 90%)",
+                    animation: "desktop-pulse-corner 4s ease-in-out infinite",
+                    filter: "blur(6px)",
+                  }}
+                />
+              </div>
+              <div className="absolute top-8 right-8 w-20 h-20 rounded-full opacity-35">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(236, 72, 153, 0.6) 40%, rgba(59, 130, 246, 0.3) 70%, transparent 90%)",
+                    animation:
+                      "desktop-pulse-corner 3.5s ease-in-out infinite 0.7s",
+                    filter: "blur(5px)",
+                  }}
+                />
+              </div>
+              <div className="absolute bottom-8 left-8 w-28 h-28 rounded-full opacity-45">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(34, 197, 94, 0.6) 40%, rgba(6, 182, 212, 0.3) 70%, transparent 90%)",
+                    animation:
+                      "desktop-pulse-corner 4.5s ease-in-out infinite 1.2s",
+                    filter: "blur(7px)",
+                  }}
+                />
+              </div>
+              <div className="absolute bottom-8 right-8 w-22 h-22 rounded-full opacity-38">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(245, 158, 11, 0.6) 40%, rgba(34, 197, 94, 0.3) 70%, transparent 90%)",
+                    animation:
+                      "desktop-pulse-corner 3.8s ease-in-out infinite 0.4s",
+                    filter: "blur(4px)",
+                  }}
+                />
+              </div>
+
+              {/* Animated Wave Patterns - Desktop Only */}
+              <div className="absolute inset-0">
+                {[...Array(4)].map((_, i) => (
+                  <div
+                    key={`desktop-wave-${i}`}
+                    className="absolute w-full h-40 opacity-30"
+                    style={{
+                      top: `${15 + i * 20}%`,
+                      background: `linear-gradient(120deg,
+                        transparent 0%,
+                        rgba(34, 197, 94, ${0.25 + i * 0.08}) 20%,
+                        rgba(59, 130, 246, ${0.35 + i * 0.08}) 40%,
+                        rgba(147, 51, 234, ${0.3 + i * 0.08}) 60%,
+                        rgba(236, 72, 153, ${0.25 + i * 0.08}) 80%,
+                        transparent 100%)`,
+                      borderRadius: `${50 + i * 15}% ${70 - i * 8}% ${40 + i * 12}% ${80 - i * 12}% / ${60 + i * 10}% ${30 - i * 4}% ${50 + i * 8}% ${70 - i * 15}%`,
+                      filter: `blur(${10 + i * 3}px)`,
+                      animation: `desktop-wave-${i + 1} ${8 + i * 2}s ease-in-out infinite`,
+                      transform: `skewY(${-1.5 + i * 0.5}deg) rotate(${i * 1.5}deg)`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Desktop shimmer scanlines removed */}
             </div>
           )}
 
@@ -2028,26 +2166,7 @@ export default function Index() {
                 />
               </div>
 
-              {/* Dynamic Scan Lines - Mobile/Tablet Only */}
-              <div className="absolute inset-0">
-                {[...Array(2)].map((_, i) => (
-                  <div
-                    key={`mobile-scan-${i}`}
-                    className="absolute w-full h-0.5 opacity-30"
-                    style={{
-                      background: `linear-gradient(90deg,
-                        transparent 0%,
-                        rgba(34, 197, 94, 0.8) 20%,
-                        rgba(59, 130, 246, 1) 50%,
-                        rgba(147, 51, 234, 0.8) 80%,
-                        transparent 100%)`,
-                      animation: `mobile-scan-line ${6 + i * 2}s linear infinite ${i * 3}s`,
-                      filter: "blur(1px)",
-                      boxShadow: "0 0 10px currentColor",
-                    }}
-                  />
-                ))}
-              </div>
+              {/* Scanlines removed for mobile/tablet devices */}
             </div>
           )}
 
@@ -2666,11 +2785,11 @@ export default function Index() {
                     theme === "light" ? "text-gray-900" : "text-white"
                   }`}
                 >
-                  <span className="inline-block relative warm-glow-text animate-warm-glow-pulse">
+                  <span className="inline-block relative warm-glow-text animate-warm-glow-pulse animate-wavy-text">
                     K
                   </span>
                   <span
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse animate-wavy-text"
                     style={{
                       animationDelay: "0.3s",
                     }}
@@ -2678,7 +2797,7 @@ export default function Index() {
                     o
                   </span>
                   <span
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse animate-wavy-text"
                     style={{
                       animationDelay: "0.6s",
                     }}
@@ -2745,9 +2864,9 @@ export default function Index() {
                         {"Development services".split("").map((letter, i) => (
                           <span
                             key={i}
-                            className="animate-letter-float"
+                            className="animate-letter-float animate-dev-services-text"
                             style={{
-                              animationDelay: `${i * 0.1}s`,
+                              animationDelay: `${i * 0.15}s`,
                             }}
                           >
                             {letter === " " ? "\u00A0" : letter}
@@ -2911,7 +3030,7 @@ export default function Index() {
                     }}
                   />
                 </svg>
-                <OrbFloatingButtons />
+                <OrbFloatingButtons animationStep={animationStep} />
               </div>
             </motion.div>
           </div>
@@ -3569,7 +3688,7 @@ function MobileHamburgerMenu({
           marginTop: "-100px", // Mobile: moved down 30px from -130px
           animationDelay: "0.2s",
           animation:
-            "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s",
+            "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s, bubble-pop-in 0.6s ease-out forwards",
         }}
       >
         <button
@@ -3790,7 +3909,7 @@ const ORB_BUTTON_CONFIG = {
       angle: -30, // Position: top-right, mirrored from Services for symmetry
       radius: 280, // Consistent distance from center
       position: "top-right",
-      animationDelay: 0.2,
+      animationDelay: 0.3,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
@@ -3832,7 +3951,7 @@ const ORB_BUTTON_CONFIG = {
       angle: 150, // Position: bottom-left, better symmetry
       radius: 280, // Consistent distance from center
       position: "bottom-left",
-      animationDelay: 1.0,
+      animationDelay: 0.9,
       size: "medium", // Consistent sizing for uniform look
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
@@ -3851,7 +3970,7 @@ const ORB_BUTTON_CONFIG = {
       angle: -150, // Position: top-left, mirrored from Portfolio for symmetry
       radius: 280, // Consistent distance from center
       position: "top-left",
-      animationDelay: 1.4,
+      animationDelay: 1.2,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
@@ -3907,7 +4026,7 @@ const ORB_BUTTON_CONFIG = {
 //
 // ========================================
 
-function OrbFloatingButtons() {
+function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
   const { theme } = useTheme();
 
   // Access the parent component's scrollToSection function
@@ -3931,6 +4050,7 @@ function OrbFloatingButtons() {
           size={button.size}
           accent={button.accent}
           theme={theme}
+          animationStep={animationStep}
           onClick={() => {
             if (button.text === "About us") scrollToSection(1);
             else if (button.text === "Services") scrollToSection(2);
@@ -3956,6 +4076,7 @@ interface OrbFloatingButtonProps {
   size: string;
   accent: string;
   theme: "light" | "dark";
+  animationStep: number;
   onClick?: () => void;
 }
 
@@ -3971,8 +4092,13 @@ function OrbFloatingButton({
   size,
   accent,
   theme,
+  animationStep,
   onClick,
 }: OrbFloatingButtonProps) {
+  // Only render button if animation step is 4 or higher
+  if (animationStep < 4) {
+    return null;
+  }
   // Calculate base position from angle
   const radian = (angle * Math.PI) / 180;
   const x = Math.cos(radian);
@@ -4064,7 +4190,7 @@ function OrbFloatingButton({
           marginTop: "var(--mobile-y)",
           animationDelay: `${delay}s`,
           transform: `scale(${currentSize.scale})`,
-          animation: `gentleFloat 4s ease-in-out infinite ${delay}s, button-drift ${8 + delay * 2}s ease-in-out infinite ${delay * 1.5}s`,
+          animation: `gentleFloat 4s ease-in-out infinite ${delay}s, button-drift ${8 + delay * 2}s ease-in-out infinite ${delay * 1.5}s, bubble-pop-in 0.5s ease-out ${0.2 + delay}s both`,
         } as React.CSSProperties
       }
     >
@@ -4205,15 +4331,176 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Enhanced Background Elements - Ultra Cool About Us Edition */}
+        {/* Enhanced Background Elements - Complete Visual Package */}
 
         {/* Animated Noise Texture */}
         <div
-          className="absolute inset-0 opacity-5 animate-noise"
+          className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
           }}
         />
+
+        {/* Desktop Aurora Curtains */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 hidden lg:block">
+          <div
+            className="absolute aurora-curtain-1"
+            style={{
+              top: "20%",
+              left: "-15%",
+              right: "-15%",
+              height: "120px",
+              background:
+                "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.4) 15%, rgba(20, 184, 166, 0.5) 30%, rgba(34, 197, 94, 0.4) 50%, rgba(6, 182, 212, 0.5) 70%, rgba(20, 184, 166, 0.4) 85%, transparent 100%)",
+              borderRadius: "40% 60% 80% 20% / 60% 40% 80% 20%",
+              filter: "blur(15px)",
+              animation: "aurora-wave-subtle-1 28s ease-in-out infinite",
+              transform: "skewY(-1deg)",
+            }}
+          />
+          <div
+            className="absolute aurora-curtain-2"
+            style={{
+              top: "45%",
+              left: "-20%",
+              right: "-20%",
+              height: "140px",
+              background:
+                "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.35) 10%, rgba(6, 182, 212, 0.45) 25%, rgba(16, 185, 129, 0.4) 40%, rgba(20, 184, 166, 0.45) 60%, rgba(34, 197, 94, 0.4) 75%, rgba(6, 182, 212, 0.35) 90%, transparent 100%)",
+              borderRadius: "30% 70% 40% 60% / 70% 30% 60% 40%",
+              filter: "blur(18px)",
+              animation: "aurora-wave-subtle-2 34s ease-in-out infinite",
+              transform: "skewY(0.5deg)",
+            }}
+          />
+
+          {/* Desktop Floating Energy Orbs */}
+          <div className="absolute inset-0">
+            {[...Array(12)].map((_, i) => (
+              <div
+                key={`about-desktop-orb-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${8 + ((i * 7) % 84)}%`,
+                  top: `${12 + ((i * 11) % 76)}%`,
+                  width: `${6 + (i % 4) * 2}px`,
+                  height: `${6 + (i % 4) * 2}px`,
+                  background: [
+                    "radial-gradient(circle, rgba(34, 197, 94, 0.9) 0%, rgba(34, 197, 94, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(59, 130, 246, 0.9) 0%, rgba(59, 130, 246, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(147, 51, 234, 0.9) 0%, rgba(147, 51, 234, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(236, 72, 153, 0.9) 0%, rgba(236, 72, 153, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(6, 182, 212, 0.9) 0%, rgba(6, 182, 212, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(245, 158, 11, 0.9) 0%, rgba(245, 158, 11, 0.2) 60%, transparent 80%)",
+                  ][i % 6],
+                  animation: `desktop-float-${(i % 4) + 1} ${4 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                  filter: `blur(${1 + (i % 2) * 0.5}px)`,
+                  boxShadow: `0 0 ${12 + (i % 3) * 6}px currentColor`,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Desktop Pulsing Corner Accents */}
+          <div className="absolute top-8 left-8 w-24 h-24 rounded-full opacity-40">
+            <div
+              className="w-full h-full rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, rgba(59, 130, 246, 0.6) 40%, rgba(147, 51, 234, 0.3) 70%, transparent 90%)",
+                animation: "desktop-pulse-corner 4s ease-in-out infinite",
+                filter: "blur(6px)",
+              }}
+            />
+          </div>
+          <div className="absolute top-8 right-8 w-20 h-20 rounded-full opacity-35">
+            <div
+              className="w-full h-full rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(236, 72, 153, 0.6) 40%, rgba(59, 130, 246, 0.3) 70%, transparent 90%)",
+                animation:
+                  "desktop-pulse-corner 3.5s ease-in-out infinite 0.7s",
+                filter: "blur(5px)",
+              }}
+            />
+          </div>
+          <div className="absolute bottom-8 left-8 w-28 h-28 rounded-full opacity-45">
+            <div
+              className="w-full h-full rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(34, 197, 94, 0.6) 40%, rgba(6, 182, 212, 0.3) 70%, transparent 90%)",
+                animation:
+                  "desktop-pulse-corner 4.5s ease-in-out infinite 1.2s",
+                filter: "blur(7px)",
+              }}
+            />
+          </div>
+          <div className="absolute bottom-8 right-8 w-22 h-22 rounded-full opacity-38">
+            <div
+              className="w-full h-full rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(245, 158, 11, 0.6) 40%, rgba(34, 197, 94, 0.3) 70%, transparent 90%)",
+                animation:
+                  "desktop-pulse-corner 3.8s ease-in-out infinite 0.4s",
+                filter: "blur(4px)",
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Mobile/Tablet Effects */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden lg:hidden">
+          {/* Animated Gradient Waves */}
+          <div className="absolute inset-0">
+            {[...Array(3)].map((_, i) => (
+              <div
+                key={`about-mobile-wave-${i}`}
+                className="absolute w-full h-32 opacity-40"
+                style={{
+                  top: `${20 + i * 25}%`,
+                  background: `linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(34, 197, 94, ${0.3 + i * 0.1}) 25%,
+                    rgba(59, 130, 246, ${0.4 + i * 0.1}) 50%,
+                    rgba(147, 51, 234, ${0.3 + i * 0.1}) 75%,
+                    transparent 100%)`,
+                  borderRadius: `${60 + i * 10}% ${40 - i * 5}% ${30 + i * 15}% ${70 - i * 10}% / ${50 + i * 20}% ${30 - i * 5}% ${40 + i * 10}% ${60 - i * 15}%`,
+                  filter: `blur(${8 + i * 2}px)`,
+                  animation: `mobile-wave-${i + 1} ${4 + i}s ease-in-out infinite`,
+                  transform: `skewY(${-2 + i}deg) rotate(${i * 2}deg)`,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Mobile Floating Energy Dots */}
+          <div className="absolute inset-0">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={`about-mobile-dot-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${10 + ((i * 11) % 80)}%`,
+                  top: `${15 + ((i * 13) % 70)}%`,
+                  width: `${4 + (i % 3)}px`,
+                  height: `${4 + (i % 3)}px`,
+                  background: [
+                    "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, transparent 70%)",
+                    "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)",
+                    "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, transparent 70%)",
+                    "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, transparent 70%)",
+                  ][i % 4],
+                  animation: `mobile-float-${(i % 3) + 1} ${3 + (i % 2)}s ease-in-out infinite ${i * 0.2}s`,
+                  filter: `blur(${0.5 + (i % 2) * 0.5}px)`,
+                  boxShadow: `0 0 ${8 + (i % 3) * 4}px currentColor`,
+                }}
+              />
+            ))}
+          </div>
+        </div>
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
