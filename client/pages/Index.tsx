@@ -1589,7 +1589,7 @@ export default function Index() {
 
       {/* Back to Top Button - All sections except first */}
       {currentSection > 0 && (
-        <div className="fixed bottom-8 right-4 sm:right-8 z-50">
+        <div className="back-to-top fixed bottom-8 right-4 sm:right-8 z-50">
           <button
             onClick={() => scrollToSection(0)}
             className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
