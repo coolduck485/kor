@@ -4436,7 +4436,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         </div>
                         <div className="flex-1 h-6 sm:h-8 bg-white/10 rounded-md ml-3 flex items-center px-3">
                           <div className="w-2 h-2 bg-blue-400/60 rounded-full animate-pulse" />
-                          <div className="ml-2 text-xs text-white/60 font-mono hidden sm:block">
+                          <div className="ml-2 text-xs text-white/60 font-mono">
                             Building amazing software...
                           </div>
                         </div>
