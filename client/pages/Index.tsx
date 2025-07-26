@@ -1811,11 +1811,7 @@ export default function Index() {
                   transform: `scale(${0.5 + (i % 3) * 0.3})`,
                 }}
                 initial={{ scale: 0, rotate: 0 }}
-                animate={
-                  animationStep >= 1
-                    ? { scale: 1, rotate: 360 }
-                    : { scale: 0, rotate: 0 }
-                }
+                animate={{ scale: 1, rotate: 360 }}
                 transition={{
                   duration: 0.8,
                   delay: i * 0.03,
