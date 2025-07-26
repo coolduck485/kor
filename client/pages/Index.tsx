@@ -596,7 +596,7 @@ export default function Index() {
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -664,7 +664,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ████████████��███████ 60%
+                      CPU: █████���██████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1459,26 +1459,177 @@ export default function Index() {
       }`}
       style={{ height: "100vh", overflow: "hidden", maxWidth: "100vw" }}
     >
-      {/* Section Navigation Dots */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 space-y-3">
-        {sections.map((_, index) => (
+      {/* Universal Scroll Navigation */}
+      {currentSection < sections.length - 1 && (
+        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="flex flex-col items-center space-y-3 animate-button-float">
+            {/* Desktop: Scroll Down */}
+            <span
+              className={`hidden sm:block font-inter text-sm font-medium animate-text-glow ${
+                theme === "light" ? "text-gray-600" : "text-white/70"
+              }`}
+            >
+              Scroll Down
+            </span>
+            {/* Mobile: Swipe Down */}
+            <span
+              className={`sm:hidden font-inter text-sm font-medium animate-text-glow ${
+                theme === "light" ? "text-gray-600" : "text-white/70"
+              }`}
+            >
+              Swipe Down
+            </span>
+
+            {/* Desktop: Mouse scroll indicator */}
+            <div className="hidden sm:flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
+              <div
+                className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
+                style={{
+                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
+                }}
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
+            </div>
+
+            {/* Mobile: Phone with swipe indicator */}
+            <div className="sm:hidden relative">
+              <div className="relative w-8 h-12 border-2 border-white/40 rounded-lg backdrop-blur-sm bg-white/5 flex items-center justify-center">
+                <div className="w-4 h-7 bg-white/10 rounded-sm relative overflow-hidden">
+                  <div
+                    className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-down shadow-lg"
+                    style={{
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      boxShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
+                    }}
+                  />
+                  <div
+                    className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-down-delayed"
+                    style={{
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                    }}
+                  />
+                </div>
+                <div className="absolute top-1 w-2 h-0.5 bg-white/30 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Scroll Up Indicator - Last Section */}
+      {currentSection === sections.length - 1 && (
+        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="flex flex-col items-center space-y-3 animate-button-float">
+            {/* Desktop: Scroll Up */}
+            <span
+              className={`hidden sm:block font-inter text-sm font-medium animate-text-glow ${
+                theme === "light" ? "text-gray-600" : "text-white/70"
+              }`}
+            >
+              Scroll Up
+            </span>
+            {/* Mobile: Swipe Up */}
+            <span
+              className={`sm:hidden font-inter text-sm font-medium animate-text-glow ${
+                theme === "light" ? "text-gray-600" : "text-white/70"
+              }`}
+            >
+              Swipe Up
+            </span>
+
+            {/* Desktop: Mouse scroll indicator - pointing up */}
+            <div className="hidden sm:flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
+              <div
+                className="w-1 h-3 bg-gradient-to-t from-glow-blue to-white/80 rounded-full mb-2 animate-float shadow-lg"
+                style={{
+                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
+                  alignSelf: "flex-end",
+                }}
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-white/10 to-transparent" />
+            </div>
+
+            {/* Mobile: Phone with swipe up indicator */}
+            <div className="sm:hidden relative">
+              <div className="relative w-8 h-12 border-2 border-white/40 rounded-lg backdrop-blur-sm bg-white/5 flex items-center justify-center">
+                <div className="w-4 h-7 bg-white/10 rounded-sm relative overflow-hidden">
+                  <div
+                    className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-up shadow-lg"
+                    style={{
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      boxShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
+                    }}
+                  />
+                  <div
+                    className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-up-delayed"
+                    style={{
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                    }}
+                  />
+                </div>
+                <div className="absolute top-1 w-2 h-0.5 bg-white/30 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Back to Top Button - All sections except first */}
+      {currentSection > 0 && (
+        <div className="fixed bottom-8 right-4 sm:right-8 z-50">
           <button
-            key={index}
-            onClick={() => scrollToSection(index)}
-            className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
-              currentSection === index
-                ? "bg-blue-400 border-blue-400 scale-125"
-                : "bg-transparent border-white/40 hover:border-blue-400/60"
+            onClick={() => scrollToSection(0)}
+            className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
             }`}
             style={{
-              boxShadow:
-                currentSection === index
-                  ? "0 0 15px rgba(73, 146, 255, 0.6)"
-                  : "none",
+              background:
+                theme === "light"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+              boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
             }}
-          />
-        ))}
-      </div>
+          >
+            {/* Icon */}
+            <ChevronUp
+              className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${
+                theme === "light"
+                  ? "text-blue-600 group-hover:text-blue-700"
+                  : "text-white group-hover:text-blue-300"
+              }`}
+            />
+
+            {/* Ripple effect */}
+            <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
+
+            {/* Tooltip */}
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
+              <div
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
+                }`}
+              >
+                Back to Top
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
+                  }`}
+                />
+              </div>
+            </div>
+          </button>
+        </div>
+      )}
 
       {/* Sections Container */}
       <div className="h-full">
@@ -2433,68 +2584,6 @@ export default function Index() {
               }}
             />
           </motion.div>
-
-          {/* Scroll/Swipe Indicator */}
-          <div className="absolute bottom-28 lg:bottom-16 md:bottom-32 sm:bottom-36 left-1/2 transform -translate-x-1/2 z-20">
-            <div className="flex flex-col items-center space-y-3 animate-button-float">
-              {/* Desktop: Scroll Down */}
-              <span
-                className={`hidden lg:block font-inter text-sm font-medium animate-text-glow ${
-                  theme === "light" ? "text-gray-600" : "text-white/70"
-                }`}
-              >
-                Scroll Down
-              </span>
-              {/* Mobile/Tablet: Swipe Down */}
-              <span
-                className={`lg:hidden font-inter text-sm font-medium animate-text-glow ${
-                  theme === "light" ? "text-gray-600" : "text-white/70"
-                }`}
-              >
-                Swipe Down
-              </span>
-
-              {/* Desktop: Mouse scroll indicator */}
-              <div className="hidden lg:flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
-                <div
-                  className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
-                  style={{
-                    boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
-                  }}
-                />
-                <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
-              </div>
-
-              {/* Mobile/Tablet: Phone with swipe indicator */}
-              <div className="lg:hidden relative">
-                {/* Phone Icon */}
-                <div className="relative w-8 h-12 border-2 border-white/40 rounded-lg backdrop-blur-sm bg-white/5 flex items-center justify-center">
-                  {/* Phone screen */}
-                  <div className="w-4 h-7 bg-white/10 rounded-sm relative overflow-hidden">
-                    {/* Swipe gesture indicator */}
-                    <div
-                      className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-down shadow-lg"
-                      style={{
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        boxShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
-                      }}
-                    />
-                    {/* Second swipe line for better effect */}
-                    <div
-                      className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-down-delayed"
-                      style={{
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                      }}
-                    />
-                  </div>
-                  {/* Phone speaker */}
-                  <div className="absolute top-1 w-2 h-0.5 bg-white/30 rounded-full"></div>
-                </div>
-              </div>
-            </div>
-          </div>
         </motion.div>
 
         {/* About Us Section */}
@@ -3408,7 +3497,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  →  hoverScale: 1.15
+// Change: hoverScale: 1.05  ���  hoverScale: 1.15
 //
 // ========================================
 
@@ -3842,10 +3931,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative flex items-center justify-center min-h-screen section-container">
+        <div className="relative min-h-screen py-16 sm:py-20 lg:py-24 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-8 pb-20"
             initial={{
               opacity: 0,
               y: 80,
@@ -3867,9 +3956,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             }}
           >
             {/* About Us Title - matching home style */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
               <h1
-                className={`font-poppins text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+                className={`font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight relative ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
@@ -4058,7 +4147,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 </div>
 
                 {/* Stats - matching floating button style */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-8 lg:mt-12">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mt-6 sm:mt-8 lg:mt-12 max-w-4xl mx-auto">
                   {[
                     { number: "100+", label: "Projects" },
                     { number: "50+", label: "Clients" },
@@ -4077,14 +4166,14 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       whileHover={{ scale: 1.05 }}
                     >
                       <div
-                        className="relative p-6 rounded-2xl backdrop-blur-lg border border-white/20 hover:border-blue-400/40 transition-all duration-500"
+                        className="relative p-2 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl backdrop-blur-lg border border-white/20 hover:border-blue-400/40 transition-all duration-500"
                         style={{
                           background: "rgba(255, 255, 255, 0.05)",
                           boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
                         }}
                       >
                         <div
-                          className="text-3xl font-bold mb-2 warm-glow-text"
+                          className="text-lg sm:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2 warm-glow-text"
                           style={{
                             textShadow: "0 0 15px rgba(73, 146, 255, 0.6)",
                           }}
@@ -4092,7 +4181,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {stat.number}
                         </div>
                         <div
-                          className={`text-sm font-medium ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
+                          className={`text-xs sm:text-sm font-medium ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
                         >
                           {stat.label}
                         </div>
@@ -4102,9 +4191,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 </div>
               </motion.div>
 
-              {/* Right Content - Tech Visual */}
+              {/* Right Content - Tech Visual - Hidden on mobile */}
               <motion.div
-                className="relative"
+                className="relative hidden sm:block"
                 initial={{ x: 50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
@@ -4387,10 +4476,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative flex items-center justify-center min-h-screen section-container">
+        <div className="relative min-h-screen py-16 sm:py-20 lg:py-24 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content pt-8 pb-20"
             initial={{
               opacity: 0,
               y: 80,
@@ -4504,7 +4593,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-16 responsive-grid">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6 lg:gap-8 xl:gap-10 mt-16 responsive-grid w-full">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
@@ -4518,8 +4607,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -10 }}
                 >
+                  {/* Service Card */}
                   <div
-                    className="relative p-8 rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500"
+                    className="relative p-2 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl lg:rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
                     style={{
                       background: "rgba(255, 255, 255, 0.05)",
                       border: "2px solid rgba(255, 255, 255, 0.1)",
@@ -4536,26 +4626,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     </div>
 
-                    {/* Icon */}
-                    <motion.div
-                      className="relative z-10 mb-6"
-                      whileHover={{ rotate: 10, scale: 1.2 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div
-                        className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
-                        style={{
-                          boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
-                        }}
-                      >
-                        <service.icon className="w-8 h-8 text-white" />
-                      </div>
-                    </motion.div>
-
-                    {/* Content */}
-                    <div className="relative z-10">
+                    {/* Service Title - positioned at top of card */}
+                    <div className="relative z-10 mb-2 sm:mb-4 lg:mb-6">
                       <h3
-                        className={`text-xl font-bold mb-3 warm-glow-text ${
+                        className={`text-sm sm:text-lg lg:text-xl font-bold warm-glow-text text-center ${
                           theme === "light" ? "text-gray-900" : "text-white"
                         }`}
                         style={{
@@ -4564,8 +4638,28 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       >
                         {service.title}
                       </h3>
+                    </div>
+
+                    {/* Icon - centered */}
+                    <motion.div
+                      className="relative z-10 mb-2 sm:mb-4 lg:mb-6 flex justify-center"
+                      whileHover={{ rotate: 10, scale: 1.2 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div
+                        className={`w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
+                        style={{
+                          boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
+                        }}
+                      >
+                        <service.icon className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
+                      </div>
+                    </motion.div>
+
+                    {/* Description Content */}
+                    <div className="relative z-10 text-center">
                       <p
-                        className={`text-sm leading-relaxed ${
+                        className={`text-xs sm:text-sm leading-relaxed ${
                           theme === "light" ? "text-gray-600" : "text-gray-300"
                         }`}
                         style={{
@@ -4669,8 +4763,17 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
       },
     ];
 
-    // Simple 2-page system: 4 projects per page
-    const projectsPerPage = 4;
+    // Responsive projects per page: 2 on mobile, 4 on desktop
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+      const checkMobile = () => setIsMobile(window.innerWidth <= 640);
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
+    const projectsPerPage = isMobile ? 2 : 4;
     const totalPages = Math.ceil(allProjects.length / projectsPerPage);
 
     // Get current page projects
@@ -4838,9 +4941,9 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative flex items-center justify-center min-h-screen section-container">
+        <div className="relative min-h-screen py-16 sm:py-20 lg:py-24 section-container">
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content pt-8 pb-20"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
@@ -4984,8 +5087,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       onClick={() => setCurrentPage(index)}
                       className={`transition-all duration-300 ${
                         currentPage === index
-                          ? "w-8 h-2 bg-blue-400 rounded-full scale-125"
-                          : "w-2 h-2 bg-white/20 hover:bg-white/40 rounded-full"
+                          ? "w-6 sm:w-8 h-1.5 sm:h-2 bg-blue-400 rounded-full scale-110 sm:scale-125"
+                          : "w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/20 hover:bg-white/40 rounded-full"
                       }`}
                       style={{
                         boxShadow:
@@ -5059,7 +5162,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <div className="relative">
                 <motion.div
                   key={currentPage}
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
+                  className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-4 lg:gap-6"
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
@@ -5079,7 +5182,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       whileHover={{ scale: 1.02, y: -3 }}
                     >
                       <div
-                        className="relative p-4 sm:p-6 rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
+                        className="relative p-2 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
                         style={{
                           background: "rgba(255, 255, 255, 0.05)",
                           border: "2px solid rgba(255, 255, 255, 0.1)",
@@ -5425,9 +5528,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative flex items-center justify-center min-h-screen section-container">
+        <div className="relative min-h-screen py-16 sm:py-20 lg:py-24 section-container">
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-8 pb-20"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
@@ -5483,7 +5586,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   />
                 ))}
-                <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10 px-2 sm:px-0">
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
@@ -5495,7 +5598,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       animationFillMode: "both",
                     }}
                   >
-                    <span className="warm-glow-text animate-warm-glow-pulse">
+                    <span className="warm-glow-text animate-warm-glow-pulse text-center block">
                       {"Ready to Build Something Amazing?"
                         .split("")
                         .map((letter, i) => (
@@ -5514,7 +5617,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Contact Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mt-12 lg:mt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 items-start mt-6 sm:mt-8 lg:mt-16">
               {/* Contact Form */}
               <motion.div
                 initial={{ x: -50, opacity: 0 }}
@@ -5600,7 +5703,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
               {/* Contact Info */}
               <motion.div
-                className="space-y-4 sm:space-y-6 lg:space-y-8"
+                className="grid grid-cols-1 sm:space-y-4 lg:space-y-6 gap-3 sm:gap-0 mt-2 sm:mt-4 lg:mt-0 sm:block"
                 initial={{ x: 50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
@@ -5646,9 +5749,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     </div>
 
-                    <div className="flex items-center space-x-4 relative z-10">
+                    <div className="flex flex-col sm:flex-row items-center sm:space-x-4 space-y-2 sm:space-y-0 text-center sm:text-left relative z-10">
                       <div
-                        className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center`}
+                        className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center flex-shrink-0`}
                         style={{
                           boxShadow: "0 0 15px rgba(73, 146, 255, 0.4)",
                         }}

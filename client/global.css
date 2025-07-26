@@ -234,6 +234,43 @@
   }
 }
 
+@keyframes swipeUp {
+  0% {
+    bottom: 10%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 70%;
+    opacity: 0;
+  }
+}
+
+@keyframes swipeUpDelayed {
+  0% {
+    bottom: 5%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    bottom: 75%;
+    opacity: 0;
+  }
+}
+
 /* Enhanced animations for Development services text */
 @keyframes text-pop {
   0%,
@@ -330,6 +367,15 @@
   75% {
     opacity: 1;
     transform: scale(1.1) rotate(270deg);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -531,6 +577,74 @@
 
 .animate-warm-glow-pulse {
   animation: warm-glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
+.animate-swipe-up {
+  animation: swipeUp 2s ease-in-out infinite;
+}
+
+.animate-swipe-up-delayed {
+  animation: swipeUpDelayed 2s ease-in-out infinite 0.3s;
+}
+
+/* Mobile-friendly section styling */
+@media (max-width: 640px) {
+  .section-container {
+    min-height: calc(100vh - 32px) !important;
+    padding-bottom: 120px !important;
+  }
+
+  .section-content {
+    padding-bottom: 100px !important;
+  }
+
+  /* Ensure scroll indicators don't block content */
+  .fixed.bottom-8 {
+    bottom: 60px !important;
+  }
+
+  /* Ensure services grid displays in 2 columns on mobile */
+  .responsive-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.25rem !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* Fix service card gaps on mobile */
+  .responsive-grid > * {
+    width: 100% !important;
+    min-height: 100% !important;
+  }
+}
+
+@media (max-height: 700px) {
+  .section-container {
+    min-height: auto !important;
+    padding-top: 60px !important;
+    padding-bottom: 140px !important;
+  }
+
+  /* Move scroll indicators higher on short screens */
+  .fixed.bottom-8 {
+    bottom: 40px !important;
+  }
+}
+
+@media (max-height: 600px) {
+  .section-container {
+    padding-bottom: 160px !important;
+  }
+
+  /* Move scroll indicators even higher on very short screens */
+  .fixed.bottom-8 {
+    bottom: 20px !important;
+  }
 }
 
 /* Modern chrome text styling */
