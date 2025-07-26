@@ -631,7 +631,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ █��█��������█╗
+                  {`██╗  ██╗ ██████╗ ███��������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -5793,10 +5793,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Contact Content Grid */}
             <div className="contact-grid max-w-5xl mx-auto px-1 sm:px-2 mt-1 sm:mt-2">
               {/* Desktop Layout - Form + Sidebar */}
-              <div className="hidden xl:grid xl:grid-cols-5 gap-3 sm:gap-4 items-start">
+              <div className="hidden lg:grid lg:grid-cols-5 gap-3 sm:gap-4 items-start">
                 {/* Main Contact Form - Takes 3 columns */}
                 <motion.div
-                  className="xl:col-span-3"
+                  className="lg:col-span-3"
                   initial={{ x: -50, opacity: 0 }}
                   animate={
                     isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }
