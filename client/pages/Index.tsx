@@ -556,7 +556,7 @@ export default function Index() {
                 {/* Loading KOR text in ASCII style */}
                 <div className="mb-8">
                   <motion.div
-                    className="font-mono text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-green-400"
+                    className="font-mono text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl kor-text-large font-bold text-green-400"
                     style={{
                       textShadow: "0 0 10px #00ff41, 0 0 20px #00ff41",
                     }}
