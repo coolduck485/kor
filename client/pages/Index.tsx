@@ -4609,6 +4609,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
 const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible }, ref) => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
     const projects = [
       {
         title: "E-Commerce Platform",
@@ -4634,7 +4636,69 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         tech: ["Angular", "IoT", "Cloud"],
         image: "from-orange-500 to-red-500",
       },
+      {
+        title: "AI Analytics Suite",
+        description: "Machine learning powered business intelligence platform",
+        tech: ["Python", "TensorFlow", "React"],
+        image: "from-indigo-500 to-purple-500",
+      },
+      {
+        title: "Blockchain Wallet",
+        description: "Secure cryptocurrency wallet with DeFi integration",
+        tech: ["Solidity", "Web3.js", "Next.js"],
+        image: "from-yellow-500 to-orange-500",
+      },
+      {
+        title: "Video Streaming App",
+        description: "High-performance video platform with live streaming",
+        tech: ["React Native", "WebRTC", "Node.js"],
+        image: "from-red-500 to-pink-500",
+      },
+      {
+        title: "Cloud Monitoring Tool",
+        description: "Real-time infrastructure monitoring and alerting system",
+        tech: ["Go", "Docker", "Kubernetes"],
+        image: "from-teal-500 to-blue-500",
+      },
     ];
+
+    // Calculate items per slide based on screen size
+    const getItemsPerSlide = () => {
+      if (typeof window !== 'undefined') {
+        if (window.innerWidth >= 1280) return 4; // xl
+        if (window.innerWidth >= 1024) return 3; // lg
+        if (window.innerWidth >= 640) return 2; // sm
+        return 1; // mobile
+      }
+      return 4; // default
+    };
+
+    const [itemsPerSlide, setItemsPerSlide] = useState(getItemsPerSlide());
+
+    // Update items per slide on window resize
+    useEffect(() => {
+      const handleResize = () => {
+        setItemsPerSlide(getItemsPerSlide());
+      };
+
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const totalSlides = Math.ceil(projects.length / itemsPerSlide);
+
+    const nextSlide = () => {
+      setCurrentSlide((prev) => (prev + 1) % totalSlides);
+    };
+
+    const prevSlide = () => {
+      setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+    };
+
+    const getCurrentProjects = () => {
+      const startIndex = currentSlide * itemsPerSlide;
+      return projects.slice(startIndex, startIndex + itemsPerSlide);
+    };
 
     return (
       <motion.div
