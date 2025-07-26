@@ -856,7 +856,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���██████��█████████████ 50%
+                      RAM: █���██████��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -3027,7 +3027,7 @@ export default function Index() {
                     }}
                   />
                 </svg>
-                <OrbFloatingButtons />
+                <OrbFloatingButtons animationStep={animationStep} />
               </div>
             </motion.div>
           </div>
@@ -4023,7 +4023,7 @@ const ORB_BUTTON_CONFIG = {
 //
 // ========================================
 
-function OrbFloatingButtons() {
+function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
   const { theme } = useTheme();
 
   // Access the parent component's scrollToSection function
