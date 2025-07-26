@@ -2351,7 +2351,7 @@ export default function Index() {
 
             {/* Text Content - YouTube Intro Style */}
             <motion.div
-              className="relative z-10 px-4 -mt-16"
+              className="relative z-10 px-4 -mt-16 gpu-accelerated will-change-transform"
               initial={{
                 opacity: 0,
                 y: 150,
