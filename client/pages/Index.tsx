@@ -605,7 +605,7 @@ export default function Index() {
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ����═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -673,7 +673,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████���██████��███████ 60%
+                      CPU: █████������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -5632,9 +5632,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
             {/* Contact Content Grid */}
             <div className="contact-grid grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6 items-start mt-6 sm:mt-8 px-2 sm:px-4 max-w-6xl mx-auto">
-              {/* Main Contact Form - Takes 2 columns */}
+              {/* Main Contact Form - Takes 3 columns */}
               <motion.div
-                className="lg:col-span-2"
+                className="lg:col-span-3"
                 initial={{ x: -50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }
@@ -5642,14 +5642,14 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <div
-                  className="p-6 sm:p-8 rounded-2xl backdrop-blur-lg border"
+                  className="p-4 sm:p-6 rounded-2xl backdrop-blur-lg border"
                   style={{
                     background: "rgba(255, 255, 255, 0.05)",
                     border: "2px solid rgba(255, 255, 255, 0.1)",
                     boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
                   }}
                 >
-                  <form onSubmit={handleSubmit} className="contact-form space-y-6">
+                  <form onSubmit={handleSubmit} className="contact-form space-y-4">
                     {/* Name Fields Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
