@@ -743,7 +743,7 @@ export default function Index() {
 █████╔╝ █������   █��║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
+╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -5815,10 +5815,6 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0 bg-gradient-to-tr from-orange-400/25 via-transparent to-indigo-500/20 animate-gradient-shift gpu-accelerated" style={{ animationDelay: '2s' }} />
             <div className="absolute inset-0 bg-gradient-to-bl from-rose-400/20 via-transparent to-teal-500/25 animate-gradient-shift-reverse gpu-accelerated" style={{ animationDelay: '4s' }} />
-          </div>
-          {/* Tertiary shimmer layer */}
-          <div className="absolute inset-0 opacity-8">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-scan-line" />
           </div>
         </div>
 
