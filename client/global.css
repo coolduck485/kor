@@ -786,6 +786,34 @@
   .animate-scan-line {
     animation-duration: 4s !important;
   }
+
+  /* Improve touch responsiveness */
+  button,
+  input,
+  textarea {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  input,
+  textarea {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  /* Prevent double-tap zoom on buttons */
+  button,
+  .social-button,
+  .contact-card {
+    touch-action: manipulation;
+  }
+
+  /* Optimize scrolling performance */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
 }
 
 /* Modern chrome text styling */
