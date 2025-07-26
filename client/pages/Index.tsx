@@ -36,9 +36,9 @@ export default function Index() {
     isNear: false,
   });
   const badgeRef = useRef<HTMLDivElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [animationStep, setAnimationStep] = useState(0); // 0: initial, 1: orb, 2: text, 3: buttons, 4: background, 5: complete
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [animationStep, setAnimationStep] = useState(6); // Skip to complete state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
