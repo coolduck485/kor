@@ -2741,7 +2741,7 @@ export default function Index() {
                             style={{
                               left: `calc(50% + ${sparkle.x}px)`,
                               top: `calc(50% + ${sparkle.y}px)`,
-                              animation: `sparkle-enhanced ${isMobile ? 4 : 6 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+                              animation: `sparkle-enhanced ${6 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
                               transform: `translateZ(0) scale(${sparkle.size})`,
                               opacity: 0.6,
 
@@ -3859,7 +3859,7 @@ const ORB_BUTTON_CONFIG = {
 // ========================================
 //
 // To move "Services" button 50px to the right:
-// Change: xOffset: 0  ���  xOffset: 50
+// Change: xOffset: 0  →  xOffset: 50
 //
 // To move "About us" button 30px up:
 // Change: yOffset: 0  →  yOffset: -30
