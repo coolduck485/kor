@@ -2528,8 +2528,7 @@ export default function Index() {
                   <span
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animation:
-                        "text-glow 3s ease-in-out infinite 0.3s, text-bounce 2s ease-in-out 0.8s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.3s",
+                      animationDelay: "0.3s"
                     }}
                   >
                     o
