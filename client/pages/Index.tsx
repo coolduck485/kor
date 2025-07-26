@@ -724,7 +724,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ███����������█╗
-██║ ██╔╝��█╔═���═██╗██╔��══██╗
+██║ ��█╔╝��█╔═���═██╗██╔��══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
@@ -4066,6 +4066,7 @@ interface SectionProps {
   theme: "light" | "dark";
   isVisible: boolean;
   isMobile?: boolean;
+  animationConfig?: any;
 }
 
 const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
