@@ -602,7 +602,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ███������█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
-█████╔╝ ██���   ██║██████╔╝
+��████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
@@ -4085,43 +4085,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Our Mission - matching development services style */}
-            <div className="text-center mb-10 sm:mb-16">
+            <div className="text-center mb-4 sm:mb-8">
               <div className="relative">
-                {/* Background glow effect */}
-                <div
-                  className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
-                  style={{
-                    background:
-                      theme === "light"
-                        ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
-                        : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
-                    transform: "scale(1.5)",
-                  }}
-                />
-
-                {/* Floating energy particles around text - reduced for mobile */}
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={`energy-${i}`}
-                    className="absolute rounded-full pointer-events-none hidden sm:block"
-                    style={{
-                      left: `${20 + ((i * 60) % 160)}%`,
-                      top: `${30 + ((i * 40) % 60)}%`,
-                      width: `${3 + (i % 2)}px`,
-                      height: `${3 + (i % 2)}px`,
-                      background:
-                        theme === "light"
-                          ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
-                          : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
-                      animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
-                      filter: "blur(0.5px)",
-                      animationFillMode: "both",
-                      animationTimingFunction: "ease-in-out",
-                    }}
-                  />
-                ))}
-
-                <div className="font-poppins text-lg sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10">
                   <span
                     className={`relative inline-block ${
                       theme === "light" ? "text-gray-900" : "text-white"
