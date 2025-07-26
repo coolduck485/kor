@@ -2258,7 +2258,7 @@ export default function Index() {
           <div className="relative flex items-center justify-center min-h-screen">
             {/* Energy Rings Around Orb - Optimized for performance */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              {[...Array(isMobile ? 2 : 3)].map((_, i) => (
+              {[...Array(3)].map((_, i) => (
                 <div
                   key={`ring-${i}`}
                   className="absolute rounded-full border opacity-20 gpu-accelerated"
