@@ -1927,8 +1927,8 @@ export default function Index() {
 
           {/* Enhanced Background Elements - Performance optimized */}
 
-          {/* Animated Noise Texture - Only on desktop high performance */}
-          {!isMobile && isHighPerformance && (
+          {/* Animated Noise Texture - Now on all devices */}
+          {isHighPerformance && (
             <div
               className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
               style={{
