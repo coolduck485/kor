@@ -203,8 +203,10 @@ export default function Index() {
     // Check current URL and scroll to appropriate section
     const checkInitialSection = () => {
       const currentPath = window.location.pathname;
-      const sectionIndex = sections.findIndex(section =>
-        currentPath === `/${section.id}` || (currentPath === '/' && section.id === 'home')
+      const sectionIndex = sections.findIndex(
+        (section) =>
+          currentPath === `/${section.id}` ||
+          (currentPath === "/" && section.id === "home"),
       );
 
       if (sectionIndex !== -1 && sectionIndex !== 0) {
@@ -310,8 +312,8 @@ export default function Index() {
     setCurrentSection(index);
 
     // Update URL based on section
-    const sectionPath = index === 0 ? '/' : `/${sections[index].id}`;
-    window.history.pushState({}, '', sectionPath);
+    const sectionPath = index === 0 ? "/" : `/${sections[index].id}`;
+    window.history.pushState({}, "", sectionPath);
 
     const targetSection = sectionsRef.current[index];
     if (targetSection) {
@@ -1499,9 +1501,11 @@ export default function Index() {
     >
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
-        <div className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
-          isMobileMenuOpen ? "blur-sm" : ""
-        }`}>
+        <div
+          className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             {/* Desktop: Scroll Down */}
             <span
@@ -1560,9 +1564,11 @@ export default function Index() {
 
       {/* Scroll Up Indicator - Last Section */}
       {currentSection === sections.length - 1 && (
-        <div className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
-          isMobileMenuOpen ? "blur-sm" : ""
-        }`}>
+        <div
+          className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             {/* Desktop: Scroll Up */}
             <span
@@ -1622,9 +1628,11 @@ export default function Index() {
 
       {/* Back to Top Button - All sections except first */}
       {currentSection > 0 && (
-        <div className={`back-to-top fixed bottom-8 right-4 sm:right-8 z-50 transition-all duration-300 ${
-          isMobileMenuOpen ? "blur-sm" : ""
-        }`}>
+        <div
+          className={`back-to-top fixed bottom-8 right-4 sm:right-8 z-50 transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
           <button
             onClick={() => scrollToSection(0)}
             className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
@@ -1707,9 +1715,11 @@ export default function Index() {
           <div className="fixed top-6 left-6 z-40 block sm:hidden"></div>
 
           {/* Theme Toggle Container with Tooltip */}
-          <div className={`fixed top-6 right-6 z-50 transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}>
+          <div
+            className={`fixed top-6 right-6 z-50 transition-all duration-300 ${
+              isMobileMenuOpen ? "blur-sm" : ""
+            }`}
+          >
             <div
               className="group relative"
               onMouseEnter={() => setIsTooltipDismissed(true)}
@@ -2514,8 +2524,6 @@ export default function Index() {
               </div>
             </motion.div>
 
-
-
             {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
             <motion.div
               className="hidden sm:flex absolute inset-0 items-center justify-center"
@@ -2637,9 +2645,11 @@ export default function Index() {
         </motion.div>
 
         {/* About Us Section */}
-        <div className={`transition-all duration-300 ${
-          isMobileMenuOpen ? "blur-sm" : ""
-        }`}>
+        <div
+          className={`transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
           <AboutUsSection
             ref={(el) => (sectionsRef.current[1] = el!)}
             theme={theme}
@@ -2648,9 +2658,11 @@ export default function Index() {
         </div>
 
         {/* Services Section */}
-        <div className={`transition-all duration-300 ${
-          isMobileMenuOpen ? "blur-sm" : ""
-        }`}>
+        <div
+          className={`transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
           <ServicesSection
             ref={(el) => (sectionsRef.current[2] = el!)}
             theme={theme}
@@ -2659,9 +2671,11 @@ export default function Index() {
         </div>
 
         {/* Portfolio Section */}
-        <div className={`transition-all duration-300 ${
-          isMobileMenuOpen ? "blur-sm" : ""
-        }`}>
+        <div
+          className={`transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
           <PortfolioSection
             ref={(el) => (sectionsRef.current[3] = el!)}
             theme={theme}
@@ -2670,9 +2684,11 @@ export default function Index() {
         </div>
 
         {/* Contact Us Section */}
-        <div className={`transition-all duration-300 ${
-          isMobileMenuOpen ? "blur-sm" : ""
-        }`}>
+        <div
+          className={`transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
           <ContactUsSection
             ref={(el) => (sectionsRef.current[4] = el!)}
             theme={theme}
@@ -4283,8 +4299,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <div
                     className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden backdrop-blur-xl border border-white/30"
                     style={{
-                      background: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
-                      boxShadow: "0 8px 32px rgba(0,0,0,0.1), 0 0 60px rgba(73, 146, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.2)",
+                      background:
+                        "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
+                      boxShadow:
+                        "0 8px 32px rgba(0,0,0,0.1), 0 0 60px rgba(73, 146, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.2)",
                     }}
                   >
                     {/* Glassmorphism overlay */}
@@ -4301,18 +4319,40 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         </div>
                         <div className="flex-1 h-6 sm:h-8 bg-white/10 rounded-md ml-3 flex items-center px-3">
                           <div className="w-2 h-2 bg-blue-400/60 rounded-full animate-pulse" />
-                          <div className="ml-2 text-xs text-white/60 font-mono hidden sm:block">Building amazing software...</div>
+                          <div className="ml-2 text-xs text-white/60 font-mono hidden sm:block">
+                            Building amazing software...
+                          </div>
                         </div>
                       </div>
 
                       {/* Code Lines Visualization */}
                       <div className="space-y-2 sm:space-y-3 mb-6">
                         {[
-                          { width: "w-3/4", color: "from-blue-400 to-cyan-400", delay: 0 },
-                          { width: "w-1/2", color: "from-purple-400 to-pink-400", delay: 0.2 },
-                          { width: "w-5/6", color: "from-cyan-400 to-blue-500", delay: 0.4 },
-                          { width: "w-2/3", color: "from-green-400 to-blue-400", delay: 0.6 },
-                          { width: "w-4/5", color: "from-indigo-400 to-purple-400", delay: 0.8 },
+                          {
+                            width: "w-3/4",
+                            color: "from-blue-400 to-cyan-400",
+                            delay: 0,
+                          },
+                          {
+                            width: "w-1/2",
+                            color: "from-purple-400 to-pink-400",
+                            delay: 0.2,
+                          },
+                          {
+                            width: "w-5/6",
+                            color: "from-cyan-400 to-blue-500",
+                            delay: 0.4,
+                          },
+                          {
+                            width: "w-2/3",
+                            color: "from-green-400 to-blue-400",
+                            delay: 0.6,
+                          },
+                          {
+                            width: "w-4/5",
+                            color: "from-indigo-400 to-purple-400",
+                            delay: 0.8,
+                          },
                         ].map((line, i) => (
                           <motion.div
                             key={i}
@@ -4323,10 +4363,15 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                                 ? { x: 0, opacity: 1 }
                                 : { x: -30, opacity: 0 }
                             }
-                            transition={{ duration: 0.6, delay: 1 + line.delay }}
+                            transition={{
+                              duration: 0.6,
+                              delay: 1 + line.delay,
+                            }}
                           >
                             <div className="w-4 sm:w-6 text-center">
-                              <span className="text-xs text-white/40 font-mono">{i + 1}</span>
+                              <span className="text-xs text-white/40 font-mono">
+                                {i + 1}
+                              </span>
                             </div>
                             <div
                               className={`h-2 sm:h-2.5 ${line.width} bg-gradient-to-r ${line.color} rounded-full opacity-80`}
@@ -4342,10 +4387,26 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
                         <div className="grid grid-cols-4 gap-2 sm:gap-3">
                           {[
-                            { Icon: Code, label: "React", color: "text-blue-400" },
-                            { Icon: Smartphone, label: "Mobile", color: "text-green-400" },
-                            { Icon: Zap, label: "AI/ML", color: "text-yellow-400" },
-                            { Icon: Globe, label: "Cloud", color: "text-purple-400" },
+                            {
+                              Icon: Code,
+                              label: "React",
+                              color: "text-blue-400",
+                            },
+                            {
+                              Icon: Smartphone,
+                              label: "Mobile",
+                              color: "text-green-400",
+                            },
+                            {
+                              Icon: Zap,
+                              label: "AI/ML",
+                              color: "text-yellow-400",
+                            },
+                            {
+                              Icon: Globe,
+                              label: "Cloud",
+                              color: "text-purple-400",
+                            },
                           ].map((tech, index) => (
                             <motion.div
                               key={index}
@@ -4356,7 +4417,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                                   ? { y: 0, opacity: 1, scale: 1 }
                                   : { y: 20, opacity: 0, scale: 0.8 }
                               }
-                              transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
+                              transition={{
+                                duration: 0.5,
+                                delay: 1.2 + index * 0.1,
+                              }}
                               whileHover={{ scale: 1.05, y: -2 }}
                             >
                               <tech.Icon
@@ -4379,8 +4443,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           key={`particle-${i}`}
                           className="absolute w-1 h-1 sm:w-1.5 sm:h-1.5 bg-blue-400/40 rounded-full"
                           style={{
-                            left: `${20 + (i * 60) % 60}%`,
-                            top: `${15 + (i * 45) % 70}%`,
+                            left: `${20 + ((i * 60) % 60)}%`,
+                            top: `${15 + ((i * 45) % 70)}%`,
                             boxShadow: "0 0 6px rgba(73, 146, 255, 0.6)",
                           }}
                           animate={{
@@ -4417,8 +4481,6 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     {/* Glass Reflection */}
                     <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/20 via-white/5 to-transparent pointer-events-none" />
                   </div>
-
-
                 </div>
               </motion.div>
             </div>
@@ -4740,100 +4802,102 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Services Grid */}
             <div className="flex justify-center mt-12 sm:mt-16 lg:mt-20">
               <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-3 lg:gap-4 xl:gap-5 responsive-grid w-full max-w-4xl">
-              {services.map((service, index) => (
-                <motion.div
-                  key={index}
-                  className="group relative"
-                  initial={{ y: 50, opacity: 0, scale: 0.9 }}
-                  animate={
-                    isVisible
-                      ? { y: 0, opacity: 1, scale: 1 }
-                      : { y: 50, opacity: 0, scale: 0.9 }
-                  }
-                  transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -10 }}
-                >
-                  {/* Service Card */}
-                  <div
-                    className="relative p-1 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
-                    style={{
-                      background: "rgba(255, 255, 255, 0.05)",
-                      border: "2px solid rgba(255, 255, 255, 0.1)",
-                      boxShadow: "0 0 40px rgba(73, 146, 255, 0.2)",
-                    }}
+                {services.map((service, index) => (
+                  <motion.div
+                    key={index}
+                    className="group relative"
+                    initial={{ y: 50, opacity: 0, scale: 0.9 }}
+                    animate={
+                      isVisible
+                        ? { y: 0, opacity: 1, scale: 1 }
+                        : { y: 50, opacity: 0, scale: 0.9 }
+                    }
+                    transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+                    whileHover={{ scale: 1.05, y: -10 }}
                   >
-                    {/* Animated Background Gradient */}
+                    {/* Service Card */}
                     <div
-                      className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${service.color}`}
-                    />
-
-                    {/* Scanning line effect */}
-                    <div className="absolute inset-0 overflow-hidden rounded-3xl">
-                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                    </div>
-
-                    {/* Service Title - positioned at top of card */}
-                    <div className="relative z-10 mb-1 sm:mb-2 lg:mb-3">
-                      <h3
-                        className={`text-xs sm:text-sm lg:text-base font-bold warm-glow-text text-center ${
-                          theme === "light" ? "text-gray-900" : "text-white"
-                        }`}
-                        style={{
-                          textShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
-                        }}
-                      >
-                        {service.title}
-                      </h3>
-                    </div>
-
-                    {/* Icon - centered */}
-                    <motion.div
-                      className="relative z-10 mb-1 sm:mb-2 lg:mb-3 flex justify-center"
-                      whileHover={{ rotate: 10, scale: 1.2 }}
-                      transition={{ duration: 0.3 }}
+                      className="relative p-1 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
+                      style={{
+                        background: "rgba(255, 255, 255, 0.05)",
+                        border: "2px solid rgba(255, 255, 255, 0.1)",
+                        boxShadow: "0 0 40px rgba(73, 146, 255, 0.2)",
+                      }}
                     >
+                      {/* Animated Background Gradient */}
                       <div
-                        className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
-                        style={{
-                          boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
-                        }}
-                      >
-                        <service.icon className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
-                      </div>
-                    </motion.div>
-
-                    {/* Description Content */}
-                    <div className="relative z-10 text-center">
-                      <p
-                        className={`text-xs leading-relaxed ${
-                          theme === "light" ? "text-gray-600" : "text-gray-300"
-                        }`}
-                        style={{
-                          textShadow:
-                            theme === "dark"
-                              ? "0 0 5px rgba(255, 255, 255, 0.1)"
-                              : "none",
-                        }}
-                      >
-                        {service.description}
-                      </p>
-                    </div>
-
-                    {/* Circuit-like decorative elements */}
-                    <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-                      <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                      <div
-                        className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-                        style={{ animationDelay: "0.5s" }}
+                        className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${service.color}`}
                       />
-                      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
-                    </div>
 
-                    {/* Holographic shimmer effect */}
-                    <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-3xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
-                  </div>
-                </motion.div>
-              ))}
+                      {/* Scanning line effect */}
+                      <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                        <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                      </div>
+
+                      {/* Service Title - positioned at top of card */}
+                      <div className="relative z-10 mb-1 sm:mb-2 lg:mb-3">
+                        <h3
+                          className={`text-xs sm:text-sm lg:text-base font-bold warm-glow-text text-center ${
+                            theme === "light" ? "text-gray-900" : "text-white"
+                          }`}
+                          style={{
+                            textShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
+                          }}
+                        >
+                          {service.title}
+                        </h3>
+                      </div>
+
+                      {/* Icon - centered */}
+                      <motion.div
+                        className="relative z-10 mb-1 sm:mb-2 lg:mb-3 flex justify-center"
+                        whileHover={{ rotate: 10, scale: 1.2 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div
+                          className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
+                          style={{
+                            boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
+                          }}
+                        >
+                          <service.icon className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
+                        </div>
+                      </motion.div>
+
+                      {/* Description Content */}
+                      <div className="relative z-10 text-center">
+                        <p
+                          className={`text-xs leading-relaxed ${
+                            theme === "light"
+                              ? "text-gray-600"
+                              : "text-gray-300"
+                          }`}
+                          style={{
+                            textShadow:
+                              theme === "dark"
+                                ? "0 0 5px rgba(255, 255, 255, 0.1)"
+                                : "none",
+                          }}
+                        >
+                          {service.description}
+                        </p>
+                      </div>
+
+                      {/* Circuit-like decorative elements */}
+                      <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                        <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+                        <div
+                          className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
+                          style={{ animationDelay: "0.5s" }}
+                        />
+                        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
+                      </div>
+
+                      {/* Holographic shimmer effect */}
+                      <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-3xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.div>
@@ -5493,7 +5557,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       "E-commerce Solutions",
       "UI/UX Design",
       "Digital Marketing",
-      "Other"
+      "Other",
     ];
 
     const budgets = [
@@ -5502,7 +5566,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       "$5K - $10K",
       "$10K - $25K",
       "$25K - $50K",
-      "$50K+"
+      "$50K+",
     ];
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -5510,7 +5574,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       console.log("Form submitted:", {
         ...formData,
         interest: selectedInterest,
-        budget: selectedBudget
+        budget: selectedBudget,
       });
       // Add your form submission logic here
     };
@@ -5568,7 +5632,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
                 filter: "blur(0.3px)",
                 transform: `scale(${0.5 + (i % 3) * 0.3})`,
-                willChange: 'transform',
+                willChange: "transform",
               }}
             />
           ))}
@@ -5714,10 +5778,14 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
             {/* Subtitle */}
             <div className="text-center mb-2 sm:mb-3">
-              <h2 className={`text-base sm:text-lg md:text-xl font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"} mb-1`}>
+              <h2
+                className={`text-base sm:text-lg md:text-xl font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"} mb-1`}
+              >
                 Have a great idea?
               </h2>
-              <p className={`text-sm sm:text-base ${theme === "light" ? "text-gray-600" : "text-white/60"}`}>
+              <p
+                className={`text-sm sm:text-base ${theme === "light" ? "text-gray-600" : "text-white/60"}`}
+              >
                 Tell us about it.
               </p>
             </div>
@@ -5741,7 +5809,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
                   }}
                 >
-                  <form onSubmit={handleSubmit} className="contact-form space-y-2 sm:space-y-3">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="contact-form space-y-2 sm:space-y-3"
+                  >
                     {/* Name Fields Row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                       <div>
@@ -5750,7 +5821,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           placeholder="First Name"
                           value={formData.firstName}
                           onChange={(e) =>
-                            setFormData({ ...formData, firstName: e.target.value })
+                            setFormData({
+                              ...formData,
+                              firstName: e.target.value,
+                            })
                           }
                           className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                           style={{
@@ -5767,7 +5841,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           placeholder="Last Name"
                           value={formData.lastName}
                           onChange={(e) =>
-                            setFormData({ ...formData, lastName: e.target.value })
+                            setFormData({
+                              ...formData,
+                              lastName: e.target.value,
+                            })
                           }
                           className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                           style={{
@@ -5820,7 +5897,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                     {/* Interest Selection */}
                     <div>
-                      <h3 className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                      <h3
+                        className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
+                      >
                         I'm interested in...
                       </h3>
                       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1">
@@ -5835,12 +5914,18 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                                 : "border-white/20 hover:border-white/40"
                             }`}
                             style={{
-                              background: selectedInterest === interest
-                                ? "rgba(59, 130, 246, 0.1)"
-                                : "rgba(255, 255, 255, 0.05)",
-                              color: selectedInterest === interest
-                                ? (theme === "light" ? "#2563eb" : "#60a5fa")
-                                : (theme === "light" ? "#4b5563" : "#d1d5db"),
+                              background:
+                                selectedInterest === interest
+                                  ? "rgba(59, 130, 246, 0.1)"
+                                  : "rgba(255, 255, 255, 0.05)",
+                              color:
+                                selectedInterest === interest
+                                  ? theme === "light"
+                                    ? "#2563eb"
+                                    : "#60a5fa"
+                                  : theme === "light"
+                                    ? "#4b5563"
+                                    : "#d1d5db",
                             }}
                           >
                             {interest}
@@ -5851,7 +5936,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                     {/* Budget Selection */}
                     <div>
-                      <h3 className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                      <h3
+                        className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
+                      >
                         Project Budget (USD)
                       </h3>
                       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1">
@@ -5866,12 +5953,18 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                                 : "border-white/20 hover:border-white/40"
                             }`}
                             style={{
-                              background: selectedBudget === budget
-                                ? "rgba(34, 197, 94, 0.1)"
-                                : "rgba(255, 255, 255, 0.05)",
-                              color: selectedBudget === budget
-                                ? (theme === "light" ? "#059669" : "#34d399")
-                                : (theme === "light" ? "#4b5563" : "#d1d5db"),
+                              background:
+                                selectedBudget === budget
+                                  ? "rgba(34, 197, 94, 0.1)"
+                                  : "rgba(255, 255, 255, 0.05)",
+                              color:
+                                selectedBudget === budget
+                                  ? theme === "light"
+                                    ? "#059669"
+                                    : "#34d399"
+                                  : theme === "light"
+                                    ? "#4b5563"
+                                    : "#d1d5db",
                             }}
                           >
                             {budget}
@@ -5882,14 +5975,19 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                     {/* Project Description */}
                     <div>
-                      <h3 className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                      <h3
+                        className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
+                      >
                         Tell us more about your project
                       </h3>
                       <textarea
                         placeholder="Something about your great idea..."
                         value={formData.description}
                         onChange={(e) =>
-                          setFormData({ ...formData, description: e.target.value })
+                          setFormData({
+                            ...formData,
+                            description: e.target.value,
+                          })
                         }
                         rows={2}
                         className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] resize-none outline-none text-xs sm:text-sm will-change-transform"
@@ -5907,7 +6005,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       type="submit"
                       className="w-full p-2 sm:p-3 rounded-xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-200 hover:scale-[1.02] text-xs sm:text-sm will-change-transform"
                       style={{
-                        background: "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
+                        background:
+                          "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
                         boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
                       }}
                       whileHover={{ scale: 1.02 }}
@@ -5932,7 +6031,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 <div className="space-y-4">
                   {/* Message Us Header */}
                   <div>
-                    <h3 className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                    <h3
+                      className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                    >
                       Message us:
                     </h3>
                     <div className="grid grid-cols-1 gap-2">
@@ -5941,19 +6042,19 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           name: "Instagram",
                           url: "https://instagram.com",
                           icon: "📷",
-                          color: "from-pink-500 to-purple-500"
+                          color: "from-pink-500 to-purple-500",
                         },
                         {
                           name: "Discord",
                           url: "https://discord.com",
                           icon: "💬",
-                          color: "from-indigo-500 to-blue-500"
+                          color: "from-indigo-500 to-blue-500",
                         },
                         {
                           name: "Telegram",
                           url: "https://telegram.org",
                           icon: "📱",
-                          color: "from-blue-500 to-cyan-500"
+                          color: "from-blue-500 to-cyan-500",
                         },
                       ].map((social) => (
                         <motion.button
@@ -5979,14 +6080,22 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           </div>
 
                           <div className="flex items-center space-x-2 relative z-10">
-                            <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${social.color} flex items-center justify-center`}>
-                              <span className="text-white text-sm">{social.icon}</span>
+                            <div
+                              className={`w-8 h-8 rounded-lg bg-gradient-to-br ${social.color} flex items-center justify-center`}
+                            >
+                              <span className="text-white text-sm">
+                                {social.icon}
+                              </span>
                             </div>
                             <div>
-                              <p className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}>
+                              <p
+                                className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
+                              >
                                 {social.name}
                               </p>
-                              <p className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
+                              <p
+                                className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
+                              >
                                 Message us on {social.name}
                               </p>
                             </div>
@@ -6007,7 +6116,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                   {/* Contact Us Header */}
                   <div>
-                    <h3 className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                    <h3
+                      className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                    >
                       Contact us:
                     </h3>
                     <div
@@ -6023,10 +6134,14 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <Mail className="w-3 h-3 text-white" />
                         </div>
                         <div>
-                          <p className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
+                          <p
+                            className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
+                          >
                             Email us at
                           </p>
-                          <p className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                          <p
+                            className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                          >
                             contact@kor.dev
                           </p>
                         </div>
