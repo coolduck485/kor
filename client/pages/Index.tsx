@@ -723,7 +723,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ███����������█╗
+                  {`██╗  ██╗ ██████╗ ███������������█╗
 ██║ ██╔╝██╔═���═██╗██╔��══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
@@ -1931,7 +1931,7 @@ export default function Index() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
-            {[...Array(isMobile ? 8 : 15)].map((_, i) => (
+            {[...Array(animationConfig.enableBackgroundParticles ? (isMobile ? 3 : 15) : 0)].map((_, i) => (
               <motion.div
                 key={`particle-${i}`}
                 className="absolute rounded-full opacity-60 gpu-accelerated"
