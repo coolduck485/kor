@@ -5600,7 +5600,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   />
                 ))}
-                <div className="font-poppins text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10 px-2 sm:px-0">
+                <div className="contact-subtitle font-poppins text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10 px-2 sm:px-0">
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
