@@ -1797,10 +1797,15 @@ export default function Index() {
             }}
           />
 
-          {/* Enhanced Floating Ambient Particles with Color Shifting */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Enhanced Floating Ambient Particles with Color Shifting - YouTube Intro Style */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none overflow-hidden"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={animationStep >= 1 ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          >
             {[...Array(25)].map((_, i) => (
-              <div
+              <motion.div
                 key={`particle-${i}`}
                 className="absolute rounded-full opacity-60"
                 style={{
@@ -1813,9 +1818,18 @@ export default function Index() {
                   filter: "blur(0.3px)",
                   transform: `scale(${0.5 + (i % 3) * 0.3})`,
                 }}
+                initial={{ scale: 0, rotate: 0 }}
+                animate={animationStep >= 1 ? { scale: 1, rotate: 360 } : { scale: 0, rotate: 0 }}
+                transition={{
+                  duration: 0.8,
+                  delay: i * 0.03,
+                  ease: "backOut",
+                  type: "spring",
+                  stiffness: 200
+                }}
               />
             ))}
-          </div>
+          </motion.div>
 
           {/* Animated Geometric Patterns */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
@@ -2050,24 +2064,24 @@ export default function Index() {
               <div className="space-y-4 sm:space-y-8">
                 {/* Primary indicator */}
                 <motion.div
-                  className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-400/30 animate-gentle-pulse"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 2, duration: 1 }}
-                />
+                className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-400/30 animate-gentle-pulse"
+                initial={{ opacity: 0, x: -50, scale: 0 }}
+                animate={animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}}
+                transition={{ delay: 0.2, duration: 0.8, type: "spring", stiffness: 200 }}
+              />
                 {/* Secondary indicators */}
                 <motion.div
                   className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-blue-300/20 animate-gentle-pulse"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 2.3, duration: 1 }}
+                  initial={{ opacity: 0, x: -50, scale: 0 }}
+                  animate={animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}}
+                  transition={{ delay: 0.4, duration: 0.8, type: "spring", stiffness: 200 }}
                   style={{ animationDelay: "1s" }}
                 />
                 <motion.div
                   className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 rounded-full bg-blue-200/25 animate-gentle-pulse"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={animationStep >= 1 ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 2.6, duration: 1 }}
+                  initial={{ opacity: 0, x: -50, scale: 0 }}
+                  animate={animationStep >= 4 ? { opacity: 1, x: 0, scale: 1 } : {}}
+                  transition={{ delay: 0.6, duration: 0.8, type: "spring", stiffness: 200 }}
                   style={{ animationDelay: "2s" }}
                 />
               </div>
@@ -2117,32 +2131,34 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Central Glowing Orb - SVG Based with Magnetic Effect */}
+            {/* Central Glowing Orb - SVG Based with Magnetic Effect - YouTube Intro Style */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
                 className="relative animate-float cursor-pointer group pointer-events-none"
                 initial={{
                   opacity: 0,
-                  scale: 0.3,
-                  y: 100,
-                  filter: "blur(20px)",
+                  scale: 0,
+                  y: -200,
+                  filter: "blur(30px)",
+                  rotateX: 90,
                 }}
                 animate={
-                  animationStep >= 1
+                  animationStep >= 2
                     ? {
                         opacity: 1,
                         scale: 1,
                         y: 0,
                         filter: "blur(0px)",
+                        rotateX: 0,
                       }
                     : {}
                 }
                 transition={{
-                  duration: 1.5,
-                  ease: [0.16, 1, 0.3, 1],
+                  duration: 1.2,
+                  ease: "backOut",
                   type: "spring",
-                  stiffness: 80,
-                  damping: 15,
+                  stiffness: 100,
+                  damping: 12,
                 }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
