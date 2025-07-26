@@ -2622,7 +2622,7 @@ export default function Index() {
             >
               {/* Kor - moved further to the left */}
               <div
-                className="text-center transform -translate-x-6 sm:-translate-x-8 md:-translate-x-16 lg:-translate-x-20"
+                className="text-center transform -translate-x-1 sm:-translate-x-6 md:-translate-x-12 lg:-translate-x-16 xl:-translate-x-20"
                 style={{ marginLeft: "-5px" }}
               >
                 <h1
