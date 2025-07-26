@@ -2033,30 +2033,29 @@ export default function Index() {
               ))}
             </div>
 
-            {/* Rotating Light Beams */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-              <div
-                className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-blue-400/25 to-transparent"
-                style={{
-                  animation: "spin 15s linear infinite",
-                  transformOrigin: "center 50%",
-                }}
-              />
-              <div
-                className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent"
-                style={{
-                  animation: "spin 20s linear infinite reverse",
-                  transformOrigin: "center 50%",
-                }}
-              />
-              <div
-                className="absolute h-1 w-96 bg-gradient-to-r from-transparent via-blue-300/15 to-transparent"
-                style={{
-                  animation: "spin 25s linear infinite",
-                  transformOrigin: "50% center",
-                }}
-              />
-            </div>
+            {/* Optimized Rotating Light Beams */}
+            {!isMobile && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+                <div
+                  className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-blue-400/25 to-transparent gpu-accelerated"
+                  style={{
+                    animation: "spin 15s linear infinite",
+                    transformOrigin: "center 50%",
+                    willChange: "transform",
+                    transform: "translateZ(0)",
+                  }}
+                />
+                <div
+                  className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent gpu-accelerated"
+                  style={{
+                    animation: "spin 20s linear infinite reverse",
+                    transformOrigin: "center 50%",
+                    willChange: "transform",
+                    transform: "translateZ(0)",
+                  }}
+                />
+              </div>
+            )}
 
             {/* Left Side Visual Balance Elements */}
             <div className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 pointer-events-none">
