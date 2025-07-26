@@ -1939,69 +1939,69 @@ export default function Index() {
 
           {/* Spectacular Full-Width Wavy Aurora Curtains */}
           {!isMobile && isHighPerformance && (
-            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-90">
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
               {/* Primary aurora curtain - Top layer */}
               <div
                 className="absolute aurora-curtain-1"
                 style={{
-                  top: "15%",
-                  left: "-20%",
-                  right: "-20%",
-                  height: "300px",
+                  top: "20%",
+                  left: "-15%",
+                  right: "-15%",
+                  height: "120px",
                   background:
-                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.8) 15%, rgba(20, 184, 166, 0.9) 30%, rgba(34, 197, 94, 0.8) 50%, rgba(6, 182, 212, 0.9) 70%, rgba(20, 184, 166, 0.7) 85%, transparent 100%)",
-                  borderRadius: "50% 50% 80% 80% / 30% 30% 15% 15%",
-                  filter: "blur(20px)",
-                  animation: "aurora-wave-1 24s ease-in-out infinite",
-                  transform: "skewY(-2deg)",
+                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.3) 15%, rgba(20, 184, 166, 0.4) 30%, rgba(34, 197, 94, 0.3) 50%, rgba(6, 182, 212, 0.4) 70%, rgba(20, 184, 166, 0.3) 85%, transparent 100%)",
+                  borderRadius: "40% 60% 80% 20% / 60% 40% 80% 20%",
+                  filter: "blur(15px)",
+                  animation: "aurora-wave-subtle-1 28s ease-in-out infinite",
+                  transform: "skewY(-1deg)",
                 }}
               />
               {/* Secondary aurora curtain - Middle layer */}
               <div
                 className="absolute aurora-curtain-2"
                 style={{
-                  top: "35%",
-                  left: "-25%",
-                  right: "-25%",
-                  height: "400px",
+                  top: "45%",
+                  left: "-20%",
+                  right: "-20%",
+                  height: "140px",
                   background:
-                    "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.7) 10%, rgba(6, 182, 212, 0.9) 25%, rgba(16, 185, 129, 0.8) 40%, rgba(20, 184, 166, 0.9) 60%, rgba(34, 197, 94, 0.8) 75%, rgba(6, 182, 212, 0.6) 90%, transparent 100%)",
-                  borderRadius: "80% 80% 50% 50% / 20% 20% 25% 25%",
-                  filter: "blur(25px)",
-                  animation: "aurora-wave-2 30s ease-in-out infinite",
-                  transform: "skewY(1deg)",
+                    "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.25) 10%, rgba(6, 182, 212, 0.35) 25%, rgba(16, 185, 129, 0.3) 40%, rgba(20, 184, 166, 0.35) 60%, rgba(34, 197, 94, 0.3) 75%, rgba(6, 182, 212, 0.25) 90%, transparent 100%)",
+                  borderRadius: "30% 70% 40% 60% / 70% 30% 60% 40%",
+                  filter: "blur(18px)",
+                  animation: "aurora-wave-subtle-2 34s ease-in-out infinite",
+                  transform: "skewY(0.5deg)",
                 }}
               />
               {/* Tertiary aurora curtain - Back layer */}
               <div
                 className="absolute aurora-curtain-3"
                 style={{
-                  top: "55%",
-                  left: "-30%",
-                  right: "-30%",
-                  height: "350px",
+                  top: "70%",
+                  left: "-25%",
+                  right: "-25%",
+                  height: "100px",
                   background:
-                    "linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.6) 20%, rgba(34, 197, 94, 0.8) 35%, rgba(6, 182, 212, 0.7) 50%, rgba(16, 185, 129, 0.8) 65%, rgba(20, 184, 166, 0.6) 80%, transparent 100%)",
-                  borderRadius: "70% 70% 60% 60% / 25% 25% 20% 20%",
-                  filter: "blur(30px)",
-                  animation: "aurora-wave-3 36s ease-in-out infinite",
-                  transform: "skewY(-1.5deg)",
+                    "linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.2) 20%, rgba(34, 197, 94, 0.3) 35%, rgba(6, 182, 212, 0.25) 50%, rgba(16, 185, 129, 0.3) 65%, rgba(20, 184, 166, 0.2) 80%, transparent 100%)",
+                  borderRadius: "60% 40% 80% 20% / 40% 60% 20% 80%",
+                  filter: "blur(20px)",
+                  animation: "aurora-wave-subtle-3 40s ease-in-out infinite",
+                  transform: "skewY(-0.5deg)",
                 }}
               />
               {/* Ultra-wide flowing base curtain */}
               <div
                 className="absolute aurora-base-flow"
                 style={{
-                  top: "10%",
-                  left: "-40%",
-                  right: "-40%",
-                  height: "500px",
+                  top: "30%",
+                  left: "-30%",
+                  right: "-30%",
+                  height: "160px",
                   background:
-                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.3) 12%, rgba(34, 197, 94, 0.5) 25%, rgba(20, 184, 166, 0.4) 37%, rgba(16, 185, 129, 0.5) 50%, rgba(6, 182, 212, 0.4) 62%, rgba(34, 197, 94, 0.3) 75%, rgba(20, 184, 166, 0.2) 87%, transparent 100%)",
-                  borderRadius: "60% 60% 40% 40% / 15% 15% 30% 30%",
-                  filter: "blur(35px)",
-                  animation: "aurora-base-flow 42s ease-in-out infinite",
-                  transform: "skewY(0.5deg)",
+                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.15) 12%, rgba(34, 197, 94, 0.2) 25%, rgba(20, 184, 166, 0.18) 37%, rgba(16, 185, 129, 0.2) 50%, rgba(6, 182, 212, 0.18) 62%, rgba(34, 197, 94, 0.15) 75%, rgba(20, 184, 166, 0.12) 87%, transparent 100%)",
+                  borderRadius: "50% 80% 30% 70% / 80% 20% 70% 30%",
+                  filter: "blur(25px)",
+                  animation: "aurora-base-flow-subtle 46s ease-in-out infinite",
+                  transform: "skewY(0.3deg)",
                 }}
               />
             </div>
