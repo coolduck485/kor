@@ -89,7 +89,7 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   .gpu-accelerated {
     animation: none !important;
     transform: none !important;
@@ -104,7 +104,7 @@
     -webkit-user-select: none;
     user-select: none;
   }
-  
+
   .touch-optimize input,
   .touch-optimize textarea {
     -webkit-user-select: text;
@@ -113,8 +113,7 @@
 }
 
 /* Battery saving optimizations */
-@media (prefers-reduced-motion: reduce), 
-       (update: slow) {
+@media (prefers-reduced-motion: reduce), (update: slow) {
   .battery-save {
     animation: none !important;
     transition: none !important;

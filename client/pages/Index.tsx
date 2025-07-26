@@ -209,13 +209,20 @@ export default function Index() {
     // Performance optimization checks
     const checkPerformance = () => {
       // Check for reduced motion preference
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
       setReducedMotion(prefersReducedMotion);
 
       // Check device capabilities for high performance animations
-      const isLowEnd = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
-      const isSlowConnection = navigator.connection && navigator.connection.effectiveType === 'slow-2g';
-      setIsHighPerformance(!isLowEnd && !isSlowConnection && !prefersReducedMotion);
+      const isLowEnd =
+        navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
+      const isSlowConnection =
+        navigator.connection &&
+        navigator.connection.effectiveType === "slow-2g";
+      setIsHighPerformance(
+        !isLowEnd && !isSlowConnection && !prefersReducedMotion,
+      );
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -433,7 +440,10 @@ export default function Index() {
       const minSwipeDistance = 50;
       const minSwipeVelocity = 0.1; // pixels per millisecond
 
-      if (Math.abs(deltaY) > minSwipeDistance && swipeVelocity > minSwipeVelocity) {
+      if (
+        Math.abs(deltaY) > minSwipeDistance &&
+        swipeVelocity > minSwipeVelocity
+      ) {
         if (deltaY > 0 && currentSection < sections.length - 1) {
           scrollToSection(currentSection + 1);
         } else if (deltaY < 0 && currentSection > 0) {
@@ -447,8 +457,12 @@ export default function Index() {
 
     const container = containerRef.current;
     if (container) {
-      container.addEventListener("touchstart", handleTouchStart, { passive: true });
-      container.addEventListener("touchmove", handleTouchMove, { passive: false });
+      container.addEventListener("touchstart", handleTouchStart, {
+        passive: true,
+      });
+      container.addEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
       container.addEventListener("touchend", handleTouchEnd, { passive: true });
       return () => {
         container.removeEventListener("touchstart", handleTouchStart);
@@ -1581,7 +1595,7 @@ export default function Index() {
         overflow: "hidden",
         maxWidth: "100vw",
         willChange: isScrollingActive ? "auto" : "transform",
-        contain: "layout style paint"
+        contain: "layout style paint",
       }}
     >
       {/* Universal Scroll Navigation */}
@@ -1788,7 +1802,7 @@ export default function Index() {
             exit={{ opacity: 0 }}
             transition={{
               duration: 0.3,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
             className="fixed inset-0 z-[9999] pointer-events-none black-overlay-enhanced"
             style={{
@@ -1798,12 +1812,6 @@ export default function Index() {
           >
             {/* Simple black overlay */}
             <div className="absolute inset-0 bg-black" />
-
-
-
-
-
-
           </motion.div>
         )}
       </AnimatePresence>
@@ -1821,7 +1829,7 @@ export default function Index() {
               : "bg-black"
           }`}
           style={{
-            display: currentSection === 0 ? 'block' : 'none'
+            display: currentSection === 0 ? "block" : "none",
           }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
@@ -1930,7 +1938,9 @@ export default function Index() {
                   width: `${2 + (i % 3)}px`,
                   height: `${2 + (i % 3)}px`,
                   background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.3 + (i % 3) * 0.2})`,
-                  animation: isScrollingActive ? "none" : `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s`,
+                  animation: isScrollingActive
+                    ? "none"
+                    : `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s`,
                   willChange: isScrollingActive ? "auto" : "transform",
                   transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
                 }}
@@ -1950,7 +1960,10 @@ export default function Index() {
           {/* Animated Geometric Patterns - Only on high performance devices */}
           {!isMobile && isHighPerformance && (
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-              <svg className="absolute w-full h-full gpu-accelerated" viewBox="0 0 1200 800">
+              <svg
+                className="absolute w-full h-full gpu-accelerated"
+                viewBox="0 0 1200 800"
+              >
                 {/* Animated hexagon grid - Reduced count */}
                 {[...Array(4)].map((_, i) => (
                   <polygon
@@ -2609,21 +2622,24 @@ export default function Index() {
 
                       {/* Optimized sparkles for better performance */}
                       {SHINE_CONFIG.showSparkles &&
-                        (isMobile ? [
-                          { x: 95, y: -35, size: 0.8, type: "star" },
-                          { x: 75, y: -10, size: 0.6, type: "diamond" },
-                          { x: 120, y: 50, size: 0.7, type: "plus" },
-                          { x: 90, y: 80, size: 0.9, type: "star" },
-                        ] : [
-                          { x: 95, y: -35, size: 0.8, type: "star" },
-                          { x: 75, y: -10, size: 0.6, type: "diamond" },
-                          { x: 120, y: 50, size: 0.7, type: "plus" },
-                          { x: 90, y: 80, size: 0.9, type: "star" },
-                          { x: 25, y: 85, size: 0.5, type: "diamond" },
-                          { x: -40, y: 60, size: 0.6, type: "plus" },
-                          { x: 165, y: 15, size: 1.0, type: "star" },
-                          { x: -20, y: -20, size: 0.7, type: "diamond" },
-                        ]).map((sparkle, i) => (
+                        (isMobile
+                          ? [
+                              { x: 95, y: -35, size: 0.8, type: "star" },
+                              { x: 75, y: -10, size: 0.6, type: "diamond" },
+                              { x: 120, y: 50, size: 0.7, type: "plus" },
+                              { x: 90, y: 80, size: 0.9, type: "star" },
+                            ]
+                          : [
+                              { x: 95, y: -35, size: 0.8, type: "star" },
+                              { x: 75, y: -10, size: 0.6, type: "diamond" },
+                              { x: 120, y: 50, size: 0.7, type: "plus" },
+                              { x: 90, y: 80, size: 0.9, type: "star" },
+                              { x: 25, y: 85, size: 0.5, type: "diamond" },
+                              { x: -40, y: 60, size: 0.6, type: "plus" },
+                              { x: 165, y: 15, size: 1.0, type: "star" },
+                              { x: -20, y: -20, size: 0.7, type: "diamond" },
+                            ]
+                        ).map((sparkle, i) => (
                           <div
                             key={`enhanced-sparkle-${i}`}
                             className="absolute pointer-events-none gpu-accelerated"
@@ -2648,7 +2664,9 @@ export default function Index() {
                                       : "radial-gradient(circle, rgba(73, 146, 255, 0.6) 0%, transparent 70%)",
                                   clipPath:
                                     "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-                                  animation: isMobile ? "spin-slow 8s linear infinite" : "spin-slow 15s linear infinite",
+                                  animation: isMobile
+                                    ? "spin-slow 8s linear infinite"
+                                    : "spin-slow 15s linear infinite",
                                 }}
                               />
                             )}
@@ -2662,7 +2680,9 @@ export default function Index() {
                                       : "linear-gradient(45deg, rgba(34, 211, 238, 0.5), rgba(73, 146, 255, 0.4))",
                                   clipPath:
                                     "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                                  animation: isMobile ? "gentle-pulse 3s ease-in-out infinite" : "gentle-pulse 4s ease-in-out infinite",
+                                  animation: isMobile
+                                    ? "gentle-pulse 3s ease-in-out infinite"
+                                    : "gentle-pulse 4s ease-in-out infinite",
                                 }}
                               />
                             )}
@@ -2676,7 +2696,9 @@ export default function Index() {
                                       : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.5), rgba(34, 211, 238, 0.4), rgba(73, 146, 255, 0.5))",
                                   clipPath:
                                     "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
-                                  animation: isMobile ? "rotate-slow 8s linear infinite" : "rotate-slow 12s linear infinite",
+                                  animation: isMobile
+                                    ? "rotate-slow 8s linear infinite"
+                                    : "rotate-slow 12s linear infinite",
                                 }}
                               />
                             )}
@@ -2812,7 +2834,7 @@ export default function Index() {
         <motion.div
           className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
-            display: currentSection === 1 ? 'block' : 'none'
+            display: currentSection === 1 ? "block" : "none",
           }}
         >
           <AboutUsSection
@@ -2826,7 +2848,7 @@ export default function Index() {
         <motion.div
           className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
-            display: currentSection === 2 ? 'block' : 'none'
+            display: currentSection === 2 ? "block" : "none",
           }}
         >
           <ServicesSection
@@ -2840,7 +2862,7 @@ export default function Index() {
         <motion.div
           className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
-            display: currentSection === 3 ? 'block' : 'none'
+            display: currentSection === 3 ? "block" : "none",
           }}
         >
           <PortfolioSection
@@ -2854,7 +2876,7 @@ export default function Index() {
         <motion.div
           className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
-            display: currentSection === 4 ? 'block' : 'none'
+            display: currentSection === 4 ? "block" : "none",
           }}
         >
           <ContactUsSection
