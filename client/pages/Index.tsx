@@ -3978,9 +3978,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             }}
           >
             {/* About Us Title - matching home style */}
-            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <div className="text-center mb-6 sm:mb-12 lg:mb-16">
               <h1
-                className={`font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight relative ${
+                className={`font-poppins text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight relative ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
