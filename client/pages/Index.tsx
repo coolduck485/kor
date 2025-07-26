@@ -817,7 +817,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ██�����█������█████��███��███ 60%
+                      CPU: ██�����█������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -6358,8 +6358,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                         {/* Main Content - Responsive Layout */}
                         <div className="relative z-10">
-                          {/* Mobile Layout - Vertical Stack */}
-                          <div className="sm:hidden flex flex-col items-center text-center space-y-2">
+                          {/* Unified Layout for all devices */}
+                          <div className="flex flex-col sm:flex-row items-center text-center sm:text-left space-y-2 sm:space-y-0 sm:space-x-4">
                             <div
                               className={`w-12 h-12 rounded-xl bg-gradient-to-br ${contact.color} flex items-center justify-center shadow-lg`}
                               style={{
