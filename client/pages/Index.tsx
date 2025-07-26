@@ -604,7 +604,7 @@ export default function Index() {
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██████╔╝██║  ██║
+██║  ██╗╚██████╔╝���█║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -5587,11 +5587,11 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle */}
-            <div className="text-center mb-4 sm:mb-6">
-              <h2 className={`text-lg sm:text-xl md:text-2xl font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"} mb-2`}>
+            <div className="text-center mb-2 sm:mb-3">
+              <h2 className={`text-base sm:text-lg md:text-xl font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"} mb-1`}>
                 Have a great idea?
               </h2>
-              <p className={`text-base sm:text-lg ${theme === "light" ? "text-gray-600" : "text-white/60"}`}>
+              <p className={`text-sm sm:text-base ${theme === "light" ? "text-gray-600" : "text-white/60"}`}>
                 Tell us about it.
               </p>
             </div>
