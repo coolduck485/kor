@@ -606,6 +606,13 @@
   .fixed.bottom-8 {
     bottom: 60px !important;
   }
+
+  /* Ensure services grid displays in 2 columns on mobile */
+  .responsive-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
 }
 
 @media (max-height: 700px) {
