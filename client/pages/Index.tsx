@@ -1645,8 +1645,6 @@ export default function Index() {
               />
               <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
             </div>
-
-
           </div>
         </div>
       )}
@@ -1678,8 +1676,6 @@ export default function Index() {
               />
               <div className="absolute inset-0 rounded-full bg-gradient-to-t from-white/10 to-transparent" />
             </div>
-
-
           </div>
         </div>
       )}
@@ -1977,15 +1973,15 @@ export default function Index() {
                     key={`mobile-dot-${i}`}
                     className="absolute rounded-full"
                     style={{
-                      left: `${10 + (i * 11) % 80}%`,
-                      top: `${15 + (i * 13) % 70}%`,
+                      left: `${10 + ((i * 11) % 80)}%`,
+                      top: `${15 + ((i * 13) % 70)}%`,
                       width: `${4 + (i % 3)}px`,
                       height: `${4 + (i % 3)}px`,
                       background: [
-                        'radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, transparent 70%)',
-                        'radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)',
-                        'radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, transparent 70%)',
-                        'radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, transparent 70%)',
+                        "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, transparent 70%)",
+                        "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)",
+                        "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, transparent 70%)",
+                        "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, transparent 70%)",
                       ][i % 4],
                       animation: `mobile-float-${(i % 3) + 1} ${3 + (i % 2)}s ease-in-out infinite ${i * 0.2}s`,
                       filter: `blur(${0.5 + (i % 2) * 0.5}px)`,
@@ -2000,9 +1996,10 @@ export default function Index() {
                 <div
                   className="w-full h-full rounded-full"
                   style={{
-                    background: 'radial-gradient(circle, rgba(34, 197, 94, 0.6) 0%, rgba(59, 130, 246, 0.4) 50%, transparent 80%)',
-                    animation: 'mobile-pulse-corner 3s ease-in-out infinite',
-                    filter: 'blur(4px)',
+                    background:
+                      "radial-gradient(circle, rgba(34, 197, 94, 0.6) 0%, rgba(59, 130, 246, 0.4) 50%, transparent 80%)",
+                    animation: "mobile-pulse-corner 3s ease-in-out infinite",
+                    filter: "blur(4px)",
                   }}
                 />
               </div>
@@ -2010,9 +2007,11 @@ export default function Index() {
                 <div
                   className="w-full h-full rounded-full"
                   style={{
-                    background: 'radial-gradient(circle, rgba(147, 51, 234, 0.6) 0%, rgba(236, 72, 153, 0.4) 50%, transparent 80%)',
-                    animation: 'mobile-pulse-corner 2.5s ease-in-out infinite 0.5s',
-                    filter: 'blur(3px)',
+                    background:
+                      "radial-gradient(circle, rgba(147, 51, 234, 0.6) 0%, rgba(236, 72, 153, 0.4) 50%, transparent 80%)",
+                    animation:
+                      "mobile-pulse-corner 2.5s ease-in-out infinite 0.5s",
+                    filter: "blur(3px)",
                   }}
                 />
               </div>
@@ -2020,9 +2019,11 @@ export default function Index() {
                 <div
                   className="w-full h-full rounded-full"
                   style={{
-                    background: 'radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, rgba(34, 197, 94, 0.4) 50%, transparent 80%)',
-                    animation: 'mobile-pulse-corner 3.5s ease-in-out infinite 1s',
-                    filter: 'blur(5px)',
+                    background:
+                      "radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, rgba(34, 197, 94, 0.4) 50%, transparent 80%)",
+                    animation:
+                      "mobile-pulse-corner 3.5s ease-in-out infinite 1s",
+                    filter: "blur(5px)",
                   }}
                 />
               </div>
@@ -2041,8 +2042,8 @@ export default function Index() {
                         rgba(147, 51, 234, 0.8) 80%,
                         transparent 100%)`,
                       animation: `mobile-scan-line ${6 + i * 2}s linear infinite ${i * 3}s`,
-                      filter: 'blur(1px)',
-                      boxShadow: '0 0 10px currentColor',
+                      filter: "blur(1px)",
+                      boxShadow: "0 0 10px currentColor",
                     }}
                   />
                 ))}
@@ -2057,49 +2058,47 @@ export default function Index() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
-            {[
-              ...Array(
-                animationConfig.enableBackgroundParticles ? 15 : 0,
+            {[...Array(animationConfig.enableBackgroundParticles ? 15 : 0)].map(
+              (_, i) => (
+                <motion.div
+                  key={`particle-${i}`}
+                  className="absolute rounded-full opacity-70 gpu-accelerated"
+                  style={{
+                    left: `${5 + ((i * 60) % 95)}%`,
+                    top: `${10 + ((i * 35) % 85)}%`,
+                    width: `${3 + (i % 4)}px`,
+                    height: `${3 + (i % 4)}px`,
+                    background: (() => {
+                      const colorPalettes = [
+                        `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`, // Pink-Orange
+                        `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`, // Green-Blue
+                        `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`, // Purple-Yellow
+                        `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`, // Blue-Green
+                        `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`, // Orange-Purple
+                        `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`, // Pink-Mint
+                      ];
+                      return colorPalettes[i % colorPalettes.length];
+                    })(),
+                    animation: isScrollingActive
+                      ? "none"
+                      : `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
+                    willChange: isScrollingActive ? "auto" : "transform",
+                    transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
+                    filter: `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
+                    boxShadow: `0 0 ${4 + (i % 3) * 2}px rgba(255, 255, 255, 0.3)`,
+                  }}
+                  initial={{ scale: 0, rotate: 0 }}
+                  animate={{ scale: 1, rotate: 360 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: i * 0.05,
+                    ease: "backOut",
+                    type: "spring",
+                    stiffness: 200,
+                  }}
+                />
               ),
-            ].map((_, i) => (
-              <motion.div
-                key={`particle-${i}`}
-                className="absolute rounded-full opacity-70 gpu-accelerated"
-                style={{
-                  left: `${5 + ((i * 60) % 95)}%`,
-                  top: `${10 + ((i * 35) % 85)}%`,
-                  width: `${3 + (i % 4)}px`,
-                  height: `${3 + (i % 4)}px`,
-                  background: (() => {
-                    const colorPalettes = [
-                      `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`, // Pink-Orange
-                      `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`, // Green-Blue
-                      `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`, // Purple-Yellow
-                      `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`, // Blue-Green
-                      `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`, // Orange-Purple
-                      `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`, // Pink-Mint
-                    ];
-                    return colorPalettes[i % colorPalettes.length];
-                  })(),
-                  animation: isScrollingActive
-                    ? "none"
-                    : `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
-                  willChange: isScrollingActive ? "auto" : "transform",
-                  transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
-                  filter: `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
-                  boxShadow: `0 0 ${4 + (i % 3) * 2}px rgba(255, 255, 255, 0.3)`,
-                }}
-                initial={{ scale: 0, rotate: 0 }}
-                animate={{ scale: 1, rotate: 360 }}
-                transition={{
-                  duration: 0.8,
-                  delay: i * 0.05,
-                  ease: "backOut",
-                  type: "spring",
-                  stiffness: 200,
-                }}
-              />
-            ))}
+            )}
           </motion.div>
 
           {/* Animated Geometric Patterns - Now on all devices */}
@@ -2146,27 +2145,25 @@ export default function Index() {
 
           {/* Optimized Breathing Orbs - Reduced count for performance - Responsive for mobile/tablet */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden scale-75 sm:scale-85 lg:scale-100">
-            {[
-              ...Array(
-                animationConfig.enableFloatingOrbs ? 6 : 0,
+            {[...Array(animationConfig.enableFloatingOrbs ? 6 : 0)].map(
+              (_, i) => (
+                <div
+                  key={`breath-orb-${i}`}
+                  className="absolute rounded-full gpu-accelerated"
+                  style={{
+                    left: `${15 + ((i * 80) % 70)}%`,
+                    top: `${20 + ((i * 60) % 60)}%`,
+                    width: `${25 + (i % 2) * 15}px`,
+                    height: `${25 + (i % 2) * 15}px`,
+                    background: `radial-gradient(circle, rgba(${73 + i * 15}, ${146 + i * 8}, 255, 0.4) 0%, transparent 70%)`,
+                    animation: `breath ${8 + (i % 3)}s ease-in-out infinite ${i * 0.6}s`,
+                    filter: `blur(${3 + (i % 2)}px)`,
+                    willChange: "transform, opacity",
+                    transform: "translateZ(0)",
+                  }}
+                />
               ),
-            ].map((_, i) => (
-              <div
-                key={`breath-orb-${i}`}
-                className="absolute rounded-full gpu-accelerated"
-                style={{
-                  left: `${15 + ((i * 80) % 70)}%`,
-                  top: `${20 + ((i * 60) % 60)}%`,
-                  width: `${25 + (i % 2) * 15}px`,
-                  height: `${25 + (i % 2) * 15}px`,
-                  background: `radial-gradient(circle, rgba(${73 + i * 15}, ${146 + i * 8}, 255, 0.4) 0%, transparent 70%)`,
-                  animation: `breath ${8 + (i % 3)}s ease-in-out infinite ${i * 0.6}s`,
-                  filter: `blur(${3 + (i % 2)}px)`,
-                  willChange: "transform, opacity",
-                  transform: "translateZ(0)",
-                }}
-              />
-            ))}
+            )}
           </div>
 
           {/* Dynamic Background Waves */}
@@ -2761,15 +2758,15 @@ export default function Index() {
                       {/* Optimized sparkles for better performance */}
                       {SHINE_CONFIG.showSparkles &&
                         [
-                              { x: 95, y: -35, size: 0.8, type: "star" },
-                              { x: 75, y: -10, size: 0.6, type: "diamond" },
-                              { x: 120, y: 50, size: 0.7, type: "plus" },
-                              { x: 90, y: 80, size: 0.9, type: "star" },
-                              { x: 25, y: 85, size: 0.5, type: "diamond" },
-                              { x: -40, y: 60, size: 0.6, type: "plus" },
-                              { x: 165, y: 15, size: 1.0, type: "star" },
-                              { x: -20, y: -20, size: 0.7, type: "diamond" },
-                            ].map((sparkle, i) => (
+                          { x: 95, y: -35, size: 0.8, type: "star" },
+                          { x: 75, y: -10, size: 0.6, type: "diamond" },
+                          { x: 120, y: 50, size: 0.7, type: "plus" },
+                          { x: 90, y: 80, size: 0.9, type: "star" },
+                          { x: 25, y: 85, size: 0.5, type: "diamond" },
+                          { x: -40, y: 60, size: 0.6, type: "plus" },
+                          { x: 165, y: 15, size: 1.0, type: "star" },
+                          { x: -20, y: -20, size: 0.7, type: "diamond" },
+                        ].map((sparkle, i) => (
                           <div
                             key={`enhanced-sparkle-${i}`}
                             className="absolute pointer-events-none gpu-accelerated"
