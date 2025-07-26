@@ -724,7 +724,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
-█���███╔╝ ██���   ██║██████╔╝
+█████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
@@ -5320,7 +5320,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     key={i}
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animation: `text-glow 3s ease-in-out infinite ${i * 0.15}s, text-bounce 2s ease-in-out ${0.5 + i * 0.15}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.15}s`,
+                      animationDelay: `${i * 0.15}s`,
                     }}
                   >
                     {letter}
@@ -5910,7 +5910,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     key={i}
                     className="inline-block relative warm-glow-text animate-warm-glow-pulse"
                     style={{
-                      animation: `text-glow 3s ease-in-out infinite ${i * 0.15}s, text-bounce 2s ease-in-out ${0.5 + i * 0.15}s infinite both, warm-glow-pulse 3s ease-in-out infinite ${i * 0.15}s`,
+                      animationDelay: `${i * 0.15}s`,
                     }}
                   >
                     {letter}
