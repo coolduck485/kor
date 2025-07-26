@@ -542,6 +542,10 @@
   animation: warm-glow-pulse 3s ease-in-out infinite;
 }
 
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
 /* Modern chrome text styling */
 .chrome-wavy-text {
   display: inline-block;
