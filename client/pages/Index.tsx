@@ -4216,89 +4216,187 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 </div>
               </motion.div>
 
-              {/* Right Content - Tech Visual - Hidden on mobile */}
+              {/* Right Content - Modern Software Development Visualization */}
               <motion.div
-                className="relative hidden sm:block"
+                className="flex justify-center lg:justify-end"
                 initial={{ x: 50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
                 }
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <div
-                  className="relative w-full h-96 rounded-3xl overflow-hidden backdrop-blur-lg border border-white/20"
-                  style={{
-                    background: "rgba(255, 255, 255, 0.05)",
-                    boxShadow: "0 0 40px rgba(73, 146, 255, 0.2)",
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
+                <div className="relative w-full max-w-lg h-80 sm:h-96 lg:h-[28rem]">
+                  {/* Main Glass Container */}
+                  <div
+                    className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden backdrop-blur-xl border border-white/30"
+                    style={{
+                      background: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.1), 0 0 60px rgba(73, 146, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.2)",
+                    }}
+                  >
+                    {/* Glassmorphism overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/10" />
 
-                  {/* Animated Tech Elements */}
-                  <div className="absolute inset-4 space-y-4">
-                    {[...Array(4)].map((_, i) => (
+                    {/* Code Editor Interface */}
+                    <div className="absolute inset-0 p-4 sm:p-6 lg:p-8">
+                      {/* Browser-like Header */}
+                      <div className="flex items-center space-x-2 mb-4 sm:mb-6">
+                        <div className="flex space-x-1.5">
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-400/80" />
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-400/80" />
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-400/80" />
+                        </div>
+                        <div className="flex-1 h-6 sm:h-8 bg-white/10 rounded-md ml-3 flex items-center px-3">
+                          <div className="w-2 h-2 bg-blue-400/60 rounded-full animate-pulse" />
+                          <div className="ml-2 text-xs text-white/60 font-mono hidden sm:block">Building amazing software...</div>
+                        </div>
+                      </div>
+
+                      {/* Code Lines Visualization */}
+                      <div className="space-y-2 sm:space-y-3 mb-6">
+                        {[
+                          { width: "w-3/4", color: "from-blue-400 to-cyan-400", delay: 0 },
+                          { width: "w-1/2", color: "from-purple-400 to-pink-400", delay: 0.2 },
+                          { width: "w-5/6", color: "from-cyan-400 to-blue-500", delay: 0.4 },
+                          { width: "w-2/3", color: "from-green-400 to-blue-400", delay: 0.6 },
+                          { width: "w-4/5", color: "from-indigo-400 to-purple-400", delay: 0.8 },
+                        ].map((line, i) => (
+                          <motion.div
+                            key={i}
+                            className="flex items-center space-x-2 sm:space-x-3"
+                            initial={{ x: -30, opacity: 0 }}
+                            animate={
+                              isVisible
+                                ? { x: 0, opacity: 1 }
+                                : { x: -30, opacity: 0 }
+                            }
+                            transition={{ duration: 0.6, delay: 1 + line.delay }}
+                          >
+                            <div className="w-4 sm:w-6 text-center">
+                              <span className="text-xs text-white/40 font-mono">{i + 1}</span>
+                            </div>
+                            <div
+                              className={`h-2 sm:h-2.5 ${line.width} bg-gradient-to-r ${line.color} rounded-full opacity-80`}
+                              style={{
+                                boxShadow: "0 0 10px rgba(73, 146, 255, 0.3)",
+                              }}
+                            />
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      {/* Modern Tech Stack Icons */}
+                      <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
+                        <div className="grid grid-cols-4 gap-2 sm:gap-3">
+                          {[
+                            { Icon: Code, label: "React", color: "text-blue-400" },
+                            { Icon: Smartphone, label: "Mobile", color: "text-green-400" },
+                            { Icon: Zap, label: "AI/ML", color: "text-yellow-400" },
+                            { Icon: Globe, label: "Cloud", color: "text-purple-400" },
+                          ].map((tech, index) => (
+                            <motion.div
+                              key={index}
+                              className="flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl backdrop-blur-md bg-white/5 border border-white/10"
+                              initial={{ y: 20, opacity: 0, scale: 0.8 }}
+                              animate={
+                                isVisible
+                                  ? { y: 0, opacity: 1, scale: 1 }
+                                  : { y: 20, opacity: 0, scale: 0.8 }
+                              }
+                              transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
+                              whileHover={{ scale: 1.05, y: -2 }}
+                            >
+                              <tech.Icon
+                                className={`w-4 h-4 sm:w-6 sm:h-6 ${tech.color} mb-1`}
+                                style={{
+                                  filter: "drop-shadow(0 0 8px currentColor)",
+                                }}
+                              />
+                              <span className="text-[10px] sm:text-xs text-white/70 font-medium">
+                                {tech.label}
+                              </span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Floating Particles */}
+                      {[...Array(8)].map((_, i) => (
+                        <motion.div
+                          key={`particle-${i}`}
+                          className="absolute w-1 h-1 sm:w-1.5 sm:h-1.5 bg-blue-400/40 rounded-full"
+                          style={{
+                            left: `${20 + (i * 60) % 60}%`,
+                            top: `${15 + (i * 45) % 70}%`,
+                            boxShadow: "0 0 6px rgba(73, 146, 255, 0.6)",
+                          }}
+                          animate={{
+                            y: [-5, 5, -5],
+                            x: [-3, 3, -3],
+                            opacity: [0.3, 1, 0.3],
+                            scale: [0.8, 1.2, 0.8],
+                          }}
+                          transition={{
+                            duration: 3 + (i % 3),
+                            repeat: Infinity,
+                            delay: i * 0.3,
+                          }}
+                        />
+                      ))}
+
+                      {/* Scanning Line Effect */}
                       <motion.div
-                        key={i}
-                        className="flex items-center space-x-3"
-                        initial={{ x: -50, opacity: 0 }}
-                        animate={
-                          isVisible
-                            ? { x: 0, opacity: 1 }
-                            : { x: -50, opacity: 0 }
-                        }
-                        transition={{ duration: 0.5, delay: 1 + i * 0.1 }}
-                      >
-                        <div
-                          className="w-3 h-3 rounded-full bg-blue-400 animate-pulse"
-                          style={{
-                            boxShadow: "0 0 10px rgba(73, 146, 255, 0.8)",
-                          }}
-                        />
-                        <div
-                          className={`h-2 rounded-full ${
-                            i % 3 === 0
-                              ? "w-32 bg-gradient-to-r from-blue-400 to-cyan-400"
-                              : i % 3 === 1
-                                ? "w-24 bg-gradient-to-r from-purple-400 to-pink-400"
-                                : "w-28 bg-gradient-to-r from-cyan-400 to-blue-400"
-                          }`}
-                          style={{
-                            boxShadow: "0 0 8px rgba(73, 146, 255, 0.4)",
-                          }}
-                        />
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Floating Tech Icons */}
-                  {[Code, Zap, Star].map((Icon, index) => (
-                    <motion.div
-                      key={index}
-                      className="absolute"
-                      style={{
-                        right: `${20 + index * 40}px`,
-                        top: `${60 + index * 50}px`,
-                      }}
-                      animate={{
-                        y: [0, -15, 0],
-                        rotate: [0, 10, 0],
-                        scale: [1, 1.1, 1],
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        delay: index * 0.7,
-                      }}
-                    >
-                      <Icon
-                        className="w-10 h-10 text-blue-400 opacity-80"
+                        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent"
+                        animate={{
+                          top: ["20%", "80%", "20%"],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
                         style={{
-                          filter:
-                            "drop-shadow(0 0 10px rgba(73, 146, 255, 0.6))",
+                          boxShadow: "0 0 10px rgba(73, 146, 255, 0.8)",
                         }}
                       />
-                    </motion.div>
-                  ))}
+                    </div>
+
+                    {/* Glass Reflection */}
+                    <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/20 via-white/5 to-transparent pointer-events-none" />
+                  </div>
+
+                  {/* External Floating Elements */}
+                  <motion.div
+                    className="absolute -top-4 -right-4 w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 opacity-80 backdrop-blur-sm"
+                    animate={{
+                      y: [0, -10, 0],
+                      rotate: [0, 180, 360],
+                    }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                    }}
+                    style={{
+                      boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)",
+                    }}
+                  />
+
+                  <motion.div
+                    className="absolute -bottom-2 -left-2 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 opacity-70 backdrop-blur-sm"
+                    animate={{
+                      x: [0, 8, 0],
+                      y: [0, -8, 0],
+                      scale: [1, 1.2, 1],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      delay: 1,
+                    }}
+                    style={{
+                      boxShadow: "0 0 15px rgba(168, 85, 247, 0.4)",
+                    }}
+                  />
                 </div>
               </motion.div>
             </div>
