@@ -817,7 +817,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█������█████��█���█████ 60%
+                      CPU: ███��█������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2016,11 +2016,7 @@ export default function Index() {
           >
             {[
               ...Array(
-                animationConfig.enableBackgroundParticles
-                  ? isMobile
-                    ? 3
-                    : 15
-                  : 0,
+                animationConfig.enableBackgroundParticles ? 15 : 0,
               ),
             ].map((_, i) => (
               <motion.div
