@@ -673,7 +673,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█���██████��███████ 60%
+                      CPU: ███��█���███��██��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4648,9 +4648,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     </div>
 
                     {/* Service Title - positioned at top of card */}
-                    <div className="relative z-10 mb-2 sm:mb-4 lg:mb-6">
+                    <div className="relative z-10 mb-1 sm:mb-2 lg:mb-3">
                       <h3
-                        className={`text-sm sm:text-lg lg:text-xl font-bold warm-glow-text text-center ${
+                        className={`text-xs sm:text-sm lg:text-base font-bold warm-glow-text text-center ${
                           theme === "light" ? "text-gray-900" : "text-white"
                         }`}
                         style={{
@@ -4663,17 +4663,17 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                     {/* Icon - centered */}
                     <motion.div
-                      className="relative z-10 mb-2 sm:mb-4 lg:mb-6 flex justify-center"
+                      className="relative z-10 mb-1 sm:mb-2 lg:mb-3 flex justify-center"
                       whileHover={{ rotate: 10, scale: 1.2 }}
                       transition={{ duration: 0.3 }}
                     >
                       <div
-                        className={`w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
+                        className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
                         style={{
                           boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
                         }}
                       >
-                        <service.icon className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
+                        <service.icon className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
                       </div>
                     </motion.div>
 
