@@ -565,7 +565,7 @@ export default function Index() {
           )}
         </AnimatePresence>
         {/* Retro Main Content - Only show after loading */}
-        {!isLoading && (
+        {(
           <>
             {/* Toggle Buttons Container */}
             <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
@@ -626,9 +626,9 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ███����������█╗
-██║ ██╔╝██╔������═██╗██╔═══██╗
+██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══██╗
+██╔═██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
