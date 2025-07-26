@@ -36,9 +36,9 @@ export default function Index() {
     isNear: false,
   });
   const badgeRef = useRef<HTMLDivElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [animationStep, setAnimationStep] = useState(0); // 0: initial, 1: orb, 2: text, 3: buttons, 4: background, 5: complete
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [animationStep, setAnimationStep] = useState(6); // Skip to complete state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
@@ -226,25 +226,21 @@ export default function Index() {
       }
     };
 
-    // Initial loading sequence
-    const timeouts = triggerLoadingSequence();
-
-    // Check initial section after loading
-    setTimeout(checkInitialSection, 600);
+    // Skip loading sequence - go directly to checking initial section
+    checkInitialSection();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", checkMobile);
-      timeouts.forEach(clearTimeout);
     };
   }, []);
 
-  // Trigger loading animation when switching modes
+  // Trigger loading animation when switching to retro mode
   useEffect(() => {
     if (previousMode !== mode) {
       setPreviousMode(mode);
-      // Only trigger loading if it's not the initial load
-      if (previousMode !== null) {
+      // Only trigger loading for retro mode
+      if (mode === "retro" && previousMode !== null) {
         triggerLoadingSequence();
       }
     }
@@ -636,7 +632,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══██╗
+██╔═██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
@@ -1709,7 +1705,7 @@ export default function Index() {
               : "bg-black"
           }`}
           initial={{ opacity: 0 }}
-          animate={{ opacity: animationStep >= 1 ? 1 : 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
@@ -1801,11 +1797,7 @@ export default function Index() {
           <motion.div
             className="absolute inset-0 pointer-events-none overflow-hidden"
             initial={{ opacity: 0, scale: 0.5 }}
-            animate={
-              animationStep >= 1
-                ? { opacity: 1, scale: 1 }
-                : { opacity: 0, scale: 0.5 }
-            }
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
             {[...Array(25)].map((_, i) => (
@@ -1823,11 +1815,7 @@ export default function Index() {
                   transform: `scale(${0.5 + (i % 3) * 0.3})`,
                 }}
                 initial={{ scale: 0, rotate: 0 }}
-                animate={
-                  animationStep >= 1
-                    ? { scale: 1, rotate: 360 }
-                    : { scale: 0, rotate: 0 }
-                }
+                animate={{ scale: 1, rotate: 360 }}
                 transition={{
                   duration: 0.8,
                   delay: i * 0.03,
