@@ -6217,7 +6217,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <motion.button
                         key={contact.name}
                         onClick={() => window.open(contact.url, "_blank")}
-                        className="group relative p-6 rounded-2xl backdrop-blur-lg border transition-all duration-300 hover:scale-[1.02] overflow-hidden will-change-transform"
+                        className="group relative rounded-2xl backdrop-blur-lg border transition-all duration-300 hover:scale-[1.02] overflow-hidden will-change-transform p-4 sm:p-6"
                         style={{
                           background: "rgba(255, 255, 255, 0.08)",
                           border: "2px solid rgba(255, 255, 255, 0.15)",
@@ -6239,46 +6239,75 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-transparent via-white/60 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                         </div>
 
-                        {/* Main Content */}
-                        <div className="flex items-center space-x-4 relative z-10">
-                          <div
-                            className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center shadow-lg`}
-                            style={{
-                              boxShadow: `0 8px 25px ${contact.shadowColor}`,
-                            }}
-                          >
-                            <span className="text-white text-2xl animate-gentleBounce">
-                              {contact.icon}
-                            </span>
-                          </div>
-                          <div className="flex-1 text-left">
-                            <h4
-                              className={`font-bold text-lg ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
+                        {/* Main Content - Responsive Layout */}
+                        <div className="relative z-10">
+                          {/* Mobile Layout - Vertical Stack */}
+                          <div className="sm:hidden flex flex-col items-center text-center space-y-2">
+                            <div
+                              className={`w-12 h-12 rounded-xl bg-gradient-to-br ${contact.color} flex items-center justify-center shadow-lg`}
+                              style={{
+                                boxShadow: `0 6px 20px ${contact.shadowColor}`,
+                              }}
                             >
-                              {contact.name}
-                            </h4>
-                            <p
-                              className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-400"} group-hover:text-blue-200 transition-colors duration-300`}
-                            >
-                              {contact.subtitle}
-                            </p>
+                              <span className="text-white text-lg animate-gentleBounce">
+                                {contact.icon}
+                              </span>
+                            </div>
+                            <div>
+                              <h4
+                                className={`font-bold text-sm ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
+                              >
+                                {contact.name}
+                              </h4>
+                              <p
+                                className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"} group-hover:text-blue-200 transition-colors duration-300 mt-1`}
+                              >
+                                {contact.name === "Email" ? "contact@kor.dev" : contact.subtitle}
+                              </p>
+                            </div>
                           </div>
-                          <div className="text-blue-400 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
+
+                          {/* Tablet+ Layout - Horizontal */}
+                          <div className="hidden sm:flex items-center space-x-4">
+                            <div
+                              className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center shadow-lg`}
+                              style={{
+                                boxShadow: `0 8px 25px ${contact.shadowColor}`,
+                              }}
+                            >
+                              <span className="text-white text-2xl animate-gentleBounce">
+                                {contact.icon}
+                              </span>
+                            </div>
+                            <div className="flex-1 text-left">
+                              <h4
+                                className={`font-bold text-lg ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
+                              >
+                                {contact.name}
+                              </h4>
+                              <p
+                                className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-400"} group-hover:text-blue-200 transition-colors duration-300`}
+                              >
+                                {contact.subtitle}
+                              </p>
+                            </div>
+                            <div className="text-blue-400 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </div>
                           </div>
                         </div>
 
                         {/* Circuit decorations */}
                         <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-                          <div className="absolute top-2 right-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+                          <div className="absolute top-2 right-2 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full animate-pulse" />
                           <div
-                            className="absolute bottom-2 left-2 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse"
+                            className="absolute bottom-2 left-2 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-cyan-400 rounded-full animate-pulse"
                             style={{ animationDelay: "0.5s" }}
                           />
                           <div
-                            className="absolute top-1/2 right-6 w-1 h-1 bg-purple-400 rounded-full animate-pulse"
+                            className="absolute top-1/2 right-4 sm:right-6 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-purple-400 rounded-full animate-pulse"
                             style={{ animationDelay: "1s" }}
                           />
                         </div>
