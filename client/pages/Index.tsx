@@ -1793,32 +1793,32 @@ export default function Index() {
             }}
           />
 
-          {/* Enhanced Floating Ambient Particles with Color Shifting - YouTube Intro Style */}
+          {/* Optimized Floating Ambient Particles - Reduced count for 60fps */}
           <motion.div
-            className="absolute inset-0 pointer-events-none overflow-hidden"
+            className="absolute inset-0 pointer-events-none overflow-hidden will-change-transform"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
-            {[...Array(25)].map((_, i) => (
+            {[...Array(isMobile ? 8 : 15)].map((_, i) => (
               <motion.div
                 key={`particle-${i}`}
-                className="absolute rounded-full opacity-60"
+                className="absolute rounded-full opacity-60 gpu-accelerated"
                 style={{
                   left: `${5 + ((i * 60) % 95)}%`,
                   top: `${10 + ((i * 35) % 85)}%`,
-                  width: `${1 + (i % 4)}px`,
-                  height: `${1 + (i % 4)}px`,
-                  background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.2 + (i % 4) * 0.15})`,
-                  animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
-                  filter: "blur(0.3px)",
-                  transform: `scale(${0.5 + (i % 3) * 0.3})`,
+                  width: `${2 + (i % 3)}px`,
+                  height: `${2 + (i % 3)}px`,
+                  background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.3 + (i % 3) * 0.2})`,
+                  animation: `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s`,
+                  willChange: "transform",
+                  transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
                 }}
                 initial={{ scale: 0, rotate: 0 }}
                 animate={{ scale: 1, rotate: 360 }}
                 transition={{
                   duration: 0.8,
-                  delay: i * 0.03,
+                  delay: i * 0.05,
                   ease: "backOut",
                   type: "spring",
                   stiffness: 200,
