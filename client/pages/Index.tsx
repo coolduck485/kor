@@ -1628,11 +1628,19 @@ export default function Index() {
         >
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             <span
-              className={`font-inter text-sm font-medium animate-text-glow ${
+              className={`font-inter text-sm font-medium animate-text-glow wavy-text ${
                 theme === "light" ? "text-gray-600" : "text-white/70"
               }`}
             >
-              Scroll Down
+              {"Scroll Down".split("").map((char, index) => (
+                <span
+                  key={index}
+                  className="inline-block animate-wavy-text"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              ))}
             </span>
 
             {/* Mouse scroll indicator - now visible on all devices */}
@@ -1658,11 +1666,19 @@ export default function Index() {
         >
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             <span
-              className={`font-inter text-sm font-medium animate-text-glow ${
+              className={`font-inter text-sm font-medium animate-text-glow wavy-text ${
                 theme === "light" ? "text-gray-600" : "text-white/70"
               }`}
             >
-              Scroll Up
+              {"Scroll Up".split("").map((char, index) => (
+                <span
+                  key={index}
+                  className="inline-block animate-wavy-text"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              ))}
             </span>
 
             {/* Mouse scroll indicator - pointing up - now visible on all devices */}
