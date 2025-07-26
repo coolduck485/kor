@@ -5694,16 +5694,16 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                     {/* Interest Selection */}
                     <div>
-                      <h3 className={`text-sm font-medium mb-3 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                      <h3 className={`text-xs font-medium mb-2 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
                         I'm interested in...
                       </h3>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-1">
                         {interests.map((interest) => (
                           <button
                             key={interest}
                             type="button"
                             onClick={() => handleInterestSelect(interest)}
-                            className={`p-2 text-xs sm:text-sm rounded-lg border transition-all duration-200 hover:scale-105 will-change-transform ${
+                            className={`p-1.5 text-xs rounded-md border transition-all duration-200 hover:scale-105 will-change-transform ${
                               selectedInterest === interest
                                 ? "border-blue-400 text-blue-400"
                                 : "border-white/20 hover:border-white/40"
