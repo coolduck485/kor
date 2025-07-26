@@ -673,7 +673,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█���███��██��███████ 60%
+                      CPU: ███��█���██████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4680,7 +4680,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     {/* Description Content */}
                     <div className="relative z-10 text-center">
                       <p
-                        className={`text-xs sm:text-sm leading-relaxed ${
+                        className={`text-xs leading-relaxed ${
                           theme === "light" ? "text-gray-600" : "text-gray-300"
                         }`}
                         style={{
