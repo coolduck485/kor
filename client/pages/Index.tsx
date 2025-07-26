@@ -1739,7 +1739,7 @@ export default function Index() {
         </div>
       </div>
 
-      {/* Black Transition Overlay */}
+      {/* Black Transition Overlay with Cinematic Effects */}
       <AnimatePresence>
         {isBlackTransition && (
           <motion.div
@@ -1755,7 +1755,39 @@ export default function Index() {
               willChange: "opacity",
               transform: "translateZ(0)",
             }}
-          />
+          >
+            {/* Cinematic wipe effect */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              exit={{ scaleX: 0 }}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 0.1
+              }}
+              className="absolute inset-0 bg-black origin-left"
+              style={{
+                willChange: "transform",
+                transform: "translateZ(0)",
+              }}
+            />
+
+            {/* Subtle loading indicator */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{
+                duration: 0.3,
+                ease: "easeOut",
+                delay: 0.2
+              }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <div className="w-1 h-1 bg-white/20 rounded-full animate-pulse" />
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
 
