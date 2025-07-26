@@ -3906,7 +3906,7 @@ const ORB_BUTTON_CONFIG = {
       angle: -30, // Position: top-right, mirrored from Services for symmetry
       radius: 280, // Consistent distance from center
       position: "top-right",
-      animationDelay: 0.2,
+      animationDelay: 0.3,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
@@ -3948,7 +3948,7 @@ const ORB_BUTTON_CONFIG = {
       angle: 150, // Position: bottom-left, better symmetry
       radius: 280, // Consistent distance from center
       position: "bottom-left",
-      animationDelay: 1.0,
+      animationDelay: 0.9,
       size: "medium", // Consistent sizing for uniform look
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
@@ -3967,7 +3967,7 @@ const ORB_BUTTON_CONFIG = {
       angle: -150, // Position: top-left, mirrored from Portfolio for symmetry
       radius: 280, // Consistent distance from center
       position: "top-left",
-      animationDelay: 1.4,
+      animationDelay: 1.2,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
