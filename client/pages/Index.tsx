@@ -723,8 +723,8 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ��█╗ ██████╗ ███����������█╗
-██║ ██╔╝██╔═���═██╗██╔��══██╗
+                  {`██╗  ██╗ ██████╗ ███����������█╗
+██║ ██╔╝��█╔═���═██╗██╔��══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
@@ -2014,8 +2014,8 @@ export default function Index() {
                   width: `${25 + (i % 2) * 15}px`,
                   height: `${25 + (i % 2) * 15}px`,
                   background: `radial-gradient(circle, rgba(${73 + i * 15}, ${146 + i * 8}, 255, 0.4) 0%, transparent 70%)`,
-                  animation: `breath ${8 + (i % 3)}s ease-in-out infinite ${i * 0.6}s`,
-                  filter: `blur(${3 + (i % 2)}px)`,
+                  animation: `breath ${isMobile ? 4 + (i % 2) : 8 + (i % 3)}s ease-in-out infinite ${i * (isMobile ? 0.3 : 0.6)}s`,
+                  filter: `blur(${isMobile ? 2 : 3 + (i % 2)}px)`,
                   willChange: "transform, opacity",
                   transform: "translateZ(0)",
                 }}
