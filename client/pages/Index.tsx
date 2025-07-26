@@ -1470,7 +1470,7 @@ export default function Index() {
     >
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
-        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div className="scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             {/* Desktop: Scroll Down */}
             <span
