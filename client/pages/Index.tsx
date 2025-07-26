@@ -747,7 +747,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█���██████��███████ 60%
+                      CPU: ███��█���██████��█████��█ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -815,7 +815,7 @@ export default function Index() {
                 <div className="status-indicators">
                   <span className="status-dot text-red-400">●</span>
                   <span>READY</span>
-                  <span className="status-dot text-amber-400">��</span>
+                  <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
                   <span className="status-dot text-green-400 terminal-glow">
                     ●
@@ -2884,13 +2884,14 @@ export default function Index() {
           }`}
           animate={{
             opacity: isContentVisible && currentSection === 1 ? 1 : currentSection === 1 ? 0 : 1,
-            y: isContentVisible && currentSection === 1 ? 0 : currentSection === 1 ? 30 : 0,
-            scale: isContentVisible && currentSection === 1 ? 1 : currentSection === 1 ? 0.95 : 1
+            y: isContentVisible && currentSection === 1 ? 0 : currentSection === 1 ? 40 : 0,
+            scale: isContentVisible && currentSection === 1 ? 1 : currentSection === 1 ? 0.95 : 1,
+            filter: isContentVisible && currentSection === 1 ? "blur(0px)" : currentSection === 1 ? "blur(8px)" : "blur(0px)"
           }}
           transition={{
-            duration: 0.8,
-            ease: "easeOut",
-            delay: currentSection === 1 ? 0.3 : 0
+            duration: 0.9,
+            ease: [0.25, 0.46, 0.45, 0.94],
+            delay: currentSection === 1 ? 0.4 : 0
           }}
         >
           <AboutUsSection
