@@ -4593,7 +4593,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-6 lg:gap-8 xl:gap-10 mt-16 responsive-grid w-full">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-6 lg:gap-8 xl:gap-10 mt-16 responsive-grid w-full">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
@@ -4609,7 +4609,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 >
                   {/* Service Card */}
                   <div
-                    className="relative p-2 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl lg:rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
+                    className="relative p-1 sm:p-6 lg:p-8 rounded-lg sm:rounded-2xl lg:rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
                     style={{
                       background: "rgba(255, 255, 255, 0.05)",
                       border: "2px solid rgba(255, 255, 255, 0.1)",
@@ -5035,7 +5035,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 <motion.button
                   onClick={prevPage}
                   disabled={currentPage === 0}
-                  className={`group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
+                  className={`group relative p-1.5 sm:p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
                     currentPage === 0
                       ? "opacity-30 cursor-not-allowed"
                       : "hover:scale-110 cursor-pointer"
@@ -5052,7 +5052,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   whileTap={currentPage === 0 ? {} : { scale: 0.95 }}
                 >
                   <ChevronLeft
-                    className={`w-6 h-6 transition-colors ${
+                    className={`w-4 h-4 sm:w-6 sm:h-6 transition-colors ${
                       currentPage === 0
                         ? "text-gray-500"
                         : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
@@ -5080,15 +5080,15 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 </motion.button>
 
                 {/* Page Indicators */}
-                <div className="flex space-x-3 items-center">
+                <div className="flex space-x-1 sm:space-x-3 items-center">
                   {Array.from({ length: totalPages }).map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentPage(index)}
                       className={`transition-all duration-300 ${
                         currentPage === index
-                          ? "w-6 sm:w-8 h-1.5 sm:h-2 bg-blue-400 rounded-full scale-110 sm:scale-125"
-                          : "w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/20 hover:bg-white/40 rounded-full"
+                          ? "w-3 sm:w-6 md:w-8 h-1 sm:h-1.5 md:h-2 bg-blue-400 rounded-full scale-110 sm:scale-125"
+                          : "w-1 sm:w-1.5 md:w-2 h-1 sm:h-1.5 md:h-2 bg-white/20 hover:bg-white/40 rounded-full"
                       }`}
                       style={{
                         boxShadow:
@@ -5099,7 +5099,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     />
                   ))}
                   <span
-                    className={`text-xs font-mono ml-2 ${theme === "light" ? "text-gray-600" : "text-white/60"}`}
+                    className={`text-xs font-mono ml-1 sm:ml-2 ${theme === "light" ? "text-gray-600" : "text-white/60"}`}
                   >
                     {currentPage + 1} / {totalPages}
                   </span>
@@ -5109,7 +5109,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 <motion.button
                   onClick={nextPage}
                   disabled={currentPage === totalPages - 1}
-                  className={`group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
+                  className={`group relative p-1.5 sm:p-3 rounded-full backdrop-blur-lg border transition-all duration-300 z-20 ${
                     currentPage === totalPages - 1
                       ? "opacity-30 cursor-not-allowed"
                       : "hover:scale-110 cursor-pointer"
@@ -5130,7 +5130,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   }
                 >
                   <ChevronRight
-                    className={`w-6 h-6 transition-colors ${
+                    className={`w-4 h-4 sm:w-6 sm:h-6 transition-colors ${
                       currentPage === totalPages - 1
                         ? "text-gray-500"
                         : `${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400`
