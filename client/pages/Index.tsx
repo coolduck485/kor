@@ -594,7 +594,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
-██╔═██╗ ██���   ██║██╔══██╗
+██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
@@ -746,7 +746,7 @@ export default function Index() {
                 </div>
 
                 <div className="loading-indicators">
-                  <span>█▓���░</span>
+                  <span>█▓▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
                   <span>░▒▓█</span>
                 </div>
@@ -4169,7 +4169,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 </div>
 
                 {/* Stats - matching floating button style */}
-                <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 mt-6 sm:mt-8 lg:mt-12 max-w-4xl mx-auto">
+                <div className="grid grid-cols-3 gap-1 sm:gap-4 lg:gap-6 mt-4 sm:mt-8 lg:mt-12 max-w-4xl mx-auto">
                   {[
                     { number: "100+", label: "Projects" },
                     { number: "50+", label: "Clients" },
