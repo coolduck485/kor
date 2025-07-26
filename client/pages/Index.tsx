@@ -4052,7 +4052,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Our Mission - matching development services style */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-10 sm:mb-16">
               <div className="relative">
                 {/* Background glow effect */}
                 <div
@@ -4066,11 +4066,11 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   }}
                 />
 
-                {/* Floating energy particles around text */}
-                {[...Array(8)].map((_, i) => (
+                {/* Floating energy particles around text - reduced for mobile */}
+                {[...Array(6)].map((_, i) => (
                   <div
                     key={`energy-${i}`}
-                    className="absolute rounded-full pointer-events-none"
+                    className="absolute rounded-full pointer-events-none hidden sm:block"
                     style={{
                       left: `${20 + ((i * 60) % 160)}%`,
                       top: `${30 + ((i * 40) % 60)}%`,
@@ -4088,7 +4088,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   />
                 ))}
 
-                <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                <div className="font-poppins text-lg sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                   <span
                     className={`relative inline-block ${
                       theme === "light" ? "text-gray-900" : "text-white"
