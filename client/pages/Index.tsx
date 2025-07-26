@@ -28,6 +28,7 @@ export default function Index() {
   const { mode, toggleMode } = useRetroMode();
   const { showSuccess, showError, showWarning, showInfo } =
     useFloatingNotifications();
+  const [isMobile, setIsMobile] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
@@ -190,13 +191,21 @@ export default function Index() {
       });
     };
 
+    // Check if device is mobile for performance optimization
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", checkMobile);
+    checkMobile(); // Initial check
 
     // Initial loading sequence
     const timeouts = triggerLoadingSequence();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", checkMobile);
       timeouts.forEach(clearTimeout);
     };
   }, []);
@@ -591,7 +600,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ████���█╗
+                  {`██╗  ██╗ ██████╗ ███������█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -664,7 +673,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████���██████��███████ 60%
+                      CPU: ███��█���██████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1461,7 +1470,7 @@ export default function Index() {
     >
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
-        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div className="scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             {/* Desktop: Scroll Down */}
             <span
@@ -1520,7 +1529,7 @@ export default function Index() {
 
       {/* Scroll Up Indicator - Last Section */}
       {currentSection === sections.length - 1 && (
-        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div className="scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             {/* Desktop: Scroll Up */}
             <span
@@ -1580,7 +1589,7 @@ export default function Index() {
 
       {/* Back to Top Button - All sections except first */}
       {currentSection > 0 && (
-        <div className="fixed bottom-8 right-4 sm:right-8 z-50">
+        <div className="back-to-top fixed bottom-8 right-4 sm:right-8 z-50">
           <button
             onClick={() => scrollToSection(0)}
             className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
@@ -2612,6 +2621,7 @@ export default function Index() {
           ref={(el) => (sectionsRef.current[4] = el!)}
           theme={theme}
           isVisible={currentSection === 4}
+          isMobile={isMobile}
         />
       </div>
 
@@ -3825,6 +3835,7 @@ function OrbFloatingButton({
 interface SectionProps {
   theme: "light" | "dark";
   isVisible: boolean;
+  isMobile?: boolean;
 }
 
 const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
@@ -3975,10 +3986,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative min-h-screen py-16 sm:py-20 lg:py-24 section-container">
+        <div className="relative min-h-screen py-4 sm:py-6 lg:py-8 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-8 pb-20"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-2 pb-4"
             initial={{
               opacity: 0,
               y: 80,
@@ -4000,9 +4011,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             }}
           >
             {/* About Us Title - matching home style */}
-            <div className="text-center mb-6 sm:mb-12 lg:mb-16">
+            <div className="text-center mb-3 sm:mb-6 lg:mb-8">
               <h1
-                className={`font-poppins text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight relative ${
+                className={`font-poppins text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
@@ -4074,43 +4085,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Our Mission - matching development services style */}
-            <div className="text-center mb-10 sm:mb-16">
+            <div className="text-center mb-4 sm:mb-8">
               <div className="relative">
-                {/* Background glow effect */}
-                <div
-                  className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
-                  style={{
-                    background:
-                      theme === "light"
-                        ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
-                        : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
-                    transform: "scale(1.5)",
-                  }}
-                />
-
-                {/* Floating energy particles around text - reduced for mobile */}
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={`energy-${i}`}
-                    className="absolute rounded-full pointer-events-none hidden sm:block"
-                    style={{
-                      left: `${20 + ((i * 60) % 160)}%`,
-                      top: `${30 + ((i * 40) % 60)}%`,
-                      width: `${3 + (i % 2)}px`,
-                      height: `${3 + (i % 2)}px`,
-                      background:
-                        theme === "light"
-                          ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
-                          : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
-                      animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
-                      filter: "blur(0.5px)",
-                      animationFillMode: "both",
-                      animationTimingFunction: "ease-in-out",
-                    }}
-                  />
-                ))}
-
-                <div className="font-poppins text-lg sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10">
                   <span
                     className={`relative inline-block ${
                       theme === "light" ? "text-gray-900" : "text-white"
@@ -4145,7 +4122,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center mt-12 sm:mt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center mt-6 sm:mt-8">
               {/* Left Content */}
               <motion.div
                 className="space-y-4 sm:space-y-6 lg:space-y-8 text-left"
@@ -4520,10 +4497,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative min-h-screen py-16 sm:py-20 lg:py-24 section-container">
+        <div className="relative min-h-screen py-2 sm:py-3 lg:py-4 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content pt-8 pb-20"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-1 pb-2"
             initial={{
               opacity: 0,
               y: 80,
@@ -4545,9 +4522,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             }}
           >
             {/* Services Title - matching home style */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-3">
               <h1
-                className={`font-poppins text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${
+                className={`font-poppins text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight relative ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
@@ -4566,7 +4543,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle - matching development services style */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-3">
               <div className="relative">
                 {/* Background glow effect */}
                 <div
@@ -4602,7 +4579,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   />
                 ))}
 
-                <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10">
                   <span
                     className={`relative inline-block ${
                       theme === "light" ? "text-gray-900" : "text-white"
@@ -4637,7 +4614,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-6 lg:gap-8 xl:gap-10 mt-16 responsive-grid w-full">
+            <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-3 lg:gap-4 xl:gap-5 mt-6 responsive-grid w-full">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
@@ -4653,7 +4630,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 >
                   {/* Service Card */}
                   <div
-                    className="relative p-1 sm:p-6 lg:p-8 rounded-lg sm:rounded-2xl lg:rounded-3xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
+                    className="relative p-1 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
                     style={{
                       background: "rgba(255, 255, 255, 0.05)",
                       border: "2px solid rgba(255, 255, 255, 0.1)",
@@ -4671,9 +4648,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     </div>
 
                     {/* Service Title - positioned at top of card */}
-                    <div className="relative z-10 mb-2 sm:mb-4 lg:mb-6">
+                    <div className="relative z-10 mb-1 sm:mb-2 lg:mb-3">
                       <h3
-                        className={`text-sm sm:text-lg lg:text-xl font-bold warm-glow-text text-center ${
+                        className={`text-xs sm:text-sm lg:text-base font-bold warm-glow-text text-center ${
                           theme === "light" ? "text-gray-900" : "text-white"
                         }`}
                         style={{
@@ -4686,24 +4663,24 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                     {/* Icon - centered */}
                     <motion.div
-                      className="relative z-10 mb-2 sm:mb-4 lg:mb-6 flex justify-center"
+                      className="relative z-10 mb-1 sm:mb-2 lg:mb-3 flex justify-center"
                       whileHover={{ rotate: 10, scale: 1.2 }}
                       transition={{ duration: 0.3 }}
                     >
                       <div
-                        className={`w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
+                        className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
                         style={{
                           boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
                         }}
                       >
-                        <service.icon className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
+                        <service.icon className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
                       </div>
                     </motion.div>
 
                     {/* Description Content */}
                     <div className="relative z-10 text-center">
                       <p
-                        className={`text-xs sm:text-sm leading-relaxed ${
+                        className={`text-xs leading-relaxed ${
                           theme === "light" ? "text-gray-600" : "text-gray-300"
                         }`}
                         style={{
@@ -4993,17 +4970,17 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative min-h-screen py-16 sm:py-20 lg:py-24 section-container">
+        <div className="relative min-h-screen py-4 sm:py-6 lg:py-8 section-container">
           <motion.div
-            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content pt-6 pb-16"
+            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-2 pb-4"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
             {/* Portfolio Title */}
-            <div className="text-center mb-10 sm:mb-16">
+            <div className="text-center mb-4 sm:mb-8">
               <h1
-                className={`font-poppins text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                className={`font-poppins text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
               >
                 {"Portfolio".split("").map((letter, i) => (
                   <span
@@ -5369,17 +5346,57 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // ========================================
 
 const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible }, ref) => {
+  ({ theme, isVisible, isMobile = false }, ref) => {
     const [formData, setFormData] = useState({
-      name: "",
+      firstName: "",
+      lastName: "",
       email: "",
-      message: "",
+      phone: "",
+      interest: "",
+      budget: "",
+      description: "",
     });
+
+    const [selectedInterest, setSelectedInterest] = useState("");
+    const [selectedBudget, setSelectedBudget] = useState("");
+
+    const interests = [
+      "Web Design",
+      "Web Development",
+      "Software/App Development",
+      "E-commerce Solutions",
+      "UI/UX Design",
+      "Digital Marketing",
+      "Other"
+    ];
+
+    const budgets = [
+      "$0 - $1K",
+      "$1K - $5K",
+      "$5K - $10K",
+      "$10K - $25K",
+      "$25K - $50K",
+      "$50K+"
+    ];
 
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();
-      console.log("Form submitted:", formData);
+      console.log("Form submitted:", {
+        ...formData,
+        interest: selectedInterest,
+        budget: selectedBudget
+      });
       // Add your form submission logic here
+    };
+
+    const handleInterestSelect = (interest: string) => {
+      setSelectedInterest(interest);
+      setFormData({ ...formData, interest });
+    };
+
+    const handleBudgetSelect = (budget: string) => {
+      setSelectedBudget(budget);
+      setFormData({ ...formData, budget });
     };
 
     return (
@@ -5412,7 +5429,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(12)].map((_, i) => (
+          {[...Array(isMobile ? 3 : 6)].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute rounded-full opacity-60"
@@ -5425,6 +5442,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
                 filter: "blur(0.3px)",
                 transform: `scale(${0.5 + (i % 3) * 0.3})`,
+                willChange: 'transform',
               }}
             />
           ))}
@@ -5433,8 +5451,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Animated Geometric Patterns */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
           <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
-            {/* Animated hexagon grid */}
-            {[...Array(4)].map((_, i) => (
+            {/* Animated hexagon grid - Reduced for mobile */}
+            {[...Array(isMobile ? 2 : 4)].map((_, i) => (
               <polygon
                 key={`hex-${i}`}
                 points="100,20 140,40 140,80 100,100 60,80 60,40"
@@ -5448,8 +5466,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 }}
               />
             ))}
-            {/* Animated connecting lines */}
-            {[...Array(4)].map((_, i) => (
+            {/* Animated connecting lines - Reduced for mobile */}
+            {[...Array(isMobile ? 2 : 4)].map((_, i) => (
               <line
                 key={`line-${i}`}
                 x1={50 + i * 300}
@@ -5464,8 +5482,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 }}
               />
             ))}
-            {/* Animated circuit lines for Contact section */}
-            {[...Array(4)].map((_, i) => (
+            {/* Animated circuit lines for Contact section - Reduced for mobile */}
+            {[...Array(isMobile ? 1 : 2)].map((_, i) => (
               <motion.path
                 key={`circuit-${i}`}
                 d={`M${100 + i * 200},100 L${200 + i * 200},200 L${150 + i * 200},300 L${250 + i * 200},400`}
@@ -5481,9 +5499,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           </svg>
         </div>
 
-        {/* Breathing Orbs */}
+        {/* Breathing Orbs - Reduced for mobile */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(isMobile ? 2 : 6)].map((_, i) => (
             <div
               key={`breath-orb-${i}`}
               className="absolute rounded-full"
@@ -5542,17 +5560,17 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative min-h-screen py-12 sm:py-20 lg:py-24 section-container">
+        <div className="relative min-h-screen py-2 sm:py-4 lg:py-6 section-container">
           <motion.div
-            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-6 pb-16"
+            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-1 pb-4"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
             {/* Contact Title */}
-            <div className="text-center mb-10 sm:mb-16">
+            <div className="text-center mb-2 sm:mb-4">
               <h1
-                className={`font-poppins text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                className={`contact-title font-poppins text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
               >
                 {"Contact".split("").map((letter, i) => (
                   <span
@@ -5569,333 +5587,329 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle */}
-            <div className="text-center mb-10 sm:mb-16">
-              <div className="relative">
-                <div
-                  className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
-                  style={{
-                    background:
-                      theme === "light"
-                        ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
-                        : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
-                    transform: "scale(1.5)",
-                  }}
-                />
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={`energy-${i}`}
-                    className="absolute rounded-full pointer-events-none hidden sm:block"
-                    style={{
-                      left: `${20 + ((i * 60) % 160)}%`,
-                      top: `${30 + ((i * 40) % 60)}%`,
-                      width: `${3 + (i % 2)}px`,
-                      height: `${3 + (i % 2)}px`,
-                      background:
-                        theme === "light"
-                          ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
-                          : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
-                      animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
-                      filter: "blur(0.5px)",
-                      animationFillMode: "both",
-                    }}
-                  />
-                ))}
-                <div className="font-poppins text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10 px-2 sm:px-0">
-                  <span
-                    className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
-                    style={{
-                      animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
-                      filter:
-                        theme === "light"
-                          ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
-                          : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-                      animationFillMode: "both",
-                    }}
-                  >
-                    <span className="warm-glow-text animate-warm-glow-pulse text-center block">
-                      {"Ready to Build Something Amazing?"
-                        .split("")
-                        .map((letter, i) => (
-                          <span
-                            key={i}
-                            className="animate-letter-float"
-                            style={{ animationDelay: `${i * 0.05}s` }}
-                          >
-                            {letter === " " ? "\u00A0" : letter}
-                          </span>
-                        ))}
-                    </span>
-                  </span>
-                </div>
-              </div>
+            <div className="text-center mb-2 sm:mb-3">
+              <h2 className={`text-base sm:text-lg md:text-xl font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"} mb-1`}>
+                Have a great idea?
+              </h2>
+              <p className={`text-sm sm:text-base ${theme === "light" ? "text-gray-600" : "text-white/60"}`}>
+                Tell us about it.
+              </p>
             </div>
 
             {/* Contact Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-6 lg:gap-12 items-start mt-4 sm:mt-8 lg:mt-16">
-              {/* Contact Form */}
+            <div className="contact-grid grid grid-cols-1 lg:grid-cols-5 gap-3 sm:gap-4 items-start mt-1 sm:mt-2 px-1 sm:px-2 max-w-5xl mx-auto">
+              {/* Main Contact Form - Takes 3 columns */}
               <motion.div
+                className="lg:col-span-3"
                 initial={{ x: -50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }
                 }
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-3 sm:space-y-6"
+                <div
+                  className="p-3 sm:p-4 rounded-xl backdrop-blur-lg border"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.05)",
+                    border: "2px solid rgba(255, 255, 255, 0.1)",
+                    boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
+                  }}
                 >
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                      className="w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 outline-none text-sm sm:text-base"
+                  <form onSubmit={handleSubmit} className="contact-form space-y-3">
+                    {/* Name Fields Row */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="First Name"
+                          value={formData.firstName}
+                          onChange={(e) =>
+                            setFormData({ ...formData, firstName: e.target.value })
+                          }
+                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          style={{
+                            background: "rgba(255, 255, 255, 0.08)",
+                            border: "2px solid rgba(255, 255, 255, 0.15)",
+                            color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                          }}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Last Name"
+                          value={formData.lastName}
+                          onChange={(e) =>
+                            setFormData({ ...formData, lastName: e.target.value })
+                          }
+                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          style={{
+                            background: "rgba(255, 255, 255, 0.08)",
+                            border: "2px solid rgba(255, 255, 255, 0.15)",
+                            color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                          }}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    {/* Email and Phone Row */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <input
+                          type="email"
+                          placeholder="Your Email"
+                          value={formData.email}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
+                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          style={{
+                            background: "rgba(255, 255, 255, 0.08)",
+                            border: "2px solid rgba(255, 255, 255, 0.15)",
+                            color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                          }}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="tel"
+                          placeholder="Phone Number"
+                          value={formData.phone}
+                          onChange={(e) =>
+                            setFormData({ ...formData, phone: e.target.value })
+                          }
+                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          style={{
+                            background: "rgba(255, 255, 255, 0.08)",
+                            border: "2px solid rgba(255, 255, 255, 0.15)",
+                            color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                          }}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    {/* Interest Selection */}
+                    <div>
+                      <h3 className={`text-xs font-medium mb-2 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                        I'm interested in...
+                      </h3>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-1">
+                        {interests.map((interest) => (
+                          <button
+                            key={interest}
+                            type="button"
+                            onClick={() => handleInterestSelect(interest)}
+                            className={`p-1.5 text-xs rounded-md border transition-all duration-200 hover:scale-105 will-change-transform ${
+                              selectedInterest === interest
+                                ? "border-blue-400 text-blue-400"
+                                : "border-white/20 hover:border-white/40"
+                            }`}
+                            style={{
+                              background: selectedInterest === interest
+                                ? "rgba(59, 130, 246, 0.1)"
+                                : "rgba(255, 255, 255, 0.05)",
+                              color: selectedInterest === interest
+                                ? (theme === "light" ? "#2563eb" : "#60a5fa")
+                                : (theme === "light" ? "#4b5563" : "#d1d5db"),
+                            }}
+                          >
+                            {interest}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Budget Selection */}
+                    <div>
+                      <h3 className={`text-xs font-medium mb-2 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                        Project Budget (USD)
+                      </h3>
+                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-1">
+                        {budgets.map((budget) => (
+                          <button
+                            key={budget}
+                            type="button"
+                            onClick={() => handleBudgetSelect(budget)}
+                            className={`p-1.5 text-xs rounded-md border transition-all duration-200 hover:scale-105 will-change-transform ${
+                              selectedBudget === budget
+                                ? "border-green-400 text-green-400"
+                                : "border-white/20 hover:border-white/40"
+                            }`}
+                            style={{
+                              background: selectedBudget === budget
+                                ? "rgba(34, 197, 94, 0.1)"
+                                : "rgba(255, 255, 255, 0.05)",
+                              color: selectedBudget === budget
+                                ? (theme === "light" ? "#059669" : "#34d399")
+                                : (theme === "light" ? "#4b5563" : "#d1d5db"),
+                            }}
+                          >
+                            {budget}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Project Description */}
+                    <div>
+                      <h3 className={`text-xs font-medium mb-2 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                        Tell us more about your project
+                      </h3>
+                      <textarea
+                        placeholder="Something about your great idea..."
+                        value={formData.description}
+                        onChange={(e) =>
+                          setFormData({ ...formData, description: e.target.value })
+                        }
+                        rows={2}
+                        className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] resize-none outline-none text-sm will-change-transform"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.08)",
+                          border: "2px solid rgba(255, 255, 255, 0.15)",
+                          color: theme === "light" ? "#1f2937" : "#e5e7eb",
+                        }}
+                        required
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <motion.button
+                      type="submit"
+                      className="w-full p-3 rounded-xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-200 hover:scale-[1.02] text-sm will-change-transform"
                       style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        border: "2px solid rgba(255, 255, 255, 0.1)",
-                        color: theme === "light" ? "#1f2937" : "#e5e7eb",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
+                        background: "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
+                        boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
                       }}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Your Email"
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      className="w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 outline-none text-sm sm:text-base"
-                      style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        border: "2px solid rgba(255, 255, 255, 0.1)",
-                        color: theme === "light" ? "#1f2937" : "#e5e7eb",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
-                      }}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <textarea
-                      placeholder="Your Message"
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      rows={5}
-                      className="w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 resize-none outline-none text-sm sm:text-base"
-                      style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        border: "2px solid rgba(255, 255, 255, 0.1)",
-                        color: theme === "light" ? "#1f2937" : "#e5e7eb",
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
-                      }}
-                      required
-                    />
-                  </div>
-                  <motion.button
-                    type="submit"
-                    className="w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-300 hover:scale-105 text-sm sm:text-base"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
-                      boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
-                    }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    <span>Send Message</span>
-                  </motion.button>
-                </form>
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      <span>Submit Your Request</span>
+                    </motion.button>
+                  </form>
+                </div>
               </motion.div>
 
-              {/* Contact Info */}
+              {/* Message Us Section */}
               <motion.div
-                className="grid grid-cols-1 sm:space-y-4 lg:space-y-6 gap-2 sm:gap-0 mt-1 sm:mt-4 lg:mt-0 sm:block"
+                className="lg:col-span-2"
                 initial={{ x: 50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
                 }
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                {[
-                  {
-                    icon: Mail,
-                    title: "Email Us",
-                    info: "contact@kor.dev",
-                    color: "from-blue-500 to-cyan-500",
-                  },
-                  {
-                    icon: Phone,
-                    title: "Call Us",
-                    info: "+1 (555) 123-4567",
-                    color: "from-green-500 to-emerald-500",
-                  },
-                  {
-                    icon: MapPin,
-                    title: "Visit Us",
-                    info: "123 Tech Street, Digital City",
-                    color: "from-purple-500 to-pink-500",
-                  },
-                ].map((contact, index) => (
-                  <motion.div
-                    key={index}
-                    className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl backdrop-blur-lg border transition-all duration-500 hover:scale-105"
-                    style={{
-                      background: "rgba(255, 255, 255, 0.05)",
-                      border: "2px solid rgba(255, 255, 255, 0.1)",
-                      boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
-                    }}
-                    initial={{ y: 30, opacity: 0 }}
-                    animate={
-                      isVisible ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }
-                    }
-                    transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
-                  >
-                    {/* Scanning line effect */}
-                    <div className="absolute inset-0 overflow-hidden rounded-3xl">
-                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row items-center sm:space-x-4 space-y-2 sm:space-y-0 text-center sm:text-left relative z-10">
-                      <div
-                        className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center flex-shrink-0`}
-                        style={{
-                          boxShadow: "0 0 15px rgba(73, 146, 255, 0.4)",
-                        }}
-                      >
-                        <contact.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4
-                          className={`font-semibold warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                <div className="space-y-4">
+                  {/* Message Us Header */}
+                  <div>
+                    <h3 className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                      Message us:
+                    </h3>
+                    <div className="grid grid-cols-1 gap-2">
+                      {[
+                        {
+                          name: "Instagram",
+                          url: "https://instagram.com",
+                          icon: "📷",
+                          color: "from-pink-500 to-purple-500"
+                        },
+                        {
+                          name: "Discord",
+                          url: "https://discord.com",
+                          icon: "💬",
+                          color: "from-indigo-500 to-blue-500"
+                        },
+                        {
+                          name: "Telegram",
+                          url: "https://telegram.org",
+                          icon: "📱",
+                          color: "from-blue-500 to-cyan-500"
+                        },
+                      ].map((social) => (
+                        <motion.button
+                          key={social.name}
+                          onClick={() => window.open(social.url, "_blank")}
+                          className="group relative p-2 rounded-lg backdrop-blur-lg border transition-all duration-200 hover:scale-[1.02] overflow-hidden will-change-transform text-left"
                           style={{
-                            textShadow: "0 0 8px rgba(73, 146, 255, 0.5)",
+                            background: "rgba(255, 255, 255, 0.05)",
+                            border: "2px solid rgba(255, 255, 255, 0.1)",
+                            boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
                           }}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          {contact.title}
-                        </h4>
-                        <p
-                          className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}
-                          style={{
-                            textShadow:
-                              theme === "dark"
-                                ? "0 0 5px rgba(255, 255, 255, 0.1)"
-                                : "none",
-                          }}
-                        >
-                          {contact.info}
-                        </p>
-                      </div>
-                    </div>
+                          {/* Animated background gradient */}
+                          <div
+                            className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${social.color}`}
+                          />
 
-                    {/* Circuit decorations */}
-                    <div className="absolute inset-0 opacity-20 hover:opacity-40 transition-all duration-500">
-                      <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                      <div
-                        className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-                        style={{ animationDelay: "0.5s" }}
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
+                          {/* Scanning line effect */}
+                          <div className="absolute inset-0 overflow-hidden rounded-xl">
+                            <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                          </div>
 
-            {/* Social Media Buttons */}
-            <motion.div
-              className="text-center mt-6 sm:mt-12 lg:mt-16"
-              initial={{ y: 50, opacity: 0 }}
-              animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-            >
-              <h3
-                className={`text-lg sm:text-xl font-semibold mb-4 sm:mb-6 warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"}`}
-                style={{
-                  textShadow: "0 0 8px rgba(73, 146, 255, 0.5)",
-                }}
-              >
-                Connect With Us
-              </h3>
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6">
-                {[
-                  {
-                    name: "Instagram",
-                    url: "https://instagram.com",
-                    color: "from-pink-500 to-purple-500",
-                  },
-                  {
-                    name: "Discord",
-                    url: "https://discord.com",
-                    color: "from-indigo-500 to-blue-500",
-                  },
-                  {
-                    name: "Telegram",
-                    url: "https://telegram.org",
-                    color: "from-blue-500 to-cyan-500",
-                  },
-                ].map((social, index) => (
-                  <motion.button
-                    key={social.name}
-                    onClick={() => window.open(social.url, "_blank")}
-                    className="group relative px-4 py-2 sm:px-6 sm:py-3 rounded-xl sm:rounded-2xl backdrop-blur-lg border transition-all duration-500 hover:scale-105 overflow-hidden min-w-[120px] sm:min-w-[140px]"
-                    style={{
-                      background: "rgba(255, 255, 255, 0.05)",
-                      border: "2px solid rgba(255, 255, 255, 0.1)",
-                      boxShadow: "0 0 25px rgba(73, 146, 255, 0.2)",
-                    }}
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={
-                      isVisible
-                        ? { scale: 1, opacity: 1 }
-                        : { scale: 0, opacity: 0 }
-                    }
-                    transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    {/* Animated background gradient */}
+                          <div className="flex items-center space-x-2 relative z-10">
+                            <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${social.color} flex items-center justify-center`}>
+                              <span className="text-white text-sm">{social.icon}</span>
+                            </div>
+                            <div>
+                              <p className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}>
+                                {social.name}
+                              </p>
+                              <p className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
+                                Message us on {social.name}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Circuit decorations */}
+                          <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                            <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+                            <div
+                              className="absolute bottom-1 left-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
+                              style={{ animationDelay: "0.5s" }}
+                            />
+                          </div>
+                        </motion.button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Contact Us Header */}
+                  <div>
+                    <h3 className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                      Contact us:
+                    </h3>
                     <div
-                      className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${social.color}`}
-                    />
-
-                    {/* Scanning line effect */}
-                    <div className="absolute inset-0 overflow-hidden rounded-2xl">
-                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                    </div>
-
-                    {/* Button text */}
-                    <span
-                      className={`relative font-semibold warm-glow-text text-sm sm:text-base ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
+                      className="p-2 rounded-lg backdrop-blur-lg border"
                       style={{
-                        textShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
+                        background: "rgba(255, 255, 255, 0.05)",
+                        border: "2px solid rgba(255, 255, 255, 0.1)",
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
                       }}
                     >
-                      {social.name}
-                    </span>
-
-                    {/* Circuit decorations */}
-                    <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-                      <div className="absolute top-1 left-1 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
-                      <div
-                        className="absolute bottom-1 right-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-                        style={{ animationDelay: "0.5s" }}
-                      />
-                      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
+                      <div className="flex items-center space-x-2">
+                        <div className="w-6 h-6 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+                          <Mail className="w-3 h-3 text-white" />
+                        </div>
+                        <div>
+                          <p className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
+                            Email us at
+                          </p>
+                          <p className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                            contact@kor.dev
+                          </p>
+                        </div>
+                      </div>
                     </div>
-
-                    {/* Holographic shimmer effect */}
-                    <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-2xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </motion.div>
