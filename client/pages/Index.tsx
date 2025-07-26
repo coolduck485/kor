@@ -3459,9 +3459,9 @@ function MobileHamburgerMenu({
 
   return (
     <>
-      {/* Hamburger Button - mobile: down 30px + left 30px, hidden on desktop/tablet */}
+      {/* Hamburger Button - MOBILE ONLY */}
       <div
-        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 lg:hidden"
+        className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 sm:hidden"
         style={{
           marginLeft: "40px", // Mobile: moved left 30px from 70px
           marginTop: "-100px", // Mobile: moved down 30px from -130px
@@ -3949,7 +3949,7 @@ function OrbFloatingButton({
 
   return (
     <div
-      className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] animate-gentleFloat lg:hidden"
+      className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[10000] animate-gentleFloat hidden sm:block"
       style={
         {
           "--mobile-x": `${Math.max(-120, Math.min(120, x * radius * mobileMultiplier + xOffset))}px`,
