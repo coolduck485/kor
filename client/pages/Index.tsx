@@ -605,7 +605,7 @@ export default function Index() {
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -5830,49 +5830,84 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
               {/* Message Us Section */}
               <motion.div
-                className="lg:col-span-1"
+                className="lg:col-span-2"
                 initial={{ x: 50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
                 }
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {/* Message Us Header */}
                   <div>
-                    <h3 className={`text-lg font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                    <h3 className={`text-base font-semibold mb-3 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
                       Message us:
                     </h3>
-                    <div className="flex space-x-3">
+                    <div className="grid grid-cols-1 gap-3">
                       {[
                         {
                           name: "Instagram",
                           url: "https://instagram.com",
-                          color: "bg-gradient-to-r from-pink-500 to-purple-600",
-                          icon: "📷"
+                          icon: "📷",
+                          color: "from-pink-500 to-purple-500"
                         },
                         {
                           name: "Discord",
                           url: "https://discord.com",
-                          color: "bg-gradient-to-r from-indigo-500 to-blue-600",
-                          icon: "💬"
+                          icon: "💬",
+                          color: "from-indigo-500 to-blue-500"
                         },
                         {
                           name: "Telegram",
                           url: "https://telegram.org",
-                          color: "bg-gradient-to-r from-blue-500 to-cyan-500",
-                          icon: "📱"
+                          icon: "📱",
+                          color: "from-blue-500 to-cyan-500"
                         },
                       ].map((social) => (
                         <motion.button
                           key={social.name}
                           onClick={() => window.open(social.url, "_blank")}
-                          className={`w-12 h-12 rounded-full ${social.color} flex items-center justify-center text-white font-semibold text-lg transition-all duration-200 hover:scale-110 will-change-transform shadow-lg hover:shadow-xl`}
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          whileTap={{ scale: 0.95 }}
-                          title={social.name}
+                          className="group relative p-3 rounded-xl backdrop-blur-lg border transition-all duration-200 hover:scale-[1.02] overflow-hidden will-change-transform text-left"
+                          style={{
+                            background: "rgba(255, 255, 255, 0.05)",
+                            border: "2px solid rgba(255, 255, 255, 0.1)",
+                            boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
+                          }}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          {social.icon}
+                          {/* Animated background gradient */}
+                          <div
+                            className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${social.color}`}
+                          />
+
+                          {/* Scanning line effect */}
+                          <div className="absolute inset-0 overflow-hidden rounded-xl">
+                            <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                          </div>
+
+                          <div className="flex items-center space-x-3 relative z-10">
+                            <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${social.color} flex items-center justify-center`}>
+                              <span className="text-white text-lg">{social.icon}</span>
+                            </div>
+                            <div>
+                              <p className={`font-medium text-sm ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}>
+                                {social.name}
+                              </p>
+                              <p className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
+                                Message us on {social.name}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Circuit decorations */}
+                          <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                            <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+                            <div
+                              className="absolute bottom-1 left-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
+                              style={{ animationDelay: "0.5s" }}
+                            />
+                          </div>
                         </motion.button>
                       ))}
                     </div>
@@ -5880,25 +5915,26 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                   {/* Contact Us Header */}
                   <div>
-                    <h3 className={`text-lg font-semibold mb-3 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                    <h3 className={`text-base font-semibold mb-3 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
                       Contact us:
                     </h3>
                     <div
-                      className="p-4 rounded-xl backdrop-blur-lg border"
+                      className="p-3 rounded-xl backdrop-blur-lg border"
                       style={{
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "2px solid rgba(255, 255, 255, 0.1)",
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
                       }}
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
-                          <Mail className="w-5 h-5 text-white" />
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+                          <Mail className="w-4 h-4 text-white" />
                         </div>
                         <div>
-                          <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-300"}`}>
+                          <p className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
                             Email us at
                           </p>
-                          <p className={`font-medium ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                          <p className={`font-medium text-sm ${theme === "light" ? "text-gray-900" : "text-white"}`}>
                             contact@kor.dev
                           </p>
                         </div>
