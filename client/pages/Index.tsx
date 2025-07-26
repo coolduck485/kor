@@ -1628,21 +1628,12 @@ export default function Index() {
           }`}
         >
           <div className="flex flex-col items-center space-y-3 animate-button-float">
-            {/* Desktop: Scroll Down */}
             <span
-              className={`hidden sm:block font-inter text-sm font-medium animate-text-glow ${
+              className={`font-inter text-sm font-medium animate-text-glow ${
                 theme === "light" ? "text-gray-600" : "text-white/70"
               }`}
             >
               Scroll Down
-            </span>
-            {/* Mobile: Swipe Down */}
-            <span
-              className={`sm:hidden font-inter text-sm font-medium animate-text-glow ${
-                theme === "light" ? "text-gray-600" : "text-white/70"
-              }`}
-            >
-              Swipe Down
             </span>
 
             {/* Desktop: Mouse scroll indicator */}
