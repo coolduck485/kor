@@ -2040,7 +2040,7 @@ export default function Index() {
                   })(),
                   animation: isScrollingActive
                     ? "none"
-                    : `gentleFloat ${isMobile ? 2 + (i % 2) : 4 + (i % 3)}s ease-in-out infinite ${i * (isMobile ? 0.2 : 0.4)}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
+                    : `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
                   willChange: isScrollingActive ? "auto" : "transform",
                   transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
                   filter: `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
