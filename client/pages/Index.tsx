@@ -710,7 +710,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █████████████████████�� 50%
+                      RAM: ██████████████���███████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -6156,7 +6156,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
               {/* Mobile/Tablet Layout - Social Buttons Only */}
               <motion.div
-                className="xl:hidden"
+                className="lg:hidden"
                 initial={{ y: 50, opacity: 0 }}
                 animate={
                   isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }
