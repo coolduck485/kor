@@ -1655,9 +1655,9 @@ export default function Index() {
               className="group relative"
               onMouseEnter={() => setIsTooltipDismissed(true)}
             >
-              {/* Tooltip - only show in modern mode and if not dismissed */}
+              {/* Tooltip - only show in modern mode and if not dismissed and not on mobile */}
               {mode === "modern" && !isTooltipDismissed && (
-                <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
+                <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none hidden sm:block">
                   <div
                     className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
                       theme === "light"
@@ -1672,10 +1672,10 @@ export default function Index() {
                       boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
                     }}
                   >
-                    <span className="hidden sm:inline">Click any theme to change the site's appearance</span>
+                    Click any theme to change the site's appearance
                     {/* Tooltip arrow */}
                     <div
-                      className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent hidden sm:block ${
+                      className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                         theme === "light"
                           ? "border-l-white/80"
                           : "border-l-blue-400/10"
