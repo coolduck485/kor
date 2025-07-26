@@ -4908,100 +4908,192 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
               </div>
             </div>
 
-            {/* Projects Grid - Now responsive and smaller */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 mt-16 px-4">
-              {projects.map((project, index) => (
-                <motion.div
-                  key={index}
-                  className="group relative w-full"
-                  initial={{ scale: 0.8, opacity: 0, y: 50 }}
-                  animate={isVisible ? { scale: 1, opacity: 1, y: 0 } : { scale: 0.8, opacity: 0, y: 50 }}
-                  transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                  whileHover={{ scale: 1.02, y: -3 }}
+            {/* Portfolio Carousel Container */}
+            <div className="relative mt-16 px-4">
+              {/* Navigation Buttons */}
+              <div className="flex justify-between items-center mb-8">
+                {/* Left Navigation */}
+                <motion.button
+                  onClick={prevSlide}
+                  className="group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 hover:scale-110 z-20"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.05)",
+                    border: "2px solid rgba(255, 255, 255, 0.1)",
+                    boxShadow: "0 0 20px rgba(73, 146, 255, 0.2)"
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <div className="relative p-4 sm:p-6 rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full" style={{ background: "rgba(255, 255, 255, 0.05)", border: "2px solid rgba(255, 255, 255, 0.1)", boxShadow: "0 0 30px rgba(73, 146, 255, 0.15)" }}>
-                    {/* Scanning line effect */}
-                    <div className="absolute inset-0 overflow-hidden rounded-2xl">
-                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                    </div>
+                  <ChevronLeft className={`w-6 h-6 ${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400 transition-colors`} />
 
-                    {/* Project Visual - Inspired by the provided image */}
-                    <div className="w-full h-32 sm:h-36 rounded-xl mb-4 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(30, 30, 50, 0.9) 0%, rgba(10, 10, 30, 0.9) 100%)", boxShadow: "0 0 15px rgba(73, 146, 255, 0.25)" }}>
-                      {/* Dark mesh background similar to provided image */}
-                      <div className="absolute inset-0" style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E")`,
-                        backgroundSize: "20px 20px"
-                      }} />
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
+                      boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)"
+                    }}
+                  />
 
-                      {/* Gradient overlay */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${project.image} opacity-60`} />
+                  {/* Scanning line effect */}
+                  <div className="absolute inset-0 overflow-hidden rounded-full">
+                    <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                  </div>
+                </motion.button>
 
-                      {/* Scanning effect */}
-                      <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" initial={{ x: '-100%' }} animate={isVisible ? { x: '100%' } : { x: '-100%' }} transition={{ duration: 1.5, delay: 0.8 + index * 0.2 }} />
+                {/* Slide Indicators */}
+                <div className="flex space-x-2">
+                  {Array.from({ length: totalSlides }).map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        currentSlide === index
+                          ? 'bg-blue-400 scale-125'
+                          : 'bg-white/20 hover:bg-white/40'
+                      }`}
+                      style={{
+                        boxShadow: currentSlide === index ? '0 0 10px rgba(73, 146, 255, 0.8)' : 'none'
+                      }}
+                    />
+                  ))}
+                </div>
 
-                      {/* Content overlay similar to the provided image style */}
-                      <div className="absolute inset-0 flex flex-col justify-between p-3">
-                        {/* Top indicator */}
-                        <div className="flex justify-between items-start">
-                          <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(73, 146, 255, 0.8)" }} />
-                          <div className="text-xs text-white/60 font-mono">
-                            {String(index + 1).padStart(2, '0')}
-                          </div>
-                        </div>
+                {/* Right Navigation */}
+                <motion.button
+                  onClick={nextSlide}
+                  className="group relative p-3 rounded-full backdrop-blur-lg border transition-all duration-300 hover:scale-110 z-20"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.05)",
+                    border: "2px solid rgba(255, 255, 255, 0.1)",
+                    boxShadow: "0 0 20px rgba(73, 146, 255, 0.2)"
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ChevronRight className={`w-6 h-6 ${theme === "light" ? "text-gray-700" : "text-white"} group-hover:text-blue-400 transition-colors`} />
 
-                        {/* Bottom status bar */}
-                        <div className="flex items-center space-x-2">
-                          <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
-                            <motion.div
-                              className="h-full bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
-                              initial={{ width: "0%" }}
-                              animate={isVisible ? { width: "75%" } : { width: "0%" }}
-                              transition={{ duration: 2, delay: 1 + index * 0.3 }}
-                            />
-                          </div>
-                          <div className="text-xs text-white/60 font-mono">LIVE</div>
-                        </div>
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: "radial-gradient(circle, rgba(73, 146, 255, 0.3) 0%, transparent 70%)",
+                      boxShadow: "0 0 20px rgba(73, 146, 255, 0.5)"
+                    }}
+                  />
+
+                  {/* Scanning line effect */}
+                  <div className="absolute inset-0 overflow-hidden rounded-full">
+                    <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                  </div>
+                </motion.button>
+              </div>
+
+              {/* Carousel Track */}
+              <div className="overflow-hidden relative">
+                <motion.div
+                  className="flex transition-transform duration-500 ease-in-out"
+                  animate={{ x: `${-currentSlide * 100}%` }}
+                  style={{ width: `${totalSlides * 100}%` }}
+                >
+                  {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+                    <div key={slideIndex} className="w-full flex-shrink-0">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                        {projects.slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide).map((project, index) => (
+                          <motion.div
+                            key={`${slideIndex}-${index}`}
+                            className="group relative w-full"
+                            initial={{ scale: 0.8, opacity: 0, y: 50 }}
+                            animate={isVisible ? { scale: 1, opacity: 1, y: 0 } : { scale: 0.8, opacity: 0, y: 50 }}
+                            transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+                            whileHover={{ scale: 1.02, y: -3 }}
+                          >
+                            <div className="relative p-4 sm:p-6 rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full" style={{ background: "rgba(255, 255, 255, 0.05)", border: "2px solid rgba(255, 255, 255, 0.1)", boxShadow: "0 0 30px rgba(73, 146, 255, 0.15)" }}>
+                              {/* Scanning line effect */}
+                              <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                                <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                              </div>
+
+                              {/* Project Visual - Inspired by the provided image */}
+                              <div className="w-full h-32 sm:h-36 rounded-xl mb-4 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(30, 30, 50, 0.9) 0%, rgba(10, 10, 30, 0.9) 100%)", boxShadow: "0 0 15px rgba(73, 146, 255, 0.25)" }}>
+                                {/* Dark mesh background similar to provided image */}
+                                <div className="absolute inset-0" style={{
+                                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E")`,
+                                  backgroundSize: "20px 20px"
+                                }} />
+
+                                {/* Gradient overlay */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${project.image} opacity-60`} />
+
+                                {/* Scanning effect */}
+                                <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" initial={{ x: '-100%' }} animate={isVisible ? { x: '100%' } : { x: '-100%' }} transition={{ duration: 1.5, delay: 0.8 + index * 0.2 }} />
+
+                                {/* Content overlay similar to the provided image style */}
+                                <div className="absolute inset-0 flex flex-col justify-between p-3">
+                                  {/* Top indicator */}
+                                  <div className="flex justify-between items-start">
+                                    <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" style={{ boxShadow: "0 0 8px rgba(73, 146, 255, 0.8)" }} />
+                                    <div className="text-xs text-white/60 font-mono">
+                                      {String(slideIndex * itemsPerSlide + index + 1).padStart(2, '0')}
+                                    </div>
+                                  </div>
+
+                                  {/* Bottom status bar */}
+                                  <div className="flex items-center space-x-2">
+                                    <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+                                      <motion.div
+                                        className="h-full bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
+                                        initial={{ width: "0%" }}
+                                        animate={isVisible ? { width: "75%" } : { width: "0%" }}
+                                        transition={{ duration: 2, delay: 1 + index * 0.3 }}
+                                      />
+                                    </div>
+                                    <div className="text-xs text-white/60 font-mono">LIVE</div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Project Info - Compact */}
+                              <h3 className={`text-base sm:text-lg font-bold mb-2 warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"} line-clamp-2`} style={{ textShadow: "0 0 8px rgba(73, 146, 255, 0.6)" }}>
+                                {project.title}
+                              </h3>
+                              <p className={`text-xs sm:text-sm mb-3 ${theme === "light" ? "text-gray-600" : "text-gray-300"} line-clamp-2`} style={{ textShadow: theme === "dark" ? "0 0 5px rgba(255, 255, 255, 0.1)" : "none" }}>
+                                {project.description}
+                              </p>
+
+                              {/* Tech Stack - Compact */}
+                              <div className="flex flex-wrap gap-1 sm:gap-2">
+                                {project.tech.slice(0, 3).map((tech, techIndex) => (
+                                  <motion.span
+                                    key={techIndex}
+                                    className="px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border"
+                                    style={{ background: "rgba(73, 146, 255, 0.1)", border: "1px solid rgba(73, 146, 255, 0.3)", color: theme === "light" ? "#1f2937" : "#e5e7eb", boxShadow: "0 0 6px rgba(73, 146, 255, 0.2)" }}
+                                    initial={{ scale: 0 }}
+                                    animate={isVisible ? { scale: 1 } : { scale: 0 }}
+                                    transition={{ duration: 0.3, delay: 1 + techIndex * 0.1 }}
+                                  >
+                                    {tech}
+                                  </motion.span>
+                                ))}
+                                {project.tech.length > 3 && (
+                                  <span className="px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border" style={{ background: "rgba(73, 146, 255, 0.1)", border: "1px solid rgba(73, 146, 255, 0.3)", color: theme === "light" ? "#1f2937" : "#e5e7eb" }}>
+                                    +{project.tech.length - 3}
+                                  </span>
+                                )}
+                              </div>
+
+                              {/* Circuit decorations */}
+                              <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                                <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+                                <div className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }} />
+                                <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))}
                       </div>
                     </div>
-
-                    {/* Project Info - Compact */}
-                    <h3 className={`text-base sm:text-lg font-bold mb-2 warm-glow-text ${theme === "light" ? "text-gray-900" : "text-white"} line-clamp-2`} style={{ textShadow: "0 0 8px rgba(73, 146, 255, 0.6)" }}>
-                      {project.title}
-                    </h3>
-                    <p className={`text-xs sm:text-sm mb-3 ${theme === "light" ? "text-gray-600" : "text-gray-300"} line-clamp-2`} style={{ textShadow: theme === "dark" ? "0 0 5px rgba(255, 255, 255, 0.1)" : "none" }}>
-                      {project.description}
-                    </p>
-
-                    {/* Tech Stack - Compact */}
-                    <div className="flex flex-wrap gap-1 sm:gap-2">
-                      {project.tech.slice(0, 3).map((tech, techIndex) => (
-                        <motion.span
-                          key={techIndex}
-                          className="px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border"
-                          style={{ background: "rgba(73, 146, 255, 0.1)", border: "1px solid rgba(73, 146, 255, 0.3)", color: theme === "light" ? "#1f2937" : "#e5e7eb", boxShadow: "0 0 6px rgba(73, 146, 255, 0.2)" }}
-                          initial={{ scale: 0 }}
-                          animate={isVisible ? { scale: 1 } : { scale: 0 }}
-                          transition={{ duration: 0.3, delay: 1 + techIndex * 0.1 }}
-                        >
-                          {tech}
-                        </motion.span>
-                      ))}
-                      {project.tech.length > 3 && (
-                        <span className="px-2 py-1 rounded-full text-xs font-medium backdrop-blur-lg border" style={{ background: "rgba(73, 146, 255, 0.1)", border: "1px solid rgba(73, 146, 255, 0.3)", color: theme === "light" ? "#1f2937" : "#e5e7eb" }}>
-                          +{project.tech.length - 3}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Circuit decorations */}
-                    <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-                      <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
-                      <div className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }} />
-                      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
-                    </div>
-                  </div>
+                  ))}
                 </motion.div>
-              ))}
+              </div>
             </div>
           </motion.div>
         </div>
