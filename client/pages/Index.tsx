@@ -4123,19 +4123,19 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-center mt-12 sm:mt-16">
               {/* Left Content */}
               <motion.div
-                className="space-y-6 lg:space-y-8 text-left"
+                className="space-y-4 sm:space-y-6 lg:space-y-8 text-left"
                 initial={{ x: -50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }
                 }
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   <p
-                    className={`text-lg leading-relaxed ${
+                    className={`text-sm sm:text-lg leading-relaxed ${
                       theme === "light" ? "text-gray-600" : "text-gray-300"
                     }`}
                     style={{
