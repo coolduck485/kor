@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import './performance-addon.css';
+@import './cinematic-transitions.css';
 
 @layer base {
   /**
