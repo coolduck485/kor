@@ -673,7 +673,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█���██████��███████ 60%
+                      CPU: ███��█���██████��███���███ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -5756,7 +5756,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                     {/* Project Description */}
                     <div>
-                      <h3 className={`text-sm font-medium mb-3 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                      <h3 className={`text-xs font-medium mb-2 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
                         Tell us more about your project
                       </h3>
                       <textarea
@@ -5765,8 +5765,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         onChange={(e) =>
                           setFormData({ ...formData, description: e.target.value })
                         }
-                        rows={3}
-                        className="w-full p-3 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] resize-none outline-none text-sm will-change-transform"
+                        rows={2}
+                        className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] resize-none outline-none text-sm will-change-transform"
                         style={{
                           background: "rgba(255, 255, 255, 0.08)",
                           border: "2px solid rgba(255, 255, 255, 0.15)",
