@@ -2852,6 +2852,62 @@ export default function Index() {
           opacity: 0;
           animation: fade-in-word 0.8s ease-out forwards;
         }
+
+        /* Line clamping utilities */
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        /* Mobile responsive utilities */
+        @media (max-width: 640px) {
+          .mobile-responsive-text {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+          }
+
+          .mobile-responsive-title {
+            font-size: 2rem;
+            line-height: 2.5rem;
+          }
+
+          .mobile-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            padding: 0 1rem;
+          }
+        }
+
+        /* Ensure content doesn't overflow on small screens */
+        @media (max-width: 768px) {
+          .section-container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            max-width: 100vw;
+            overflow-x: hidden;
+          }
+
+          .responsive-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          }
+        }
+
+        /* Fix text overflow on all sections */
+        .section-content {
+          max-width: 100%;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        }
       `}</style>
     </div>
   );
