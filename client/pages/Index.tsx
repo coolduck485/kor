@@ -191,13 +191,21 @@ export default function Index() {
       });
     };
 
+    // Check if device is mobile for performance optimization
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", checkMobile);
+    checkMobile(); // Initial check
 
     // Initial loading sequence
     const timeouts = triggerLoadingSequence();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", checkMobile);
       timeouts.forEach(clearTimeout);
     };
   }, []);
