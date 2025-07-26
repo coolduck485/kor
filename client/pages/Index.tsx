@@ -4808,16 +4808,16 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
     ];
 
     // Responsive projects per page: 2 on mobile/tablet, 3 on desktop
-    const [screenSize, setScreenSize] = useState('desktop');
+    const [screenSize, setScreenSize] = useState("desktop");
 
     useEffect(() => {
       const checkScreenSize = () => {
         if (window.innerWidth <= 640) {
-          setScreenSize('mobile');
+          setScreenSize("mobile");
         } else if (window.innerWidth <= 991) {
-          setScreenSize('tablet');
+          setScreenSize("tablet");
         } else {
-          setScreenSize('desktop');
+          setScreenSize("desktop");
         }
       };
       checkScreenSize();
@@ -4825,7 +4825,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
       return () => window.removeEventListener("resize", checkScreenSize);
     }, []);
 
-    const projectsPerPage = screenSize === 'desktop' ? 3 : 2;
+    const projectsPerPage = screenSize === "desktop" ? 3 : 2;
     const totalPages = Math.ceil(allProjects.length / projectsPerPage);
 
     // Get current page projects
@@ -5154,8 +5154,12 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         ? "opacity-30 cursor-not-allowed"
                         : "hover:scale-110 cursor-pointer hover:bg-white/5"
                     }`}
-                    whileHover={currentPage === totalPages - 1 ? {} : { scale: 1.1 }}
-                    whileTap={currentPage === totalPages - 1 ? {} : { scale: 0.9 }}
+                    whileHover={
+                      currentPage === totalPages - 1 ? {} : { scale: 1.1 }
+                    }
+                    whileTap={
+                      currentPage === totalPages - 1 ? {} : { scale: 0.9 }
+                    }
                   >
                     <ChevronRight
                       className={`w-3 h-3 sm:w-4 sm:h-4 transition-colors ${
@@ -5847,7 +5851,11 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       boxShadow: "0 0 25px rgba(73, 146, 255, 0.2)",
                     }}
                     initial={{ scale: 0, opacity: 0 }}
-                    animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                    animate={
+                      isVisible
+                        ? { scale: 1, opacity: 1 }
+                        : { scale: 0, opacity: 0 }
+                    }
                     transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
