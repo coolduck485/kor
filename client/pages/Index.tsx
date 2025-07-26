@@ -647,7 +647,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █████████████████████�� 50%
+                      RAM: ██████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -2907,6 +2907,25 @@ export default function Index() {
           max-width: 100%;
           word-wrap: break-word;
           overflow-wrap: break-word;
+        }
+
+        /* Ensure viewport doesn't overflow */
+        html, body {
+          max-width: 100vw;
+          overflow-x: hidden;
+        }
+
+        /* Prevent horizontal scrolling */
+        * {
+          box-sizing: border-box;
+        }
+
+        /* Improve button tap targets on mobile */
+        @media (max-width: 768px) {
+          button {
+            min-height: 44px;
+            min-width: 44px;
+          }
         }
       `}</style>
     </div>
