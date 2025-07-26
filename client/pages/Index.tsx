@@ -5881,26 +5881,26 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                   {/* Contact Us Header */}
                   <div>
-                    <h3 className={`text-base font-semibold mb-3 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                    <h3 className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
                       Contact us:
                     </h3>
                     <div
-                      className="p-3 rounded-xl backdrop-blur-lg border"
+                      className="p-2 rounded-lg backdrop-blur-lg border"
                       style={{
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "2px solid rgba(255, 255, 255, 0.1)",
                         boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
                       }}
                     >
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
-                          <Mail className="w-4 h-4 text-white" />
+                      <div className="flex items-center space-x-2">
+                        <div className="w-6 h-6 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+                          <Mail className="w-3 h-3 text-white" />
                         </div>
                         <div>
                           <p className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
                             Email us at
                           </p>
-                          <p className={`font-medium text-sm ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                          <p className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"}`}>
                             contact@kor.dev
                           </p>
                         </div>
