@@ -1782,16 +1782,18 @@ export default function Index() {
         </div>
       )}
 
-      {/* Mobile Hamburger Menu - Positioned at top level to avoid blur */}
-      <div className="sm:hidden fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
-        <div className="relative pointer-events-auto">
-          <MobileHamburgerMenu
-            isOpen={isMobileMenuOpen}
-            setIsOpen={setIsMobileMenuOpen}
-            theme={theme}
-          />
+      {/* Mobile Hamburger Menu - Only show in home section */}
+      {currentSection === 0 && (
+        <div className="sm:hidden fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
+          <div className="relative pointer-events-auto">
+            <MobileHamburgerMenu
+              isOpen={isMobileMenuOpen}
+              setIsOpen={setIsMobileMenuOpen}
+              theme={theme}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Black Transition Overlay with Cinematic Effects */}
       <AnimatePresence>
