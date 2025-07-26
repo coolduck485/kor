@@ -322,30 +322,45 @@ export default function Index() {
     { id: "contact", title: "Contact Us", component: "contact" },
   ];
 
-  // Scroll to section function
+  // Scroll to section function with black transition
   const scrollToSection = (index: number) => {
     if (isScrolling || !containerRef.current) return;
 
     setIsScrolling(true);
     setIsScrollingActive(true);
-    setCurrentSection(index);
 
-    // Update URL based on section
-    const sectionPath = index === 0 ? "/" : `/${sections[index].id}`;
-    window.history.pushState({}, "", sectionPath);
+    // Start black transition animation
+    setIsBlackTransition(true);
+    setIsContentVisible(false);
 
-    const targetSection = sectionsRef.current[index];
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-
+    // Wait for fade to black, then change section
     setTimeout(() => {
-      setIsScrolling(false);
-      setIsScrollingActive(false);
-    }, 1000);
+      setCurrentSection(index);
+
+      // Update URL based on section
+      const sectionPath = index === 0 ? "/" : `/${sections[index].id}`;
+      window.history.pushState({}, "", sectionPath);
+
+      const targetSection = sectionsRef.current[index];
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: "auto", // Instant scroll during black screen
+          block: "start",
+        });
+      }
+
+      // Start revealing new content
+      setTimeout(() => {
+        setIsBlackTransition(false);
+        setIsContentVisible(true);
+
+        // Complete the transition
+        setTimeout(() => {
+          setIsScrolling(false);
+          setIsScrollingActive(false);
+        }, 800); // Allow time for content to fully appear
+      }, 200); // Short delay to ensure scroll is complete
+    }, 400); // Time for fade to black
   };
 
   // Handle wheel scroll
@@ -657,7 +672,7 @@ export default function Index() {
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
-██║  ██╗╚██████╔╝██║  ██║
+██║  ██╗╚██████╔╝██║  █��║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
