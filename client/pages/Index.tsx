@@ -673,7 +673,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█���██████��███████ 60%
+                      CPU: ███��█���███���██��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -751,7 +751,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄��◄►◄►</span>
+                  <span className="text-green-400 ml-4">◄►◄►◄►</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -4614,7 +4614,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-6 lg:gap-8 xl:gap-10 mt-16 responsive-grid w-full">
+            <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-3 lg:gap-4 xl:gap-5 mt-6 responsive-grid w-full">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
