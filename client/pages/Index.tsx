@@ -748,7 +748,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═���═██╗█���╔��══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
-��█║  ██╗╚██████���╝██║  ██║
+██║  ██╗╚██████���╝██║  ██║
 ╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1668,8 +1668,8 @@ export default function Index() {
               Scroll Up
             </span>
 
-            {/* Desktop: Mouse scroll indicator - pointing up */}
-            <div className="hidden sm:flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
+            {/* Mouse scroll indicator - pointing up - now visible on all devices */}
+            <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
               <div
                 className="w-1 h-3 bg-gradient-to-t from-glow-blue to-white/80 rounded-full mb-2 animate-float shadow-lg"
                 style={{
