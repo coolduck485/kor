@@ -323,6 +323,7 @@ export default function Index() {
     if (isScrolling || !containerRef.current) return;
 
     setIsScrolling(true);
+    setIsScrollingActive(true);
     setCurrentSection(index);
 
     // Update URL based on section
@@ -645,8 +646,8 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ███����������█���
-██║ ██╔╝██╔═���═██╗██╔═══██╗
+                  {`██╗  ██╗ ██████╗ ███����������█╗
+██║ ██╔╝██╔═����═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
