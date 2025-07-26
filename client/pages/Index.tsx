@@ -1461,6 +1461,171 @@ export default function Index() {
     >
 
 
+      {/* Universal Scroll Navigation */}
+      {currentSection < sections.length - 1 && (
+        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="flex flex-col items-center space-y-3 animate-button-float">
+            {/* Desktop: Scroll Down */}
+            <span
+              className={`hidden sm:block font-inter text-sm font-medium animate-text-glow ${
+                theme === "light" ? "text-gray-600" : "text-white/70"
+              }`}
+            >
+              Scroll Down
+            </span>
+            {/* Mobile: Swipe Down */}
+            <span
+              className={`sm:hidden font-inter text-sm font-medium animate-text-glow ${
+                theme === "light" ? "text-gray-600" : "text-white/70"
+              }`}
+            >
+              Swipe Down
+            </span>
+
+            {/* Desktop: Mouse scroll indicator */}
+            <div className="hidden sm:flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
+              <div
+                className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
+                style={{
+                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
+                }}
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
+            </div>
+
+            {/* Mobile: Phone with swipe indicator */}
+            <div className="sm:hidden relative">
+              <div className="relative w-8 h-12 border-2 border-white/40 rounded-lg backdrop-blur-sm bg-white/5 flex items-center justify-center">
+                <div className="w-4 h-7 bg-white/10 rounded-sm relative overflow-hidden">
+                  <div
+                    className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-down shadow-lg"
+                    style={{
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      boxShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
+                    }}
+                  />
+                  <div
+                    className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-down-delayed"
+                    style={{
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                    }}
+                  />
+                </div>
+                <div className="absolute top-1 w-2 h-0.5 bg-white/30 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Scroll Up Indicator - Last Section */}
+      {currentSection === sections.length - 1 && (
+        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="flex flex-col items-center space-y-3 animate-button-float" style={{ transform: 'rotate(180deg)' }}>
+            {/* Desktop: Scroll Up */}
+            <span
+              className={`hidden sm:block font-inter text-sm font-medium animate-text-glow ${
+                theme === "light" ? "text-gray-600" : "text-white/70"
+              }`}
+              style={{ transform: 'rotate(180deg)' }}
+            >
+              Scroll Up
+            </span>
+            {/* Mobile: Swipe Up */}
+            <span
+              className={`sm:hidden font-inter text-sm font-medium animate-text-glow ${
+                theme === "light" ? "text-gray-600" : "text-white/70"
+              }`}
+              style={{ transform: 'rotate(180deg)' }}
+            >
+              Swipe Up
+            </span>
+
+            {/* Desktop: Mouse scroll indicator (rotated) */}
+            <div className="hidden sm:flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
+              <div
+                className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
+                style={{
+                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
+                }}
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
+            </div>
+
+            {/* Mobile: Phone with swipe indicator (rotated) */}
+            <div className="sm:hidden relative">
+              <div className="relative w-8 h-12 border-2 border-white/40 rounded-lg backdrop-blur-sm bg-white/5 flex items-center justify-center">
+                <div className="w-4 h-7 bg-white/10 rounded-sm relative overflow-hidden">
+                  <div
+                    className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-down shadow-lg"
+                    style={{
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      boxShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
+                    }}
+                  />
+                  <div
+                    className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-down-delayed"
+                    style={{
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                    }}
+                  />
+                </div>
+                <div className="absolute top-1 w-2 h-0.5 bg-white/30 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Back to Top Button - All sections except first */}
+      {currentSection > 0 && (
+        <div className="fixed bottom-8 right-4 sm:right-8 z-50">
+          <button
+            onClick={() => scrollToSection(0)}
+            className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+            }`}
+            style={{
+              background:
+                theme === "light"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+              boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            {/* Icon */}
+            <ChevronUp
+              className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${
+                theme === "light" ? "text-blue-600 group-hover:text-blue-700" : "text-white group-hover:text-blue-300"
+              }`}
+            />
+
+            {/* Ripple effect */}
+            <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
+
+            {/* Tooltip */}
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
+              <div className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                theme === "light"
+                  ? "border-blue-400/40 bg-white/90 text-gray-800"
+                  : "border-blue-300/30 bg-black/80 text-white"
+              }`}>
+                Back to Top
+                <div className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                  theme === "light" ? "border-l-white/90" : "border-l-black/80"
+                }`} />
+              </div>
+            </div>
+          </button>
+        </div>
+      )}
+
       {/* Sections Container */}
       <div className="h-full">
         {/* Home Section */}
@@ -2415,67 +2580,7 @@ export default function Index() {
             />
           </motion.div>
 
-          {/* Scroll/Swipe Indicator */}
-          <div className="absolute bottom-28 lg:bottom-16 md:bottom-32 sm:bottom-36 left-1/2 transform -translate-x-1/2 z-20">
-            <div className="flex flex-col items-center space-y-3 animate-button-float">
-              {/* Desktop: Scroll Down */}
-              <span
-                className={`hidden lg:block font-inter text-sm font-medium animate-text-glow ${
-                  theme === "light" ? "text-gray-600" : "text-white/70"
-                }`}
-              >
-                Scroll Down
-              </span>
-              {/* Mobile/Tablet: Swipe Down */}
-              <span
-                className={`lg:hidden font-inter text-sm font-medium animate-text-glow ${
-                  theme === "light" ? "text-gray-600" : "text-white/70"
-                }`}
-              >
-                Swipe Down
-              </span>
 
-              {/* Desktop: Mouse scroll indicator */}
-              <div className="hidden lg:flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
-                <div
-                  className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
-                  style={{
-                    boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
-                  }}
-                />
-                <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
-              </div>
-
-              {/* Mobile/Tablet: Phone with swipe indicator */}
-              <div className="lg:hidden relative">
-                {/* Phone Icon */}
-                <div className="relative w-8 h-12 border-2 border-white/40 rounded-lg backdrop-blur-sm bg-white/5 flex items-center justify-center">
-                  {/* Phone screen */}
-                  <div className="w-4 h-7 bg-white/10 rounded-sm relative overflow-hidden">
-                    {/* Swipe gesture indicator */}
-                    <div
-                      className="absolute w-6 h-0.5 bg-gradient-to-r from-transparent via-glow-blue to-transparent rounded-full animate-swipe-down shadow-lg"
-                      style={{
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        boxShadow: "0 0 8px rgba(73, 146, 255, 0.6)",
-                      }}
-                    />
-                    {/* Second swipe line for better effect */}
-                    <div
-                      className="absolute w-4 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full animate-swipe-down-delayed"
-                      style={{
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                      }}
-                    />
-                  </div>
-                  {/* Phone speaker */}
-                  <div className="absolute top-1 w-2 h-0.5 bg-white/30 rounded-full"></div>
-                </div>
-              </div>
-            </div>
-          </div>
         </motion.div>
 
         {/* About Us Section */}
