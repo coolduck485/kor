@@ -723,10 +723,10 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ███����������█╗
+                  {`██╗  ��█╗ ██████╗ ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔��══██╗
 █████╔╝ ██���   ██║██████╔╝
-██╔═██╗ ��█║   ██║██╔══█����
+██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
@@ -1943,7 +1943,7 @@ export default function Index() {
                   background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.3 + (i % 3) * 0.2})`,
                   animation: isScrollingActive
                     ? "none"
-                    : `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s`,
+                    : `gentleFloat ${isMobile ? 2 + (i % 2) : 4 + (i % 3)}s ease-in-out infinite ${i * (isMobile ? 0.2 : 0.4)}s`,
                   willChange: isScrollingActive ? "auto" : "transform",
                   transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
                 }}
