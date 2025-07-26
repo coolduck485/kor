@@ -723,7 +723,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ███����������█╗
+                  {`██╗  ██╗ ██████╗ ��██����������█╗
 ██║ ██╔╝��█╔═���═██╗██╔��══██╗
 █████╔╝ █������   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█����
@@ -2833,6 +2833,8 @@ export default function Index() {
             ref={(el) => (sectionsRef.current[1] = el!)}
             theme={theme}
             isVisible={currentSection === 1}
+            isMobile={isMobile}
+            animationConfig={animationConfig}
           />
         </motion.div>
 
