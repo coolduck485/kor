@@ -647,7 +647,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: ██████████████��███████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -4161,8 +4161,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         ref={ref}
         className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
-            ? "bg-gradient-to-br from-emerald-50 via-white to-teal-50"
-            : "bg-gradient-to-br from-emerald-950 via-black to-teal-950"
+            ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
+            : "bg-black"
         }`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
