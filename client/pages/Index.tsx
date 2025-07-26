@@ -4439,7 +4439,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 }
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <div className="relative w-full max-w-lg h-80 sm:h-96 lg:h-[28rem]">
+                <div className="relative w-full max-w-md h-64 sm:h-80 lg:h-96">
                   {/* Main Glass Container */}
                   <div
                     className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden backdrop-blur-xl border border-white/30"
