@@ -3043,7 +3043,7 @@ export default function Index() {
         /* Mobile fixes for service cards - fill gaps in corners */
         @media (max-width: 640px) {
           .responsive-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: repeat(3, 1fr) !important;
             gap: 0.25rem !important;
             width: 100% !important;
             padding: 0 !important;
