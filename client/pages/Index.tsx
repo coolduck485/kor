@@ -215,6 +215,7 @@ export default function Index() {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("resize", checkMobile);
     checkMobile(); // Initial check
+    checkPerformance(); // Performance optimization check
 
     // Check current URL and scroll to appropriate section
     const checkInitialSection = () => {
@@ -646,7 +647,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ███����������█╗
 ██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══█��╗
+██╔═██╗ ██║   ██║██╔══█����
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
@@ -6238,7 +6239,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "📱",
+                        icon: "��",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
