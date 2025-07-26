@@ -706,7 +706,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: ���█████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -2156,9 +2156,8 @@ export default function Index() {
                 initial={{
                   opacity: 0,
                   scale: 0,
-                  y: -200,
-                  filter: "blur(30px)",
-                  rotateX: 90,
+                  y: -100,
+                  filter: "blur(15px)",
                 }}
                 animate={
                   animationStep >= 2
@@ -2167,16 +2166,15 @@ export default function Index() {
                         scale: 1,
                         y: 0,
                         filter: "blur(0px)",
-                        rotateX: 0,
                       }
                     : {}
                 }
                 transition={{
-                  duration: 1.2,
-                  ease: "backOut",
+                  duration: 0.8,
+                  ease: "easeOut",
                   type: "spring",
-                  stiffness: 100,
-                  damping: 12,
+                  stiffness: 120,
+                  damping: 15,
                 }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
