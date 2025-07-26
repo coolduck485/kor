@@ -836,39 +836,6 @@
   }
 }
 
-/* Fix section height issues to prevent content cutoff */
-.section-container {
-  height: 100vh !important;
-  min-height: 100vh !important;
-  max-height: 100vh !important;
-  overflow-y: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.section-content {
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important;
-  padding-top: 2rem !important;
-  padding-bottom: 2rem !important;
-  overflow-y: auto !important;
-}
-
-/* Ensure all sections have proper scrollable height */
-@media (min-width: 1920px) {
-  .section-container {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-  }
-
-  .section-content {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-  }
-}
-
 /* Modern chrome text styling */
 .chrome-wavy-text {
   display: inline-block;
