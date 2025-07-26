@@ -2667,7 +2667,7 @@ export default function Index() {
                   />
 
                   {/* Optimized floating energy particles around text */}
-                  {[...Array(isMobile ? 4 : 8)].map((_, i) => (
+                  {[...Array(8)].map((_, i) => (
                     <div
                       key={`energy-${i}`}
                       className="absolute rounded-full pointer-events-none gpu-accelerated"
@@ -3859,7 +3859,7 @@ const ORB_BUTTON_CONFIG = {
 // ========================================
 //
 // To move "Services" button 50px to the right:
-// Change: xOffset: 0  →  xOffset: 50
+// Change: xOffset: 0  ���  xOffset: 50
 //
 // To move "About us" button 30px up:
 // Change: yOffset: 0  →  yOffset: -30
