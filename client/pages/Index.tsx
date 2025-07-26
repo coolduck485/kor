@@ -5745,9 +5745,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                     </div>
 
-                    <div className="flex items-center space-x-4 relative z-10">
+                    <div className="flex flex-col sm:flex-row items-center sm:space-x-4 space-y-2 sm:space-y-0 text-center sm:text-left relative z-10">
                       <div
-                        className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center`}
+                        className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center flex-shrink-0`}
                         style={{
                           boxShadow: "0 0 15px rgba(73, 146, 255, 0.4)",
                         }}
