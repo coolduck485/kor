@@ -795,7 +795,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█���██████��███████ 60%
+                      CPU: ███��█������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4426,14 +4426,14 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
               {/* Right Content - Modern Software Development Visualization */}
               <motion.div
-                className="flex justify-center lg:justify-end"
+                className="flex justify-center lg:justify-end lg:pl-8"
                 initial={{ x: 50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
                 }
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <div className="relative w-full max-w-md h-64 sm:h-80 lg:h-96">
+                <div className="relative w-full max-w-md h-64 sm:h-80 lg:h-96 lg:ml-12">
                   {/* Main Glass Container */}
                   <div
                     className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden backdrop-blur-xl border border-white/30"
@@ -4600,21 +4600,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         />
                       ))}
 
-                      {/* Scanning Line Effect */}
-                      <motion.div
-                        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent"
-                        animate={{
-                          top: ["20%", "80%", "20%"],
-                        }}
-                        transition={{
-                          duration: 4,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                        style={{
-                          boxShadow: "0 0 10px rgba(73, 146, 255, 0.8)",
-                        }}
-                      />
+
                     </div>
 
                     {/* Glass Reflection */}
