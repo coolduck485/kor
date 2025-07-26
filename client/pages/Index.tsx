@@ -739,10 +739,10 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
-██║ █��╔╝��█╔═���═██╗�����╔��══██╗
-█████╔╝ █������   █��║██████╔╝
+██║ █��╔╝��█╔═���═██╗█���╔��══██╗
+█████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
-██║  ██╗╚████��█���╝██║  ██║
+██║  ██╗╚██████���╝██║  ██║
 ╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1935,63 +1935,67 @@ export default function Index() {
             />
           )}
 
-          {/* Dramatic Aurora Borealis - Northern Lights Effect */}
+          {/* Spectacular Full-Width Wavy Aurora Curtains */}
           {!isMobile && isHighPerformance && (
-            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-85">
-              {/* Main vertical aurora pillar */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-90">
+              {/* Primary aurora curtain - Top layer */}
               <div
-                className="absolute aurora-pillar-1"
-                style={{
-                  top: '10%',
-                  left: '15%',
-                  width: '120px',
-                  height: '80%',
-                  background: 'linear-gradient(180deg, transparent, rgba(6, 182, 212, 0.9), rgba(20, 184, 166, 0.8), rgba(34, 197, 94, 0.7), rgba(6, 182, 212, 0.6), transparent)',
-                  borderRadius: '80% 80% 80% 80% / 15% 15% 15% 15%',
-                  filter: 'blur(15px)',
-                  animation: 'aurora-dance-1 18s ease-in-out infinite',
-                }}
-              />
-              {/* Second dramatic pillar */}
-              <div
-                className="absolute aurora-pillar-2"
-                style={{
-                  top: '5%',
-                  left: '35%',
-                  width: '150px',
-                  height: '90%',
-                  background: 'linear-gradient(180deg, transparent, rgba(34, 197, 94, 0.9), rgba(6, 182, 212, 0.8), rgba(16, 185, 129, 0.9), rgba(20, 184, 166, 0.7), transparent)',
-                  borderRadius: '70% 70% 70% 70% / 12% 12% 12% 12%',
-                  filter: 'blur(18px)',
-                  animation: 'aurora-dance-2 22s ease-in-out infinite',
-                }}
-              />
-              {/* Third flowing aurora */}
-              <div
-                className="absolute aurora-pillar-3"
+                className="absolute aurora-curtain-1"
                 style={{
                   top: '15%',
-                  left: '65%',
-                  width: '100px',
-                  height: '70%',
-                  background: 'linear-gradient(180deg, transparent, rgba(20, 184, 166, 0.8), rgba(34, 197, 94, 0.9), rgba(6, 182, 212, 0.7), transparent)',
-                  borderRadius: '90% 90% 90% 90% / 18% 18% 18% 18%',
-                  filter: 'blur(12px)',
-                  animation: 'aurora-dance-3 25s ease-in-out infinite',
+                  left: '-20%',
+                  right: '-20%',
+                  height: '300px',
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.8) 15%, rgba(20, 184, 166, 0.9) 30%, rgba(34, 197, 94, 0.8) 50%, rgba(6, 182, 212, 0.9) 70%, rgba(20, 184, 166, 0.7) 85%, transparent 100%)',
+                  borderRadius: '50% 50% 80% 80% / 30% 30% 15% 15%',
+                  filter: 'blur(20px)',
+                  animation: 'aurora-wave-1 24s ease-in-out infinite',
+                  transform: 'skewY(-2deg)',
                 }}
               />
-              {/* Horizontal flowing waves for depth */}
+              {/* Secondary aurora curtain - Middle layer */}
               <div
-                className="absolute aurora-wave-flow"
+                className="absolute aurora-curtain-2"
                 style={{
-                  top: '30%',
-                  left: '-10%',
-                  right: '-10%',
-                  height: '250px',
-                  background: 'linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.4), rgba(34, 197, 94, 0.6), rgba(20, 184, 166, 0.5), transparent)',
-                  borderRadius: '50% 50% 50% 50% / 20% 20% 20% 20%',
+                  top: '35%',
+                  left: '-25%',
+                  right: '-25%',
+                  height: '400px',
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.7) 10%, rgba(6, 182, 212, 0.9) 25%, rgba(16, 185, 129, 0.8) 40%, rgba(20, 184, 166, 0.9) 60%, rgba(34, 197, 94, 0.8) 75%, rgba(6, 182, 212, 0.6) 90%, transparent 100%)',
+                  borderRadius: '80% 80% 50% 50% / 20% 20% 25% 25%',
                   filter: 'blur(25px)',
-                  animation: 'aurora-flow-horizontal 28s ease-in-out infinite',
+                  animation: 'aurora-wave-2 30s ease-in-out infinite',
+                  transform: 'skewY(1deg)',
+                }}
+              />
+              {/* Tertiary aurora curtain - Back layer */}
+              <div
+                className="absolute aurora-curtain-3"
+                style={{
+                  top: '55%',
+                  left: '-30%',
+                  right: '-30%',
+                  height: '350px',
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.6) 20%, rgba(34, 197, 94, 0.8) 35%, rgba(6, 182, 212, 0.7) 50%, rgba(16, 185, 129, 0.8) 65%, rgba(20, 184, 166, 0.6) 80%, transparent 100%)',
+                  borderRadius: '70% 70% 60% 60% / 25% 25% 20% 20%',
+                  filter: 'blur(30px)',
+                  animation: 'aurora-wave-3 36s ease-in-out infinite',
+                  transform: 'skewY(-1.5deg)',
+                }}
+              />
+              {/* Ultra-wide flowing base curtain */}
+              <div
+                className="absolute aurora-base-flow"
+                style={{
+                  top: '10%',
+                  left: '-40%',
+                  right: '-40%',
+                  height: '500px',
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.3) 12%, rgba(34, 197, 94, 0.5) 25%, rgba(20, 184, 166, 0.4) 37%, rgba(16, 185, 129, 0.5) 50%, rgba(6, 182, 212, 0.4) 62%, rgba(34, 197, 94, 0.3) 75%, rgba(20, 184, 166, 0.2) 87%, transparent 100%)',
+                  borderRadius: '60% 60% 40% 40% / 15% 15% 30% 30%',
+                  filter: 'blur(35px)',
+                  animation: 'aurora-base-flow 42s ease-in-out infinite',
+                  transform: 'skewY(0.5deg)',
                 }}
               />
             </div>
