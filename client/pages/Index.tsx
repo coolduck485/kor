@@ -3996,10 +3996,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Content Grid */}
-            <div className="grid md:grid-cols-2 gap-16 items-center mt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center mt-16">
               {/* Left Content */}
               <motion.div
-                className="space-y-8 text-left"
+                className="space-y-6 lg:space-y-8 text-left"
                 initial={{ x: -50, opacity: 0 }}
                 animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
