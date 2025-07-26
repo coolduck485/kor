@@ -398,7 +398,7 @@ export default function Index() {
       <div className="retro-container min-h-screen max-h-screen overflow-y-auto overflow-x-hidden">
         {/* Retro Loading Screen */}
         <AnimatePresence>
-          {false && (
+          {isLoading && (
             <motion.div
               className="fixed inset-0 z-[10000] bg-black flex items-center justify-center"
               initial={{ opacity: 1 }}
@@ -704,7 +704,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ██████████████████████ 50%
+                      RAM: ███████████���██████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
