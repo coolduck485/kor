@@ -5852,7 +5852,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Breathing Orbs - Reduced for mobile */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(isMobile ? 2 : 6)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <div
               key={`breath-orb-${i}`}
               className="absolute rounded-full"
