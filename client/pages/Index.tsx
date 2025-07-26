@@ -1793,11 +1793,7 @@ export default function Index() {
           <motion.div
             className="absolute inset-0 pointer-events-none overflow-hidden"
             initial={{ opacity: 0, scale: 0.5 }}
-            animate={
-              animationStep >= 1
-                ? { opacity: 1, scale: 1 }
-                : { opacity: 0, scale: 0.5 }
-            }
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
             {[...Array(25)].map((_, i) => (
@@ -6081,7 +6077,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Telegram",
                             url: "https://telegram.org",
-                            icon: "���",
+                            icon: "📱",
                             color: "from-blue-500 to-cyan-500",
                           },
                         ].map((social) => (
