@@ -1938,7 +1938,7 @@ export default function Index() {
           )}
 
           {/* Spectacular Full-Width Wavy Aurora Curtains */}
-          {!isMobile && isHighPerformance && (
+          {isHighPerformance && (
             <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
               {/* Primary aurora curtain - Top layer */}
               <div
