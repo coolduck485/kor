@@ -5784,7 +5784,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
             {/* Social Media Buttons */}
             <motion.div
-              className="text-center mt-8 sm:mt-12 lg:mt-16"
+              className="text-center mt-6 sm:mt-12 lg:mt-16"
               initial={{ y: 50, opacity: 0 }}
               animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
               transition={{ duration: 0.8, delay: 1.2 }}
