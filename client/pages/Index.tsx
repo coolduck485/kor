@@ -6386,8 +6386,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             </div>
                           </div>
 
-                          {/* Tablet+ Layout - Horizontal */}
-                          <div className="hidden sm:flex items-center space-x-4">
+                          {/* Unified Layout - now visible on all devices */}
+                          <div className="flex items-center space-x-4">
                             <div
                               className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center shadow-lg`}
                               style={{
