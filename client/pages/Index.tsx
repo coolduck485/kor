@@ -5169,7 +5169,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       whileHover={{ scale: 1.02, y: -3 }}
                     >
                       <div
-                        className="relative p-4 sm:p-6 rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
+                        className="relative p-2 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
                         style={{
                           background: "rgba(255, 255, 255, 0.05)",
                           border: "2px solid rgba(255, 255, 255, 0.1)",
