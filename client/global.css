@@ -339,20 +339,7 @@
   }
 }
 
-@keyframes aurora-wave {
-  0% {
-    transform: translateX(-100%) scale(1);
-    opacity: 0;
-  }
-  50% {
-    transform: translateX(0%) scale(1.2);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateX(100%) scale(1);
-    opacity: 0;
-  }
-}
+
 
 @keyframes crystalline-shimmer {
   0% {
@@ -380,9 +367,7 @@
   animation: rainbow-pulse 8s ease-in-out infinite;
 }
 
-.aurora-effect {
-  animation: aurora-wave 15s ease-in-out infinite;
-}
+
 
 .crystalline-effect {
   background: linear-gradient(90deg, transparent, rgba(79, 209, 197, 0.4), rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.4), transparent);
