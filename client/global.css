@@ -441,6 +441,19 @@
   }
 }
 
+/* Enhanced KOR text size for large screens */
+@media (min-width: 992px) {
+  .kor-text-large {
+    font-size: 8rem !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .kor-text-large {
+    font-size: 10rem !important;
+  }
+}
+
 @keyframes text-glow-pulse {
   0%,
   100% {
