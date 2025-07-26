@@ -1779,22 +1779,7 @@ export default function Index() {
               }}
             />
 
-            {/* Secondary wipe effect from right */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              exit={{ scaleX: 0 }}
-              transition={{
-                duration: 0.4,
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.1
-              }}
-              className="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black origin-right opacity-80"
-              style={{
-                willChange: "transform",
-                transform: "translateZ(0)",
-              }}
-            />
+
 
 
 
