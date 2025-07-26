@@ -5186,7 +5186,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       value={formData.message}
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                       rows={5}
-                      className="w-full p-4 rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 resize-none outline-none"
+                      className="w-full p-3 sm:p-4 rounded-xl sm:rounded-2xl border backdrop-blur-lg transition-all duration-300 focus:scale-105 resize-none outline-none text-sm sm:text-base"
                       style={{
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "2px solid rgba(255, 255, 255, 0.1)",
