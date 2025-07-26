@@ -222,6 +222,35 @@ export default function Index() {
     return timeouts;
   };
 
+  // Optimized loading sequence for better performance
+  const triggerOptimizedLoadingSequence = () => {
+    setIsLoading(true);
+    setIsLoaded(false);
+    setAnimationStep(0);
+
+    // Faster, optimized animation sequence with smoother transitions
+    const optimizedSequence = [
+      { delay: 100, step: 1 }, // Background elements (faster)
+      { delay: 300, step: 2 }, // Central elements
+      { delay: 500, step: 3 }, // Text animations
+      { delay: 700, step: 4 }, // Buttons with smooth scaling
+      { delay: 900, step: 5 }, // Navigation elements
+      { delay: 1100, step: 6 }, // Final state
+    ];
+
+    const timeouts = optimizedSequence.map(({ delay, step }) =>
+      setTimeout(() => {
+        setAnimationStep(step);
+        if (step === 6) {
+          setIsLoading(false);
+          setTimeout(() => setIsLoaded(true), 200); // Faster completion
+        }
+      }, delay),
+    );
+
+    return timeouts;
+  };
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
@@ -377,6 +406,11 @@ export default function Index() {
           behavior: "auto", // Instant scroll during black screen
           block: "start",
         });
+      }
+
+      // If returning to home section (index 0), trigger loading animation
+      if (index === 0) {
+        triggerOptimizedLoadingSequence();
       }
 
       // Start revealing new content after a cinematic pause
@@ -744,7 +778,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
-██║ █��╔╝��█╔═���═██╗█���╔��══██╗
+██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████���╝██║  ██║
@@ -4146,7 +4180,7 @@ function OrbFloatingButton({
           marginTop: "var(--mobile-y)",
           animationDelay: `${delay}s`,
           transform: `scale(${currentSize.scale})`,
-          animation: `gentleFloat 4s ease-in-out infinite ${delay}s, button-drift ${8 + delay * 2}s ease-in-out infinite ${delay * 1.5}s`,
+          animation: `gentleFloat 4s ease-in-out infinite ${delay}s, button-drift ${8 + delay * 2}s ease-in-out infinite ${delay * 1.5}s, smooth-scale-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`,
         } as React.CSSProperties
       }
     >
