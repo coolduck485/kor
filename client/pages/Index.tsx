@@ -5,6 +5,7 @@ import { RetroToggle } from "@/components/ui/retro-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
+import { useMobilePerformance } from "@/hooks/use-mobile-performance";
 import {
   ChevronUp,
   ChevronDown,
@@ -28,7 +29,7 @@ export default function Index() {
   const { mode, toggleMode } = useRetroMode();
   const { showSuccess, showError, showWarning, showInfo } =
     useFloatingNotifications();
-  const [isMobile, setIsMobile] = useState(false);
+  const { isMobile, animationConfig } = useMobilePerformance();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
@@ -52,6 +53,34 @@ export default function Index() {
   const [isHighPerformance, setIsHighPerformance] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isScrollingActive, setIsScrollingActive] = useState(false);
+
+  // Mobile Performance Wrapper Component
+  const MobileOptimizedWrapper = ({
+    children,
+    condition = true,
+  }: {
+    children: React.ReactNode;
+    condition?: boolean;
+  }) => {
+    if (isMobile && !condition) {
+      return null; // Don't render expensive components on mobile
+    }
+    return <>{children}</>;
+  };
+
+  // Mobile-optimized animation config
+  const getMobileAnimationProps = (desktopProps: any) => {
+    if (!isMobile) return desktopProps;
+
+    return {
+      ...desktopProps,
+      transition: {
+        ...desktopProps.transition,
+        duration: Math.min(desktopProps.transition?.duration || 0.5, 0.3),
+        ease: "easeOut",
+      },
+    };
+  };
 
   // Black transition animation state
   const [isBlackTransition, setIsBlackTransition] = useState(false);
@@ -201,11 +230,6 @@ export default function Index() {
       });
     };
 
-    // Check if device is mobile for performance optimization
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
     // Performance optimization checks
     const checkPerformance = () => {
       // Check for reduced motion preference
@@ -226,8 +250,6 @@ export default function Index() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("resize", checkMobile);
-    checkMobile(); // Initial check
     checkPerformance(); // Performance optimization check
 
     // Check current URL and scroll to appropriate section
@@ -540,7 +562,7 @@ export default function Index() {
                 {/* Loading KOR text in ASCII style */}
                 <div className="mb-8">
                   <motion.div
-                    className="font-mono text-4xl md:text-6xl lg:text-7xl font-bold text-green-400"
+                    className="font-mono text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl kor-text-large font-bold text-green-400"
                     style={{
                       textShadow: "0 0 10px #00ff41, 0 0 20px #00ff41",
                     }}
@@ -722,12 +744,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ███����������█╗
-██║ ██╔╝██╔═���═██╗██╔═══██╗
-█████╔╝ ██���   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══█����
-██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
+                  {`██╗  ██╗ ██████�� ███����������█╗
+██║ █��╔╝��█╔═���═██╗█���╔��══██╗
+█████╔╝ █������   █��║██���███╔╝
+██╔═██╗ ██║   ██║██╔══█������
+██║  ██╗╚██████���╝██║  ██║
+╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -795,13 +817,13 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███��█���██████��███████ 60%
+                      CPU: ███��█������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ████████��█████████████ 50%
+                      RAM: █���██████��█████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -879,7 +901,7 @@ export default function Index() {
                 <div className="loading-indicators">
                   <span>█▓▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░▒▓█</span>
+                  <span>░���▓█</span>
                 </div>
               </motion.div>
 
@@ -1585,7 +1607,7 @@ export default function Index() {
       ref={containerRef}
       className={`relative transition-all duration-500 gpu-accelerated composite-layer scroll-optimized ${
         isScrollingActive ? "scroll-simplified" : ""
-      } ${
+      } ${isMobile ? "mobile-optimized performance-optimized" : ""} ${
         theme === "light"
           ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
           : "bg-black"
@@ -1905,14 +1927,6 @@ export default function Index() {
 
           {/* Enhanced Background Elements - Performance optimized */}
 
-          {/* Dynamic Gradient Overlays - Only on high performance devices */}
-          {isHighPerformance && (
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift gpu-accelerated" />
-              <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse gpu-accelerated" />
-            </div>
-          )}
-
           {/* Animated Noise Texture - Only on desktop high performance */}
           {!isMobile && isHighPerformance && (
             <div
@@ -1923,6 +1937,76 @@ export default function Index() {
             />
           )}
 
+          {/* Spectacular Full-Width Wavy Aurora Curtains */}
+          {!isMobile && isHighPerformance && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-90">
+              {/* Primary aurora curtain - Top layer */}
+              <div
+                className="absolute aurora-curtain-1"
+                style={{
+                  top: "15%",
+                  left: "-20%",
+                  right: "-20%",
+                  height: "300px",
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.8) 15%, rgba(20, 184, 166, 0.9) 30%, rgba(34, 197, 94, 0.8) 50%, rgba(6, 182, 212, 0.9) 70%, rgba(20, 184, 166, 0.7) 85%, transparent 100%)",
+                  borderRadius: "50% 50% 80% 80% / 30% 30% 15% 15%",
+                  filter: "blur(20px)",
+                  animation: "aurora-wave-1 24s ease-in-out infinite",
+                  transform: "skewY(-2deg)",
+                }}
+              />
+              {/* Secondary aurora curtain - Middle layer */}
+              <div
+                className="absolute aurora-curtain-2"
+                style={{
+                  top: "35%",
+                  left: "-25%",
+                  right: "-25%",
+                  height: "400px",
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.7) 10%, rgba(6, 182, 212, 0.9) 25%, rgba(16, 185, 129, 0.8) 40%, rgba(20, 184, 166, 0.9) 60%, rgba(34, 197, 94, 0.8) 75%, rgba(6, 182, 212, 0.6) 90%, transparent 100%)",
+                  borderRadius: "80% 80% 50% 50% / 20% 20% 25% 25%",
+                  filter: "blur(25px)",
+                  animation: "aurora-wave-2 30s ease-in-out infinite",
+                  transform: "skewY(1deg)",
+                }}
+              />
+              {/* Tertiary aurora curtain - Back layer */}
+              <div
+                className="absolute aurora-curtain-3"
+                style={{
+                  top: "55%",
+                  left: "-30%",
+                  right: "-30%",
+                  height: "350px",
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.6) 20%, rgba(34, 197, 94, 0.8) 35%, rgba(6, 182, 212, 0.7) 50%, rgba(16, 185, 129, 0.8) 65%, rgba(20, 184, 166, 0.6) 80%, transparent 100%)",
+                  borderRadius: "70% 70% 60% 60% / 25% 25% 20% 20%",
+                  filter: "blur(30px)",
+                  animation: "aurora-wave-3 36s ease-in-out infinite",
+                  transform: "skewY(-1.5deg)",
+                }}
+              />
+              {/* Ultra-wide flowing base curtain */}
+              <div
+                className="absolute aurora-base-flow"
+                style={{
+                  top: "10%",
+                  left: "-40%",
+                  right: "-40%",
+                  height: "500px",
+                  background:
+                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.3) 12%, rgba(34, 197, 94, 0.5) 25%, rgba(20, 184, 166, 0.4) 37%, rgba(16, 185, 129, 0.5) 50%, rgba(6, 182, 212, 0.4) 62%, rgba(34, 197, 94, 0.3) 75%, rgba(20, 184, 166, 0.2) 87%, transparent 100%)",
+                  borderRadius: "60% 60% 40% 40% / 15% 15% 30% 30%",
+                  filter: "blur(35px)",
+                  animation: "aurora-base-flow 42s ease-in-out infinite",
+                  transform: "skewY(0.5deg)",
+                }}
+              />
+            </div>
+          )}
+
           {/* Optimized Floating Ambient Particles - Reduced count for 60fps */}
           <motion.div
             className="absolute inset-0 pointer-events-none overflow-hidden will-change-transform"
@@ -1930,21 +2014,41 @@ export default function Index() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
           >
-            {[...Array(isMobile ? 8 : 15)].map((_, i) => (
+            {[
+              ...Array(
+                animationConfig.enableBackgroundParticles
+                  ? isMobile
+                    ? 3
+                    : 15
+                  : 0,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`particle-${i}`}
-                className="absolute rounded-full opacity-60 gpu-accelerated"
+                className="absolute rounded-full opacity-70 gpu-accelerated"
                 style={{
                   left: `${5 + ((i * 60) % 95)}%`,
                   top: `${10 + ((i * 35) % 85)}%`,
-                  width: `${2 + (i % 3)}px`,
-                  height: `${2 + (i % 3)}px`,
-                  background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.3 + (i % 3) * 0.2})`,
+                  width: `${3 + (i % 4)}px`,
+                  height: `${3 + (i % 4)}px`,
+                  background: (() => {
+                    const colorPalettes = [
+                      `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`, // Pink-Orange
+                      `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`, // Green-Blue
+                      `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`, // Purple-Yellow
+                      `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`, // Blue-Green
+                      `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`, // Orange-Purple
+                      `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`, // Pink-Mint
+                    ];
+                    return colorPalettes[i % colorPalettes.length];
+                  })(),
                   animation: isScrollingActive
                     ? "none"
-                    : `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s`,
+                    : `gentleFloat ${isMobile ? 2 + (i % 2) : 4 + (i % 3)}s ease-in-out infinite ${i * (isMobile ? 0.2 : 0.4)}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
                   willChange: isScrollingActive ? "auto" : "transform",
                   transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
+                  filter: `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
+                  boxShadow: `0 0 ${4 + (i % 3) * 2}px rgba(255, 255, 255, 0.3)`,
                 }}
                 initial={{ scale: 0, rotate: 0 }}
                 animate={{ scale: 1, rotate: 360 }}
@@ -2003,7 +2107,11 @@ export default function Index() {
 
           {/* Optimized Breathing Orbs - Reduced count for performance */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[...Array(isMobile ? 3 : 6)].map((_, i) => (
+            {[
+              ...Array(
+                animationConfig.enableFloatingOrbs ? (isMobile ? 2 : 6) : 0,
+              ),
+            ].map((_, i) => (
               <div
                 key={`breath-orb-${i}`}
                 className="absolute rounded-full gpu-accelerated"
@@ -2013,8 +2121,8 @@ export default function Index() {
                   width: `${25 + (i % 2) * 15}px`,
                   height: `${25 + (i % 2) * 15}px`,
                   background: `radial-gradient(circle, rgba(${73 + i * 15}, ${146 + i * 8}, 255, 0.4) 0%, transparent 70%)`,
-                  animation: `breath ${8 + (i % 3)}s ease-in-out infinite ${i * 0.6}s`,
-                  filter: `blur(${3 + (i % 2)}px)`,
+                  animation: `breath ${isMobile ? 4 + (i % 2) : 8 + (i % 3)}s ease-in-out infinite ${i * (isMobile ? 0.3 : 0.6)}s`,
+                  filter: `blur(${isMobile ? 2 : 3 + (i % 2)}px)`,
                   willChange: "transform, opacity",
                   transform: "translateZ(0)",
                 }}
@@ -2649,15 +2757,21 @@ export default function Index() {
                               <div
                                 className="w-6 h-6"
                                 style={{
-                                  background:
-                                    theme === "light"
-                                      ? "radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%)"
-                                      : "radial-gradient(circle, rgba(73, 146, 255, 0.6) 0%, transparent 70%)",
+                                  background: (() => {
+                                    const colors = [
+                                      "radial-gradient(circle, rgba(255, 100, 150, 0.8) 0%, rgba(255, 180, 100, 0.5) 70%, transparent 90%)", // Pink-Orange
+                                      "radial-gradient(circle, rgba(100, 255, 200, 0.8) 0%, rgba(100, 200, 255, 0.5) 70%, transparent 90%)", // Mint-Blue
+                                      "radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 150, 200, 0.5) 70%, transparent 90%)", // Purple-Pink
+                                      "radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 255, 150, 0.5) 70%, transparent 90%)", // Orange-Green
+                                    ];
+                                    return colors[i % colors.length];
+                                  })(),
                                   clipPath:
                                     "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                                   animation: isMobile
                                     ? "spin-slow 8s linear infinite"
                                     : "spin-slow 15s linear infinite",
+                                  filter: "drop-shadow(0 0 8px currentColor)",
                                 }}
                               />
                             )}
@@ -2665,15 +2779,21 @@ export default function Index() {
                               <div
                                 className="w-4 h-4"
                                 style={{
-                                  background:
-                                    theme === "light"
-                                      ? "linear-gradient(45deg, rgba(147, 51, 234, 0.5), rgba(59, 130, 246, 0.4))"
-                                      : "linear-gradient(45deg, rgba(34, 211, 238, 0.5), rgba(73, 146, 255, 0.4))",
+                                  background: (() => {
+                                    const colors = [
+                                      "linear-gradient(45deg, rgba(255, 100, 200, 0.7), rgba(100, 255, 150, 0.6))", // Pink-Green
+                                      "linear-gradient(45deg, rgba(150, 100, 255, 0.7), rgba(255, 200, 100, 0.6))", // Purple-Orange
+                                      "linear-gradient(45deg, rgba(100, 200, 255, 0.7), rgba(255, 150, 100, 0.6))", // Blue-Orange
+                                      "linear-gradient(45deg, rgba(200, 255, 100, 0.7), rgba(255, 100, 150, 0.6))", // Green-Pink
+                                    ];
+                                    return colors[i % colors.length];
+                                  })(),
                                   clipPath:
                                     "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                                   animation: isMobile
                                     ? "gentle-pulse 3s ease-in-out infinite"
                                     : "gentle-pulse 4s ease-in-out infinite",
+                                  filter: "drop-shadow(0 0 6px currentColor)",
                                 }}
                               />
                             )}
@@ -2681,15 +2801,21 @@ export default function Index() {
                               <div
                                 className="w-5 h-5"
                                 style={{
-                                  background:
-                                    theme === "light"
-                                      ? "conic-gradient(from 0deg, rgba(59, 130, 246, 0.5), rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.5))"
-                                      : "conic-gradient(from 0deg, rgba(73, 146, 255, 0.5), rgba(34, 211, 238, 0.4), rgba(73, 146, 255, 0.5))",
+                                  background: (() => {
+                                    const colors = [
+                                      "conic-gradient(from 0deg, rgba(255, 150, 100, 0.7), rgba(100, 255, 200, 0.6), rgba(200, 100, 255, 0.7), rgba(255, 200, 150, 0.6))", // Warm Rainbow
+                                      "conic-gradient(from 90deg, rgba(100, 255, 150, 0.7), rgba(255, 100, 200, 0.6), rgba(150, 200, 255, 0.7), rgba(255, 180, 100, 0.6))", // Cool Rainbow
+                                      "conic-gradient(from 180deg, rgba(200, 150, 255, 0.7), rgba(255, 200, 100, 0.6), rgba(100, 255, 180, 0.7), rgba(255, 150, 200, 0.6))", // Pastel Rainbow
+                                      "conic-gradient(from 270deg, rgba(255, 200, 150, 0.7), rgba(150, 255, 200, 0.6), rgba(200, 150, 255, 0.7), rgba(255, 180, 150, 0.6))", // Sunset Rainbow
+                                    ];
+                                    return colors[i % colors.length];
+                                  })(),
                                   clipPath:
                                     "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                                   animation: isMobile
                                     ? "rotate-slow 8s linear infinite"
                                     : "rotate-slow 12s linear infinite",
+                                  filter: "drop-shadow(0 0 10px currentColor)",
                                 }}
                               />
                             )}
@@ -2832,6 +2958,8 @@ export default function Index() {
             ref={(el) => (sectionsRef.current[1] = el!)}
             theme={theme}
             isVisible={currentSection === 1}
+            isMobile={isMobile}
+            animationConfig={animationConfig}
           />
         </motion.div>
 
@@ -2846,6 +2974,8 @@ export default function Index() {
             ref={(el) => (sectionsRef.current[2] = el!)}
             theme={theme}
             isVisible={currentSection === 2}
+            isMobile={isMobile}
+            animationConfig={animationConfig}
           />
         </motion.div>
 
@@ -2875,6 +3005,7 @@ export default function Index() {
             theme={theme}
             isVisible={currentSection === 4}
             isMobile={isMobile}
+            animationConfig={animationConfig}
           />
         </motion.div>
       </div>
@@ -2925,37 +3056,7 @@ export default function Index() {
           }
         }
 
-        @keyframes gradient-shift {
-          0%,
-          100% {
-            transform: translateX(0%) translateY(0%) rotate(0deg);
-          }
-          25% {
-            transform: translateX(10%) translateY(-5%) rotate(1deg);
-          }
-          50% {
-            transform: translateX(-5%) translateY(10%) rotate(-1deg);
-          }
-          75% {
-            transform: translateX(15%) translateY(-10%) rotate(0.5deg);
-          }
-        }
 
-        @keyframes gradient-shift-reverse {
-          0%,
-          100% {
-            transform: translateX(0%) translateY(0%) rotate(0deg);
-          }
-          25% {
-            transform: translateX(-10%) translateY(5%) rotate(-1deg);
-          }
-          50% {
-            transform: translateX(5%) translateY(-10%) rotate(1deg);
-          }
-          75% {
-            transform: translateX(-15%) translateY(10%) rotate(-0.5deg);
-          }
-        }
 
         @keyframes noise {
           0%,
@@ -2973,13 +3074,7 @@ export default function Index() {
           animation: float-particle linear infinite;
         }
 
-        .animate-gradient-shift {
-          animation: gradient-shift 25s ease-in-out infinite;
-        }
 
-        .animate-gradient-shift-reverse {
-          animation: gradient-shift-reverse 30s ease-in-out infinite;
-        }
 
         .animate-noise {
           animation: noise 3s ease-in-out infinite;
@@ -4065,10 +4160,11 @@ interface SectionProps {
   theme: "light" | "dark";
   isVisible: boolean;
   isMobile?: boolean;
+  animationConfig?: any;
 }
 
 const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible }, ref) => {
+  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
     return (
       <motion.div
         ref={ref}
@@ -4081,13 +4177,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Enhanced Background Elements - Copy from Home Section */}
-
-        {/* Dynamic Gradient Overlays */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
-          <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
-        </div>
+        {/* Enhanced Background Elements - Ultra Cool About Us Edition */}
 
         {/* Animated Noise Texture */}
         <div
@@ -4246,55 +4336,17 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                >
-                  A
-                </span>
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "0.2s" }}
-                >
-                  b
-                </span>
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "0.4s" }}
-                >
-                  o
-                </span>
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "0.6s" }}
-                >
-                  u
-                </span>
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "0.8s" }}
-                >
-                  t
-                </span>
-                <span className="mx-4" />
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "1.0s" }}
-                >
-                  U
-                </span>
-                <span
-                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
-                  className="animate-warm-glow-pulse"
-                  style={{ animationDelay: "1.2s" }}
-                >
-                  s
-                </span>
+                {"About Us".split("").map((letter, i) => (
+                  <span
+                    key={i}
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    style={{
+                      animationDelay: `${i * 0.15}s`,
+                    }}
+                  >
+                    {letter === " " ? "\u00A0" : letter}
+                  </span>
+                ))}
               </h1>
             </div>
 
@@ -4426,14 +4478,14 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
               {/* Right Content - Modern Software Development Visualization */}
               <motion.div
-                className="flex justify-center lg:justify-end"
+                className="flex justify-center lg:justify-end lg:pl-8"
                 initial={{ x: 50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
                 }
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <div className="relative w-full max-w-md h-64 sm:h-80 lg:h-96">
+                <div className="relative w-full max-w-md h-64 sm:h-80 lg:h-96 lg:ml-12">
                   {/* Main Glass Container */}
                   <div
                     className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden backdrop-blur-xl border border-white/30"
@@ -4599,22 +4651,6 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           }}
                         />
                       ))}
-
-                      {/* Scanning Line Effect */}
-                      <motion.div
-                        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent"
-                        animate={{
-                          top: ["20%", "80%", "20%"],
-                        }}
-                        transition={{
-                          duration: 4,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                        style={{
-                          boxShadow: "0 0 10px rgba(73, 146, 255, 0.8)",
-                        }}
-                      />
                     </div>
 
                     {/* Glass Reflection */}
@@ -4635,7 +4671,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // ========================================
 
 const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible }, ref) => {
+  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
     const services = [
       {
         icon: Globe,
@@ -4689,12 +4725,6 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         transition={{ duration: 1 }}
       >
         {/* Enhanced Background Elements - Copy from Home Section */}
-
-        {/* Dynamic Gradient Overlays */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
-          <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
-        </div>
 
         {/* Animated Noise Texture */}
         <div
@@ -5164,12 +5194,6 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         transition={{ duration: 1 }}
       >
         {/* Enhanced Background Elements - Copy from Home Section */}
-
-        {/* Dynamic Gradient Overlays */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
-          <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
-        </div>
 
         {/* Animated Noise Texture */}
         <div
@@ -5670,7 +5694,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // ========================================
 
 const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible, isMobile = false }, ref) => {
+  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
     const [formData, setFormData] = useState({
       firstName: "",
       lastName: "",
@@ -5735,37 +5759,52 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Enhanced Background Elements - Copy from Home Section */}
+        {/* Enhanced Background Elements - Contact Section Eye Candy */}
 
-        {/* Dynamic Gradient Overlays */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 animate-gradient-shift" />
-          <div className="absolute inset-0 bg-gradient-to-tl from-cyan-500/15 via-transparent to-blue-500/15 animate-gradient-shift-reverse" />
-        </div>
+        {/* Animated Noise Texture - Enhanced for contact */}
+        {!isMobile && (
+          <div
+            className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+            }}
+          />
+        )}
 
-        {/* Animated Noise Texture */}
-        <div
-          className="absolute inset-0 opacity-5 animate-noise"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-          }}
-        />
-
-        {/* Enhanced Floating Ambient Particles with Color Shifting */}
+        {/* Colorful Floating Particles - Same as main section */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(isMobile ? 3 : 6)].map((_, i) => (
+          {[
+            ...Array(
+              animationConfig?.enableBackgroundParticles
+                ? isMobile
+                  ? 3
+                  : 15
+                : 6,
+            ),
+          ].map((_, i) => (
             <div
               key={`particle-${i}`}
-              className="absolute rounded-full opacity-60"
+              className="absolute rounded-full opacity-70 gpu-accelerated"
               style={{
                 left: `${5 + ((i * 60) % 95)}%`,
                 top: `${10 + ((i * 35) % 85)}%`,
-                width: `${1 + (i % 4)}px`,
-                height: `${1 + (i % 4)}px`,
-                background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.2 + (i % 4) * 0.15})`,
-                animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
-                filter: "blur(0.3px)",
-                transform: `scale(${0.5 + (i % 3) * 0.3})`,
+                width: `${3 + (i % 4)}px`,
+                height: `${3 + (i % 4)}px`,
+                background: (() => {
+                  const colorPalettes = [
+                    `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`, // Pink-Orange
+                    `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`, // Green-Blue
+                    `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`, // Purple-Yellow
+                    `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`, // Blue-Green
+                    `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`, // Orange-Purple
+                    `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`, // Pink-Mint
+                  ];
+                  return colorPalettes[i % colorPalettes.length];
+                })(),
+                animation: `gentleFloat ${isMobile ? 2 + (i % 2) : 4 + (i % 3)}s ease-in-out infinite ${i * (isMobile ? 0.2 : 0.4)}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
+                filter: `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
+                boxShadow: `0 0 ${4 + (i % 3) * 2}px rgba(255, 255, 255, 0.3)`,
+                transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
                 willChange: "transform",
               }}
             />
@@ -5918,9 +5957,21 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 Have a great idea?
               </h2>
               <p
-                className={`text-sm sm:text-base ${theme === "light" ? "text-gray-600" : "text-white/60"}`}
+                className={`text-sm sm:text-base font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
               >
-                Tell us about it.
+                <span className="warm-glow-text animate-warm-glow-pulse">
+                  {"Tell us about it.".split("").map((letter, i) => (
+                    <span
+                      key={i}
+                      className="inline-block relative"
+                      style={{
+                        animationDelay: `${i * 0.1}s`,
+                      }}
+                    >
+                      {letter === " " ? "\u00A0" : letter}
+                    </span>
+                  ))}
+                </span>
               </p>
             </div>
 
