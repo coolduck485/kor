@@ -28,6 +28,7 @@ export default function Index() {
   const { mode, toggleMode } = useRetroMode();
   const { showSuccess, showError, showWarning, showInfo } =
     useFloatingNotifications();
+  const [isMobile, setIsMobile] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
