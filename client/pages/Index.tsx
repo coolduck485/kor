@@ -4655,7 +4655,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     {/* Description Content */}
                     <div className="relative z-10 text-center">
                       <p
-                        className={`text-xs sm:text-sm leading-relaxed hidden sm:block ${
+                        className={`text-xs sm:text-sm leading-relaxed ${
                           theme === "light" ? "text-gray-600" : "text-gray-300"
                         }`}
                         style={{
