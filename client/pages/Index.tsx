@@ -224,11 +224,6 @@ export default function Index() {
       });
     };
 
-    // Check if device is mobile for performance optimization
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
     // Performance optimization checks
     const checkPerformance = () => {
       // Check for reduced motion preference
@@ -249,8 +244,6 @@ export default function Index() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("resize", checkMobile);
-    checkMobile(); // Initial check
     checkPerformance(); // Performance optimization check
 
     // Check current URL and scroll to appropriate section
