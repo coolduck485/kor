@@ -5852,12 +5852,12 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                           </div>
 
-                          <div className="flex items-center space-x-3 relative z-10">
-                            <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${social.color} flex items-center justify-center`}>
-                              <span className="text-white text-lg">{social.icon}</span>
+                          <div className="flex items-center space-x-2 relative z-10">
+                            <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${social.color} flex items-center justify-center`}>
+                              <span className="text-white text-sm">{social.icon}</span>
                             </div>
                             <div>
-                              <p className={`font-medium text-sm ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}>
+                              <p className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}>
                                 {social.name}
                               </p>
                               <p className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
