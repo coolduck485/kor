@@ -1762,42 +1762,14 @@ export default function Index() {
               transform: "translateZ(0)",
             }}
           >
-            {/* Cinematic wipe effect from left */}
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              exit={{ scaleX: 0 }}
-              transition={{
-                duration: 0.5,
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.05
-              }}
-              className="absolute inset-0 bg-black origin-left"
-              style={{
-                willChange: "transform",
-                transform: "translateZ(0)",
-              }}
-            />
+            {/* Simple black overlay */}
+            <div className="absolute inset-0 bg-black" />
 
 
 
 
 
-            {/* Scanning line effect */}
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: "100%" }}
-              transition={{
-                duration: 0.6,
-                ease: "easeInOut",
-                delay: 0.2
-              }}
-              className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-blue-400/50 to-transparent opacity-60"
-              style={{
-                willChange: "transform",
-                transform: "translateZ(0)",
-              }}
-            />
+
           </motion.div>
         )}
       </AnimatePresence>
