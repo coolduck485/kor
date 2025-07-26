@@ -1747,24 +1747,24 @@ export default function Index() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{
-              duration: 0.4,
+              duration: 0.3,
               ease: "easeInOut"
             }}
-            className="fixed inset-0 bg-black z-[9999] pointer-events-none"
+            className="fixed inset-0 z-[9999] pointer-events-none black-overlay-enhanced"
             style={{
               willChange: "opacity",
               transform: "translateZ(0)",
             }}
           >
-            {/* Cinematic wipe effect */}
+            {/* Cinematic wipe effect from left */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               exit={{ scaleX: 0 }}
               transition={{
-                duration: 0.6,
-                ease: "easeInOut",
-                delay: 0.1
+                duration: 0.5,
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: 0.05
               }}
               className="absolute inset-0 bg-black origin-left"
               style={{
@@ -1773,20 +1773,61 @@ export default function Index() {
               }}
             />
 
-            {/* Subtle loading indicator */}
+            {/* Secondary wipe effect from right */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              exit={{ scaleX: 0 }}
               transition={{
-                duration: 0.3,
-                ease: "easeOut",
-                delay: 0.2
+                duration: 0.4,
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: 0.1
+              }}
+              className="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black origin-right opacity-80"
+              style={{
+                willChange: "transform",
+                transform: "translateZ(0)",
+              }}
+            />
+
+            {/* Subtle pulse indicator */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{
+                opacity: [0, 0.6, 0],
+                scale: [0.5, 1.2, 0.5]
+              }}
+              transition={{
+                duration: 0.8,
+                ease: "easeInOut",
+                delay: 0.15,
+                repeat: 1
               }}
               className="absolute inset-0 flex items-center justify-center"
             >
-              <div className="w-1 h-1 bg-white/20 rounded-full animate-pulse" />
+              <div
+                className="w-2 h-2 bg-white/30 rounded-full"
+                style={{
+                  boxShadow: "0 0 20px rgba(255, 255, 255, 0.3)",
+                }}
+              />
             </motion.div>
+
+            {/* Scanning line effect */}
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: "100%" }}
+              transition={{
+                duration: 0.6,
+                ease: "easeInOut",
+                delay: 0.2
+              }}
+              className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-blue-400/50 to-transparent opacity-60"
+              style={{
+                willChange: "transform",
+                transform: "translateZ(0)",
+              }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
