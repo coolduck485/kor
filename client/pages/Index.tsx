@@ -2654,7 +2654,7 @@ export default function Index() {
 
               {/* Development services - enhanced with dramatic effects */}
               <div
-                className="text-center transform translate-x-8 sm:translate-x-12 md:translate-x-16 mt-2 md:mt-4"
+                className="text-center transform translate-x-2 sm:translate-x-8 md:translate-x-12 lg:translate-x-16 mt-2 md:mt-4"
                 style={{ marginLeft: "5px", marginTop: "-5px" }}
               >
                 <div className="relative">
