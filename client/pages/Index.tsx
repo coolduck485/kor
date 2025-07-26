@@ -742,7 +742,7 @@ export default function Index() {
 ██║ ██╔╝��█╔═���═██╗█���╔��══██╗
 █████╔╝ █������   █��║██████╔╝
 ██╔═██╗ ██║   ██║██╔══█������
-██║  ██╗╚██████╔╝██║  ██║
+██║  ██╗╚██████���╝██║  ██║
 ╚═╝  ╚═╝ ╚═���═══╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -5880,26 +5880,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         </div>
 
-        {/* Cosmic Particle Field for Contact */}
-        {!isMobile && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25">
-            {[...Array(8)].map((_, i) => (
-              <div
-                key={`cosmic-${i}`}
-                className="absolute cosmic-particles rounded-full"
-                style={{
-                  left: `${10 + ((i * 70) % 80)}%`,
-                  top: `${15 + ((i * 40) % 70)}%`,
-                  width: `${4 + (i % 3)}px`,
-                  height: `${4 + (i % 3)}px`,
-                  background: `radial-gradient(circle, rgba(${255 - i * 20}, ${150 + i * 15}, ${200 + i * 10}, 0.9) 0%, transparent 70%)`,
-                  animationDelay: `${i * 1.5}s`,
-                  boxShadow: `0 0 ${8 + (i % 3) * 4}px rgba(255, 255, 255, 0.6)`,
-                }}
-              />
-            ))}
-          </div>
-        )}
+
 
         {/* Main Content Container */}
         <div className="relative min-h-screen py-2 sm:py-4 lg:py-6 section-container">
