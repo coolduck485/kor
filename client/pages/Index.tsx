@@ -596,7 +596,7 @@ export default function Index() {
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ���═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -4759,8 +4759,17 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
       },
     ];
 
-    // Simple 2-page system: 4 projects per page
-    const projectsPerPage = 4;
+    // Responsive projects per page: 2 on mobile, 4 on desktop
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+      const checkMobile = () => setIsMobile(window.innerWidth <= 640);
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+      return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    const projectsPerPage = isMobile ? 2 : 4;
     const totalPages = Math.ceil(allProjects.length / projectsPerPage);
 
     // Get current page projects
