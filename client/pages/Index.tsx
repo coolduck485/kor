@@ -3828,10 +3828,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative flex items-center justify-center min-h-screen">
+        <div className="relative flex items-center justify-center min-h-screen section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 text-center max-w-6xl mx-auto"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content"
             initial={{
               opacity: 0,
               y: 80,
@@ -4378,10 +4378,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative flex items-center justify-center min-h-screen">
+        <div className="relative flex items-center justify-center min-h-screen section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 text-center max-w-7xl mx-auto"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content"
             initial={{
               opacity: 0,
               y: 80,
@@ -4494,7 +4494,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-16 responsive-grid">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
@@ -4786,9 +4786,9 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative flex items-center justify-center min-h-screen">
+        <div className="relative flex items-center justify-center min-h-screen section-container">
           <motion.div
-            className="relative z-10 px-4 text-center max-w-7xl mx-auto"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
