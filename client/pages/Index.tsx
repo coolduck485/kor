@@ -647,7 +647,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █████████████���████████ 50%
+                      RAM: ██████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -4405,7 +4405,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Services Title - matching home style */}
             <div className="text-center mb-16">
               <h1
-                className={`font-poppins text-6xl sm:text-7xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${
+                className={`font-poppins text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight relative ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
