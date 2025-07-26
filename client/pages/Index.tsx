@@ -600,7 +600,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ████���█╗
+                  {`██╗  ██╗ ██████╗ ███������█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -5421,7 +5421,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(12)].map((_, i) => (
+          {[...Array(isMobile ? 3 : 6)].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute rounded-full opacity-60"
@@ -5434,6 +5434,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
                 filter: "blur(0.3px)",
                 transform: `scale(${0.5 + (i % 3) * 0.3})`,
+                willChange: 'transform',
               }}
             />
           ))}
@@ -5442,8 +5443,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Animated Geometric Patterns */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
           <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
-            {/* Animated hexagon grid */}
-            {[...Array(4)].map((_, i) => (
+            {/* Animated hexagon grid - Reduced for mobile */}
+            {[...Array(isMobile ? 2 : 4)].map((_, i) => (
               <polygon
                 key={`hex-${i}`}
                 points="100,20 140,40 140,80 100,100 60,80 60,40"
@@ -5457,8 +5458,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 }}
               />
             ))}
-            {/* Animated connecting lines */}
-            {[...Array(4)].map((_, i) => (
+            {/* Animated connecting lines - Reduced for mobile */}
+            {[...Array(isMobile ? 2 : 4)].map((_, i) => (
               <line
                 key={`line-${i}`}
                 x1={50 + i * 300}
@@ -5474,7 +5475,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               />
             ))}
             {/* Animated circuit lines for Contact section - Reduced for mobile */}
-            {[...Array(2)].map((_, i) => (
+            {[...Array(isMobile ? 1 : 2)].map((_, i) => (
               <motion.path
                 key={`circuit-${i}`}
                 d={`M${100 + i * 200},100 L${200 + i * 200},200 L${150 + i * 200},300 L${250 + i * 200},400`}
@@ -5490,9 +5491,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           </svg>
         </div>
 
-        {/* Breathing Orbs */}
+        {/* Breathing Orbs - Reduced for mobile */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(isMobile ? 2 : 6)].map((_, i) => (
             <div
               key={`breath-orb-${i}`}
               className="absolute rounded-full"
