@@ -200,8 +200,35 @@ export default function Index() {
     window.addEventListener("resize", checkMobile);
     checkMobile(); // Initial check
 
+    // Check current URL and scroll to appropriate section
+    const checkInitialSection = () => {
+      const currentPath = window.location.pathname;
+      const sectionIndex = sections.findIndex(
+        (section) =>
+          currentPath === `/${section.id}` ||
+          (currentPath === "/" && section.id === "home"),
+      );
+
+      if (sectionIndex !== -1 && sectionIndex !== 0) {
+        // Delay to ensure elements are rendered
+        setTimeout(() => {
+          setCurrentSection(sectionIndex);
+          const targetSection = sectionsRef.current[sectionIndex];
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: "auto", // Instant scroll on initial load
+              block: "start",
+            });
+          }
+        }, 100);
+      }
+    };
+
     // Initial loading sequence
     const timeouts = triggerLoadingSequence();
+
+    // Check initial section after loading
+    setTimeout(checkInitialSection, 600);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -283,6 +310,10 @@ export default function Index() {
 
     setIsScrolling(true);
     setCurrentSection(index);
+
+    // Update URL based on section
+    const sectionPath = index === 0 ? "/" : `/${sections[index].id}`;
+    window.history.pushState({}, "", sectionPath);
 
     const targetSection = sectionsRef.current[index];
     if (targetSection) {
@@ -600,8 +631,8 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ███������█╗
-██║ ██╔╝██╔═══██╗██╔═══██╗
+                  {`██╗  ██╗ ██████╗ ███��������█╗
+██║ ██╔╝██╔═���═██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -1470,7 +1501,11 @@ export default function Index() {
     >
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
-        <div className="scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div
+          className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             {/* Desktop: Scroll Down */}
             <span
@@ -1529,7 +1564,11 @@ export default function Index() {
 
       {/* Scroll Up Indicator - Last Section */}
       {currentSection === sections.length - 1 && (
-        <div className="scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div
+          className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             {/* Desktop: Scroll Up */}
             <span
@@ -1589,7 +1628,11 @@ export default function Index() {
 
       {/* Back to Top Button - All sections except first */}
       {currentSection > 0 && (
-        <div className="back-to-top fixed bottom-8 right-4 sm:right-8 z-50">
+        <div
+          className={`back-to-top fixed bottom-8 right-4 sm:right-8 z-50 transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
           <button
             onClick={() => scrollToSection(0)}
             className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
@@ -1640,12 +1683,25 @@ export default function Index() {
         </div>
       )}
 
+      {/* Mobile Hamburger Menu - Positioned at top level to avoid blur */}
+      <div className="sm:hidden fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
+        <div className="relative pointer-events-auto">
+          <MobileHamburgerMenu
+            isOpen={isMobileMenuOpen}
+            setIsOpen={setIsMobileMenuOpen}
+            theme={theme}
+          />
+        </div>
+      </div>
+
       {/* Sections Container */}
       <div className="h-full">
         {/* Home Section */}
         <motion.div
           ref={(el) => (sectionsRef.current[0] = el!)}
           className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          } ${
             theme === "light"
               ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
               : "bg-black"
@@ -1659,7 +1715,11 @@ export default function Index() {
           <div className="fixed top-6 left-6 z-40 block sm:hidden"></div>
 
           {/* Theme Toggle Container with Tooltip */}
-          <div className="fixed top-6 right-6 z-50">
+          <div
+            className={`fixed top-6 right-6 z-50 transition-all duration-300 ${
+              isMobileMenuOpen ? "blur-sm" : ""
+            }`}
+          >
             <div
               className="group relative"
               onMouseEnter={() => setIsTooltipDismissed(true)}
@@ -2464,17 +2524,6 @@ export default function Index() {
               </div>
             </motion.div>
 
-            {/* Mobile Hamburger Menu - Only on mobile (640px and below) */}
-            <div className="sm:hidden absolute inset-0 flex items-center justify-center">
-              <div className="relative">
-                <MobileHamburgerMenu
-                  isOpen={isMobileMenuOpen}
-                  setIsOpen={setIsMobileMenuOpen}
-                  theme={theme}
-                />
-              </div>
-            </div>
-
             {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
             <motion.div
               className="hidden sm:flex absolute inset-0 items-center justify-center"
@@ -2596,33 +2645,57 @@ export default function Index() {
         </motion.div>
 
         {/* About Us Section */}
-        <AboutUsSection
-          ref={(el) => (sectionsRef.current[1] = el!)}
-          theme={theme}
-          isVisible={currentSection === 1}
-        />
+        <div
+          className={`transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
+          <AboutUsSection
+            ref={(el) => (sectionsRef.current[1] = el!)}
+            theme={theme}
+            isVisible={currentSection === 1}
+          />
+        </div>
 
         {/* Services Section */}
-        <ServicesSection
-          ref={(el) => (sectionsRef.current[2] = el!)}
-          theme={theme}
-          isVisible={currentSection === 2}
-        />
+        <div
+          className={`transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
+          <ServicesSection
+            ref={(el) => (sectionsRef.current[2] = el!)}
+            theme={theme}
+            isVisible={currentSection === 2}
+          />
+        </div>
 
         {/* Portfolio Section */}
-        <PortfolioSection
-          ref={(el) => (sectionsRef.current[3] = el!)}
-          theme={theme}
-          isVisible={currentSection === 3}
-        />
+        <div
+          className={`transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
+          <PortfolioSection
+            ref={(el) => (sectionsRef.current[3] = el!)}
+            theme={theme}
+            isVisible={currentSection === 3}
+          />
+        </div>
 
         {/* Contact Us Section */}
-        <ContactUsSection
-          ref={(el) => (sectionsRef.current[4] = el!)}
-          theme={theme}
-          isVisible={currentSection === 4}
-          isMobile={isMobile}
-        />
+        <div
+          className={`transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
+          <ContactUsSection
+            ref={(el) => (sectionsRef.current[4] = el!)}
+            theme={theme}
+            isVisible={currentSection === 4}
+            isMobile={isMobile}
+          />
+        </div>
       </div>
 
       {/* Enhanced Background Animations */}
@@ -4212,89 +4285,202 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 </div>
               </motion.div>
 
-              {/* Right Content - Tech Visual - Hidden on mobile */}
+              {/* Right Content - Modern Software Development Visualization */}
               <motion.div
-                className="relative hidden sm:block"
+                className="flex justify-center lg:justify-end"
                 initial={{ x: 50, opacity: 0 }}
                 animate={
                   isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }
                 }
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <div
-                  className="relative w-full h-96 rounded-3xl overflow-hidden backdrop-blur-lg border border-white/20"
-                  style={{
-                    background: "rgba(255, 255, 255, 0.05)",
-                    boxShadow: "0 0 40px rgba(73, 146, 255, 0.2)",
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
+                <div className="relative w-full max-w-lg h-80 sm:h-96 lg:h-[28rem]">
+                  {/* Main Glass Container */}
+                  <div
+                    className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden backdrop-blur-xl border border-white/30"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)",
+                      boxShadow:
+                        "0 8px 32px rgba(0,0,0,0.1), 0 0 60px rgba(73, 146, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.2)",
+                    }}
+                  >
+                    {/* Glassmorphism overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/10" />
 
-                  {/* Animated Tech Elements */}
-                  <div className="absolute inset-4 space-y-4">
-                    {[...Array(4)].map((_, i) => (
+                    {/* Code Editor Interface */}
+                    <div className="absolute inset-0 p-4 sm:p-6 lg:p-8">
+                      {/* Browser-like Header */}
+                      <div className="flex items-center space-x-2 mb-4 sm:mb-6">
+                        <div className="flex space-x-1.5">
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-400/80" />
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-400/80" />
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-400/80" />
+                        </div>
+                        <div className="flex-1 h-6 sm:h-8 bg-white/10 rounded-md ml-3 flex items-center px-3">
+                          <div className="w-2 h-2 bg-blue-400/60 rounded-full animate-pulse" />
+                          <div className="ml-2 text-xs text-white/60 font-mono hidden sm:block">
+                            Building amazing software...
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Code Lines Visualization */}
+                      <div className="space-y-2 sm:space-y-3 mb-6">
+                        {[
+                          {
+                            width: "w-3/4",
+                            color: "from-blue-400 to-cyan-400",
+                            delay: 0,
+                          },
+                          {
+                            width: "w-1/2",
+                            color: "from-purple-400 to-pink-400",
+                            delay: 0.2,
+                          },
+                          {
+                            width: "w-5/6",
+                            color: "from-cyan-400 to-blue-500",
+                            delay: 0.4,
+                          },
+                          {
+                            width: "w-2/3",
+                            color: "from-green-400 to-blue-400",
+                            delay: 0.6,
+                          },
+                          {
+                            width: "w-4/5",
+                            color: "from-indigo-400 to-purple-400",
+                            delay: 0.8,
+                          },
+                        ].map((line, i) => (
+                          <motion.div
+                            key={i}
+                            className="flex items-center space-x-2 sm:space-x-3"
+                            initial={{ x: -30, opacity: 0 }}
+                            animate={
+                              isVisible
+                                ? { x: 0, opacity: 1 }
+                                : { x: -30, opacity: 0 }
+                            }
+                            transition={{
+                              duration: 0.6,
+                              delay: 1 + line.delay,
+                            }}
+                          >
+                            <div className="w-4 sm:w-6 text-center">
+                              <span className="text-xs text-white/40 font-mono">
+                                {i + 1}
+                              </span>
+                            </div>
+                            <div
+                              className={`h-2 sm:h-2.5 ${line.width} bg-gradient-to-r ${line.color} rounded-full opacity-80`}
+                              style={{
+                                boxShadow: "0 0 10px rgba(73, 146, 255, 0.3)",
+                              }}
+                            />
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      {/* Modern Tech Stack Icons */}
+                      <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
+                        <div className="grid grid-cols-4 gap-2 sm:gap-3">
+                          {[
+                            {
+                              Icon: Code,
+                              label: "React",
+                              color: "text-blue-400",
+                            },
+                            {
+                              Icon: Smartphone,
+                              label: "Mobile",
+                              color: "text-green-400",
+                            },
+                            {
+                              Icon: Zap,
+                              label: "AI/ML",
+                              color: "text-yellow-400",
+                            },
+                            {
+                              Icon: Globe,
+                              label: "Cloud",
+                              color: "text-purple-400",
+                            },
+                          ].map((tech, index) => (
+                            <motion.div
+                              key={index}
+                              className="flex flex-col items-center justify-center p-2 sm:p-3 rounded-xl backdrop-blur-md bg-white/5 border border-white/10"
+                              initial={{ y: 20, opacity: 0, scale: 0.8 }}
+                              animate={
+                                isVisible
+                                  ? { y: 0, opacity: 1, scale: 1 }
+                                  : { y: 20, opacity: 0, scale: 0.8 }
+                              }
+                              transition={{
+                                duration: 0.5,
+                                delay: 1.2 + index * 0.1,
+                              }}
+                              whileHover={{ scale: 1.05, y: -2 }}
+                            >
+                              <tech.Icon
+                                className={`w-4 h-4 sm:w-6 sm:h-6 ${tech.color} mb-1`}
+                                style={{
+                                  filter: "drop-shadow(0 0 8px currentColor)",
+                                }}
+                              />
+                              <span className="text-[10px] sm:text-xs text-white/70 font-medium">
+                                {tech.label}
+                              </span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Floating Particles */}
+                      {[...Array(8)].map((_, i) => (
+                        <motion.div
+                          key={`particle-${i}`}
+                          className="absolute w-1 h-1 sm:w-1.5 sm:h-1.5 bg-blue-400/40 rounded-full"
+                          style={{
+                            left: `${20 + ((i * 60) % 60)}%`,
+                            top: `${15 + ((i * 45) % 70)}%`,
+                            boxShadow: "0 0 6px rgba(73, 146, 255, 0.6)",
+                          }}
+                          animate={{
+                            y: [-5, 5, -5],
+                            x: [-3, 3, -3],
+                            opacity: [0.3, 1, 0.3],
+                            scale: [0.8, 1.2, 0.8],
+                          }}
+                          transition={{
+                            duration: 3 + (i % 3),
+                            repeat: Infinity,
+                            delay: i * 0.3,
+                          }}
+                        />
+                      ))}
+
+                      {/* Scanning Line Effect */}
                       <motion.div
-                        key={i}
-                        className="flex items-center space-x-3"
-                        initial={{ x: -50, opacity: 0 }}
-                        animate={
-                          isVisible
-                            ? { x: 0, opacity: 1 }
-                            : { x: -50, opacity: 0 }
-                        }
-                        transition={{ duration: 0.5, delay: 1 + i * 0.1 }}
-                      >
-                        <div
-                          className="w-3 h-3 rounded-full bg-blue-400 animate-pulse"
-                          style={{
-                            boxShadow: "0 0 10px rgba(73, 146, 255, 0.8)",
-                          }}
-                        />
-                        <div
-                          className={`h-2 rounded-full ${
-                            i % 3 === 0
-                              ? "w-32 bg-gradient-to-r from-blue-400 to-cyan-400"
-                              : i % 3 === 1
-                                ? "w-24 bg-gradient-to-r from-purple-400 to-pink-400"
-                                : "w-28 bg-gradient-to-r from-cyan-400 to-blue-400"
-                          }`}
-                          style={{
-                            boxShadow: "0 0 8px rgba(73, 146, 255, 0.4)",
-                          }}
-                        />
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Floating Tech Icons */}
-                  {[Code, Zap, Star].map((Icon, index) => (
-                    <motion.div
-                      key={index}
-                      className="absolute"
-                      style={{
-                        right: `${20 + index * 40}px`,
-                        top: `${60 + index * 50}px`,
-                      }}
-                      animate={{
-                        y: [0, -15, 0],
-                        rotate: [0, 10, 0],
-                        scale: [1, 1.1, 1],
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        delay: index * 0.7,
-                      }}
-                    >
-                      <Icon
-                        className="w-10 h-10 text-blue-400 opacity-80"
+                        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent"
+                        animate={{
+                          top: ["20%", "80%", "20%"],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
                         style={{
-                          filter:
-                            "drop-shadow(0 0 10px rgba(73, 146, 255, 0.6))",
+                          boxShadow: "0 0 10px rgba(73, 146, 255, 0.8)",
                         }}
                       />
-                    </motion.div>
-                  ))}
+                    </div>
+
+                    {/* Glass Reflection */}
+                    <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/20 via-white/5 to-transparent pointer-events-none" />
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -4500,7 +4686,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="relative min-h-screen py-2 sm:py-3 lg:py-4 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-1 pb-2"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-2"
             initial={{
               opacity: 0,
               y: 80,
@@ -4614,101 +4800,105 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-3 lg:gap-4 xl:gap-5 mt-6 responsive-grid w-full">
-              {services.map((service, index) => (
-                <motion.div
-                  key={index}
-                  className="group relative"
-                  initial={{ y: 50, opacity: 0, scale: 0.9 }}
-                  animate={
-                    isVisible
-                      ? { y: 0, opacity: 1, scale: 1 }
-                      : { y: 50, opacity: 0, scale: 0.9 }
-                  }
-                  transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -10 }}
-                >
-                  {/* Service Card */}
-                  <div
-                    className="relative p-1 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
-                    style={{
-                      background: "rgba(255, 255, 255, 0.05)",
-                      border: "2px solid rgba(255, 255, 255, 0.1)",
-                      boxShadow: "0 0 40px rgba(73, 146, 255, 0.2)",
-                    }}
+            <div className="flex justify-center mt-12 sm:mt-16 lg:mt-20">
+              <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-3 lg:gap-4 xl:gap-5 responsive-grid w-full max-w-4xl">
+                {services.map((service, index) => (
+                  <motion.div
+                    key={index}
+                    className="group relative"
+                    initial={{ y: 50, opacity: 0, scale: 0.9 }}
+                    animate={
+                      isVisible
+                        ? { y: 0, opacity: 1, scale: 1 }
+                        : { y: 50, opacity: 0, scale: 0.9 }
+                    }
+                    transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+                    whileHover={{ scale: 1.05, y: -10 }}
                   >
-                    {/* Animated Background Gradient */}
+                    {/* Service Card */}
                     <div
-                      className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${service.color}`}
-                    />
-
-                    {/* Scanning line effect */}
-                    <div className="absolute inset-0 overflow-hidden rounded-3xl">
-                      <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                    </div>
-
-                    {/* Service Title - positioned at top of card */}
-                    <div className="relative z-10 mb-1 sm:mb-2 lg:mb-3">
-                      <h3
-                        className={`text-xs sm:text-sm lg:text-base font-bold warm-glow-text text-center ${
-                          theme === "light" ? "text-gray-900" : "text-white"
-                        }`}
-                        style={{
-                          textShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
-                        }}
-                      >
-                        {service.title}
-                      </h3>
-                    </div>
-
-                    {/* Icon - centered */}
-                    <motion.div
-                      className="relative z-10 mb-1 sm:mb-2 lg:mb-3 flex justify-center"
-                      whileHover={{ rotate: 10, scale: 1.2 }}
-                      transition={{ duration: 0.3 }}
+                      className="relative p-1 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
+                      style={{
+                        background: "rgba(255, 255, 255, 0.05)",
+                        border: "2px solid rgba(255, 255, 255, 0.1)",
+                        boxShadow: "0 0 40px rgba(73, 146, 255, 0.2)",
+                      }}
                     >
+                      {/* Animated Background Gradient */}
                       <div
-                        className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
-                        style={{
-                          boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
-                        }}
-                      >
-                        <service.icon className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
-                      </div>
-                    </motion.div>
-
-                    {/* Description Content */}
-                    <div className="relative z-10 text-center">
-                      <p
-                        className={`text-xs leading-relaxed ${
-                          theme === "light" ? "text-gray-600" : "text-gray-300"
-                        }`}
-                        style={{
-                          textShadow:
-                            theme === "dark"
-                              ? "0 0 5px rgba(255, 255, 255, 0.1)"
-                              : "none",
-                        }}
-                      >
-                        {service.description}
-                      </p>
-                    </div>
-
-                    {/* Circuit-like decorative elements */}
-                    <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-                      <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                      <div
-                        className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-                        style={{ animationDelay: "0.5s" }}
+                        className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${service.color}`}
                       />
-                      <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
-                    </div>
 
-                    {/* Holographic shimmer effect */}
-                    <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-3xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
-                  </div>
-                </motion.div>
-              ))}
+                      {/* Scanning line effect */}
+                      <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                        <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                      </div>
+
+                      {/* Service Title - positioned at top of card */}
+                      <div className="relative z-10 mb-1 sm:mb-2 lg:mb-3">
+                        <h3
+                          className={`text-xs sm:text-sm lg:text-base font-bold warm-glow-text text-center ${
+                            theme === "light" ? "text-gray-900" : "text-white"
+                          }`}
+                          style={{
+                            textShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
+                          }}
+                        >
+                          {service.title}
+                        </h3>
+                      </div>
+
+                      {/* Icon - centered */}
+                      <motion.div
+                        className="relative z-10 mb-1 sm:mb-2 lg:mb-3 flex justify-center"
+                        whileHover={{ rotate: 10, scale: 1.2 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div
+                          className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
+                          style={{
+                            boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
+                          }}
+                        >
+                          <service.icon className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
+                        </div>
+                      </motion.div>
+
+                      {/* Description Content */}
+                      <div className="relative z-10 text-center">
+                        <p
+                          className={`text-xs leading-relaxed ${
+                            theme === "light"
+                              ? "text-gray-600"
+                              : "text-gray-300"
+                          }`}
+                          style={{
+                            textShadow:
+                              theme === "dark"
+                                ? "0 0 5px rgba(255, 255, 255, 0.1)"
+                                : "none",
+                          }}
+                        >
+                          {service.description}
+                        </p>
+                      </div>
+
+                      {/* Circuit-like decorative elements */}
+                      <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
+                        <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+                        <div
+                          className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
+                          style={{ animationDelay: "0.5s" }}
+                        />
+                        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
+                      </div>
+
+                      {/* Holographic shimmer effect */}
+                      <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-3xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
@@ -5367,7 +5557,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       "E-commerce Solutions",
       "UI/UX Design",
       "Digital Marketing",
-      "Other"
+      "Other",
     ];
 
     const budgets = [
@@ -5376,7 +5566,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       "$5K - $10K",
       "$10K - $25K",
       "$25K - $50K",
-      "$50K+"
+      "$50K+",
     ];
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -5384,7 +5574,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       console.log("Form submitted:", {
         ...formData,
         interest: selectedInterest,
-        budget: selectedBudget
+        budget: selectedBudget,
       });
       // Add your form submission logic here
     };
@@ -5442,7 +5632,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
                 filter: "blur(0.3px)",
                 transform: `scale(${0.5 + (i % 3) * 0.3})`,
-                willChange: 'transform',
+                willChange: "transform",
               }}
             />
           ))}
@@ -5588,10 +5778,14 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
             {/* Subtitle */}
             <div className="text-center mb-2 sm:mb-3">
-              <h2 className={`text-base sm:text-lg md:text-xl font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"} mb-1`}>
+              <h2
+                className={`text-base sm:text-lg md:text-xl font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"} mb-1`}
+              >
                 Have a great idea?
               </h2>
-              <p className={`text-sm sm:text-base ${theme === "light" ? "text-gray-600" : "text-white/60"}`}>
+              <p
+                className={`text-sm sm:text-base ${theme === "light" ? "text-gray-600" : "text-white/60"}`}
+              >
                 Tell us about it.
               </p>
             </div>
@@ -5608,25 +5802,31 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <div
-                  className="p-3 sm:p-4 rounded-xl backdrop-blur-lg border"
+                  className="p-2 sm:p-3 lg:p-4 rounded-xl backdrop-blur-lg border"
                   style={{
                     background: "rgba(255, 255, 255, 0.05)",
                     border: "2px solid rgba(255, 255, 255, 0.1)",
                     boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
                   }}
                 >
-                  <form onSubmit={handleSubmit} className="contact-form space-y-3">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="contact-form space-y-2 sm:space-y-3"
+                  >
                     {/* Name Fields Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                       <div>
                         <input
                           type="text"
                           placeholder="First Name"
                           value={formData.firstName}
                           onChange={(e) =>
-                            setFormData({ ...formData, firstName: e.target.value })
+                            setFormData({
+                              ...formData,
+                              firstName: e.target.value,
+                            })
                           }
-                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
@@ -5641,9 +5841,12 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           placeholder="Last Name"
                           value={formData.lastName}
                           onChange={(e) =>
-                            setFormData({ ...formData, lastName: e.target.value })
+                            setFormData({
+                              ...formData,
+                              lastName: e.target.value,
+                            })
                           }
-                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
@@ -5655,7 +5858,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     </div>
 
                     {/* Email and Phone Row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                       <div>
                         <input
                           type="email"
@@ -5664,7 +5867,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
                           }
-                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
@@ -5681,7 +5884,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           onChange={(e) =>
                             setFormData({ ...formData, phone: e.target.value })
                           }
-                          className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-sm will-change-transform"
+                          className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] outline-none text-xs sm:text-sm will-change-transform"
                           style={{
                             background: "rgba(255, 255, 255, 0.08)",
                             border: "2px solid rgba(255, 255, 255, 0.15)",
@@ -5694,27 +5897,35 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                     {/* Interest Selection */}
                     <div>
-                      <h3 className={`text-xs font-medium mb-2 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                      <h3
+                        className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
+                      >
                         I'm interested in...
                       </h3>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-1">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1">
                         {interests.map((interest) => (
                           <button
                             key={interest}
                             type="button"
                             onClick={() => handleInterestSelect(interest)}
-                            className={`p-1.5 text-xs rounded-md border transition-all duration-200 hover:scale-105 will-change-transform ${
+                            className={`p-1 sm:p-1.5 text-xs rounded-md border transition-all duration-200 hover:scale-105 will-change-transform ${
                               selectedInterest === interest
                                 ? "border-blue-400 text-blue-400"
                                 : "border-white/20 hover:border-white/40"
                             }`}
                             style={{
-                              background: selectedInterest === interest
-                                ? "rgba(59, 130, 246, 0.1)"
-                                : "rgba(255, 255, 255, 0.05)",
-                              color: selectedInterest === interest
-                                ? (theme === "light" ? "#2563eb" : "#60a5fa")
-                                : (theme === "light" ? "#4b5563" : "#d1d5db"),
+                              background:
+                                selectedInterest === interest
+                                  ? "rgba(59, 130, 246, 0.1)"
+                                  : "rgba(255, 255, 255, 0.05)",
+                              color:
+                                selectedInterest === interest
+                                  ? theme === "light"
+                                    ? "#2563eb"
+                                    : "#60a5fa"
+                                  : theme === "light"
+                                    ? "#4b5563"
+                                    : "#d1d5db",
                             }}
                           >
                             {interest}
@@ -5725,27 +5936,35 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                     {/* Budget Selection */}
                     <div>
-                      <h3 className={`text-xs font-medium mb-2 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                      <h3
+                        className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
+                      >
                         Project Budget (USD)
                       </h3>
-                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-1">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1">
                         {budgets.map((budget) => (
                           <button
                             key={budget}
                             type="button"
                             onClick={() => handleBudgetSelect(budget)}
-                            className={`p-1.5 text-xs rounded-md border transition-all duration-200 hover:scale-105 will-change-transform ${
+                            className={`p-1 sm:p-1.5 text-xs rounded-md border transition-all duration-200 hover:scale-105 will-change-transform ${
                               selectedBudget === budget
                                 ? "border-green-400 text-green-400"
                                 : "border-white/20 hover:border-white/40"
                             }`}
                             style={{
-                              background: selectedBudget === budget
-                                ? "rgba(34, 197, 94, 0.1)"
-                                : "rgba(255, 255, 255, 0.05)",
-                              color: selectedBudget === budget
-                                ? (theme === "light" ? "#059669" : "#34d399")
-                                : (theme === "light" ? "#4b5563" : "#d1d5db"),
+                              background:
+                                selectedBudget === budget
+                                  ? "rgba(34, 197, 94, 0.1)"
+                                  : "rgba(255, 255, 255, 0.05)",
+                              color:
+                                selectedBudget === budget
+                                  ? theme === "light"
+                                    ? "#059669"
+                                    : "#34d399"
+                                  : theme === "light"
+                                    ? "#4b5563"
+                                    : "#d1d5db",
                             }}
                           >
                             {budget}
@@ -5756,17 +5975,22 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                     {/* Project Description */}
                     <div>
-                      <h3 className={`text-xs font-medium mb-2 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                      <h3
+                        className={`text-xs font-medium mb-1.5 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
+                      >
                         Tell us more about your project
                       </h3>
                       <textarea
                         placeholder="Something about your great idea..."
                         value={formData.description}
                         onChange={(e) =>
-                          setFormData({ ...formData, description: e.target.value })
+                          setFormData({
+                            ...formData,
+                            description: e.target.value,
+                          })
                         }
                         rows={2}
-                        className="w-full p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] resize-none outline-none text-sm will-change-transform"
+                        className="w-full p-1.5 sm:p-2 rounded-lg border backdrop-blur-lg transition-all duration-200 focus:scale-[1.01] resize-none outline-none text-xs sm:text-sm will-change-transform"
                         style={{
                           background: "rgba(255, 255, 255, 0.08)",
                           border: "2px solid rgba(255, 255, 255, 0.15)",
@@ -5779,9 +6003,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     {/* Submit Button */}
                     <motion.button
                       type="submit"
-                      className="w-full p-3 rounded-xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-200 hover:scale-[1.02] text-sm will-change-transform"
+                      className="w-full p-2 sm:p-3 rounded-xl text-white font-semibold flex items-center justify-center space-x-2 group transition-all duration-200 hover:scale-[1.02] text-xs sm:text-sm will-change-transform"
                       style={{
-                        background: "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
+                        background:
+                          "linear-gradient(135deg, rgba(73, 146, 255, 0.8), rgba(34, 211, 238, 0.8))",
                         boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
                       }}
                       whileHover={{ scale: 1.02 }}
@@ -5806,7 +6031,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 <div className="space-y-4">
                   {/* Message Us Header */}
                   <div>
-                    <h3 className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                    <h3
+                      className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                    >
                       Message us:
                     </h3>
                     <div className="grid grid-cols-1 gap-2">
@@ -5815,19 +6042,19 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           name: "Instagram",
                           url: "https://instagram.com",
                           icon: "📷",
-                          color: "from-pink-500 to-purple-500"
+                          color: "from-pink-500 to-purple-500",
                         },
                         {
                           name: "Discord",
                           url: "https://discord.com",
                           icon: "💬",
-                          color: "from-indigo-500 to-blue-500"
+                          color: "from-indigo-500 to-blue-500",
                         },
                         {
                           name: "Telegram",
                           url: "https://telegram.org",
                           icon: "📱",
-                          color: "from-blue-500 to-cyan-500"
+                          color: "from-blue-500 to-cyan-500",
                         },
                       ].map((social) => (
                         <motion.button
@@ -5853,14 +6080,22 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           </div>
 
                           <div className="flex items-center space-x-2 relative z-10">
-                            <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${social.color} flex items-center justify-center`}>
-                              <span className="text-white text-sm">{social.icon}</span>
+                            <div
+                              className={`w-8 h-8 rounded-lg bg-gradient-to-br ${social.color} flex items-center justify-center`}
+                            >
+                              <span className="text-white text-sm">
+                                {social.icon}
+                              </span>
                             </div>
                             <div>
-                              <p className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}>
+                              <p
+                                className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"} group-hover:text-blue-300 transition-colors duration-300`}
+                              >
                                 {social.name}
                               </p>
-                              <p className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
+                              <p
+                                className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
+                              >
                                 Message us on {social.name}
                               </p>
                             </div>
@@ -5881,7 +6116,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                   {/* Contact Us Header */}
                   <div>
-                    <h3 className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                    <h3
+                      className={`text-sm font-semibold mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                    >
                       Contact us:
                     </h3>
                     <div
@@ -5897,10 +6134,14 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <Mail className="w-3 h-3 text-white" />
                         </div>
                         <div>
-                          <p className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
+                          <p
+                            className={`text-xs ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}
+                          >
                             Email us at
                           </p>
-                          <p className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                          <p
+                            className={`font-medium text-xs ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                          >
                             contact@kor.dev
                           </p>
                         </div>
