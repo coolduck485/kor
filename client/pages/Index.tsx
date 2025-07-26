@@ -571,8 +571,8 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██████╔╝██���  ██║
+██╔═██��� ██║   ██║██╔══██╗
+██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -5226,7 +5226,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 ].map((contact, index) => (
                   <motion.div
                     key={index}
-                    className="p-6 rounded-3xl backdrop-blur-lg border transition-all duration-500 hover:scale-105"
+                    className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl backdrop-blur-lg border transition-all duration-500 hover:scale-105"
                     style={{
                       background: "rgba(255, 255, 255, 0.05)",
                       border: "2px solid rgba(255, 255, 255, 0.1)",
