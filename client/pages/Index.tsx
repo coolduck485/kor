@@ -3808,43 +3808,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         </div>
 
-        {/* Interactive Glass Badge at Top */}
-        <div
-          className="absolute top-8 sm:top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-50 sm:scale-100"
-          style={{
-            marginTop: "var(--badge-margin-top, 140px)",
-          }}
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
-            style={{
-              background: "rgba(255, 255, 255, 0.1)",
-              border: "2px solid transparent",
-              backgroundClip: "padding-box",
-            }}
-          >
-            <svg
-              className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle"
-              viewBox="0 0 24 25"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span
-              className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${
-                theme === "light" ? "text-gray-700" : "text-white/80"
-              }`}
-            >
-              About Us
-            </span>
-          </div>
-        </div>
+
 
         {/* Main Content Container */}
         <div className="relative flex items-center justify-center min-h-screen section-container">
@@ -4358,43 +4322,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         </div>
 
-        {/* Interactive Glass Badge at Top */}
-        <div
-          className="absolute top-8 sm:top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-50 sm:scale-100"
-          style={{
-            marginTop: "var(--badge-margin-top, 140px)",
-          }}
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
-            style={{
-              background: "rgba(255, 255, 255, 0.1)",
-              border: "2px solid transparent",
-              backgroundClip: "padding-box",
-            }}
-          >
-            <svg
-              className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle"
-              viewBox="0 0 24 25"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span
-              className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${
-                theme === "light" ? "text-gray-700" : "text-white/80"
-              }`}
-            >
-              Services
-            </span>
-          </div>
-        </div>
+
 
         {/* Main Content Container */}
         <div className="relative flex items-center justify-center min-h-screen section-container">
@@ -4838,28 +4766,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         </div>
 
-        {/* Interactive Glass Badge at Top */}
-        <div
-          className="absolute top-8 sm:top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-50 sm:scale-100"
-          style={{
-            marginTop: "var(--badge-margin-top, 140px)",
-          }}
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
-            style={{
-              background: "rgba(255, 255, 255, 0.1)",
-              border: "2px solid transparent",
-              backgroundClip: "padding-box",
-            }}
-          >
-            <svg className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle" viewBox="0 0 24 25" fill="none">
-              <path d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z" stroke={theme === "light" ? "#3B82F6" : "#22D3EE"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
-              Portfolio
-            </span>
-          </div>
-        </div>
+
 
         {/* Main Content Container */}
         <div className="relative flex items-center justify-center min-h-screen section-container">
@@ -5298,28 +5205,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         </div>
 
-        {/* Interactive Glass Badge at Top */}
-        <div
-          className="absolute top-8 sm:top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-50 sm:scale-100"
-          style={{
-            marginTop: "var(--badge-margin-top, 140px)",
-          }}
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
-            style={{
-              background: "rgba(255, 255, 255, 0.1)",
-              border: "2px solid transparent",
-              backgroundClip: "padding-box",
-            }}
-          >
-            <svg className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle" viewBox="0 0 24 25" fill="none">
-              <path d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z" stroke={theme === "light" ? "#3B82F6" : "#22D3EE"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
-              Contact
-            </span>
-          </div>
-        </div>
+
 
         {/* Main Content Container */}
         <div className="relative flex items-center justify-center min-h-screen section-container">
