@@ -591,7 +591,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ██████╗
+                  {`██╗  ██╗ ██████╗ ████���█╗
 ██║ ██╔╝██╔═══██╗██╔═══██╗
 █████╔╝ ██���   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -5058,7 +5058,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Portfolio Carousel Container */}
-            <div className="relative mt-16 px-4">
+            <div className="relative mt-10 sm:mt-16 px-3 sm:px-4">
               {/* Compact Mobile Navigation */}
               <div className="flex justify-center items-center mb-6 sm:mb-8">
                 <div
