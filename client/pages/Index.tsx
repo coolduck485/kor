@@ -1499,7 +1499,9 @@ export default function Index() {
     >
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
-        <div className="scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+          isMobileMenuOpen ? "blur-sm" : ""
+        }`}>
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             {/* Desktop: Scroll Down */}
             <span
@@ -1558,7 +1560,9 @@ export default function Index() {
 
       {/* Scroll Up Indicator - Last Section */}
       {currentSection === sections.length - 1 && (
-        <div className="scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <div className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+          isMobileMenuOpen ? "blur-sm" : ""
+        }`}>
           <div className="flex flex-col items-center space-y-3 animate-button-float">
             {/* Desktop: Scroll Up */}
             <span
@@ -1618,7 +1622,9 @@ export default function Index() {
 
       {/* Back to Top Button - All sections except first */}
       {currentSection > 0 && (
-        <div className="back-to-top fixed bottom-8 right-4 sm:right-8 z-50">
+        <div className={`back-to-top fixed bottom-8 right-4 sm:right-8 z-50 transition-all duration-300 ${
+          isMobileMenuOpen ? "blur-sm" : ""
+        }`}>
           <button
             onClick={() => scrollToSection(0)}
             className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
