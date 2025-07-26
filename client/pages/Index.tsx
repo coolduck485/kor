@@ -3750,150 +3750,359 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+        {/* Interactive Glass Badge at Top */}
+        <div
+          className="absolute top-8 sm:top-28 left-0 right-0 flex justify-center z-20 animate-gentleBounce scale-50 sm:scale-100"
+          style={{
+            marginTop: "var(--badge-margin-top, 140px)",
+          }}
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
+            style={{
+              background: "rgba(255, 255, 255, 0.1)",
+              border: "2px solid transparent",
+              backgroundClip: "padding-box",
+            }}
           >
-            <h2
-              className={`text-5xl md:text-7xl font-bold mb-8 ${
-                theme === "light" ? "text-gray-900" : "text-white"
-              }`}
-              style={{
-                background: theme === "light"
-                  ? "linear-gradient(135deg, #1f2937, #3b82f6)"
-                  : "linear-gradient(135deg, #60a5fa, #a78bfa)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+            <svg
+              className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle"
+              viewBox="0 0 24 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              About Us
-            </h2>
-          </motion.div>
+              <path
+                d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z"
+                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span
+              className={`font-inter text-xs sm:text-xs md:text-sm font-normal text-center animate-textGlow ${
+                theme === "light" ? "text-gray-700" : "text-white/80"
+              }`}
+            >
+              Our Story & Vision
+            </span>
+          </div>
+        </div>
 
+        {/* Main Content Container */}
+        <div className="relative flex items-center justify-center min-h-screen">
+          {/* Text Content */}
           <motion.div
-            className="grid md:grid-cols-2 gap-12 items-center"
-            initial={{ y: 50, opacity: 0 }}
-            animate={isVisible ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative z-10 px-4 text-center max-w-6xl mx-auto"
+            initial={{
+              opacity: 0,
+              y: 80,
+              filter: "blur(10px)",
+            }}
+            animate={
+              isVisible
+                ? {
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                  }
+                : {}
+            }
+            transition={{
+              duration: 1.2,
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.2,
+            }}
           >
-            {/* Left Content */}
-            <div className="space-y-6">
-              <h3
-                className={`text-3xl font-semibold mb-6 ${
-                  theme === "light" ? "text-gray-800" : "text-white"
+            {/* About Us Title - matching home style */}
+            <div className="text-center mb-16">
+              <h1
+                className={`font-poppins text-8xl sm:text-8xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+                  theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
-                Crafting the Future of Digital Excellence
-              </h3>
-              <p
-                className={`text-lg leading-relaxed ${
-                  theme === "light" ? "text-gray-600" : "text-gray-300"
-                }`}
-              >
-                We are a cutting-edge software development company dedicated to transforming
-                innovative ideas into powerful digital solutions. Our team of expert developers,
-                designers, and strategists work collaboratively to deliver exceptional results.
-              </p>
-              <p
-                className={`text-lg leading-relaxed ${
-                  theme === "light" ? "text-gray-600" : "text-gray-300"
-                }`}
-              >
-                With years of experience in modern web development, mobile applications, and
-                AI integration, we bring your vision to life with precision and creativity.
-              </p>
+                <span
+                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                  style={{
+                    animation:
+                      "text-glow 3s ease-in-out infinite, text-bounce 2s ease-in-out 0.5s infinite both, warm-glow-pulse 3s ease-in-out infinite",
+                  }}
+                >
+                  A
+                </span>
+                <span
+                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                  style={{
+                    animation:
+                      "text-glow 3s ease-in-out infinite 0.2s, text-bounce 2s ease-in-out 0.7s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.2s",
+                  }}
+                >
+                  b
+                </span>
+                <span
+                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                  style={{
+                    animation:
+                      "text-glow 3s ease-in-out infinite 0.4s, text-bounce 2s ease-in-out 0.9s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.4s",
+                  }}
+                >
+                  o
+                </span>
+                <span
+                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                  style={{
+                    animation:
+                      "text-glow 3s ease-in-out infinite 0.6s, text-bounce 2s ease-in-out 1.1s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.6s",
+                  }}
+                >
+                  u
+                </span>
+                <span
+                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                  style={{
+                    animation:
+                      "text-glow 3s ease-in-out infinite 0.8s, text-bounce 2s ease-in-out 1.3s infinite both, warm-glow-pulse 3s ease-in-out infinite 0.8s",
+                  }}
+                >
+                  t
+                </span>
+                <span className="mx-4" />
+                <span
+                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                  style={{
+                    animation:
+                      "text-glow 3s ease-in-out infinite 1.0s, text-bounce 2s ease-in-out 1.5s infinite both, warm-glow-pulse 3s ease-in-out infinite 1.0s",
+                  }}
+                >
+                  U
+                </span>
+                <span
+                  className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                  style={{
+                    animation:
+                      "text-glow 3s ease-in-out infinite 1.2s, text-bounce 2s ease-in-out 1.7s infinite both, warm-glow-pulse 3s ease-in-out infinite 1.2s",
+                  }}
+                >
+                  s
+                </span>
+              </h1>
+            </div>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 mt-8">
-                {[
-                  { number: "100+", label: "Projects Completed" },
-                  { number: "50+", label: "Happy Clients" },
-                  { number: "5+", label: "Years Experience" },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    className="text-center"
-                    initial={{ scale: 0 }}
-                    animate={isVisible ? { scale: 1 } : { scale: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                  >
-                    <div
-                      className="text-3xl font-bold"
-                      style={{
-                        background: "linear-gradient(135deg, #60a5fa, #a78bfa)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        backgroundClip: "text",
-                      }}
-                    >
-                      {stat.number}
-                    </div>
-                    <div className={`text-sm ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
-                      {stat.label}
-                    </div>
-                  </motion.div>
+            {/* Our Mission - matching development services style */}
+            <div className="text-center mb-16">
+              <div className="relative">
+                {/* Background glow effect */}
+                <div
+                  className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
+                  style={{
+                    background:
+                      theme === "light"
+                        ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
+                        : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
+                    transform: "scale(1.5)",
+                  }}
+                />
+
+                {/* Floating energy particles around text */}
+                {[...Array(12)].map((_, i) => (
+                  <div
+                    key={`energy-${i}`}
+                    className="absolute rounded-full pointer-events-none"
+                    style={{
+                      left: `${20 + ((i * 60) % 160)}%`,
+                      top: `${30 + ((i * 40) % 60)}%`,
+                      width: `${3 + (i % 2)}px`,
+                      height: `${3 + (i % 2)}px`,
+                      background:
+                        theme === "light"
+                          ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
+                          : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
+                      animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                      filter: "blur(0.5px)",
+                      animationFillMode: "both",
+                      animationTimingFunction: "ease-in-out",
+                    }}
+                  />
                 ))}
+
+                <div className="font-poppins text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                  <span
+                    className={`relative inline-block ${
+                      theme === "light" ? "text-gray-900" : "text-white"
+                    }`}
+                    style={{
+                      animation: `text-pop 2s ease-in-out infinite 0.5s, text-glow-pulse 3s ease-in-out infinite 1s`,
+                      filter:
+                        theme === "light"
+                          ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
+                          : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
+                      animationFillMode: "both",
+                    }}
+                  >
+                    <span className="warm-glow-text animate-warm-glow-pulse">
+                      {"Crafting Digital Excellence".split("").map((letter, i) => (
+                        <span
+                          key={i}
+                          className="animate-letter-float"
+                          style={{
+                            animationDelay: `${i * 0.1}s`,
+                          }}
+                        >
+                          {letter === " " ? "\u00A0" : letter}
+                        </span>
+                      ))}
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* Right Content - Visual Element */}
-            <motion.div
-              className="relative"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <div className="relative w-full h-96 rounded-3xl overflow-hidden backdrop-blur-lg bg-white/10 border border-white/20">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20" />
+            {/* Content Grid */}
+            <div className="grid md:grid-cols-2 gap-16 items-center mt-16">
+              {/* Left Content */}
+              <motion.div
+                className="space-y-8 text-left"
+                initial={{ x: -50, opacity: 0 }}
+                animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <div className="space-y-6">
+                  <p
+                    className={`text-lg leading-relaxed ${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    }`}
+                    style={{
+                      textShadow: theme === "dark" ? "0 0 10px rgba(255, 255, 255, 0.1)" : "none",
+                    }}
+                  >
+                    We are a cutting-edge software development company dedicated to transforming
+                    innovative ideas into powerful digital solutions. Our team of expert developers,
+                    designers, and strategists work collaboratively to deliver exceptional results.
+                  </p>
+                  <p
+                    className={`text-lg leading-relaxed ${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    }`}
+                    style={{
+                      textShadow: theme === "dark" ? "0 0 10px rgba(255, 255, 255, 0.1)" : "none",
+                    }}
+                  >
+                    With years of experience in modern web development, mobile applications, and
+                    AI integration, we bring your vision to life with precision and creativity.
+                  </p>
+                </div>
 
-                {/* Animated Code Lines */}
-                <div className="absolute inset-4 space-y-3">
-                  {[...Array(8)].map((_, i) => (
+                {/* Stats - matching floating button style */}
+                <div className="grid grid-cols-3 gap-6 mt-12">
+                  {[
+                    { number: "100+", label: "Projects" },
+                    { number: "50+", label: "Clients" },
+                    { number: "5+", label: "Years" },
+                  ].map((stat, index) => (
                     <motion.div
-                      key={i}
-                      className="flex items-center space-x-2"
-                      initial={{ x: -50, opacity: 0 }}
-                      animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-                      transition={{ duration: 0.5, delay: 0.8 + i * 0.1 }}
+                      key={index}
+                      className="text-center group cursor-pointer"
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                      transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                      whileHover={{ scale: 1.05 }}
                     >
-                      <div className="w-2 h-2 rounded-full bg-green-400" />
-                      <div
-                        className={`h-2 rounded ${
-                          i % 3 === 0 ? "w-24 bg-blue-400" :
-                          i % 3 === 1 ? "w-16 bg-purple-400" : "w-20 bg-cyan-400"
-                        }`}
+                      <div className="relative p-6 rounded-2xl backdrop-blur-lg border border-white/20 hover:border-blue-400/40 transition-all duration-500"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.05)",
+                          boxShadow: "0 0 20px rgba(73, 146, 255, 0.1)",
+                        }}
+                      >
+                        <div
+                          className="text-3xl font-bold mb-2 warm-glow-text"
+                          style={{
+                            textShadow: "0 0 15px rgba(73, 146, 255, 0.6)",
+                          }}
+                        >
+                          {stat.number}
+                        </div>
+                        <div className={`text-sm font-medium ${theme === "light" ? "text-gray-600" : "text-gray-400"}`}>
+                          {stat.label}
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Right Content - Tech Visual */}
+              <motion.div
+                className="relative"
+                initial={{ x: 50, opacity: 0 }}
+                animate={isVisible ? { x: 0, opacity: 1 } : { x: 50, opacity: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              >
+                <div className="relative w-full h-96 rounded-3xl overflow-hidden backdrop-blur-lg border border-white/20"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.05)",
+                    boxShadow: "0 0 40px rgba(73, 146, 255, 0.2)",
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
+
+                  {/* Animated Tech Elements */}
+                  <div className="absolute inset-4 space-y-4">
+                    {[...Array(8)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="flex items-center space-x-3"
+                        initial={{ x: -50, opacity: 0 }}
+                        animate={isVisible ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
+                        transition={{ duration: 0.5, delay: 1 + i * 0.1 }}
+                      >
+                        <div className="w-3 h-3 rounded-full bg-blue-400 animate-pulse"
+                          style={{
+                            boxShadow: "0 0 10px rgba(73, 146, 255, 0.8)",
+                          }}
+                        />
+                        <div
+                          className={`h-2 rounded-full ${
+                            i % 3 === 0 ? "w-32 bg-gradient-to-r from-blue-400 to-cyan-400" :
+                            i % 3 === 1 ? "w-24 bg-gradient-to-r from-purple-400 to-pink-400" :
+                            "w-28 bg-gradient-to-r from-cyan-400 to-blue-400"
+                          }`}
+                          style={{
+                            boxShadow: "0 0 8px rgba(73, 146, 255, 0.4)",
+                          }}
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Floating Tech Icons */}
+                  {[Code, Zap, Star].map((Icon, index) => (
+                    <motion.div
+                      key={index}
+                      className="absolute"
+                      style={{
+                        right: `${20 + index * 40}px`,
+                        top: `${60 + index * 50}px`,
+                      }}
+                      animate={{
+                        y: [0, -15, 0],
+                        rotate: [0, 10, 0],
+                        scale: [1, 1.1, 1],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        delay: index * 0.7,
+                      }}
+                    >
+                      <Icon className="w-10 h-10 text-blue-400 opacity-80"
+                        style={{
+                          filter: "drop-shadow(0 0 10px rgba(73, 146, 255, 0.6))",
+                        }}
                       />
                     </motion.div>
                   ))}
                 </div>
-
-                {/* Floating Icons */}
-                {[Code, Zap, Star].map((Icon, index) => (
-                  <motion.div
-                    key={index}
-                    className="absolute"
-                    style={{
-                      right: `${20 + index * 30}px`,
-                      top: `${60 + index * 40}px`,
-                    }}
-                    animate={{
-                      y: [0, -10, 0],
-                      rotate: [0, 5, 0],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      delay: index * 0.5,
-                    }}
-                  >
-                    <Icon className="w-8 h-8 text-blue-400 opacity-60" />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </motion.div>
