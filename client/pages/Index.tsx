@@ -5861,16 +5861,18 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 left: `${service.x}%`,
                 top: `${service.y}%`,
               }}
-              animate={{
+              animate={window.innerWidth < 992 ? {
+                y: [-8, 8, -8],
+              } : {
                 y: [-15, 15, -15],
                 x: [-8, 8, -8],
                 rotateZ: [-10, 10, -10],
                 scale: [0.8, 1.2, 0.8],
               }}
               transition={{
-                duration: 4 + (i % 3),
+                duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
                 repeat: Infinity,
-                delay: service.delay * 0.5,
+                delay: service.delay * (window.innerWidth < 992 ? 1 : 0.5),
               }}
             >
               <div
