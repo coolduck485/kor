@@ -4758,7 +4758,9 @@ function MobileHamburgerMenu({
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => !isOpen && setShowTooltip(false)}
           className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
-            theme === "light"
+            isPinkActive
+              ? "border-pink-400/50 bg-pink-500/10 hover:border-pink-500/70"
+              : theme === "light"
               ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
               : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
           }`}
