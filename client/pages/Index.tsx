@@ -361,17 +361,7 @@ export default function Index() {
     }
   }, [mode, previousMode]);
 
-  // Trigger loading animation when switching to pink theme
-  const [previousPinkState, setPreviousPinkState] = useState(isPinkActive);
-  useEffect(() => {
-    if (previousPinkState !== isPinkActive) {
-      setPreviousPinkState(isPinkActive);
-      // Only trigger loading when activating pink theme
-      if (isPinkActive && previousPinkState !== null) {
-        triggerPinkLoadingSequence();
-      }
-    }
-  }, [isPinkActive, previousPinkState]);
+
 
   // Dynamic network stats updates
   useEffect(() => {
@@ -832,7 +822,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
-██║  �����╗╚███��██�����╝██║  �����█║
+██║  ���█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
