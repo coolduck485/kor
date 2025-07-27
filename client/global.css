@@ -263,7 +263,23 @@
 
 /* Pink Theme Background Effects - Applied to main theme layout */
 .pink-theme body {
-  background: #000000;
+  background:
+    radial-gradient(
+      ellipse at top left,
+      rgba(236, 72, 153, 0.08) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at bottom right,
+      rgba(244, 114, 182, 0.06) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at center,
+      rgba(190, 24, 93, 0.04) 0%,
+      transparent 60%
+    ),
+    #000000;
   background-attachment: fixed;
 }
 
