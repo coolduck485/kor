@@ -782,7 +782,7 @@ export default function Index() {
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████�����╝██║  ██║
-╚═╝  ╚═╝ ╚═����═══╝ ╚═╝  ����═╝`}
+╚═╝  ╚═��� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -7219,32 +7219,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         )}
 
-        {/* Contact Signal Waves */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-1">
-          {[...Array(4)].map((_, i) => (
-            <motion.div
-              key={`signal-wave-${i}`}
-              className="absolute rounded-full border-2 border-blue-400/20"
-              style={{
-                left: `${20 + i * 25}%`,
-                top: `${30 + i * 15}%`,
-                width: `${40 + i * 20}px`,
-                height: `${40 + i * 20}px`,
-              }}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{
-                scale: [0, 3, 0],
-                opacity: [0, 0.6, 0],
-              }}
-              transition={{
-                duration: 4,
-                delay: i * 1.2,
-                repeat: Infinity,
-                repeatDelay: 3,
-              }}
-            />
-          ))}
-        </div>
+
 
         {/* Data Transmission Lines */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
