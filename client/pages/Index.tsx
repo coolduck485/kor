@@ -780,7 +780,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████�� ███����������█╗
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
-██╔═██╗ ██║   ██║██╔══█������
+██╔═██╗ ��█║   ██║██╔══█������
 ██║  ██╗╚██████�����╝██║  ██║
 ╚═╝  ╚═╝ ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
@@ -928,7 +928,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►�������</span>
+                  <span className="text-green-400 ml-4">◄���◄►�����</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -4951,6 +4951,27 @@ interface SectionProps {
 
 const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
+    const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+
+    useEffect(() => {
+      const updateScreenSize = () => {
+        const width = window.innerWidth;
+        if (width <= 640) {
+          setScreenSize('mobile');
+        } else if (width <= 991) {
+          setScreenSize('tablet');
+        } else {
+          setScreenSize('desktop');
+        }
+      };
+
+      updateScreenSize();
+      window.addEventListener('resize', updateScreenSize);
+      return () => window.removeEventListener('resize', updateScreenSize);
+    }, []);
+
+    const isMobileOrTablet = screenSize !== 'desktop';
+
     return (
       <motion.div
         ref={ref}
