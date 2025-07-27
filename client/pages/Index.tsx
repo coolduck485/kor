@@ -6592,6 +6592,26 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
     const [currentPage, setCurrentPage] = useState(0);
+    const [screenSize, setScreenSize] = useState<
+      "mobile" | "tablet" | "desktop"
+    >("desktop");
+
+    useEffect(() => {
+      const updateScreenSize = () => {
+        const width = window.innerWidth;
+        if (width <= 640) {
+          setScreenSize("mobile");
+        } else if (width <= 991) {
+          setScreenSize("tablet");
+        } else {
+          setScreenSize("desktop");
+        }
+      };
+
+      updateScreenSize();
+      window.addEventListener("resize", updateScreenSize);
+      return () => window.removeEventListener("resize", updateScreenSize);
+    }, []);
 
     // ===== PORTFOLIO PROJECTS =====
     // Easy to add more projects - just add them to this array
