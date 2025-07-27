@@ -3546,6 +3546,214 @@ export default function Index() {
           box-sizing: border-box;
         }
 
+        /* NEW SPECTACULAR ANIMATIONS FOR EYE CANDY */
+
+        @keyframes desktop-float-1 {
+          0%, 100% { transform: translateY(0px) translateX(0px) rotateZ(0deg); }
+          25% { transform: translateY(-15px) translateX(8px) rotateZ(2deg); }
+          50% { transform: translateY(-25px) translateX(-5px) rotateZ(-1deg); }
+          75% { transform: translateY(-10px) translateX(12px) rotateZ(3deg); }
+        }
+
+        @keyframes desktop-float-2 {
+          0%, 100% { transform: translateY(0px) translateX(0px) rotateZ(0deg); }
+          25% { transform: translateY(-12px) translateX(-10px) rotateZ(-2deg); }
+          50% { transform: translateY(-30px) translateX(8px) rotateZ(1deg); }
+          75% { transform: translateY(-8px) translateX(-15px) rotateZ(-3deg); }
+        }
+
+        @keyframes desktop-float-3 {
+          0%, 100% { transform: translateY(0px) translateX(0px) rotateZ(0deg); }
+          25% { transform: translateY(-20px) translateX(6px) rotateZ(1deg); }
+          50% { transform: translateY(-15px) translateX(-12px) rotateZ(-2deg); }
+          75% { transform: translateY(-25px) translateX(10px) rotateZ(2deg); }
+        }
+
+        @keyframes desktop-float-4 {
+          0%, 100% { transform: translateY(0px) translateX(0px) rotateZ(0deg); }
+          25% { transform: translateY(-18px) translateX(-8px) rotateZ(-1deg); }
+          50% { transform: translateY(-22px) translateX(15px) rotateZ(3deg); }
+          75% { transform: translateY(-12px) translateX(-6px) rotateZ(-2deg); }
+        }
+
+        @keyframes mobile-float-1 {
+          0%, 100% { transform: translateY(0px) translateX(0px) rotateZ(0deg); }
+          50% { transform: translateY(-10px) translateX(5px) rotateZ(1deg); }
+        }
+
+        @keyframes mobile-float-2 {
+          0%, 100% { transform: translateY(0px) translateX(0px) rotateZ(0deg); }
+          50% { transform: translateY(-8px) translateX(-3px) rotateZ(-1deg); }
+        }
+
+        @keyframes mobile-float-3 {
+          0%, 100% { transform: translateY(0px) translateX(0px) rotateZ(0deg); }
+          50% { transform: translateY(-12px) translateX(4px) rotateZ(2deg); }
+        }
+
+        @keyframes desktop-pulse-corner {
+          0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.4; }
+          50% { transform: scale(1.2) rotate(180deg); opacity: 0.7; }
+        }
+
+        @keyframes mobile-pulse-corner {
+          0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+          50% { transform: scale(1.1) rotate(90deg); opacity: 0.8; }
+        }
+
+        @keyframes mobile-wave-1 {
+          0%, 100% { transform: translateX(0px) translateY(0px) skewY(-2deg) rotate(0deg); }
+          50% { transform: translateX(10px) translateY(-5px) skewY(-1deg) rotate(1deg); }
+        }
+
+        @keyframes mobile-wave-2 {
+          0%, 100% { transform: translateX(0px) translateY(0px) skewY(-1deg) rotate(1deg); }
+          50% { transform: translateX(-8px) translateY(8px) skewY(0deg) rotate(2deg); }
+        }
+
+        @keyframes mobile-wave-3 {
+          0%, 100% { transform: translateX(0px) translateY(0px) skewY(0deg) rotate(2deg); }
+          50% { transform: translateX(12px) translateY(-3px) skewY(1deg) rotate(3deg); }
+        }
+
+        @keyframes aurora-wave-subtle-1 {
+          0%, 100% { transform: translateX(-15%) translateY(0%) skewY(-1deg) scale(1); }
+          25% { transform: translateX(-12%) translateY(-2%) skewY(-0.5deg) scale(1.05); }
+          50% { transform: translateX(-10%) translateY(1%) skewY(0deg) scale(1.1); }
+          75% { transform: translateX(-13%) translateY(-1%) skewY(-0.8deg) scale(1.02); }
+        }
+
+        @keyframes aurora-wave-subtle-2 {
+          0%, 100% { transform: translateX(-20%) translateY(0%) skewY(0.5deg) scale(1); }
+          25% { transform: translateX(-18%) translateY(1%) skewY(1deg) scale(1.03); }
+          50% { transform: translateX(-15%) translateY(-1%) skewY(0.2deg) scale(1.08); }
+          75% { transform: translateX(-22%) translateY(0.5%) skewY(0.8deg) scale(1.01); }
+        }
+
+        @keyframes aurora-wave-subtle-3 {
+          0%, 100% { transform: translateX(-25%) translateY(0%) skewY(-0.5deg) scale(1); }
+          25% { transform: translateX(-20%) translateY(-1%) skewY(0deg) scale(1.02); }
+          50% { transform: translateX(-28%) translateY(1%) skewY(-1deg) scale(1.06); }
+          75% { transform: translateX(-23%) translateY(-0.5%) skewY(-0.3deg) scale(1.01); }
+        }
+
+        @keyframes aurora-base-flow-subtle {
+          0%, 100% { transform: translateX(-30%) translateY(0%) skewY(0.3deg) scale(1); }
+          25% { transform: translateX(-25%) translateY(-1%) skewY(0.6deg) scale(1.04); }
+          50% { transform: translateX(-35%) translateY(0.5%) skewY(0deg) scale(1.08); }
+          75% { transform: translateX(-28%) translateY(-0.3%) skewY(0.4deg) scale(1.02); }
+        }
+
+        @keyframes desktop-wave-1 {
+          0%, 100% { transform: translateX(0px) translateY(0px) skewY(-1.5deg) rotate(0deg); }
+          50% { transform: translateX(15px) translateY(-8px) skewY(-1deg) rotate(1.5deg); }
+        }
+
+        @keyframes desktop-wave-2 {
+          0%, 100% { transform: translateX(0px) translateY(0px) skewY(-1deg) rotate(1.5deg); }
+          50% { transform: translateX(-12px) translateY(10px) skewY(-0.5deg) rotate(3deg); }
+        }
+
+        @keyframes desktop-wave-3 {
+          0%, 100% { transform: translateX(0px) translateY(0px) skewY(-0.5deg) rotate(3deg); }
+          50% { transform: translateX(20px) translateY(-5px) skewY(0deg) rotate(4.5deg); }
+        }
+
+        @keyframes desktop-wave-4 {
+          0%, 100% { transform: translateX(0px) translateY(0px) skewY(0deg) rotate(4.5deg); }
+          50% { transform: translateX(-18px) translateY(12px) skewY(0.5deg) rotate(6deg); }
+        }
+
+        @keyframes color-shift {
+          0%, 100% { filter: hue-rotate(0deg) brightness(1) saturate(1); }
+          25% { filter: hue-rotate(90deg) brightness(1.2) saturate(1.3); }
+          50% { filter: hue-rotate(180deg) brightness(1.1) saturate(1.1); }
+          75% { filter: hue-rotate(270deg) brightness(1.3) saturate(1.2); }
+        }
+
+        @keyframes energy-float {
+          0%, 100% { transform: translateY(0px) scale(1) rotate(0deg); opacity: 0.6; }
+          25% { transform: translateY(-8px) scale(1.1) rotate(90deg); opacity: 0.8; }
+          50% { transform: translateY(-12px) scale(1.2) rotate(180deg); opacity: 1; }
+          75% { transform: translateY(-6px) scale(1.05) rotate(270deg); opacity: 0.9; }
+        }
+
+        @keyframes breath {
+          0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+          50% { transform: scale(1.3) rotate(180deg); opacity: 0.6; }
+        }
+
+        @keyframes geometric-pulse {
+          0%, 100% { opacity: 0.3; stroke-dashoffset: 0; }
+          50% { opacity: 0.8; stroke-dashoffset: 15; }
+        }
+
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.05); }
+        }
+
+        @keyframes warm-glow-pulse {
+          0%, 100% { text-shadow: 0 0 10px rgba(73, 146, 255, 0.4), 0 0 20px rgba(34, 211, 238, 0.3); }
+          50% { text-shadow: 0 0 20px rgba(73, 146, 255, 0.8), 0 0 40px rgba(34, 211, 238, 0.6), 0 0 60px rgba(147, 51, 234, 0.4); }
+        }
+
+        @keyframes letter-float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-3px) rotate(1deg); }
+        }
+
+        @keyframes dev-services-text {
+          0%, 100% { transform: translateY(0px) scale(1); }
+          50% { transform: translateY(-2px) scale(1.02); }
+        }
+
+        @keyframes wavy-text {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-5px); }
+        }
+
+        @keyframes text-pop {
+          0% { transform: scale(0.95); }
+          50% { transform: scale(1.02); }
+          100% { transform: scale(1); }
+        }
+
+        @keyframes sparkle-enhanced {
+          0%, 100% { opacity: 0.4; transform: scale(0.8) rotate(0deg); }
+          25% { opacity: 0.8; transform: scale(1.1) rotate(90deg); }
+          50% { opacity: 1; transform: scale(1.3) rotate(180deg); }
+          75% { opacity: 0.8; transform: scale(1.1) rotate(270deg); }
+        }
+
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotate-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes gentle-pulse {
+          0%, 100% { opacity: 0.6; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        @keyframes bubble-pop-in {
+          0% { opacity: 0; transform: scale(0.3) translateY(20px); }
+          50% { opacity: 0.8; transform: scale(1.1) translateY(-5px); }
+          100% { opacity: 1; transform: scale(1) translateY(0px); }
+        }
+
+        @keyframes button-drift {
+          0%, 100% { transform: translateX(0px) translateY(0px); }
+          25% { transform: translateX(3px) translateY(-2px); }
+          50% { transform: translateX(-2px) translateY(4px); }
+          75% { transform: translateX(4px) translateY(1px); }
+        }
+
         /* Mobile fixes for service cards - fill gaps in corners */
         @media (max-width: 640px) {
           .responsive-grid {
@@ -3597,9 +3805,433 @@ export default function Index() {
             min-width: 44px;
           }
         }
+
+        /* Performance optimizations for animations */
+        .gpu-accelerated {
+          transform: translateZ(0);
+          backface-visibility: hidden;
+          will-change: transform;
+        }
+
+        .composite-layer {
+          transform: translateZ(0);
+        }
+
+        .scroll-optimized {
+          overflow-scrolling: touch;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .scroll-simplified * {
+          will-change: auto !important;
+          animation-play-state: paused !important;
+        }
+
+        .warm-glow-text {
+          animation: warm-glow-pulse 4s ease-in-out infinite;
+        }
+
+        .animate-warm-glow-pulse {
+          animation: warm-glow-pulse 4s ease-in-out infinite;
+        }
+
+        .animate-letter-float {
+          animation: letter-float 3s ease-in-out infinite;
+        }
+
+        .animate-dev-services-text {
+          animation: dev-services-text 2s ease-in-out infinite;
+        }
+
+        .animate-wavy-text {
+          animation: wavy-text 2s ease-in-out infinite;
+        }
+
+        .animate-text-pop {
+          animation: text-pop 0.6s ease-out;
+        }
       `}</style>
     </div>
   );
+}
+
+// Contact Section Specific Animations CSS
+const contactAnimationsCSS = `
+  @keyframes contact-signal-wave {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(2);
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes contact-data-flow {
+    0% {
+      offset-distance: 0%;
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      offset-distance: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes contact-card-hover {
+    0%, 100% {
+      transform: translateY(0) rotateX(0);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(-10px) rotateX(5deg);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes contact-frequency {
+    0%, 100% {
+      height: 10px;
+    }
+    50% {
+      height: 30px;
+    }
+  }
+
+  @keyframes contact-status-blink {
+    0%, 100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes contact-network-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 1;
+    }
+  }
+
+  @keyframes contact-message-bubble {
+    0% {
+      transform: translateY(20px) scale(0.8);
+      opacity: 0;
+    }
+    25%, 75% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-20px) scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  @keyframes contact-social-preview {
+    0% {
+      transform: rotateY(90deg) scale(0.8);
+      opacity: 0;
+    }
+    25%, 75% {
+      transform: rotateY(0deg) scale(1);
+      opacity: 0.4;
+    }
+    100% {
+      transform: rotateY(-90deg) scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  @keyframes contact-comm-icon-float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-10px) rotate(5deg);
+    }
+    50% {
+      transform: translateY(-5px) rotate(-3deg);
+    }
+    75% {
+      transform: translateY(-8px) rotate(2deg);
+    }
+  }
+
+  .animate-contact-signal-wave {
+    animation: contact-signal-wave 4s ease-in-out infinite;
+  }
+
+  .animate-contact-data-flow {
+    animation: contact-data-flow 5s ease-in-out infinite;
+  }
+
+  .animate-contact-card-hover {
+    animation: contact-card-hover 8s ease-in-out infinite;
+  }
+
+  .animate-contact-frequency {
+    animation: contact-frequency 1.5s ease-in-out infinite;
+  }
+
+  .animate-contact-status-blink {
+    animation: contact-status-blink 3s ease-in-out infinite;
+  }
+
+  .animate-contact-network-pulse {
+    animation: contact-network-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-contact-message-bubble {
+    animation: contact-message-bubble 4s ease-in-out infinite;
+  }
+
+  .animate-contact-social-preview {
+    animation: contact-social-preview 6s ease-in-out infinite;
+  }
+
+  .animate-contact-comm-icon-float {
+    animation: contact-comm-icon-float 6s ease-in-out infinite;
+  }
+
+  /* Mobile and Tablet Performance Optimizations */
+  @media (max-width: 991px) {
+    .animate-noise {
+      animation: none !important;
+      opacity: 0.02 !important;
+    }
+
+    .animate-aurora-wave-subtle,
+    .animate-aurora-wave-subtle-1,
+    .animate-aurora-wave-subtle-2 {
+      animation-duration: 60s !important;
+      opacity: 0.3 !important;
+    }
+
+    .animate-geometric-pulse {
+      animation-duration: 12s !important;
+    }
+
+    .animate-gentleFloat {
+      animation-duration: 8s !important;
+    }
+
+    .animate-sparkle {
+      animation: none !important;
+    }
+
+    /* Disable complex transforms on mobile */
+    .gpu-accelerated {
+      transform: none !important;
+      will-change: auto !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .animate-breath {
+      animation-duration: 10s !important;
+    }
+
+    .animate-subtle-glow {
+      animation-duration: 20s !important;
+    }
+
+    /* Further reduce animations on mobile */
+    .animate-aurora,
+    .animate-aurora-1,
+    .animate-aurora-2 {
+      animation: none !important;
+      opacity: 0.05 !important;
+    }
+  }
+
+  @keyframes bubble-bounce-enhanced {
+    0% {
+      transform: translateY(30px) scale(0) rotate(-45deg);
+      opacity: 0;
+      filter: blur(4px);
+    }
+    15% {
+      transform: translateY(-10px) scale(1.2) rotate(5deg);
+      opacity: 1;
+      filter: blur(0px);
+    }
+    30% {
+      transform: translateY(5px) scale(0.9) rotate(-2deg);
+    }
+    45% {
+      transform: translateY(-5px) scale(1.1) rotate(0deg);
+    }
+    85% {
+      transform: translateY(-5px) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(30px) scale(0) rotate(45deg);
+      opacity: 0;
+      filter: blur(4px);
+    }
+  }
+
+  @keyframes bubble-typewriter-enhanced {
+    0% {
+      transform: translateX(-20px) scale(0.5) rotate(-30deg);
+      opacity: 0;
+      filter: blur(3px);
+    }
+    20% {
+      transform: translateX(5px) scale(1) rotate(0deg);
+      opacity: 1;
+      filter: blur(0px);
+    }
+    80% {
+      transform: translateX(0px) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(20px) scale(0.5) rotate(30deg);
+      opacity: 0;
+      filter: blur(3px);
+    }
+  }
+
+  @keyframes bubble-pulse-enhanced {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+      filter: blur(5px);
+    }
+    25% {
+      transform: scale(0.9);
+      opacity: 0.8;
+      filter: blur(1px);
+    }
+    50% {
+      transform: scale(1.3);
+      opacity: 1;
+      filter: blur(0px);
+    }
+    75% {
+      transform: scale(1);
+      opacity: 0.8;
+      filter: blur(1px);
+    }
+    100% {
+      transform: scale(0.3);
+      opacity: 0;
+      filter: blur(5px);
+    }
+  }
+
+  @keyframes bubble-rocket-enhanced {
+    0% {
+      transform: translateX(-30px) translateY(50px) scale(0.2) rotate(-90deg);
+      opacity: 0;
+      filter: blur(6px);
+    }
+    20% {
+      transform: translateX(10px) translateY(-15px) scale(1) rotate(-15deg);
+      opacity: 1;
+      filter: blur(0px);
+    }
+    40% {
+      transform: translateX(-5px) translateY(5px) scale(1) rotate(5deg);
+    }
+    60% {
+      transform: translateX(0px) translateY(-10px) scale(1) rotate(15deg);
+    }
+    80% {
+      transform: translateX(0px) translateY(-10px) scale(1) rotate(15deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(30px) translateY(50px) scale(0.2) rotate(90deg);
+      opacity: 0;
+      filter: blur(6px);
+    }
+  }
+
+  @keyframes shimmer-effect {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(200%);
+    }
+  }
+
+  @keyframes particle-trail {
+    0% {
+      opacity: 0;
+      transform: translateX(-10px) scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateX(-20px) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-30px) scale(0);
+    }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.3;
+    }
+  }
+
+  .animate-bubble-bounce-enhanced {
+    animation: bubble-bounce-enhanced 5s ease-out infinite;
+  }
+
+  .animate-bubble-typewriter-enhanced {
+    animation: bubble-typewriter-enhanced 5s ease-in-out infinite;
+  }
+
+  .animate-bubble-pulse-enhanced {
+    animation: bubble-pulse-enhanced 3.5s ease-in-out infinite;
+  }
+
+  .animate-bubble-rocket-enhanced {
+    animation: bubble-rocket-enhanced 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  }
+
+  .animate-shimmer-effect {
+    animation: shimmer-effect 2s ease-in-out infinite;
+  }
+
+  .animate-particle-trail {
+    animation: particle-trail 1s ease-out infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+`;
+
+// Inject the CSS into the document head
+if (typeof document !== "undefined") {
+  const style = document.createElement("style");
+  style.textContent = contactAnimationsCSS;
+  document.head.appendChild(style);
 }
 
 // ========================================
@@ -4319,6 +4951,29 @@ interface SectionProps {
 
 const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
+    const [screenSize, setScreenSize] = useState<
+      "mobile" | "tablet" | "desktop"
+    >("desktop");
+
+    useEffect(() => {
+      const updateScreenSize = () => {
+        const width = window.innerWidth;
+        if (width <= 640) {
+          setScreenSize("mobile");
+        } else if (width <= 991) {
+          setScreenSize("tablet");
+        } else {
+          setScreenSize("desktop");
+        }
+      };
+
+      updateScreenSize();
+      window.addEventListener("resize", updateScreenSize);
+      return () => window.removeEventListener("resize", updateScreenSize);
+    }, []);
+
+    const isMobileOrTablet = screenSize !== "desktop";
+
     return (
       <motion.div
         ref={ref}
@@ -4333,13 +4988,266 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       >
         {/* Enhanced Background Elements - Complete Visual Package */}
 
-        {/* Animated Noise Texture */}
-        <div
-          className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-          }}
-        />
+        {/* Animated Noise Texture - Desktop Only */}
+        {screenSize === "desktop" && (
+          <div
+            className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+            }}
+          />
+        )}
+
+        {/* SPECTACULAR ABOUT SECTION ENHANCEMENTS */}
+
+        {/* Floating Code Blocks with Syntax Highlighting Effect - Responsive */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            ...Array(
+              screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 8,
+            ),
+          ].map((_, i) => (
+            <motion.div
+              key={`code-block-${i}`}
+              className="absolute"
+              style={{
+                left: `${10 + ((i * 75) % 80)}%`,
+                top: `${15 + ((i * 45) % 70)}%`,
+                width: `${60 + (i % 3) * 20}px`,
+                height: `${30 + (i % 2) * 15}px`,
+                opacity:
+                  screenSize === "mobile"
+                    ? 0.15
+                    : screenSize === "tablet"
+                      ? 0.2
+                      : 0.3,
+              }}
+              animate={
+                isMobileOrTablet
+                  ? {
+                      y: [-3, 3, -3],
+                    }
+                  : {
+                      y: [-10, 10, -10],
+                      x: [-5, 5, -5],
+                      rotateZ: [-2, 2, -2],
+                    }
+              }
+              transition={{
+                duration: isMobileOrTablet ? 8 + (i % 2) : 4 + (i % 3),
+                repeat: Infinity,
+                delay: i * (isMobileOrTablet ? 1.5 : 0.5),
+              }}
+            >
+              <div
+                className="w-full h-full rounded-lg border-2 backdrop-blur-sm"
+                style={{
+                  background: "rgba(30, 30, 50, 0.6)",
+                  border: "2px solid rgba(73, 146, 255, 0.3)",
+                  boxShadow: "0 0 15px rgba(73, 146, 255, 0.2)",
+                }}
+              >
+                {/* Simulated code lines */}
+                <div className="p-2 space-y-1">
+                  {[...Array(2 + (i % 2))].map((_, lineIndex) => (
+                    <div
+                      key={lineIndex}
+                      className="h-1 rounded-full opacity-80"
+                      style={{
+                        width: `${50 + (((lineIndex + i) * 30) % 50)}%`,
+                        background: [
+                          "linear-gradient(90deg, #22d3ee, #60a5fa)",
+                          "linear-gradient(90deg, #10b981, #22d3ee)",
+                          "linear-gradient(90deg, #f59e0b, #ef4444)",
+                          "linear-gradient(90deg, #8b5cf6, #ec4899)",
+                        ][lineIndex % 4],
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Floating UI Components Preview - Mobile Optimized */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            {
+              type: "button",
+              x: 20,
+              y: 25,
+              color: "from-blue-500 to-purple-500",
+            },
+            { type: "card", x: 75, y: 40, color: "from-green-500 to-blue-500" },
+            ...(window.innerWidth >= 992
+              ? [
+                  {
+                    type: "input",
+                    x: 15,
+                    y: 70,
+                    color: "from-purple-500 to-pink-500",
+                  },
+                  {
+                    type: "toggle",
+                    x: 80,
+                    y: 20,
+                    color: "from-orange-500 to-red-500",
+                  },
+                ]
+              : []),
+          ].map((component, i) => (
+            <motion.div
+              key={`ui-component-${i}`}
+              className="absolute"
+              style={{
+                left: `${component.x}%`,
+                top: `${component.y}%`,
+              }}
+              animate={
+                window.innerWidth < 992
+                  ? {
+                      y: [-4, 4, -4],
+                    }
+                  : {
+                      y: [-8, 8, -8],
+                      rotateZ: [-1, 1, -1],
+                      scale: [0.9, 1.1, 0.9],
+                    }
+              }
+              transition={{
+                duration: window.innerWidth < 992 ? 5 + i : 3 + i,
+                repeat: Infinity,
+                delay: i * 1,
+              }}
+            >
+              <div
+                className={`w-16 h-8 rounded-lg bg-gradient-to-r ${component.color} opacity-40 backdrop-blur-sm border border-white/20`}
+                style={{
+                  boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                }}
+              >
+                {component.type === "button" && (
+                  <div className="w-full h-full flex items-center justify-center text-white text-xs font-semibold">
+                    BTN
+                  </div>
+                )}
+                {component.type === "card" && (
+                  <div className="p-1">
+                    <div className="h-1 bg-white/40 rounded mb-0.5" />
+                    <div className="h-0.5 bg-white/30 rounded w-3/4" />
+                  </div>
+                )}
+                {component.type === "input" && (
+                  <div className="w-full h-full border-2 border-white/30 rounded-lg bg-white/10" />
+                )}
+                {component.type === "toggle" && (
+                  <div className="w-full h-full flex items-center justify-between px-1">
+                    <div className="w-2 h-2 bg-white/60 rounded-full" />
+                    <div className="w-2 h-2 bg-white/30 rounded-full" />
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Animated Data Streams - Mobile Optimized */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(window.innerWidth < 992 ? 3 : 6)].map((_, i) => (
+            <motion.div
+              key={`data-stream-${i}`}
+              className="absolute"
+              style={{
+                left: `${10 + ((i * 80) % 80)}%`,
+                top: "0%",
+                height: "100%",
+                width: window.innerWidth < 992 ? "1px" : "2px",
+              }}
+            >
+              <motion.div
+                className="w-full rounded-full"
+                style={{
+                  height: window.innerWidth < 992 ? "30px" : "40px",
+                  opacity: window.innerWidth < 992 ? 0.4 : 0.6,
+                  background: `linear-gradient(180deg,
+                    rgba(73, 146, 255, 0.8) 0%,
+                    rgba(34, 211, 238, 0.6) 50%,
+                    transparent 100%)`,
+                  boxShadow:
+                    window.innerWidth < 992
+                      ? "0 0 5px rgba(73, 146, 255, 0.3)"
+                      : "0 0 10px rgba(73, 146, 255, 0.4)",
+                }}
+                animate={{
+                  y: ["-50px", "calc(100vh + 50px)"],
+                }}
+                transition={{
+                  duration: window.innerWidth < 992 ? 5 + (i % 2) : 3 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 1,
+                  ease: "linear",
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Interactive Holographic Stats Display */}
+        <div className="absolute top-20 right-10 hidden lg:block pointer-events-none">
+          <motion.div
+            className="relative"
+            animate={{
+              rotateY: [0, 5, 0, -5, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+            }}
+          >
+            <div
+              className="w-32 h-24 rounded-xl backdrop-blur-lg border opacity-70"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(30, 30, 50, 0.7), rgba(10, 10, 30, 0.7))",
+                border: "2px solid rgba(73, 146, 255, 0.3)",
+                boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
+              }}
+            >
+              <div className="p-3">
+                <div className="text-xs text-cyan-400 font-mono mb-1">
+                  PERFORMANCE
+                </div>
+                <div className="space-y-1">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-white/60">Speed</span>
+                    <span className="text-green-400">99.9%</span>
+                  </div>
+                  <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                    <motion.div
+                      className="h-full bg-gradient-to-r from-green-400 to-blue-400 rounded-full"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "99%" }}
+                      transition={{ duration: 2, delay: 1 }}
+                    />
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-white/60">Quality</span>
+                    <span className="text-blue-400">100%</span>
+                  </div>
+                  <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                    <motion.div
+                      className="h-full bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 2, delay: 1.5 }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
 
         {/* Desktop Aurora Curtains */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 hidden lg:block">
@@ -5039,7 +5947,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Enhanced Background Elements - Copy from Home Section */}
+        {/* SPECTACULAR SERVICES SECTION ENHANCEMENTS */}
 
         {/* Animated Noise Texture */}
         <div
@@ -5048,6 +5956,263 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
           }}
         />
+
+        {/* Floating Service Icons with Orbit Animation - Mobile Optimized */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            {
+              Icon: Globe,
+              color: "from-blue-500 to-cyan-500",
+              x: 85,
+              y: 20,
+              delay: 0,
+            },
+            {
+              Icon: Smartphone,
+              color: "from-purple-500 to-pink-500",
+              x: 15,
+              y: 30,
+              delay: 1,
+            },
+            ...(window.innerWidth >= 992
+              ? [
+                  {
+                    Icon: Palette,
+                    color: "from-green-500 to-emerald-500",
+                    x: 80,
+                    y: 65,
+                    delay: 2,
+                  },
+                  {
+                    Icon: Zap,
+                    color: "from-orange-500 to-red-500",
+                    x: 10,
+                    y: 70,
+                    delay: 3,
+                  },
+                  {
+                    Icon: Users,
+                    color: "from-indigo-500 to-purple-500",
+                    x: 85,
+                    y: 85,
+                    delay: 4,
+                  },
+                  {
+                    Icon: Code,
+                    color: "from-teal-500 to-blue-500",
+                    x: 15,
+                    y: 15,
+                    delay: 5,
+                  },
+                ]
+              : [
+                  {
+                    Icon: Palette,
+                    color: "from-green-500 to-emerald-500",
+                    x: 75,
+                    y: 75,
+                    delay: 2,
+                  },
+                ]),
+          ].map((service, i) => (
+            <motion.div
+              key={`floating-service-${i}`}
+              className="absolute"
+              style={{
+                left: `${service.x}%`,
+                top: `${service.y}%`,
+              }}
+              animate={
+                window.innerWidth < 992
+                  ? {
+                      y: [-8, 8, -8],
+                    }
+                  : {
+                      y: [-15, 15, -15],
+                      x: [-8, 8, -8],
+                      rotateZ: [-10, 10, -10],
+                      scale: [0.8, 1.2, 0.8],
+                    }
+              }
+              transition={{
+                duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
+                repeat: Infinity,
+                delay: service.delay * (window.innerWidth < 992 ? 1 : 0.5),
+              }}
+            >
+              <div
+                className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} opacity-40 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+                style={{
+                  boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
+                }}
+              >
+                <service.Icon className="w-8 h-8 text-white drop-shadow-lg" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Rotating Skill Rings - Mobile Optimized */}
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+          {[...Array(window.innerWidth < 992 ? 2 : 3)].map((_, i) => (
+            <motion.div
+              key={`skill-ring-${i}`}
+              className="absolute rounded-full border-2"
+              style={{
+                width:
+                  window.innerWidth < 992
+                    ? `${250 + i * 80}px`
+                    : `${300 + i * 100}px`,
+                height:
+                  window.innerWidth < 992
+                    ? `${250 + i * 80}px`
+                    : `${300 + i * 100}px`,
+                border: `${window.innerWidth < 992 ? "1px" : "2px"} solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
+                opacity: window.innerWidth < 992 ? 0.15 : 0.2,
+              }}
+              animate={{
+                rotateZ: i % 2 === 0 ? [0, 360] : [360, 0],
+              }}
+              transition={{
+                duration: window.innerWidth < 992 ? 30 + i * 15 : 20 + i * 10,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              {/* Skill indicators on the ring - Reduced for mobile */}
+              {[...Array(window.innerWidth < 992 ? 4 : 6)].map(
+                (_, skillIndex) => (
+                  <motion.div
+                    key={`skill-indicator-${i}-${skillIndex}`}
+                    className="absolute rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"
+                    style={{
+                      width: window.innerWidth < 992 ? "2px" : "12px",
+                      height: window.innerWidth < 992 ? "2px" : "12px",
+                      left: `${50 + 45 * Math.cos((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
+                      top: `${50 + 45 * Math.sin((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
+                      transform: "translate(-50%, -50%)",
+                      boxShadow:
+                        window.innerWidth < 992
+                          ? "0 0 5px rgba(73, 146, 255, 0.4)"
+                          : "0 0 10px rgba(73, 146, 255, 0.6)",
+                    }}
+                    animate={
+                      window.innerWidth < 992
+                        ? {
+                            opacity: [0.6, 1, 0.6],
+                          }
+                        : {
+                            scale: [0.8, 1.2, 0.8],
+                            opacity: [0.4, 1, 0.4],
+                          }
+                    }
+                    transition={{
+                      duration: window.innerWidth < 992 ? 3 : 2,
+                      repeat: Infinity,
+                      delay: skillIndex * (window.innerWidth < 992 ? 0.5 : 0.3),
+                    }}
+                  />
+                ),
+              )}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Technology Stack Visualization */}
+        <div className="absolute top-10 left-10 hidden lg:block pointer-events-none">
+          <motion.div
+            className="relative"
+            animate={{
+              rotateY: [0, 10, 0, -10, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+            }}
+          >
+            <div
+              className="w-40 h-32 rounded-xl backdrop-blur-lg border opacity-70"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(10, 10, 30, 0.8))",
+                border: "2px solid rgba(73, 146, 255, 0.3)",
+                boxShadow: "0 0 40px rgba(73, 146, 255, 0.3)",
+              }}
+            >
+              <div className="p-3">
+                <div className="text-xs text-cyan-400 font-mono mb-2">
+                  TECH STACK
+                </div>
+                <div className="grid grid-cols-3 gap-1">
+                  {[
+                    { name: "React", color: "bg-blue-400" },
+                    { name: "Node", color: "bg-green-400" },
+                    { name: "AI", color: "bg-purple-400" },
+                    { name: "Cloud", color: "bg-cyan-400" },
+                    { name: "Mobile", color: "bg-pink-400" },
+                    { name: "Design", color: "bg-yellow-400" },
+                  ].map((tech, techIndex) => (
+                    <motion.div
+                      key={tech.name}
+                      className={`w-6 h-6 ${tech.color} rounded-md flex items-center justify-center text-white text-xs font-bold`}
+                      animate={{
+                        scale: [1, 1.1, 1],
+                        rotateZ: [0, 5, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: techIndex * 0.2,
+                      }}
+                      style={{
+                        boxShadow: "0 0 10px rgba(73, 146, 255, 0.3)",
+                      }}
+                    >
+                      {tech.name.slice(0, 2)}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Floating Digital Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={`digital-element-${i}`}
+              className="absolute opacity-30"
+              style={{
+                left: `${5 + ((i * 80) % 90)}%`,
+                top: `${10 + ((i * 35) % 80)}%`,
+              }}
+              animate={{
+                y: [-20, 20, -20],
+                x: [-10, 10, -10],
+                rotateZ: [-15, 15, -15],
+              }}
+              transition={{
+                duration: 5 + (i % 3),
+                repeat: Infinity,
+                delay: i * 0.3,
+              }}
+            >
+              <div
+                className="w-8 h-8 border-2 border-blue-400/50 backdrop-blur-sm"
+                style={{
+                  clipPath: [
+                    "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)", // Diamond
+                    "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)", // Octagon
+                    "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)", // Star
+                  ][i % 3],
+                  background: `linear-gradient(135deg, rgba(73, 146, 255, 0.3), rgba(34, 211, 238, 0.3))`,
+                  boxShadow: "0 0 15px rgba(73, 146, 255, 0.2)",
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -5508,7 +6673,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Enhanced Background Elements - Copy from Home Section */}
+        {/* SPECTACULAR PORTFOLIO SECTION ENHANCEMENTS */}
 
         {/* Animated Noise Texture */}
         <div
@@ -5517,6 +6682,252 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
           }}
         />
+
+        {/* Project Screenshots Floating Effect - Mobile Optimized */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            {
+              x: 10,
+              y: 20,
+              rotation: -15,
+              color: "from-purple-500 to-pink-500",
+            },
+            { x: 85, y: 25, rotation: 12, color: "from-blue-500 to-cyan-500" },
+            ...(window.innerWidth >= 992
+              ? [
+                  {
+                    x: 15,
+                    y: 70,
+                    rotation: -8,
+                    color: "from-green-500 to-emerald-500",
+                  },
+                  {
+                    x: 80,
+                    y: 75,
+                    rotation: 18,
+                    color: "from-orange-500 to-red-500",
+                  },
+                ]
+              : []),
+          ].map((project, i) => (
+            <motion.div
+              key={`floating-project-${i}`}
+              className="absolute"
+              style={{
+                left: `${project.x}%`,
+                top: `${project.y}%`,
+                transform: `rotate(${project.rotation}deg)`,
+                opacity: window.innerWidth < 992 ? 0.25 : 0.4,
+              }}
+              animate={
+                window.innerWidth < 992
+                  ? {
+                      y: [-5, 5, -5],
+                    }
+                  : {
+                      y: [-10, 10, -10],
+                      rotateZ: [
+                        project.rotation - 5,
+                        project.rotation + 5,
+                        project.rotation - 5,
+                      ],
+                      scale: [0.9, 1.1, 0.9],
+                    }
+              }
+              transition={{
+                duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
+                repeat: Infinity,
+                delay: i * (window.innerWidth < 992 ? 1 : 0.5),
+              }}
+            >
+              <div
+                className={`w-20 h-16 rounded-lg bg-gradient-to-br ${project.color} backdrop-blur-sm border border-white/30`}
+                style={{
+                  boxShadow: "0 0 25px rgba(73, 146, 255, 0.3)",
+                }}
+              >
+                {/* Simulated browser interface */}
+                <div className="p-1">
+                  <div className="flex space-x-1 mb-1">
+                    <div className="w-1 h-1 bg-red-400 rounded-full" />
+                    <div className="w-1 h-1 bg-yellow-400 rounded-full" />
+                    <div className="w-1 h-1 bg-green-400 rounded-full" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <div className="h-0.5 bg-white/40 rounded w-3/4" />
+                    <div className="h-0.5 bg-white/30 rounded w-1/2" />
+                    <div className="h-0.5 bg-white/20 rounded w-2/3" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Code Repository Visualization */}
+        <div className="absolute top-10 right-10 hidden lg:block pointer-events-none">
+          <motion.div
+            className="relative"
+            animate={{
+              rotateY: [0, -10, 0, 10, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+            }}
+          >
+            <div
+              className="w-48 h-36 rounded-xl backdrop-blur-lg border opacity-70"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(10, 10, 30, 0.8))",
+                border: "2px solid rgba(73, 146, 255, 0.3)",
+                boxShadow: "0 0 40px rgba(73, 146, 255, 0.3)",
+              }}
+            >
+              <div className="p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-xs text-cyan-400 font-mono">
+                    REPOSITORY
+                  </div>
+                  <div className="flex space-x-1">
+                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                    <div
+                      className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse"
+                      style={{ animationDelay: "0.5s" }}
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  {[
+                    { lang: "JavaScript", percent: 45, color: "bg-yellow-400" },
+                    { lang: "TypeScript", percent: 30, color: "bg-blue-400" },
+                    { lang: "CSS", percent: 25, color: "bg-green-400" },
+                  ].map((lang, langIndex) => (
+                    <div
+                      key={lang.lang}
+                      className="flex items-center justify-between text-xs"
+                    >
+                      <span className="text-white/70">{lang.lang}</span>
+                      <div className="flex items-center space-x-1">
+                        <div className="w-8 h-1 bg-white/20 rounded-full overflow-hidden">
+                          <motion.div
+                            className={`h-full ${lang.color} rounded-full`}
+                            initial={{ width: "0%" }}
+                            animate={{ width: `${lang.percent}%` }}
+                            transition={{ duration: 2, delay: langIndex * 0.3 }}
+                          />
+                        </div>
+                        <span className="text-white/50">{lang.percent}%</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-2 pt-2 border-t border-white/10">
+                  <div className="text-xs text-white/50 flex justify-between">
+                    <span>Commits: 342</span>
+                    <span>Stars: 89</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Floating Achievement Badges */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            {
+              icon: "🏆",
+              label: "Award",
+              x: 8,
+              y: 15,
+              color: "from-yellow-500 to-orange-500",
+            },
+            {
+              icon: "⭐",
+              label: "Featured",
+              x: 88,
+              y: 18,
+              color: "from-blue-500 to-purple-500",
+            },
+            {
+              icon: "🚀",
+              label: "Launch",
+              x: 12,
+              y: 85,
+              color: "from-green-500 to-blue-500",
+            },
+            {
+              icon: "💎",
+              label: "Premium",
+              x: 85,
+              y: 82,
+              color: "from-purple-500 to-pink-500",
+            },
+          ].map((badge, i) => (
+            <motion.div
+              key={`achievement-${i}`}
+              className="absolute"
+              style={{
+                left: `${badge.x}%`,
+                top: `${badge.y}%`,
+              }}
+              animate={{
+                y: [-8, 8, -8],
+                rotateZ: [-5, 5, -5],
+                scale: [0.9, 1.1, 0.9],
+              }}
+              transition={{
+                duration: 3 + (i % 2),
+                repeat: Infinity,
+                delay: i * 0.7,
+              }}
+            >
+              <div
+                className={`w-12 h-12 rounded-full bg-gradient-to-br ${badge.color} opacity-50 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+                style={{
+                  boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                }}
+              >
+                <span className="text-lg">{badge.icon}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Interactive Network Connections */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <svg className="absolute w-full h-full opacity-20">
+            {/* Dynamic connecting lines between floating elements */}
+            {[...Array(6)].map((_, i) => {
+              const startX = 20 + ((i * 120) % 80);
+              const startY = 30 + ((i * 80) % 60);
+              const endX = 40 + (((i + 1) * 130) % 80);
+              const endY = 50 + (((i + 1) * 90) % 60);
+
+              return (
+                <motion.line
+                  key={`connection-${i}`}
+                  x1={`${startX}%`}
+                  y1={`${startY}%`}
+                  x2={`${endX}%`}
+                  y2={`${endY}%`}
+                  stroke="rgba(73, 146, 255, 0.4)"
+                  strokeWidth="1"
+                  strokeDasharray="5 5"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: [0, 1, 0] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    delay: i * 0.5,
+                  }}
+                />
+              );
+            })}
+          </svg>
+        </div>
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -6076,6 +7487,43 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       >
         {/* Enhanced Background Elements - Contact Section Eye Candy */}
 
+        {/* Floating Communication Icons - Contact specific */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
+          {[
+            { icon: "📧", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
+            { icon: "💬", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
+            { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
+            { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
+            { icon: "📞", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
+          ].map((item, i) => (
+            <motion.div
+              key={`comm-icon-${i}`}
+              className="absolute opacity-80"
+              style={{
+                left: `${item.x}%`,
+                top: `${item.y}%`,
+                fontSize: `${item.size}px`,
+              }}
+              initial={{ opacity: 0, scale: 0, rotateZ: -45 }}
+              animate={{
+                opacity: [0.6, 1, 0.6],
+                scale: [1, 1.2, 1],
+                rotateZ: [0, 10, -10, 0],
+                y: [-10, 10, -10],
+              }}
+              transition={{
+                duration: item.duration,
+                delay: item.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              {item.icon}
+            </motion.div>
+          ))}
+        </div>
+
         {/* Animated Noise Texture - Enhanced for contact */}
         {!isMobile && (
           <div
@@ -6086,15 +7534,125 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         )}
 
-        {/* Colorful Floating Particles - Same as main section */}
+        {/* Data Transmission Lines */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
+            {[
+              { path: "M100,100 Q300,200 500,150 T900,200", delay: 0 },
+              { path: "M200,300 Q400,150 600,250 T1000,180", delay: 2 },
+              { path: "M50,500 Q250,350 450,400 T800,350", delay: 4 },
+            ].map((line, i) => (
+              <g key={`data-line-${i}`}>
+                <motion.path
+                  d={line.path}
+                  stroke="rgba(73, 146, 255, 0.4)"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeDasharray="10 5"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{
+                    pathLength: [0, 1, 0],
+                    opacity: [0, 0.8, 0],
+                  }}
+                  transition={{
+                    duration: 5,
+                    delay: line.delay,
+                    repeat: Infinity,
+                    repeatDelay: 6,
+                  }}
+                />
+                <motion.circle
+                  r="4"
+                  fill="rgba(63, 186, 255, 0.8)"
+                  initial={{ offsetDistance: "0%" }}
+                  animate={{ offsetDistance: ["0%", "100%"] }}
+                  transition={{
+                    duration: 5,
+                    delay: line.delay,
+                    repeat: Infinity,
+                    repeatDelay: 6,
+                  }}
+                  style={{ offsetPath: `path('${line.path}')` }}
+                />
+                \n{" "}
+              </g>
+            ))}
+          </svg>
+        </div>
+
+        {/* Floating Contact Cards */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            { type: "email", x: 15, y: 35, icon: "✉️" },
+            { type: "call", x: 75, y: 25, icon: "📞" },
+            { type: "chat", x: 25, y: 70, icon: "💬" },
+            { type: "meet", x: 80, y: 65, icon: "🤝" },
+          ].map((card, i) => (
+            <motion.div
+              key={`contact-card-${i}`}
+              className="absolute w-16 h-16 bg-blue-500/10 backdrop-blur-sm rounded-xl border border-blue-300/20 flex items-center justify-center"
+              style={{
+                left: `${card.x}%`,
+                top: `${card.y}%`,
+              }}
+              initial={{ opacity: 0, rotateX: -90, scale: 0.5 }}
+              animate={{
+                opacity: [0, 0.8, 0],
+                rotateX: [-90, 0, 90],
+                scale: [0.5, 1, 0.5],
+                y: [-20, 0, 20],
+              }}
+              transition={{
+                duration: 8,
+                delay: i * 2,
+                repeat: Infinity,
+                repeatDelay: 10,
+              }}
+            >
+              <span className="text-2xl">{card.icon}</span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Live Status Indicators */}
+        <div className="absolute top-10 right-10 pointer-events-none">
+          <div className="flex flex-col space-y-2 opacity-40">
+            {[
+              { label: "Online", color: "bg-green-400" },
+              { label: "Response: &lt; 24h", color: "bg-blue-400" },
+              { label: "Available", color: "bg-purple-400" },
+            ].map((status, i) => (
+              <motion.div
+                key={`status-${i}`}
+                className="flex items-center space-x-2 text-xs text-white"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: [0.4, 0.8, 0.4], x: 0 }}
+                transition={{
+                  duration: 3,
+                  delay: i * 0.5,
+                  repeat: Infinity,
+                }}
+              >
+                <div
+                  className={`w-2 h-2 rounded-full ${status.color} animate-pulse`}
+                />
+                <span>{status.label}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Colorful Floating Particles - Mobile Optimized */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             ...Array(
-              animationConfig?.enableBackgroundParticles
-                ? isMobile
-                  ? 3
-                  : 15
-                : 6,
+              window.innerWidth < 992
+                ? window.innerWidth < 641
+                  ? 2
+                  : 3
+                : animationConfig?.enableBackgroundParticles
+                  ? 15
+                  : 6,
             ),
           ].map((_, i) => (
             <div
@@ -6116,11 +7674,20 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   ];
                   return colorPalettes[i % colorPalettes.length];
                 })(),
-                animation: `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
-                filter: `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
-                boxShadow: `0 0 ${4 + (i % 3) * 2}px rgba(255, 255, 255, 0.3)`,
-                transform: `translateZ(0) scale(${0.8 + (i % 2) * 0.4})`,
-                willChange: "transform",
+                animation:
+                  window.innerWidth < 992
+                    ? `gentleFloat ${6 + (i % 2)}s ease-in-out infinite ${i * 0.8}s`
+                    : `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
+                filter:
+                  window.innerWidth < 992
+                    ? "none"
+                    : `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
+                boxShadow:
+                  window.innerWidth < 992
+                    ? "none"
+                    : `0 0 ${4 + (i % 3) * 2}px rgba(255, 255, 255, 0.3)`,
+                transform: `translateZ(0) scale(${window.innerWidth < 992 ? 0.6 : 0.8 + (i % 2) * 0.4})`,
+                willChange: window.innerWidth < 992 ? "auto" : "transform",
               }}
             />
           ))}
