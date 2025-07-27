@@ -778,7 +778,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
-██║ █��╔╝��█╔═���═██╗█���╔����══██╗
+██║ █����╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████�����╝██║  ██║
@@ -6500,31 +6500,36 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           }}
         />
 
-        {/* Project Screenshots Floating Effect */}
+        {/* Project Screenshots Floating Effect - Mobile Optimized */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             { x: 10, y: 20, rotation: -15, color: "from-purple-500 to-pink-500" },
             { x: 85, y: 25, rotation: 12, color: "from-blue-500 to-cyan-500" },
-            { x: 15, y: 70, rotation: -8, color: "from-green-500 to-emerald-500" },
-            { x: 80, y: 75, rotation: 18, color: "from-orange-500 to-red-500" },
+            ...(window.innerWidth >= 992 ? [
+              { x: 15, y: 70, rotation: -8, color: "from-green-500 to-emerald-500" },
+              { x: 80, y: 75, rotation: 18, color: "from-orange-500 to-red-500" },
+            ] : [])
           ].map((project, i) => (
             <motion.div
               key={`floating-project-${i}`}
-              className="absolute opacity-40"
+              className="absolute"
               style={{
                 left: `${project.x}%`,
                 top: `${project.y}%`,
                 transform: `rotate(${project.rotation}deg)`,
+                opacity: window.innerWidth < 992 ? 0.25 : 0.4,
               }}
-              animate={{
+              animate={window.innerWidth < 992 ? {
+                y: [-5, 5, -5],
+              } : {
                 y: [-10, 10, -10],
                 rotateZ: [project.rotation - 5, project.rotation + 5, project.rotation - 5],
                 scale: [0.9, 1.1, 0.9],
               }}
               transition={{
-                duration: 4 + (i % 3),
+                duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
                 repeat: Infinity,
-                delay: i * 0.5,
+                delay: i * (window.innerWidth < 992 ? 1 : 0.5),
               }}
             >
               <div
