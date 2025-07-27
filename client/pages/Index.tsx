@@ -814,10 +814,10 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
-█████╔╝ █������   █��║██����███╔╝
+█████╔╝ █������   █��║��█����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  �����█║
-╚═╝  ╚������� ╚═����═══╝ ╚═╝  ����═╝`}
+╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -3237,27 +3237,24 @@ export default function Index() {
                     />
                   ))}
 
-                  {/* Pink Theme Floating Hearts and Sparkles */}
+                  {/* Pink Theme Floating Bubbles with Pink Outlines */}
                   {isPinkActive &&
                     [...Array(12)].map((_, i) => (
                       <div
-                        key={`pink-particle-${i}`}
+                        key={`pink-bubble-${i}`}
                         className="absolute rounded-full pointer-events-none"
                         style={{
                           left: `${10 + ((i * 70) % 180)}%`,
                           top: `${20 + ((i * 60) % 80)}%`,
-                          width: `${3 + (i % 3)}px`,
-                          height: `${3 + (i % 3)}px`,
-                          background:
-                            i % 3 === 0
-                              ? "rgba(236, 72, 153, 0.8)"
-                              : i % 3 === 1
-                                ? "rgba(244, 114, 182, 0.7)"
-                                : "rgba(251, 113, 133, 0.6)",
-                          animation: `pink-pulse ${3 + (i % 2)}s ease-in-out infinite ${i * 0.4}s`,
-                          boxShadow: "0 0 8px rgba(236, 72, 153, 0.6)",
+                          width: `${6 + (i % 4) * 2}px`,
+                          height: `${6 + (i % 4) * 2}px`,
+                          background: `radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(236, 72, 153, 0.2) 40%, rgba(236, 72, 153, 0.1))`,
+                          border: "1px solid rgba(236, 72, 153, 0.6)",
+                          animation: `gentle-float ${4 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+                          boxShadow: "0 0 12px rgba(236, 72, 153, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3)",
                           willChange: "transform, opacity",
                           transform: "translateZ(0)",
+                          backdropFilter: "blur(1px)",
                         }}
                       />
                     ))}
@@ -8127,7 +8124,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "✉����" },
+            { type: "email", x: 15, y: 35, icon: "✉���" },
             { type: "call", x: 75, y: 25, icon: "��" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
