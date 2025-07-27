@@ -7104,6 +7104,165 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         )}
 
+        {/* Contact Signal Waves */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-1">
+          {[...Array(4)].map((_, i) => (
+            <motion.div
+              key={`signal-wave-${i}`}
+              className="absolute rounded-full border-2 border-blue-400/20"
+              style={{
+                left: `${20 + i * 25}%`,
+                top: `${30 + i * 15}%`,
+                width: `${40 + i * 20}px`,
+                height: `${40 + i * 20}px`,
+              }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{
+                scale: [0, 3, 0],
+                opacity: [0, 0.6, 0],
+              }}
+              transition={{
+                duration: 4,
+                delay: i * 1.2,
+                repeat: Infinity,
+                repeatDelay: 3,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Data Transmission Lines */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
+            {[
+              { path: "M100,100 Q300,200 500,150 T900,200", delay: 0 },
+              { path: "M200,300 Q400,150 600,250 T1000,180", delay: 2 },
+              { path: "M50,500 Q250,350 450,400 T800,350", delay: 4 },
+            ].map((line, i) => (
+              <g key={`data-line-${i}`}>
+                <motion.path
+                  d={line.path}
+                  stroke="rgba(73, 146, 255, 0.4)"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeDasharray="10 5"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{
+                    pathLength: [0, 1, 0],
+                    opacity: [0, 0.8, 0],
+                  }}
+                  transition={{
+                    duration: 5,
+                    delay: line.delay,
+                    repeat: Infinity,
+                    repeatDelay: 6,
+                  }}
+                />
+                <motion.circle
+                  r="4"
+                  fill="rgba(63, 186, 255, 0.8)"
+                  initial={{ offsetDistance: "0%" }}
+                  animate={{ offsetDistance: ["0%", "100%"] }}
+                  transition={{
+                    duration: 5,
+                    delay: line.delay,
+                    repeat: Infinity,
+                    repeatDelay: 6,
+                  }}
+                  style={{ offsetPath: `path('${line.path}')` }}
+                />\n              </g>
+            ))}
+          </svg>
+        </div>
+
+        {/* Floating Contact Cards */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            { type: "email", x: 15, y: 35, icon: "✉️" },
+            { type: "call", x: 75, y: 25, icon: "📞" },
+            { type: "chat", x: 25, y: 70, icon: "💬" },
+            { type: "meet", x: 80, y: 65, icon: "🤝" },
+          ].map((card, i) => (
+            <motion.div
+              key={`contact-card-${i}`}
+              className="absolute w-16 h-16 bg-blue-500/10 backdrop-blur-sm rounded-xl border border-blue-300/20 flex items-center justify-center"
+              style={{
+                left: `${card.x}%`,
+                top: `${card.y}%`,
+              }}
+              initial={{ opacity: 0, rotateX: -90, scale: 0.5 }}
+              animate={{
+                opacity: [0, 0.8, 0],
+                rotateX: [-90, 0, 90],
+                scale: [0.5, 1, 0.5],
+                y: [-20, 0, 20],
+              }}
+              transition={{
+                duration: 8,
+                delay: i * 2,
+                repeat: Infinity,
+                repeatDelay: 10,
+              }}
+            >
+              <span className="text-2xl">{card.icon}</span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Communication Frequency Bars */}
+        <div className="absolute bottom-10 left-10 pointer-events-none">
+          <div className="flex items-end space-x-1 opacity-30">
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={`freq-bar-${i}`}
+                className="bg-blue-400 w-1 rounded-full"
+                style={{ height: `${Math.random() * 20 + 10}px` }}
+                animate={{
+                  height: [
+                    `${Math.random() * 20 + 10}px`,
+                    `${Math.random() * 40 + 20}px`,
+                    `${Math.random() * 20 + 10}px`,
+                  ],
+                }}
+                transition={{
+                  duration: 1.5,
+                  delay: i * 0.1,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Live Status Indicators */}
+        <div className="absolute top-10 right-10 pointer-events-none">
+          <div className="flex flex-col space-y-2 opacity-40">
+            {[
+              { label: "Online", color: "bg-green-400" },
+              { label: "Response: &lt; 24h", color: "bg-blue-400" },
+              { label: "Available", color: "bg-purple-400" },
+            ].map((status, i) => (
+              <motion.div
+                key={`status-${i}`}
+                className="flex items-center space-x-2 text-xs text-white"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: [0.4, 0.8, 0.4], x: 0 }}
+                transition={{
+                  duration: 3,
+                  delay: i * 0.5,
+                  repeat: Infinity,
+                }}
+              >
+                <div
+                  className={`w-2 h-2 rounded-full ${status.color} animate-pulse`}
+                />
+                <span>{status.label}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
         {/* Colorful Floating Particles - Same as main section */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
