@@ -4687,6 +4687,7 @@ function MobileHamburgerMenu({
   setIsOpen,
   theme,
 }: MobileHamburgerMenuProps) {
+  const { isPinkActive } = usePinkTheme();
   const [menuPosition, setMenuPosition] = useState({ left: 70, top: -80 });
   const [showTooltip, setShowTooltip] = useState(false);
 
