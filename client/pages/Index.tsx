@@ -4924,9 +4924,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* SPECTACULAR ABOUT SECTION ENHANCEMENTS */}
 
-        {/* Floating Code Blocks with Syntax Highlighting Effect */}
+        {/* Floating Code Blocks with Syntax Highlighting Effect - Mobile Optimized */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(8)].map((_, i) => (
+          {[...Array(window.innerWidth < 992 ? 4 : 8)].map((_, i) => (
             <motion.div
               key={`code-block-${i}`}
               className="absolute opacity-30"
@@ -4936,15 +4936,17 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 width: `${60 + (i % 3) * 20}px`,
                 height: `${30 + (i % 2) * 15}px`,
               }}
-              animate={{
+              animate={window.innerWidth < 992 ? {
+                y: [-5, 5, -5],
+              } : {
                 y: [-10, 10, -10],
                 x: [-5, 5, -5],
                 rotateZ: [-2, 2, -2],
               }}
               transition={{
-                duration: 4 + (i % 3),
+                duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
                 repeat: Infinity,
-                delay: i * 0.5,
+                delay: i * 0.8,
               }}
             >
               <div
