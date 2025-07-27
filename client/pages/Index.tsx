@@ -258,6 +258,32 @@ export default function Index() {
     return timeouts;
   };
 
+  const triggerPinkLoadingSequence = () => {
+    setPinkLoading(true);
+    setPinkAnimationStep(0);
+
+    // Pink magical animation sequence
+    const pinkAnimationSequence = [
+      { delay: 200, step: 1 }, // Magical particles float in
+      { delay: 600, step: 2 }, // Heart sparkles appear
+      { delay: 1000, step: 3 }, // Text materializes with pink glow
+      { delay: 1400, step: 4 }, // Elements bloom into view
+      { delay: 1800, step: 5 }, // Final magical touches
+      { delay: 2200, step: 6 }, // Complete
+    ];
+
+    const timeouts = pinkAnimationSequence.map(({ delay, step }) =>
+      setTimeout(() => {
+        setPinkAnimationStep(step);
+        if (step === 6) {
+          setPinkLoading(false);
+        }
+      }, delay),
+    );
+
+    return timeouts;
+  };
+
   // Optimized loading sequence for better performance
   const triggerOptimizedLoadingSequence = () => {
     setIsLoading(true);
@@ -1161,7 +1187,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  �����█║
-╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
+╚═╝  ╚����� ╚═����═���═╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -7728,7 +7754,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-blue-500 to-purple-500",
               },
               {
-                icon: "🚀",
+                icon: "����",
                 label: "Launch",
                 x: 12,
                 y: 85,
