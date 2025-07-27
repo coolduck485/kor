@@ -29,6 +29,13 @@ export function PinkThemeProvider({ children }: { children: React.ReactNode }) {
     // Add the current pink theme class
     root.classList.add(pinkTheme === "pink" ? "pink-theme" : "default-theme");
 
+    // Also add pink-container class to body when pink theme is active
+    if (pinkTheme === "pink") {
+      document.body.classList.add("pink-container");
+    } else {
+      document.body.classList.remove("pink-container");
+    }
+
     // Store in localStorage
     localStorage.setItem("pink-theme", pinkTheme);
 
