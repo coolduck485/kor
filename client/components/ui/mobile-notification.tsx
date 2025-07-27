@@ -92,14 +92,15 @@ const MobileNotificationContainer: React.FC = () => {
   return (
     <div
       className={cn(
-        "fixed z-[100000] pointer-events-none",
-        isMobile 
-          ? "top-4 left-4 right-4" // Full width on mobile
-          : "top-4 right-4 max-w-sm" // Standard positioning on tablet
+        "notification-container fixed z-[100] pointer-events-none",
+        isMobile
+          ? "top-0 w-full flex max-h-screen flex-col-reverse p-4" // Match original mobile positioning
+          : "bottom-0 right-0 top-auto flex-col max-w-[420px] p-4" // Match original tablet positioning
       )}
       style={{
         // Safe area handling for mobile devices
         paddingTop: isMobile ? "env(safe-area-inset-top)" : undefined,
+        paddingBottom: isMobile ? "env(safe-area-inset-bottom)" : undefined,
       }}
     >
       <AnimatePresence
