@@ -124,10 +124,11 @@ export default function Index() {
     console.log("UserAgent:", navigator.userAgent); // Debug browser info
     console.log("Is mobile (useIsMobile):", isMobile); // Debug mobile detection
 
-    if (deviceType === "mobile") {
+    if (deviceType === "mobile" && !hasShownMobilePerformanceRef.current) {
       console.log(
         "Mobile device detected, showing performance notification...",
       ); // Debug log
+      hasShownMobilePerformanceRef.current = true;
       const timer = setTimeout(() => {
         console.log("Triggering mobile performance notification...");
         showWarning(
@@ -139,7 +140,7 @@ export default function Index() {
 
       return () => clearTimeout(timer);
     } else {
-      console.log("Not mobile device, skipping performance notification");
+      console.log("Not mobile device or already shown, skipping performance notification");
     }
   }, [deviceType, showWarning]);
 
@@ -819,10 +820,10 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████�� ███����������█╗
+                  {`██╗  ██╗ ██��███�� ███����������█╗
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
-██╔═��█╗ ██║   ██║██╔══█�������
+██��═��█╗ ██║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  ���█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
@@ -970,7 +971,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►�����</span>
+                  <span className="text-green-400 ml-4">◄�����►�����</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -7874,7 +7875,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { type: "email", x: 15, y: 35, icon: "✉���" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
-            { type: "meet", x: 80, y: 65, icon: "🤝" },
+            { type: "meet", x: 80, y: 65, icon: "����" },
           ].map((card, i) => (
             <motion.div
               key={`contact-card-${i}`}
