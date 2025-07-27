@@ -222,18 +222,11 @@ const FloatingNotificationItem = React.forwardRef<
       }}
       exit={{
         opacity: 0,
-        scale: 0.8,
-        x: 150,
-        y: -20,
-        filter: "blur(8px)",
+        scale: 0.9,
+        filter: "blur(4px)",
         transition: {
-          duration: 0.4,
-          ease: "easeInOut",
-          opacity: { duration: 0.3 },
-          scale: { duration: 0.4 },
-          x: { duration: 0.4 },
-          y: { duration: 0.3 },
-          filter: { duration: 0.3 }
+          duration: 0.3,
+          ease: "easeOut",
         },
       }}
       transition={{
