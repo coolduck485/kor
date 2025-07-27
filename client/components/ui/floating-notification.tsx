@@ -225,20 +225,12 @@ const FloatingNotificationItem = React.forwardRef<
         willChange: "transform",
       }}
     >
-      {/* Dynamic Border Effect */}
+      {/* Simplified Border Effect - more mobile-friendly */}
       <div
         className="absolute inset-0 rounded-xl pointer-events-none transition-all duration-300"
         style={{
-          background: mousePosition.isNear
-            ? `conic-gradient(from ${(Math.atan2(mousePosition.y, mousePosition.x) * 180) / Math.PI + 90}deg, ${colors.accent} 0deg, ${colors.border} 90deg, rgba(255, 255, 255, 0.1) 180deg, rgba(255, 255, 255, 0.1) 270deg, ${colors.accent} 360deg)`
-            : `conic-gradient(from 0deg, ${colors.border} 0deg, ${colors.border} 360deg)`,
-          padding: "1px",
+          border: `1px solid ${mousePosition.isNear ? colors.accent : colors.border}`,
           borderRadius: "inherit",
-          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          maskComposite: "xor",
-          WebkitMask:
-            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
         }}
       />
 
