@@ -124,7 +124,7 @@ const FloatingNotificationContainer: React.FC = () => {
           initial={false}
           onExitComplete={() => {
             // Ensure smooth transitions when notifications exit
-            if (typeof window !== 'undefined') {
+            if (typeof window !== "undefined") {
               window.requestAnimationFrame(() => {
                 // Force layout recalculation for smooth animations
               });
@@ -248,7 +248,7 @@ const FloatingNotificationItem = React.forwardRef<
               filter: isMobile ? "blur(1px)" : "blur(4px)",
               transition: {
                 duration: isMobile ? 0.2 : 0.35,
-                ease: "easeInOut"
+                ease: "easeInOut",
               },
             }
           : {
@@ -279,7 +279,7 @@ const FloatingNotificationItem = React.forwardRef<
       }}
       className={cn(
         "relative group notification-item",
-        isMobile ? "animate-enhanced-mobile-float-1" : "animate-float"
+        isMobile ? "animate-enhanced-mobile-float-1" : "animate-float",
       )}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -345,8 +345,8 @@ const FloatingNotificationItem = React.forwardRef<
                 key={i}
                 className="absolute rounded-full opacity-20"
                 style={{
-                  left: `${20 + (i * 50)}%`,
-                  top: `${30 + (i * 40)}%`,
+                  left: `${20 + i * 50}%`,
+                  top: `${30 + i * 40}%`,
                   width: "2px",
                   height: "2px",
                   background: colors.accent,
@@ -370,7 +370,7 @@ const FloatingNotificationItem = React.forwardRef<
               : "top-2 right-2 p-2 min-w-[44px] min-h-[44px] hover:text-white hover:bg-white/10 duration-200",
             isMobile
               ? "focus:ring-2 focus:ring-white/30"
-              : "focus:ring-2 focus:ring-white/20"
+              : "focus:ring-2 focus:ring-white/20",
           )}
           whileHover={isMobile ? undefined : { scale: 1.1, rotate: 90 }}
           whileTap={isMobile ? { scale: 0.85 } : { scale: 0.8, rotate: 180 }}

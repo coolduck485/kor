@@ -20,7 +20,8 @@ export function useMobilePerformance() {
   useEffect(() => {
     const checkDeviceType = () => {
       const width = window.innerWidth;
-      const newDeviceType = width <= 640 ? "mobile" : width <= 991 ? "tablet" : "desktop";
+      const newDeviceType =
+        width <= 640 ? "mobile" : width <= 991 ? "tablet" : "desktop";
 
       // Only update if device type actually changed to prevent unnecessary re-renders
       if (newDeviceType !== deviceType) {
@@ -60,7 +61,8 @@ export function useMobilePerformance() {
         "--mobile-blur-amount": "20px",
         "--mobile-particle-count": "12",
         "--mobile-shadow-amount": "0 0 20px rgba(73, 146, 255, 0.3)",
-        "--mobile-text-shadow": "0 0 20px rgba(73, 146, 255, 0.9), 0 0 30px rgba(63, 186, 255, 0.7), 0 0 45px rgba(57, 135, 227, 0.5)",
+        "--mobile-text-shadow":
+          "0 0 20px rgba(73, 146, 255, 0.9), 0 0 30px rgba(63, 186, 255, 0.7), 0 0 45px rgba(57, 135, 227, 0.5)",
         "--mobile-text-glow": "0 0 15px rgba(73, 146, 255, 0.8)",
         "--mobile-backdrop-filter": "blur(20px)",
       },

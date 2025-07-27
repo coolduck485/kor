@@ -4,14 +4,12 @@ import { MobileNotificationProvider } from "./mobile-notification";
 import { useDeviceType } from "@/hooks/use-device-type";
 
 // Always provide both contexts to avoid timing issues
-export const UnifiedNotificationProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const UnifiedNotificationProvider: React.FC<{
+  children: React.ReactNode;
+}> = ({ children }) => {
   return (
     <NotificationProvider>
-      <MobileNotificationProvider>
-        {children}
-      </MobileNotificationProvider>
+      <MobileNotificationProvider>{children}</MobileNotificationProvider>
     </NotificationProvider>
   );
 };

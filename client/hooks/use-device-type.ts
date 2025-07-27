@@ -17,7 +17,9 @@ export function useDeviceType(): DeviceType {
     return "desktop";
   };
 
-  const [deviceType, setDeviceType] = useState<DeviceType>(getInitialDeviceType());
+  const [deviceType, setDeviceType] = useState<DeviceType>(
+    getInitialDeviceType(),
+  );
 
   useEffect(() => {
     const checkDeviceType = () => {

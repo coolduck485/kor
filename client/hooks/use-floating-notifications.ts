@@ -83,7 +83,10 @@ export const useFloatingNotifications = () => {
     };
   } catch (error) {
     // Fallback if context is not available
-    console.warn("FloatingNotification context not available, using fallback", error);
+    console.warn(
+      "FloatingNotification context not available, using fallback",
+      error,
+    );
     return {
       showSuccess: () => {},
       showError: () => {},

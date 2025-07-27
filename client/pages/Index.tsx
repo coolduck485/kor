@@ -109,7 +109,10 @@ export default function Index() {
 
   // Welcome notification - shows immediately on mobile/tablet devices
   useEffect(() => {
-    if (!hasShownWelcomeRef.current && (currentDeviceType === "mobile" || currentDeviceType === "tablet")) {
+    if (
+      !hasShownWelcomeRef.current &&
+      (currentDeviceType === "mobile" || currentDeviceType === "tablet")
+    ) {
       hasShownWelcomeRef.current = true;
       console.log("Showing welcome notification on mobile/tablet...");
       showInfo(
@@ -122,7 +125,10 @@ export default function Index() {
 
   // Mobile/Tablet performance notification - shows immediately on mobile/tablet devices
   useEffect(() => {
-    if (!hasShownMobilePerformanceRef.current && (currentDeviceType === "mobile" || currentDeviceType === "tablet")) {
+    if (
+      !hasShownMobilePerformanceRef.current &&
+      (currentDeviceType === "mobile" || currentDeviceType === "tablet")
+    ) {
       hasShownMobilePerformanceRef.current = true;
 
       console.log(
@@ -1960,24 +1966,33 @@ export default function Index() {
                   <RetroToggle />
 
                   {/* Mobile/Tablet Notification Test Buttons */}
-                  {(currentDeviceType === "mobile" || currentDeviceType === "tablet") && (
+                  {(currentDeviceType === "mobile" ||
+                    currentDeviceType === "tablet") && (
                     <div className="flex flex-col gap-1 mt-2 pt-2 border-t border-current/10">
-                      <div className="text-xs text-center opacity-70 mb-1">Test Notifications</div>
+                      <div className="text-xs text-center opacity-70 mb-1">
+                        Test Notifications
+                      </div>
                       <div className="grid grid-cols-2 gap-1">
                         <button
-                          onClick={() => showSuccess("Success!", "Mobile notification test")}
+                          onClick={() =>
+                            showSuccess("Success!", "Mobile notification test")
+                          }
                           className="text-xs px-2 py-1 bg-green-500/20 border border-green-500/30 rounded text-green-600 dark:text-green-400 hover:bg-green-500/30 transition-colors"
                         >
                           Success
                         </button>
                         <button
-                          onClick={() => showError("Error!", "Mobile error test")}
+                          onClick={() =>
+                            showError("Error!", "Mobile error test")
+                          }
                           className="text-xs px-2 py-1 bg-red-500/20 border border-red-500/30 rounded text-red-600 dark:text-red-400 hover:bg-red-500/30 transition-colors"
                         >
                           Error
                         </button>
                         <button
-                          onClick={() => showWarning("Warning!", "Mobile warning test")}
+                          onClick={() =>
+                            showWarning("Warning!", "Mobile warning test")
+                          }
                           className="text-xs px-2 py-1 bg-yellow-500/20 border border-yellow-500/30 rounded text-yellow-600 dark:text-yellow-400 hover:bg-yellow-500/30 transition-colors"
                         >
                           Warning

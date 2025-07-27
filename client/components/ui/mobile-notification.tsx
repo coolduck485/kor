@@ -23,9 +23,9 @@ interface MobileNotificationContextType {
   clearAll: () => void;
 }
 
-const MobileNotificationContext = createContext<MobileNotificationContextType | undefined>(
-  undefined,
-);
+const MobileNotificationContext = createContext<
+  MobileNotificationContextType | undefined
+>(undefined);
 
 export const useMobileNotifications = () => {
   const context = useContext(MobileNotificationContext);
@@ -37,9 +37,9 @@ export const useMobileNotifications = () => {
   return context;
 };
 
-export const MobileNotificationProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const MobileNotificationProvider: React.FC<{
+  children: React.ReactNode;
+}> = ({ children }) => {
   const [notifications, setNotifications] = useState<MobileNotification[]>([]);
   const deviceType = useDeviceType();
 
@@ -95,7 +95,7 @@ const MobileNotificationContainer: React.FC = () => {
         "notification-container fixed z-[100] pointer-events-none",
         isMobile
           ? "top-0 w-full flex max-h-screen flex-col-reverse p-4" // Match original mobile positioning
-          : "bottom-0 right-0 top-auto flex-col max-w-[420px] p-4" // Match original tablet positioning
+          : "bottom-0 right-0 top-auto flex-col max-w-[420px] p-4", // Match original tablet positioning
       )}
       style={{
         // Safe area handling for mobile devices
@@ -103,10 +103,7 @@ const MobileNotificationContainer: React.FC = () => {
         paddingBottom: isMobile ? "env(safe-area-inset-bottom)" : undefined,
       }}
     >
-      <AnimatePresence
-        mode="popLayout"
-        initial={false}
-      >
+      <AnimatePresence mode="popLayout" initial={false}>
         {notifications.map((notification) => (
           <MobileNotificationItem
             key={notification.id}
@@ -126,11 +123,10 @@ interface MobileNotificationItemProps {
   isMobile: boolean;
 }
 
-const MobileNotificationItem = React.forwardRef<HTMLDivElement, MobileNotificationItemProps>(({
-  notification,
-  onClose,
-  isMobile,
-}, ref) => {
+const MobileNotificationItem = React.forwardRef<
+  HTMLDivElement,
+  MobileNotificationItemProps
+>(({ notification, onClose, isMobile }, ref) => {
   const [isClosing, setIsClosing] = useState(false);
 
   const handleClose = () => {
@@ -194,7 +190,7 @@ const MobileNotificationItem = React.forwardRef<HTMLDivElement, MobileNotificati
               filter: isMobile ? "blur(1px)" : "blur(2px)",
               transition: {
                 duration: isMobile ? 0.2 : 0.25,
-                ease: "easeInOut"
+                ease: "easeInOut",
               },
             }
           : {
@@ -225,7 +221,9 @@ const MobileNotificationItem = React.forwardRef<HTMLDivElement, MobileNotificati
       }}
       className={cn(
         "relative group notification-item pointer-events-auto",
-        isMobile ? "mb-3 animate-enhanced-mobile-float-1" : "mb-3 animate-float"
+        isMobile
+          ? "mb-3 animate-enhanced-mobile-float-1"
+          : "mb-3 animate-float",
       )}
       style={{
         willChange: "transform, opacity",
@@ -261,8 +259,8 @@ const MobileNotificationItem = React.forwardRef<HTMLDivElement, MobileNotificati
                 key={i}
                 className="absolute rounded-full opacity-20"
                 style={{
-                  left: `${20 + (i * 50)}%`,
-                  top: `${30 + (i * 40)}%`,
+                  left: `${20 + i * 50}%`,
+                  top: `${30 + i * 40}%`,
                   width: "2px",
                   height: "2px",
                   background: colors.accent,
@@ -307,7 +305,7 @@ const MobileNotificationItem = React.forwardRef<HTMLDivElement, MobileNotificati
               : "top-2 right-2 p-2 min-w-[44px] min-h-[44px] hover:text-white hover:bg-white/10 duration-200",
             isMobile
               ? "focus:ring-2 focus:ring-white/30"
-              : "focus:ring-2 focus:ring-white/20"
+              : "focus:ring-2 focus:ring-white/20",
           )}
           whileHover={isMobile ? undefined : { scale: 1.1, rotate: 90 }}
           whileTap={isMobile ? { scale: 0.85 } : { scale: 0.8, rotate: 180 }}
@@ -328,7 +326,12 @@ const MobileNotificationItem = React.forwardRef<HTMLDivElement, MobileNotificati
         </motion.button>
 
         {/* Content */}
-        <div className={cn("space-y-1 relative z-10", isMobile ? "space-y-0.5" : "space-y-1")}>
+        <div
+          className={cn(
+            "space-y-1 relative z-10",
+            isMobile ? "space-y-0.5" : "space-y-1",
+          )}
+        >
           <motion.h4
             className={cn(
               "font-semibold text-white animate-text-glow-pulse",
@@ -362,7 +365,7 @@ const MobileNotificationItem = React.forwardRef<HTMLDivElement, MobileNotificati
                 "mt-2 text-xs font-medium rounded-md px-2 py-1",
                 "bg-white/20 hover:bg-white/30 text-white",
                 "transition-colors duration-150",
-                "border border-white/20"
+                "border border-white/20",
               )}
               whileTap={{ scale: 0.95 }}
             >
@@ -401,21 +404,38 @@ MobileNotificationItem.displayName = "MobileNotificationItem";
 
 // Helper hook for easy usage
 export const useMobileNotificationHelpers = () => {
-  const { addNotification, removeNotification, clearAll, notifications } = useMobileNotifications();
+  const { addNotification, removeNotification, clearAll, notifications } =
+    useMobileNotifications();
 
-  const showSuccess = (title: string, description: string, duration: number = 0) => {
+  const showSuccess = (
+    title: string,
+    description: string,
+    duration: number = 0,
+  ) => {
     addNotification({ title, message: description, type: "success", duration });
   };
 
-  const showError = (title: string, description: string, duration: number = 0) => {
+  const showError = (
+    title: string,
+    description: string,
+    duration: number = 0,
+  ) => {
     addNotification({ title, message: description, type: "error", duration });
   };
 
-  const showWarning = (title: string, description: string, duration: number = 0) => {
+  const showWarning = (
+    title: string,
+    description: string,
+    duration: number = 0,
+  ) => {
     addNotification({ title, message: description, type: "warning", duration });
   };
 
-  const showInfo = (title: string, description: string, duration: number = 0) => {
+  const showInfo = (
+    title: string,
+    description: string,
+    duration: number = 0,
+  ) => {
     addNotification({ title, message: description, type: "info", duration });
   };
 
@@ -424,7 +444,7 @@ export const useMobileNotificationHelpers = () => {
     message: string,
     actionLabel: string,
     actionCallback: () => void,
-    type: MobileNotification["type"] = "info"
+    type: MobileNotification["type"] = "info",
   ) => {
     addNotification({
       title,
