@@ -815,7 +815,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
-██║  ���█╗╚███��██�����╝██║  ���█║
+██║  ���█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -3046,6 +3046,57 @@ export default function Index() {
                         transform: "translateZ(0)",
                       }}
                     />
+                  ))}
+
+                  {/* Pink Theme Floating Hearts and Sparkles */}
+                  {isPinkActive && [...Array(12)].map((_, i) => (
+                    <div
+                      key={`pink-particle-${i}`}
+                      className="absolute rounded-full pointer-events-none"
+                      style={{
+                        left: `${10 + ((i * 70) % 180)}%`,
+                        top: `${20 + ((i * 60) % 80)}%`,
+                        width: `${3 + (i % 3)}px`,
+                        height: `${3 + (i % 3)}px`,
+                        background: i % 3 === 0
+                          ? "rgba(236, 72, 153, 0.8)"
+                          : i % 3 === 1
+                          ? "rgba(244, 114, 182, 0.7)"
+                          : "rgba(251, 113, 133, 0.6)",
+                        animation: `pink-pulse ${3 + (i % 2)}s ease-in-out infinite ${i * 0.4}s`,
+                        boxShadow: "0 0 8px rgba(236, 72, 153, 0.6)",
+                        willChange: "transform, opacity",
+                        transform: "translateZ(0)",
+                      }}
+                    />
+                  ))}
+
+                  {/* Pink Theme Heart Shapes */}
+                  {isPinkActive && [...Array(6)].map((_, i) => (
+                    <div
+                      key={`pink-heart-${i}`}
+                      className="absolute pointer-events-none"
+                      style={{
+                        left: `${15 + ((i * 90) % 170)}%`,
+                        top: `${25 + ((i * 45) % 70)}%`,
+                        width: "8px",
+                        height: "8px",
+                        animation: `pink-heartbeat ${2 + (i % 2)}s ease-in-out infinite ${i * 0.6}s`,
+                        willChange: "transform",
+                        transform: "translateZ(0)",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          background: "rgba(236, 72, 153, 0.9)",
+                          transform: "rotate(45deg)",
+                          borderRadius: "0 50% 50% 50%",
+                          boxShadow: "0 0 6px rgba(236, 72, 153, 0.7)",
+                        }}
+                      />
+                    </div>
                   ))}
 
                   <div className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
