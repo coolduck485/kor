@@ -4772,7 +4772,11 @@ function MobileHamburgerMenu({
           }}
         >
           {/* Animated background layers */}
-          <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50 group-hover:opacity-70 transition-all duration-500" />
+          <div className={`absolute inset-0 rounded-xl opacity-50 group-hover:opacity-70 transition-all duration-500 ${
+            isPinkActive
+              ? "bg-gradient-to-br from-pink-400/30 via-pink-300/15 to-transparent"
+              : "bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent"
+          }`} />
           <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500" />
 
           {/* Hamburger Icon */}
@@ -8637,7 +8641,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Telegram",
                             url: "https://telegram.org",
-                            icon: "📱",
+                            icon: "���",
                             color: "from-blue-500 to-cyan-500",
                           },
                         ].map((social) => (
