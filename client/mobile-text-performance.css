@@ -89,7 +89,8 @@
     backdrop-filter: none !important;
     background: unset !important;
     -webkit-background-clip: unset !important;
-    -webkit-text-fill-color: unset !important;
+    -webkit-text-fill-color: white !important;
+    color: white !important;
   }
 
   /* Override any remaining glow effects */
