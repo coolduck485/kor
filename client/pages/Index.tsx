@@ -5948,8 +5948,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
           }}
         />
 
-        {/* Floating Service Icons with Orbit Animation - Mobile Optimized */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Floating Service Icons with Orbit Animation - Desktop Only for Performance */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             {
               Icon: Globe,
@@ -6041,9 +6042,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
               </div>
             </motion.div>
           ))}
-        </div>
+          </div>
+        )}
 
-        {/* Rotating Skill Rings - Mobile Optimized */}
+        {/* Rotating Skill Rings - Desktop Only for Performance */}
         <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
           {[...Array(window.innerWidth < 992 ? 2 : 3)].map((_, i) => (
             <motion.div
