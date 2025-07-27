@@ -275,20 +275,20 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
 export const useMobileNotificationHelpers = () => {
   const { addNotification, removeNotification, clearAll, notifications } = useMobileNotifications();
 
-  const showSuccess = (title: string, message: string, duration?: number) => {
-    addNotification({ title, message, type: "success", duration });
+  const showSuccess = (title: string, description: string, duration: number = 0) => {
+    addNotification({ title, message: description, type: "success", duration });
   };
 
-  const showError = (title: string, message: string, duration?: number) => {
-    addNotification({ title, message, type: "error", duration });
+  const showError = (title: string, description: string, duration: number = 0) => {
+    addNotification({ title, message: description, type: "error", duration });
   };
 
-  const showWarning = (title: string, message: string, duration?: number) => {
-    addNotification({ title, message, type: "warning", duration });
+  const showWarning = (title: string, description: string, duration: number = 0) => {
+    addNotification({ title, message: description, type: "warning", duration });
   };
 
-  const showInfo = (title: string, message: string, duration?: number) => {
-    addNotification({ title, message, type: "info", duration });
+  const showInfo = (title: string, description: string, duration: number = 0) => {
+    addNotification({ title, message: description, type: "info", duration });
   };
 
   const showWithAction = (
