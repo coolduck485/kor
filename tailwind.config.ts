@@ -312,6 +312,48 @@ export default {
             filter: "blur(3px)",
           },
         },
+        "pink-pulse": {
+          "0%, 100%": {
+            boxShadow: "0 0 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3), 0 0 60px rgba(236, 72, 153, 0.1)",
+            transform: "scale(1)",
+          },
+          "50%": {
+            boxShadow: "0 0 30px rgba(236, 72, 153, 0.8), 0 0 60px rgba(236, 72, 153, 0.5), 0 0 90px rgba(236, 72, 153, 0.2)",
+            transform: "scale(1.02)",
+          },
+        },
+        "pink-neon-glow": {
+          "0%, 100%": {
+            textShadow: "0 0 5px rgba(236, 72, 153, 0.8), 0 0 10px rgba(236, 72, 153, 0.6), 0 0 20px rgba(236, 72, 153, 0.4)",
+            filter: "brightness(1)",
+          },
+          "50%": {
+            textShadow: "0 0 10px rgba(236, 72, 153, 1), 0 0 20px rgba(236, 72, 153, 0.8), 0 0 30px rgba(236, 72, 153, 0.6)",
+            filter: "brightness(1.2)",
+          },
+        },
+        "pink-heartbeat": {
+          "0%, 100%": {
+            transform: "scale(1)",
+            filter: "drop-shadow(0 0 5px rgba(236, 72, 153, 0.5))",
+          },
+          "14%": {
+            transform: "scale(1.1)",
+            filter: "drop-shadow(0 0 10px rgba(236, 72, 153, 0.8))",
+          },
+          "28%": {
+            transform: "scale(1)",
+            filter: "drop-shadow(0 0 5px rgba(236, 72, 153, 0.5))",
+          },
+          "42%": {
+            transform: "scale(1.1)",
+            filter: "drop-shadow(0 0 10px rgba(236, 72, 153, 0.8))",
+          },
+          "70%": {
+            transform: "scale(1)",
+            filter: "drop-shadow(0 0 5px rgba(236, 72, 153, 0.5))",
+          },
+        },
         "tablet-notification-enter": {
           "0%": {
             transform: "scale(0.85) translateX(80px) translateY(-15px)",
