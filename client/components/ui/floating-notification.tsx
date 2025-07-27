@@ -298,25 +298,46 @@ const FloatingNotificationItem = React.forwardRef<
           `,
         }}
       >
-        {/* Floating particles effect - reduced on mobile */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
-          {[...Array(isMobile ? 3 : 6)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute rounded-full opacity-30"
-              style={{
-                left: `${10 + ((i * 15) % 80)}%`,
-                top: `${20 + ((i * 25) % 60)}%`,
-                width: `${1 + (i % 3)}px`,
-                height: `${1 + (i % 3)}px`,
-                background: colors.accent,
-                animation: `gentleFloat ${2 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
-                display: isMobile && i >= 3 ? "none" : "block", // Hide extra particles on mobile
-                filter: "blur(0.5px)",
-              }}
-            />
-          ))}
-        </div>
+        {/* Floating particles effect - optimized for mobile */}
+        {!isMobile && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full opacity-30"
+                style={{
+                  left: `${10 + ((i * 15) % 80)}%`,
+                  top: `${20 + ((i * 25) % 60)}%`,
+                  width: `${1 + (i % 3)}px`,
+                  height: `${1 + (i % 3)}px`,
+                  background: colors.accent,
+                  animation: `gentleFloat ${2 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+                  filter: "blur(0.5px)",
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Mobile-optimized minimal particles */}
+        {isMobile && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
+            {[...Array(2)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full opacity-20"
+                style={{
+                  left: `${20 + (i * 50)}%`,
+                  top: `${30 + (i * 40)}%`,
+                  width: "2px",
+                  height: "2px",
+                  background: colors.accent,
+                  animation: `enhanced-mobile-float-${i + 1} ${3 + i}s ease-in-out infinite`,
+                }}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Close button - larger touch target for mobile */}
         <motion.button
