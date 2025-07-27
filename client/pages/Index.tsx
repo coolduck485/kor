@@ -4,9 +4,10 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { RetroToggle } from "@/components/ui/retro-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
-import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
+import { useUnifiedNotifications } from "@/components/ui/unified-notification";
 import { useMobilePerformance } from "@/hooks/use-mobile-performance";
 import { useBrowserDetection } from "@/hooks/use-browser-detection";
+import { useDeviceType } from "@/hooks/use-device-type";
 import {
   ChevronUp,
   ChevronDown,
@@ -29,9 +30,10 @@ export default function Index() {
   const { theme, setTheme } = useTheme();
   const { mode, toggleMode } = useRetroMode();
   const { showSuccess, showError, showWarning, showInfo } =
-    useFloatingNotifications();
+    useUnifiedNotifications();
   const { isMobile, animationConfig, deviceType } = useMobilePerformance();
   const { isSafari, isMobileSafari, isIOS } = useBrowserDetection();
+  const currentDeviceType = useDeviceType();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
@@ -105,51 +107,45 @@ export default function Index() {
     return () => clearTimeout(timer);
   }, [showError]);
 
-  // Welcome notification - shows once per page load
+  // Welcome notification - shows immediately on mobile/tablet devices
   useEffect(() => {
-    if (!hasShownWelcomeRef.current) {
+    if (
+      !hasShownWelcomeRef.current &&
+      (currentDeviceType === "mobile" || currentDeviceType === "tablet")
+    ) {
       hasShownWelcomeRef.current = true;
-      setTimeout(() => {
-        console.log("Showing welcome notification...");
-        showInfo(
-          "Welcome to KOR!",
-          "Experience the future of modern web development. Click the X to dismiss.",
-          0, // No auto-dismiss
-        );
-      }, 3000);
+      console.log("Showing welcome notification on mobile/tablet...");
+      showInfo(
+        "Welcome to KOR!",
+        "Experience the future of modern web development. Click the X to dismiss.",
+        0, // No auto-dismiss
+      );
     }
-  }, []); // Only run once on mount
+  }, [currentDeviceType, showInfo]); // React to device type changes
 
-  // Mobile performance notification - shows once per page load on mobile devices
+  // Mobile/Tablet performance notification - shows immediately on mobile/tablet devices
   useEffect(() => {
-    if (!hasShownMobilePerformanceRef.current) {
+    if (
+      !hasShownMobilePerformanceRef.current &&
+      (currentDeviceType === "mobile" || currentDeviceType === "tablet")
+    ) {
       hasShownMobilePerformanceRef.current = true;
 
-      // Check if mobile on page load
-      const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
-      const isMobileDevice = windowWidth <= 640;
-
       console.log(
-        "Mobile check on load - width:",
-        windowWidth,
-        "isMobile:",
-        isMobileDevice,
+        "Performance check on load - device type:",
+        currentDeviceType,
       );
 
-      if (isMobileDevice) {
-        setTimeout(() => {
-          console.log(
-            "🚀 Showing mobile performance notification on mobile device!",
-          );
-          showWarning(
-            "Mobile Performance Mode",
-            "Visual effects and animations have been limited to improve performance.",
-            0, // No auto-dismiss - user must click X
-          );
-        }, 3100); // Show after welcome notification
-      }
+      console.log(
+        "🚀 Showing performance notification on mobile/tablet device!",
+      );
+      showWarning(
+        "Mobile Performance Mode",
+        "Visual effects and animations have been limited to improve performance.",
+        0, // No auto-dismiss - user must click X
+      );
     }
-  }, []); // Only run once on mount
+  }, [currentDeviceType, showWarning]); // React to device type changes
 
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
@@ -828,9 +824,9 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
-██║ █��╔╝��█╔═���═██╗█���╔����══██╗
+██║ █��╔╝��█╔═���═██╗█����╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
-██╔═��█╗ ██║   ██║██╔══█�������
+██╔═��█╗ █��║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  ���█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
@@ -1968,6 +1964,48 @@ export default function Index() {
                 <div className="flex flex-col gap-2 sm:gap-3">
                   <ThemeToggle />
                   <RetroToggle />
+
+                  {/* Mobile/Tablet Notification Test Buttons */}
+                  {(currentDeviceType === "mobile" ||
+                    currentDeviceType === "tablet") && (
+                    <div className="flex flex-col gap-1 mt-2 pt-2 border-t border-current/10">
+                      <div className="text-xs text-center opacity-70 mb-1">
+                        Test Notifications
+                      </div>
+                      <div className="grid grid-cols-2 gap-1">
+                        <button
+                          onClick={() =>
+                            showSuccess("Success!", "Mobile notification test")
+                          }
+                          className="text-xs px-2 py-1 bg-green-500/20 border border-green-500/30 rounded text-green-600 dark:text-green-400 hover:bg-green-500/30 transition-colors"
+                        >
+                          Success
+                        </button>
+                        <button
+                          onClick={() =>
+                            showError("Error!", "Mobile error test")
+                          }
+                          className="text-xs px-2 py-1 bg-red-500/20 border border-red-500/30 rounded text-red-600 dark:text-red-400 hover:bg-red-500/30 transition-colors"
+                        >
+                          Error
+                        </button>
+                        <button
+                          onClick={() =>
+                            showWarning("Warning!", "Mobile warning test")
+                          }
+                          className="text-xs px-2 py-1 bg-yellow-500/20 border border-yellow-500/30 rounded text-yellow-600 dark:text-yellow-400 hover:bg-yellow-500/30 transition-colors"
+                        >
+                          Warning
+                        </button>
+                        <button
+                          onClick={() => showInfo("Info!", "Mobile info test")}
+                          className="text-xs px-2 py-1 bg-blue-500/20 border border-blue-500/30 rounded text-blue-600 dark:text-blue-400 hover:bg-blue-500/30 transition-colors"
+                        >
+                          Info
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -7808,7 +7846,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
           {[
             { icon: "📧", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
-            { icon: "💬", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
+            { icon: "��", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             { icon: "📞", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
@@ -8439,7 +8477,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Discord",
                             url: "https://discord.com",
-                            icon: "💬",
+                            icon: "��",
                             color: "from-indigo-500 to-blue-500",
                           },
                           {

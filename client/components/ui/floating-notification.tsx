@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useBrowserDetection } from "@/hooks/use-browser-detection";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useDeviceType } from "@/hooks/use-device-type";
 
 export interface FloatingNotification {
   id: string;
@@ -85,6 +86,12 @@ const FloatingNotificationContainer: React.FC = () => {
   const { notifications, removeNotification } = useNotifications();
   const { isSafari, isMobileSafari } = useBrowserDetection();
   const isMobile = useIsMobile();
+  const deviceType = useDeviceType();
+
+  // Don't show floating notifications on mobile/tablet - use mobile notification system instead
+  if (deviceType !== "desktop") {
+    return null;
+  }
 
   // Position notifications at bottom for all browsers
   // For Safari (especially mobile Safari), add extra bottom margin to avoid search bar
@@ -108,12 +115,23 @@ const FloatingNotificationContainer: React.FC = () => {
     >
       <div
         className={cn(
-          "flex flex-col gap-3 w-full",
-          isMobile ? "max-w-[280px] px-2" : "max-w-sm sm:max-w-md",
+          "flex flex-col w-full",
+          isMobile ? "max-w-[280px] px-2 gap-2" : "max-w-sm sm:max-w-md gap-3",
         )}
       >
-        <AnimatePresence mode="popLayout">
-          {notifications.map((notification) => (
+        <AnimatePresence
+          mode="popLayout"
+          initial={false}
+          onExitComplete={() => {
+            // Ensure smooth transitions when notifications exit
+            if (typeof window !== "undefined") {
+              window.requestAnimationFrame(() => {
+                // Force layout recalculation for smooth animations
+              });
+            }
+          }}
+        >
+          {notifications.map((notification, index) => (
             <FloatingNotificationItem
               key={notification.id}
               notification={notification}
@@ -147,6 +165,9 @@ const FloatingNotificationItem = React.forwardRef<
   });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Disable mouse tracking on mobile for better performance
+    if (isMobile) return;
+
     const rect = e.currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -162,15 +183,17 @@ const FloatingNotificationItem = React.forwardRef<
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return;
     setMousePosition({ x: 0, y: 0, isNear: false });
   };
 
   const handleClose = () => {
     setIsClosing(true);
-    // Delay the actual removal to allow exit animation to play
+    // Optimized exit timing based on device type
+    const exitDuration = isMobile ? 200 : 350;
     setTimeout(() => {
       onClose();
-    }, 300); // Match the exit animation duration
+    }, exitDuration);
   };
 
   const getTypeColors = (type: FloatingNotification["type"]) => {
@@ -206,48 +229,63 @@ const FloatingNotificationItem = React.forwardRef<
 
   return (
     <motion.div
-      layout
+      layout="position"
+      layoutId={notification.id}
       initial={{
         opacity: 0,
-        scale: 0.8,
-        x: 100,
-        filter: "blur(10px)",
+        scale: isMobile ? 0.9 : 0.8,
+        x: isMobile ? 50 : 100,
+        y: isMobile ? -20 : 0,
+        filter: isMobile ? "blur(2px)" : "blur(10px)",
       }}
       animate={
         isClosing
           ? {
-              opacity: 0.8,
-              scale: 0.98,
-              filter: "blur(1px)",
-              transition: { duration: 0.2 },
+              opacity: 0,
+              scale: isMobile ? 0.85 : 0.9,
+              x: isMobile ? 30 : 60,
+              y: isMobile ? -10 : 0,
+              filter: isMobile ? "blur(1px)" : "blur(4px)",
+              transition: {
+                duration: isMobile ? 0.2 : 0.35,
+                ease: "easeInOut",
+              },
             }
           : {
               opacity: 1,
               scale: 1,
               x: 0,
+              y: 0,
               filter: "blur(0px)",
             }
       }
       exit={{
         opacity: 0,
-        scale: 0.9,
-        filter: "blur(4px)",
+        scale: isMobile ? 0.75 : 0.8,
+        x: isMobile ? 80 : 120,
+        y: isMobile ? -15 : 0,
+        filter: isMobile ? "blur(3px)" : "blur(6px)",
         transition: {
-          duration: 0.3,
-          ease: "easeOut",
+          duration: isMobile ? 0.2 : 0.35,
+          ease: "easeInOut",
         },
       }}
       transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
+        type: isMobile ? "tween" : "spring",
+        stiffness: isMobile ? undefined : 280,
+        damping: isMobile ? undefined : 25,
+        duration: isMobile ? 0.3 : undefined,
+        ease: isMobile ? "easeOut" : undefined,
       }}
-      className="relative group notification-item animate-float"
+      className={cn(
+        "relative group notification-item",
+        isMobile ? "animate-enhanced-mobile-float-1" : "animate-float",
+      )}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       ref={ref}
       style={{
-        willChange: "transform",
+        willChange: "transform, opacity",
       }}
     >
       {/* Simplified Border Effect - more mobile-friendly */}
@@ -262,10 +300,11 @@ const FloatingNotificationItem = React.forwardRef<
       {/* Main notification content */}
       <div
         className={cn(
-          "relative backdrop-blur-xl rounded-xl shadow-2xl transition-all duration-300",
-          "hover:shadow-glow-intense group-hover:scale-[1.02]",
+          "relative rounded-xl shadow-2xl transition-all",
+          isMobile
+            ? "backdrop-blur-md duration-200 p-3 pr-10 text-sm"
+            : "backdrop-blur-xl duration-300 hover:shadow-glow-intense group-hover:scale-[1.02] p-4 pr-12",
           "border border-transparent",
-          isMobile ? "p-3 pr-10 text-sm" : "p-4 pr-12", // More compact on mobile
         )}
         style={{
           background: "rgba(0, 0, 0, 0.4)",
@@ -277,49 +316,71 @@ const FloatingNotificationItem = React.forwardRef<
           `,
         }}
       >
-        {/* Floating particles effect - reduced on mobile */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
-          {[...Array(isMobile ? 3 : 6)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute rounded-full opacity-30"
-              style={{
-                left: `${10 + ((i * 15) % 80)}%`,
-                top: `${20 + ((i * 25) % 60)}%`,
-                width: `${1 + (i % 3)}px`,
-                height: `${1 + (i % 3)}px`,
-                background: colors.accent,
-                animation: `gentleFloat ${2 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
-                display: isMobile && i >= 3 ? "none" : "block", // Hide extra particles on mobile
-                filter: "blur(0.5px)",
-              }}
-            />
-          ))}
-        </div>
+        {/* Floating particles effect - optimized for mobile */}
+        {!isMobile && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full opacity-30"
+                style={{
+                  left: `${10 + ((i * 15) % 80)}%`,
+                  top: `${20 + ((i * 25) % 60)}%`,
+                  width: `${1 + (i % 3)}px`,
+                  height: `${1 + (i % 3)}px`,
+                  background: colors.accent,
+                  animation: `gentleFloat ${2 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+                  filter: "blur(0.5px)",
+                }}
+              />
+            ))}
+          </div>
+        )}
 
-        {/* Close button - larger touch target for mobile */}
+        {/* Mobile-optimized minimal particles */}
+        {isMobile && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
+            {[...Array(2)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full opacity-20"
+                style={{
+                  left: `${20 + i * 50}%`,
+                  top: `${30 + i * 40}%`,
+                  width: "2px",
+                  height: "2px",
+                  background: colors.accent,
+                  animation: `enhanced-mobile-float-${i + 1} ${3 + i}s ease-in-out infinite`,
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Close button - optimized for mobile touch */}
         <motion.button
           onClick={handleClose}
           className={cn(
             "absolute rounded-md",
-            "text-white/60 hover:text-white",
-            "hover:bg-white/10 transition-all duration-200",
-            "focus:outline-none focus:ring-2 focus:ring-white/20",
-            "flex items-center justify-center",
+            "text-white/60 transition-all",
+            "focus:outline-none flex items-center justify-center",
             "touch-manipulation", // Improve touch responsiveness
             isMobile
-              ? "top-1 right-1 p-1 min-w-[36px] min-h-[36px]"
-              : "top-2 right-2 p-2 min-w-[44px] min-h-[44px]", // Smaller on mobile
+              ? "top-1 right-1 p-2 min-w-[40px] min-h-[40px] hover:bg-white/20 duration-150 active:scale-90"
+              : "top-2 right-2 p-2 min-w-[44px] min-h-[44px] hover:text-white hover:bg-white/10 duration-200",
+            isMobile
+              ? "focus:ring-2 focus:ring-white/30"
+              : "focus:ring-2 focus:ring-white/20",
           )}
-          whileHover={{ scale: 1.1, rotate: 90 }}
-          whileTap={{ scale: 0.8, rotate: 180 }}
+          whileHover={isMobile ? undefined : { scale: 1.1, rotate: 90 }}
+          whileTap={isMobile ? { scale: 0.85 } : { scale: 0.8, rotate: 180 }}
           animate={
             isClosing
               ? {
-                  scale: 0.8,
-                  rotate: 360,
-                  opacity: 0.5,
-                  transition: { duration: 0.3 },
+                  scale: isMobile ? 0.7 : 0.8,
+                  rotate: isMobile ? 180 : 360,
+                  opacity: 0.3,
+                  transition: { duration: isMobile ? 0.2 : 0.3 },
                 }
               : {}
           }

@@ -3,110 +3,84 @@ import { useEffect, useState } from "react";
 
 export function useMobilePerformance() {
   const isMobile = useIsMobile();
+
+  // Initialize device type synchronously to prevent flickering
+  const getInitialDeviceType = () => {
+    if (typeof window === "undefined") return "desktop";
+    const width = window.innerWidth;
+    if (width <= 640) return "mobile";
+    if (width <= 991) return "tablet";
+    return "desktop";
+  };
+
   const [deviceType, setDeviceType] = useState<"mobile" | "tablet" | "desktop">(
-    "desktop",
+    getInitialDeviceType(),
   );
 
   useEffect(() => {
     const checkDeviceType = () => {
       const width = window.innerWidth;
-      if (width <= 640) {
-        setDeviceType("mobile");
-      } else if (width <= 991) {
-        setDeviceType("tablet");
-      } else {
-        setDeviceType("desktop");
+      const newDeviceType =
+        width <= 640 ? "mobile" : width <= 991 ? "tablet" : "desktop";
+
+      // Only update if device type actually changed to prevent unnecessary re-renders
+      if (newDeviceType !== deviceType) {
+        setDeviceType(newDeviceType);
       }
     };
 
-    checkDeviceType();
     window.addEventListener("resize", checkDeviceType);
     return () => window.removeEventListener("resize", checkDeviceType);
-  }, []);
+  }, [deviceType]);
+
+  // Set CSS properties immediately to prevent flickering
+  const setCSSProperties = (type: "mobile" | "tablet" | "desktop") => {
+    if (typeof document === "undefined") return;
+
+    const properties = {
+      mobile: {
+        "--mobile-animation-duration": "0.2s",
+        "--mobile-blur-amount": "0px",
+        "--mobile-particle-count": "1",
+        "--mobile-shadow-amount": "none",
+        "--mobile-text-shadow": "none",
+        "--mobile-text-glow": "none",
+        "--mobile-backdrop-filter": "none",
+      },
+      tablet: {
+        "--mobile-animation-duration": "0.3s",
+        "--mobile-blur-amount": "1px",
+        "--mobile-particle-count": "2",
+        "--mobile-shadow-amount": "0 2px 4px rgba(0,0,0,0.1)",
+        "--mobile-text-shadow": "0 0 5px rgba(73, 146, 255, 0.3)",
+        "--mobile-text-glow": "0 0 10px rgba(73, 146, 255, 0.2)",
+        "--mobile-backdrop-filter": "blur(2px)",
+      },
+      desktop: {
+        "--mobile-animation-duration": "1s",
+        "--mobile-blur-amount": "20px",
+        "--mobile-particle-count": "12",
+        "--mobile-shadow-amount": "0 0 20px rgba(73, 146, 255, 0.3)",
+        "--mobile-text-shadow":
+          "0 0 20px rgba(73, 146, 255, 0.9), 0 0 30px rgba(63, 186, 255, 0.7), 0 0 45px rgba(57, 135, 227, 0.5)",
+        "--mobile-text-glow": "0 0 15px rgba(73, 146, 255, 0.8)",
+        "--mobile-backdrop-filter": "blur(20px)",
+      },
+    };
+
+    const props = properties[type];
+    Object.entries(props).forEach(([key, value]) => {
+      document.documentElement.style.setProperty(key, value);
+    });
+  };
+
+  // Set initial properties immediately
+  if (typeof window !== "undefined") {
+    setCSSProperties(deviceType);
+  }
 
   useEffect(() => {
-    if (deviceType === "mobile") {
-      // Aggressive mobile performance optimizations
-      document.documentElement.style.setProperty(
-        "--mobile-animation-duration",
-        "0.2s",
-      );
-      document.documentElement.style.setProperty("--mobile-blur-amount", "0px");
-      document.documentElement.style.setProperty(
-        "--mobile-particle-count",
-        "1",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-shadow-amount",
-        "none",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-text-shadow",
-        "none",
-      );
-      document.documentElement.style.setProperty("--mobile-text-glow", "none");
-      document.documentElement.style.setProperty(
-        "--mobile-backdrop-filter",
-        "none",
-      );
-    } else if (deviceType === "tablet") {
-      // Aggressive tablet performance optimizations
-      document.documentElement.style.setProperty(
-        "--mobile-animation-duration",
-        "0.3s",
-      );
-      document.documentElement.style.setProperty("--mobile-blur-amount", "1px");
-      document.documentElement.style.setProperty(
-        "--mobile-particle-count",
-        "2",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-shadow-amount",
-        "0 2px 4px rgba(0,0,0,0.1)",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-text-shadow",
-        "0 0 5px rgba(73, 146, 255, 0.3)",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-text-glow",
-        "0 0 10px rgba(73, 146, 255, 0.2)",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-backdrop-filter",
-        "blur(2px)",
-      );
-    } else {
-      // Desktop values
-      document.documentElement.style.setProperty(
-        "--mobile-animation-duration",
-        "1s",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-blur-amount",
-        "20px",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-particle-count",
-        "12",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-shadow-amount",
-        "0 0 20px rgba(73, 146, 255, 0.3)",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-text-shadow",
-        "0 0 20px rgba(73, 146, 255, 0.9), 0 0 30px rgba(63, 186, 255, 0.7), 0 0 45px rgba(57, 135, 227, 0.5)",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-text-glow",
-        "0 0 15px rgba(73, 146, 255, 0.8)",
-      );
-      document.documentElement.style.setProperty(
-        "--mobile-backdrop-filter",
-        "blur(20px)",
-      );
-    }
+    setCSSProperties(deviceType);
   }, [deviceType]);
 
   const getAnimationConfig = () => {

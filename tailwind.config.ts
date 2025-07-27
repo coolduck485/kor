@@ -274,6 +274,78 @@ export default {
             opacity: "0",
           },
         },
+        "mobile-notification-enter": {
+          "0%": {
+            transform: "scale(0.9) translateX(50px) translateY(-10px)",
+            opacity: "0",
+            filter: "blur(2px)",
+          },
+          "100%": {
+            transform: "scale(1) translateX(0px) translateY(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+        },
+        "mobile-notification-exit": {
+          "0%": {
+            transform: "scale(1) translateX(0px) translateY(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+          "100%": {
+            transform: "scale(0.8) translateX(80px) translateY(-15px)",
+            opacity: "0",
+            filter: "blur(3px)",
+          },
+        },
+        "tablet-notification-enter": {
+          "0%": {
+            transform: "scale(0.85) translateX(80px) translateY(-15px)",
+            opacity: "0",
+            filter: "blur(4px)",
+          },
+          "100%": {
+            transform: "scale(1) translateX(0px) translateY(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+        },
+        "tablet-notification-exit": {
+          "0%": {
+            transform: "scale(1) translateX(0px) translateY(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+          "100%": {
+            transform: "scale(0.85) translateX(100px) translateY(-10px)",
+            opacity: "0",
+            filter: "blur(5px)",
+          },
+        },
+        "desktop-notification-enter": {
+          "0%": {
+            transform: "scale(0.8) translateX(100px)",
+            opacity: "0",
+            filter: "blur(10px)",
+          },
+          "100%": {
+            transform: "scale(1) translateX(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+        },
+        "desktop-notification-exit": {
+          "0%": {
+            transform: "scale(1) translateX(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+          "100%": {
+            transform: "scale(0.8) translateX(120px)",
+            opacity: "0",
+            filter: "blur(6px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -291,6 +363,18 @@ export default {
         textGlow: "text-glow 4s ease-in-out infinite",
         "swipe-down": "swipe-down 2s ease-in-out infinite",
         "swipe-down-delayed": "swipe-down-delayed 2s ease-in-out infinite 0.3s",
+        "mobile-notification-enter":
+          "mobile-notification-enter 0.3s ease-out forwards",
+        "mobile-notification-exit":
+          "mobile-notification-exit 0.2s ease-in forwards",
+        "tablet-notification-enter":
+          "tablet-notification-enter 0.25s ease-out forwards",
+        "tablet-notification-exit":
+          "tablet-notification-exit 0.25s ease-in forwards",
+        "desktop-notification-enter":
+          "desktop-notification-enter 0.4s ease-out forwards",
+        "desktop-notification-exit":
+          "desktop-notification-exit 0.35s ease-in forwards",
       },
       boxShadow: {
         glow: "0 0 100px rgba(73, 146, 255, 0.5), 0 0 200px rgba(73, 146, 255, 0.3), 0 0 300px rgba(73, 146, 255, 0.2)",

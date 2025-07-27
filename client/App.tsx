@@ -8,7 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { RetroModeProvider } from "@/hooks/use-retro-mode";
-import { NotificationProvider } from "@/components/ui/floating-notification";
+import { UnifiedNotificationProvider } from "@/components/ui/unified-notification";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -18,7 +18,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
       <RetroModeProvider>
-        <NotificationProvider>
+        <UnifiedNotificationProvider>
           <TooltipProvider>
             <Toaster />
             <Sonner />
@@ -34,7 +34,7 @@ const App = () => (
               </Routes>
             </BrowserRouter>
           </TooltipProvider>
-        </NotificationProvider>
+        </UnifiedNotificationProvider>
       </RetroModeProvider>
     </ThemeProvider>
   </QueryClientProvider>
