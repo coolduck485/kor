@@ -18,8 +18,9 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
-      <RetroModeProvider>
-        <UnifiedNotificationProvider>
+      <PinkThemeProvider>
+        <RetroModeProvider>
+          <UnifiedNotificationProvider>
           <TooltipProvider>
             <Toaster />
             <Sonner />
@@ -35,8 +36,9 @@ const App = () => (
               </Routes>
             </BrowserRouter>
           </TooltipProvider>
-        </UnifiedNotificationProvider>
-      </RetroModeProvider>
+          </UnifiedNotificationProvider>
+        </RetroModeProvider>
+      </PinkThemeProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );
