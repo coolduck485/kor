@@ -778,7 +778,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
-██║ █����╔╝��█╔═���═██╗█���╔����══██╗
+██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████�����╝██║  ██║
@@ -7409,15 +7409,13 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           </div>
         </div>
 
-        {/* Colorful Floating Particles - Same as main section */}
+        {/* Colorful Floating Particles - Mobile Optimized */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             ...Array(
-              animationConfig?.enableBackgroundParticles
-                ? isMobile
-                  ? 3
-                  : 15
-                : 6,
+              window.innerWidth < 992
+                ? (window.innerWidth < 641 ? 2 : 3)
+                : (animationConfig?.enableBackgroundParticles ? 15 : 6),
             ),
           ].map((_, i) => (
             <div
