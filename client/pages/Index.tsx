@@ -132,9 +132,12 @@ export default function Index() {
     console.log("Is mobile (useIsMobile):", isMobile); // Debug mobile detection
     console.log("Has shown mobile performance:", hasShownMobilePerformanceRef.current);
 
-    if (deviceType === "mobile" && !hasShownMobilePerformanceRef.current) {
+    // Check both deviceType and window width as fallback
+    const isActuallyMobile = deviceType === "mobile" || (typeof window !== 'undefined' && window.innerWidth <= 640);
+
+    if (isActuallyMobile && !hasShownMobilePerformanceRef.current) {
       console.log(
-        "Mobile device detected, showing performance notification...",
+        "Mobile device detected (deviceType or width check), showing performance notification...",
       ); // Debug log
       hasShownMobilePerformanceRef.current = true;
       const timer = setTimeout(() => {
@@ -149,6 +152,7 @@ export default function Index() {
       return () => clearTimeout(timer);
     } else {
       console.log("Not mobile device or already shown, skipping performance notification");
+      console.log("isActuallyMobile:", isActuallyMobile, "hasShown:", hasShownMobilePerformanceRef.current);
     }
   }, [deviceType, showWarning]);
 
