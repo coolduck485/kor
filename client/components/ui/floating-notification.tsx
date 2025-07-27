@@ -86,9 +86,10 @@ const FloatingNotificationContainer: React.FC = () => {
   const { notifications, removeNotification } = useNotifications();
   const { isSafari, isMobileSafari } = useBrowserDetection();
   const isMobile = useIsMobile();
+  const deviceType = useDeviceType();
 
   // Don't show floating notifications on mobile/tablet - use mobile notification system instead
-  if (isMobile || window.innerWidth <= 991) {
+  if (deviceType !== "desktop") {
     return null;
   }
 
