@@ -88,6 +88,10 @@ export function useMobilePerformance() {
           enableSVGAnimations: false,
           enableBoxShadows: false,
           enableBackdropBlur: false,
+          enableTextShadows: true,
+          enableTextGlow: true,
+          enableLetterAnimations: false,
+          enableComplexTextEffects: false,
         };
       default:
         return {
