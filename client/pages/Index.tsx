@@ -4341,6 +4341,209 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           }}
         />
 
+        {/* SPECTACULAR ABOUT SECTION ENHANCEMENTS */}
+
+        {/* Floating Code Blocks with Syntax Highlighting Effect */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`code-block-${i}`}
+              className="absolute opacity-30"
+              style={{
+                left: `${10 + ((i * 75) % 80)}%`,
+                top: `${15 + ((i * 45) % 70)}%`,
+                width: `${60 + (i % 3) * 20}px`,
+                height: `${30 + (i % 2) * 15}px`,
+              }}
+              animate={{
+                y: [-10, 10, -10],
+                x: [-5, 5, -5],
+                rotateZ: [-2, 2, -2],
+              }}
+              transition={{
+                duration: 4 + (i % 3),
+                repeat: Infinity,
+                delay: i * 0.5,
+              }}
+            >
+              <div
+                className="w-full h-full rounded-lg border-2 backdrop-blur-sm"
+                style={{
+                  background: "rgba(30, 30, 50, 0.6)",
+                  border: "2px solid rgba(73, 146, 255, 0.3)",
+                  boxShadow: "0 0 15px rgba(73, 146, 255, 0.2)",
+                }}
+              >
+                {/* Simulated code lines */}
+                <div className="p-2 space-y-1">
+                  {[...Array(2 + (i % 2))].map((_, lineIndex) => (
+                    <div
+                      key={lineIndex}
+                      className="h-1 rounded-full opacity-80"
+                      style={{
+                        width: `${50 + ((lineIndex + i) * 30) % 50}%`,
+                        background: [
+                          "linear-gradient(90deg, #22d3ee, #60a5fa)",
+                          "linear-gradient(90deg, #10b981, #22d3ee)",
+                          "linear-gradient(90deg, #f59e0b, #ef4444)",
+                          "linear-gradient(90deg, #8b5cf6, #ec4899)",
+                        ][lineIndex % 4],
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Floating UI Components Preview */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            { type: "button", x: 20, y: 25, color: "from-blue-500 to-purple-500" },
+            { type: "card", x: 75, y: 40, color: "from-green-500 to-blue-500" },
+            { type: "input", x: 15, y: 70, color: "from-purple-500 to-pink-500" },
+            { type: "toggle", x: 80, y: 20, color: "from-orange-500 to-red-500" },
+          ].map((component, i) => (
+            <motion.div
+              key={`ui-component-${i}`}
+              className="absolute"
+              style={{
+                left: `${component.x}%`,
+                top: `${component.y}%`,
+              }}
+              animate={{
+                y: [-8, 8, -8],
+                rotateZ: [-1, 1, -1],
+                scale: [0.9, 1.1, 0.9],
+              }}
+              transition={{
+                duration: 3 + i,
+                repeat: Infinity,
+                delay: i * 0.7,
+              }}
+            >
+              <div
+                className={`w-16 h-8 rounded-lg bg-gradient-to-r ${component.color} opacity-40 backdrop-blur-sm border border-white/20`}
+                style={{
+                  boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                }}
+              >
+                {component.type === "button" && (
+                  <div className="w-full h-full flex items-center justify-center text-white text-xs font-semibold">
+                    BTN
+                  </div>
+                )}
+                {component.type === "card" && (
+                  <div className="p-1">
+                    <div className="h-1 bg-white/40 rounded mb-0.5" />
+                    <div className="h-0.5 bg-white/30 rounded w-3/4" />
+                  </div>
+                )}
+                {component.type === "input" && (
+                  <div className="w-full h-full border-2 border-white/30 rounded-lg bg-white/10" />
+                )}
+                {component.type === "toggle" && (
+                  <div className="w-full h-full flex items-center justify-between px-1">
+                    <div className="w-2 h-2 bg-white/60 rounded-full" />
+                    <div className="w-2 h-2 bg-white/30 rounded-full" />
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Animated Data Streams */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`data-stream-${i}`}
+              className="absolute"
+              style={{
+                left: `${5 + ((i * 90) % 90)}%`,
+                top: "0%",
+                height: "100%",
+                width: "2px",
+              }}
+            >
+              <motion.div
+                className="w-full rounded-full opacity-60"
+                style={{
+                  height: "40px",
+                  background: `linear-gradient(180deg,
+                    rgba(73, 146, 255, 0.8) 0%,
+                    rgba(34, 211, 238, 0.6) 50%,
+                    transparent 100%)`,
+                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.4)",
+                }}
+                animate={{
+                  y: ["-50px", "calc(100vh + 50px)"],
+                }}
+                transition={{
+                  duration: 3 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.5,
+                  ease: "linear",
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Interactive Holographic Stats Display */}
+        <div className="absolute top-20 right-10 hidden lg:block pointer-events-none">
+          <motion.div
+            className="relative"
+            animate={{
+              rotateY: [0, 5, 0, -5, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+            }}
+          >
+            <div
+              className="w-32 h-24 rounded-xl backdrop-blur-lg border opacity-70"
+              style={{
+                background: "linear-gradient(135deg, rgba(30, 30, 50, 0.7), rgba(10, 10, 30, 0.7))",
+                border: "2px solid rgba(73, 146, 255, 0.3)",
+                boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
+              }}
+            >
+              <div className="p-3">
+                <div className="text-xs text-cyan-400 font-mono mb-1">PERFORMANCE</div>
+                <div className="space-y-1">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-white/60">Speed</span>
+                    <span className="text-green-400">99.9%</span>
+                  </div>
+                  <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                    <motion.div
+                      className="h-full bg-gradient-to-r from-green-400 to-blue-400 rounded-full"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "99%" }}
+                      transition={{ duration: 2, delay: 1 }}
+                    />
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-white/60">Quality</span>
+                    <span className="text-blue-400">100%</span>
+                  </div>
+                  <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                    <motion.div
+                      className="h-full bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 2, delay: 1.5 }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
         {/* Desktop Aurora Curtains */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 hidden lg:block">
           <div
