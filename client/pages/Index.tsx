@@ -778,7 +778,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
-██║ █��╔╝��█╔═���═██╗█���╔����══██╗
+██║ █��╔╝��█╔═����═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████�����╝██║  ██║
@@ -4004,6 +4004,175 @@ const contactAnimationsCSS = `
 
   .animate-contact-comm-icon-float {
     animation: contact-comm-icon-float 6s ease-in-out infinite;
+  }
+
+  @keyframes bubble-bounce-enhanced {
+    0% {
+      transform: translateY(30px) scale(0) rotate(-45deg);
+      opacity: 0;
+      filter: blur(4px);
+    }
+    15% {
+      transform: translateY(-10px) scale(1.2) rotate(5deg);
+      opacity: 1;
+      filter: blur(0px);
+    }
+    30% {
+      transform: translateY(5px) scale(0.9) rotate(-2deg);
+    }
+    45% {
+      transform: translateY(-5px) scale(1.1) rotate(0deg);
+    }
+    85% {
+      transform: translateY(-5px) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(30px) scale(0) rotate(45deg);
+      opacity: 0;
+      filter: blur(4px);
+    }
+  }
+
+  @keyframes bubble-typewriter-enhanced {
+    0% {
+      transform: translateX(-20px) scale(0.5) rotate(-30deg);
+      opacity: 0;
+      filter: blur(3px);
+    }
+    20% {
+      transform: translateX(5px) scale(1) rotate(0deg);
+      opacity: 1;
+      filter: blur(0px);
+    }
+    80% {
+      transform: translateX(0px) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(20px) scale(0.5) rotate(30deg);
+      opacity: 0;
+      filter: blur(3px);
+    }
+  }
+
+  @keyframes bubble-pulse-enhanced {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+      filter: blur(5px);
+    }
+    25% {
+      transform: scale(0.9);
+      opacity: 0.8;
+      filter: blur(1px);
+    }
+    50% {
+      transform: scale(1.3);
+      opacity: 1;
+      filter: blur(0px);
+    }
+    75% {
+      transform: scale(1);
+      opacity: 0.8;
+      filter: blur(1px);
+    }
+    100% {
+      transform: scale(0.3);
+      opacity: 0;
+      filter: blur(5px);
+    }
+  }
+
+  @keyframes bubble-rocket-enhanced {
+    0% {
+      transform: translateX(-30px) translateY(50px) scale(0.2) rotate(-90deg);
+      opacity: 0;
+      filter: blur(6px);
+    }
+    20% {
+      transform: translateX(10px) translateY(-15px) scale(1) rotate(-15deg);
+      opacity: 1;
+      filter: blur(0px);
+    }
+    40% {
+      transform: translateX(-5px) translateY(5px) scale(1) rotate(5deg);
+    }
+    60% {
+      transform: translateX(0px) translateY(-10px) scale(1) rotate(15deg);
+    }
+    80% {
+      transform: translateX(0px) translateY(-10px) scale(1) rotate(15deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(30px) translateY(50px) scale(0.2) rotate(90deg);
+      opacity: 0;
+      filter: blur(6px);
+    }
+  }
+
+  @keyframes shimmer-effect {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(200%);
+    }
+  }
+
+  @keyframes particle-trail {
+    0% {
+      opacity: 0;
+      transform: translateX(-10px) scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateX(-20px) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-30px) scale(0);
+    }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.3;
+    }
+  }
+
+  .animate-bubble-bounce-enhanced {
+    animation: bubble-bounce-enhanced 5s ease-out infinite;
+  }
+
+  .animate-bubble-typewriter-enhanced {
+    animation: bubble-typewriter-enhanced 5s ease-in-out infinite;
+  }
+
+  .animate-bubble-pulse-enhanced {
+    animation: bubble-pulse-enhanced 3.5s ease-in-out infinite;
+  }
+
+  .animate-bubble-rocket-enhanced {
+    animation: bubble-rocket-enhanced 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  }
+
+  .animate-shimmer-effect {
+    animation: shimmer-effect 2s ease-in-out infinite;
+  }
+
+  .animate-particle-trail {
+    animation: particle-trail 1s ease-out infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
   }
 `;
 
