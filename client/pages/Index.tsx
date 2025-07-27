@@ -5887,45 +5887,50 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
           ))}
         </div>
 
-        {/* Rotating Skill Rings */}
+        {/* Rotating Skill Rings - Mobile Optimized */}
         <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-          {[...Array(3)].map((_, i) => (
+          {[...Array(window.innerWidth < 992 ? 2 : 3)].map((_, i) => (
             <motion.div
               key={`skill-ring-${i}`}
-              className="absolute rounded-full border-2 opacity-20"
+              className="absolute rounded-full border-2"
               style={{
-                width: `${300 + i * 100}px`,
-                height: `${300 + i * 100}px`,
-                border: `2px solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
+                width: window.innerWidth < 992 ? `${250 + i * 80}px` : `${300 + i * 100}px`,
+                height: window.innerWidth < 992 ? `${250 + i * 80}px` : `${300 + i * 100}px`,
+                border: `${window.innerWidth < 992 ? '1px' : '2px'} solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
+                opacity: window.innerWidth < 992 ? 0.15 : 0.2,
               }}
               animate={{
                 rotateZ: i % 2 === 0 ? [0, 360] : [360, 0],
               }}
               transition={{
-                duration: 20 + i * 10,
+                duration: window.innerWidth < 992 ? 30 + i * 15 : 20 + i * 10,
                 repeat: Infinity,
                 ease: "linear",
               }}
             >
-              {/* Skill indicators on the ring */}
-              {[...Array(6)].map((_, skillIndex) => (
+              {/* Skill indicators on the ring - Reduced for mobile */}
+              {[...Array(window.innerWidth < 992 ? 4 : 6)].map((_, skillIndex) => (
                 <motion.div
                   key={`skill-indicator-${i}-${skillIndex}`}
-                  className="absolute w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"
+                  className="absolute rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"
                   style={{
-                    left: `${50 + 45 * Math.cos((skillIndex * 60 * Math.PI) / 180)}%`,
-                    top: `${50 + 45 * Math.sin((skillIndex * 60 * Math.PI) / 180)}%`,
+                    width: window.innerWidth < 992 ? '2px' : '12px',
+                    height: window.innerWidth < 992 ? '2px' : '12px',
+                    left: `${50 + 45 * Math.cos((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
+                    top: `${50 + 45 * Math.sin((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
                     transform: "translate(-50%, -50%)",
-                    boxShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
+                    boxShadow: window.innerWidth < 992 ? "0 0 5px rgba(73, 146, 255, 0.4)" : "0 0 10px rgba(73, 146, 255, 0.6)",
                   }}
-                  animate={{
+                  animate={window.innerWidth < 992 ? {
+                    opacity: [0.6, 1, 0.6],
+                  } : {
                     scale: [0.8, 1.2, 0.8],
                     opacity: [0.4, 1, 0.4],
                   }}
                   transition={{
-                    duration: 2,
+                    duration: window.innerWidth < 992 ? 3 : 2,
                     repeat: Infinity,
-                    delay: skillIndex * 0.3,
+                    delay: skillIndex * (window.innerWidth < 992 ? 0.5 : 0.3),
                   }}
                 />
               ))}
