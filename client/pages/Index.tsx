@@ -107,20 +107,20 @@ export default function Index() {
     return () => clearTimeout(timer);
   }, [showError]);
 
-  // Welcome notification - shows once per page load
+  // Welcome notification - shows once per page load on mobile/tablet devices only
   useEffect(() => {
-    if (!hasShownWelcomeRef.current) {
+    if (!hasShownWelcomeRef.current && (currentDeviceType === "mobile" || currentDeviceType === "tablet")) {
       hasShownWelcomeRef.current = true;
       setTimeout(() => {
-        console.log("Showing welcome notification...");
+        console.log("Showing welcome notification on mobile/tablet...");
         showInfo(
           "Welcome to KOR!",
           "Experience the future of modern web development. Click the X to dismiss.",
           0, // No auto-dismiss
         );
-      }, 3000);
+      }, 2000); // Show earlier for mobile/tablet
     }
-  }, []); // Only run once on mount
+  }, [currentDeviceType, showInfo]); // React to device type changes
 
   // Mobile performance notification - shows once per page load on mobile devices
   useEffect(() => {
