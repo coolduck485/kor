@@ -3290,7 +3290,7 @@ export default function Index() {
                   filter: "blur(15px)",
                 }}
                 animate={
-                  pinkAnimationStep >= 2
+                  animationStep >= 2
                     ? {
                         opacity: 1,
                         scale: 1,
@@ -3516,7 +3516,7 @@ export default function Index() {
                 filter: "blur(10px)",
               }}
               animate={
-                pinkAnimationStep >= 3
+                animationStep >= 3
                   ? {
                       opacity: 1,
                       y: 0,
@@ -3820,7 +3820,7 @@ export default function Index() {
                 filter: "blur(5px)",
               }}
               animate={
-                pinkAnimationStep >= 3
+                animationStep >= 3
                   ? {
                       opacity: 1,
                       scale: 1,
