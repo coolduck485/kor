@@ -87,6 +87,16 @@ export default function Index() {
   const [isContentVisible, setIsContentVisible] = useState(true);
   const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
 
+  // Immediate test notification
+  useEffect(() => {
+    console.log('Page loaded, showing immediate test notification...');
+    showError(
+      "TEST NOTIFICATION",
+      "If you can see this, the notification system works!",
+      0 // No auto-dismiss
+    );
+  }, []); // Only run once on mount
+
   // Welcome notification - shows once per page load
   useEffect(() => {
     if (!hasShownWelcomeRef.current) {
@@ -97,7 +107,7 @@ export default function Index() {
           "Welcome to KOR!",
           "Experience the future of modern web development. Click the X to dismiss.",
         );
-      }, 2000);
+      }, 3000);
     }
   }, []); // Only run once on mount
 
@@ -800,7 +810,7 @@ export default function Index() {
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  ���█║
-╚═╝  ╚═�� ╚═����═══╝ ╚═╝  ����═╝`}
+╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
