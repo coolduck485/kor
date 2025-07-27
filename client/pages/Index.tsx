@@ -2858,7 +2858,11 @@ export default function Index() {
 
               {/* Connecting line to center (desktop only) */}
               <motion.div
-                className="hidden lg:block absolute top-8 left-4 w-32 h-px bg-gradient-to-r from-blue-400/30 to-transparent"
+                className={`hidden lg:block absolute top-8 left-4 w-32 h-px ${
+                  isPinkActive
+                    ? "bg-gradient-to-r from-pink-400/40 to-transparent"
+                    : "bg-gradient-to-r from-blue-400/30 to-transparent"
+                }`}
                 initial={{ opacity: 0, scaleX: 0 }}
                 animate={animationStep >= 1 ? { opacity: 1, scaleX: 1 } : {}}
                 transition={{ delay: 3.5, duration: 1 }}
