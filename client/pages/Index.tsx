@@ -8831,7 +8831,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <motion.button
                         key={contact.name}
                         onClick={() => window.open(contact.url, "_blank")}
-                        className="group relative rounded-2xl backdrop-blur-lg border transition-all duration-300 hover:scale-[1.02] overflow-hidden will-change-transform p-4 sm:p-6"
+                        className="group relative rounded-2xl backdrop-blur-lg border transition-all duration-300 hover:scale-[1.02] overflow-hidden will-change-transform p-4 sm:p-6 mobile-lively-float"
                         style={{
                           background: "rgba(255, 255, 255, 0.08)",
                           border: "2px solid rgba(255, 255, 255, 0.15)",
