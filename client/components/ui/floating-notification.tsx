@@ -100,13 +100,18 @@ const FloatingNotificationContainer: React.FC = () => {
       className={cn("notification-container", positionClasses)} // Use custom CSS class for better visibility control
       style={{
         // Add safe area padding for Safari mobile to avoid search bar
-        paddingBottom: isSafari && isMobile ? 'calc(env(safe-area-inset-bottom) + 60px)' : undefined,
+        paddingBottom:
+          isSafari && isMobile
+            ? "calc(env(safe-area-inset-bottom) + 60px)"
+            : undefined,
       }}
     >
-      <div className={cn(
-        "flex flex-col gap-3 w-full",
-        isMobile ? "max-w-[280px] px-2" : "max-w-sm sm:max-w-md"
-      )}>
+      <div
+        className={cn(
+          "flex flex-col gap-3 w-full",
+          isMobile ? "max-w-[280px] px-2" : "max-w-sm sm:max-w-md",
+        )}
+      >
         <AnimatePresence mode="popLayout">
           {notifications.map((notification) => (
             <FloatingNotificationItem
@@ -208,17 +213,21 @@ const FloatingNotificationItem = React.forwardRef<
         x: 100,
         filter: "blur(10px)",
       }}
-      animate={isClosing ? {
-        opacity: 0.8,
-        scale: 0.98,
-        filter: "blur(1px)",
-        transition: { duration: 0.2 }
-      } : {
-        opacity: 1,
-        scale: 1,
-        x: 0,
-        filter: "blur(0px)",
-      }}
+      animate={
+        isClosing
+          ? {
+              opacity: 0.8,
+              scale: 0.98,
+              filter: "blur(1px)",
+              transition: { duration: 0.2 },
+            }
+          : {
+              opacity: 1,
+              scale: 1,
+              x: 0,
+              filter: "blur(0px)",
+            }
+      }
       exit={{
         opacity: 0,
         scale: 0.9,
@@ -281,7 +290,7 @@ const FloatingNotificationItem = React.forwardRef<
                 height: `${1 + (i % 3)}px`,
                 background: colors.accent,
                 animation: `gentleFloat ${2 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
-                display: isMobile && i >= 3 ? 'none' : 'block', // Hide extra particles on mobile
+                display: isMobile && i >= 3 ? "none" : "block", // Hide extra particles on mobile
                 filter: "blur(0.5px)",
               }}
             />
@@ -298,16 +307,22 @@ const FloatingNotificationItem = React.forwardRef<
             "focus:outline-none focus:ring-2 focus:ring-white/20",
             "flex items-center justify-center",
             "touch-manipulation", // Improve touch responsiveness
-            isMobile ? "top-1 right-1 p-1 min-w-[36px] min-h-[36px]" : "top-2 right-2 p-2 min-w-[44px] min-h-[44px]", // Smaller on mobile
+            isMobile
+              ? "top-1 right-1 p-1 min-w-[36px] min-h-[36px]"
+              : "top-2 right-2 p-2 min-w-[44px] min-h-[44px]", // Smaller on mobile
           )}
           whileHover={{ scale: 1.1, rotate: 90 }}
           whileTap={{ scale: 0.8, rotate: 180 }}
-          animate={isClosing ? {
-            scale: 0.8,
-            rotate: 360,
-            opacity: 0.5,
-            transition: { duration: 0.3 }
-          } : {}}
+          animate={
+            isClosing
+              ? {
+                  scale: 0.8,
+                  rotate: 360,
+                  opacity: 0.5,
+                  transition: { duration: 0.3 },
+                }
+              : {}
+          }
           // Prevent event bubbling that might interfere with touch
           onTouchStart={(e) => e.stopPropagation()}
           onTouchEnd={(e) => e.stopPropagation()}
@@ -316,7 +331,9 @@ const FloatingNotificationItem = React.forwardRef<
         </motion.button>
 
         {/* Content */}
-        <div className={cn("space-y-1", isMobile ? "space-y-0.5" : "space-y-1")}>
+        <div
+          className={cn("space-y-1", isMobile ? "space-y-0.5" : "space-y-1")}
+        >
           <motion.h4
             className={cn(
               "font-semibold text-white animate-text-glow-pulse",
@@ -331,7 +348,9 @@ const FloatingNotificationItem = React.forwardRef<
           <motion.p
             className={cn(
               "text-white/80 leading-relaxed",
-              isMobile ? "text-xs leading-tight" : "text-xs sm:text-sm leading-relaxed"
+              isMobile
+                ? "text-xs leading-tight"
+                : "text-xs sm:text-sm leading-relaxed",
             )}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

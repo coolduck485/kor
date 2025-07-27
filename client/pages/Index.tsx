@@ -48,7 +48,6 @@ export default function Index() {
   const hasShownWelcomeRef = useRef(false);
   const hasShownMobilePerformanceRef = useRef(false);
 
-
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const sectionsRef = useRef<HTMLDivElement[]>([]);
@@ -127,14 +126,21 @@ export default function Index() {
       hasShownMobilePerformanceRef.current = true;
 
       // Check if mobile on page load
-      const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
+      const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
       const isMobileDevice = windowWidth <= 640;
 
-      console.log("Mobile check on load - width:", windowWidth, "isMobile:", isMobileDevice);
+      console.log(
+        "Mobile check on load - width:",
+        windowWidth,
+        "isMobile:",
+        isMobileDevice,
+      );
 
       if (isMobileDevice) {
         setTimeout(() => {
-          console.log("🚀 Showing mobile performance notification on mobile device!");
+          console.log(
+            "🚀 Showing mobile performance notification on mobile device!",
+          );
           showWarning(
             "Mobile Performance Mode",
             "Visual effects and animations have been limited to improve performance.",
@@ -1700,19 +1706,26 @@ export default function Index() {
       {/* Debug Panel - Remove in production */}
       <div className="fixed top-2 left-2 z-50 bg-black/80 text-white text-xs p-2 rounded border border-white/20 backdrop-blur-sm max-w-xs">
         <div>Device: {deviceType}</div>
-        <div>Width: {typeof window !== 'undefined' ? window.innerWidth : 'N/A'}</div>
-        <div>Mobile Hook: {isMobile ? 'Yes' : 'No'}</div>
-        <div>Safari: {isSafari ? 'Yes' : 'No'}</div>
-        <div>iOS: {isIOS ? 'Yes' : 'No'}</div>
-        <div>Mobile Safari: {isMobileSafari ? 'Yes' : 'No'}</div>
-        <div>Mobile Perf Shown: {hasShownMobilePerformanceRef.current ? 'Yes' : 'No'}</div>
+        <div>
+          Width: {typeof window !== "undefined" ? window.innerWidth : "N/A"}
+        </div>
+        <div>Mobile Hook: {isMobile ? "Yes" : "No"}</div>
+        <div>Safari: {isSafari ? "Yes" : "No"}</div>
+        <div>iOS: {isIOS ? "Yes" : "No"}</div>
+        <div>Mobile Safari: {isMobileSafari ? "Yes" : "No"}</div>
+        <div>
+          Mobile Perf Shown:{" "}
+          {hasShownMobilePerformanceRef.current ? "Yes" : "No"}
+        </div>
         <button
           onClick={() => {
-            console.log("Manual trigger: showing mobile performance notification");
+            console.log(
+              "Manual trigger: showing mobile performance notification",
+            );
             showWarning(
               "Mobile Performance Mode",
               "Visual effects and animations have been limited to improve performance.",
-              6000
+              6000,
             );
           }}
           className="mt-1 px-2 py-1 bg-orange-600 text-white text-xs rounded hover:bg-orange-700"
