@@ -240,8 +240,10 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
             : "backdrop-blur-xl duration-300 p-4 pr-12",
         )}
         style={{
-          background: "rgba(0, 0, 0, 0.4)",
-          backdropFilter: "blur(20px)",
+          background: isMobile
+            ? "rgba(0, 0, 0, 0.95)" // Almost solid black for mobile to block background
+            : "rgba(0, 0, 0, 0.85)", // Slightly less opaque for tablet
+          backdropFilter: isMobile ? "blur(10px)" : "blur(20px)", // Reduced blur on mobile for performance
           border: `1px solid ${colors.border}`,
           boxShadow: `
             0 0 50px ${colors.glow},
