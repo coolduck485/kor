@@ -889,7 +889,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█��█████████�����██ 50%
+                      RAM: █���████��█��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -2163,7 +2163,7 @@ export default function Index() {
                 {[...Array(8)].map((_, i) => (
                   <div
                     key={`mobile-dot-${i}`}
-                    className="absolute rounded-full"
+                    className="absolute rounded-full mobile-lively-particle"
                     style={{
                       left: `${10 + ((i * 11) % 80)}%`,
                       top: `${15 + ((i * 13) % 70)}%`,
