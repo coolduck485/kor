@@ -147,6 +147,9 @@ const FloatingNotificationItem = React.forwardRef<
   });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Disable mouse tracking on mobile for better performance
+    if (isMobile) return;
+
     const rect = e.currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
