@@ -781,7 +781,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█�������
-██║  ██╗╚██████�����╝██║  ██║
+██║  ���█╗╚██████�����╝██║  ██║
 ╚═╝  ╚═�� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -5886,6 +5886,27 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
 const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
+    const [screenSize, setScreenSize] = useState<
+      "mobile" | "tablet" | "desktop"
+    >("desktop");
+
+    useEffect(() => {
+      const updateScreenSize = () => {
+        const width = window.innerWidth;
+        if (width <= 640) {
+          setScreenSize("mobile");
+        } else if (width <= 991) {
+          setScreenSize("tablet");
+        } else {
+          setScreenSize("desktop");
+        }
+      };
+
+      updateScreenSize();
+      window.addEventListener("resize", updateScreenSize);
+      return () => window.removeEventListener("resize", updateScreenSize);
+    }, []);
+
     const services = [
       {
         icon: Globe,
