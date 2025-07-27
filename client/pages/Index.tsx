@@ -47,8 +47,7 @@ export default function Index() {
   const [isLoaded, setIsLoaded] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [animationStep, setAnimationStep] = useState(6); // Skip to complete state
-  const [pinkLoading, setPinkLoading] = useState(false);
-  const [pinkAnimationStep, setPinkAnimationStep] = useState(0);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
@@ -854,7 +853,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
+██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  �����█║
