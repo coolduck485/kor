@@ -209,11 +209,10 @@ const FloatingNotificationItem = React.forwardRef<
         filter: "blur(10px)",
       }}
       animate={isClosing ? {
-        opacity: 0.7,
-        scale: 0.95,
-        x: 0,
-        filter: "blur(0px)",
-        transition: { duration: 0.3 }
+        opacity: 0.8,
+        scale: 0.98,
+        filter: "blur(1px)",
+        transition: { duration: 0.2 }
       } : {
         opacity: 1,
         scale: 1,
