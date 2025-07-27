@@ -850,7 +850,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █����������������█████��███████ 60%
+                      CPU: █��������█������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -6935,9 +6935,9 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           </div>
         )}
 
-        {/* Enhanced Floating Ambient Particles with Color Shifting */}
+        {/* Enhanced Floating Ambient Particles with Color Shifting - Reduced for Mobile/Tablet */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(12)].map((_, i) => (
+          {[...Array(screenSize === "desktop" ? 12 : screenSize === "tablet" ? 4 : 2)].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute rounded-full opacity-60"
