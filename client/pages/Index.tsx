@@ -4228,8 +4228,8 @@ const contactAnimationsCSS = `
 `;
 
 // Inject the CSS into the document head
-if (typeof document !== 'undefined') {
-  const style = document.createElement('style');
+if (typeof document !== "undefined") {
+  const style = document.createElement("style");
   style.textContent = contactAnimationsCSS;
   document.head.appendChild(style);
 }
@@ -4951,26 +4951,28 @@ interface SectionProps {
 
 const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
-    const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+    const [screenSize, setScreenSize] = useState<
+      "mobile" | "tablet" | "desktop"
+    >("desktop");
 
     useEffect(() => {
       const updateScreenSize = () => {
         const width = window.innerWidth;
         if (width <= 640) {
-          setScreenSize('mobile');
+          setScreenSize("mobile");
         } else if (width <= 991) {
-          setScreenSize('tablet');
+          setScreenSize("tablet");
         } else {
-          setScreenSize('desktop');
+          setScreenSize("desktop");
         }
       };
 
       updateScreenSize();
-      window.addEventListener('resize', updateScreenSize);
-      return () => window.removeEventListener('resize', updateScreenSize);
+      window.addEventListener("resize", updateScreenSize);
+      return () => window.removeEventListener("resize", updateScreenSize);
     }, []);
 
-    const isMobileOrTablet = screenSize !== 'desktop';
+    const isMobileOrTablet = screenSize !== "desktop";
 
     return (
       <motion.div
@@ -4987,7 +4989,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Enhanced Background Elements - Complete Visual Package */}
 
         {/* Animated Noise Texture - Desktop Only */}
-        {screenSize === 'desktop' && (
+        {screenSize === "desktop" && (
           <div
             className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
             style={{
@@ -5000,7 +5002,11 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Floating Code Blocks with Syntax Highlighting Effect - Responsive */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(screenSize === 'mobile' ? 2 : screenSize === 'tablet' ? 3 : 8)].map((_, i) => (
+          {[
+            ...Array(
+              screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 8,
+            ),
+          ].map((_, i) => (
             <motion.div
               key={`code-block-${i}`}
               className="absolute"
@@ -5009,15 +5015,24 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 top: `${15 + ((i * 45) % 70)}%`,
                 width: `${60 + (i % 3) * 20}px`,
                 height: `${30 + (i % 2) * 15}px`,
-                opacity: screenSize === 'mobile' ? 0.15 : screenSize === 'tablet' ? 0.2 : 0.3,
+                opacity:
+                  screenSize === "mobile"
+                    ? 0.15
+                    : screenSize === "tablet"
+                      ? 0.2
+                      : 0.3,
               }}
-              animate={isMobileOrTablet ? {
-                y: [-3, 3, -3],
-              } : {
-                y: [-10, 10, -10],
-                x: [-5, 5, -5],
-                rotateZ: [-2, 2, -2],
-              }}
+              animate={
+                isMobileOrTablet
+                  ? {
+                      y: [-3, 3, -3],
+                    }
+                  : {
+                      y: [-10, 10, -10],
+                      x: [-5, 5, -5],
+                      rotateZ: [-2, 2, -2],
+                    }
+              }
               transition={{
                 duration: isMobileOrTablet ? 8 + (i % 2) : 4 + (i % 3),
                 repeat: Infinity,
@@ -5039,7 +5054,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       key={lineIndex}
                       className="h-1 rounded-full opacity-80"
                       style={{
-                        width: `${50 + ((lineIndex + i) * 30) % 50}%`,
+                        width: `${50 + (((lineIndex + i) * 30) % 50)}%`,
                         background: [
                           "linear-gradient(90deg, #22d3ee, #60a5fa)",
                           "linear-gradient(90deg, #10b981, #22d3ee)",
@@ -5058,12 +5073,29 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating UI Components Preview - Mobile Optimized */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "button", x: 20, y: 25, color: "from-blue-500 to-purple-500" },
+            {
+              type: "button",
+              x: 20,
+              y: 25,
+              color: "from-blue-500 to-purple-500",
+            },
             { type: "card", x: 75, y: 40, color: "from-green-500 to-blue-500" },
-            ...(window.innerWidth >= 992 ? [
-              { type: "input", x: 15, y: 70, color: "from-purple-500 to-pink-500" },
-              { type: "toggle", x: 80, y: 20, color: "from-orange-500 to-red-500" },
-            ] : [])
+            ...(window.innerWidth >= 992
+              ? [
+                  {
+                    type: "input",
+                    x: 15,
+                    y: 70,
+                    color: "from-purple-500 to-pink-500",
+                  },
+                  {
+                    type: "toggle",
+                    x: 80,
+                    y: 20,
+                    color: "from-orange-500 to-red-500",
+                  },
+                ]
+              : []),
           ].map((component, i) => (
             <motion.div
               key={`ui-component-${i}`}
@@ -5072,13 +5104,17 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 left: `${component.x}%`,
                 top: `${component.y}%`,
               }}
-              animate={window.innerWidth < 992 ? {
-                y: [-4, 4, -4],
-              } : {
-                y: [-8, 8, -8],
-                rotateZ: [-1, 1, -1],
-                scale: [0.9, 1.1, 0.9],
-              }}
+              animate={
+                window.innerWidth < 992
+                  ? {
+                      y: [-4, 4, -4],
+                    }
+                  : {
+                      y: [-8, 8, -8],
+                      rotateZ: [-1, 1, -1],
+                      scale: [0.9, 1.1, 0.9],
+                    }
+              }
               transition={{
                 duration: window.innerWidth < 992 ? 5 + i : 3 + i,
                 repeat: Infinity,
@@ -5138,7 +5174,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     rgba(73, 146, 255, 0.8) 0%,
                     rgba(34, 211, 238, 0.6) 50%,
                     transparent 100%)`,
-                  boxShadow: window.innerWidth < 992 ? "0 0 5px rgba(73, 146, 255, 0.3)" : "0 0 10px rgba(73, 146, 255, 0.4)",
+                  boxShadow:
+                    window.innerWidth < 992
+                      ? "0 0 5px rgba(73, 146, 255, 0.3)"
+                      : "0 0 10px rgba(73, 146, 255, 0.4)",
                 }}
                 animate={{
                   y: ["-50px", "calc(100vh + 50px)"],
@@ -5169,13 +5208,16 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             <div
               className="w-32 h-24 rounded-xl backdrop-blur-lg border opacity-70"
               style={{
-                background: "linear-gradient(135deg, rgba(30, 30, 50, 0.7), rgba(10, 10, 30, 0.7))",
+                background:
+                  "linear-gradient(135deg, rgba(30, 30, 50, 0.7), rgba(10, 10, 30, 0.7))",
                 border: "2px solid rgba(73, 146, 255, 0.3)",
                 boxShadow: "0 0 30px rgba(73, 146, 255, 0.2)",
               }}
             >
               <div className="p-3">
-                <div className="text-xs text-cyan-400 font-mono mb-1">PERFORMANCE</div>
+                <div className="text-xs text-cyan-400 font-mono mb-1">
+                  PERFORMANCE
+                </div>
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs">
                     <span className="text-white/60">Speed</span>
@@ -5918,16 +5960,60 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Service Icons with Orbit Animation - Mobile Optimized */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { Icon: Globe, color: "from-blue-500 to-cyan-500", x: 85, y: 20, delay: 0 },
-            { Icon: Smartphone, color: "from-purple-500 to-pink-500", x: 15, y: 30, delay: 1 },
-            ...(window.innerWidth >= 992 ? [
-              { Icon: Palette, color: "from-green-500 to-emerald-500", x: 80, y: 65, delay: 2 },
-              { Icon: Zap, color: "from-orange-500 to-red-500", x: 10, y: 70, delay: 3 },
-              { Icon: Users, color: "from-indigo-500 to-purple-500", x: 85, y: 85, delay: 4 },
-              { Icon: Code, color: "from-teal-500 to-blue-500", x: 15, y: 15, delay: 5 },
-            ] : [
-              { Icon: Palette, color: "from-green-500 to-emerald-500", x: 75, y: 75, delay: 2 },
-            ])
+            {
+              Icon: Globe,
+              color: "from-blue-500 to-cyan-500",
+              x: 85,
+              y: 20,
+              delay: 0,
+            },
+            {
+              Icon: Smartphone,
+              color: "from-purple-500 to-pink-500",
+              x: 15,
+              y: 30,
+              delay: 1,
+            },
+            ...(window.innerWidth >= 992
+              ? [
+                  {
+                    Icon: Palette,
+                    color: "from-green-500 to-emerald-500",
+                    x: 80,
+                    y: 65,
+                    delay: 2,
+                  },
+                  {
+                    Icon: Zap,
+                    color: "from-orange-500 to-red-500",
+                    x: 10,
+                    y: 70,
+                    delay: 3,
+                  },
+                  {
+                    Icon: Users,
+                    color: "from-indigo-500 to-purple-500",
+                    x: 85,
+                    y: 85,
+                    delay: 4,
+                  },
+                  {
+                    Icon: Code,
+                    color: "from-teal-500 to-blue-500",
+                    x: 15,
+                    y: 15,
+                    delay: 5,
+                  },
+                ]
+              : [
+                  {
+                    Icon: Palette,
+                    color: "from-green-500 to-emerald-500",
+                    x: 75,
+                    y: 75,
+                    delay: 2,
+                  },
+                ]),
           ].map((service, i) => (
             <motion.div
               key={`floating-service-${i}`}
@@ -5936,14 +6022,18 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 left: `${service.x}%`,
                 top: `${service.y}%`,
               }}
-              animate={window.innerWidth < 992 ? {
-                y: [-8, 8, -8],
-              } : {
-                y: [-15, 15, -15],
-                x: [-8, 8, -8],
-                rotateZ: [-10, 10, -10],
-                scale: [0.8, 1.2, 0.8],
-              }}
+              animate={
+                window.innerWidth < 992
+                  ? {
+                      y: [-8, 8, -8],
+                    }
+                  : {
+                      y: [-15, 15, -15],
+                      x: [-8, 8, -8],
+                      rotateZ: [-10, 10, -10],
+                      scale: [0.8, 1.2, 0.8],
+                    }
+              }
               transition={{
                 duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
                 repeat: Infinity,
@@ -5969,9 +6059,15 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
               key={`skill-ring-${i}`}
               className="absolute rounded-full border-2"
               style={{
-                width: window.innerWidth < 992 ? `${250 + i * 80}px` : `${300 + i * 100}px`,
-                height: window.innerWidth < 992 ? `${250 + i * 80}px` : `${300 + i * 100}px`,
-                border: `${window.innerWidth < 992 ? '1px' : '2px'} solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
+                width:
+                  window.innerWidth < 992
+                    ? `${250 + i * 80}px`
+                    : `${300 + i * 100}px`,
+                height:
+                  window.innerWidth < 992
+                    ? `${250 + i * 80}px`
+                    : `${300 + i * 100}px`,
+                border: `${window.innerWidth < 992 ? "1px" : "2px"} solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
                 opacity: window.innerWidth < 992 ? 0.15 : 0.2,
               }}
               animate={{
@@ -5984,31 +6080,40 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
               }}
             >
               {/* Skill indicators on the ring - Reduced for mobile */}
-              {[...Array(window.innerWidth < 992 ? 4 : 6)].map((_, skillIndex) => (
-                <motion.div
-                  key={`skill-indicator-${i}-${skillIndex}`}
-                  className="absolute rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"
-                  style={{
-                    width: window.innerWidth < 992 ? '2px' : '12px',
-                    height: window.innerWidth < 992 ? '2px' : '12px',
-                    left: `${50 + 45 * Math.cos((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
-                    top: `${50 + 45 * Math.sin((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
-                    transform: "translate(-50%, -50%)",
-                    boxShadow: window.innerWidth < 992 ? "0 0 5px rgba(73, 146, 255, 0.4)" : "0 0 10px rgba(73, 146, 255, 0.6)",
-                  }}
-                  animate={window.innerWidth < 992 ? {
-                    opacity: [0.6, 1, 0.6],
-                  } : {
-                    scale: [0.8, 1.2, 0.8],
-                    opacity: [0.4, 1, 0.4],
-                  }}
-                  transition={{
-                    duration: window.innerWidth < 992 ? 3 : 2,
-                    repeat: Infinity,
-                    delay: skillIndex * (window.innerWidth < 992 ? 0.5 : 0.3),
-                  }}
-                />
-              ))}
+              {[...Array(window.innerWidth < 992 ? 4 : 6)].map(
+                (_, skillIndex) => (
+                  <motion.div
+                    key={`skill-indicator-${i}-${skillIndex}`}
+                    className="absolute rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"
+                    style={{
+                      width: window.innerWidth < 992 ? "2px" : "12px",
+                      height: window.innerWidth < 992 ? "2px" : "12px",
+                      left: `${50 + 45 * Math.cos((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
+                      top: `${50 + 45 * Math.sin((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
+                      transform: "translate(-50%, -50%)",
+                      boxShadow:
+                        window.innerWidth < 992
+                          ? "0 0 5px rgba(73, 146, 255, 0.4)"
+                          : "0 0 10px rgba(73, 146, 255, 0.6)",
+                    }}
+                    animate={
+                      window.innerWidth < 992
+                        ? {
+                            opacity: [0.6, 1, 0.6],
+                          }
+                        : {
+                            scale: [0.8, 1.2, 0.8],
+                            opacity: [0.4, 1, 0.4],
+                          }
+                    }
+                    transition={{
+                      duration: window.innerWidth < 992 ? 3 : 2,
+                      repeat: Infinity,
+                      delay: skillIndex * (window.innerWidth < 992 ? 0.5 : 0.3),
+                    }}
+                  />
+                ),
+              )}
             </motion.div>
           ))}
         </div>
@@ -6028,13 +6133,16 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             <div
               className="w-40 h-32 rounded-xl backdrop-blur-lg border opacity-70"
               style={{
-                background: "linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(10, 10, 30, 0.8))",
+                background:
+                  "linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(10, 10, 30, 0.8))",
                 border: "2px solid rgba(73, 146, 255, 0.3)",
                 boxShadow: "0 0 40px rgba(73, 146, 255, 0.3)",
               }}
             >
               <div className="p-3">
-                <div className="text-xs text-cyan-400 font-mono mb-2">TECH STACK</div>
+                <div className="text-xs text-cyan-400 font-mono mb-2">
+                  TECH STACK
+                </div>
                 <div className="grid grid-cols-3 gap-1">
                   {[
                     { name: "React", color: "bg-blue-400" },
@@ -6578,12 +6686,29 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Project Screenshots Floating Effect - Mobile Optimized */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { x: 10, y: 20, rotation: -15, color: "from-purple-500 to-pink-500" },
+            {
+              x: 10,
+              y: 20,
+              rotation: -15,
+              color: "from-purple-500 to-pink-500",
+            },
             { x: 85, y: 25, rotation: 12, color: "from-blue-500 to-cyan-500" },
-            ...(window.innerWidth >= 992 ? [
-              { x: 15, y: 70, rotation: -8, color: "from-green-500 to-emerald-500" },
-              { x: 80, y: 75, rotation: 18, color: "from-orange-500 to-red-500" },
-            ] : [])
+            ...(window.innerWidth >= 992
+              ? [
+                  {
+                    x: 15,
+                    y: 70,
+                    rotation: -8,
+                    color: "from-green-500 to-emerald-500",
+                  },
+                  {
+                    x: 80,
+                    y: 75,
+                    rotation: 18,
+                    color: "from-orange-500 to-red-500",
+                  },
+                ]
+              : []),
           ].map((project, i) => (
             <motion.div
               key={`floating-project-${i}`}
@@ -6594,13 +6719,21 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 transform: `rotate(${project.rotation}deg)`,
                 opacity: window.innerWidth < 992 ? 0.25 : 0.4,
               }}
-              animate={window.innerWidth < 992 ? {
-                y: [-5, 5, -5],
-              } : {
-                y: [-10, 10, -10],
-                rotateZ: [project.rotation - 5, project.rotation + 5, project.rotation - 5],
-                scale: [0.9, 1.1, 0.9],
-              }}
+              animate={
+                window.innerWidth < 992
+                  ? {
+                      y: [-5, 5, -5],
+                    }
+                  : {
+                      y: [-10, 10, -10],
+                      rotateZ: [
+                        project.rotation - 5,
+                        project.rotation + 5,
+                        project.rotation - 5,
+                      ],
+                      scale: [0.9, 1.1, 0.9],
+                    }
+              }
               transition={{
                 duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
                 repeat: Infinity,
@@ -6646,17 +6779,23 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             <div
               className="w-48 h-36 rounded-xl backdrop-blur-lg border opacity-70"
               style={{
-                background: "linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(10, 10, 30, 0.8))",
+                background:
+                  "linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(10, 10, 30, 0.8))",
                 border: "2px solid rgba(73, 146, 255, 0.3)",
                 boxShadow: "0 0 40px rgba(73, 146, 255, 0.3)",
               }}
             >
               <div className="p-3">
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-xs text-cyan-400 font-mono">REPOSITORY</div>
+                  <div className="text-xs text-cyan-400 font-mono">
+                    REPOSITORY
+                  </div>
                   <div className="flex space-x-1">
                     <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }} />
+                    <div
+                      className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse"
+                      style={{ animationDelay: "0.5s" }}
+                    />
                   </div>
                 </div>
                 <div className="space-y-1">
@@ -6665,7 +6804,10 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     { lang: "TypeScript", percent: 30, color: "bg-blue-400" },
                     { lang: "CSS", percent: 25, color: "bg-green-400" },
                   ].map((lang, langIndex) => (
-                    <div key={lang.lang} className="flex items-center justify-between text-xs">
+                    <div
+                      key={lang.lang}
+                      className="flex items-center justify-between text-xs"
+                    >
                       <span className="text-white/70">{lang.lang}</span>
                       <div className="flex items-center space-x-1">
                         <div className="w-8 h-1 bg-white/20 rounded-full overflow-hidden">
@@ -6695,10 +6837,34 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Achievement Badges */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { icon: "🏆", label: "Award", x: 8, y: 15, color: "from-yellow-500 to-orange-500" },
-            { icon: "⭐", label: "Featured", x: 88, y: 18, color: "from-blue-500 to-purple-500" },
-            { icon: "🚀", label: "Launch", x: 12, y: 85, color: "from-green-500 to-blue-500" },
-            { icon: "💎", label: "Premium", x: 85, y: 82, color: "from-purple-500 to-pink-500" },
+            {
+              icon: "🏆",
+              label: "Award",
+              x: 8,
+              y: 15,
+              color: "from-yellow-500 to-orange-500",
+            },
+            {
+              icon: "⭐",
+              label: "Featured",
+              x: 88,
+              y: 18,
+              color: "from-blue-500 to-purple-500",
+            },
+            {
+              icon: "🚀",
+              label: "Launch",
+              x: 12,
+              y: 85,
+              color: "from-green-500 to-blue-500",
+            },
+            {
+              icon: "💎",
+              label: "Premium",
+              x: 85,
+              y: 82,
+              color: "from-purple-500 to-pink-500",
+            },
           ].map((badge, i) => (
             <motion.div
               key={`achievement-${i}`}
@@ -6735,10 +6901,10 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           <svg className="absolute w-full h-full opacity-20">
             {/* Dynamic connecting lines between floating elements */}
             {[...Array(6)].map((_, i) => {
-              const startX = 20 + (i * 120) % 80;
-              const startY = 30 + (i * 80) % 60;
-              const endX = 40 + ((i + 1) * 130) % 80;
-              const endY = 50 + ((i + 1) * 90) % 60;
+              const startX = 20 + ((i * 120) % 80);
+              const startY = 30 + ((i * 80) % 60);
+              const endX = 40 + (((i + 1) * 130) % 80);
+              const endY = 50 + (((i + 1) * 90) % 60);
 
               return (
                 <motion.line
@@ -7358,12 +7524,6 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           ))}
         </div>
 
-
-
-
-
-
-
         {/* Animated Noise Texture - Enhanced for contact */}
         {!isMobile && (
           <div
@@ -7373,8 +7533,6 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             }}
           />
         )}
-
-
 
         {/* Data Transmission Lines */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -7415,7 +7573,9 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     repeatDelay: 6,
                   }}
                   style={{ offsetPath: `path('${line.path}')` }}
-                />\n              </g>
+                />
+                \n{" "}
+              </g>
             ))}
           </svg>
         </div>
@@ -7454,8 +7614,6 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           ))}
         </div>
 
-
-
         {/* Live Status Indicators */}
         <div className="absolute top-10 right-10 pointer-events-none">
           <div className="flex flex-col space-y-2 opacity-40">
@@ -7489,8 +7647,12 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           {[
             ...Array(
               window.innerWidth < 992
-                ? (window.innerWidth < 641 ? 2 : 3)
-                : (animationConfig?.enableBackgroundParticles ? 15 : 6),
+                ? window.innerWidth < 641
+                  ? 2
+                  : 3
+                : animationConfig?.enableBackgroundParticles
+                  ? 15
+                  : 6,
             ),
           ].map((_, i) => (
             <div
@@ -7512,11 +7674,18 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   ];
                   return colorPalettes[i % colorPalettes.length];
                 })(),
-                animation: window.innerWidth < 992
-                  ? `gentleFloat ${6 + (i % 2)}s ease-in-out infinite ${i * 0.8}s`
-                  : `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
-                filter: window.innerWidth < 992 ? 'none' : `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
-                boxShadow: window.innerWidth < 992 ? 'none' : `0 0 ${4 + (i % 3) * 2}px rgba(255, 255, 255, 0.3)`,
+                animation:
+                  window.innerWidth < 992
+                    ? `gentleFloat ${6 + (i % 2)}s ease-in-out infinite ${i * 0.8}s`
+                    : `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s, sparkle ${8 + (i % 4)}s ease-in-out infinite ${i * 0.5}s`,
+                filter:
+                  window.innerWidth < 992
+                    ? "none"
+                    : `drop-shadow(0 0 4px currentColor) blur(0.5px)`,
+                boxShadow:
+                  window.innerWidth < 992
+                    ? "none"
+                    : `0 0 ${4 + (i % 3) * 2}px rgba(255, 255, 255, 0.3)`,
                 transform: `translateZ(0) scale(${window.innerWidth < 992 ? 0.6 : 0.8 + (i % 2) * 0.4})`,
                 willChange: window.innerWidth < 992 ? "auto" : "transform",
               }}
