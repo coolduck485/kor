@@ -1964,7 +1964,7 @@ export default function Index() {
                   <RetroToggle />
 
                   {/* Mobile/Tablet Notification Test Buttons */}
-                  {(deviceType === "mobile" || deviceType === "tablet") && (
+                  {(currentDeviceType === "mobile" || currentDeviceType === "tablet") && (
                     <div className="flex flex-col gap-1 mt-2 pt-2 border-t border-current/10">
                       <div className="text-xs text-center opacity-70 mb-1">Test Notifications</div>
                       <div className="grid grid-cols-2 gap-1">
