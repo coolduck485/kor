@@ -9,7 +9,7 @@ export function useMobilePerformance() {
     if (typeof window === "undefined") return "desktop";
     const width = window.innerWidth;
     if (width <= 640) return "mobile";
-    if (width <= 991) return "tablet";
+    if (width <= 1023) return "tablet";
     return "desktop";
   };
 
@@ -21,7 +21,7 @@ export function useMobilePerformance() {
     const checkDeviceType = () => {
       const width = window.innerWidth;
       const newDeviceType =
-        width <= 640 ? "mobile" : width <= 991 ? "tablet" : "desktop";
+        width <= 640 ? "mobile" : width <= 1023 ? "tablet" : "desktop";
 
       // Only update if device type actually changed to prevent unnecessary re-renders
       if (newDeviceType !== deviceType) {
