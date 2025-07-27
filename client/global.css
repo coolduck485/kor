@@ -261,7 +261,7 @@
   --sidebar-ring: 340 75% 68%;
 }
 
-/* Pink Theme Background Effects */
+/* Pink Theme Background Effects - Applied to main theme layout */
 .pink-theme body {
   background:
     radial-gradient(
@@ -279,8 +279,43 @@
       rgba(190, 24, 93, 0.08) 0%,
       transparent 70%
     ),
-    linear-gradient(180deg, hsl(340, 15%, 5%) 0%, hsl(340, 12%, 3%) 100%);
+    linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--background)) 100%);
   background-attachment: fixed;
+}
+
+/* Pink theme overrides for main theme elements */
+.pink-theme .glow-blue,
+.pink-theme .text-blue-400,
+.pink-theme .text-blue-500 {
+  color: hsl(340, 75%, 68%) !important;
+}
+
+.pink-theme .bg-blue-500,
+.pink-theme .bg-blue-600 {
+  background-color: hsl(340, 75%, 68%) !important;
+}
+
+.pink-theme .border-blue-500,
+.pink-theme .border-blue-400 {
+  border-color: hsl(340, 75%, 68%) !important;
+}
+
+.pink-theme .shadow-blue-500,
+.pink-theme .hover\:shadow-blue-500:hover {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.5) !important;
+}
+
+/* Pink theme glow effects */
+.pink-theme .glow {
+  box-shadow: 0 0 60px rgba(236, 72, 153, 0.8),
+              0 0 120px rgba(236, 72, 153, 0.6),
+              0 0 200px rgba(236, 72, 153, 0.4) !important;
+}
+
+.pink-theme .text-glow {
+  text-shadow: 0 0 10px rgba(236, 72, 153, 1),
+               0 0 20px rgba(236, 72, 153, 0.8),
+               0 0 30px rgba(236, 72, 153, 0.6) !important;
 }
 
 /* Pink Theme Animated Background Particles */
