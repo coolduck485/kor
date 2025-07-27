@@ -3,26 +3,34 @@ import { useEffect, useState } from "react";
 
 export function useMobilePerformance() {
   const isMobile = useIsMobile();
+
+  // Initialize device type synchronously to prevent flickering
+  const getInitialDeviceType = () => {
+    if (typeof window === "undefined") return "desktop";
+    const width = window.innerWidth;
+    if (width <= 640) return "mobile";
+    if (width <= 991) return "tablet";
+    return "desktop";
+  };
+
   const [deviceType, setDeviceType] = useState<"mobile" | "tablet" | "desktop">(
-    "desktop",
+    getInitialDeviceType(),
   );
 
   useEffect(() => {
     const checkDeviceType = () => {
       const width = window.innerWidth;
-      if (width <= 640) {
-        setDeviceType("mobile");
-      } else if (width <= 991) {
-        setDeviceType("tablet");
-      } else {
-        setDeviceType("desktop");
+      const newDeviceType = width <= 640 ? "mobile" : width <= 991 ? "tablet" : "desktop";
+
+      // Only update if device type actually changed to prevent unnecessary re-renders
+      if (newDeviceType !== deviceType) {
+        setDeviceType(newDeviceType);
       }
     };
 
-    checkDeviceType();
     window.addEventListener("resize", checkDeviceType);
     return () => window.removeEventListener("resize", checkDeviceType);
-  }, []);
+  }, [deviceType]);
 
   useEffect(() => {
     if (deviceType === "mobile") {
