@@ -231,42 +231,144 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
         willChange: "transform, opacity",
       }}
     >
+      {/* Border Effect - matching original */}
+      <div
+        className="absolute inset-0 rounded-xl pointer-events-none transition-all duration-300"
+        style={{
+          border: `1px solid ${colors.border}`,
+          borderRadius: "inherit",
+        }}
+      />
+
+      {/* Main notification content - matching original styling */}
       <div
         className={cn(
-          "flex items-start gap-3",
-          isMobile ? "p-3" : "p-4"
+          "relative rounded-xl shadow-2xl transition-all",
+          isMobile
+            ? "backdrop-blur-md duration-200 p-3 pr-10"
+            : "backdrop-blur-xl duration-300 p-4 pr-12",
+          "border border-transparent",
         )}
+        style={{
+          background: "rgba(0, 0, 0, 0.4)",
+          backdropFilter: "blur(20px)",
+          boxShadow: `
+            0 0 50px ${colors.glow},
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1)
+          `,
+        }}
       >
-        {/* Icon */}
-        <div className="flex-shrink-0 mt-0.5">
-          {getIcon()}
-        </div>
+        {/* Minimal floating particles for mobile */}
+        {isMobile && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
+            {[...Array(2)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full opacity-20"
+                style={{
+                  left: `${20 + (i * 50)}%`,
+                  top: `${30 + (i * 40)}%`,
+                  width: "2px",
+                  height: "2px",
+                  background: colors.accent,
+                  animation: `enhanced-mobile-float-${i + 1} ${3 + i}s ease-in-out infinite`,
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Desktop particles */}
+        {!isMobile && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full opacity-30"
+                style={{
+                  left: `${10 + ((i * 20) % 80)}%`,
+                  top: `${20 + ((i * 30) % 60)}%`,
+                  width: `${1 + (i % 2)}px`,
+                  height: `${1 + (i % 2)}px`,
+                  background: colors.accent,
+                  animation: `gentleFloat ${2 + (i % 2)}s ease-in-out infinite ${i * 0.5}s`,
+                  filter: "blur(0.5px)",
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Close button - optimized for mobile touch */}
+        <motion.button
+          onClick={handleClose}
+          className={cn(
+            "absolute rounded-md",
+            "text-white/60 transition-all",
+            "focus:outline-none flex items-center justify-center",
+            "touch-manipulation", // Improve touch responsiveness
+            isMobile
+              ? "top-1 right-1 p-2 min-w-[40px] min-h-[40px] hover:bg-white/20 duration-150 active:scale-90"
+              : "top-2 right-2 p-2 min-w-[44px] min-h-[44px] hover:text-white hover:bg-white/10 duration-200",
+            isMobile
+              ? "focus:ring-2 focus:ring-white/30"
+              : "focus:ring-2 focus:ring-white/20"
+          )}
+          whileHover={isMobile ? undefined : { scale: 1.1, rotate: 90 }}
+          whileTap={isMobile ? { scale: 0.85 } : { scale: 0.8, rotate: 180 }}
+          animate={
+            isClosing
+              ? {
+                  scale: isMobile ? 0.7 : 0.8,
+                  rotate: isMobile ? 180 : 360,
+                  opacity: 0.3,
+                  transition: { duration: isMobile ? 0.2 : 0.3 },
+                }
+              : {}
+          }
+          onTouchStart={(e) => e.stopPropagation()}
+          onTouchEnd={(e) => e.stopPropagation()}
+        >
+          <X className={isMobile ? "h-4 w-4" : "h-5 w-5"} />
+        </motion.button>
 
         {/* Content */}
-        <div className="flex-1 min-w-0">
-          <div className={cn(
-            "font-medium text-gray-900 dark:text-gray-100",
-            isMobile ? "text-sm" : "text-base"
-          )}>
+        <div className={cn("space-y-1 relative z-10", isMobile ? "space-y-0.5" : "space-y-1")}>
+          <motion.h4
+            className={cn(
+              "font-semibold text-white animate-text-glow-pulse",
+              isMobile ? "text-xs" : "text-sm sm:text-base",
+            )}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+          >
             {notification.title}
-          </div>
-          <div className={cn(
-            "text-gray-700 dark:text-gray-300 mt-0.5",
-            isMobile ? "text-xs leading-tight" : "text-sm"
-          )}>
+          </motion.h4>
+          <motion.p
+            className={cn(
+              "text-white/80 leading-relaxed",
+              isMobile
+                ? "text-xs leading-tight"
+                : "text-xs sm:text-sm leading-relaxed",
+            )}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
             {notification.message}
-          </div>
-          
+          </motion.p>
+
           {/* Action button */}
           {notification.action && (
             <motion.button
               onClick={notification.action.onClick}
               className={cn(
                 "mt-2 text-xs font-medium rounded-md px-2 py-1",
-                "bg-white/50 dark:bg-gray-800/50",
-                "hover:bg-white/80 dark:hover:bg-gray-800/80",
+                "bg-white/20 hover:bg-white/30 text-white",
                 "transition-colors duration-150",
-                "border border-current/20"
+                "border border-white/20"
               )}
               whileTap={{ scale: 0.95 }}
             >
@@ -275,34 +377,28 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
           )}
         </div>
 
-        {/* Close button */}
-        <motion.button
-          onClick={onClose}
-          className={cn(
-            "flex-shrink-0 rounded-md transition-colors duration-150",
-            "text-gray-400 hover:text-gray-600 dark:hover:text-gray-200",
-            "hover:bg-white/50 dark:hover:bg-gray-800/50",
-            "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
-            isMobile ? "p-1 -mr-1 -mt-1" : "p-1.5"
-          )}
-          whileTap={{ scale: 0.9 }}
-        >
-          <X className={isMobile ? "h-4 w-4" : "h-5 w-5"} />
-        </motion.button>
-      </div>
-
-      {/* Progress bar for timed notifications */}
-      {notification.duration && notification.duration > 0 && (
-        <motion.div
-          className="absolute bottom-0 left-0 h-1 bg-current/30 rounded-b-xl"
-          initial={{ width: "100%" }}
-          animate={{ width: "0%" }}
-          transition={{
-            duration: notification.duration / 1000,
-            ease: "linear",
+        {/* Accent line */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-0.5 rounded-b-xl"
+          style={{
+            background: `linear-gradient(90deg, transparent, ${colors.accent}, transparent)`,
           }}
         />
-      )}
+
+        {/* Progress bar for timed notifications */}
+        {notification.duration && notification.duration > 0 && (
+          <motion.div
+            className="absolute bottom-0 left-0 h-1 rounded-b-xl"
+            style={{ background: colors.accent }}
+            initial={{ width: "100%" }}
+            animate={{ width: "0%" }}
+            transition={{
+              duration: notification.duration / 1000,
+              ease: "linear",
+            }}
+          />
+        )}
+      </div>
     </motion.div>
   );
 };
