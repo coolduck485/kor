@@ -784,6 +784,133 @@
   animation: swipeUpDelayed 2s ease-in-out infinite 0.3s;
 }
 
+/* Enhanced mobile notification animations */
+@keyframes notification-slide-in-mobile {
+  0% {
+    transform: translateX(100%) translateY(-20px) scale(0.9);
+    opacity: 0;
+    filter: blur(3px);
+  }
+  50% {
+    transform: translateX(10%) translateY(-10px) scale(0.95);
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+  100% {
+    transform: translateX(0%) translateY(0px) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes notification-slide-out-mobile {
+  0% {
+    transform: translateX(0%) translateY(0px) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  50% {
+    transform: translateX(30%) translateY(-8px) scale(0.9);
+    opacity: 0.4;
+    filter: blur(2px);
+  }
+  100% {
+    transform: translateX(120%) translateY(-20px) scale(0.75);
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@keyframes notification-stack-move-mobile {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    transform: translateY(-70px) scale(1);
+  }
+}
+
+/* Smooth notification stacking for mobile */
+@keyframes mobile-notification-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateX(50px) translateY(-10px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateX(0px) translateY(0px);
+    filter: blur(0px);
+  }
+}
+
+@keyframes mobile-notification-exit {
+  from {
+    opacity: 1;
+    transform: scale(1) translateX(0px) translateY(0px);
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8) translateX(80px) translateY(-15px);
+    filter: blur(3px);
+  }
+}
+
+/* Tablet notification animations */
+@keyframes tablet-notification-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateX(80px) translateY(-15px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateX(0px) translateY(0px);
+    filter: blur(0px);
+  }
+}
+
+@keyframes tablet-notification-exit {
+  from {
+    opacity: 1;
+    transform: scale(1) translateX(0px) translateY(0px);
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.85) translateX(100px) translateY(-10px);
+    filter: blur(5px);
+  }
+}
+
+/* Desktop notification animations with full effects */
+@keyframes desktop-notification-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateX(100px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateX(0px);
+    filter: blur(0px);
+  }
+}
+
+@keyframes desktop-notification-exit {
+  from {
+    opacity: 1;
+    transform: scale(1) translateX(0px);
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8) translateX(120px);
+    filter: blur(6px);
+  }
+}
+
 /* Mobile-friendly section styling */
 @media (max-width: 640px) {
   .section-container {
