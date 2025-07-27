@@ -309,12 +309,17 @@ export const useMobileNotificationHelpers = () => {
     });
   };
 
+  const show = (notification: Omit<MobileNotification, "id">) => {
+    addNotification(notification);
+  };
+
   return {
     showSuccess,
     showError,
     showWarning,
     showInfo,
     showWithAction,
+    show,
     remove: removeNotification,
     clearAll,
     notifications,
