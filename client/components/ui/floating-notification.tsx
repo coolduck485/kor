@@ -339,29 +339,30 @@ const FloatingNotificationItem = React.forwardRef<
           </div>
         )}
 
-        {/* Close button - larger touch target for mobile */}
+        {/* Close button - optimized for mobile touch */}
         <motion.button
           onClick={handleClose}
           className={cn(
             "absolute rounded-md",
-            "text-white/60 hover:text-white",
-            "hover:bg-white/10 transition-all duration-200",
-            "focus:outline-none focus:ring-2 focus:ring-white/20",
-            "flex items-center justify-center",
+            "text-white/60 transition-all",
+            "focus:outline-none flex items-center justify-center",
             "touch-manipulation", // Improve touch responsiveness
             isMobile
-              ? "top-1 right-1 p-1 min-w-[36px] min-h-[36px]"
-              : "top-2 right-2 p-2 min-w-[44px] min-h-[44px]", // Smaller on mobile
+              ? "top-1 right-1 p-2 min-w-[40px] min-h-[40px] hover:bg-white/20 duration-150 active:scale-90"
+              : "top-2 right-2 p-2 min-w-[44px] min-h-[44px] hover:text-white hover:bg-white/10 duration-200",
+            isMobile
+              ? "focus:ring-2 focus:ring-white/30"
+              : "focus:ring-2 focus:ring-white/20"
           )}
-          whileHover={{ scale: 1.1, rotate: 90 }}
-          whileTap={{ scale: 0.8, rotate: 180 }}
+          whileHover={isMobile ? undefined : { scale: 1.1, rotate: 90 }}
+          whileTap={isMobile ? { scale: 0.85 } : { scale: 0.8, rotate: 180 }}
           animate={
             isClosing
               ? {
-                  scale: 0.8,
-                  rotate: 360,
-                  opacity: 0.5,
-                  transition: { duration: 0.3 },
+                  scale: isMobile ? 0.7 : 0.8,
+                  rotate: isMobile ? 180 : 360,
+                  opacity: 0.3,
+                  transition: { duration: isMobile ? 0.2 : 0.3 },
                 }
               : {}
           }
