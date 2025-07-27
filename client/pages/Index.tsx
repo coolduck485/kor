@@ -7218,31 +7218,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           ))}
         </div>
 
-        {/* Communication Frequency Bars */}
-        <div className="absolute bottom-10 left-10 pointer-events-none">
-          <div className="flex items-end space-x-1 opacity-30">
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={`freq-bar-${i}`}
-                className="bg-blue-400 w-1 rounded-full"
-                style={{ height: `${Math.random() * 20 + 10}px` }}
-                animate={{
-                  height: [
-                    `${Math.random() * 20 + 10}px`,
-                    `${Math.random() * 40 + 20}px`,
-                    `${Math.random() * 20 + 10}px`,
-                  ],
-                }}
-                transition={{
-                  duration: 1.5,
-                  delay: i * 0.1,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            ))}
-          </div>
-        </div>
+
 
         {/* Live Status Indicators */}
         <div className="absolute top-10 right-10 pointer-events-none">
