@@ -889,7 +889,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█��█████████��███ 50%
+                      RAM: █���████��█��█████████�����██ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -7003,7 +7003,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         transition={{ duration: 0.3 }}
                       >
                         <div
-                          className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
+                          className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br mobile-lively-icon ${service.color}`}
                           style={{
                             boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
                           }}
