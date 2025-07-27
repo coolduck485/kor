@@ -4980,13 +4980,15 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           ))}
         </div>
 
-        {/* Floating UI Components Preview */}
+        {/* Floating UI Components Preview - Mobile Optimized */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             { type: "button", x: 20, y: 25, color: "from-blue-500 to-purple-500" },
             { type: "card", x: 75, y: 40, color: "from-green-500 to-blue-500" },
-            { type: "input", x: 15, y: 70, color: "from-purple-500 to-pink-500" },
-            { type: "toggle", x: 80, y: 20, color: "from-orange-500 to-red-500" },
+            ...(window.innerWidth >= 992 ? [
+              { type: "input", x: 15, y: 70, color: "from-purple-500 to-pink-500" },
+              { type: "toggle", x: 80, y: 20, color: "from-orange-500 to-red-500" },
+            ] : [])
           ].map((component, i) => (
             <motion.div
               key={`ui-component-${i}`}
@@ -4995,15 +4997,17 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 left: `${component.x}%`,
                 top: `${component.y}%`,
               }}
-              animate={{
+              animate={window.innerWidth < 992 ? {
+                y: [-4, 4, -4],
+              } : {
                 y: [-8, 8, -8],
                 rotateZ: [-1, 1, -1],
                 scale: [0.9, 1.1, 0.9],
               }}
               transition={{
-                duration: 3 + i,
+                duration: window.innerWidth < 992 ? 5 + i : 3 + i,
                 repeat: Infinity,
-                delay: i * 0.7,
+                delay: i * 1,
               }}
             >
               <div
@@ -7233,7 +7237,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             { icon: "📞", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
-            { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
+            { icon: "���", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
               key={`comm-icon-${i}`}
