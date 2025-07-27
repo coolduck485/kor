@@ -10,9 +10,9 @@ export function useMobilePerformance() {
   useEffect(() => {
     const checkDeviceType = () => {
       const width = window.innerWidth;
-      if (width <= 640) {
+      if (width <= 767) {
         setDeviceType("mobile");
-      } else if (width <= 991) {
+      } else if (width <= 1024) {
         setDeviceType("tablet");
       } else {
         setDeviceType("desktop");
