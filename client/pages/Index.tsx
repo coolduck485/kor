@@ -7260,51 +7260,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           ))}
         </div>
 
-        {/* Moving Message Bubbles - Circular Paths */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-4">
-          {[
-            { text: "Hello!", color: "bg-blue-500/20 border-blue-300/30", centerX: 30, centerY: 30, radius: 150, speed: 12 },
-            { text: "Let's chat", color: "bg-purple-500/20 border-purple-300/30", centerX: 70, centerY: 40, radius: 120, speed: 15 },
-            { text: "💡 Ideas", color: "bg-yellow-500/20 border-yellow-300/30", centerX: 40, centerY: 70, radius: 180, speed: 10 },
-            { text: "🚀 Ready", color: "bg-green-500/20 border-green-300/30", centerX: 60, centerY: 25, radius: 140, speed: 18 },
-          ].map((bubble, i) => (
-            <motion.div
-              key={`message-bubble-${i}`}
-              className={`absolute ${bubble.color} backdrop-blur-sm border rounded-full px-3 py-1.5 text-xs font-medium text-white`}
-              style={{
-                left: `${bubble.centerX}%`,
-                top: `${bubble.centerY}%`,
-              }}
-              animate={{
-                opacity: [0, 1, 1, 1, 0],
-                x: [
-                  0,
-                  Math.cos(0) * bubble.radius,
-                  Math.cos(Math.PI / 2) * bubble.radius,
-                  Math.cos(Math.PI) * bubble.radius,
-                  Math.cos(3 * Math.PI / 2) * bubble.radius,
-                  Math.cos(2 * Math.PI) * bubble.radius,
-                ],
-                y: [
-                  0,
-                  Math.sin(0) * bubble.radius * 0.6,
-                  Math.sin(Math.PI / 2) * bubble.radius * 0.6,
-                  Math.sin(Math.PI) * bubble.radius * 0.6,
-                  Math.sin(3 * Math.PI / 2) * bubble.radius * 0.6,
-                  Math.sin(2 * Math.PI) * bubble.radius * 0.6,
-                ],
-              }}
-              transition={{
-                duration: bubble.speed,
-                delay: i * 2,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              {bubble.text}
-            </motion.div>
-          ))}
-        </div>
+
 
 
 
