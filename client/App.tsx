@@ -11,6 +11,7 @@ import { RetroModeProvider } from "@/hooks/use-retro-mode";
 import { SolarSystemThemeProvider } from "@/hooks/use-solar-system-theme";
 import { UnifiedNotificationProvider } from "@/components/ui/unified-notification";
 import Index from "./pages/Index";
+import SolarSystem from "./pages/SolarSystem";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,7 +32,7 @@ const App = () => (
                   <Route path="/services" element={<Index />} />
                   <Route path="/portfolio" element={<Index />} />
                   <Route path="/contact" element={<Index />} />
-                  <Route path="/solar-system" element={<Index />} />
+                  <Route path="/solar-system" element={<SolarSystem />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
