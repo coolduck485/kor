@@ -282,10 +282,11 @@ const FloatingNotificationItem = React.forwardRef<
       {/* Main notification content */}
       <div
         className={cn(
-          "relative backdrop-blur-xl rounded-xl shadow-2xl transition-all duration-300",
-          "hover:shadow-glow-intense group-hover:scale-[1.02]",
+          "relative rounded-xl shadow-2xl transition-all",
+          isMobile
+            ? "backdrop-blur-md duration-200 p-3 pr-10 text-sm"
+            : "backdrop-blur-xl duration-300 hover:shadow-glow-intense group-hover:scale-[1.02] p-4 pr-12",
           "border border-transparent",
-          isMobile ? "p-3 pr-10 text-sm" : "p-4 pr-12", // More compact on mobile
         )}
         style={{
           background: "rgba(0, 0, 0, 0.4)",
