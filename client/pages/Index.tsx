@@ -928,7 +928,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►�����</span>
+                  <span className="text-green-400 ml-4">◄���◄►�������</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -4004,6 +4004,57 @@ const contactAnimationsCSS = `
 
   .animate-contact-comm-icon-float {
     animation: contact-comm-icon-float 6s ease-in-out infinite;
+  }
+
+  /* Mobile and Tablet Performance Optimizations */
+  @media (max-width: 991px) {
+    .animate-noise {
+      animation: none !important;
+      opacity: 0.02 !important;
+    }
+
+    .animate-aurora-wave-subtle,
+    .animate-aurora-wave-subtle-1,
+    .animate-aurora-wave-subtle-2 {
+      animation-duration: 60s !important;
+      opacity: 0.3 !important;
+    }
+
+    .animate-geometric-pulse {
+      animation-duration: 12s !important;
+    }
+
+    .animate-gentleFloat {
+      animation-duration: 8s !important;
+    }
+
+    .animate-sparkle {
+      animation: none !important;
+    }
+
+    /* Disable complex transforms on mobile */
+    .gpu-accelerated {
+      transform: none !important;
+      will-change: auto !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .animate-breath {
+      animation-duration: 10s !important;
+    }
+
+    .animate-subtle-glow {
+      animation-duration: 20s !important;
+    }
+
+    /* Further reduce animations on mobile */
+    .animate-aurora,
+    .animate-aurora-1,
+    .animate-aurora-2 {
+      animation: none !important;
+      opacity: 0.05 !important;
+    }
   }
 
   @keyframes bubble-bounce-enhanced {
