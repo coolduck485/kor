@@ -3137,6 +3137,8 @@ export default function Index() {
             ref={(el) => (sectionsRef.current[3] = el!)}
             theme={theme}
             isVisible={currentSection === 3}
+            isMobile={isMobile}
+            animationConfig={animationConfig}
           />
         </motion.div>
 
