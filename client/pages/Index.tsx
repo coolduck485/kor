@@ -887,7 +887,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������█████��███████ 60%
+                      CPU: █��������█��������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -953,7 +953,7 @@ export default function Index() {
                 transition={{ delay: 3, duration: 1 }}
               >
                 <div className="status-indicators">
-                  <span className="status-dot text-red-400">●</span>
+                  <span className="status-dot text-red-400">���</span>
                   <span>READY</span>
                   <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
@@ -1690,6 +1690,16 @@ export default function Index() {
         contain: "layout style paint",
       }}
     >
+      {/* Debug Panel - Remove in production */}
+      <div className="fixed top-2 left-2 z-50 bg-black/80 text-white text-xs p-2 rounded border border-white/20 backdrop-blur-sm max-w-xs">
+        <div>Device: {deviceType}</div>
+        <div>Width: {typeof window !== 'undefined' ? window.innerWidth : 'N/A'}</div>
+        <div>Mobile Hook: {isMobile ? 'Yes' : 'No'}</div>
+        <div>Safari: {isSafari ? 'Yes' : 'No'}</div>
+        <div>iOS: {isIOS ? 'Yes' : 'No'}</div>
+        <div>Mobile Safari: {isMobileSafari ? 'Yes' : 'No'}</div>
+      </div>
+
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
         <div
