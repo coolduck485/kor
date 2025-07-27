@@ -1558,7 +1558,8 @@
 
 /* Enhanced Mobile/Tablet Animations */
 @keyframes mobile-aurora-1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: skewY(-0.5deg) translateX(0px);
     opacity: 0.4;
   }
@@ -1577,7 +1578,8 @@
 }
 
 @keyframes mobile-aurora-2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: skewY(0.8deg) translateX(0px) translateY(0px);
     opacity: 0.3;
   }
@@ -1596,7 +1598,8 @@
 }
 
 @keyframes enhanced-mobile-float-1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px) scale(1);
     opacity: 0.8;
   }
@@ -1611,7 +1614,8 @@
 }
 
 @keyframes enhanced-mobile-float-2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
     opacity: 0.7;
   }
@@ -1626,7 +1630,8 @@
 }
 
 @keyframes enhanced-mobile-float-3 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) translateX(0px) scale(1);
     opacity: 0.6;
   }
@@ -1637,7 +1642,8 @@
 }
 
 @keyframes enhanced-mobile-pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.5;
   }
@@ -1648,7 +1654,8 @@
 }
 
 @keyframes enhanced-mobile-wave-1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: skewY(-1deg) rotate(0deg) translateX(0px);
     opacity: 0.35;
   }
@@ -1667,7 +1674,8 @@
 }
 
 @keyframes enhanced-mobile-wave-2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: skewY(-0.3deg) rotate(1.2deg) translateX(0px) translateY(0px);
     opacity: 0.3;
   }
@@ -1686,7 +1694,8 @@
 }
 
 @keyframes enhanced-mobile-wave-3 {
-  0%, 100% {
+  0%,
+  100% {
     transform: skewY(-0.1deg) rotate(2.4deg) translateX(0px);
     opacity: 0.25;
   }

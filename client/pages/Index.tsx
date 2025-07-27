@@ -89,11 +89,11 @@ export default function Index() {
 
   // Immediate test notification
   useEffect(() => {
-    console.log('Page loaded, showing immediate test notification...');
+    console.log("Page loaded, showing immediate test notification...");
     showError(
       "TEST NOTIFICATION",
       "If you can see this, the notification system works!",
-      0 // No auto-dismiss
+      0, // No auto-dismiss
     );
   }, []); // Only run once on mount
 
@@ -102,7 +102,7 @@ export default function Index() {
     if (!hasShownWelcomeRef.current) {
       hasShownWelcomeRef.current = true;
       setTimeout(() => {
-        console.log('Showing welcome notification...');
+        console.log("Showing welcome notification...");
         showInfo(
           "Welcome to KOR!",
           "Experience the future of modern web development. Click the X to dismiss.",
@@ -113,15 +113,17 @@ export default function Index() {
 
   // Mobile performance notification - shows only on mobile devices (≤640px)
   useEffect(() => {
-    console.log('Device type:', deviceType, 'Window width:', window.innerWidth); // Debug log
+    console.log("Device type:", deviceType, "Window width:", window.innerWidth); // Debug log
     if (deviceType === "mobile") {
-      console.log('Mobile device detected, showing performance notification...'); // Debug log
+      console.log(
+        "Mobile device detected, showing performance notification...",
+      ); // Debug log
       const timer = setTimeout(() => {
-        console.log('Triggering mobile performance notification...');
+        console.log("Triggering mobile performance notification...");
         showWarning(
           "Mobile Performance Mode",
           "Visual effects and animations have been limited to improve performance.",
-          6000 // Show for 6 seconds
+          6000, // Show for 6 seconds
         );
       }, 4000); // Show after 4 seconds
 
@@ -2204,9 +2206,10 @@ export default function Index() {
                     left: "-10%",
                     right: "-10%",
                     height: window.innerWidth <= 640 ? "80px" : "100px",
-                    background: window.innerWidth <= 640
-                      ? "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.4) 30%, rgba(59, 130, 246, 0.5) 50%, rgba(147, 51, 234, 0.4) 70%, transparent 100%)"
-                      : "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.5) 25%, rgba(59, 130, 246, 0.6) 40%, rgba(147, 51, 234, 0.5) 60%, rgba(236, 72, 153, 0.4) 75%, transparent 100%)",
+                    background:
+                      window.innerWidth <= 640
+                        ? "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.4) 30%, rgba(59, 130, 246, 0.5) 50%, rgba(147, 51, 234, 0.4) 70%, transparent 100%)"
+                        : "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.5) 25%, rgba(59, 130, 246, 0.6) 40%, rgba(147, 51, 234, 0.5) 60%, rgba(236, 72, 153, 0.4) 75%, transparent 100%)",
                     borderRadius: "50% 80% 40% 60% / 60% 40% 80% 20%",
                     filter: `blur(${window.innerWidth <= 640 ? "12px" : "15px"})`,
                     animation: "mobile-aurora-1 20s ease-in-out infinite",
@@ -2221,9 +2224,10 @@ export default function Index() {
                     left: "-15%",
                     right: "-15%",
                     height: window.innerWidth <= 640 ? "70px" : "90px",
-                    background: window.innerWidth <= 640
-                      ? "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.4) 35%, rgba(34, 197, 94, 0.5) 50%, rgba(59, 130, 246, 0.4) 65%, transparent 100%)"
-                      : "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.5) 20%, rgba(34, 197, 94, 0.6) 35%, rgba(147, 51, 234, 0.5) 50%, rgba(236, 72, 153, 0.4) 65%, rgba(245, 158, 11, 0.3) 80%, transparent 100%)",
+                    background:
+                      window.innerWidth <= 640
+                        ? "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.4) 35%, rgba(34, 197, 94, 0.5) 50%, rgba(59, 130, 246, 0.4) 65%, transparent 100%)"
+                        : "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.5) 20%, rgba(34, 197, 94, 0.6) 35%, rgba(147, 51, 234, 0.5) 50%, rgba(236, 72, 153, 0.4) 65%, rgba(245, 158, 11, 0.3) 80%, transparent 100%)",
                     borderRadius: "40% 70% 60% 30% / 70% 30% 40% 80%",
                     filter: `blur(${window.innerWidth <= 640 ? "10px" : "14px"})`,
                     animation: "mobile-aurora-2 25s ease-in-out infinite 5s",
@@ -2241,12 +2245,14 @@ export default function Index() {
                     style={{
                       left: `${8 + ((i * 12) % 84)}%`,
                       top: `${10 + ((i * 15) % 80)}%`,
-                      width: window.innerWidth <= 640
-                        ? `${6 + (i % 3) * 2}px`
-                        : `${8 + (i % 4) * 2}px`,
-                      height: window.innerWidth <= 640
-                        ? `${6 + (i % 3) * 2}px`
-                        : `${8 + (i % 4) * 2}px`,
+                      width:
+                        window.innerWidth <= 640
+                          ? `${6 + (i % 3) * 2}px`
+                          : `${8 + (i % 4) * 2}px`,
+                      height:
+                        window.innerWidth <= 640
+                          ? `${6 + (i % 3) * 2}px`
+                          : `${8 + (i % 4) * 2}px`,
                       background: [
                         "radial-gradient(circle, rgba(34, 197, 94, 0.9) 0%, rgba(34, 197, 94, 0.3) 50%, transparent 80%)",
                         "radial-gradient(circle, rgba(59, 130, 246, 0.9) 0%, rgba(59, 130, 246, 0.3) 50%, transparent 80%)",
@@ -2268,8 +2274,10 @@ export default function Index() {
                 <div
                   className="w-full h-full rounded-full"
                   style={{
-                    background: "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, rgba(59, 130, 246, 0.5) 40%, rgba(147, 51, 234, 0.2) 70%, transparent 90%)",
-                    animation: "enhanced-mobile-pulse 3.5s ease-in-out infinite",
+                    background:
+                      "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, rgba(59, 130, 246, 0.5) 40%, rgba(147, 51, 234, 0.2) 70%, transparent 90%)",
+                    animation:
+                      "enhanced-mobile-pulse 3.5s ease-in-out infinite",
                     filter: "blur(6px)",
                   }}
                 />
@@ -2278,8 +2286,10 @@ export default function Index() {
                 <div
                   className="w-full h-full rounded-full"
                   style={{
-                    background: "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(236, 72, 153, 0.5) 40%, rgba(245, 158, 11, 0.2) 70%, transparent 90%)",
-                    animation: "enhanced-mobile-pulse 3s ease-in-out infinite 0.8s",
+                    background:
+                      "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(236, 72, 153, 0.5) 40%, rgba(245, 158, 11, 0.2) 70%, transparent 90%)",
+                    animation:
+                      "enhanced-mobile-pulse 3s ease-in-out infinite 0.8s",
                     filter: "blur(5px)",
                   }}
                 />
@@ -2288,8 +2298,10 @@ export default function Index() {
                 <div
                   className="w-full h-full rounded-full"
                   style={{
-                    background: "radial-gradient(circle, rgba(6, 182, 212, 0.8) 0%, rgba(34, 197, 94, 0.5) 40%, rgba(59, 130, 246, 0.2) 70%, transparent 90%)",
-                    animation: "enhanced-mobile-pulse 4s ease-in-out infinite 1.5s",
+                    background:
+                      "radial-gradient(circle, rgba(6, 182, 212, 0.8) 0%, rgba(34, 197, 94, 0.5) 40%, rgba(59, 130, 246, 0.2) 70%, transparent 90%)",
+                    animation:
+                      "enhanced-mobile-pulse 4s ease-in-out infinite 1.5s",
                     filter: "blur(7px)",
                   }}
                 />
@@ -2298,8 +2310,10 @@ export default function Index() {
                 <div
                   className="w-full h-full rounded-full"
                   style={{
-                    background: "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(245, 158, 11, 0.5) 40%, rgba(34, 197, 94, 0.2) 70%, transparent 90%)",
-                    animation: "enhanced-mobile-pulse 3.2s ease-in-out infinite 0.3s",
+                    background:
+                      "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(245, 158, 11, 0.5) 40%, rgba(34, 197, 94, 0.2) 70%, transparent 90%)",
+                    animation:
+                      "enhanced-mobile-pulse 3.2s ease-in-out infinite 0.3s",
                     filter: "blur(4px)",
                   }}
                 />
@@ -2314,14 +2328,15 @@ export default function Index() {
                     style={{
                       top: `${15 + i * 30}%`,
                       height: window.innerWidth <= 640 ? "120px" : "140px",
-                      background: window.innerWidth <= 640
-                        ? `linear-gradient(110deg,
+                      background:
+                        window.innerWidth <= 640
+                          ? `linear-gradient(110deg,
                             transparent 0%,
                             rgba(34, 197, 94, ${0.3 + i * 0.1}) 30%,
                             rgba(59, 130, 246, ${0.4 + i * 0.1}) 50%,
                             rgba(147, 51, 234, ${0.3 + i * 0.1}) 70%,
                             transparent 100%)`
-                        : `linear-gradient(115deg,
+                          : `linear-gradient(115deg,
                             transparent 0%,
                             rgba(34, 197, 94, ${0.35 + i * 0.1}) 25%,
                             rgba(59, 130, 246, ${0.45 + i * 0.1}) 40%,
@@ -5178,140 +5193,145 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {screenSize === "desktop" && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {[...Array(8)].map((_, i) => (
-            <motion.div
-              key={`code-block-${i}`}
-              className="absolute"
-              style={{
-                left: `${10 + ((i * 75) % 80)}%`,
-                top: `${15 + ((i * 45) % 70)}%`,
-                width: `${60 + (i % 3) * 20}px`,
-                height: `${30 + (i % 2) * 15}px`,
-                opacity: 0.3,
-              }}
-              animate={{
-                y: [-10, 10, -10],
-                x: [-5, 5, -5],
-                rotateZ: [-2, 2, -2],
-              }}
-              transition={{
-                duration: 4 + (i % 3),
-                repeat: Infinity,
-                delay: i * 0.5,
-              }}
-            >
-              <div
-                className="w-full h-full rounded-lg border-2 backdrop-blur-sm"
+              <motion.div
+                key={`code-block-${i}`}
+                className="absolute"
                 style={{
-                  background: "rgba(30, 30, 50, 0.6)",
-                  border: "2px solid rgba(73, 146, 255, 0.3)",
-                  boxShadow: "0 0 15px rgba(73, 146, 255, 0.2)",
+                  left: `${10 + ((i * 75) % 80)}%`,
+                  top: `${15 + ((i * 45) % 70)}%`,
+                  width: `${60 + (i % 3) * 20}px`,
+                  height: `${30 + (i % 2) * 15}px`,
+                  opacity: 0.3,
+                }}
+                animate={{
+                  y: [-10, 10, -10],
+                  x: [-5, 5, -5],
+                  rotateZ: [-2, 2, -2],
+                }}
+                transition={{
+                  duration: 4 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.5,
                 }}
               >
-                {/* Simulated code lines */}
-                <div className="p-2 space-y-1">
-                  {[...Array(2 + (i % 2))].map((_, lineIndex) => (
-                    <div
-                      key={lineIndex}
-                      className="h-1 rounded-full opacity-80"
-                      style={{
-                        width: `${50 + (((lineIndex + i) * 30) % 50)}%`,
-                        background: [
-                          "linear-gradient(90deg, #22d3ee, #60a5fa)",
-                          "linear-gradient(90deg, #10b981, #22d3ee)",
-                          "linear-gradient(90deg, #f59e0b, #ef4444)",
-                          "linear-gradient(90deg, #8b5cf6, #ec4899)",
-                        ][lineIndex % 4],
-                      }}
-                    />
-                  ))}
+                <div
+                  className="w-full h-full rounded-lg border-2 backdrop-blur-sm"
+                  style={{
+                    background: "rgba(30, 30, 50, 0.6)",
+                    border: "2px solid rgba(73, 146, 255, 0.3)",
+                    boxShadow: "0 0 15px rgba(73, 146, 255, 0.2)",
+                  }}
+                >
+                  {/* Simulated code lines */}
+                  <div className="p-2 space-y-1">
+                    {[...Array(2 + (i % 2))].map((_, lineIndex) => (
+                      <div
+                        key={lineIndex}
+                        className="h-1 rounded-full opacity-80"
+                        style={{
+                          width: `${50 + (((lineIndex + i) * 30) % 50)}%`,
+                          background: [
+                            "linear-gradient(90deg, #22d3ee, #60a5fa)",
+                            "linear-gradient(90deg, #10b981, #22d3ee)",
+                            "linear-gradient(90deg, #f59e0b, #ef4444)",
+                            "linear-gradient(90deg, #8b5cf6, #ec4899)",
+                          ][lineIndex % 4],
+                        }}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
           </div>
         )}
 
         {/* Floating UI Components Preview - Desktop Only for Performance */}
         {screenSize === "desktop" && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[
-            {
-              type: "button",
-              x: 20,
-              y: 25,
-              color: "from-blue-500 to-purple-500",
-            },
-            { type: "card", x: 75, y: 40, color: "from-green-500 to-blue-500" },
-            ...(window.innerWidth >= 992
-              ? [
-                  {
-                    type: "input",
-                    x: 15,
-                    y: 70,
-                    color: "from-purple-500 to-pink-500",
-                  },
-                  {
-                    type: "toggle",
-                    x: 80,
-                    y: 20,
-                    color: "from-orange-500 to-red-500",
-                  },
-                ]
-              : []),
-          ].map((component, i) => (
-            <motion.div
-              key={`ui-component-${i}`}
-              className="absolute"
-              style={{
-                left: `${component.x}%`,
-                top: `${component.y}%`,
-              }}
-              animate={
-                window.innerWidth < 992
-                  ? {
-                      y: [-4, 4, -4],
-                    }
-                  : {
-                      y: [-8, 8, -8],
-                      rotateZ: [-1, 1, -1],
-                      scale: [0.9, 1.1, 0.9],
-                    }
-              }
-              transition={{
-                duration: window.innerWidth < 992 ? 5 + i : 3 + i,
-                repeat: Infinity,
-                delay: i * 1,
-              }}
-            >
-              <div
-                className={`w-16 h-8 rounded-lg bg-gradient-to-r ${component.color} opacity-40 backdrop-blur-sm border border-white/20`}
+            {[
+              {
+                type: "button",
+                x: 20,
+                y: 25,
+                color: "from-blue-500 to-purple-500",
+              },
+              {
+                type: "card",
+                x: 75,
+                y: 40,
+                color: "from-green-500 to-blue-500",
+              },
+              ...(window.innerWidth >= 992
+                ? [
+                    {
+                      type: "input",
+                      x: 15,
+                      y: 70,
+                      color: "from-purple-500 to-pink-500",
+                    },
+                    {
+                      type: "toggle",
+                      x: 80,
+                      y: 20,
+                      color: "from-orange-500 to-red-500",
+                    },
+                  ]
+                : []),
+            ].map((component, i) => (
+              <motion.div
+                key={`ui-component-${i}`}
+                className="absolute"
                 style={{
-                  boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                  left: `${component.x}%`,
+                  top: `${component.y}%`,
+                }}
+                animate={
+                  window.innerWidth < 992
+                    ? {
+                        y: [-4, 4, -4],
+                      }
+                    : {
+                        y: [-8, 8, -8],
+                        rotateZ: [-1, 1, -1],
+                        scale: [0.9, 1.1, 0.9],
+                      }
+                }
+                transition={{
+                  duration: window.innerWidth < 992 ? 5 + i : 3 + i,
+                  repeat: Infinity,
+                  delay: i * 1,
                 }}
               >
-                {component.type === "button" && (
-                  <div className="w-full h-full flex items-center justify-center text-white text-xs font-semibold">
-                    BTN
-                  </div>
-                )}
-                {component.type === "card" && (
-                  <div className="p-1">
-                    <div className="h-1 bg-white/40 rounded mb-0.5" />
-                    <div className="h-0.5 bg-white/30 rounded w-3/4" />
-                  </div>
-                )}
-                {component.type === "input" && (
-                  <div className="w-full h-full border-2 border-white/30 rounded-lg bg-white/10" />
-                )}
-                {component.type === "toggle" && (
-                  <div className="w-full h-full flex items-center justify-between px-1">
-                    <div className="w-2 h-2 bg-white/60 rounded-full" />
-                    <div className="w-2 h-2 bg-white/30 rounded-full" />
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          ))}
+                <div
+                  className={`w-16 h-8 rounded-lg bg-gradient-to-r ${component.color} opacity-40 backdrop-blur-sm border border-white/20`}
+                  style={{
+                    boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                  }}
+                >
+                  {component.type === "button" && (
+                    <div className="w-full h-full flex items-center justify-center text-white text-xs font-semibold">
+                      BTN
+                    </div>
+                  )}
+                  {component.type === "card" && (
+                    <div className="p-1">
+                      <div className="h-1 bg-white/40 rounded mb-0.5" />
+                      <div className="h-0.5 bg-white/30 rounded w-3/4" />
+                    </div>
+                  )}
+                  {component.type === "input" && (
+                    <div className="w-full h-full border-2 border-white/30 rounded-lg bg-white/10" />
+                  )}
+                  {component.type === "toggle" && (
+                    <div className="w-full h-full flex items-center justify-between px-1">
+                      <div className="w-2 h-2 bg-white/60 rounded-full" />
+                      <div className="w-2 h-2 bg-white/30 rounded-full" />
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
           </div>
         )}
 
@@ -5319,42 +5339,43 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {screenSize === "desktop" && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={`data-stream-${i}`}
-              className="absolute"
-              style={{
-                left: `${10 + ((i * 80) % 80)}%`,
-                top: "0%",
-                height: "100%",
-                width: window.innerWidth < 992 ? "1px" : "2px",
-              }}
-            >
               <motion.div
-                className="w-full rounded-full"
+                key={`data-stream-${i}`}
+                className="absolute"
                 style={{
-                  height: window.innerWidth < 992 ? "30px" : "40px",
-                  opacity: window.innerWidth < 992 ? 0.4 : 0.6,
-                  background: `linear-gradient(180deg,
+                  left: `${10 + ((i * 80) % 80)}%`,
+                  top: "0%",
+                  height: "100%",
+                  width: window.innerWidth < 992 ? "1px" : "2px",
+                }}
+              >
+                <motion.div
+                  className="w-full rounded-full"
+                  style={{
+                    height: window.innerWidth < 992 ? "30px" : "40px",
+                    opacity: window.innerWidth < 992 ? 0.4 : 0.6,
+                    background: `linear-gradient(180deg,
                     rgba(73, 146, 255, 0.8) 0%,
                     rgba(34, 211, 238, 0.6) 50%,
                     transparent 100%)`,
-                  boxShadow:
-                    window.innerWidth < 992
-                      ? "0 0 5px rgba(73, 146, 255, 0.3)"
-                      : "0 0 10px rgba(73, 146, 255, 0.4)",
-                }}
-                animate={{
-                  y: ["-50px", "calc(100vh + 50px)"],
-                }}
-                transition={{
-                  duration: window.innerWidth < 992 ? 5 + (i % 2) : 3 + (i % 3),
-                  repeat: Infinity,
-                  delay: i * 1,
-                  ease: "linear",
-                }}
-              />
-            </motion.div>
-          ))}
+                    boxShadow:
+                      window.innerWidth < 992
+                        ? "0 0 5px rgba(73, 146, 255, 0.3)"
+                        : "0 0 10px rgba(73, 146, 255, 0.4)",
+                  }}
+                  animate={{
+                    y: ["-50px", "calc(100vh + 50px)"],
+                  }}
+                  transition={{
+                    duration:
+                      window.innerWidth < 992 ? 5 + (i % 2) : 3 + (i % 3),
+                    repeat: Infinity,
+                    delay: i * 1,
+                    ease: "linear",
+                  }}
+                />
+              </motion.div>
+            ))}
           </div>
         )}
 
@@ -6146,97 +6167,97 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Service Icons with Orbit Animation - Desktop Only for Performance */}
         {screenSize === "desktop" && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[
-            {
-              Icon: Globe,
-              color: "from-blue-500 to-cyan-500",
-              x: 85,
-              y: 20,
-              delay: 0,
-            },
-            {
-              Icon: Smartphone,
-              color: "from-purple-500 to-pink-500",
-              x: 15,
-              y: 30,
-              delay: 1,
-            },
-            ...(window.innerWidth >= 992
-              ? [
-                  {
-                    Icon: Palette,
-                    color: "from-green-500 to-emerald-500",
-                    x: 80,
-                    y: 65,
-                    delay: 2,
-                  },
-                  {
-                    Icon: Zap,
-                    color: "from-orange-500 to-red-500",
-                    x: 10,
-                    y: 70,
-                    delay: 3,
-                  },
-                  {
-                    Icon: Users,
-                    color: "from-indigo-500 to-purple-500",
-                    x: 85,
-                    y: 85,
-                    delay: 4,
-                  },
-                  {
-                    Icon: Code,
-                    color: "from-teal-500 to-blue-500",
-                    x: 15,
-                    y: 15,
-                    delay: 5,
-                  },
-                ]
-              : [
-                  {
-                    Icon: Palette,
-                    color: "from-green-500 to-emerald-500",
-                    x: 75,
-                    y: 75,
-                    delay: 2,
-                  },
-                ]),
-          ].map((service, i) => (
-            <motion.div
-              key={`floating-service-${i}`}
-              className="absolute"
-              style={{
-                left: `${service.x}%`,
-                top: `${service.y}%`,
-              }}
-              animate={
-                window.innerWidth < 992
-                  ? {
-                      y: [-8, 8, -8],
-                    }
-                  : {
-                      y: [-15, 15, -15],
-                      x: [-8, 8, -8],
-                      rotateZ: [-10, 10, -10],
-                      scale: [0.8, 1.2, 0.8],
-                    }
-              }
-              transition={{
-                duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
-                repeat: Infinity,
-                delay: service.delay * (window.innerWidth < 992 ? 1 : 0.5),
-              }}
-            >
-              <div
-                className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} opacity-40 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+            {[
+              {
+                Icon: Globe,
+                color: "from-blue-500 to-cyan-500",
+                x: 85,
+                y: 20,
+                delay: 0,
+              },
+              {
+                Icon: Smartphone,
+                color: "from-purple-500 to-pink-500",
+                x: 15,
+                y: 30,
+                delay: 1,
+              },
+              ...(window.innerWidth >= 992
+                ? [
+                    {
+                      Icon: Palette,
+                      color: "from-green-500 to-emerald-500",
+                      x: 80,
+                      y: 65,
+                      delay: 2,
+                    },
+                    {
+                      Icon: Zap,
+                      color: "from-orange-500 to-red-500",
+                      x: 10,
+                      y: 70,
+                      delay: 3,
+                    },
+                    {
+                      Icon: Users,
+                      color: "from-indigo-500 to-purple-500",
+                      x: 85,
+                      y: 85,
+                      delay: 4,
+                    },
+                    {
+                      Icon: Code,
+                      color: "from-teal-500 to-blue-500",
+                      x: 15,
+                      y: 15,
+                      delay: 5,
+                    },
+                  ]
+                : [
+                    {
+                      Icon: Palette,
+                      color: "from-green-500 to-emerald-500",
+                      x: 75,
+                      y: 75,
+                      delay: 2,
+                    },
+                  ]),
+            ].map((service, i) => (
+              <motion.div
+                key={`floating-service-${i}`}
+                className="absolute"
                 style={{
-                  boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
+                  left: `${service.x}%`,
+                  top: `${service.y}%`,
+                }}
+                animate={
+                  window.innerWidth < 992
+                    ? {
+                        y: [-8, 8, -8],
+                      }
+                    : {
+                        y: [-15, 15, -15],
+                        x: [-8, 8, -8],
+                        rotateZ: [-10, 10, -10],
+                        scale: [0.8, 1.2, 0.8],
+                      }
+                }
+                transition={{
+                  duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
+                  repeat: Infinity,
+                  delay: service.delay * (window.innerWidth < 992 ? 1 : 0.5),
                 }}
               >
-                <service.Icon className="w-8 h-8 text-white drop-shadow-lg" />
-              </div>
-            </motion.div>
-          ))}
+                <div
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} opacity-40 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+                  style={{
+                    boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
+                  }}
+                >
+                  <service.Icon className="w-8 h-8 text-white drop-shadow-lg" />
+                </div>
+              </motion.div>
+            ))}
           </div>
         )}
 
@@ -6244,67 +6265,68 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {screenSize === "desktop" && (
           <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
             {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={`skill-ring-${i}`}
-              className="absolute rounded-full border-2"
-              style={{
-                width:
-                  window.innerWidth < 992
-                    ? `${250 + i * 80}px`
-                    : `${300 + i * 100}px`,
-                height:
-                  window.innerWidth < 992
-                    ? `${250 + i * 80}px`
-                    : `${300 + i * 100}px`,
-                border: `${window.innerWidth < 992 ? "1px" : "2px"} solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
-                opacity: window.innerWidth < 992 ? 0.15 : 0.2,
-              }}
-              animate={{
-                rotateZ: i % 2 === 0 ? [0, 360] : [360, 0],
-              }}
-              transition={{
-                duration: window.innerWidth < 992 ? 30 + i * 15 : 20 + i * 10,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              {/* Skill indicators on the ring - Reduced for mobile */}
-              {[...Array(window.innerWidth < 992 ? 4 : 6)].map(
-                (_, skillIndex) => (
-                  <motion.div
-                    key={`skill-indicator-${i}-${skillIndex}`}
-                    className="absolute rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"
-                    style={{
-                      width: window.innerWidth < 992 ? "2px" : "12px",
-                      height: window.innerWidth < 992 ? "2px" : "12px",
-                      left: `${50 + 45 * Math.cos((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
-                      top: `${50 + 45 * Math.sin((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
-                      transform: "translate(-50%, -50%)",
-                      boxShadow:
+              <motion.div
+                key={`skill-ring-${i}`}
+                className="absolute rounded-full border-2"
+                style={{
+                  width:
+                    window.innerWidth < 992
+                      ? `${250 + i * 80}px`
+                      : `${300 + i * 100}px`,
+                  height:
+                    window.innerWidth < 992
+                      ? `${250 + i * 80}px`
+                      : `${300 + i * 100}px`,
+                  border: `${window.innerWidth < 992 ? "1px" : "2px"} solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
+                  opacity: window.innerWidth < 992 ? 0.15 : 0.2,
+                }}
+                animate={{
+                  rotateZ: i % 2 === 0 ? [0, 360] : [360, 0],
+                }}
+                transition={{
+                  duration: window.innerWidth < 992 ? 30 + i * 15 : 20 + i * 10,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                {/* Skill indicators on the ring - Reduced for mobile */}
+                {[...Array(window.innerWidth < 992 ? 4 : 6)].map(
+                  (_, skillIndex) => (
+                    <motion.div
+                      key={`skill-indicator-${i}-${skillIndex}`}
+                      className="absolute rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"
+                      style={{
+                        width: window.innerWidth < 992 ? "2px" : "12px",
+                        height: window.innerWidth < 992 ? "2px" : "12px",
+                        left: `${50 + 45 * Math.cos((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
+                        top: `${50 + 45 * Math.sin((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
+                        transform: "translate(-50%, -50%)",
+                        boxShadow:
+                          window.innerWidth < 992
+                            ? "0 0 5px rgba(73, 146, 255, 0.4)"
+                            : "0 0 10px rgba(73, 146, 255, 0.6)",
+                      }}
+                      animate={
                         window.innerWidth < 992
-                          ? "0 0 5px rgba(73, 146, 255, 0.4)"
-                          : "0 0 10px rgba(73, 146, 255, 0.6)",
-                    }}
-                    animate={
-                      window.innerWidth < 992
-                        ? {
-                            opacity: [0.6, 1, 0.6],
-                          }
-                        : {
-                            scale: [0.8, 1.2, 0.8],
-                            opacity: [0.4, 1, 0.4],
-                          }
-                    }
-                    transition={{
-                      duration: window.innerWidth < 992 ? 3 : 2,
-                      repeat: Infinity,
-                      delay: skillIndex * (window.innerWidth < 992 ? 0.5 : 0.3),
-                    }}
-                  />
-                ),
-              )}
-            </motion.div>
-          ))}
+                          ? {
+                              opacity: [0.6, 1, 0.6],
+                            }
+                          : {
+                              scale: [0.8, 1.2, 0.8],
+                              opacity: [0.4, 1, 0.4],
+                            }
+                      }
+                      transition={{
+                        duration: window.innerWidth < 992 ? 3 : 2,
+                        repeat: Infinity,
+                        delay:
+                          skillIndex * (window.innerWidth < 992 ? 0.5 : 0.3),
+                      }}
+                    />
+                  ),
+                )}
+              </motion.div>
+            ))}
           </div>
         )}
 
@@ -6401,7 +6423,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 }}
               />
             </motion.div>
-        ))}
+          ))}
         </div>
 
         {/* Colorful Floating Orbs for Mobile/Tablet (replacing heavy particles) */}
@@ -6596,26 +6618,27 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 />
 
                 {/* Floating energy particles around text - Desktop Only */}
-                {screenSize === "desktop" && [...Array(8)].map((_, i) => (
-                  <div
-                    key={`energy-${i}`}
-                    className="absolute rounded-full pointer-events-none"
-                    style={{
-                      left: `${20 + ((i * 60) % 160)}%`,
-                      top: `${30 + ((i * 40) % 60)}%`,
-                      width: `${3 + (i % 2)}px`,
-                      height: `${3 + (i % 2)}px`,
-                      background:
-                        theme === "light"
-                          ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
-                          : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
-                      animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
-                      filter: "blur(0.5px)",
+                {screenSize === "desktop" &&
+                  [...Array(8)].map((_, i) => (
+                    <div
+                      key={`energy-${i}`}
+                      className="absolute rounded-full pointer-events-none"
+                      style={{
+                        left: `${20 + ((i * 60) % 160)}%`,
+                        top: `${30 + ((i * 40) % 60)}%`,
+                        width: `${3 + (i % 2)}px`,
+                        height: `${3 + (i % 2)}px`,
+                        background:
+                          theme === "light"
+                            ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
+                            : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
+                        animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                        filter: "blur(0.5px)",
 
-                      animationTimingFunction: "ease-in-out",
-                    }}
-                  />
-                ))}
+                        animationTimingFunction: "ease-in-out",
+                      }}
+                    />
+                  ))}
 
                 <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10">
                   <span
@@ -6898,7 +6921,12 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 rotation: -15,
                 color: "from-purple-500 to-pink-500",
               },
-              { x: 85, y: 25, rotation: 12, color: "from-blue-500 to-cyan-500" },
+              {
+                x: 85,
+                y: 25,
+                rotation: 12,
+                color: "from-blue-500 to-cyan-500",
+              },
               {
                 x: 15,
                 y: 70,
@@ -7071,97 +7099,101 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 y: 15,
                 color: "from-yellow-500 to-orange-500",
               },
-            {
-              icon: "⭐",
-              label: "Featured",
-              x: 88,
-              y: 18,
-              color: "from-blue-500 to-purple-500",
-            },
-            {
-              icon: "🚀",
-              label: "Launch",
-              x: 12,
-              y: 85,
-              color: "from-green-500 to-blue-500",
-            },
-            {
-              icon: "💎",
-              label: "Premium",
-              x: 85,
-              y: 82,
-              color: "from-purple-500 to-pink-500",
-            },
-          ].map((badge, i) => (
-            <motion.div
-              key={`achievement-${i}`}
-              className="absolute"
-              style={{
-                left: `${badge.x}%`,
-                top: `${badge.y}%`,
-              }}
-              animate={{
-                y: [-8, 8, -8],
-                rotateZ: [-5, 5, -5],
-                scale: [0.9, 1.1, 0.9],
-              }}
-              transition={{
-                duration: 3 + (i % 2),
-                repeat: Infinity,
-                delay: i * 0.7,
-              }}
-            >
-              <div
-                className={`w-12 h-12 rounded-full bg-gradient-to-br ${badge.color} opacity-50 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+              {
+                icon: "⭐",
+                label: "Featured",
+                x: 88,
+                y: 18,
+                color: "from-blue-500 to-purple-500",
+              },
+              {
+                icon: "🚀",
+                label: "Launch",
+                x: 12,
+                y: 85,
+                color: "from-green-500 to-blue-500",
+              },
+              {
+                icon: "💎",
+                label: "Premium",
+                x: 85,
+                y: 82,
+                color: "from-purple-500 to-pink-500",
+              },
+            ].map((badge, i) => (
+              <motion.div
+                key={`achievement-${i}`}
+                className="absolute"
                 style={{
-                  boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                  left: `${badge.x}%`,
+                  top: `${badge.y}%`,
+                }}
+                animate={{
+                  y: [-8, 8, -8],
+                  rotateZ: [-5, 5, -5],
+                  scale: [0.9, 1.1, 0.9],
+                }}
+                transition={{
+                  duration: 3 + (i % 2),
+                  repeat: Infinity,
+                  delay: i * 0.7,
                 }}
               >
-                <span className="text-lg">{badge.icon}</span>
-              </div>
-            </motion.div>
-          ))}
+                <div
+                  className={`w-12 h-12 rounded-full bg-gradient-to-br ${badge.color} opacity-50 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+                  style={{
+                    boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                  }}
+                >
+                  <span className="text-lg">{badge.icon}</span>
+                </div>
+              </motion.div>
+            ))}
           </div>
         )}
 
         {/* Interactive Network Connections - Desktop Only */}
         {screenSize === "desktop" && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <svg className="absolute w-full h-full opacity-20">
-            {/* Dynamic connecting lines between floating elements */}
-            {[...Array(6)].map((_, i) => {
-              const startX = 20 + ((i * 120) % 80);
-              const startY = 30 + ((i * 80) % 60);
-              const endX = 40 + (((i + 1) * 130) % 80);
-              const endY = 50 + (((i + 1) * 90) % 60);
+            <svg className="absolute w-full h-full opacity-20">
+              {/* Dynamic connecting lines between floating elements */}
+              {[...Array(6)].map((_, i) => {
+                const startX = 20 + ((i * 120) % 80);
+                const startY = 30 + ((i * 80) % 60);
+                const endX = 40 + (((i + 1) * 130) % 80);
+                const endY = 50 + (((i + 1) * 90) % 60);
 
-              return (
-                <motion.line
-                  key={`connection-${i}`}
-                  x1={`${startX}%`}
-                  y1={`${startY}%`}
-                  x2={`${endX}%`}
-                  y2={`${endY}%`}
-                  stroke="rgba(73, 146, 255, 0.4)"
-                  strokeWidth="1"
-                  strokeDasharray="5 5"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: [0, 1, 0] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    delay: i * 0.5,
-                  }}
-                />
-              );
-            })}
-          </svg>
+                return (
+                  <motion.line
+                    key={`connection-${i}`}
+                    x1={`${startX}%`}
+                    y1={`${startY}%`}
+                    x2={`${endX}%`}
+                    y2={`${endY}%`}
+                    stroke="rgba(73, 146, 255, 0.4)"
+                    strokeWidth="1"
+                    strokeDasharray="5 5"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: [0, 1, 0] }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      delay: i * 0.5,
+                    }}
+                  />
+                );
+              })}
+            </svg>
           </div>
         )}
 
         {/* Enhanced Floating Ambient Particles with Color Shifting - Reduced for Mobile/Tablet */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(screenSize === "desktop" ? 12 : screenSize === "tablet" ? 4 : 2)].map((_, i) => (
+          {[
+            ...Array(
+              screenSize === "desktop" ? 12 : screenSize === "tablet" ? 4 : 2,
+            ),
+          ].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute rounded-full opacity-60"
@@ -7344,20 +7376,20 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
                     }}
                   >
-                    <span className={`warm-glow-text ${animationConfig?.enableTextGlow ? 'animate-warm-glow-pulse' : ''}`}>
-                      {animationConfig?.enableLetterAnimations ? (
-                        "Our Featured Work".split("").map((letter, i) => (
-                          <span
-                            key={i}
-                            className="animate-letter-float"
-                            style={{ animationDelay: `${i * 0.1}s` }}
-                          >
-                            {letter === " " ? "\u00A0" : letter}
-                          </span>
-                        ))
-                      ) : (
-                        "Our Featured Work"
-                      )}
+                    <span
+                      className={`warm-glow-text ${animationConfig?.enableTextGlow ? "animate-warm-glow-pulse" : ""}`}
+                    >
+                      {animationConfig?.enableLetterAnimations
+                        ? "Our Featured Work".split("").map((letter, i) => (
+                            <span
+                              key={i}
+                              className="animate-letter-float"
+                              style={{ animationDelay: `${i * 0.1}s` }}
+                            >
+                              {letter === " " ? "\u00A0" : letter}
+                            </span>
+                          ))
+                        : "Our Featured Work"}
                     </span>
                   </span>
                 </div>
