@@ -429,6 +429,69 @@
   }
 }
 
+/* Pink Container - Complete Separation */
+.pink-container {
+  /* Override all default variables with pink theme */
+  --background: 340 15% 5%;
+  --foreground: 340 30% 95%;
+  --card: 340 20% 8%;
+  --card-foreground: 340 25% 92%;
+  --popover: 340 25% 10%;
+  --popover-foreground: 340 30% 95%;
+  --primary: 340 75% 68%;
+  --primary-foreground: 340 15% 5%;
+  --secondary: 340 25% 15%;
+  --secondary-foreground: 340 70% 85%;
+  --muted: 340 20% 12%;
+  --muted-foreground: 340 40% 70%;
+  --accent: 340 82% 75%;
+  --accent-foreground: 340 15% 5%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 340 30% 95%;
+  --border: 340 30% 25%;
+  --input: 340 25% 15%;
+  --ring: 340 75% 68%;
+
+  /* Pink specific styles */
+  background:
+    radial-gradient(ellipse at top left, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(244, 114, 182, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at center, rgba(190, 24, 93, 0.08) 0%, transparent 70%),
+    linear-gradient(180deg, hsl(340, 15%, 5%) 0%, hsl(340, 12%, 3%) 100%);
+  background-attachment: fixed;
+
+  /* Ensure pink theme affects all children */
+  color: hsl(var(--foreground));
+}
+
+.pink-container * {
+  border-color: hsl(var(--border));
+}
+
+.pink-container .bg-background {
+  background-color: hsl(var(--background)) !important;
+}
+
+.pink-container .text-foreground {
+  color: hsl(var(--foreground)) !important;
+}
+
+.pink-container .bg-card {
+  background-color: hsl(var(--card)) !important;
+}
+
+.pink-container .bg-primary {
+  background-color: hsl(var(--primary)) !important;
+}
+
+.pink-container .text-primary {
+  color: hsl(var(--primary)) !important;
+}
+
+.pink-container .border-border {
+  border-color: hsl(var(--border)) !important;
+}
+
 @layer base {
   * {
     @apply border-border;
