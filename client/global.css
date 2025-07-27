@@ -464,24 +464,24 @@
   background-image:
     radial-gradient(
       circle at 25% 25%,
-      rgba(236, 72, 153, 0.4) 1px,
+      rgba(236, 72, 153, 0.15) 1px,
       transparent 1px
     ),
     radial-gradient(
       circle at 75% 75%,
-      rgba(244, 114, 182, 0.3) 1px,
+      rgba(244, 114, 182, 0.12) 1px,
       transparent 1px
     ),
     radial-gradient(
       circle at 50% 50%,
-      rgba(251, 113, 133, 0.2) 1px,
+      rgba(251, 113, 133, 0.08) 1px,
       transparent 1px
     );
   background-size:
-    100px 100px,
-    150px 150px,
-    200px 200px;
-  animation: pinkFloatingParticles 20s linear infinite;
+    120px 120px,
+    180px 180px,
+    240px 240px;
+  animation: pinkFloatingParticles 25s linear infinite;
   pointer-events: none;
   z-index: -1;
 }
