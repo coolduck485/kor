@@ -1768,7 +1768,9 @@ export default function Index() {
           <button
             onClick={() => scrollToSection(0)}
             className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
-              theme === "light"
+              isPinkActive
+                ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
+                : theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
                 : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
             }`}
