@@ -140,7 +140,7 @@ export default function Index() {
     } else {
       console.log("Not mobile device, skipping performance notification");
     }
-  }, [deviceType, showWarning, isMobile]);
+  }, [deviceType, showWarning]);
 
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
