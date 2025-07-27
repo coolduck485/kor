@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { RetroToggle } from "@/components/ui/retro-toggle";
-import { PinkThemeToggle } from "@/components/ui/pink-theme-toggle";
+import { SolarSystemToggle } from "@/components/ui/solar-system-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
-import { usePinkTheme } from "@/hooks/use-pink-theme";
+import { useSolarSystemTheme } from "@/hooks/use-solar-system-theme";
 import { useUnifiedNotifications } from "@/components/ui/unified-notification";
 import { useMobilePerformance } from "@/hooks/use-mobile-performance";
 import { useBrowserDetection } from "@/hooks/use-browser-detection";
@@ -31,7 +31,7 @@ import {
 export default function Index() {
   const { theme, setTheme } = useTheme();
   const { mode, toggleMode } = useRetroMode();
-  const { isPinkActive } = usePinkTheme();
+  const { isSolarSystemActive } = useSolarSystemTheme();
   const { showSuccess, showError, showWarning, showInfo } =
     useUnifiedNotifications();
   const { isMobile, animationConfig, deviceType } = useMobilePerformance();
@@ -813,8 +813,8 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
-█████╔╝ █������   █��║��█����███╔╝
+██║ █��╔╝��█╔═�����═██╗█����╔������══██╗
+█████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
