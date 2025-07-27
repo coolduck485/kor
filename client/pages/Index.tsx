@@ -142,7 +142,7 @@ export default function Index() {
     } else {
       console.log("Not mobile device or already shown, skipping performance notification");
     }
-  }, []); // Only run once on mount
+  }, [deviceType, showWarning]);
 
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
