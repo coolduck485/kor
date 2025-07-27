@@ -35,6 +35,45 @@
   /* For very small screens, ensure notifications fit */
   .notification-item {
     max-width: calc(100vw - 32px) !important;
+    /* Optimize for mobile performance */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Mobile notification animations */
+  .animate-mobile-notification-enter {
+    animation: mobile-notification-enter 0.3s ease-out forwards;
+  }
+
+  .animate-mobile-notification-exit {
+    animation: mobile-notification-exit 0.2s ease-in forwards;
+  }
+}
+
+/* Tablet specific optimizations */
+@media screen and (min-width: 641px) and (max-width: 991px) {
+  .notification-item {
+    /* Tablet-optimized animations */
+    will-change: transform, opacity;
+  }
+
+  .animate-tablet-notification-enter {
+    animation: tablet-notification-enter 0.25s ease-out forwards;
+  }
+
+  .animate-tablet-notification-exit {
+    animation: tablet-notification-exit 0.25s ease-in forwards;
+  }
+}
+
+/* Desktop animations with full effects */
+@media screen and (min-width: 992px) {
+  .animate-desktop-notification-enter {
+    animation: desktop-notification-enter 0.4s ease-out forwards;
+  }
+
+  .animate-desktop-notification-exit {
+    animation: desktop-notification-exit 0.35s ease-in forwards;
   }
 }
 
