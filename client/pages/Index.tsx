@@ -89,15 +89,19 @@ export default function Index() {
   const [isContentVisible, setIsContentVisible] = useState(true);
   const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
 
-  // Immediate test notification
+  // Test notification - shows last (after other notifications)
   useEffect(() => {
-    console.log("Page loaded, showing immediate test notification...");
-    showError(
-      "TEST NOTIFICATION",
-      "If you can see this, the notification system works!",
-      0, // No auto-dismiss
-    );
-  }, []); // Only run once on mount
+    const timer = setTimeout(() => {
+      console.log("Showing test notification last...");
+      showError(
+        "TEST NOTIFICATION",
+        "If you can see this, the notification system works!",
+        0, // No auto-dismiss
+      );
+    }, 4000); // Show after 4 seconds (after mobile performance notification)
+
+    return () => clearTimeout(timer);
+  }, [showError]);
 
   // Welcome notification - shows once per page load
   useEffect(() => {
@@ -130,7 +134,7 @@ export default function Index() {
           "Visual effects and animations have been limited to improve performance.",
           6000, // Show for 6 seconds
         );
-      }, 3500); // Show after 3.5 seconds (right after welcome notification)
+      }, 3100); // Show immediately after welcome notification (3 seconds + small delay)
 
       return () => clearTimeout(timer);
     } else {
@@ -817,7 +821,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████�� ███����������█╗
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
-██╔═██╗ ██║   ██║██╔══█�������
+██╔═��█╗ ██║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  ���█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
