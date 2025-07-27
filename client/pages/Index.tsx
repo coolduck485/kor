@@ -122,36 +122,28 @@ export default function Index() {
     }
   }, [currentDeviceType, showInfo]); // React to device type changes
 
-  // Mobile performance notification - shows once per page load on mobile devices
+  // Mobile/Tablet performance notification - shows once per page load on mobile/tablet devices
   useEffect(() => {
-    if (!hasShownMobilePerformanceRef.current) {
+    if (!hasShownMobilePerformanceRef.current && (currentDeviceType === "mobile" || currentDeviceType === "tablet")) {
       hasShownMobilePerformanceRef.current = true;
 
-      // Check if mobile on page load
-      const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
-      const isMobileDevice = windowWidth <= 640;
-
       console.log(
-        "Mobile check on load - width:",
-        windowWidth,
-        "isMobile:",
-        isMobileDevice,
+        "Performance check on load - device type:",
+        currentDeviceType,
       );
 
-      if (isMobileDevice) {
-        setTimeout(() => {
-          console.log(
-            "🚀 Showing mobile performance notification on mobile device!",
-          );
-          showWarning(
-            "Mobile Performance Mode",
-            "Visual effects and animations have been limited to improve performance.",
-            0, // No auto-dismiss - user must click X
-          );
-        }, 3100); // Show after welcome notification
-      }
+      setTimeout(() => {
+        console.log(
+          "🚀 Showing performance notification on mobile/tablet device!",
+        );
+        showWarning(
+          "Mobile Performance Mode",
+          "Visual effects and animations have been limited to improve performance.",
+          0, // No auto-dismiss - user must click X
+        );
+      }, 3000); // Show after welcome notification
     }
-  }, []); // Only run once on mount
+  }, [currentDeviceType, showWarning]); // React to device type changes
 
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
@@ -832,7 +824,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████�� ███����������█╗
 ██║ █��╔╝��█╔═���═██╗█����╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
-██╔═��█╗ ██║   ██║██╔══█�������
+██╔═��█╗ █��║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  ���█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
@@ -8474,7 +8466,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Discord",
                             url: "https://discord.com",
-                            icon: "💬",
+                            icon: "��",
                             color: "from-indigo-500 to-blue-500",
                           },
                           {
