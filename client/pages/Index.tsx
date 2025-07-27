@@ -6206,12 +6206,12 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 }}
               />
             </motion.div>
-          ))}
+        ))}
         </div>
 
-        {/* Enhanced Floating Ambient Particles with Color Shifting */}
+        {/* Enhanced Floating Ambient Particles with Color Shifting - Reduced for Mobile/Tablet */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(12)].map((_, i) => (
+          {[...Array(screenSize === "desktop" ? 12 : screenSize === "tablet" ? 3 : 1)].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute rounded-full opacity-60"
