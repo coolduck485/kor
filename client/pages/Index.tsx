@@ -5142,8 +5142,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         )}
 
         {/* Animated Data Streams - Desktop Only for Performance */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(window.innerWidth < 992 ? 3 : 6)].map((_, i) => (
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(6)].map((_, i) => (
             <motion.div
               key={`data-stream-${i}`}
               className="absolute"
@@ -5180,7 +5181,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               />
             </motion.div>
           ))}
-        </div>
+          </div>
+        )}
 
         {/* Interactive Holographic Stats Display */}
         <div className="absolute top-20 right-10 hidden lg:block pointer-events-none">
