@@ -4998,29 +4998,30 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* SPECTACULAR ABOUT SECTION ENHANCEMENTS */}
 
-        {/* Floating Code Blocks with Syntax Highlighting Effect - Mobile Optimized */}
+        {/* Floating Code Blocks with Syntax Highlighting Effect - Responsive */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(window.innerWidth < 992 ? 4 : 8)].map((_, i) => (
+          {[...Array(screenSize === 'mobile' ? 2 : screenSize === 'tablet' ? 3 : 8)].map((_, i) => (
             <motion.div
               key={`code-block-${i}`}
-              className="absolute opacity-30"
+              className="absolute"
               style={{
                 left: `${10 + ((i * 75) % 80)}%`,
                 top: `${15 + ((i * 45) % 70)}%`,
                 width: `${60 + (i % 3) * 20}px`,
                 height: `${30 + (i % 2) * 15}px`,
+                opacity: screenSize === 'mobile' ? 0.15 : screenSize === 'tablet' ? 0.2 : 0.3,
               }}
-              animate={window.innerWidth < 992 ? {
-                y: [-5, 5, -5],
+              animate={isMobileOrTablet ? {
+                y: [-3, 3, -3],
               } : {
                 y: [-10, 10, -10],
                 x: [-5, 5, -5],
                 rotateZ: [-2, 2, -2],
               }}
               transition={{
-                duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
+                duration: isMobileOrTablet ? 8 + (i % 2) : 4 + (i % 3),
                 repeat: Infinity,
-                delay: i * 0.8,
+                delay: i * (isMobileOrTablet ? 1.5 : 0.5),
               }}
             >
               <div
