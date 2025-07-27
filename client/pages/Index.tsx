@@ -5058,7 +5058,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         )}
 
         {/* Floating UI Components Preview - Desktop Only for Performance */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             {
               type: "button",
@@ -5137,9 +5138,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               </div>
             </motion.div>
           ))}
-        </div>
+          </div>
+        )}
 
-        {/* Animated Data Streams - Mobile Optimized */}
+        {/* Animated Data Streams - Desktop Only for Performance */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(window.innerWidth < 992 ? 3 : 6)].map((_, i) => (
             <motion.div
