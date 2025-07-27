@@ -6046,8 +6046,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         )}
 
         {/* Rotating Skill Rings - Desktop Only for Performance */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-          {[...Array(window.innerWidth < 992 ? 2 : 3)].map((_, i) => (
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+            {[...Array(3)].map((_, i) => (
             <motion.div
               key={`skill-ring-${i}`}
               className="absolute rounded-full border-2"
@@ -6109,7 +6110,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
               )}
             </motion.div>
           ))}
-        </div>
+          </div>
+        )}
 
         {/* Technology Stack Visualization */}
         <div className="absolute top-10 left-10 hidden lg:block pointer-events-none">
