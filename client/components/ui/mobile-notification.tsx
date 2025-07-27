@@ -273,66 +273,51 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
 
 // Helper hook for easy usage
 export const useMobileNotificationHelpers = () => {
-  try {
-    const { addNotification, removeNotification, clearAll, notifications } = useMobileNotifications();
+  const { addNotification, removeNotification, clearAll, notifications } = useMobileNotifications();
 
-    const showSuccess = (title: string, message: string, duration?: number) => {
-      addNotification({ title, message, type: "success", duration });
-    };
+  const showSuccess = (title: string, message: string, duration?: number) => {
+    addNotification({ title, message, type: "success", duration });
+  };
 
-    const showError = (title: string, message: string, duration?: number) => {
-      addNotification({ title, message, type: "error", duration });
-    };
+  const showError = (title: string, message: string, duration?: number) => {
+    addNotification({ title, message, type: "error", duration });
+  };
 
-    const showWarning = (title: string, message: string, duration?: number) => {
-      addNotification({ title, message, type: "warning", duration });
-    };
+  const showWarning = (title: string, message: string, duration?: number) => {
+    addNotification({ title, message, type: "warning", duration });
+  };
 
-    const showInfo = (title: string, message: string, duration?: number) => {
-      addNotification({ title, message, type: "info", duration });
-    };
+  const showInfo = (title: string, message: string, duration?: number) => {
+    addNotification({ title, message, type: "info", duration });
+  };
 
-    const showWithAction = (
-      title: string,
-      message: string,
-      actionLabel: string,
-      actionCallback: () => void,
-      type: MobileNotification["type"] = "info"
-    ) => {
-      addNotification({
-        title,
-        message,
-        type,
-        action: {
-          label: actionLabel,
-          onClick: actionCallback,
-        },
-      });
-    };
+  const showWithAction = (
+    title: string,
+    message: string,
+    actionLabel: string,
+    actionCallback: () => void,
+    type: MobileNotification["type"] = "info"
+  ) => {
+    addNotification({
+      title,
+      message,
+      type,
+      action: {
+        label: actionLabel,
+        onClick: actionCallback,
+      },
+    });
+  };
 
-    return {
-      showSuccess,
-      showError,
-      showWarning,
-      showInfo,
-      showWithAction,
-      remove: removeNotification,
-      clearAll,
-      notifications,
-      count: notifications.length,
-    };
-  } catch (error) {
-    // Fallback if context is not available
-    return {
-      showSuccess: () => {},
-      showError: () => {},
-      showWarning: () => {},
-      showInfo: () => {},
-      showWithAction: () => {},
-      remove: () => {},
-      clearAll: () => {},
-      notifications: [],
-      count: 0,
-    };
-  }
+  return {
+    showSuccess,
+    showError,
+    showWarning,
+    showInfo,
+    showWithAction,
+    remove: removeNotification,
+    clearAll,
+    notifications,
+    count: notifications.length,
+  };
 };
