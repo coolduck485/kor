@@ -815,7 +815,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
-╚═╝  ╚����� ╚������═══╝ ╚═╝  ����═╝`}
+╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -3290,7 +3290,7 @@ export default function Index() {
 
                   <div className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                     <span
-                      className={`relative inline-block ${
+                      className={`relative inline-block mobile-lively-glow ${
                         isPinkActive
                           ? "text-pink-200"
                           : theme === "light"
