@@ -5242,7 +5242,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Enhanced Background Elements - Copy from Home Section */}
+        {/* SPECTACULAR SERVICES SECTION ENHANCEMENTS */}
 
         {/* Animated Noise Texture */}
         <div
@@ -5251,6 +5251,186 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
           }}
         />
+
+        {/* Floating Service Icons with Orbit Animation */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            { Icon: Globe, color: "from-blue-500 to-cyan-500", x: 85, y: 20, delay: 0 },
+            { Icon: Smartphone, color: "from-purple-500 to-pink-500", x: 15, y: 30, delay: 1 },
+            { Icon: Palette, color: "from-green-500 to-emerald-500", x: 80, y: 65, delay: 2 },
+            { Icon: Zap, color: "from-orange-500 to-red-500", x: 10, y: 70, delay: 3 },
+            { Icon: Users, color: "from-indigo-500 to-purple-500", x: 85, y: 85, delay: 4 },
+            { Icon: Code, color: "from-teal-500 to-blue-500", x: 15, y: 15, delay: 5 },
+          ].map((service, i) => (
+            <motion.div
+              key={`floating-service-${i}`}
+              className="absolute"
+              style={{
+                left: `${service.x}%`,
+                top: `${service.y}%`,
+              }}
+              animate={{
+                y: [-15, 15, -15],
+                x: [-8, 8, -8],
+                rotateZ: [-10, 10, -10],
+                scale: [0.8, 1.2, 0.8],
+              }}
+              transition={{
+                duration: 4 + (i % 3),
+                repeat: Infinity,
+                delay: service.delay * 0.5,
+              }}
+            >
+              <div
+                className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} opacity-40 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+                style={{
+                  boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
+                }}
+              >
+                <service.Icon className="w-8 h-8 text-white drop-shadow-lg" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Rotating Skill Rings */}
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={`skill-ring-${i}`}
+              className="absolute rounded-full border-2 opacity-20"
+              style={{
+                width: `${300 + i * 100}px`,
+                height: `${300 + i * 100}px`,
+                border: `2px solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
+              }}
+              animate={{
+                rotateZ: i % 2 === 0 ? [0, 360] : [360, 0],
+              }}
+              transition={{
+                duration: 20 + i * 10,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              {/* Skill indicators on the ring */}
+              {[...Array(6)].map((_, skillIndex) => (
+                <motion.div
+                  key={`skill-indicator-${i}-${skillIndex}`}
+                  className="absolute w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"
+                  style={{
+                    left: `${50 + 45 * Math.cos((skillIndex * 60 * Math.PI) / 180)}%`,
+                    top: `${50 + 45 * Math.sin((skillIndex * 60 * Math.PI) / 180)}%`,
+                    transform: "translate(-50%, -50%)",
+                    boxShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
+                  }}
+                  animate={{
+                    scale: [0.8, 1.2, 0.8],
+                    opacity: [0.4, 1, 0.4],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: skillIndex * 0.3,
+                  }}
+                />
+              ))}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Technology Stack Visualization */}
+        <div className="absolute top-10 left-10 hidden lg:block pointer-events-none">
+          <motion.div
+            className="relative"
+            animate={{
+              rotateY: [0, 10, 0, -10, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+            }}
+          >
+            <div
+              className="w-40 h-32 rounded-xl backdrop-blur-lg border opacity-70"
+              style={{
+                background: "linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(10, 10, 30, 0.8))",
+                border: "2px solid rgba(73, 146, 255, 0.3)",
+                boxShadow: "0 0 40px rgba(73, 146, 255, 0.3)",
+              }}
+            >
+              <div className="p-3">
+                <div className="text-xs text-cyan-400 font-mono mb-2">TECH STACK</div>
+                <div className="grid grid-cols-3 gap-1">
+                  {[
+                    { name: "React", color: "bg-blue-400" },
+                    { name: "Node", color: "bg-green-400" },
+                    { name: "AI", color: "bg-purple-400" },
+                    { name: "Cloud", color: "bg-cyan-400" },
+                    { name: "Mobile", color: "bg-pink-400" },
+                    { name: "Design", color: "bg-yellow-400" },
+                  ].map((tech, techIndex) => (
+                    <motion.div
+                      key={tech.name}
+                      className={`w-6 h-6 ${tech.color} rounded-md flex items-center justify-center text-white text-xs font-bold`}
+                      animate={{
+                        scale: [1, 1.1, 1],
+                        rotateZ: [0, 5, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: techIndex * 0.2,
+                      }}
+                      style={{
+                        boxShadow: "0 0 10px rgba(73, 146, 255, 0.3)",
+                      }}
+                    >
+                      {tech.name.slice(0, 2)}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Floating Digital Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={`digital-element-${i}`}
+              className="absolute opacity-30"
+              style={{
+                left: `${5 + ((i * 80) % 90)}%`,
+                top: `${10 + ((i * 35) % 80)}%`,
+              }}
+              animate={{
+                y: [-20, 20, -20],
+                x: [-10, 10, -10],
+                rotateZ: [-15, 15, -15],
+              }}
+              transition={{
+                duration: 5 + (i % 3),
+                repeat: Infinity,
+                delay: i * 0.3,
+              }}
+            >
+              <div
+                className="w-8 h-8 border-2 border-blue-400/50 backdrop-blur-sm"
+                style={{
+                  clipPath: [
+                    "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)", // Diamond
+                    "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)", // Octagon
+                    "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)", // Star
+                  ][i % 3],
+                  background: `linear-gradient(135deg, rgba(73, 146, 255, 0.3), rgba(34, 211, 238, 0.3))`,
+                  boxShadow: "0 0 15px rgba(73, 146, 255, 0.2)",
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
