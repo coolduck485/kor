@@ -32,6 +32,7 @@ export default function Index() {
   const { theme, setTheme } = useTheme();
   const { mode, toggleMode } = useRetroMode();
   const { isSolarSystemActive } = useSolarSystemTheme();
+  const isPinkActive = false; // Temporary fix - pink theme removed
   const { showSuccess, showError, showWarning, showInfo } =
     useUnifiedNotifications();
   const { isMobile, animationConfig, deviceType } = useMobilePerformance();
@@ -891,7 +892,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█��█████████��███ 50%
+                      RAM: █���████�������█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
