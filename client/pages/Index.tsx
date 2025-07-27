@@ -132,16 +132,19 @@ export default function Index() {
     console.log("Is mobile (useIsMobile):", isMobile); // Debug mobile detection
     console.log("Has shown mobile performance:", hasShownMobilePerformanceRef.current);
 
-    // Check both deviceType and window width as fallback
-    const isActuallyMobile = deviceType === "mobile" || (typeof window !== 'undefined' && window.innerWidth <= 640);
+    // Use multiple checks to ensure mobile detection is accurate
+    const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
+    const isActuallyMobile = deviceType === "mobile" || windowWidth <= 640 || isMobile;
+
+    console.log("Final mobile check - deviceType:", deviceType, "windowWidth:", windowWidth, "isMobile:", isMobile, "isActuallyMobile:", isActuallyMobile);
 
     if (isActuallyMobile && !hasShownMobilePerformanceRef.current) {
       console.log(
-        "Mobile device detected (deviceType or width check), showing performance notification...",
+        "✅ Mobile device confirmed, showing performance notification...",
       ); // Debug log
       hasShownMobilePerformanceRef.current = true;
       const timer = setTimeout(() => {
-        console.log("Triggering mobile performance notification...");
+        console.log("🚀 Triggering mobile performance notification NOW!");
         showWarning(
           "Mobile Performance Mode",
           "Visual effects and animations have been limited to improve performance.",
@@ -151,10 +154,9 @@ export default function Index() {
 
       return () => clearTimeout(timer);
     } else {
-      console.log("Not mobile device or already shown, skipping performance notification");
-      console.log("isActuallyMobile:", isActuallyMobile, "hasShown:", hasShownMobilePerformanceRef.current);
+      console.log("❌ Skipping notification - isActuallyMobile:", isActuallyMobile, "hasShown:", hasShownMobilePerformanceRef.current);
     }
-  }, [deviceType, showWarning]);
+  }, [deviceType, showWarning, isMobile]);
 
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
@@ -911,7 +913,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���██████����█████████��███ 50%
+                      RAM: █���██████��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
