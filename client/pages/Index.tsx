@@ -850,7 +850,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������█████��███████ 60%
+                      CPU: █��������█��������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -7263,26 +7263,22 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Moving Message Bubbles with Collision */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-4">
           {[
-            { text: "Hello!", color: "bg-blue-500/20 border-blue-300/30" },
-            { text: "Let's chat", color: "bg-purple-500/20 border-purple-300/30" },
-            { text: "💡 Ideas", color: "bg-yellow-500/20 border-yellow-300/30" },
-            { text: "🚀 Ready", color: "bg-green-500/20 border-green-300/30" },
+            { text: "Hello!", color: "bg-blue-500/20 border-blue-300/30", startX: 10, startY: 20 },
+            { text: "Let's chat", color: "bg-purple-500/20 border-purple-300/30", startX: 80, startY: 15 },
+            { text: "💡 Ideas", color: "bg-yellow-500/20 border-yellow-300/30", startX: 15, startY: 75 },
+            { text: "🚀 Ready", color: "bg-green-500/20 border-green-300/30", startX: 75, startY: 65 },
           ].map((bubble, i) => (
             <motion.div
               key={`message-bubble-${i}`}
               className={`absolute ${bubble.color} backdrop-blur-sm border rounded-full px-3 py-1.5 text-xs font-medium text-white`}
+              style={{
+                left: `${bubble.startX}%`,
+                top: `${bubble.startY}%`,
+              }}
               animate={{
                 opacity: [0, 1, 0],
-                x: [
-                  `${10 + (i * 20)}%`,
-                  `${60 + (i * 10)}%`,
-                  `${20 + (i * 15)}%`
-                ],
-                y: [
-                  `${20 + (i * 15)}%`,
-                  `${70 - (i * 10)}%`,
-                  `${30 + (i * 20)}%`
-                ],
+                x: [0, (i % 2 === 0 ? 200 : -200), (i % 2 === 0 ? -100 : 100)],
+                y: [0, (i % 2 === 0 ? -100 : 150), (i % 2 === 0 ? 50 : -50)],
               }}
               transition={{
                 duration: 6,
