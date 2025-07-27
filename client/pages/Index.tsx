@@ -2976,8 +2976,16 @@ export default function Index() {
               >
                 <h1
                   className={`font-poppins text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
-                    theme === "light" ? "text-gray-900" : "text-white"
+                    isPinkActive
+                      ? "text-pink-300 animate-pink-neon-glow"
+                      : theme === "light"
+                      ? "text-gray-900"
+                      : "text-white"
                   }`}
+                  style={isPinkActive ? {
+                    textShadow: "0 0 10px rgba(236, 72, 153, 0.8), 0 0 20px rgba(244, 114, 182, 0.6), 0 0 30px rgba(251, 113, 133, 0.4)",
+                    filter: "drop-shadow(0 0 15px rgba(236, 72, 153, 0.5))"
+                  } : {}}
                 >
                   <span className="inline-block relative warm-glow-text animate-warm-glow-pulse animate-wavy-text">
                     K
