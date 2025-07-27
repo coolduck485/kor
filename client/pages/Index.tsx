@@ -811,7 +811,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████�� ███����������█╗
+                  {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
@@ -962,7 +962,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►�����</span>
+                  <span className="text-green-400 ml-4">������◄►�����</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -3028,9 +3028,19 @@ export default function Index() {
                       y2="451.438"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stopColor="#3FBAFF" />
-                      <stop offset="0.493374" stopColor="#4992FF" />
-                      <stop offset="1" stopColor="#3987E3" />
+                      {isPinkActive ? (
+                        <>
+                          <stop stopColor="#F472B6" />
+                          <stop offset="0.493374" stopColor="#EC4899" />
+                          <stop offset="1" stopColor="#BE185D" />
+                        </>
+                      ) : (
+                        <>
+                          <stop stopColor="#3FBAFF" />
+                          <stop offset="0.493374" stopColor="#4992FF" />
+                          <stop offset="1" stopColor="#3987E3" />
+                        </>
+                      )}
                     </linearGradient>
                   </defs>
                   <g filter="url(#orbFilter)">
@@ -7939,7 +7949,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Communication Icons - Contact specific */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
           {[
-            { icon: "📧", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
+            { icon: "���", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
             { icon: "��", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
