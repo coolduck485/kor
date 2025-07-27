@@ -8,10 +8,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { RetroModeProvider } from "@/hooks/use-retro-mode";
-import { SolarSystemThemeProvider } from "@/hooks/use-solar-system-theme";
+
 import { UnifiedNotificationProvider } from "@/components/ui/unified-notification";
 import Index from "./pages/Index";
-import SolarSystem from "./pages/SolarSystem";
+
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -19,8 +19,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
-      <SolarSystemThemeProvider>
-        <RetroModeProvider>
+      <RetroModeProvider>
           <UnifiedNotificationProvider>
             <TooltipProvider>
               <Toaster />
@@ -32,15 +31,14 @@ const App = () => (
                   <Route path="/services" element={<Index />} />
                   <Route path="/portfolio" element={<Index />} />
                   <Route path="/contact" element={<Index />} />
-                  <Route path="/solar-system" element={<SolarSystem />} />
+
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </BrowserRouter>
             </TooltipProvider>
           </UnifiedNotificationProvider>
-        </RetroModeProvider>
-      </SolarSystemThemeProvider>
+      </RetroModeProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );
