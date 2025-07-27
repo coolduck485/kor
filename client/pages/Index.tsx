@@ -29,7 +29,7 @@ export default function Index() {
   const { mode, toggleMode } = useRetroMode();
   const { showSuccess, showError, showWarning, showInfo } =
     useFloatingNotifications();
-  const { isMobile, animationConfig } = useMobilePerformance();
+  const { isMobile, animationConfig, deviceType } = useMobilePerformance();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
