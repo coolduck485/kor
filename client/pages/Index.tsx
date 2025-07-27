@@ -29,7 +29,7 @@ export default function Index() {
   const { mode, toggleMode } = useRetroMode();
   const { showSuccess, showError, showWarning, showInfo } =
     useFloatingNotifications();
-  const { isMobile, animationConfig } = useMobilePerformance();
+  const { isMobile, animationConfig, deviceType } = useMobilePerformance();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
@@ -87,20 +87,50 @@ export default function Index() {
   const [isContentVisible, setIsContentVisible] = useState(true);
   const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
 
+  // Immediate test notification
+  useEffect(() => {
+    console.log("Page loaded, showing immediate test notification...");
+    showError(
+      "TEST NOTIFICATION",
+      "If you can see this, the notification system works!",
+      0, // No auto-dismiss
+    );
+  }, []); // Only run once on mount
+
   // Welcome notification - shows once per page load
   useEffect(() => {
-    // Temporarily disabled to test button functionality
-    // if (animationStep >= 2 && !hasShownWelcomeRef.current) {
-    //   hasShownWelcomeRef.current = true;
-    //   setTimeout(() => {
-    //     showInfo(
-    //       "Welcome to KOR!",
-    //       "Experience the future of modern web development. Click the X to dismiss.",
-    //     );
-    //   }, 3000);
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [animationStep]);
+    if (!hasShownWelcomeRef.current) {
+      hasShownWelcomeRef.current = true;
+      setTimeout(() => {
+        console.log("Showing welcome notification...");
+        showInfo(
+          "Welcome to KOR!",
+          "Experience the future of modern web development. Click the X to dismiss.",
+        );
+      }, 3000);
+    }
+  }, []); // Only run once on mount
+
+  // Mobile performance notification - shows only on mobile devices (≤640px)
+  useEffect(() => {
+    console.log("Device type:", deviceType, "Window width:", window.innerWidth); // Debug log
+    if (deviceType === "mobile") {
+      console.log(
+        "Mobile device detected, showing performance notification...",
+      ); // Debug log
+      const timer = setTimeout(() => {
+        console.log("Triggering mobile performance notification...");
+        showWarning(
+          "Mobile Performance Mode",
+          "Visual effects and animations have been limited to improve performance.",
+          6000, // Show for 6 seconds
+        );
+      }, 4000); // Show after 4 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [deviceType, showWarning]);
+
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
@@ -780,9 +810,9 @@ export default function Index() {
                   {`██╗  ██╗ ██████�� ███����������█╗
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
-██╔═██╗ ██║   ██║██╔══█������
-██║  ██╗╚██████�����╝██║  ██║
-╚═╝  ╚═╝ ╚═����═══╝ ╚═╝  ����═╝`}
+██╔═██╗ ██║   ██║██╔══█�������
+██║  ���█╗╚███��██�����╝██║  ���█║
+╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -2166,6 +2196,163 @@ export default function Index() {
                 />
               </div>
 
+              {/* Enhanced Mobile/Tablet Aurora-like Effects */}
+              <div className="absolute inset-0 opacity-50">
+                {/* Mobile Aurora Curtain 1 */}
+                <div
+                  className="absolute"
+                  style={{
+                    top: "25%",
+                    left: "-10%",
+                    right: "-10%",
+                    height: window.innerWidth <= 640 ? "80px" : "100px",
+                    background:
+                      window.innerWidth <= 640
+                        ? "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.4) 30%, rgba(59, 130, 246, 0.5) 50%, rgba(147, 51, 234, 0.4) 70%, transparent 100%)"
+                        : "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.5) 25%, rgba(59, 130, 246, 0.6) 40%, rgba(147, 51, 234, 0.5) 60%, rgba(236, 72, 153, 0.4) 75%, transparent 100%)",
+                    borderRadius: "50% 80% 40% 60% / 60% 40% 80% 20%",
+                    filter: `blur(${window.innerWidth <= 640 ? "12px" : "15px"})`,
+                    animation: "mobile-aurora-1 20s ease-in-out infinite",
+                    transform: "skewY(-0.5deg)",
+                  }}
+                />
+                {/* Mobile Aurora Curtain 2 */}
+                <div
+                  className="absolute"
+                  style={{
+                    top: "55%",
+                    left: "-15%",
+                    right: "-15%",
+                    height: window.innerWidth <= 640 ? "70px" : "90px",
+                    background:
+                      window.innerWidth <= 640
+                        ? "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.4) 35%, rgba(34, 197, 94, 0.5) 50%, rgba(59, 130, 246, 0.4) 65%, transparent 100%)"
+                        : "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.5) 20%, rgba(34, 197, 94, 0.6) 35%, rgba(147, 51, 234, 0.5) 50%, rgba(236, 72, 153, 0.4) 65%, rgba(245, 158, 11, 0.3) 80%, transparent 100%)",
+                    borderRadius: "40% 70% 60% 30% / 70% 30% 40% 80%",
+                    filter: `blur(${window.innerWidth <= 640 ? "10px" : "14px"})`,
+                    animation: "mobile-aurora-2 25s ease-in-out infinite 5s",
+                    transform: "skewY(0.8deg)",
+                  }}
+                />
+              </div>
+
+              {/* Enhanced Floating Orbs - Different sizes for Mobile vs Tablet */}
+              <div className="absolute inset-0">
+                {[...Array(window.innerWidth <= 640 ? 6 : 10)].map((_, i) => (
+                  <div
+                    key={`enhanced-mobile-orb-${i}`}
+                    className="absolute rounded-full"
+                    style={{
+                      left: `${8 + ((i * 12) % 84)}%`,
+                      top: `${10 + ((i * 15) % 80)}%`,
+                      width:
+                        window.innerWidth <= 640
+                          ? `${6 + (i % 3) * 2}px`
+                          : `${8 + (i % 4) * 2}px`,
+                      height:
+                        window.innerWidth <= 640
+                          ? `${6 + (i % 3) * 2}px`
+                          : `${8 + (i % 4) * 2}px`,
+                      background: [
+                        "radial-gradient(circle, rgba(34, 197, 94, 0.9) 0%, rgba(34, 197, 94, 0.3) 50%, transparent 80%)",
+                        "radial-gradient(circle, rgba(59, 130, 246, 0.9) 0%, rgba(59, 130, 246, 0.3) 50%, transparent 80%)",
+                        "radial-gradient(circle, rgba(147, 51, 234, 0.9) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 80%)",
+                        "radial-gradient(circle, rgba(236, 72, 153, 0.9) 0%, rgba(236, 72, 153, 0.3) 50%, transparent 80%)",
+                        "radial-gradient(circle, rgba(6, 182, 212, 0.9) 0%, rgba(6, 182, 212, 0.3) 50%, transparent 80%)",
+                        "radial-gradient(circle, rgba(245, 158, 11, 0.9) 0%, rgba(245, 158, 11, 0.3) 50%, transparent 80%)",
+                      ][i % 6],
+                      animation: `enhanced-mobile-float-${(i % 3) + 1} ${4 + (i % 3)}s ease-in-out infinite ${i * 0.4}s`,
+                      filter: `blur(${1 + (i % 2) * 0.5}px)`,
+                      boxShadow: `0 0 ${10 + (i % 3) * 4}px currentColor`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Enhanced Corner Pulse Effects */}
+              <div className="absolute top-6 left-6 w-20 h-20 rounded-full opacity-50">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, rgba(59, 130, 246, 0.5) 40%, rgba(147, 51, 234, 0.2) 70%, transparent 90%)",
+                    animation:
+                      "enhanced-mobile-pulse 3.5s ease-in-out infinite",
+                    filter: "blur(6px)",
+                  }}
+                />
+              </div>
+              <div className="absolute top-6 right-6 w-16 h-16 rounded-full opacity-45">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(236, 72, 153, 0.5) 40%, rgba(245, 158, 11, 0.2) 70%, transparent 90%)",
+                    animation:
+                      "enhanced-mobile-pulse 3s ease-in-out infinite 0.8s",
+                    filter: "blur(5px)",
+                  }}
+                />
+              </div>
+              <div className="absolute bottom-6 left-6 w-18 h-18 rounded-full opacity-55">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(6, 182, 212, 0.8) 0%, rgba(34, 197, 94, 0.5) 40%, rgba(59, 130, 246, 0.2) 70%, transparent 90%)",
+                    animation:
+                      "enhanced-mobile-pulse 4s ease-in-out infinite 1.5s",
+                    filter: "blur(7px)",
+                  }}
+                />
+              </div>
+              <div className="absolute bottom-6 right-6 w-14 h-14 rounded-full opacity-48">
+                <div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(245, 158, 11, 0.5) 40%, rgba(34, 197, 94, 0.2) 70%, transparent 90%)",
+                    animation:
+                      "enhanced-mobile-pulse 3.2s ease-in-out infinite 0.3s",
+                    filter: "blur(4px)",
+                  }}
+                />
+              </div>
+
+              {/* Enhanced Wave Patterns for Mobile/Tablet */}
+              <div className="absolute inset-0">
+                {[...Array(window.innerWidth <= 640 ? 2 : 3)].map((_, i) => (
+                  <div
+                    key={`enhanced-mobile-wave-${i}`}
+                    className="absolute w-full opacity-35"
+                    style={{
+                      top: `${15 + i * 30}%`,
+                      height: window.innerWidth <= 640 ? "120px" : "140px",
+                      background:
+                        window.innerWidth <= 640
+                          ? `linear-gradient(110deg,
+                            transparent 0%,
+                            rgba(34, 197, 94, ${0.3 + i * 0.1}) 30%,
+                            rgba(59, 130, 246, ${0.4 + i * 0.1}) 50%,
+                            rgba(147, 51, 234, ${0.3 + i * 0.1}) 70%,
+                            transparent 100%)`
+                          : `linear-gradient(115deg,
+                            transparent 0%,
+                            rgba(34, 197, 94, ${0.35 + i * 0.1}) 25%,
+                            rgba(59, 130, 246, ${0.45 + i * 0.1}) 40%,
+                            rgba(147, 51, 234, ${0.4 + i * 0.1}) 55%,
+                            rgba(236, 72, 153, ${0.35 + i * 0.1}) 70%,
+                            rgba(6, 182, 212, ${0.3 + i * 0.1}) 85%,
+                            transparent 100%)`,
+                      borderRadius: `${55 + i * 10}% ${45 - i * 8}% ${35 + i * 15}% ${75 - i * 12}% / ${65 + i * 8}% ${25 - i * 5}% ${45 + i * 12}% ${80 - i * 20}%`,
+                      filter: `blur(${12 + i * 3}px)`,
+                      animation: `enhanced-mobile-wave-${i + 1} ${6 + i * 2}s ease-in-out infinite`,
+                      transform: `skewY(${-1 + i * 0.7}deg) rotate(${i * 1.2}deg)`,
+                    }}
+                  />
+                ))}
+              </div>
+
               {/* Scanlines removed for mobile/tablet devices */}
             </div>
           )}
@@ -3137,6 +3324,8 @@ export default function Index() {
             ref={(el) => (sectionsRef.current[3] = el!)}
             theme={theme}
             isVisible={currentSection === 3}
+            isMobile={isMobile}
+            animationConfig={animationConfig}
           />
         </motion.div>
 
@@ -5000,198 +5189,195 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* SPECTACULAR ABOUT SECTION ENHANCEMENTS */}
 
-        {/* Floating Code Blocks with Syntax Highlighting Effect - Responsive */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[
-            ...Array(
-              screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 8,
-            ),
-          ].map((_, i) => (
-            <motion.div
-              key={`code-block-${i}`}
-              className="absolute"
-              style={{
-                left: `${10 + ((i * 75) % 80)}%`,
-                top: `${15 + ((i * 45) % 70)}%`,
-                width: `${60 + (i % 3) * 20}px`,
-                height: `${30 + (i % 2) * 15}px`,
-                opacity:
-                  screenSize === "mobile"
-                    ? 0.15
-                    : screenSize === "tablet"
-                      ? 0.2
-                      : 0.3,
-              }}
-              animate={
-                isMobileOrTablet
-                  ? {
-                      y: [-3, 3, -3],
-                    }
-                  : {
-                      y: [-10, 10, -10],
-                      x: [-5, 5, -5],
-                      rotateZ: [-2, 2, -2],
-                    }
-              }
-              transition={{
-                duration: isMobileOrTablet ? 8 + (i % 2) : 4 + (i % 3),
-                repeat: Infinity,
-                delay: i * (isMobileOrTablet ? 1.5 : 0.5),
-              }}
-            >
-              <div
-                className="w-full h-full rounded-lg border-2 backdrop-blur-sm"
-                style={{
-                  background: "rgba(30, 30, 50, 0.6)",
-                  border: "2px solid rgba(73, 146, 255, 0.3)",
-                  boxShadow: "0 0 15px rgba(73, 146, 255, 0.2)",
-                }}
-              >
-                {/* Simulated code lines */}
-                <div className="p-2 space-y-1">
-                  {[...Array(2 + (i % 2))].map((_, lineIndex) => (
-                    <div
-                      key={lineIndex}
-                      className="h-1 rounded-full opacity-80"
-                      style={{
-                        width: `${50 + (((lineIndex + i) * 30) % 50)}%`,
-                        background: [
-                          "linear-gradient(90deg, #22d3ee, #60a5fa)",
-                          "linear-gradient(90deg, #10b981, #22d3ee)",
-                          "linear-gradient(90deg, #f59e0b, #ef4444)",
-                          "linear-gradient(90deg, #8b5cf6, #ec4899)",
-                        ][lineIndex % 4],
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Floating UI Components Preview - Mobile Optimized */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[
-            {
-              type: "button",
-              x: 20,
-              y: 25,
-              color: "from-blue-500 to-purple-500",
-            },
-            { type: "card", x: 75, y: 40, color: "from-green-500 to-blue-500" },
-            ...(window.innerWidth >= 992
-              ? [
-                  {
-                    type: "input",
-                    x: 15,
-                    y: 70,
-                    color: "from-purple-500 to-pink-500",
-                  },
-                  {
-                    type: "toggle",
-                    x: 80,
-                    y: 20,
-                    color: "from-orange-500 to-red-500",
-                  },
-                ]
-              : []),
-          ].map((component, i) => (
-            <motion.div
-              key={`ui-component-${i}`}
-              className="absolute"
-              style={{
-                left: `${component.x}%`,
-                top: `${component.y}%`,
-              }}
-              animate={
-                window.innerWidth < 992
-                  ? {
-                      y: [-4, 4, -4],
-                    }
-                  : {
-                      y: [-8, 8, -8],
-                      rotateZ: [-1, 1, -1],
-                      scale: [0.9, 1.1, 0.9],
-                    }
-              }
-              transition={{
-                duration: window.innerWidth < 992 ? 5 + i : 3 + i,
-                repeat: Infinity,
-                delay: i * 1,
-              }}
-            >
-              <div
-                className={`w-16 h-8 rounded-lg bg-gradient-to-r ${component.color} opacity-40 backdrop-blur-sm border border-white/20`}
-                style={{
-                  boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
-                }}
-              >
-                {component.type === "button" && (
-                  <div className="w-full h-full flex items-center justify-center text-white text-xs font-semibold">
-                    BTN
-                  </div>
-                )}
-                {component.type === "card" && (
-                  <div className="p-1">
-                    <div className="h-1 bg-white/40 rounded mb-0.5" />
-                    <div className="h-0.5 bg-white/30 rounded w-3/4" />
-                  </div>
-                )}
-                {component.type === "input" && (
-                  <div className="w-full h-full border-2 border-white/30 rounded-lg bg-white/10" />
-                )}
-                {component.type === "toggle" && (
-                  <div className="w-full h-full flex items-center justify-between px-1">
-                    <div className="w-2 h-2 bg-white/60 rounded-full" />
-                    <div className="w-2 h-2 bg-white/30 rounded-full" />
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Animated Data Streams - Mobile Optimized */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(window.innerWidth < 992 ? 3 : 6)].map((_, i) => (
-            <motion.div
-              key={`data-stream-${i}`}
-              className="absolute"
-              style={{
-                left: `${10 + ((i * 80) % 80)}%`,
-                top: "0%",
-                height: "100%",
-                width: window.innerWidth < 992 ? "1px" : "2px",
-              }}
-            >
+        {/* Floating Code Blocks with Syntax Highlighting Effect - Desktop Only for Performance */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(8)].map((_, i) => (
               <motion.div
-                className="w-full rounded-full"
+                key={`code-block-${i}`}
+                className="absolute"
                 style={{
-                  height: window.innerWidth < 992 ? "30px" : "40px",
-                  opacity: window.innerWidth < 992 ? 0.4 : 0.6,
-                  background: `linear-gradient(180deg,
+                  left: `${10 + ((i * 75) % 80)}%`,
+                  top: `${15 + ((i * 45) % 70)}%`,
+                  width: `${60 + (i % 3) * 20}px`,
+                  height: `${30 + (i % 2) * 15}px`,
+                  opacity: 0.3,
+                }}
+                animate={{
+                  y: [-10, 10, -10],
+                  x: [-5, 5, -5],
+                  rotateZ: [-2, 2, -2],
+                }}
+                transition={{
+                  duration: 4 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.5,
+                }}
+              >
+                <div
+                  className="w-full h-full rounded-lg border-2 backdrop-blur-sm"
+                  style={{
+                    background: "rgba(30, 30, 50, 0.6)",
+                    border: "2px solid rgba(73, 146, 255, 0.3)",
+                    boxShadow: "0 0 15px rgba(73, 146, 255, 0.2)",
+                  }}
+                >
+                  {/* Simulated code lines */}
+                  <div className="p-2 space-y-1">
+                    {[...Array(2 + (i % 2))].map((_, lineIndex) => (
+                      <div
+                        key={lineIndex}
+                        className="h-1 rounded-full opacity-80"
+                        style={{
+                          width: `${50 + (((lineIndex + i) * 30) % 50)}%`,
+                          background: [
+                            "linear-gradient(90deg, #22d3ee, #60a5fa)",
+                            "linear-gradient(90deg, #10b981, #22d3ee)",
+                            "linear-gradient(90deg, #f59e0b, #ef4444)",
+                            "linear-gradient(90deg, #8b5cf6, #ec4899)",
+                          ][lineIndex % 4],
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* Floating UI Components Preview - Desktop Only for Performance */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[
+              {
+                type: "button",
+                x: 20,
+                y: 25,
+                color: "from-blue-500 to-purple-500",
+              },
+              {
+                type: "card",
+                x: 75,
+                y: 40,
+                color: "from-green-500 to-blue-500",
+              },
+              ...(window.innerWidth >= 992
+                ? [
+                    {
+                      type: "input",
+                      x: 15,
+                      y: 70,
+                      color: "from-purple-500 to-pink-500",
+                    },
+                    {
+                      type: "toggle",
+                      x: 80,
+                      y: 20,
+                      color: "from-orange-500 to-red-500",
+                    },
+                  ]
+                : []),
+            ].map((component, i) => (
+              <motion.div
+                key={`ui-component-${i}`}
+                className="absolute"
+                style={{
+                  left: `${component.x}%`,
+                  top: `${component.y}%`,
+                }}
+                animate={
+                  window.innerWidth < 992
+                    ? {
+                        y: [-4, 4, -4],
+                      }
+                    : {
+                        y: [-8, 8, -8],
+                        rotateZ: [-1, 1, -1],
+                        scale: [0.9, 1.1, 0.9],
+                      }
+                }
+                transition={{
+                  duration: window.innerWidth < 992 ? 5 + i : 3 + i,
+                  repeat: Infinity,
+                  delay: i * 1,
+                }}
+              >
+                <div
+                  className={`w-16 h-8 rounded-lg bg-gradient-to-r ${component.color} opacity-40 backdrop-blur-sm border border-white/20`}
+                  style={{
+                    boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                  }}
+                >
+                  {component.type === "button" && (
+                    <div className="w-full h-full flex items-center justify-center text-white text-xs font-semibold">
+                      BTN
+                    </div>
+                  )}
+                  {component.type === "card" && (
+                    <div className="p-1">
+                      <div className="h-1 bg-white/40 rounded mb-0.5" />
+                      <div className="h-0.5 bg-white/30 rounded w-3/4" />
+                    </div>
+                  )}
+                  {component.type === "input" && (
+                    <div className="w-full h-full border-2 border-white/30 rounded-lg bg-white/10" />
+                  )}
+                  {component.type === "toggle" && (
+                    <div className="w-full h-full flex items-center justify-between px-1">
+                      <div className="w-2 h-2 bg-white/60 rounded-full" />
+                      <div className="w-2 h-2 bg-white/30 rounded-full" />
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* Animated Data Streams - Desktop Only for Performance */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={`data-stream-${i}`}
+                className="absolute"
+                style={{
+                  left: `${10 + ((i * 80) % 80)}%`,
+                  top: "0%",
+                  height: "100%",
+                  width: window.innerWidth < 992 ? "1px" : "2px",
+                }}
+              >
+                <motion.div
+                  className="w-full rounded-full"
+                  style={{
+                    height: window.innerWidth < 992 ? "30px" : "40px",
+                    opacity: window.innerWidth < 992 ? 0.4 : 0.6,
+                    background: `linear-gradient(180deg,
                     rgba(73, 146, 255, 0.8) 0%,
                     rgba(34, 211, 238, 0.6) 50%,
                     transparent 100%)`,
-                  boxShadow:
-                    window.innerWidth < 992
-                      ? "0 0 5px rgba(73, 146, 255, 0.3)"
-                      : "0 0 10px rgba(73, 146, 255, 0.4)",
-                }}
-                animate={{
-                  y: ["-50px", "calc(100vh + 50px)"],
-                }}
-                transition={{
-                  duration: window.innerWidth < 992 ? 5 + (i % 2) : 3 + (i % 3),
-                  repeat: Infinity,
-                  delay: i * 1,
-                  ease: "linear",
-                }}
-              />
-            </motion.div>
-          ))}
-        </div>
+                    boxShadow:
+                      window.innerWidth < 992
+                        ? "0 0 5px rgba(73, 146, 255, 0.3)"
+                        : "0 0 10px rgba(73, 146, 255, 0.4)",
+                  }}
+                  animate={{
+                    y: ["-50px", "calc(100vh + 50px)"],
+                  }}
+                  transition={{
+                    duration:
+                      window.innerWidth < 992 ? 5 + (i % 2) : 3 + (i % 3),
+                    repeat: Infinity,
+                    delay: i * 1,
+                    ease: "linear",
+                  }}
+                />
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Interactive Holographic Stats Display */}
         <div className="absolute top-20 right-10 hidden lg:block pointer-events-none">
@@ -5895,6 +6081,27 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
 const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
+    const [screenSize, setScreenSize] = useState<
+      "mobile" | "tablet" | "desktop"
+    >("desktop");
+
+    useEffect(() => {
+      const updateScreenSize = () => {
+        const width = window.innerWidth;
+        if (width <= 640) {
+          setScreenSize("mobile");
+        } else if (width <= 991) {
+          setScreenSize("tablet");
+        } else {
+          setScreenSize("desktop");
+        }
+      };
+
+      updateScreenSize();
+      window.addEventListener("resize", updateScreenSize);
+      return () => window.removeEventListener("resize", updateScreenSize);
+    }, []);
+
     const services = [
       {
         icon: Globe,
@@ -5957,166 +6164,171 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
           }}
         />
 
-        {/* Floating Service Icons with Orbit Animation - Mobile Optimized */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[
-            {
-              Icon: Globe,
-              color: "from-blue-500 to-cyan-500",
-              x: 85,
-              y: 20,
-              delay: 0,
-            },
-            {
-              Icon: Smartphone,
-              color: "from-purple-500 to-pink-500",
-              x: 15,
-              y: 30,
-              delay: 1,
-            },
-            ...(window.innerWidth >= 992
-              ? [
-                  {
-                    Icon: Palette,
-                    color: "from-green-500 to-emerald-500",
-                    x: 80,
-                    y: 65,
-                    delay: 2,
-                  },
-                  {
-                    Icon: Zap,
-                    color: "from-orange-500 to-red-500",
-                    x: 10,
-                    y: 70,
-                    delay: 3,
-                  },
-                  {
-                    Icon: Users,
-                    color: "from-indigo-500 to-purple-500",
-                    x: 85,
-                    y: 85,
-                    delay: 4,
-                  },
-                  {
-                    Icon: Code,
-                    color: "from-teal-500 to-blue-500",
-                    x: 15,
-                    y: 15,
-                    delay: 5,
-                  },
-                ]
-              : [
-                  {
-                    Icon: Palette,
-                    color: "from-green-500 to-emerald-500",
-                    x: 75,
-                    y: 75,
-                    delay: 2,
-                  },
-                ]),
-          ].map((service, i) => (
-            <motion.div
-              key={`floating-service-${i}`}
-              className="absolute"
-              style={{
-                left: `${service.x}%`,
-                top: `${service.y}%`,
-              }}
-              animate={
-                window.innerWidth < 992
-                  ? {
-                      y: [-8, 8, -8],
-                    }
-                  : {
-                      y: [-15, 15, -15],
-                      x: [-8, 8, -8],
-                      rotateZ: [-10, 10, -10],
-                      scale: [0.8, 1.2, 0.8],
-                    }
-              }
-              transition={{
-                duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
-                repeat: Infinity,
-                delay: service.delay * (window.innerWidth < 992 ? 1 : 0.5),
-              }}
-            >
-              <div
-                className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} opacity-40 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+        {/* Floating Service Icons with Orbit Animation - Desktop Only for Performance */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[
+              {
+                Icon: Globe,
+                color: "from-blue-500 to-cyan-500",
+                x: 85,
+                y: 20,
+                delay: 0,
+              },
+              {
+                Icon: Smartphone,
+                color: "from-purple-500 to-pink-500",
+                x: 15,
+                y: 30,
+                delay: 1,
+              },
+              ...(window.innerWidth >= 992
+                ? [
+                    {
+                      Icon: Palette,
+                      color: "from-green-500 to-emerald-500",
+                      x: 80,
+                      y: 65,
+                      delay: 2,
+                    },
+                    {
+                      Icon: Zap,
+                      color: "from-orange-500 to-red-500",
+                      x: 10,
+                      y: 70,
+                      delay: 3,
+                    },
+                    {
+                      Icon: Users,
+                      color: "from-indigo-500 to-purple-500",
+                      x: 85,
+                      y: 85,
+                      delay: 4,
+                    },
+                    {
+                      Icon: Code,
+                      color: "from-teal-500 to-blue-500",
+                      x: 15,
+                      y: 15,
+                      delay: 5,
+                    },
+                  ]
+                : [
+                    {
+                      Icon: Palette,
+                      color: "from-green-500 to-emerald-500",
+                      x: 75,
+                      y: 75,
+                      delay: 2,
+                    },
+                  ]),
+            ].map((service, i) => (
+              <motion.div
+                key={`floating-service-${i}`}
+                className="absolute"
                 style={{
-                  boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
+                  left: `${service.x}%`,
+                  top: `${service.y}%`,
+                }}
+                animate={
+                  window.innerWidth < 992
+                    ? {
+                        y: [-8, 8, -8],
+                      }
+                    : {
+                        y: [-15, 15, -15],
+                        x: [-8, 8, -8],
+                        rotateZ: [-10, 10, -10],
+                        scale: [0.8, 1.2, 0.8],
+                      }
+                }
+                transition={{
+                  duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
+                  repeat: Infinity,
+                  delay: service.delay * (window.innerWidth < 992 ? 1 : 0.5),
                 }}
               >
-                <service.Icon className="w-8 h-8 text-white drop-shadow-lg" />
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                <div
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} opacity-40 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+                  style={{
+                    boxShadow: "0 0 30px rgba(73, 146, 255, 0.4)",
+                  }}
+                >
+                  <service.Icon className="w-8 h-8 text-white drop-shadow-lg" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
-        {/* Rotating Skill Rings - Mobile Optimized */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-          {[...Array(window.innerWidth < 992 ? 2 : 3)].map((_, i) => (
-            <motion.div
-              key={`skill-ring-${i}`}
-              className="absolute rounded-full border-2"
-              style={{
-                width:
-                  window.innerWidth < 992
-                    ? `${250 + i * 80}px`
-                    : `${300 + i * 100}px`,
-                height:
-                  window.innerWidth < 992
-                    ? `${250 + i * 80}px`
-                    : `${300 + i * 100}px`,
-                border: `${window.innerWidth < 992 ? "1px" : "2px"} solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
-                opacity: window.innerWidth < 992 ? 0.15 : 0.2,
-              }}
-              animate={{
-                rotateZ: i % 2 === 0 ? [0, 360] : [360, 0],
-              }}
-              transition={{
-                duration: window.innerWidth < 992 ? 30 + i * 15 : 20 + i * 10,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              {/* Skill indicators on the ring - Reduced for mobile */}
-              {[...Array(window.innerWidth < 992 ? 4 : 6)].map(
-                (_, skillIndex) => (
-                  <motion.div
-                    key={`skill-indicator-${i}-${skillIndex}`}
-                    className="absolute rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"
-                    style={{
-                      width: window.innerWidth < 992 ? "2px" : "12px",
-                      height: window.innerWidth < 992 ? "2px" : "12px",
-                      left: `${50 + 45 * Math.cos((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
-                      top: `${50 + 45 * Math.sin((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
-                      transform: "translate(-50%, -50%)",
-                      boxShadow:
+        {/* Rotating Skill Rings - Desktop Only for Performance */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={`skill-ring-${i}`}
+                className="absolute rounded-full border-2"
+                style={{
+                  width:
+                    window.innerWidth < 992
+                      ? `${250 + i * 80}px`
+                      : `${300 + i * 100}px`,
+                  height:
+                    window.innerWidth < 992
+                      ? `${250 + i * 80}px`
+                      : `${300 + i * 100}px`,
+                  border: `${window.innerWidth < 992 ? "1px" : "2px"} solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
+                  opacity: window.innerWidth < 992 ? 0.15 : 0.2,
+                }}
+                animate={{
+                  rotateZ: i % 2 === 0 ? [0, 360] : [360, 0],
+                }}
+                transition={{
+                  duration: window.innerWidth < 992 ? 30 + i * 15 : 20 + i * 10,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                {/* Skill indicators on the ring - Reduced for mobile */}
+                {[...Array(window.innerWidth < 992 ? 4 : 6)].map(
+                  (_, skillIndex) => (
+                    <motion.div
+                      key={`skill-indicator-${i}-${skillIndex}`}
+                      className="absolute rounded-full bg-gradient-to-r from-blue-400 to-cyan-400"
+                      style={{
+                        width: window.innerWidth < 992 ? "2px" : "12px",
+                        height: window.innerWidth < 992 ? "2px" : "12px",
+                        left: `${50 + 45 * Math.cos((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
+                        top: `${50 + 45 * Math.sin((skillIndex * (window.innerWidth < 992 ? 90 : 60) * Math.PI) / 180)}%`,
+                        transform: "translate(-50%, -50%)",
+                        boxShadow:
+                          window.innerWidth < 992
+                            ? "0 0 5px rgba(73, 146, 255, 0.4)"
+                            : "0 0 10px rgba(73, 146, 255, 0.6)",
+                      }}
+                      animate={
                         window.innerWidth < 992
-                          ? "0 0 5px rgba(73, 146, 255, 0.4)"
-                          : "0 0 10px rgba(73, 146, 255, 0.6)",
-                    }}
-                    animate={
-                      window.innerWidth < 992
-                        ? {
-                            opacity: [0.6, 1, 0.6],
-                          }
-                        : {
-                            scale: [0.8, 1.2, 0.8],
-                            opacity: [0.4, 1, 0.4],
-                          }
-                    }
-                    transition={{
-                      duration: window.innerWidth < 992 ? 3 : 2,
-                      repeat: Infinity,
-                      delay: skillIndex * (window.innerWidth < 992 ? 0.5 : 0.3),
-                    }}
-                  />
-                ),
-              )}
-            </motion.div>
-          ))}
-        </div>
+                          ? {
+                              opacity: [0.6, 1, 0.6],
+                            }
+                          : {
+                              scale: [0.8, 1.2, 0.8],
+                              opacity: [0.4, 1, 0.4],
+                            }
+                      }
+                      transition={{
+                        duration: window.innerWidth < 992 ? 3 : 2,
+                        repeat: Infinity,
+                        delay:
+                          skillIndex * (window.innerWidth < 992 ? 0.5 : 0.3),
+                      }}
+                    />
+                  ),
+                )}
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Technology Stack Visualization */}
         <div className="absolute top-10 left-10 hidden lg:block pointer-events-none">
@@ -6214,81 +6426,94 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
           ))}
         </div>
 
-        {/* Enhanced Floating Ambient Particles with Color Shifting */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(12)].map((_, i) => (
-            <div
-              key={`particle-${i}`}
-              className="absolute rounded-full opacity-60"
-              style={{
-                left: `${5 + ((i * 60) % 95)}%`,
-                top: `${10 + ((i * 35) % 85)}%`,
-                width: `${1 + (i % 4)}px`,
-                height: `${1 + (i % 4)}px`,
-                background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.2 + (i % 4) * 0.15})`,
-                animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
-                filter: "blur(0.3px)",
-                transform: `scale(${0.5 + (i % 3) * 0.3})`,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Animated Geometric Patterns */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-          <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
-            {/* Animated hexagon grid */}
-            {[...Array(4)].map((_, i) => (
-              <polygon
-                key={`hex-${i}`}
-                points="100,20 140,40 140,80 100,100 60,80 60,40"
-                fill="none"
-                stroke="rgba(73, 146, 255, 0.3)"
-                strokeWidth="1"
-                strokeDasharray="10 5"
+        {/* Colorful Floating Orbs for Mobile/Tablet (replacing heavy particles) */}
+        {screenSize !== "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(screenSize === "tablet" ? 6 : 4)].map((_, i) => (
+              <div
+                key={`mobile-orb-${i}`}
+                className="absolute rounded-full"
                 style={{
-                  transform: `translate(${100 + i * 200}px, ${100 + (i % 2) * 150}px)`,
-                  animation: `geometric-pulse ${8 + i}s ease-in-out infinite ${i * 0.5}s`,
+                  left: `${10 + ((i * 70) % 80)}%`,
+                  top: `${15 + ((i * 50) % 70)}%`,
+                  width: `${screenSize === "tablet" ? 8 + (i % 3) * 2 : 6 + (i % 2)}px`,
+                  height: `${screenSize === "tablet" ? 8 + (i % 3) * 2 : 6 + (i % 2)}px`,
+                  background: [
+                    "radial-gradient(circle, rgba(34, 197, 94, 0.7) 0%, rgba(34, 197, 94, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(59, 130, 246, 0.7) 0%, rgba(59, 130, 246, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(147, 51, 234, 0.7) 0%, rgba(147, 51, 234, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(236, 72, 153, 0.7) 0%, rgba(236, 72, 153, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(6, 182, 212, 0.7) 0%, rgba(6, 182, 212, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(245, 158, 11, 0.7) 0%, rgba(245, 158, 11, 0.2) 60%, transparent 80%)",
+                  ][i % 6],
+                  animation: `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+                  filter: `blur(${1 + (i % 2) * 0.5}px)`,
+                  boxShadow: `0 0 ${8 + (i % 2) * 4}px currentColor`,
                 }}
               />
             ))}
-            {/* Animated connecting lines */}
-            {[...Array(4)].map((_, i) => (
-              <line
-                key={`line-${i}`}
-                x1={50 + i * 300}
-                y1={200}
-                x2={250 + i * 300}
-                y2={400}
-                stroke="rgba(63, 186, 255, 0.2)"
-                strokeWidth="1"
-                strokeDasharray="15 10"
+          </div>
+        )}
+
+        {/* Animated Geometric Patterns - Desktop Only */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+            <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
+              {/* Animated hexagon grid */}
+              {[...Array(4)].map((_, i) => (
+                <polygon
+                  key={`hex-${i}`}
+                  points="100,20 140,40 140,80 100,100 60,80 60,40"
+                  fill="none"
+                  stroke="rgba(73, 146, 255, 0.3)"
+                  strokeWidth="1"
+                  strokeDasharray="10 5"
+                  style={{
+                    transform: `translate(${100 + i * 200}px, ${100 + (i % 2) * 150}px)`,
+                    animation: `geometric-pulse ${8 + i}s ease-in-out infinite ${i * 0.5}s`,
+                  }}
+                />
+              ))}
+              {/* Animated connecting lines */}
+              {[...Array(4)].map((_, i) => (
+                <line
+                  key={`line-${i}`}
+                  x1={50 + i * 300}
+                  y1={200}
+                  x2={250 + i * 300}
+                  y2={400}
+                  stroke="rgba(63, 186, 255, 0.2)"
+                  strokeWidth="1"
+                  strokeDasharray="15 10"
+                  style={{
+                    animation: `geometric-pulse ${10 + i * 2}s ease-in-out infinite ${i * 0.7}s`,
+                  }}
+                />
+              ))}
+            </svg>
+          </div>
+        )}
+
+        {/* Breathing Orbs - Desktop Only */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(6)].map((_, i) => (
+              <div
+                key={`breath-orb-${i}`}
+                className="absolute rounded-full"
                 style={{
-                  animation: `geometric-pulse ${10 + i * 2}s ease-in-out infinite ${i * 0.7}s`,
+                  left: `${15 + ((i * 80) % 70)}%`,
+                  top: `${20 + ((i * 60) % 60)}%`,
+                  width: `${20 + (i % 3) * 15}px`,
+                  height: `${20 + (i % 3) * 15}px`,
+                  background: `radial-gradient(circle, rgba(${73 + i * 10}, ${146 + i * 5}, 255, 0.3) 0%, transparent 70%)`,
+                  animation: `breath ${6 + (i % 4)}s ease-in-out infinite ${i * 0.4}s`,
+                  filter: `blur(${2 + (i % 3)}px)`,
                 }}
               />
             ))}
-          </svg>
-        </div>
-
-        {/* Breathing Orbs */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={`breath-orb-${i}`}
-              className="absolute rounded-full"
-              style={{
-                left: `${15 + ((i * 80) % 70)}%`,
-                top: `${20 + ((i * 60) % 60)}%`,
-                width: `${20 + (i % 3) * 15}px`,
-                height: `${20 + (i % 3) * 15}px`,
-                background: `radial-gradient(circle, rgba(${73 + i * 10}, ${146 + i * 5}, 255, 0.3) 0%, transparent 70%)`,
-                animation: `breath ${6 + (i % 4)}s ease-in-out infinite ${i * 0.4}s`,
-                filter: `blur(${2 + (i % 3)}px)`,
-              }}
-            />
-          ))}
-        </div>
+          </div>
+        )}
 
         {/* Dynamic Background Waves */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -6392,27 +6617,28 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   }}
                 />
 
-                {/* Floating energy particles around text */}
-                {[...Array(8)].map((_, i) => (
-                  <div
-                    key={`energy-${i}`}
-                    className="absolute rounded-full pointer-events-none"
-                    style={{
-                      left: `${20 + ((i * 60) % 160)}%`,
-                      top: `${30 + ((i * 40) % 60)}%`,
-                      width: `${3 + (i % 2)}px`,
-                      height: `${3 + (i % 2)}px`,
-                      background:
-                        theme === "light"
-                          ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
-                          : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
-                      animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
-                      filter: "blur(0.5px)",
+                {/* Floating energy particles around text - Desktop Only */}
+                {screenSize === "desktop" &&
+                  [...Array(8)].map((_, i) => (
+                    <div
+                      key={`energy-${i}`}
+                      className="absolute rounded-full pointer-events-none"
+                      style={{
+                        left: `${20 + ((i * 60) % 160)}%`,
+                        top: `${30 + ((i * 40) % 60)}%`,
+                        width: `${3 + (i % 2)}px`,
+                        height: `${3 + (i % 2)}px`,
+                        background:
+                          theme === "light"
+                            ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.6 + (i % 3) * 0.2})`
+                            : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.6 + (i % 3) * 0.2})`,
+                        animation: `energy-float ${3 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                        filter: "blur(0.5px)",
 
-                      animationTimingFunction: "ease-in-out",
-                    }}
-                  />
-                ))}
+                        animationTimingFunction: "ease-in-out",
+                      }}
+                    />
+                  ))}
 
                 <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10">
                   <span
@@ -6559,7 +6785,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // ========================================
 
 const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible }, ref) => {
+  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
     const [currentPage, setCurrentPage] = useState(0);
 
     // ===== PORTFOLIO PROJECTS =====
@@ -6675,94 +6901,122 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
       >
         {/* SPECTACULAR PORTFOLIO SECTION ENHANCEMENTS */}
 
-        {/* Animated Noise Texture */}
-        <div
-          className="absolute inset-0 opacity-5 animate-noise"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-          }}
-        />
+        {/* Animated Noise Texture - Desktop Only */}
+        {screenSize === "desktop" && (
+          <div
+            className="absolute inset-0 opacity-5 animate-noise"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+            }}
+          />
+        )}
 
-        {/* Project Screenshots Floating Effect - Mobile Optimized */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[
-            {
-              x: 10,
-              y: 20,
-              rotation: -15,
-              color: "from-purple-500 to-pink-500",
-            },
-            { x: 85, y: 25, rotation: 12, color: "from-blue-500 to-cyan-500" },
-            ...(window.innerWidth >= 992
-              ? [
-                  {
-                    x: 15,
-                    y: 70,
-                    rotation: -8,
-                    color: "from-green-500 to-emerald-500",
-                  },
-                  {
-                    x: 80,
-                    y: 75,
-                    rotation: 18,
-                    color: "from-orange-500 to-red-500",
-                  },
-                ]
-              : []),
-          ].map((project, i) => (
-            <motion.div
-              key={`floating-project-${i}`}
-              className="absolute"
-              style={{
-                left: `${project.x}%`,
-                top: `${project.y}%`,
-                transform: `rotate(${project.rotation}deg)`,
-                opacity: window.innerWidth < 992 ? 0.25 : 0.4,
-              }}
-              animate={
-                window.innerWidth < 992
-                  ? {
-                      y: [-5, 5, -5],
-                    }
-                  : {
-                      y: [-10, 10, -10],
-                      rotateZ: [
-                        project.rotation - 5,
-                        project.rotation + 5,
-                        project.rotation - 5,
-                      ],
-                      scale: [0.9, 1.1, 0.9],
-                    }
-              }
-              transition={{
-                duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
-                repeat: Infinity,
-                delay: i * (window.innerWidth < 992 ? 1 : 0.5),
-              }}
-            >
-              <div
-                className={`w-20 h-16 rounded-lg bg-gradient-to-br ${project.color} backdrop-blur-sm border border-white/30`}
+        {/* Desktop Project Screenshots Floating Effect */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[
+              {
+                x: 10,
+                y: 20,
+                rotation: -15,
+                color: "from-purple-500 to-pink-500",
+              },
+              {
+                x: 85,
+                y: 25,
+                rotation: 12,
+                color: "from-blue-500 to-cyan-500",
+              },
+              {
+                x: 15,
+                y: 70,
+                rotation: -8,
+                color: "from-green-500 to-emerald-500",
+              },
+              {
+                x: 80,
+                y: 75,
+                rotation: 18,
+                color: "from-orange-500 to-red-500",
+              },
+            ].map((project, i) => (
+              <motion.div
+                key={`floating-project-${i}`}
+                className="absolute"
                 style={{
-                  boxShadow: "0 0 25px rgba(73, 146, 255, 0.3)",
+                  left: `${project.x}%`,
+                  top: `${project.y}%`,
+                  transform: `rotate(${project.rotation}deg)`,
+                  opacity: 0.4,
+                }}
+                animate={{
+                  y: [-10, 10, -10],
+                  rotateZ: [
+                    project.rotation - 5,
+                    project.rotation + 5,
+                    project.rotation - 5,
+                  ],
+                  scale: [0.9, 1.1, 0.9],
+                }}
+                transition={{
+                  duration: 4 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.5,
                 }}
               >
-                {/* Simulated browser interface */}
-                <div className="p-1">
-                  <div className="flex space-x-1 mb-1">
-                    <div className="w-1 h-1 bg-red-400 rounded-full" />
-                    <div className="w-1 h-1 bg-yellow-400 rounded-full" />
-                    <div className="w-1 h-1 bg-green-400 rounded-full" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <div className="h-0.5 bg-white/40 rounded w-3/4" />
-                    <div className="h-0.5 bg-white/30 rounded w-1/2" />
-                    <div className="h-0.5 bg-white/20 rounded w-2/3" />
+                <div
+                  className={`w-20 h-16 rounded-lg bg-gradient-to-br ${project.color} backdrop-blur-sm border border-white/30`}
+                  style={{
+                    boxShadow: "0 0 25px rgba(73, 146, 255, 0.3)",
+                  }}
+                >
+                  {/* Simulated browser interface */}
+                  <div className="p-1">
+                    <div className="flex space-x-1 mb-1">
+                      <div className="w-1 h-1 bg-red-400 rounded-full" />
+                      <div className="w-1 h-1 bg-yellow-400 rounded-full" />
+                      <div className="w-1 h-1 bg-green-400 rounded-full" />
+                    </div>
+                    <div className="space-y-0.5">
+                      <div className="h-0.5 bg-white/40 rounded w-3/4" />
+                      <div className="h-0.5 bg-white/30 rounded w-1/2" />
+                      <div className="h-0.5 bg-white/20 rounded w-2/3" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* Colorful Floating Orbs for Mobile/Tablet (replacing browser boxes) */}
+        {screenSize !== "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(screenSize === "tablet" ? 8 : 6)].map((_, i) => (
+              <div
+                key={`portfolio-orb-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${5 + ((i * 80) % 90)}%`,
+                  top: `${10 + ((i * 60) % 80)}%`,
+                  width: `${screenSize === "tablet" ? 10 + (i % 4) * 2 : 8 + (i % 3)}px`,
+                  height: `${screenSize === "tablet" ? 10 + (i % 4) * 2 : 8 + (i % 3)}px`,
+                  background: [
+                    "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, rgba(34, 197, 94, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(59, 130, 246, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(147, 51, 234, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(236, 72, 153, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(6, 182, 212, 0.8) 0%, rgba(6, 182, 212, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(245, 158, 11, 0.8) 0%, rgba(245, 158, 11, 0.2) 60%, transparent 80%)",
+                  ][i % 6],
+                  animation: `gentleFloat ${5 + (i % 4)}s ease-in-out infinite ${i * 0.7}s`,
+                  filter: `blur(${1.5 + (i % 2) * 0.5}px)`,
+                  boxShadow: `0 0 ${10 + (i % 3) * 5}px currentColor`,
+                }}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Code Repository Visualization */}
         <div className="absolute top-10 right-10 hidden lg:block pointer-events-none">
@@ -6834,104 +7088,112 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           </motion.div>
         </div>
 
-        {/* Floating Achievement Badges */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[
-            {
-              icon: "🏆",
-              label: "Award",
-              x: 8,
-              y: 15,
-              color: "from-yellow-500 to-orange-500",
-            },
-            {
-              icon: "⭐",
-              label: "Featured",
-              x: 88,
-              y: 18,
-              color: "from-blue-500 to-purple-500",
-            },
-            {
-              icon: "🚀",
-              label: "Launch",
-              x: 12,
-              y: 85,
-              color: "from-green-500 to-blue-500",
-            },
-            {
-              icon: "💎",
-              label: "Premium",
-              x: 85,
-              y: 82,
-              color: "from-purple-500 to-pink-500",
-            },
-          ].map((badge, i) => (
-            <motion.div
-              key={`achievement-${i}`}
-              className="absolute"
-              style={{
-                left: `${badge.x}%`,
-                top: `${badge.y}%`,
-              }}
-              animate={{
-                y: [-8, 8, -8],
-                rotateZ: [-5, 5, -5],
-                scale: [0.9, 1.1, 0.9],
-              }}
-              transition={{
-                duration: 3 + (i % 2),
-                repeat: Infinity,
-                delay: i * 0.7,
-              }}
-            >
-              <div
-                className={`w-12 h-12 rounded-full bg-gradient-to-br ${badge.color} opacity-50 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+        {/* Floating Achievement Badges - Desktop Only */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[
+              {
+                icon: "🏆",
+                label: "Award",
+                x: 8,
+                y: 15,
+                color: "from-yellow-500 to-orange-500",
+              },
+              {
+                icon: "⭐",
+                label: "Featured",
+                x: 88,
+                y: 18,
+                color: "from-blue-500 to-purple-500",
+              },
+              {
+                icon: "🚀",
+                label: "Launch",
+                x: 12,
+                y: 85,
+                color: "from-green-500 to-blue-500",
+              },
+              {
+                icon: "💎",
+                label: "Premium",
+                x: 85,
+                y: 82,
+                color: "from-purple-500 to-pink-500",
+              },
+            ].map((badge, i) => (
+              <motion.div
+                key={`achievement-${i}`}
+                className="absolute"
                 style={{
-                  boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                  left: `${badge.x}%`,
+                  top: `${badge.y}%`,
+                }}
+                animate={{
+                  y: [-8, 8, -8],
+                  rotateZ: [-5, 5, -5],
+                  scale: [0.9, 1.1, 0.9],
+                }}
+                transition={{
+                  duration: 3 + (i % 2),
+                  repeat: Infinity,
+                  delay: i * 0.7,
                 }}
               >
-                <span className="text-lg">{badge.icon}</span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Interactive Network Connections */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <svg className="absolute w-full h-full opacity-20">
-            {/* Dynamic connecting lines between floating elements */}
-            {[...Array(6)].map((_, i) => {
-              const startX = 20 + ((i * 120) % 80);
-              const startY = 30 + ((i * 80) % 60);
-              const endX = 40 + (((i + 1) * 130) % 80);
-              const endY = 50 + (((i + 1) * 90) % 60);
-
-              return (
-                <motion.line
-                  key={`connection-${i}`}
-                  x1={`${startX}%`}
-                  y1={`${startY}%`}
-                  x2={`${endX}%`}
-                  y2={`${endY}%`}
-                  stroke="rgba(73, 146, 255, 0.4)"
-                  strokeWidth="1"
-                  strokeDasharray="5 5"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: [0, 1, 0] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    delay: i * 0.5,
+                <div
+                  className={`w-12 h-12 rounded-full bg-gradient-to-br ${badge.color} opacity-50 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+                  style={{
+                    boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
                   }}
-                />
-              );
-            })}
-          </svg>
-        </div>
+                >
+                  <span className="text-lg">{badge.icon}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
-        {/* Enhanced Floating Ambient Particles with Color Shifting */}
+        {/* Interactive Network Connections - Desktop Only */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <svg className="absolute w-full h-full opacity-20">
+              {/* Dynamic connecting lines between floating elements */}
+              {[...Array(6)].map((_, i) => {
+                const startX = 20 + ((i * 120) % 80);
+                const startY = 30 + ((i * 80) % 60);
+                const endX = 40 + (((i + 1) * 130) % 80);
+                const endY = 50 + (((i + 1) * 90) % 60);
+
+                return (
+                  <motion.line
+                    key={`connection-${i}`}
+                    x1={`${startX}%`}
+                    y1={`${startY}%`}
+                    x2={`${endX}%`}
+                    y2={`${endY}%`}
+                    stroke="rgba(73, 146, 255, 0.4)"
+                    strokeWidth="1"
+                    strokeDasharray="5 5"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: [0, 1, 0] }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      delay: i * 0.5,
+                    }}
+                  />
+                );
+              })}
+            </svg>
+          </div>
+        )}
+
+        {/* Enhanced Floating Ambient Particles with Color Shifting - Reduced for Mobile/Tablet */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(12)].map((_, i) => (
+          {[
+            ...Array(
+              screenSize === "desktop" ? 12 : screenSize === "tablet" ? 4 : 2,
+            ),
+          ].map((_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute rounded-full opacity-60"
@@ -7114,16 +7376,20 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
                     }}
                   >
-                    <span className="warm-glow-text animate-warm-glow-pulse">
-                      {"Our Featured Work".split("").map((letter, i) => (
-                        <span
-                          key={i}
-                          className="animate-letter-float"
-                          style={{ animationDelay: `${i * 0.1}s` }}
-                        >
-                          {letter === " " ? "\u00A0" : letter}
-                        </span>
-                      ))}
+                    <span
+                      className={`warm-glow-text ${animationConfig?.enableTextGlow ? "animate-warm-glow-pulse" : ""}`}
+                    >
+                      {animationConfig?.enableLetterAnimations
+                        ? "Our Featured Work".split("").map((letter, i) => (
+                            <span
+                              key={i}
+                              className="animate-letter-float"
+                              style={{ animationDelay: `${i * 0.1}s` }}
+                            >
+                              {letter === " " ? "\u00A0" : letter}
+                            </span>
+                          ))
+                        : "Our Featured Work"}
                     </span>
                   </span>
                 </div>
