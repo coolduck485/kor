@@ -158,6 +158,19 @@ export default function SolarSystem() {
                    radial-gradient(ellipse at 60% 60%, rgba(236, 72, 153, 0.1) 0%, transparent 50%)
                  `
                }} />
+
+          {/* Space Dust */}
+          <div className="space-dust fixed inset-0" />
+
+          {/* Distant Galaxy */}
+          <div className="fixed inset-0 opacity-10 pointer-events-none"
+               style={{
+                 background: `
+                   radial-gradient(ellipse 800px 300px at 90% 10%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+                   radial-gradient(ellipse 600px 200px at 10% 90%, rgba(255, 255, 255, 0.08) 0%, transparent 40%)
+                 `,
+                 animation: 'galaxySpiral 120s ease-in-out infinite'
+               }} />
         </>
       )}
 
