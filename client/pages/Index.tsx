@@ -3102,15 +3102,21 @@ export default function Index() {
                   <div className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                     <span
                       className={`relative inline-block ${
-                        theme === "light" ? "text-gray-900" : "text-white"
-                      }`}
-                      style={{
+                        isPinkActive
+                          ? "text-pink-200"
+                          : theme === "light"
+                          ? "text-gray-900"
+                          : "text-white"
+                      } ${isPinkActive ? "animate-pink-neon-glow" : "animate-text-pop"}`}
+                      style={isPinkActive ? {
+                        filter: "drop-shadow(0 0 12px rgba(236, 72, 153, 0.7)) drop-shadow(0 0 25px rgba(244, 114, 182, 0.5))",
+                        textShadow: "0 0 8px rgba(236, 72, 153, 0.6)"
+                      } : {
                         filter:
                           theme === "light"
                             ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
                             : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
                       }}
-                      className="animate-text-pop"
                     >
                       {/* Warm glow text with iOS-inspired styling */}
                       <span className="warm-glow-text animate-warm-glow-pulse">
