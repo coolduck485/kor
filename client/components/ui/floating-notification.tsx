@@ -90,7 +90,7 @@ const FloatingNotificationContainer: React.FC = () => {
   // For Safari (especially mobile Safari), add extra bottom margin to avoid search bar
   let positionClasses = "bottom-4 right-4";
   if (isSafari && isMobile) {
-    positionClasses = "bottom-20 right-4"; // Higher up on mobile Safari to avoid search bar
+    positionClasses = "bottom-28 right-4"; // Much higher up on mobile Safari to avoid search bar
   } else if (isSafari) {
     positionClasses = "bottom-8 right-4"; // Slightly higher on desktop Safari
   }
