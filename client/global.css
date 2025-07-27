@@ -392,6 +392,36 @@
   background-color: hsl(340, 75%, 68%) !important;
 }
 
+/* Universal blue to pink conversion for any remaining blue elements */
+.pink-theme [class*="blue"] {
+  color: hsl(340, 75%, 68%) !important;
+}
+
+.pink-theme [class*="bg-blue"] {
+  background-color: hsl(340, 75%, 68%) !important;
+}
+
+.pink-theme [class*="border-blue"] {
+  border-color: hsl(340, 75%, 68%) !important;
+}
+
+.pink-theme [class*="text-blue"] {
+  color: hsl(340, 75%, 68%) !important;
+}
+
+/* Make sure all text outlines and borders are pink */
+.pink-theme * {
+  --tw-ring-color: hsl(340, 75%, 68%) !important;
+}
+
+.pink-theme input:focus,
+.pink-theme textarea:focus,
+.pink-theme select:focus,
+.pink-theme button:focus {
+  outline: 2px solid hsl(340, 75%, 68%) !important;
+  border-color: hsl(340, 75%, 68%) !important;
+}
+
 /* Pink theme glow effects */
 .pink-theme .glow {
   box-shadow:
