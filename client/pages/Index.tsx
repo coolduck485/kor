@@ -813,7 +813,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
 ██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
-█████╔╝ █������   █��║██���███╔╝
+█████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
@@ -2361,6 +2361,117 @@ export default function Index() {
               </div>
 
               {/* Scanlines removed for mobile/tablet devices */}
+            </div>
+          )}
+
+          {/* Pink Theme Exclusive Background Effects */}
+          {isPinkActive && isHighPerformance && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              {/* Pink Aurora Curtains - Desktop */}
+              <div className="hidden lg:block opacity-70">
+                {[...Array(4)].map((_, i) => (
+                  <div
+                    key={`pink-aurora-${i}`}
+                    className="absolute"
+                    style={{
+                      top: `${15 + i * 20}%`,
+                      left: "-20%",
+                      right: "-20%",
+                      height: `${100 + i * 20}px`,
+                      background: `linear-gradient(90deg,
+                        transparent 0%,
+                        rgba(236, 72, 153, ${0.4 + i * 0.1}) 20%,
+                        rgba(244, 114, 182, ${0.5 + i * 0.1}) 40%,
+                        rgba(251, 113, 133, ${0.6 + i * 0.1}) 60%,
+                        rgba(190, 24, 93, ${0.4 + i * 0.1}) 80%,
+                        transparent 100%)`,
+                      borderRadius: `${40 + i * 15}% ${80 - i * 10}% ${60 + i * 12}% ${30 - i * 8}% / ${70 + i * 8}% ${40 - i * 5}% ${50 + i * 10}% ${90 - i * 15}%`,
+                      filter: `blur(${12 + i * 4}px)`,
+                      animation: `pink-floating-orbs ${25 + i * 5}s ease-in-out infinite ${i * 2}s`,
+                      transform: `skewY(${-2 + i * 0.8}deg) rotate(${i * 2}deg)`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Pink Floating Hearts - All Devices */}
+              <div className="absolute inset-0">
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={`pink-heart-bg-${i}`}
+                    className="absolute"
+                    style={{
+                      left: `${10 + ((i * 80) % 85)}%`,
+                      top: `${15 + ((i * 60) % 70)}%`,
+                      width: `${12 + (i % 4) * 4}px`,
+                      height: `${12 + (i % 4) * 4}px`,
+                      animation: `pink-heartbeat ${3 + (i % 3)}s ease-in-out infinite ${i * 0.7}s`,
+                      transform: "translateZ(0)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        background: `rgba(236, 72, 153, ${0.6 + (i % 3) * 0.1})`,
+                        clipPath: "polygon(50% 10%, 83% 25%, 100% 60%, 50% 100%, 0% 60%, 17% 25%)",
+                        boxShadow: "0 0 8px rgba(236, 72, 153, 0.5)",
+                        filter: "blur(1px)",
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Pink Sparkle Effects */}
+              <div className="absolute inset-0">
+                {[...Array(15)].map((_, i) => (
+                  <div
+                    key={`pink-sparkle-${i}`}
+                    className="absolute rounded-full"
+                    style={{
+                      left: `${5 + ((i * 70) % 90)}%`,
+                      top: `${10 + ((i * 50) % 80)}%`,
+                      width: `${2 + (i % 3)}px`,
+                      height: `${2 + (i % 3)}px`,
+                      background: [
+                        "rgba(236, 72, 153, 0.9)",
+                        "rgba(244, 114, 182, 0.8)",
+                        "rgba(251, 113, 133, 0.7)",
+                        "rgba(190, 24, 93, 0.9)",
+                      ][i % 4],
+                      animation: `pink-pulse ${2 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                      boxShadow: "0 0 6px currentColor",
+                      filter: "blur(0.5px)",
+                      transform: "translateZ(0)",
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Pink Mobile/Tablet Wave Effects */}
+              <div className="lg:hidden absolute inset-0 opacity-60">
+                {[...Array(3)].map((_, i) => (
+                  <div
+                    key={`pink-mobile-wave-${i}`}
+                    className="absolute w-full"
+                    style={{
+                      top: `${20 + i * 25}%`,
+                      height: "100px",
+                      background: `linear-gradient(90deg,
+                        transparent 0%,
+                        rgba(236, 72, 153, ${0.3 + i * 0.1}) 30%,
+                        rgba(244, 114, 182, ${0.4 + i * 0.1}) 50%,
+                        rgba(251, 113, 133, ${0.3 + i * 0.1}) 70%,
+                        transparent 100%)`,
+                      borderRadius: `${50 + i * 10}% ${70 - i * 5}% ${40 + i * 8}% ${80 - i * 12}% / ${60 + i * 15}% ${30 - i * 3}% ${50 + i * 7}% ${70 - i * 10}%`,
+                      filter: `blur(${8 + i * 2}px)`,
+                      animation: `pink-floating-particles ${15 + i * 3}s linear infinite ${i * 1.5}s`,
+                      transform: `skewY(${-1.5 + i * 0.5}deg)`,
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           )}
 
