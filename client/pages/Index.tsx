@@ -7260,7 +7260,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           ))}
         </div>
 
-        {/* Simple Moving Message Bubbles */}
+        {/* Moving Message Bubbles with Collision */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-4">
           {[
             { text: "Hello!", color: "bg-blue-500/20 border-blue-300/30" },
@@ -7271,31 +7271,24 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             <motion.div
               key={`message-bubble-${i}`}
               className={`absolute ${bubble.color} backdrop-blur-sm border rounded-full px-3 py-1.5 text-xs font-medium text-white`}
-              initial={{
-                opacity: 0,
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-              }}
               animate={{
-                opacity: [0, 1, 1, 0],
+                opacity: [0, 1, 0],
                 x: [
-                  Math.random() * window.innerWidth,
-                  Math.random() * window.innerWidth,
-                  Math.random() * window.innerWidth,
-                  Math.random() * window.innerWidth,
+                  `${10 + (i * 20)}%`,
+                  `${60 + (i * 10)}%`,
+                  `${20 + (i * 15)}%`
                 ],
                 y: [
-                  Math.random() * window.innerHeight,
-                  Math.random() * window.innerHeight,
-                  Math.random() * window.innerHeight,
-                  Math.random() * window.innerHeight,
+                  `${20 + (i * 15)}%`,
+                  `${70 - (i * 10)}%`,
+                  `${30 + (i * 20)}%`
                 ],
               }}
               transition={{
-                duration: 8,
-                delay: i * 2,
+                duration: 6,
+                delay: i * 1.5,
                 repeat: Infinity,
-                repeatDelay: 3,
+                repeatDelay: 4,
                 ease: "easeInOut",
               }}
             >
