@@ -108,12 +108,23 @@ const FloatingNotificationContainer: React.FC = () => {
     >
       <div
         className={cn(
-          "flex flex-col gap-3 w-full",
-          isMobile ? "max-w-[280px] px-2" : "max-w-sm sm:max-w-md",
+          "flex flex-col w-full",
+          isMobile ? "max-w-[280px] px-2 gap-2" : "max-w-sm sm:max-w-md gap-3",
         )}
       >
-        <AnimatePresence mode="popLayout">
-          {notifications.map((notification) => (
+        <AnimatePresence
+          mode="popLayout"
+          initial={false}
+          onExitComplete={() => {
+            // Ensure smooth transitions when notifications exit
+            if (typeof window !== 'undefined') {
+              window.requestAnimationFrame(() => {
+                // Force layout recalculation for smooth animations
+              });
+            }
+          }}
+        >
+          {notifications.map((notification, index) => (
             <FloatingNotificationItem
               key={notification.id}
               notification={notification}
