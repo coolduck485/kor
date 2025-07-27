@@ -777,7 +777,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████�� ███����������█╗
+                  {`██╗  ██╗ ██████�� ███�����������█╗
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
@@ -928,7 +928,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►�����</span>
+                  <span className="text-green-400 ml-4">◄���◄►������</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -5041,36 +5041,37 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           ))}
         </div>
 
-        {/* Animated Data Streams */}
+        {/* Animated Data Streams - Mobile Optimized */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(window.innerWidth < 992 ? 3 : 6)].map((_, i) => (
             <motion.div
               key={`data-stream-${i}`}
               className="absolute"
               style={{
-                left: `${5 + ((i * 90) % 90)}%`,
+                left: `${10 + ((i * 80) % 80)}%`,
                 top: "0%",
                 height: "100%",
-                width: "2px",
+                width: window.innerWidth < 992 ? "1px" : "2px",
               }}
             >
               <motion.div
-                className="w-full rounded-full opacity-60"
+                className="w-full rounded-full"
                 style={{
-                  height: "40px",
+                  height: window.innerWidth < 992 ? "30px" : "40px",
+                  opacity: window.innerWidth < 992 ? 0.4 : 0.6,
                   background: `linear-gradient(180deg,
                     rgba(73, 146, 255, 0.8) 0%,
                     rgba(34, 211, 238, 0.6) 50%,
                     transparent 100%)`,
-                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.4)",
+                  boxShadow: window.innerWidth < 992 ? "0 0 5px rgba(73, 146, 255, 0.3)" : "0 0 10px rgba(73, 146, 255, 0.4)",
                 }}
                 animate={{
                   y: ["-50px", "calc(100vh + 50px)"],
                 }}
                 transition={{
-                  duration: 3 + (i % 3),
+                  duration: window.innerWidth < 992 ? 5 + (i % 2) : 3 + (i % 3),
                   repeat: Infinity,
-                  delay: i * 0.5,
+                  delay: i * 1,
                   ease: "linear",
                 }}
               />
@@ -7237,7 +7238,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             { icon: "📞", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
-            { icon: "���", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
+            { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
               key={`comm-icon-${i}`}
