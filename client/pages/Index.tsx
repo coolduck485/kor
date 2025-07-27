@@ -680,7 +680,7 @@ export default function Index() {
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
                       animate={
-                        animationStep >= 1
+                        pinkAnimationStep >= 1
                           ? {
                               opacity: 1,
                               scale: 1,
