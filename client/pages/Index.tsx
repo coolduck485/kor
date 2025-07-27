@@ -2914,7 +2914,7 @@ export default function Index() {
                   filter: "blur(15px)",
                 }}
                 animate={
-                  pinkAnimationStep >= 2
+                  animationStep >= 2
                     ? {
                         opacity: 1,
                         scale: 1,
