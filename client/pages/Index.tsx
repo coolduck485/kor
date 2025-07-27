@@ -811,7 +811,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ��█████���� ███����������█╗
+                  {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
@@ -890,7 +890,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█��█████████��███ 50%
+                      RAM: █����████��█��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1708,7 +1708,11 @@ export default function Index() {
             {/* Mouse scroll indicator - now visible on all devices */}
             <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
               <div
-                className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
+                className={`w-1 h-3 rounded-full mt-2 animate-float shadow-lg ${
+                  isPinkActive
+                    ? "bg-gradient-to-b from-pink-400 to-pink-200"
+                    : "bg-gradient-to-b from-glow-blue to-white/80"
+                }`}
                 style={{
                   boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
                 }}
