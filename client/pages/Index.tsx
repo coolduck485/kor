@@ -3207,8 +3207,9 @@ export default function Index() {
                   <div
                     className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
                     style={{
-                      background:
-                        theme === "light"
+                      background: isPinkActive
+                        ? "radial-gradient(ellipse, rgba(236, 72, 153, 0.4) 0%, rgba(244, 114, 182, 0.3) 50%, transparent 70%)"
+                        : theme === "light"
                           ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
                           : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
                       transform: "scale(1.5)",
