@@ -3186,10 +3186,21 @@ export default function Index() {
                 </h1>
               </div>
 
-              {/* Development services - mobile: 10px right + 10px down, desktop: enhanced with dramatic effects */}
-              <div
+              {/* Development services - Fade in second with delay */}
+              <motion.div
                 className="text-center transform translate-x-[10px] translate-y-[10px] sm:translate-x-8 sm:translate-y-0 md:translate-x-12 lg:translate-x-16 mt-2 md:mt-4"
                 style={{ marginLeft: "5px", marginTop: "-5px" }}
+                initial={{ opacity: 0 }}
+                animate={
+                  animationStep >= 3
+                    ? { opacity: 1 }
+                    : { opacity: 0 }
+                }
+                transition={{
+                  duration: 1.2,
+                  ease: "easeOut",
+                  delay: 1.5
+                }}
               >
                 <div className="relative">
                   {/* Background glow effect */}
@@ -3413,7 +3424,7 @@ export default function Index() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
