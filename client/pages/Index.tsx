@@ -6,6 +6,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
 import { useMobilePerformance } from "@/hooks/use-mobile-performance";
+import { useBrowserDetection } from "@/hooks/use-browser-detection";
 import {
   ChevronUp,
   ChevronDown,
@@ -30,6 +31,7 @@ export default function Index() {
   const { showSuccess, showError, showWarning, showInfo } =
     useFloatingNotifications();
   const { isMobile, animationConfig, deviceType } = useMobilePerformance();
+  const { isSafari, isMobileSafari, isIOS } = useBrowserDetection();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
@@ -44,6 +46,8 @@ export default function Index() {
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
   const hasShownWelcomeRef = useRef(false);
+  const hasShownMobilePerformanceRef = useRef(false);
+
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const sectionsRef = useRef<HTMLDivElement[]>([]);
@@ -87,15 +91,19 @@ export default function Index() {
   const [isContentVisible, setIsContentVisible] = useState(true);
   const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
 
-  // Immediate test notification
+  // Test notification - shows last (after other notifications)
   useEffect(() => {
-    console.log("Page loaded, showing immediate test notification...");
-    showError(
-      "TEST NOTIFICATION",
-      "If you can see this, the notification system works!",
-      0, // No auto-dismiss
-    );
-  }, []); // Only run once on mount
+    const timer = setTimeout(() => {
+      console.log("Showing test notification last...");
+      showError(
+        "TEST NOTIFICATION",
+        "If you can see this, the notification system works!",
+        0, // No auto-dismiss
+      );
+    }, 4000); // Show after 4 seconds (after mobile performance notification)
+
+    return () => clearTimeout(timer);
+  }, [showError]);
 
   // Welcome notification - shows once per page load
   useEffect(() => {
@@ -106,30 +114,42 @@ export default function Index() {
         showInfo(
           "Welcome to KOR!",
           "Experience the future of modern web development. Click the X to dismiss.",
+          0, // No auto-dismiss
         );
       }, 3000);
     }
   }, []); // Only run once on mount
 
-  // Mobile performance notification - shows only on mobile devices (≤640px)
+  // Mobile performance notification - shows once per page load on mobile devices
   useEffect(() => {
-    console.log("Device type:", deviceType, "Window width:", window.innerWidth); // Debug log
-    if (deviceType === "mobile") {
-      console.log(
-        "Mobile device detected, showing performance notification...",
-      ); // Debug log
-      const timer = setTimeout(() => {
-        console.log("Triggering mobile performance notification...");
-        showWarning(
-          "Mobile Performance Mode",
-          "Visual effects and animations have been limited to improve performance.",
-          6000, // Show for 6 seconds
-        );
-      }, 4000); // Show after 4 seconds
+    if (!hasShownMobilePerformanceRef.current) {
+      hasShownMobilePerformanceRef.current = true;
 
-      return () => clearTimeout(timer);
+      // Check if mobile on page load
+      const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+      const isMobileDevice = windowWidth <= 640;
+
+      console.log(
+        "Mobile check on load - width:",
+        windowWidth,
+        "isMobile:",
+        isMobileDevice,
+      );
+
+      if (isMobileDevice) {
+        setTimeout(() => {
+          console.log(
+            "🚀 Showing mobile performance notification on mobile device!",
+          );
+          showWarning(
+            "Mobile Performance Mode",
+            "Visual effects and animations have been limited to improve performance.",
+            0, // No auto-dismiss - user must click X
+          );
+        }, 3100); // Show after welcome notification
+      }
     }
-  }, [deviceType, showWarning]);
+  }, []); // Only run once on mount
 
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
@@ -810,7 +830,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████�� ███����������█╗
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
-██╔═██╗ ██║   ██║██╔══█�������
+██╔═��█╗ ██║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  ���█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
@@ -886,7 +906,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���██████��█████████��███ 50%
+                      RAM: █���████��█��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1683,6 +1703,37 @@ export default function Index() {
         contain: "layout style paint",
       }}
     >
+      {/* Debug Panel - Remove in production */}
+      <div className="fixed top-2 left-2 z-50 bg-black/80 text-white text-xs p-2 rounded border border-white/20 backdrop-blur-sm max-w-xs">
+        <div>Device: {deviceType}</div>
+        <div>
+          Width: {typeof window !== "undefined" ? window.innerWidth : "N/A"}
+        </div>
+        <div>Mobile Hook: {isMobile ? "Yes" : "No"}</div>
+        <div>Safari: {isSafari ? "Yes" : "No"}</div>
+        <div>iOS: {isIOS ? "Yes" : "No"}</div>
+        <div>Mobile Safari: {isMobileSafari ? "Yes" : "No"}</div>
+        <div>
+          Mobile Perf Shown:{" "}
+          {hasShownMobilePerformanceRef.current ? "Yes" : "No"}
+        </div>
+        <button
+          onClick={() => {
+            console.log(
+              "Manual trigger: showing mobile performance notification",
+            );
+            showWarning(
+              "Mobile Performance Mode",
+              "Visual effects and animations have been limited to improve performance.",
+              6000,
+            );
+          }}
+          className="mt-1 px-2 py-1 bg-orange-600 text-white text-xs rounded hover:bg-orange-700"
+        >
+          Test Mobile Notif
+        </button>
+      </div>
+
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
         <div
@@ -7849,7 +7900,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "✉️" },
+            { type: "email", x: 15, y: 35, icon: "✉���" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
@@ -8548,7 +8599,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Email",
                         subtitle: "contact@kor.dev",
                         url: "mailto:contact@kor.dev",
-                        icon: "✉️",
+                        icon: "✉���",
                         color: "from-emerald-500 via-green-500 to-lime-500",
                         shadowColor: "rgba(16, 185, 129, 0.3)",
                       },

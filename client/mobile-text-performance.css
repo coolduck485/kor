@@ -45,8 +45,8 @@
   .warm-glow-text {
     background: unset !important;
     -webkit-background-clip: unset !important;
-    -webkit-text-fill-color: unset !important;
-    color: inherit !important;
+    -webkit-text-fill-color: white !important;
+    color: white !important;
   }
 
   /* Reduce transform complexity */
@@ -89,7 +89,8 @@
     backdrop-filter: none !important;
     background: unset !important;
     -webkit-background-clip: unset !important;
-    -webkit-text-fill-color: unset !important;
+    -webkit-text-fill-color: white !important;
+    color: white !important;
   }
 
   /* Override any remaining glow effects */
@@ -105,6 +106,8 @@
   .warm-glow-text {
     text-shadow: 0 0 5px rgba(73, 146, 255, 0.3) !important;
     animation: none !important;
+    color: white !important;
+    -webkit-text-fill-color: white !important;
   }
 
   /* Disable letter-by-letter but allow simple glow */

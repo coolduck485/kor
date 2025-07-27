@@ -6,6 +6,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure notifications stay visible across all sections */
+.notification-container {
+  position: fixed !important;
+  z-index: 99999 !important;
+  pointer-events: none !important;
+}
+
+.notification-item {
+  pointer-events: auto !important;
+}
+
+/* Mobile Safari specific adjustments */
+@supports (-webkit-touch-callout: none) {
+  /* This targets iOS Safari specifically */
+  .notification-container {
+    bottom: calc(env(safe-area-inset-bottom) + 80px) !important;
+  }
+}
+
+/* Additional mobile viewport handling */
+@media screen and (max-width: 640px) {
+  .notification-container {
+    /* Ensure notifications are well above mobile browser UI */
+    bottom: 100px !important;
+  }
+
+  /* For very small screens, ensure notifications fit */
+  .notification-item {
+    max-width: calc(100vw - 32px) !important;
+  }
+}
+
 @layer base {
   /**
    * Tailwind CSS theme
