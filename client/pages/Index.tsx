@@ -793,7 +793,7 @@ export default function Index() {
           )}
         </AnimatePresence>
         {/* Pink Main Content - Only show after loading */}
-        {!isLoading && (
+        {!pinkLoading && (
           <>
             {/* Pink Theme Toggles */}
             <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
@@ -1198,7 +1198,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
-██║  �����█╗╚███��██�����╝██║  �����█║
+██║  ���█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
