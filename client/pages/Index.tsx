@@ -812,10 +812,10 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██���███���� ███����������█╗
-██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
+                  {`██╗  ██╗ ██████���� ███����������█╗
+██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔╝
-██╔═��█╗ █��║   ██║██╔══█�������
+██╔═��█╗ █��║   ██║██╔══█��������
 ██║  ���█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
@@ -1940,6 +1940,26 @@ export default function Index() {
                   <ThemeToggle />
                   <RetroToggle />
                   <SolarSystemToggle />
+
+                  {/* Solar System Experience Link */}
+                  <motion.a
+                    href="/solar-system"
+                    className="group relative px-4 py-2 rounded-full border-2 border-yellow-400/50 bg-yellow-500/10 backdrop-blur-lg transition-all duration-300 hover:scale-110 hover:bg-yellow-500/20 hover:border-yellow-400/70"
+                    style={{
+                      boxShadow: "0 0 20px rgba(255, 193, 7, 0.3)",
+                      textShadow: "0 0 10px rgba(255, 235, 59, 0.6)"
+                    }}
+                    whileHover={{
+                      boxShadow: "0 0 30px rgba(255, 193, 7, 0.5), 0 0 60px rgba(255, 193, 7, 0.3)"
+                    }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 1 }}
+                  >
+                    <span className="text-yellow-400 font-semibold text-sm flex items-center gap-2">
+                      🌟 Explore Solar System
+                    </span>
+                  </motion.a>
                 </div>
               </div>
             </div>
