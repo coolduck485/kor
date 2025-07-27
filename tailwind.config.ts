@@ -377,6 +377,9 @@ export default {
         textGlow: "text-glow 4s ease-in-out infinite",
         "swipe-down": "swipe-down 2s ease-in-out infinite",
         "swipe-down-delayed": "swipe-down-delayed 2s ease-in-out infinite 0.3s",
+        "pink-pulse": "pink-pulse 3s ease-in-out infinite",
+        "pink-neon-glow": "pink-neon-glow 4s ease-in-out infinite",
+        "pink-heartbeat": "pink-heartbeat 2s ease-in-out infinite",
         "mobile-notification-enter":
           "mobile-notification-enter 0.3s ease-out forwards",
         "mobile-notification-exit":
