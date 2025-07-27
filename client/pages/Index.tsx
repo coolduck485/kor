@@ -93,19 +93,7 @@ export default function Index() {
   const [isContentVisible, setIsContentVisible] = useState(true);
   const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
 
-  // Test notification - shows last (after other notifications)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log("Showing test notification last...");
-      showError(
-        "TEST NOTIFICATION",
-        "If you can see this, the notification system works!",
-        0, // No auto-dismiss
-      );
-    }, 4000); // Show after 4 seconds (after mobile performance notification)
-
-    return () => clearTimeout(timer);
-  }, [showError]);
+  // Test notification removed
 
   // Welcome notification - shows immediately on all devices
   useEffect(() => {
@@ -1696,36 +1684,7 @@ export default function Index() {
         contain: "layout style paint",
       }}
     >
-      {/* Debug Panel - Remove in production */}
-      <div className="fixed top-2 left-2 z-50 bg-black/80 text-white text-xs p-2 rounded border border-white/20 backdrop-blur-sm max-w-xs">
-        <div>Device: {deviceType}</div>
-        <div>
-          Width: {typeof window !== "undefined" ? window.innerWidth : "N/A"}
-        </div>
-        <div>Mobile Hook: {isMobile ? "Yes" : "No"}</div>
-        <div>Safari: {isSafari ? "Yes" : "No"}</div>
-        <div>iOS: {isIOS ? "Yes" : "No"}</div>
-        <div>Mobile Safari: {isMobileSafari ? "Yes" : "No"}</div>
-        <div>
-          Mobile Perf Shown:{" "}
-          {hasShownMobilePerformanceRef.current ? "Yes" : "No"}
-        </div>
-        <button
-          onClick={() => {
-            console.log(
-              "Manual trigger: showing mobile performance notification",
-            );
-            showWarning(
-              "Mobile Performance Mode",
-              "Visual effects and animations have been limited to improve performance.",
-              6000,
-            );
-          }}
-          className="mt-1 px-2 py-1 bg-orange-600 text-white text-xs rounded hover:bg-orange-700"
-        >
-          Test Mobile Notif
-        </button>
-      </div>
+
 
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
@@ -1962,47 +1921,7 @@ export default function Index() {
                   <ThemeToggle />
                   <RetroToggle />
 
-                  {/* Mobile/Tablet Notification Test Buttons */}
-                  {(currentDeviceType === "mobile" ||
-                    currentDeviceType === "tablet") && (
-                    <div className="flex flex-col gap-1 mt-2 pt-2 border-t border-current/10">
-                      <div className="text-xs text-center opacity-70 mb-1">
-                        Test Notifications
-                      </div>
-                      <div className="grid grid-cols-2 gap-1">
-                        <button
-                          onClick={() =>
-                            showSuccess("Success!", "Mobile notification test")
-                          }
-                          className="text-xs px-2 py-1 bg-green-500/20 border border-green-500/30 rounded text-green-600 dark:text-green-400 hover:bg-green-500/30 transition-colors"
-                        >
-                          Success
-                        </button>
-                        <button
-                          onClick={() =>
-                            showError("Error!", "Mobile error test")
-                          }
-                          className="text-xs px-2 py-1 bg-red-500/20 border border-red-500/30 rounded text-red-600 dark:text-red-400 hover:bg-red-500/30 transition-colors"
-                        >
-                          Error
-                        </button>
-                        <button
-                          onClick={() =>
-                            showWarning("Warning!", "Mobile warning test")
-                          }
-                          className="text-xs px-2 py-1 bg-yellow-500/20 border border-yellow-500/30 rounded text-yellow-600 dark:text-yellow-400 hover:bg-yellow-500/30 transition-colors"
-                        >
-                          Warning
-                        </button>
-                        <button
-                          onClick={() => showInfo("Info!", "Mobile info test")}
-                          className="text-xs px-2 py-1 bg-blue-500/20 border border-blue-500/30 rounded text-blue-600 dark:text-blue-400 hover:bg-blue-500/30 transition-colors"
-                        >
-                          Info
-                        </button>
-                      </div>
-                    </div>
-                  )}
+
                 </div>
               </div>
             </div>
