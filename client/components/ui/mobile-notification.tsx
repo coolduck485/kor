@@ -352,7 +352,7 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
           </motion.p>
 
           {/* Action button */}
-          {notification.action && (
+          {notification.action ? (
             <motion.button
               onClick={notification.action.onClick}
               className={cn(
@@ -365,7 +365,7 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
             >
               {notification.action.label}
             </motion.button>
-          )}
+          ) : null}
         </div>
 
         {/* Accent line */}
