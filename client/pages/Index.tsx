@@ -1687,8 +1687,6 @@ export default function Index() {
         contain: "layout style paint",
       }}
     >
-
-
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
         <div
@@ -1771,8 +1769,8 @@ export default function Index() {
               isPinkActive
                 ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
                 : theme === "light"
-                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+                  ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                  : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
             }`}
             style={{
               background:
@@ -1790,8 +1788,8 @@ export default function Index() {
                 isPinkActive
                   ? "text-pink-400 group-hover:text-pink-300"
                   : theme === "light"
-                  ? "text-blue-600 group-hover:text-blue-700"
-                  : "text-white group-hover:text-blue-300"
+                    ? "text-blue-600 group-hover:text-blue-700"
+                    : "text-white group-hover:text-blue-300"
               }`}
             />
 
@@ -1923,8 +1921,8 @@ export default function Index() {
                   isPinkActive
                     ? "border-pink-400/50 bg-pink-500/10"
                     : theme === "light"
-                    ? "border-blue-400/40 bg-white/30"
-                    : "border-blue-300/30 bg-blue-400/5"
+                      ? "border-blue-400/40 bg-white/30"
+                      : "border-blue-300/30 bg-blue-400/5"
                 }`}
                 style={{
                   background:
@@ -2435,7 +2433,8 @@ export default function Index() {
                         width: "100%",
                         height: "100%",
                         background: `rgba(236, 72, 153, ${0.6 + (i % 3) * 0.1})`,
-                        clipPath: "polygon(50% 10%, 83% 25%, 100% 60%, 50% 100%, 0% 60%, 17% 25%)",
+                        clipPath:
+                          "polygon(50% 10%, 83% 25%, 100% 60%, 50% 100%, 0% 60%, 17% 25%)",
                         boxShadow: "0 0 8px rgba(236, 72, 153, 0.5)",
                         filter: "blur(1px)",
                       }}
@@ -2975,9 +2974,10 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="11.79" />
                       <feColorMatrix
                         type="matrix"
-                        values={isPinkActive
-                          ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
-                          : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={
+                          isPinkActive
+                            ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                            : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
                         }
                       />
                       <feBlend
@@ -2995,9 +2995,10 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="41.265" />
                       <feColorMatrix
                         type="matrix"
-                        values={isPinkActive
-                          ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
-                          : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={
+                          isPinkActive
+                            ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                            : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
                         }
                       />
                       <feBlend
@@ -3015,9 +3016,10 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="82.53" />
                       <feColorMatrix
                         type="matrix"
-                        values={isPinkActive
-                          ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
-                          : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={
+                          isPinkActive
+                            ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                            : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
                         }
                       />
                       <feBlend
@@ -3035,9 +3037,10 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="141.48" />
                       <feColorMatrix
                         type="matrix"
-                        values={isPinkActive
-                          ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
-                          : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={
+                          isPinkActive
+                            ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                            : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
                         }
                       />
                       <feBlend
@@ -3055,9 +3058,10 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="247.59" />
                       <feColorMatrix
                         type="matrix"
-                        values={isPinkActive
-                          ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
-                          : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={
+                          isPinkActive
+                            ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                            : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
                         }
                       />
                       <feBlend
@@ -3156,13 +3160,19 @@ export default function Index() {
                     isPinkActive
                       ? "text-pink-300 animate-pink-neon-glow"
                       : theme === "light"
-                      ? "text-gray-900"
-                      : "text-white"
+                        ? "text-gray-900"
+                        : "text-white"
                   }`}
-                  style={isPinkActive ? {
-                    textShadow: "0 0 10px rgba(236, 72, 153, 0.8), 0 0 20px rgba(244, 114, 182, 0.6), 0 0 30px rgba(251, 113, 133, 0.4)",
-                    filter: "drop-shadow(0 0 15px rgba(236, 72, 153, 0.5))"
-                  } : {}}
+                  style={
+                    isPinkActive
+                      ? {
+                          textShadow:
+                            "0 0 10px rgba(236, 72, 153, 0.8), 0 0 20px rgba(244, 114, 182, 0.6), 0 0 30px rgba(251, 113, 133, 0.4)",
+                          filter:
+                            "drop-shadow(0 0 15px rgba(236, 72, 153, 0.5))",
+                        }
+                      : {}
+                  }
                 >
                   <span className="inline-block relative warm-glow-text animate-warm-glow-pulse animate-wavy-text">
                     K
@@ -3226,55 +3236,58 @@ export default function Index() {
                   ))}
 
                   {/* Pink Theme Floating Hearts and Sparkles */}
-                  {isPinkActive && [...Array(12)].map((_, i) => (
-                    <div
-                      key={`pink-particle-${i}`}
-                      className="absolute rounded-full pointer-events-none"
-                      style={{
-                        left: `${10 + ((i * 70) % 180)}%`,
-                        top: `${20 + ((i * 60) % 80)}%`,
-                        width: `${3 + (i % 3)}px`,
-                        height: `${3 + (i % 3)}px`,
-                        background: i % 3 === 0
-                          ? "rgba(236, 72, 153, 0.8)"
-                          : i % 3 === 1
-                          ? "rgba(244, 114, 182, 0.7)"
-                          : "rgba(251, 113, 133, 0.6)",
-                        animation: `pink-pulse ${3 + (i % 2)}s ease-in-out infinite ${i * 0.4}s`,
-                        boxShadow: "0 0 8px rgba(236, 72, 153, 0.6)",
-                        willChange: "transform, opacity",
-                        transform: "translateZ(0)",
-                      }}
-                    />
-                  ))}
-
-                  {/* Pink Theme Heart Shapes */}
-                  {isPinkActive && [...Array(6)].map((_, i) => (
-                    <div
-                      key={`pink-heart-${i}`}
-                      className="absolute pointer-events-none"
-                      style={{
-                        left: `${15 + ((i * 90) % 170)}%`,
-                        top: `${25 + ((i * 45) % 70)}%`,
-                        width: "8px",
-                        height: "8px",
-                        animation: `pink-heartbeat ${2 + (i % 2)}s ease-in-out infinite ${i * 0.6}s`,
-                        willChange: "transform",
-                        transform: "translateZ(0)",
-                      }}
-                    >
+                  {isPinkActive &&
+                    [...Array(12)].map((_, i) => (
                       <div
+                        key={`pink-particle-${i}`}
+                        className="absolute rounded-full pointer-events-none"
                         style={{
-                          width: "100%",
-                          height: "100%",
-                          background: "rgba(236, 72, 153, 0.9)",
-                          transform: "rotate(45deg)",
-                          borderRadius: "0 50% 50% 50%",
-                          boxShadow: "0 0 6px rgba(236, 72, 153, 0.7)",
+                          left: `${10 + ((i * 70) % 180)}%`,
+                          top: `${20 + ((i * 60) % 80)}%`,
+                          width: `${3 + (i % 3)}px`,
+                          height: `${3 + (i % 3)}px`,
+                          background:
+                            i % 3 === 0
+                              ? "rgba(236, 72, 153, 0.8)"
+                              : i % 3 === 1
+                                ? "rgba(244, 114, 182, 0.7)"
+                                : "rgba(251, 113, 133, 0.6)",
+                          animation: `pink-pulse ${3 + (i % 2)}s ease-in-out infinite ${i * 0.4}s`,
+                          boxShadow: "0 0 8px rgba(236, 72, 153, 0.6)",
+                          willChange: "transform, opacity",
+                          transform: "translateZ(0)",
                         }}
                       />
-                    </div>
-                  ))}
+                    ))}
+
+                  {/* Pink Theme Heart Shapes */}
+                  {isPinkActive &&
+                    [...Array(6)].map((_, i) => (
+                      <div
+                        key={`pink-heart-${i}`}
+                        className="absolute pointer-events-none"
+                        style={{
+                          left: `${15 + ((i * 90) % 170)}%`,
+                          top: `${25 + ((i * 45) % 70)}%`,
+                          width: "8px",
+                          height: "8px",
+                          animation: `pink-heartbeat ${2 + (i % 2)}s ease-in-out infinite ${i * 0.6}s`,
+                          willChange: "transform",
+                          transform: "translateZ(0)",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            background: "rgba(236, 72, 153, 0.9)",
+                            transform: "rotate(45deg)",
+                            borderRadius: "0 50% 50% 50%",
+                            boxShadow: "0 0 6px rgba(236, 72, 153, 0.7)",
+                          }}
+                        />
+                      </div>
+                    ))}
 
                   <div className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                     <span
@@ -3282,18 +3295,23 @@ export default function Index() {
                         isPinkActive
                           ? "text-pink-200"
                           : theme === "light"
-                          ? "text-gray-900"
-                          : "text-white"
+                            ? "text-gray-900"
+                            : "text-white"
                       } ${isPinkActive ? "animate-pink-neon-glow" : "animate-text-pop"}`}
-                      style={isPinkActive ? {
-                        filter: "drop-shadow(0 0 12px rgba(236, 72, 153, 0.7)) drop-shadow(0 0 25px rgba(244, 114, 182, 0.5))",
-                        textShadow: "0 0 8px rgba(236, 72, 153, 0.6)"
-                      } : {
-                        filter:
-                          theme === "light"
-                            ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
-                            : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-                      }}
+                      style={
+                        isPinkActive
+                          ? {
+                              filter:
+                                "drop-shadow(0 0 12px rgba(236, 72, 153, 0.7)) drop-shadow(0 0 25px rgba(244, 114, 182, 0.5))",
+                              textShadow: "0 0 8px rgba(236, 72, 153, 0.6)",
+                            }
+                          : {
+                              filter:
+                                theme === "light"
+                                  ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
+                                  : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
+                            }
+                      }
                     >
                       {/* Warm glow text with iOS-inspired styling */}
                       <span className="warm-glow-text animate-warm-glow-pulse">
@@ -4770,8 +4788,8 @@ function MobileHamburgerMenu({
             isPinkActive
               ? "border-pink-400/50 bg-pink-500/10 hover:border-pink-500/70"
               : theme === "light"
-              ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
-              : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
+                ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
+                : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
           }`}
           style={{
             background:
@@ -4781,11 +4799,13 @@ function MobileHamburgerMenu({
           }}
         >
           {/* Animated background layers */}
-          <div className={`absolute inset-0 rounded-xl opacity-50 group-hover:opacity-70 transition-all duration-500 ${
-            isPinkActive
-              ? "bg-gradient-to-br from-pink-400/30 via-pink-300/15 to-transparent"
-              : "bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent"
-          }`} />
+          <div
+            className={`absolute inset-0 rounded-xl opacity-50 group-hover:opacity-70 transition-all duration-500 ${
+              isPinkActive
+                ? "bg-gradient-to-br from-pink-400/30 via-pink-300/15 to-transparent"
+                : "bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent"
+            }`}
+          />
           <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500" />
 
           {/* Hamburger Icon */}

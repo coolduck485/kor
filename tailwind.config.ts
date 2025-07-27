@@ -314,21 +314,25 @@ export default {
         },
         "pink-pulse": {
           "0%, 100%": {
-            boxShadow: "0 0 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3), 0 0 60px rgba(236, 72, 153, 0.1)",
+            boxShadow:
+              "0 0 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3), 0 0 60px rgba(236, 72, 153, 0.1)",
             transform: "scale(1)",
           },
           "50%": {
-            boxShadow: "0 0 30px rgba(236, 72, 153, 0.8), 0 0 60px rgba(236, 72, 153, 0.5), 0 0 90px rgba(236, 72, 153, 0.2)",
+            boxShadow:
+              "0 0 30px rgba(236, 72, 153, 0.8), 0 0 60px rgba(236, 72, 153, 0.5), 0 0 90px rgba(236, 72, 153, 0.2)",
             transform: "scale(1.02)",
           },
         },
         "pink-neon-glow": {
           "0%, 100%": {
-            textShadow: "0 0 5px rgba(236, 72, 153, 0.8), 0 0 10px rgba(236, 72, 153, 0.6), 0 0 20px rgba(236, 72, 153, 0.4)",
+            textShadow:
+              "0 0 5px rgba(236, 72, 153, 0.8), 0 0 10px rgba(236, 72, 153, 0.6), 0 0 20px rgba(236, 72, 153, 0.4)",
             filter: "brightness(1)",
           },
           "50%": {
-            textShadow: "0 0 10px rgba(236, 72, 153, 1), 0 0 20px rgba(236, 72, 153, 0.8), 0 0 30px rgba(236, 72, 153, 0.6)",
+            textShadow:
+              "0 0 10px rgba(236, 72, 153, 1), 0 0 20px rgba(236, 72, 153, 0.8), 0 0 30px rgba(236, 72, 153, 0.6)",
             filter: "brightness(1.2)",
           },
         },
@@ -437,7 +441,8 @@ export default {
         "pink-pulse": "pink-pulse 3s ease-in-out infinite",
         "pink-neon-glow": "pink-neon-glow 4s ease-in-out infinite",
         "pink-heartbeat": "pink-heartbeat 2s ease-in-out infinite",
-        "pink-floating-particles": "pink-floating-particles 20s linear infinite",
+        "pink-floating-particles":
+          "pink-floating-particles 20s linear infinite",
         "pink-floating-orbs": "pink-floating-orbs 30s ease-in-out infinite",
       },
       boxShadow: {

@@ -9,7 +9,9 @@ interface PinkThemeContextType {
   isPinkActive: boolean;
 }
 
-const PinkThemeContext = createContext<PinkThemeContextType | undefined>(undefined);
+const PinkThemeContext = createContext<PinkThemeContextType | undefined>(
+  undefined,
+);
 
 export function PinkThemeProvider({ children }: { children: React.ReactNode }) {
   const [pinkTheme, setPinkTheme] = useState<PinkTheme>(() => {
@@ -23,7 +25,7 @@ export function PinkThemeProvider({ children }: { children: React.ReactNode }) {
 
     // Remove all pink theme classes
     root.classList.remove("pink-theme", "default-theme");
-    
+
     // Add the current pink theme class
     root.classList.add(pinkTheme === "pink" ? "pink-theme" : "default-theme");
 
@@ -53,7 +55,9 @@ export function PinkThemeProvider({ children }: { children: React.ReactNode }) {
   const isPinkActive = pinkTheme === "pink";
 
   return (
-    <PinkThemeContext.Provider value={{ pinkTheme, setPinkTheme, togglePinkTheme, isPinkActive }}>
+    <PinkThemeContext.Provider
+      value={{ pinkTheme, setPinkTheme, togglePinkTheme, isPinkActive }}
+    >
       {children}
     </PinkThemeContext.Provider>
   );

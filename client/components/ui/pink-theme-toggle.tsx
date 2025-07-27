@@ -33,13 +33,13 @@ export function PinkThemeToggle() {
             ? "linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(244, 114, 182, 0.15))"
             : "linear-gradient(135deg, rgba(236, 72, 153, 0.25), rgba(244, 114, 182, 0.25))"
           : theme === "light"
-          ? "rgba(0, 0, 0, 0.1)"
-          : "rgba(255, 255, 255, 0.1)",
+            ? "rgba(0, 0, 0, 0.1)"
+            : "rgba(255, 255, 255, 0.1)",
         borderColor: isPinkActive
           ? "rgba(236, 72, 153, 0.5)"
           : theme === "light"
-          ? "rgba(0, 0, 0, 0.2)"
-          : "rgba(255, 255, 255, 0.2)",
+            ? "rgba(0, 0, 0, 0.2)"
+            : "rgba(255, 255, 255, 0.2)",
         boxShadow: isPinkActive
           ? "0 0 20px rgba(236, 72, 153, 0.3), 0 0 40px rgba(236, 72, 153, 0.1)"
           : "none",
@@ -53,19 +53,19 @@ export function PinkThemeToggle() {
           <div className="absolute top-2 right-2 w-0.5 h-0.5 bg-pink-400 rounded-full animate-bounce"></div>
         </div>
       )}
-      
+
       {/* Main icon with enhanced animations */}
       <div className="relative z-10 flex items-center justify-center">
         {isPinkActive ? (
           <div className="relative">
-            <Heart 
-              className="h-5 w-5 text-pink-400 transition-all duration-300 fill-current animate-pulse" 
+            <Heart
+              className="h-5 w-5 text-pink-400 transition-all duration-300 fill-current animate-pulse"
               style={{
-                filter: "drop-shadow(0 0 8px rgba(236, 72, 153, 0.6))"
+                filter: "drop-shadow(0 0 8px rgba(236, 72, 153, 0.6))",
               }}
             />
-            <Sparkles 
-              className="absolute -top-1 -right-1 h-3 w-3 text-rose-300 animate-spin" 
+            <Sparkles
+              className="absolute -top-1 -right-1 h-3 w-3 text-rose-300 animate-spin"
               style={{ animationDuration: "3s" }}
             />
           </div>
@@ -76,7 +76,7 @@ export function PinkThemeToggle() {
 
       {/* Hover ripple effect */}
       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-400/0 to-rose-400/0 group-hover:from-pink-400/20 group-hover:to-rose-400/20 transition-all duration-300"></div>
-      
+
       <span className="sr-only">Toggle Pink Theme</span>
     </Button>
   );
