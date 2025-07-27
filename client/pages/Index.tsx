@@ -751,7 +751,7 @@ export default function Index() {
                 {/* Loading subtitle */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
-                  animate={animationStep >= 3 ? { opacity: 1, y: 0 } : {}}
+                  animate={pinkAnimationStep >= 3 ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.5 }}
                   className="font-mono text-sm md:text-lg text-pink-300"
                   style={{
@@ -1198,7 +1198,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
-██║  ���█╗╚███��██�����╝██║  �����█║
+██║  �����█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
