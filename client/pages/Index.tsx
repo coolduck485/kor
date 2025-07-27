@@ -777,7 +777,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████�� ███�����������█╗
+                  {`██╗  ██╗ ██████�� ███����������█╗
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
@@ -928,7 +928,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►������</span>
+                  <span className="text-green-400 ml-4">◄���◄►�����</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -5840,15 +5840,19 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
           }}
         />
 
-        {/* Floating Service Icons with Orbit Animation */}
+        {/* Floating Service Icons with Orbit Animation - Mobile Optimized */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             { Icon: Globe, color: "from-blue-500 to-cyan-500", x: 85, y: 20, delay: 0 },
             { Icon: Smartphone, color: "from-purple-500 to-pink-500", x: 15, y: 30, delay: 1 },
-            { Icon: Palette, color: "from-green-500 to-emerald-500", x: 80, y: 65, delay: 2 },
-            { Icon: Zap, color: "from-orange-500 to-red-500", x: 10, y: 70, delay: 3 },
-            { Icon: Users, color: "from-indigo-500 to-purple-500", x: 85, y: 85, delay: 4 },
-            { Icon: Code, color: "from-teal-500 to-blue-500", x: 15, y: 15, delay: 5 },
+            ...(window.innerWidth >= 992 ? [
+              { Icon: Palette, color: "from-green-500 to-emerald-500", x: 80, y: 65, delay: 2 },
+              { Icon: Zap, color: "from-orange-500 to-red-500", x: 10, y: 70, delay: 3 },
+              { Icon: Users, color: "from-indigo-500 to-purple-500", x: 85, y: 85, delay: 4 },
+              { Icon: Code, color: "from-teal-500 to-blue-500", x: 15, y: 15, delay: 5 },
+            ] : [
+              { Icon: Palette, color: "from-green-500 to-emerald-500", x: 75, y: 75, delay: 2 },
+            ])
           ].map((service, i) => (
             <motion.div
               key={`floating-service-${i}`}
