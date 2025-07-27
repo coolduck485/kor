@@ -107,18 +107,16 @@ export default function Index() {
     return () => clearTimeout(timer);
   }, [showError]);
 
-  // Welcome notification - shows once per page load on mobile/tablet devices only
+  // Welcome notification - shows immediately on mobile/tablet devices
   useEffect(() => {
     if (!hasShownWelcomeRef.current && (currentDeviceType === "mobile" || currentDeviceType === "tablet")) {
       hasShownWelcomeRef.current = true;
-      setTimeout(() => {
-        console.log("Showing welcome notification on mobile/tablet...");
-        showInfo(
-          "Welcome to KOR!",
-          "Experience the future of modern web development. Click the X to dismiss.",
-          0, // No auto-dismiss
-        );
-      }, 2000); // Show earlier for mobile/tablet
+      console.log("Showing welcome notification on mobile/tablet...");
+      showInfo(
+        "Welcome to KOR!",
+        "Experience the future of modern web development. Click the X to dismiss.",
+        0, // No auto-dismiss
+      );
     }
   }, [currentDeviceType, showInfo]); // React to device type changes
 
@@ -900,7 +898,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█��█████████��███ 50%
+                      RAM: █���███�����█��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
