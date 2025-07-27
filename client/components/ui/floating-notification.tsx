@@ -165,6 +165,7 @@ const FloatingNotificationItem = React.forwardRef<
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return;
     setMousePosition({ x: 0, y: 0, isNear: false });
   };
 
