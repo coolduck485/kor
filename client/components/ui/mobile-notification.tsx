@@ -251,7 +251,7 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
         }}
       >
         {/* Minimal floating particles for mobile */}
-        {isMobile && (
+        {isMobile ? (
           <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
             {[...Array(2)].map((_, i) => (
               <div
@@ -268,10 +268,10 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
               />
             ))}
           </div>
-        )}
+        ) : null}
 
         {/* Desktop particles */}
-        {!isMobile && (
+        {!isMobile ? (
           <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
             {[...Array(4)].map((_, i) => (
               <div
@@ -289,7 +289,7 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
               />
             ))}
           </div>
-        )}
+        ) : null}
 
         {/* Close button - optimized for mobile touch */}
         <motion.button
