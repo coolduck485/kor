@@ -86,6 +86,11 @@ const FloatingNotificationContainer: React.FC = () => {
   const { isSafari, isMobileSafari } = useBrowserDetection();
   const isMobile = useIsMobile();
 
+  // Don't show floating notifications on mobile/tablet - use mobile notification system instead
+  if (isMobile || window.innerWidth <= 991) {
+    return null;
+  }
+
   // Position notifications at bottom for all browsers
   // For Safari (especially mobile Safari), add extra bottom margin to avoid search bar
   let positionClasses = "bottom-4 right-4";
