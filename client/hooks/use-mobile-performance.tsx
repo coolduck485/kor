@@ -24,20 +24,23 @@ export function useMobilePerformance() {
 
   useEffect(() => {
     if (deviceType === "mobile") {
-      // Mobile-specific performance optimizations
-      document.documentElement.style.setProperty("--mobile-animation-duration", "0.3s");
-      document.documentElement.style.setProperty("--mobile-blur-amount", "2px");
-      document.documentElement.style.setProperty("--mobile-particle-count", "2");
+      // Aggressive mobile performance optimizations
+      document.documentElement.style.setProperty("--mobile-animation-duration", "0.2s");
+      document.documentElement.style.setProperty("--mobile-blur-amount", "0px");
+      document.documentElement.style.setProperty("--mobile-particle-count", "1");
+      document.documentElement.style.setProperty("--mobile-shadow-amount", "none");
     } else if (deviceType === "tablet") {
-      // Tablet-specific performance optimizations
-      document.documentElement.style.setProperty("--mobile-animation-duration", "0.5s");
-      document.documentElement.style.setProperty("--mobile-blur-amount", "4px");
-      document.documentElement.style.setProperty("--mobile-particle-count", "4");
+      // Aggressive tablet performance optimizations
+      document.documentElement.style.setProperty("--mobile-animation-duration", "0.3s");
+      document.documentElement.style.setProperty("--mobile-blur-amount", "1px");
+      document.documentElement.style.setProperty("--mobile-particle-count", "2");
+      document.documentElement.style.setProperty("--mobile-shadow-amount", "0 2px 4px rgba(0,0,0,0.1)");
     } else {
       // Desktop values
       document.documentElement.style.setProperty("--mobile-animation-duration", "1s");
       document.documentElement.style.setProperty("--mobile-blur-amount", "20px");
       document.documentElement.style.setProperty("--mobile-particle-count", "12");
+      document.documentElement.style.setProperty("--mobile-shadow-amount", "0 0 20px rgba(73, 146, 255, 0.3)");
     }
   }, [deviceType]);
 
