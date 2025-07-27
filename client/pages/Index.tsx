@@ -7207,51 +7207,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           </svg>
         </div>
 
-        {/* Social Media Preview Cards */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-2">
-          {[
-            {
-              platform: "@kor.dev",
-              icon: "📱",
-              x: 10,
-              y: 40,
-              color: "from-pink-500 to-purple-500",
-            },
-            {
-              platform: "Discord",
-              icon: "💬",
-              x: 85,
-              y: 80,
-              color: "from-indigo-500 to-blue-500",
-            },
-          ].map((social, i) => (
-            <motion.div
-              key={`social-preview-${i}`}
-              className={`absolute w-24 h-16 bg-gradient-to-br ${social.color} rounded-lg opacity-30 backdrop-blur-sm`}
-              style={{
-                left: `${social.x}%`,
-                top: `${social.y}%`,
-              }}
-              initial={{ opacity: 0, rotateY: -90, scale: 0.8 }}
-              animate={{
-                opacity: [0, 0.4, 0],
-                rotateY: [90, 0, -90],
-                scale: [0.8, 1, 0.8],
-              }}
-              transition={{
-                duration: 6,
-                delay: i * 3,
-                repeat: Infinity,
-                repeatDelay: 8,
-              }}
-            >
-              <div className="p-2 text-white text-center">
-                <div className="text-lg">{social.icon}</div>
-                <div className="text-xs font-medium">{social.platform}</div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+
 
         {/* Animated Noise Texture - Enhanced for contact */}
         {!isMobile && (
