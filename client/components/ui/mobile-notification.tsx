@@ -231,27 +231,18 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
         willChange: "transform, opacity",
       }}
     >
-      {/* Border Effect - matching original */}
-      <div
-        className="absolute inset-0 rounded-xl pointer-events-none transition-all duration-300"
-        style={{
-          border: `1px solid ${colors.border}`,
-          borderRadius: "inherit",
-        }}
-      />
-
-      {/* Main notification content - matching original styling */}
+      {/* Main notification content - matching original styling with integrated border */}
       <div
         className={cn(
-          "relative rounded-xl shadow-2xl transition-all",
+          "relative rounded-xl shadow-2xl transition-all overflow-hidden",
           isMobile
             ? "backdrop-blur-md duration-200 p-3 pr-10"
             : "backdrop-blur-xl duration-300 p-4 pr-12",
-          "border border-transparent",
         )}
         style={{
           background: "rgba(0, 0, 0, 0.4)",
           backdropFilter: "blur(20px)",
+          border: `1px solid ${colors.border}`,
           boxShadow: `
             0 0 50px ${colors.glow},
             0 8px 32px rgba(0, 0, 0, 0.3),
