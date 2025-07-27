@@ -890,7 +890,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█���█████████��███ 50%
+                      RAM: █���████��█��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1787,7 +1787,9 @@ export default function Index() {
             {/* Icon */}
             <ChevronUp
               className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${
-                theme === "light"
+                isPinkActive
+                  ? "text-pink-400 group-hover:text-pink-300"
+                  : theme === "light"
                   ? "text-blue-600 group-hover:text-blue-700"
                   : "text-white group-hover:text-blue-300"
               }`}
@@ -8070,7 +8072,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             { type: "email", x: 15, y: 35, icon: "✉���" },
-            { type: "call", x: 75, y: 25, icon: "📞" },
+            { type: "call", x: 75, y: 25, icon: "��" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
           ].map((card, i) => (
