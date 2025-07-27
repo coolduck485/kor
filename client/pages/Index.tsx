@@ -850,7 +850,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������█████��███████ 60%
+                      CPU: █����������������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -6900,8 +6900,9 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           </div>
         )}
 
-        {/* Interactive Network Connections */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Interactive Network Connections - Desktop Only */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <svg className="absolute w-full h-full opacity-20">
             {/* Dynamic connecting lines between floating elements */}
             {[...Array(6)].map((_, i) => {
@@ -6931,7 +6932,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
               );
             })}
           </svg>
-        </div>
+          </div>
+        )}
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
