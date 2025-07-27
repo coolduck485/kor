@@ -211,48 +211,63 @@ const FloatingNotificationItem = React.forwardRef<
 
   return (
     <motion.div
-      layout
+      layout="position"
+      layoutId={notification.id}
       initial={{
         opacity: 0,
-        scale: 0.8,
-        x: 100,
-        filter: "blur(10px)",
+        scale: isMobile ? 0.9 : 0.8,
+        x: isMobile ? 50 : 100,
+        y: isMobile ? -20 : 0,
+        filter: isMobile ? "blur(2px)" : "blur(10px)",
       }}
       animate={
         isClosing
           ? {
-              opacity: 0.8,
-              scale: 0.98,
-              filter: "blur(1px)",
-              transition: { duration: 0.2 },
+              opacity: 0,
+              scale: isMobile ? 0.85 : 0.9,
+              x: isMobile ? 30 : 60,
+              y: isMobile ? -10 : 0,
+              filter: isMobile ? "blur(1px)" : "blur(4px)",
+              transition: {
+                duration: isMobile ? 0.2 : 0.35,
+                ease: "easeInOut"
+              },
             }
           : {
               opacity: 1,
               scale: 1,
               x: 0,
+              y: 0,
               filter: "blur(0px)",
             }
       }
       exit={{
         opacity: 0,
-        scale: 0.9,
-        filter: "blur(4px)",
+        scale: isMobile ? 0.75 : 0.8,
+        x: isMobile ? 80 : 120,
+        y: isMobile ? -15 : 0,
+        filter: isMobile ? "blur(3px)" : "blur(6px)",
         transition: {
-          duration: 0.3,
-          ease: "easeOut",
+          duration: isMobile ? 0.2 : 0.35,
+          ease: "easeInOut",
         },
       }}
       transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
+        type: isMobile ? "tween" : "spring",
+        stiffness: isMobile ? undefined : 280,
+        damping: isMobile ? undefined : 25,
+        duration: isMobile ? 0.3 : undefined,
+        ease: isMobile ? "easeOut" : undefined,
       }}
-      className="relative group notification-item animate-float"
+      className={cn(
+        "relative group notification-item",
+        isMobile ? "animate-enhanced-mobile-float-1" : "animate-float"
+      )}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       ref={ref}
       style={{
-        willChange: "transform",
+        willChange: "transform, opacity",
       }}
     >
       {/* Simplified Border Effect - more mobile-friendly */}
