@@ -3855,6 +3855,165 @@ export default function Index() {
   );
 }
 
+// Contact Section Specific Animations CSS
+const contactAnimationsCSS = `
+  @keyframes contact-signal-wave {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(2);
+      opacity: 0.2;
+    }
+  }
+
+  @keyframes contact-data-flow {
+    0% {
+      offset-distance: 0%;
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      offset-distance: 100%;
+      opacity: 0;
+    }
+  }
+
+  @keyframes contact-card-hover {
+    0%, 100% {
+      transform: translateY(0) rotateX(0);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(-10px) rotateX(5deg);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes contact-frequency {
+    0%, 100% {
+      height: 10px;
+    }
+    50% {
+      height: 30px;
+    }
+  }
+
+  @keyframes contact-status-blink {
+    0%, 100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes contact-network-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 1;
+    }
+  }
+
+  @keyframes contact-message-bubble {
+    0% {
+      transform: translateY(20px) scale(0.8);
+      opacity: 0;
+    }
+    25%, 75% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-20px) scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  @keyframes contact-social-preview {
+    0% {
+      transform: rotateY(90deg) scale(0.8);
+      opacity: 0;
+    }
+    25%, 75% {
+      transform: rotateY(0deg) scale(1);
+      opacity: 0.4;
+    }
+    100% {
+      transform: rotateY(-90deg) scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  @keyframes contact-comm-icon-float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-10px) rotate(5deg);
+    }
+    50% {
+      transform: translateY(-5px) rotate(-3deg);
+    }
+    75% {
+      transform: translateY(-8px) rotate(2deg);
+    }
+  }
+
+  .animate-contact-signal-wave {
+    animation: contact-signal-wave 4s ease-in-out infinite;
+  }
+
+  .animate-contact-data-flow {
+    animation: contact-data-flow 5s ease-in-out infinite;
+  }
+
+  .animate-contact-card-hover {
+    animation: contact-card-hover 8s ease-in-out infinite;
+  }
+
+  .animate-contact-frequency {
+    animation: contact-frequency 1.5s ease-in-out infinite;
+  }
+
+  .animate-contact-status-blink {
+    animation: contact-status-blink 3s ease-in-out infinite;
+  }
+
+  .animate-contact-network-pulse {
+    animation: contact-network-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-contact-message-bubble {
+    animation: contact-message-bubble 4s ease-in-out infinite;
+  }
+
+  .animate-contact-social-preview {
+    animation: contact-social-preview 6s ease-in-out infinite;
+  }
+
+  .animate-contact-comm-icon-float {
+    animation: contact-comm-icon-float 6s ease-in-out infinite;
+  }
+`;
+
+// Inject the CSS into the document head
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style');
+  style.textContent = contactAnimationsCSS;
+  document.head.appendChild(style);
+}
+
 // ========================================
 // MOBILE HAMBURGER MENU COMPONENT
 // ========================================
