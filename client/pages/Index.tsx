@@ -911,7 +911,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���██████��█████████��███ 50%
+                      RAM: █���██████����█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1716,6 +1716,20 @@ export default function Index() {
         <div>Safari: {isSafari ? 'Yes' : 'No'}</div>
         <div>iOS: {isIOS ? 'Yes' : 'No'}</div>
         <div>Mobile Safari: {isMobileSafari ? 'Yes' : 'No'}</div>
+        <div>Mobile Perf Shown: {hasShownMobilePerformanceRef.current ? 'Yes' : 'No'}</div>
+        <button
+          onClick={() => {
+            console.log("Manual trigger: showing mobile performance notification");
+            showWarning(
+              "Mobile Performance Mode",
+              "Visual effects and animations have been limited to improve performance.",
+              6000
+            );
+          }}
+          className="mt-1 px-2 py-1 bg-orange-600 text-white text-xs rounded hover:bg-orange-700"
+        >
+          Test Mobile Notif
+        </button>
       </div>
 
       {/* Universal Scroll Navigation */}
