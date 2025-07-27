@@ -134,6 +134,7 @@ const FloatingNotificationItem = React.forwardRef<
   HTMLDivElement,
   FloatingNotificationItemProps
 >(({ notification, onClose, isSafari = false, isMobile = false }, ref) => {
+  const [isClosing, setIsClosing] = useState(false);
   const [mousePosition, setMousePosition] = useState({
     x: 0,
     y: 0,
