@@ -103,7 +103,9 @@ export default function Index() {
 
   // Mobile performance notification - shows only on mobile devices (≤640px)
   useEffect(() => {
+    console.log('Device type changed:', deviceType); // Debug log
     if (deviceType === "mobile") {
+      console.log('Showing mobile notification...'); // Debug log
       const timer = setTimeout(() => {
         showInfo(
           "Mobile Performance Mode",
