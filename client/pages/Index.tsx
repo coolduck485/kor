@@ -812,8 +812,8 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═�����═██╗█����╔������══██╗
+                  {`██╗  ██╗ ██���███���� ███����������█╗
+██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  �����█║
@@ -1939,7 +1939,7 @@ export default function Index() {
                 <div className="flex flex-col gap-2 sm:gap-3">
                   <ThemeToggle />
                   <RetroToggle />
-                  <PinkThemeToggle />
+                  <SolarSystemToggle />
                 </div>
               </div>
             </div>
