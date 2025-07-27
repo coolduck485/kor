@@ -958,6 +958,96 @@
   }
 }
 
+/* Mobile notification system styles */
+.mobile-notification-container {
+  /* Ensure notifications stay above mobile UI elements */
+  z-index: 100000;
+  /* Hardware acceleration for smooth animations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.mobile-notification-item {
+  /* Optimize for mobile performance */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Prevent text selection on notifications */
+  user-select: none;
+  -webkit-user-select: none;
+  /* Improve touch responsiveness */
+  touch-action: manipulation;
+}
+
+/* Mobile notification slide animations */
+@keyframes mobile-slide-in-top {
+  from {
+    transform: translateY(-100%) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes mobile-slide-out-top {
+  from {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-80%) scale(0.9);
+    opacity: 0;
+  }
+}
+
+/* Tablet notification animations */
+@keyframes tablet-slide-in {
+  from {
+    transform: translateX(100%) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes tablet-slide-out {
+  from {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(80%) scale(0.85);
+    opacity: 0;
+  }
+}
+
+/* Ensure mobile notifications don't interfere with scroll */
+@media (max-width: 640px) {
+  .mobile-notification-container {
+    /* Position relative to safe area */
+    top: calc(env(safe-area-inset-top) + 16px);
+    left: 16px;
+    right: 16px;
+  }
+
+  .mobile-notification-item {
+    /* More compact on small screens */
+    margin-bottom: 8px;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 641px) and (max-width: 991px) {
+  .mobile-notification-container {
+    top: 16px;
+    right: 16px;
+    width: 320px;
+  }
+}
+
 /* Mobile-friendly section styling */
 @media (max-width: 640px) {
   .section-container {
