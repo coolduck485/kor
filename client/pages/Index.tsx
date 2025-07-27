@@ -782,7 +782,7 @@ export default function Index() {
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█������
 ██║  ██╗╚██████�����╝██║  ██║
-╚═╝  ╚═��� ╚═����═══╝ ╚═╝  ����═╝`}
+╚═╝  ╚═╝ ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -7124,88 +7124,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           ))}
         </div>
 
-        {/* Global Network Visualization */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-3">
-          <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
-            {/* Network nodes */}
-            {[
-              { x: 200, y: 150, size: 8 },
-              { x: 400, y: 200, size: 12 },
-              { x: 600, y: 120, size: 10 },
-              { x: 800, y: 180, size: 14 },
-              { x: 1000, y: 160, size: 9 },
-              { x: 300, y: 350, size: 11 },
-              { x: 700, y: 380, size: 13 },
-              { x: 500, y: 400, size: 10 },
-            ].map((node, i) => (
-              <g key={`network-node-${i}`}>
-                <motion.circle
-                  cx={node.x}
-                  cy={node.y}
-                  r={node.size}
-                  fill="rgba(73, 146, 255, 0.6)"
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.6, 1, 0.6],
-                  }}
-                  transition={{
-                    duration: 3,
-                    delay: i * 0.5,
-                    repeat: Infinity,
-                  }}
-                />
-                <motion.circle
-                  cx={node.x}
-                  cy={node.y}
-                  r={node.size + 4}
-                  fill="none"
-                  stroke="rgba(63, 186, 255, 0.3)"
-                  strokeWidth="1"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [1, 2, 1] }}
-                  transition={{
-                    duration: 4,
-                    delay: i * 0.3,
-                    repeat: Infinity,
-                  }}
-                />
-              </g>
-            ))}
 
-            {/* Network connections */}
-            {[
-              { x1: 200, y1: 150, x2: 400, y2: 200 },
-              { x1: 400, y1: 200, x2: 600, y2: 120 },
-              { x1: 600, y1: 120, x2: 800, y2: 180 },
-              { x1: 800, y1: 180, x2: 1000, y2: 160 },
-              { x1: 300, y1: 350, x2: 700, y2: 380 },
-              { x1: 400, y1: 200, x2: 500, y2: 400 },
-            ].map((line, i) => (
-              <motion.line
-                key={`network-line-${i}`}
-                x1={line.x1}
-                y1={line.y1}
-                x2={line.x2}
-                y2={line.y2}
-                stroke="rgba(73, 146, 255, 0.4)"
-                strokeWidth="2"
-                strokeDasharray="5 5"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{
-                  pathLength: [0, 1, 0],
-                  opacity: [0, 0.8, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  delay: i * 0.8,
-                  repeat: Infinity,
-                  repeatDelay: 4,
-                }}
-              />
-            ))}
-          </svg>
-        </div>
 
 
 
