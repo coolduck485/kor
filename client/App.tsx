@@ -8,7 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { RetroModeProvider } from "@/hooks/use-retro-mode";
-
+import { SolarSystemThemeProvider } from "@/hooks/use-solar-system-theme";
 import { UnifiedNotificationProvider } from "@/components/ui/unified-notification";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -18,7 +18,8 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
-      <RetroModeProvider>
+      <SolarSystemThemeProvider>
+        <RetroModeProvider>
           <UnifiedNotificationProvider>
             <TooltipProvider>
               <Toaster />
@@ -37,7 +38,8 @@ const App = () => (
               </BrowserRouter>
             </TooltipProvider>
           </UnifiedNotificationProvider>
-      </RetroModeProvider>
+        </RetroModeProvider>
+      </SolarSystemThemeProvider>
     </ThemeProvider>
   </QueryClientProvider>
 );
