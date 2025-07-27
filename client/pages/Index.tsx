@@ -6895,6 +6895,205 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       >
         {/* Enhanced Background Elements - Contact Section Eye Candy */}
 
+        {/* Floating Communication Icons - Contact specific */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
+          {[
+            { icon: "📧", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
+            { icon: "💬", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
+            { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
+            { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
+            { icon: "📞", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
+          ].map((item, i) => (
+            <motion.div
+              key={`comm-icon-${i}`}
+              className="absolute opacity-80"
+              style={{
+                left: `${item.x}%`,
+                top: `${item.y}%`,
+                fontSize: `${item.size}px`,
+              }}
+              initial={{ opacity: 0, scale: 0, rotateZ: -45 }}
+              animate={{
+                opacity: [0.6, 1, 0.6],
+                scale: [1, 1.2, 1],
+                rotateZ: [0, 10, -10, 0],
+                y: [-10, 10, -10],
+              }}
+              transition={{
+                duration: item.duration,
+                delay: item.delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              {item.icon}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Floating Message Bubbles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-4">
+          {[
+            { text: "Hello!", x: 20, y: 25, delay: 1 },
+            { text: "Let's chat", x: 70, y: 60, delay: 3 },
+            { text: "💡 Ideas", x: 15, y: 75, delay: 5 },
+            { text: "🚀 Ready", x: 80, y: 20, delay: 2 },
+          ].map((bubble, i) => (
+            <motion.div
+              key={`message-bubble-${i}`}
+              className="absolute bg-blue-500/20 backdrop-blur-sm border border-blue-300/30 rounded-full px-3 py-1.5 text-xs font-medium text-white"
+              style={{
+                left: `${bubble.x}%`,
+                top: `${bubble.y}%`,
+              }}
+              initial={{ opacity: 0, scale: 0, y: 20 }}
+              animate={{
+                opacity: [0, 1, 1, 0],
+                scale: [0.8, 1, 1, 0.8],
+                y: [20, 0, -5, 20],
+              }}
+              transition={{
+                duration: 4,
+                delay: bubble.delay,
+                repeat: Infinity,
+                repeatDelay: 6,
+              }}
+            >
+              {bubble.text}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Global Network Visualization */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-3">
+          <svg className="absolute w-full h-full" viewBox="0 0 1200 800">
+            {/* Network nodes */}
+            {[
+              { x: 200, y: 150, size: 8 },
+              { x: 400, y: 200, size: 12 },
+              { x: 600, y: 120, size: 10 },
+              { x: 800, y: 180, size: 14 },
+              { x: 1000, y: 160, size: 9 },
+              { x: 300, y: 350, size: 11 },
+              { x: 700, y: 380, size: 13 },
+              { x: 500, y: 400, size: 10 },
+            ].map((node, i) => (
+              <g key={`network-node-${i}`}>
+                <motion.circle
+                  cx={node.x}
+                  cy={node.y}
+                  r={node.size}
+                  fill="rgba(73, 146, 255, 0.6)"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.6, 1, 0.6],
+                  }}
+                  transition={{
+                    duration: 3,
+                    delay: i * 0.5,
+                    repeat: Infinity,
+                  }}
+                />
+                <motion.circle
+                  cx={node.x}
+                  cy={node.y}
+                  r={node.size + 4}
+                  fill="none"
+                  stroke="rgba(63, 186, 255, 0.3)"
+                  strokeWidth="1"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: [1, 2, 1] }}
+                  transition={{
+                    duration: 4,
+                    delay: i * 0.3,
+                    repeat: Infinity,
+                  }}
+                />
+              </g>
+            ))}
+
+            {/* Network connections */}
+            {[
+              { x1: 200, y1: 150, x2: 400, y2: 200 },
+              { x1: 400, y1: 200, x2: 600, y2: 120 },
+              { x1: 600, y1: 120, x2: 800, y2: 180 },
+              { x1: 800, y1: 180, x2: 1000, y2: 160 },
+              { x1: 300, y1: 350, x2: 700, y2: 380 },
+              { x1: 400, y1: 200, x2: 500, y2: 400 },
+            ].map((line, i) => (
+              <motion.line
+                key={`network-line-${i}`}
+                x1={line.x1}
+                y1={line.y1}
+                x2={line.x2}
+                y2={line.y2}
+                stroke="rgba(73, 146, 255, 0.4)"
+                strokeWidth="2"
+                strokeDasharray="5 5"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{
+                  pathLength: [0, 1, 0],
+                  opacity: [0, 0.8, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  delay: i * 0.8,
+                  repeat: Infinity,
+                  repeatDelay: 4,
+                }}
+              />
+            ))}
+          </svg>
+        </div>
+
+        {/* Social Media Preview Cards */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-2">
+          {[
+            {
+              platform: "@kor.dev",
+              icon: "📱",
+              x: 10,
+              y: 40,
+              color: "from-pink-500 to-purple-500",
+            },
+            {
+              platform: "Discord",
+              icon: "💬",
+              x: 85,
+              y: 80,
+              color: "from-indigo-500 to-blue-500",
+            },
+          ].map((social, i) => (
+            <motion.div
+              key={`social-preview-${i}`}
+              className={`absolute w-24 h-16 bg-gradient-to-br ${social.color} rounded-lg opacity-30 backdrop-blur-sm`}
+              style={{
+                left: `${social.x}%`,
+                top: `${social.y}%`,
+              }}
+              initial={{ opacity: 0, rotateY: -90, scale: 0.8 }}
+              animate={{
+                opacity: [0, 0.4, 0],
+                rotateY: [90, 0, -90],
+                scale: [0.8, 1, 0.8],
+              }}
+              transition={{
+                duration: 6,
+                delay: i * 3,
+                repeat: Infinity,
+                repeatDelay: 8,
+              }}
+            >
+              <div className="p-2 text-white text-center">
+                <div className="text-lg">{social.icon}</div>
+                <div className="text-xs font-medium">{social.platform}</div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
         {/* Animated Noise Texture - Enhanced for contact */}
         {!isMobile && (
           <div
