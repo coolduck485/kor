@@ -31,6 +31,7 @@ import {
 export default function Index() {
   const { theme, setTheme } = useTheme();
   const { mode, toggleMode } = useRetroMode();
+  const { isPinkActive } = usePinkTheme();
   const { showSuccess, showError, showWarning, showInfo } =
     useUnifiedNotifications();
   const { isMobile, animationConfig, deviceType } = useMobilePerformance();
@@ -810,8 +811,8 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═���═██╗█����╔����══██╗
+                  {`██╗  ██╗ ██████�� ███����������█╗
+██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  ���█║
@@ -961,7 +962,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►�������</span>
+                  <span className="text-green-400 ml-4">◄���◄►�����</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -4849,7 +4850,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ���  hoverScale: 1.15
+// Change: hoverScale: 1.05  ����  hoverScale: 1.15
 //
 // ========================================
 
