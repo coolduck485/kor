@@ -812,7 +812,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
-█████╔╝ █������   █��║██����███╔╝
+█████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
@@ -3126,26 +3126,18 @@ export default function Index() {
               className="relative z-10 px-4 -mt-16 gpu-accelerated will-change-transform"
               initial={{
                 opacity: 0,
-                y: 80,
-                scale: 0.9,
-                filter: "blur(10px)",
               }}
               animate={
                 animationStep >= 3
                   ? {
                       opacity: 1,
-                      y: 0,
-                      scale: 1,
-                      filter: "blur(0px)",
                     }
                   : {}
               }
               transition={{
-                duration: 0.7,
+                duration: 1.2,
                 ease: "easeOut",
-                type: "spring",
-                stiffness: 140,
-                damping: 18,
+                delay: 0.3
               }}
             >
               {/* Kor - mobile: 50px left + 30px down + bigger, desktop: moved further to the left */}
