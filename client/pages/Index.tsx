@@ -892,7 +892,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████�������█████████��███ 50%
+                      RAM: █���████��█��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -4725,7 +4725,7 @@ function MobileHamburgerMenu({
   setIsOpen,
   theme,
 }: MobileHamburgerMenuProps) {
-  const { isPinkActive } = usePinkTheme();
+  const isPinkActive = false; // Pink theme removed
   const [menuPosition, setMenuPosition] = useState({ left: 70, top: -80 });
   const [showTooltip, setShowTooltip] = useState(false);
 
