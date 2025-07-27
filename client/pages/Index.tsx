@@ -810,7 +810,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████�� ███����������█╗
-█���║ █��╔╝��█╔═���═██╗█����╔����══██╗
+██║ █��╔╝��█╔═���═██╗█����╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
 ██║  ���█╗╚███��██�����╝██║  ���█║
@@ -1921,8 +1921,7 @@ export default function Index() {
                 <div className="flex flex-col gap-2 sm:gap-3">
                   <ThemeToggle />
                   <RetroToggle />
-
-
+                  <PinkThemeToggle />
                 </div>
               </div>
             </div>
