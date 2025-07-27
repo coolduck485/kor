@@ -167,10 +167,11 @@ const FloatingNotificationItem = React.forwardRef<
 
   const handleClose = () => {
     setIsClosing(true);
-    // Delay the actual removal to allow exit animation to play
+    // Optimized exit timing based on device type
+    const exitDuration = isMobile ? 200 : 350;
     setTimeout(() => {
       onClose();
-    }, 300); // Match the exit animation duration
+    }, exitDuration);
   };
 
   const getTypeColors = (type: FloatingNotification["type"]) => {
