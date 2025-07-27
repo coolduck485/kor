@@ -230,6 +230,7 @@ const MobileNotificationItem = React.forwardRef<HTMLDivElement, MobileNotificati
       style={{
         willChange: "transform, opacity",
       }}
+      ref={ref}
     >
       {/* Main notification content - matching original styling with integrated border */}
       <div
