@@ -420,12 +420,56 @@ export default function SolarSystem() {
 
       {/* Performance Warning for Mobile */}
       {!isHighPerformance && (
-        <div className="fixed bottom-4 left-4 right-4 bg-black/80 text-white p-4 rounded-lg border border-yellow-400/50 backdrop-blur-sm">
+        <motion.div
+          className="fixed bottom-4 left-4 right-4 bg-black/80 text-white p-4 rounded-lg border border-yellow-400/50 backdrop-blur-sm z-50"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 2 }}
+        >
           <p className="text-sm text-yellow-400">
             ⚡ Reduced effects for optimal performance on your device
           </p>
-        </div>
+        </motion.div>
       )}
+
+      {/* Navigation Controls */}
+      <motion.div
+        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4 z-50"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1.5 }}
+      >
+        <a
+          href="/"
+          className="px-4 py-2 bg-black/60 text-white border border-white/20 rounded-full backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
+        >
+          🏠 Home
+        </a>
+        <button
+          onClick={() => setShowPlanetInfo(null)}
+          className="px-4 py-2 bg-black/60 text-white border border-white/20 rounded-full backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
+        >
+          🌌 Hide Info
+        </button>
+      </motion.div>
+
+      {/* Loading Screen */}
+      <motion.div
+        className="fixed inset-0 bg-black flex items-center justify-center z-[100]"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0 }}
+        transition={{ duration: 2, delay: 0.5 }}
+        style={{ pointerEvents: 'none' }}
+      >
+        <div className="text-center">
+          <motion.div
+            className="w-16 h-16 border-4 border-yellow-400/30 border-t-yellow-400 rounded-full mb-4"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          />
+          <p className="text-yellow-400 text-xl">Loading Solar System...</p>
+        </div>
+      </motion.div>
     </div>
   );
 }
