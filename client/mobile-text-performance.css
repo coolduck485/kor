@@ -106,6 +106,8 @@
   .warm-glow-text {
     text-shadow: 0 0 5px rgba(73, 146, 255, 0.3) !important;
     animation: none !important;
+    color: white !important;
+    -webkit-text-fill-color: white !important;
   }
 
   /* Disable letter-by-letter but allow simple glow */
