@@ -45,8 +45,8 @@
   .warm-glow-text {
     background: unset !important;
     -webkit-background-clip: unset !important;
-    -webkit-text-fill-color: unset !important;
-    color: inherit !important;
+    -webkit-text-fill-color: white !important;
+    color: white !important;
   }
 
   /* Reduce transform complexity */
