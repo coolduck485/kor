@@ -377,7 +377,7 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
         />
 
         {/* Progress bar for timed notifications */}
-        {notification.duration && notification.duration > 0 && (
+        {notification.duration && notification.duration > 0 ? (
           <motion.div
             className="absolute bottom-0 left-0 h-1 rounded-b-xl"
             style={{ background: colors.accent }}
@@ -388,7 +388,7 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
               ease: "linear",
             }}
           />
-        )}
+        ) : null}
       </div>
     </motion.div>
   );
