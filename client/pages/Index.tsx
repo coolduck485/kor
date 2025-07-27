@@ -703,7 +703,7 @@ export default function Index() {
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
                       animate={
-                        animationStep >= 2
+                        pinkAnimationStep >= 2
                           ? {
                               opacity: 1,
                               scale: 1,
@@ -1045,7 +1045,7 @@ export default function Index() {
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
                       animate={
-                        animationStep >= 2
+                        pinkAnimationStep >= 2
                           ? {
                               opacity: 1,
                               scale: 1,
@@ -3290,7 +3290,7 @@ export default function Index() {
                   filter: "blur(15px)",
                 }}
                 animate={
-                  animationStep >= 2
+                  pinkAnimationStep >= 2
                     ? {
                         opacity: 1,
                         scale: 1,
