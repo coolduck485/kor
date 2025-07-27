@@ -46,6 +46,7 @@ export default function Index() {
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
   const hasShownWelcomeRef = useRef(false);
+  const hasShownMobilePerformanceRef = useRef(false);
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const sectionsRef = useRef<HTMLDivElement[]>([]);
