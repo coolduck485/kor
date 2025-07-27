@@ -302,8 +302,14 @@ const FloatingNotificationItem = React.forwardRef<
             "touch-manipulation", // Improve touch responsiveness
             isMobile ? "top-1 right-1 p-1 min-w-[36px] min-h-[36px]" : "top-2 right-2 p-2 min-w-[44px] min-h-[44px]", // Smaller on mobile
           )}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1, rotate: 90 }}
+          whileTap={{ scale: 0.8, rotate: 180 }}
+          animate={isClosing ? {
+            scale: 0.8,
+            rotate: 360,
+            opacity: 0.5,
+            transition: { duration: 0.3 }
+          } : {}}
           // Prevent event bubbling that might interfere with touch
           onTouchStart={(e) => e.stopPropagation()}
           onTouchEnd={(e) => e.stopPropagation()}
