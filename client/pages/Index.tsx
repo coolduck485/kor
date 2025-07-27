@@ -6,6 +6,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useFloatingNotifications } from "@/hooks/use-floating-notifications";
 import { useMobilePerformance } from "@/hooks/use-mobile-performance";
+import { useBrowserDetection } from "@/hooks/use-browser-detection";
 import {
   ChevronUp,
   ChevronDown,
