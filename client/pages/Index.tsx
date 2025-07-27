@@ -1045,7 +1045,7 @@ export default function Index() {
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
                       animate={
-                        pinkAnimationStep >= 2
+                        animationStep >= 2
                           ? {
                               opacity: 1,
                               scale: 1,
@@ -1069,7 +1069,7 @@ export default function Index() {
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
                       animate={
-                        pinkAnimationStep >= 3
+                        animationStep >= 3
                           ? {
                               opacity: 1,
                               scale: 1,
@@ -1093,7 +1093,7 @@ export default function Index() {
                 {/* Loading subtitle */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
-                  animate={pinkAnimationStep >= 3 ? { opacity: 1, y: 0 } : {}}
+                  animate={animationStep >= 3 ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.5 }}
                   className="font-mono text-sm md:text-lg text-amber-400"
                   style={{
