@@ -2,17 +2,27 @@ import { useState, useEffect } from "react";
 
 export type DeviceType = "mobile" | "tablet" | "desktop";
 
-// Breakpoints as specified
+// Breakpoints aligned with Tailwind CSS
+// sm: 640px, md: 768px, lg: 1024px, xl: 1280px
 const MOBILE_MAX = 640;
-const TABLET_MAX = 991;
+const TABLET_MAX = 1023; // Just below lg breakpoint (1024px)
 
 export function useDeviceType(): DeviceType {
-  const [deviceType, setDeviceType] = useState<DeviceType>("desktop");
+  // Initialize with correct device type to prevent initial mismatch
+  const getInitialDeviceType = (): DeviceType => {
+    if (typeof window === "undefined") return "desktop";
+    const width = window.innerWidth;
+    if (width <= MOBILE_MAX) return "mobile";
+    if (width <= TABLET_MAX) return "tablet";
+    return "desktop";
+  };
+
+  const [deviceType, setDeviceType] = useState<DeviceType>(getInitialDeviceType());
 
   useEffect(() => {
     const checkDeviceType = () => {
       const width = window.innerWidth;
-      
+
       if (width <= MOBILE_MAX) {
         setDeviceType("mobile");
       } else if (width <= TABLET_MAX) {
