@@ -14,10 +14,15 @@ export function RetroToggle() {
       variant="ghost"
       size="icon"
       onClick={() => {
+        if (isPinkActive) return; // Disable in pink theme mode
         console.log("Retro toggle clicked!");
         toggleMode();
       }}
-      className="h-10 w-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-110 cursor-pointer"
+      className={`h-10 w-10 rounded-full backdrop-blur-md border transition-all duration-300 ${
+        isPinkActive
+          ? "opacity-50 cursor-not-allowed bg-white/5 border-white/10"
+          : "bg-white/10 border-white/20 hover:bg-white/20 hover:scale-110 cursor-pointer"
+      }`}
       style={{
         background:
           theme === "light" ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)",
