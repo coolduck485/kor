@@ -89,30 +89,16 @@ export default function Index() {
 
   // Welcome notification - shows once per page load
   useEffect(() => {
-    if (animationStep >= 2 && !hasShownWelcomeRef.current) {
+    if (!hasShownWelcomeRef.current) {
       hasShownWelcomeRef.current = true;
       setTimeout(() => {
+        console.log('Showing welcome notification...');
         showInfo(
           "Welcome to KOR!",
           "Experience the future of modern web development. Click the X to dismiss.",
         );
-      }, 3000);
+      }, 2000);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [animationStep]);
-
-  // Test notification to check if system works
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log('Triggering test notification...');
-      showInfo(
-        "System Test",
-        "Testing notification system...",
-        3000
-      );
-    }, 1000);
-
-    return () => clearTimeout(timer);
   }, []); // Only run once on mount
 
   // Mobile performance notification - shows only on mobile devices (≤640px)
@@ -812,7 +798,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█�������
-██║  ���█╗╚███��██�����╝██║  ���█║
+██║  ���█╗╚███��██������╝██║  ���█║
 ╚═╝  ╚═�� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
