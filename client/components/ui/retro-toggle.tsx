@@ -2,10 +2,12 @@ import { Gamepad2, Monitor } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useTheme } from "@/hooks/use-theme";
+import { usePinkTheme } from "@/hooks/use-pink-theme";
 
 export function RetroToggle() {
   const { mode, toggleMode } = useRetroMode();
   const { theme } = useTheme();
+  const { isPinkActive } = usePinkTheme();
 
   return (
     <Button
