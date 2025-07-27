@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useBrowserDetection } from "@/hooks/use-browser-detection";
 
 export interface FloatingNotification {
   id: string;
@@ -81,9 +82,13 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
 
 const FloatingNotificationContainer: React.FC = () => {
   const { notifications, removeNotification } = useNotifications();
+  const { isSafari, isMobileSafari } = useBrowserDetection();
+
+  // Position notifications at top for Safari (especially mobile Safari)
+  const positionClasses = isSafari ? "top-4 right-4" : "bottom-4 right-4";
 
   return (
-    <div className="fixed bottom-4 right-4 z-[9999] pointer-events-none">
+    <div className={cn("fixed z-[9999] pointer-events-none", positionClasses)}>
       <div className="flex flex-col gap-3 w-full max-w-sm sm:max-w-md">
         <AnimatePresence mode="popLayout">
           {notifications.map((notification) => (
@@ -91,6 +96,7 @@ const FloatingNotificationContainer: React.FC = () => {
               key={notification.id}
               notification={notification}
               onClose={() => removeNotification(notification.id)}
+              isSafari={isSafari}
             />
           ))}
         </AnimatePresence>
@@ -102,12 +108,13 @@ const FloatingNotificationContainer: React.FC = () => {
 interface FloatingNotificationItemProps {
   notification: FloatingNotification;
   onClose: () => void;
+  isSafari?: boolean;
 }
 
 const FloatingNotificationItem = React.forwardRef<
   HTMLDivElement,
   FloatingNotificationItemProps
->(({ notification, onClose }, ref) => {
+>(({ notification, onClose, isSafari = false }, ref) => {
   const [mousePosition, setMousePosition] = useState({
     x: 0,
     y: 0,
@@ -219,7 +226,7 @@ const FloatingNotificationItem = React.forwardRef<
       {/* Main notification content */}
       <div
         className={cn(
-          "relative backdrop-blur-xl rounded-xl p-4 pr-10 shadow-2xl transition-all duration-300",
+          "relative backdrop-blur-xl rounded-xl p-4 pr-12 shadow-2xl transition-all duration-300", // Increased right padding for larger close button
           "hover:shadow-glow-intense group-hover:scale-[1.02]",
           "border border-transparent",
         )}
@@ -252,19 +259,24 @@ const FloatingNotificationItem = React.forwardRef<
           ))}
         </div>
 
-        {/* Close button */}
+        {/* Close button - larger touch target for mobile */}
         <motion.button
           onClick={onClose}
           className={cn(
-            "absolute top-3 right-3 p-1 rounded-md",
+            "absolute top-2 right-2 p-2 rounded-md", // Increased padding for better touch target
             "text-white/60 hover:text-white",
             "hover:bg-white/10 transition-all duration-200",
             "focus:outline-none focus:ring-2 focus:ring-white/20",
+            "min-w-[44px] min-h-[44px] flex items-center justify-center", // Ensure minimum touch target size
+            "touch-manipulation", // Improve touch responsiveness
           )}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          // Prevent event bubbling that might interfere with touch
+          onTouchStart={(e) => e.stopPropagation()}
+          onTouchEnd={(e) => e.stopPropagation()}
         >
-          <X className="h-4 w-4" />
+          <X className="h-5 w-5" />
         </motion.button>
 
         {/* Content */}
