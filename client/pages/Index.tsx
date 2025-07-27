@@ -811,7 +811,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███����������█╗
+                  {`██╗  ██╗ ��█████���� ███����������█╗
 ██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
@@ -2934,7 +2934,10 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="11.79" />
                       <feColorMatrix
                         type="matrix"
-                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={isPinkActive
+                          ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                          : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        }
                       />
                       <feBlend
                         mode="normal"
@@ -2951,7 +2954,10 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="41.265" />
                       <feColorMatrix
                         type="matrix"
-                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={isPinkActive
+                          ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                          : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        }
                       />
                       <feBlend
                         mode="normal"
@@ -2968,7 +2974,10 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="82.53" />
                       <feColorMatrix
                         type="matrix"
-                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={isPinkActive
+                          ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                          : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        }
                       />
                       <feBlend
                         mode="normal"
@@ -2985,7 +2994,10 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="141.48" />
                       <feColorMatrix
                         type="matrix"
-                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={isPinkActive
+                          ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                          : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        }
                       />
                       <feBlend
                         mode="normal"
@@ -3002,7 +3014,10 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="247.59" />
                       <feColorMatrix
                         type="matrix"
-                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={isPinkActive
+                          ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                          : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        }
                       />
                       <feBlend
                         mode="normal"
