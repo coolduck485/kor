@@ -33,6 +33,7 @@ export default function Index() {
     useUnifiedNotifications();
   const { isMobile, animationConfig, deviceType } = useMobilePerformance();
   const { isSafari, isMobileSafari, isIOS } = useBrowserDetection();
+  const currentDeviceType = useDeviceType();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
