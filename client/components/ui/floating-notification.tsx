@@ -165,7 +165,7 @@ const FloatingNotificationItem = React.forwardRef<
     // Delay the actual removal to allow exit animation to play
     setTimeout(() => {
       onClose();
-    }, 400); // Match the exit animation duration
+    }, 300); // Match the exit animation duration
   };
 
   const getTypeColors = (type: FloatingNotification["type"]) => {
