@@ -69,6 +69,10 @@ export function useMobilePerformance() {
           enableSVGAnimations: false,
           enableBoxShadows: false,
           enableBackdropBlur: false,
+          enableTextShadows: false,
+          enableTextGlow: false,
+          enableLetterAnimations: false,
+          enableComplexTextEffects: false,
         };
       case "tablet":
         return {
