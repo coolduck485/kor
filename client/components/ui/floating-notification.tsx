@@ -217,7 +217,7 @@ const FloatingNotificationItem = React.forwardRef<
         stiffness: 300,
         damping: 30,
       }}
-      className="relative group pointer-events-auto animate-float"
+      className="relative group notification-item animate-float"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       ref={ref}
