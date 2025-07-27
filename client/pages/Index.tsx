@@ -5,6 +5,7 @@ import { RetroToggle } from "@/components/ui/retro-toggle";
 import { PinkThemeToggle } from "@/components/ui/pink-theme-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
+import { usePinkTheme } from "@/hooks/use-pink-theme";
 import { useUnifiedNotifications } from "@/components/ui/unified-notification";
 import { useMobilePerformance } from "@/hooks/use-mobile-performance";
 import { useBrowserDetection } from "@/hooks/use-browser-detection";
@@ -809,7 +810,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████�� ███����������█╗
+                  {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═���═██╗█����╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
@@ -960,7 +961,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►�����</span>
+                  <span className="text-green-400 ml-4">◄���◄►�������</span>
                 </div>
 
                 <div className="loading-indicators">
