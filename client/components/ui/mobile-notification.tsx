@@ -175,38 +175,57 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
 
   return (
     <motion.div
-      layout
+      layout="position"
+      layoutId={notification.id}
       initial={{
         opacity: 0,
-        y: isMobile ? -30 : -20,
-        scale: 0.95,
+        scale: isMobile ? 0.9 : 0.8,
+        x: isMobile ? 0 : 100,
+        y: isMobile ? -30 : 0,
+        filter: isMobile ? "blur(2px)" : "blur(4px)",
       }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        scale: 1,
-      }}
+      animate={
+        isClosing
+          ? {
+              opacity: 0,
+              scale: isMobile ? 0.85 : 0.9,
+              x: isMobile ? 0 : 60,
+              y: isMobile ? -20 : 0,
+              filter: isMobile ? "blur(1px)" : "blur(2px)",
+              transition: {
+                duration: isMobile ? 0.2 : 0.25,
+                ease: "easeInOut"
+              },
+            }
+          : {
+              opacity: 1,
+              scale: 1,
+              x: 0,
+              y: 0,
+              filter: "blur(0px)",
+            }
+      }
       exit={{
         opacity: 0,
-        y: isMobile ? -20 : -15,
-        scale: 0.9,
+        scale: isMobile ? 0.75 : 0.8,
+        x: isMobile ? 0 : 120,
+        y: isMobile ? -25 : 0,
+        filter: isMobile ? "blur(3px)" : "blur(6px)",
         transition: {
-          duration: 0.15,
-          ease: "easeIn",
+          duration: isMobile ? 0.2 : 0.25,
+          ease: "easeInOut",
         },
       }}
       transition={{
-        type: "spring",
-        stiffness: 400,
-        damping: 30,
-        duration: 0.3,
+        type: isMobile ? "tween" : "spring",
+        stiffness: isMobile ? undefined : 280,
+        damping: isMobile ? undefined : 25,
+        duration: isMobile ? 0.3 : undefined,
+        ease: isMobile ? "easeOut" : undefined,
       }}
       className={cn(
-        "mb-3 pointer-events-auto relative",
-        "rounded-xl border backdrop-blur-md shadow-lg",
-        "transform-gpu", // Force GPU acceleration
-        getBackgroundColor(),
-        isMobile ? "mx-0" : "mx-4"
+        "relative group notification-item pointer-events-auto",
+        isMobile ? "mb-3 animate-enhanced-mobile-float-1" : "mb-3 animate-float"
       )}
       style={{
         willChange: "transform, opacity",
