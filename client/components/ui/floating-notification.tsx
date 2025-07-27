@@ -96,7 +96,13 @@ const FloatingNotificationContainer: React.FC = () => {
   }
 
   return (
-    <div className={cn("fixed z-[9999] pointer-events-none", positionClasses)}>
+    <div
+      className={cn("fixed z-[9999] pointer-events-none", positionClasses)}
+      style={{
+        // Add safe area padding for Safari mobile to avoid search bar
+        paddingBottom: isSafari && isMobile ? 'env(safe-area-inset-bottom)' : undefined
+      }}
+    >
       <div className={cn(
         "flex flex-col gap-3 w-full",
         isMobile ? "max-w-[280px] px-2" : "max-w-sm sm:max-w-md"
