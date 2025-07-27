@@ -389,6 +389,11 @@ export default {
           "desktop-notification-enter 0.4s ease-out forwards",
         "desktop-notification-exit":
           "desktop-notification-exit 0.35s ease-in forwards",
+        "pink-pulse": "pink-pulse 3s ease-in-out infinite",
+        "pink-neon-glow": "pink-neon-glow 4s ease-in-out infinite",
+        "pink-heartbeat": "pink-heartbeat 2s ease-in-out infinite",
+        "pink-floating-particles": "pink-floating-particles 20s linear infinite",
+        "pink-floating-orbs": "pink-floating-orbs 30s ease-in-out infinite",
       },
       boxShadow: {
         glow: "0 0 100px rgba(73, 146, 255, 0.5), 0 0 200px rgba(73, 146, 255, 0.3), 0 0 300px rgba(73, 146, 255, 0.2)",
