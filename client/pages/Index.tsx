@@ -31,6 +31,7 @@ export default function Index() {
   const { showSuccess, showError, showWarning, showInfo } =
     useFloatingNotifications();
   const { isMobile, animationConfig, deviceType } = useMobilePerformance();
+  const { isSafari, isMobileSafari, isIOS } = useBrowserDetection();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
