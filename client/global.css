@@ -6,6 +6,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure notifications stay visible across all sections */
+.notification-container {
+  position: fixed !important;
+  z-index: 99999 !important;
+  pointer-events: none !important;
+}
+
+.notification-item {
+  pointer-events: auto !important;
+}
+
 @layer base {
   /**
    * Tailwind CSS theme
