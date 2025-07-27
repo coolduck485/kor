@@ -101,6 +101,22 @@ export default function Index() {
     // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animationStep]);
+
+  // Mobile performance notification - shows only on mobile devices (≤640px)
+  useEffect(() => {
+    if (deviceType === "mobile") {
+      const timer = setTimeout(() => {
+        showInfo(
+          "Mobile Performance Mode",
+          "Visual effects and animations have been limited to improve performance.",
+          5000 // Show for 5 seconds
+        );
+      }, 2000); // Show after 2 seconds to avoid overwhelming on page load
+
+      return () => clearTimeout(timer);
+    }
+  }, [deviceType, showInfo]);
+
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
