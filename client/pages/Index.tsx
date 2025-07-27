@@ -578,6 +578,349 @@ export default function Index() {
       );
   }, []);
 
+  // If pink theme is active, show pink version
+  if (isPinkActive) {
+    return (
+      <div className="pink-container min-h-screen max-h-screen overflow-y-auto overflow-x-hidden">
+        {/* Pink Loading Screen */}
+        <AnimatePresence>
+          {isLoading && (
+            <motion.div
+              className="fixed inset-0 z-[10000] bg-gradient-to-br from-pink-950 via-rose-950 to-purple-950 flex items-center justify-center"
+              initial={{ opacity: 1 }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 1, ease: "easeInOut" },
+              }}
+            >
+              {/* Pink floating particles background */}
+              <div className="absolute inset-0 overflow-hidden">
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={`pink-particle-${i}`}
+                    className="absolute rounded-full"
+                    style={{
+                      background: `radial-gradient(circle, rgba(236, 72, 153, 0.8), rgba(244, 114, 182, 0.4))`,
+                      width: `${4 + (i % 3) * 2}px`,
+                      height: `${4 + (i % 3) * 2}px`,
+                      left: `${(i * 100) / 8}%`,
+                      filter: "blur(1px)",
+                    }}
+                    animate={{
+                      y: [-20, window.innerHeight + 20],
+                      x: [0, (i % 2 === 0 ? 50 : -50)],
+                      opacity: [0.3, 0.8, 0.3],
+                    }}
+                    transition={{
+                      duration: 6 + (i % 3),
+                      repeat: Infinity,
+                      delay: i * 0.5,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Central loading area */}
+              <div className="relative z-10 text-center">
+                {/* Loading KOR text in Pink style */}
+                <div className="mb-8">
+                  <motion.div
+                    className="font-mono text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl kor-text-large font-bold"
+                    style={{
+                      background: "linear-gradient(135deg, #ec4899, #f472b6, #be185d)",
+                      backgroundClip: "text",
+                      WebkitBackgroundClip: "text",
+                      color: "transparent",
+                      textShadow: "0 0 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3)",
+                    }}
+                  >
+                    {/* K */}
+                    <motion.span
+                      className="inline-block"
+                      initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                      animate={
+                        animationStep >= 1
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                              rotateY: 0,
+                            }
+                          : {}
+                      }
+                      transition={{
+                        duration: 0.8,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 20,
+                      }}
+                    >
+                      K
+                    </motion.span>
+
+                    {/* o */}
+                    <motion.span
+                      className="inline-block"
+                      initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                      animate={
+                        animationStep >= 2
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                              rotateY: 0,
+                            }
+                          : {}
+                      }
+                      transition={{
+                        duration: 0.8,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 20,
+                        delay: 0.1,
+                      }}
+                    >
+                      o
+                    </motion.span>
+
+                    {/* r */}
+                    <motion.span
+                      className="inline-block"
+                      initial={{ opacity: 0, scale: 0.5, rotateY: -90 }}
+                      animate={
+                        animationStep >= 3
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                              rotateY: 0,
+                            }
+                          : {}
+                      }
+                      transition={{
+                        duration: 0.8,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 20,
+                        delay: 0.2,
+                      }}
+                    >
+                      r
+                    </motion.span>
+                  </motion.div>
+                </div>
+
+                {/* Loading subtitle */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={animationStep >= 3 ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="font-mono text-sm md:text-lg text-pink-300"
+                  style={{
+                    textShadow: "0 0 10px rgba(236, 72, 153, 0.5)",
+                  }}
+                >
+                  INITIALIZING PINK UNIVERSE...
+                </motion.div>
+
+                {/* Heart loading indicator */}
+                <motion.div
+                  className="mt-8 flex justify-center items-center space-x-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                >
+                  <span className="text-pink-400 font-mono text-sm">♥</span>
+                  {[...Array(10)].map((_, i) => (
+                    <motion.span
+                      key={i}
+                      className="text-pink-400 font-mono text-sm"
+                      animate={{
+                        opacity: [0.3, 1, 0.3],
+                        scale: [0.8, 1.2, 0.8],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: i * 0.1,
+                      }}
+                    >
+                      ♥
+                    </motion.span>
+                  ))}
+                  <span className="text-pink-400 font-mono text-sm">♥</span>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        {/* Pink Main Content - Only show after loading */}
+        {!isLoading && (
+          <>
+            {/* Pink Theme Toggles */}
+            <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
+              <div className="flex flex-col space-y-2">
+                <ThemeToggle />
+                <RetroToggle />
+                <PinkThemeToggle />
+              </div>
+            </div>
+
+            {/* Pink Theme Main Content */}
+            <div className="pink-theme-content min-h-screen bg-gradient-to-br from-pink-950 via-rose-950 to-purple-950 relative overflow-hidden">
+              {/* Pink animated background */}
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-rose-500/5 to-purple-500/10"></div>
+                {[...Array(20)].map((_, i) => (
+                  <motion.div
+                    key={`bg-particle-${i}`}
+                    className="absolute rounded-full bg-gradient-to-r from-pink-400/20 to-rose-400/10"
+                    style={{
+                      width: `${2 + (i % 4)}px`,
+                      height: `${2 + (i % 4)}px`,
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
+                    animate={{
+                      y: [0, -20, 0],
+                      x: [0, 10, 0],
+                      opacity: [0.3, 0.8, 0.3],
+                    }}
+                    transition={{
+                      duration: 4 + (i % 3),
+                      repeat: Infinity,
+                      delay: i * 0.2,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Hero Section - Pink Version */}
+              <div className="relative z-10 min-h-screen flex flex-col justify-center items-center px-6 text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.2 }}
+                  className="space-y-8"
+                >
+                  <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-pink-400 via-rose-400 to-purple-400 bg-clip-text text-transparent"
+                      style={{
+                        textShadow: "0 0 30px rgba(236, 72, 153, 0.5)",
+                      }}>
+                    KOR
+                  </h1>
+                  <p className="text-xl md:text-2xl text-pink-200 max-w-3xl"
+                     style={{
+                       textShadow: "0 0 10px rgba(236, 72, 153, 0.3)",
+                     }}>
+                    ✨ Custom Software & Website Development ✨
+                  </p>
+                  <p className="text-lg text-pink-300/80 max-w-2xl">
+                    Creating beautiful, modern experiences with a touch of magic
+                  </p>
+
+                  {/* Pink CTA Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-lg font-semibold shadow-lg hover:shadow-pink-500/25"
+                      style={{
+                        boxShadow: "0 0 20px rgba(236, 72, 153, 0.4)",
+                      }}
+                    >
+                      ♥ Start Your Project
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-8 py-4 border-2 border-pink-400 text-pink-300 rounded-lg font-semibold hover:bg-pink-400/10"
+                    >
+                      ✨ View Portfolio
+                    </motion.button>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Services Section - Pink Version */}
+              <div className="relative z-10 py-20 px-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="max-w-6xl mx-auto text-center"
+                >
+                  <h2 className="text-4xl md:text-5xl font-bold text-pink-200 mb-12"
+                      style={{
+                        textShadow: "0 0 20px rgba(236, 72, 153, 0.4)",
+                      }}>
+                    ✨ Our Magical Services ✨
+                  </h2>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {[
+                      { icon: "🌸", title: "Web Development", desc: "Beautiful, responsive websites" },
+                      { icon: "💖", title: "Mobile Apps", desc: "Native and cross-platform solutions" },
+                      { icon: "🎀", title: "UI/UX Design", desc: "User-centered design experiences" },
+                      { icon: "💎", title: "E-commerce", desc: "Online stores that convert" },
+                      { icon: "🌺", title: "Custom Software", desc: "Tailored business solutions" },
+                      { icon: "✨", title: "Consulting", desc: "Strategic technology guidance" },
+                    ].map((service, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        whileHover={{ scale: 1.05, rotateY: 5 }}
+                        className="p-6 rounded-xl bg-gradient-to-br from-pink-900/30 to-rose-900/20 border border-pink-400/20 backdrop-blur-sm"
+                        style={{
+                          boxShadow: "0 0 20px rgba(236, 72, 153, 0.1)",
+                        }}
+                      >
+                        <div className="text-4xl mb-4">{service.icon}</div>
+                        <h3 className="text-xl font-bold text-pink-200 mb-2">{service.title}</h3>
+                        <p className="text-pink-300/80">{service.desc}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Contact Section - Pink Version */}
+              <div className="relative z-10 py-20 px-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="max-w-4xl mx-auto text-center"
+                >
+                  <h2 className="text-4xl md:text-5xl font-bold text-pink-200 mb-8"
+                      style={{
+                        textShadow: "0 0 20px rgba(236, 72, 153, 0.4)",
+                      }}>
+                    💖 Let's Create Magic Together 💖
+                  </h2>
+                  <p className="text-xl text-pink-300/80 mb-12">
+                    Ready to bring your vision to life with our magical touch?
+                  </p>
+
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-12 py-6 bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 text-white rounded-xl font-bold text-xl shadow-lg"
+                    style={{
+                      boxShadow: "0 0 30px rgba(236, 72, 153, 0.5)",
+                    }}
+                  >
+                    ✨ Start Your Magical Journey ✨
+                  </motion.button>
+                </motion.div>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    );
+  }
+
   // If retro mode is enabled, show retro version
   if (mode === "retro") {
     return (
