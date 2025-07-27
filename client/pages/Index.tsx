@@ -113,7 +113,7 @@ export default function Index() {
     }
   }, []); // Only run once on mount
 
-  // Mobile performance notification - shows only on mobile devices (≤767px)
+  // Mobile performance notification - shows only on mobile devices (≤640px)
   useEffect(() => {
     console.log("Device type:", deviceType, "Window width:", window.innerWidth); // Debug log
     console.log("UserAgent:", navigator.userAgent); // Debug browser info
@@ -130,7 +130,7 @@ export default function Index() {
           "Visual effects and animations have been limited to improve performance.",
           6000, // Show for 6 seconds
         );
-      }, 4000); // Show after 4 seconds
+      }, 3500); // Show after 3.5 seconds (right after welcome notification)
 
       return () => clearTimeout(timer);
     } else {
@@ -887,7 +887,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█��������█████��███████ 60%
+                      CPU: █��������█������█████��███████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -953,7 +953,7 @@ export default function Index() {
                 transition={{ delay: 3, duration: 1 }}
               >
                 <div className="status-indicators">
-                  <span className="status-dot text-red-400">���</span>
+                  <span className="status-dot text-red-400">●</span>
                   <span>READY</span>
                   <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
@@ -7866,7 +7866,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "✉️" },
+            { type: "email", x: 15, y: 35, icon: "✉���" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
