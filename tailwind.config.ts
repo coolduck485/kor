@@ -291,6 +291,12 @@ export default {
         textGlow: "text-glow 4s ease-in-out infinite",
         "swipe-down": "swipe-down 2s ease-in-out infinite",
         "swipe-down-delayed": "swipe-down-delayed 2s ease-in-out infinite 0.3s",
+        "mobile-notification-enter": "mobile-notification-enter 0.3s ease-out forwards",
+        "mobile-notification-exit": "mobile-notification-exit 0.2s ease-in forwards",
+        "tablet-notification-enter": "tablet-notification-enter 0.25s ease-out forwards",
+        "tablet-notification-exit": "tablet-notification-exit 0.25s ease-in forwards",
+        "desktop-notification-enter": "desktop-notification-enter 0.4s ease-out forwards",
+        "desktop-notification-exit": "desktop-notification-exit 0.35s ease-in forwards",
       },
       boxShadow: {
         glow: "0 0 100px rgba(73, 146, 255, 0.5), 0 0 200px rgba(73, 146, 255, 0.3), 0 0 300px rgba(73, 146, 255, 0.2)",
