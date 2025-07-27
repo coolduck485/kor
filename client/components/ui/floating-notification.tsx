@@ -97,7 +97,7 @@ const FloatingNotificationContainer: React.FC = () => {
 
   return (
     <div
-      className={cn("fixed z-[9999] pointer-events-none", positionClasses)}
+      className={cn("fixed z-[99999] pointer-events-none", positionClasses)} // Increased z-index to stay above all content
       style={{
         // Add safe area padding for Safari mobile to avoid search bar
         paddingBottom: isSafari && isMobile ? 'env(safe-area-inset-bottom)' : undefined
