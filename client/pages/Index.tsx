@@ -2846,7 +2846,11 @@ export default function Index() {
 
               {/* Vertical progress line */}
               <motion.div
-                className="absolute left-1/2 -translate-x-1/2 top-12 sm:top-16 w-px h-16 sm:h-24 bg-gradient-to-b from-blue-400/40 via-blue-300/20 to-transparent"
+                className={`absolute left-1/2 -translate-x-1/2 top-12 sm:top-16 w-px h-16 sm:h-24 ${
+                  isPinkActive
+                    ? "bg-gradient-to-b from-pink-400/50 via-pink-300/25 to-transparent"
+                    : "bg-gradient-to-b from-blue-400/40 via-blue-300/20 to-transparent"
+                }`}
                 initial={{ opacity: 0, scaleY: 0 }}
                 animate={animationStep >= 1 ? { opacity: 1, scaleY: 1 } : {}}
                 transition={{ delay: 3, duration: 1.5 }}
@@ -8641,7 +8645,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Telegram",
                             url: "https://telegram.org",
-                            icon: "���",
+                            icon: "📱",
                             color: "from-blue-500 to-cyan-500",
                           },
                         ].map((social) => (
