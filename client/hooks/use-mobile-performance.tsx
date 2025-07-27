@@ -45,6 +45,21 @@ export function useMobilePerformance() {
     switch (deviceType) {
       case "mobile":
         return {
+          duration: 0.2,
+          particleCount: 1,
+          blurAmount: 1,
+          enableComplexAnimations: false,
+          enableBackgroundParticles: false,
+          enableFloatingOrbs: false,
+          enableGradientShifts: false,
+          enableBackgroundEffects: false,
+          enableFloatingElements: false,
+          enableSVGAnimations: false,
+          enableBoxShadows: false,
+          enableBackdropBlur: false,
+        };
+      case "tablet":
+        return {
           duration: 0.3,
           particleCount: 2,
           blurAmount: 2,
@@ -54,18 +69,9 @@ export function useMobilePerformance() {
           enableGradientShifts: false,
           enableBackgroundEffects: false,
           enableFloatingElements: false,
-        };
-      case "tablet":
-        return {
-          duration: 0.5,
-          particleCount: 4,
-          blurAmount: 4,
-          enableComplexAnimations: false,
-          enableBackgroundParticles: false,
-          enableFloatingOrbs: false,
-          enableGradientShifts: false,
-          enableBackgroundEffects: false,
-          enableFloatingElements: false,
+          enableSVGAnimations: false,
+          enableBoxShadows: false,
+          enableBackdropBlur: false,
         };
       default:
         return {
@@ -78,6 +84,9 @@ export function useMobilePerformance() {
           enableGradientShifts: true,
           enableBackgroundEffects: true,
           enableFloatingElements: true,
+          enableSVGAnimations: true,
+          enableBoxShadows: true,
+          enableBackdropBlur: true,
         };
     }
   };
