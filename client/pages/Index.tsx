@@ -624,7 +624,7 @@ export default function Index() {
       <div className="pink-container min-h-screen max-h-screen overflow-y-auto overflow-x-hidden">
         {/* Pink Loading Screen */}
         <AnimatePresence>
-          {isLoading && (
+          {pinkLoading && (
             <motion.div
               className="fixed inset-0 z-[10000] bg-gradient-to-br from-pink-950 via-rose-950 to-purple-950 flex items-center justify-center"
               initial={{ opacity: 1 }}
