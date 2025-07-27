@@ -11,10 +11,18 @@
   position: fixed !important;
   z-index: 99999 !important;
   pointer-events: none !important;
+  /* Prevent notification flicker during animations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .notification-item {
   pointer-events: auto !important;
+  /* Optimize for smooth animations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Ensure proper layering */
+  isolation: isolate;
 }
 
 /* Mobile Safari specific adjustments */
