@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useBrowserDetection } from "@/hooks/use-browser-detection";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export interface FloatingNotification {
   id: string;
@@ -83,13 +84,17 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
 const FloatingNotificationContainer: React.FC = () => {
   const { notifications, removeNotification } = useNotifications();
   const { isSafari, isMobileSafari } = useBrowserDetection();
+  const isMobile = useIsMobile();
 
   // Position notifications at top for Safari (especially mobile Safari)
   const positionClasses = isSafari ? "top-4 right-4" : "bottom-4 right-4";
 
   return (
     <div className={cn("fixed z-[9999] pointer-events-none", positionClasses)}>
-      <div className="flex flex-col gap-3 w-full max-w-sm sm:max-w-md">
+      <div className={cn(
+        "flex flex-col gap-3 w-full",
+        isMobile ? "max-w-[280px] px-2" : "max-w-sm sm:max-w-md"
+      )}>
         <AnimatePresence mode="popLayout">
           {notifications.map((notification) => (
             <FloatingNotificationItem
@@ -97,6 +102,7 @@ const FloatingNotificationContainer: React.FC = () => {
               notification={notification}
               onClose={() => removeNotification(notification.id)}
               isSafari={isSafari}
+              isMobile={isMobile}
             />
           ))}
         </AnimatePresence>
@@ -109,12 +115,13 @@ interface FloatingNotificationItemProps {
   notification: FloatingNotification;
   onClose: () => void;
   isSafari?: boolean;
+  isMobile?: boolean;
 }
 
 const FloatingNotificationItem = React.forwardRef<
   HTMLDivElement,
   FloatingNotificationItemProps
->(({ notification, onClose, isSafari = false }, ref) => {
+>(({ notification, onClose, isSafari = false, isMobile = false }, ref) => {
   const [mousePosition, setMousePosition] = useState({
     x: 0,
     y: 0,
@@ -226,9 +233,10 @@ const FloatingNotificationItem = React.forwardRef<
       {/* Main notification content */}
       <div
         className={cn(
-          "relative backdrop-blur-xl rounded-xl p-4 pr-12 shadow-2xl transition-all duration-300", // Increased right padding for larger close button
+          "relative backdrop-blur-xl rounded-xl shadow-2xl transition-all duration-300",
           "hover:shadow-glow-intense group-hover:scale-[1.02]",
           "border border-transparent",
+          isMobile ? "p-3 pr-10 text-sm" : "p-4 pr-12", // More compact on mobile
         )}
         style={{
           background: "rgba(0, 0, 0, 0.4)",
@@ -240,9 +248,9 @@ const FloatingNotificationItem = React.forwardRef<
           `,
         }}
       >
-        {/* Floating particles effect */}
+        {/* Floating particles effect - reduced on mobile */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
-          {[...Array(6)].map((_, i) => (
+          {[...Array(isMobile ? 3 : 6)].map((_, i) => (
             <div
               key={i}
               className="absolute rounded-full opacity-30"
@@ -253,6 +261,7 @@ const FloatingNotificationItem = React.forwardRef<
                 height: `${1 + (i % 3)}px`,
                 background: colors.accent,
                 animation: `gentleFloat ${2 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+                display: isMobile && i >= 3 ? 'none' : 'block', // Hide extra particles on mobile
                 filter: "blur(0.5px)",
               }}
             />
@@ -263,12 +272,13 @@ const FloatingNotificationItem = React.forwardRef<
         <motion.button
           onClick={onClose}
           className={cn(
-            "absolute top-2 right-2 p-2 rounded-md", // Increased padding for better touch target
+            "absolute rounded-md",
             "text-white/60 hover:text-white",
             "hover:bg-white/10 transition-all duration-200",
             "focus:outline-none focus:ring-2 focus:ring-white/20",
-            "min-w-[44px] min-h-[44px] flex items-center justify-center", // Ensure minimum touch target size
+            "flex items-center justify-center",
             "touch-manipulation", // Improve touch responsiveness
+            isMobile ? "top-1 right-1 p-1 min-w-[36px] min-h-[36px]" : "top-2 right-2 p-2 min-w-[44px] min-h-[44px]", // Smaller on mobile
           )}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -276,15 +286,15 @@ const FloatingNotificationItem = React.forwardRef<
           onTouchStart={(e) => e.stopPropagation()}
           onTouchEnd={(e) => e.stopPropagation()}
         >
-          <X className="h-5 w-5" />
+          <X className={isMobile ? "h-4 w-4" : "h-5 w-5"} />
         </motion.button>
 
         {/* Content */}
-        <div className="space-y-1">
+        <div className={cn("space-y-1", isMobile ? "space-y-0.5" : "space-y-1")}>
           <motion.h4
             className={cn(
-              "font-semibold text-white text-sm sm:text-base",
-              "animate-text-glow-pulse",
+              "font-semibold text-white animate-text-glow-pulse",
+              isMobile ? "text-xs" : "text-sm sm:text-base",
             )}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -293,7 +303,10 @@ const FloatingNotificationItem = React.forwardRef<
             {notification.title}
           </motion.h4>
           <motion.p
-            className="text-white/80 text-xs sm:text-sm leading-relaxed"
+            className={cn(
+              "text-white/80 leading-relaxed",
+              isMobile ? "text-xs leading-tight" : "text-xs sm:text-sm leading-relaxed"
+            )}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
