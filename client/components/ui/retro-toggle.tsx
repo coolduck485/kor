@@ -3,24 +3,19 @@ import { Button } from "@/components/ui/button";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useTheme } from "@/hooks/use-theme";
 
-
 export function RetroToggle() {
   const { mode, toggleMode } = useRetroMode();
   const { theme } = useTheme();
-
 
   return (
     <Button
       variant="ghost"
       size="icon"
       onClick={() => {
-
         console.log("Retro toggle clicked!");
         toggleMode();
       }}
-      className={`h-10 w-10 rounded-full backdrop-blur-md border transition-all duration-300 ${
-        "bg-white/10 border-white/20 hover:bg-white/20 hover:scale-110 cursor-pointer"
-      }`}
+      className={`h-10 w-10 rounded-full backdrop-blur-md border transition-all duration-300 ${"bg-white/10 border-white/20 hover:bg-white/20 hover:scale-110 cursor-pointer"}`}
       style={{
         background:
           theme === "light" ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)",

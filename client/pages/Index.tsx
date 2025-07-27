@@ -3137,7 +3137,7 @@ export default function Index() {
               transition={{
                 duration: 1.2,
                 ease: "easeOut",
-                delay: 0.3
+                delay: 0.3,
               }}
             >
               {/* Kor - mobile: 50px left + 30px down + bigger, desktop: moved further to the left */}
@@ -3191,15 +3191,11 @@ export default function Index() {
                 className="text-center transform translate-x-[10px] translate-y-[10px] sm:translate-x-8 sm:translate-y-0 md:translate-x-12 lg:translate-x-16 mt-2 md:mt-4"
                 style={{ marginLeft: "5px", marginTop: "-5px" }}
                 initial={{ opacity: 0 }}
-                animate={
-                  animationStep >= 3
-                    ? { opacity: 1 }
-                    : { opacity: 0 }
-                }
+                animate={animationStep >= 3 ? { opacity: 1 } : { opacity: 0 }}
                 transition={{
                   duration: 1.2,
                   ease: "easeOut",
-                  delay: 1.5
+                  delay: 1.5,
                 }}
               >
                 <div className="relative">
@@ -3217,25 +3213,26 @@ export default function Index() {
                   />
 
                   {/* Optimized floating energy particles around text */}
-                  {!isPinkActive && [...Array(8)].map((_, i) => (
-                    <div
-                      key={`energy-${i}`}
-                      className="absolute rounded-full pointer-events-none gpu-accelerated"
-                      style={{
-                        left: `${20 + ((i * 80) % 160)}%`,
-                        top: `${30 + ((i * 50) % 60)}%`,
-                        width: `${4 + (i % 2)}px`,
-                        height: `${4 + (i % 2)}px`,
-                        background:
-                          theme === "light"
-                            ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.7 + (i % 2) * 0.2})`
-                            : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.7 + (i % 2) * 0.2})`,
-                        animation: `energy-float ${4 + (i % 2)}s ease-in-out infinite ${i * 0.5}s`,
-                        willChange: "transform, opacity",
-                        transform: "translateZ(0)",
-                      }}
-                    />
-                  ))}
+                  {!isPinkActive &&
+                    [...Array(8)].map((_, i) => (
+                      <div
+                        key={`energy-${i}`}
+                        className="absolute rounded-full pointer-events-none gpu-accelerated"
+                        style={{
+                          left: `${20 + ((i * 80) % 160)}%`,
+                          top: `${30 + ((i * 50) % 60)}%`,
+                          width: `${4 + (i % 2)}px`,
+                          height: `${4 + (i % 2)}px`,
+                          background:
+                            theme === "light"
+                              ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.7 + (i % 2) * 0.2})`
+                              : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.7 + (i % 2) * 0.2})`,
+                          animation: `energy-float ${4 + (i % 2)}s ease-in-out infinite ${i * 0.5}s`,
+                          willChange: "transform, opacity",
+                          transform: "translateZ(0)",
+                        }}
+                      />
+                    ))}
 
                   {/* Pink Theme Floating Bubbles with Pink Outlines */}
                   {isPinkActive &&
@@ -3251,7 +3248,8 @@ export default function Index() {
                           background: `radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(236, 72, 153, 0.2) 40%, rgba(236, 72, 153, 0.1))`,
                           border: "1px solid rgba(236, 72, 153, 0.6)",
                           animation: `gentle-float ${4 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
-                          boxShadow: "0 0 12px rgba(236, 72, 153, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3)",
+                          boxShadow:
+                            "0 0 12px rgba(236, 72, 153, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3)",
                           willChange: "transform, opacity",
                           transform: "translateZ(0)",
                           backdropFilter: "blur(1px)",
