@@ -107,6 +107,10 @@ export function useMobilePerformance() {
           enableSVGAnimations: true,
           enableBoxShadows: true,
           enableBackdropBlur: true,
+          enableTextShadows: true,
+          enableTextGlow: true,
+          enableLetterAnimations: true,
+          enableComplexTextEffects: true,
         };
     }
   };
