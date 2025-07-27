@@ -815,7 +815,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
-╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
+╚═╝  ╚����� ╚������═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -3146,7 +3146,7 @@ export default function Index() {
                 style={{ marginLeft: "-5px" }}
               >
                 <h1
-                  className={`font-poppins text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+                  className={`font-poppins text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative mobile-lively-text ${
                     isPinkActive
                       ? "text-pink-300 animate-pink-neon-glow"
                       : theme === "light"
