@@ -5891,7 +5891,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Enhanced Background Elements - Copy from Home Section */}
+        {/* SPECTACULAR PORTFOLIO SECTION ENHANCEMENTS */}
 
         {/* Animated Noise Texture */}
         <div
@@ -5900,6 +5900,189 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
           }}
         />
+
+        {/* Project Screenshots Floating Effect */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            { x: 10, y: 20, rotation: -15, color: "from-purple-500 to-pink-500" },
+            { x: 85, y: 25, rotation: 12, color: "from-blue-500 to-cyan-500" },
+            { x: 15, y: 70, rotation: -8, color: "from-green-500 to-emerald-500" },
+            { x: 80, y: 75, rotation: 18, color: "from-orange-500 to-red-500" },
+          ].map((project, i) => (
+            <motion.div
+              key={`floating-project-${i}`}
+              className="absolute opacity-40"
+              style={{
+                left: `${project.x}%`,
+                top: `${project.y}%`,
+                transform: `rotate(${project.rotation}deg)`,
+              }}
+              animate={{
+                y: [-10, 10, -10],
+                rotateZ: [project.rotation - 5, project.rotation + 5, project.rotation - 5],
+                scale: [0.9, 1.1, 0.9],
+              }}
+              transition={{
+                duration: 4 + (i % 3),
+                repeat: Infinity,
+                delay: i * 0.5,
+              }}
+            >
+              <div
+                className={`w-20 h-16 rounded-lg bg-gradient-to-br ${project.color} backdrop-blur-sm border border-white/30`}
+                style={{
+                  boxShadow: "0 0 25px rgba(73, 146, 255, 0.3)",
+                }}
+              >
+                {/* Simulated browser interface */}
+                <div className="p-1">
+                  <div className="flex space-x-1 mb-1">
+                    <div className="w-1 h-1 bg-red-400 rounded-full" />
+                    <div className="w-1 h-1 bg-yellow-400 rounded-full" />
+                    <div className="w-1 h-1 bg-green-400 rounded-full" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <div className="h-0.5 bg-white/40 rounded w-3/4" />
+                    <div className="h-0.5 bg-white/30 rounded w-1/2" />
+                    <div className="h-0.5 bg-white/20 rounded w-2/3" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Code Repository Visualization */}
+        <div className="absolute top-10 right-10 hidden lg:block pointer-events-none">
+          <motion.div
+            className="relative"
+            animate={{
+              rotateY: [0, -10, 0, 10, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+            }}
+          >
+            <div
+              className="w-48 h-36 rounded-xl backdrop-blur-lg border opacity-70"
+              style={{
+                background: "linear-gradient(135deg, rgba(30, 30, 50, 0.8), rgba(10, 10, 30, 0.8))",
+                border: "2px solid rgba(73, 146, 255, 0.3)",
+                boxShadow: "0 0 40px rgba(73, 146, 255, 0.3)",
+              }}
+            >
+              <div className="p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-xs text-cyan-400 font-mono">REPOSITORY</div>
+                  <div className="flex space-x-1">
+                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                    <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }} />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  {[
+                    { lang: "JavaScript", percent: 45, color: "bg-yellow-400" },
+                    { lang: "TypeScript", percent: 30, color: "bg-blue-400" },
+                    { lang: "CSS", percent: 25, color: "bg-green-400" },
+                  ].map((lang, langIndex) => (
+                    <div key={lang.lang} className="flex items-center justify-between text-xs">
+                      <span className="text-white/70">{lang.lang}</span>
+                      <div className="flex items-center space-x-1">
+                        <div className="w-8 h-1 bg-white/20 rounded-full overflow-hidden">
+                          <motion.div
+                            className={`h-full ${lang.color} rounded-full`}
+                            initial={{ width: "0%" }}
+                            animate={{ width: `${lang.percent}%` }}
+                            transition={{ duration: 2, delay: langIndex * 0.3 }}
+                          />
+                        </div>
+                        <span className="text-white/50">{lang.percent}%</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-2 pt-2 border-t border-white/10">
+                  <div className="text-xs text-white/50 flex justify-between">
+                    <span>Commits: 342</span>
+                    <span>Stars: 89</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Floating Achievement Badges */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[
+            { icon: "🏆", label: "Award", x: 8, y: 15, color: "from-yellow-500 to-orange-500" },
+            { icon: "⭐", label: "Featured", x: 88, y: 18, color: "from-blue-500 to-purple-500" },
+            { icon: "🚀", label: "Launch", x: 12, y: 85, color: "from-green-500 to-blue-500" },
+            { icon: "💎", label: "Premium", x: 85, y: 82, color: "from-purple-500 to-pink-500" },
+          ].map((badge, i) => (
+            <motion.div
+              key={`achievement-${i}`}
+              className="absolute"
+              style={{
+                left: `${badge.x}%`,
+                top: `${badge.y}%`,
+              }}
+              animate={{
+                y: [-8, 8, -8],
+                rotateZ: [-5, 5, -5],
+                scale: [0.9, 1.1, 0.9],
+              }}
+              transition={{
+                duration: 3 + (i % 2),
+                repeat: Infinity,
+                delay: i * 0.7,
+              }}
+            >
+              <div
+                className={`w-12 h-12 rounded-full bg-gradient-to-br ${badge.color} opacity-50 backdrop-blur-sm border border-white/30 flex items-center justify-center`}
+                style={{
+                  boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                }}
+              >
+                <span className="text-lg">{badge.icon}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Interactive Network Connections */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <svg className="absolute w-full h-full opacity-20">
+            {/* Dynamic connecting lines between floating elements */}
+            {[...Array(6)].map((_, i) => {
+              const startX = 20 + (i * 120) % 80;
+              const startY = 30 + (i * 80) % 60;
+              const endX = 40 + ((i + 1) * 130) % 80;
+              const endY = 50 + ((i + 1) * 90) % 60;
+
+              return (
+                <motion.line
+                  key={`connection-${i}`}
+                  x1={`${startX}%`}
+                  y1={`${startY}%`}
+                  x2={`${endX}%`}
+                  y2={`${endY}%`}
+                  stroke="rgba(73, 146, 255, 0.4)"
+                  strokeWidth="1"
+                  strokeDasharray="5 5"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: [0, 1, 0] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    delay: i * 0.5,
+                  }}
+                />
+              );
+            })}
+          </svg>
+        </div>
 
         {/* Enhanced Floating Ambient Particles with Color Shifting */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
