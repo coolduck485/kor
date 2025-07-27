@@ -274,6 +274,78 @@ export default {
             opacity: "0",
           },
         },
+        "mobile-notification-enter": {
+          "0%": {
+            transform: "scale(0.9) translateX(50px) translateY(-10px)",
+            opacity: "0",
+            filter: "blur(2px)",
+          },
+          "100%": {
+            transform: "scale(1) translateX(0px) translateY(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+        },
+        "mobile-notification-exit": {
+          "0%": {
+            transform: "scale(1) translateX(0px) translateY(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+          "100%": {
+            transform: "scale(0.8) translateX(80px) translateY(-15px)",
+            opacity: "0",
+            filter: "blur(3px)",
+          },
+        },
+        "tablet-notification-enter": {
+          "0%": {
+            transform: "scale(0.85) translateX(80px) translateY(-15px)",
+            opacity: "0",
+            filter: "blur(4px)",
+          },
+          "100%": {
+            transform: "scale(1) translateX(0px) translateY(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+        },
+        "tablet-notification-exit": {
+          "0%": {
+            transform: "scale(1) translateX(0px) translateY(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+          "100%": {
+            transform: "scale(0.85) translateX(100px) translateY(-10px)",
+            opacity: "0",
+            filter: "blur(5px)",
+          },
+        },
+        "desktop-notification-enter": {
+          "0%": {
+            transform: "scale(0.8) translateX(100px)",
+            opacity: "0",
+            filter: "blur(10px)",
+          },
+          "100%": {
+            transform: "scale(1) translateX(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+        },
+        "desktop-notification-exit": {
+          "0%": {
+            transform: "scale(1) translateX(0px)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+          "100%": {
+            transform: "scale(0.8) translateX(120px)",
+            opacity: "0",
+            filter: "blur(6px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
