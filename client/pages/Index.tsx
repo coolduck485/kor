@@ -781,7 +781,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█�������
-██║  ���█╗╚██████�����╝██║  ██║
+██║  ���█╗╚██████�����╝██║  ���█║
 ╚═╝  ╚═�� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -6714,86 +6714,107 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           />
         )}
 
-        {/* Project Screenshots Floating Effect - Mobile Optimized */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[
-            {
-              x: 10,
-              y: 20,
-              rotation: -15,
-              color: "from-purple-500 to-pink-500",
-            },
-            { x: 85, y: 25, rotation: 12, color: "from-blue-500 to-cyan-500" },
-            ...(window.innerWidth >= 992
-              ? [
-                  {
-                    x: 15,
-                    y: 70,
-                    rotation: -8,
-                    color: "from-green-500 to-emerald-500",
-                  },
-                  {
-                    x: 80,
-                    y: 75,
-                    rotation: 18,
-                    color: "from-orange-500 to-red-500",
-                  },
-                ]
-              : []),
-          ].map((project, i) => (
-            <motion.div
-              key={`floating-project-${i}`}
-              className="absolute"
-              style={{
-                left: `${project.x}%`,
-                top: `${project.y}%`,
-                transform: `rotate(${project.rotation}deg)`,
-                opacity: window.innerWidth < 992 ? 0.25 : 0.4,
-              }}
-              animate={
-                window.innerWidth < 992
-                  ? {
-                      y: [-5, 5, -5],
-                    }
-                  : {
-                      y: [-10, 10, -10],
-                      rotateZ: [
-                        project.rotation - 5,
-                        project.rotation + 5,
-                        project.rotation - 5,
-                      ],
-                      scale: [0.9, 1.1, 0.9],
-                    }
-              }
-              transition={{
-                duration: window.innerWidth < 992 ? 6 + (i % 2) : 4 + (i % 3),
-                repeat: Infinity,
-                delay: i * (window.innerWidth < 992 ? 1 : 0.5),
-              }}
-            >
-              <div
-                className={`w-20 h-16 rounded-lg bg-gradient-to-br ${project.color} backdrop-blur-sm border border-white/30`}
+        {/* Desktop Project Screenshots Floating Effect */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[
+              {
+                x: 10,
+                y: 20,
+                rotation: -15,
+                color: "from-purple-500 to-pink-500",
+              },
+              { x: 85, y: 25, rotation: 12, color: "from-blue-500 to-cyan-500" },
+              {
+                x: 15,
+                y: 70,
+                rotation: -8,
+                color: "from-green-500 to-emerald-500",
+              },
+              {
+                x: 80,
+                y: 75,
+                rotation: 18,
+                color: "from-orange-500 to-red-500",
+              },
+            ].map((project, i) => (
+              <motion.div
+                key={`floating-project-${i}`}
+                className="absolute"
                 style={{
-                  boxShadow: "0 0 25px rgba(73, 146, 255, 0.3)",
+                  left: `${project.x}%`,
+                  top: `${project.y}%`,
+                  transform: `rotate(${project.rotation}deg)`,
+                  opacity: 0.4,
+                }}
+                animate={{
+                  y: [-10, 10, -10],
+                  rotateZ: [
+                    project.rotation - 5,
+                    project.rotation + 5,
+                    project.rotation - 5,
+                  ],
+                  scale: [0.9, 1.1, 0.9],
+                }}
+                transition={{
+                  duration: 4 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.5,
                 }}
               >
-                {/* Simulated browser interface */}
-                <div className="p-1">
-                  <div className="flex space-x-1 mb-1">
-                    <div className="w-1 h-1 bg-red-400 rounded-full" />
-                    <div className="w-1 h-1 bg-yellow-400 rounded-full" />
-                    <div className="w-1 h-1 bg-green-400 rounded-full" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <div className="h-0.5 bg-white/40 rounded w-3/4" />
-                    <div className="h-0.5 bg-white/30 rounded w-1/2" />
-                    <div className="h-0.5 bg-white/20 rounded w-2/3" />
+                <div
+                  className={`w-20 h-16 rounded-lg bg-gradient-to-br ${project.color} backdrop-blur-sm border border-white/30`}
+                  style={{
+                    boxShadow: "0 0 25px rgba(73, 146, 255, 0.3)",
+                  }}
+                >
+                  {/* Simulated browser interface */}
+                  <div className="p-1">
+                    <div className="flex space-x-1 mb-1">
+                      <div className="w-1 h-1 bg-red-400 rounded-full" />
+                      <div className="w-1 h-1 bg-yellow-400 rounded-full" />
+                      <div className="w-1 h-1 bg-green-400 rounded-full" />
+                    </div>
+                    <div className="space-y-0.5">
+                      <div className="h-0.5 bg-white/40 rounded w-3/4" />
+                      <div className="h-0.5 bg-white/30 rounded w-1/2" />
+                      <div className="h-0.5 bg-white/20 rounded w-2/3" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* Colorful Floating Orbs for Mobile/Tablet (replacing browser boxes) */}
+        {screenSize !== "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(screenSize === "tablet" ? 8 : 6)].map((_, i) => (
+              <div
+                key={`portfolio-orb-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${5 + ((i * 80) % 90)}%`,
+                  top: `${10 + ((i * 60) % 80)}%`,
+                  width: `${screenSize === "tablet" ? 10 + (i % 4) * 2 : 8 + (i % 3)}px`,
+                  height: `${screenSize === "tablet" ? 10 + (i % 4) * 2 : 8 + (i % 3)}px`,
+                  background: [
+                    "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, rgba(34, 197, 94, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(59, 130, 246, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(147, 51, 234, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(236, 72, 153, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(6, 182, 212, 0.8) 0%, rgba(6, 182, 212, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(245, 158, 11, 0.8) 0%, rgba(245, 158, 11, 0.2) 60%, transparent 80%)",
+                  ][i % 6],
+                  animation: `gentleFloat ${5 + (i % 4)}s ease-in-out infinite ${i * 0.7}s`,
+                  filter: `blur(${1.5 + (i % 2) * 0.5}px)`,
+                  boxShadow: `0 0 ${10 + (i % 3) * 5}px currentColor`,
+                }}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Code Repository Visualization */}
         <div className="absolute top-10 right-10 hidden lg:block pointer-events-none">
