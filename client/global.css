@@ -345,6 +345,90 @@
   z-index: -1;
 }
 
+/* Pink Theme Keyframe Animations */
+@keyframes pinkFloatingParticles {
+  0% {
+    background-position: 0% 0%, 0% 0%, 0% 0%;
+    transform: rotate(0deg) scale(1);
+  }
+  33% {
+    background-position: 30% 30%, 60% 20%, 20% 60%;
+    transform: rotate(120deg) scale(1.1);
+  }
+  66% {
+    background-position: 70% 80%, 20% 70%, 80% 30%;
+    transform: rotate(240deg) scale(0.9);
+  }
+  100% {
+    background-position: 100% 100%, 100% 100%, 100% 100%;
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes pinkFloatingOrbs {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: rotate(90deg) scale(1.2);
+    opacity: 0.8;
+  }
+  50% {
+    transform: rotate(180deg) scale(0.8);
+    opacity: 0.4;
+  }
+  75% {
+    transform: rotate(270deg) scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes pinkPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3), 0 0 60px rgba(236, 72, 153, 0.1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(236, 72, 153, 0.8), 0 0 60px rgba(236, 72, 153, 0.5), 0 0 90px rgba(236, 72, 153, 0.2);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes pinkGlow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(236, 72, 153, 0.8), 0 0 10px rgba(236, 72, 153, 0.6), 0 0 20px rgba(236, 72, 153, 0.4);
+    filter: brightness(1);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(236, 72, 153, 1), 0 0 20px rgba(236, 72, 153, 0.8), 0 0 30px rgba(236, 72, 153, 0.6);
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes pinkHeartbeat {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px rgba(236, 72, 153, 0.5));
+  }
+  14% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.8));
+  }
+  28% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px rgba(236, 72, 153, 0.5));
+  }
+  42% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.8));
+  }
+  70% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px rgba(236, 72, 153, 0.5));
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
