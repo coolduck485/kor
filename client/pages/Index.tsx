@@ -6421,8 +6421,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   }}
                 />
 
-                {/* Floating energy particles around text */}
-                {[...Array(8)].map((_, i) => (
+                {/* Floating energy particles around text - Desktop Only */}
+                {screenSize === "desktop" && [...Array(8)].map((_, i) => (
                   <div
                     key={`energy-${i}`}
                     className="absolute rounded-full pointer-events-none"
