@@ -48,11 +48,7 @@ export default function Index() {
   const hasShownWelcomeRef = useRef(false);
   const hasShownMobilePerformanceRef = useRef(false);
 
-  // Reset mobile performance ref on component mount
-  useEffect(() => {
-    hasShownMobilePerformanceRef.current = false;
-    console.log("Component mounted, reset mobile performance ref");
-  }, []);
+
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const sectionsRef = useRef<HTMLDivElement[]>([]);
