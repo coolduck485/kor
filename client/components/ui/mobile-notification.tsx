@@ -126,11 +126,11 @@ interface MobileNotificationItemProps {
   isMobile: boolean;
 }
 
-const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
+const MobileNotificationItem = React.forwardRef<HTMLDivElement, MobileNotificationItemProps>(({
   notification,
   onClose,
   isMobile,
-}) => {
+}, ref) => {
   const [isClosing, setIsClosing] = useState(false);
 
   const handleClose = () => {
@@ -394,7 +394,9 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
       </div>
     </motion.div>
   );
-};
+});
+
+MobileNotificationItem.displayName = "MobileNotificationItem";
 
 // Helper hook for easy usage
 export const useMobileNotificationHelpers = () => {
