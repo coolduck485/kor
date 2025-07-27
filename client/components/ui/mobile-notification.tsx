@@ -131,31 +131,47 @@ const MobileNotificationItem: React.FC<MobileNotificationItemProps> = ({
   onClose,
   isMobile,
 }) => {
-  const getIcon = () => {
-    switch (notification.type) {
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    // Optimized exit timing for mobile
+    const exitDuration = isMobile ? 200 : 250;
+    setTimeout(() => {
+      onClose();
+    }, exitDuration);
+  };
+
+  const getTypeColors = (type: MobileNotification["type"]) => {
+    switch (type) {
       case "success":
-        return <CheckCircle className="h-5 w-5 text-green-500" />;
-      case "error":
-        return <AlertCircle className="h-5 w-5 text-red-500" />;
+        return {
+          border: "rgba(34, 197, 94, 0.3)",
+          glow: "rgba(34, 197, 94, 0.2)",
+          accent: "rgba(34, 197, 94, 0.6)",
+        };
       case "warning":
-        return <AlertTriangle className="h-5 w-5 text-yellow-500" />;
+        return {
+          border: "rgba(245, 158, 11, 0.3)",
+          glow: "rgba(245, 158, 11, 0.2)",
+          accent: "rgba(245, 158, 11, 0.6)",
+        };
+      case "error":
+        return {
+          border: "rgba(239, 68, 68, 0.3)",
+          glow: "rgba(239, 68, 68, 0.2)",
+          accent: "rgba(239, 68, 68, 0.6)",
+        };
       default:
-        return <Info className="h-5 w-5 text-blue-500" />;
+        return {
+          border: "rgba(73, 146, 255, 0.3)",
+          glow: "rgba(73, 146, 255, 0.2)",
+          accent: "rgba(73, 146, 255, 0.6)",
+        };
     }
   };
 
-  const getBackgroundColor = () => {
-    switch (notification.type) {
-      case "success":
-        return "bg-green-50/95 border-green-200 dark:bg-green-950/95 dark:border-green-800";
-      case "error":
-        return "bg-red-50/95 border-red-200 dark:bg-red-950/95 dark:border-red-800";
-      case "warning":
-        return "bg-yellow-50/95 border-yellow-200 dark:bg-yellow-950/95 dark:border-yellow-800";
-      default:
-        return "bg-blue-50/95 border-blue-200 dark:bg-blue-950/95 dark:border-blue-800";
-    }
-  };
+  const colors = getTypeColors(notification.type);
 
   return (
     <motion.div
