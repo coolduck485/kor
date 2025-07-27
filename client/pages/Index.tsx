@@ -6588,7 +6588,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // ========================================
 
 const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible }, ref) => {
+  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
     const [currentPage, setCurrentPage] = useState(0);
 
     // ===== PORTFOLIO PROJECTS =====
