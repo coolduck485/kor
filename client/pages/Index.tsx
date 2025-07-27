@@ -889,7 +889,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█��██��██████��███ 50%
+                      RAM: █���████��█��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -6859,7 +6859,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Services Title - matching home style */}
             <div className="text-center mb-3">
               <h1
-                className={`font-poppins text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight relative ${
+                className={`font-poppins text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight relative mobile-lively-text ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
@@ -8124,7 +8124,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "������" },
+            { type: "email", x: 15, y: 35, icon: "✉���" },
             { type: "call", x: 75, y: 25, icon: "��" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
