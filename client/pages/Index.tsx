@@ -7091,35 +7091,190 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           ))}
         </div>
 
-        {/* Floating Message Bubbles */}
+        {/* Enhanced Floating Message Bubbles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-4">
           {[
-            { text: "Hello!", x: 20, y: 25, delay: 1 },
-            { text: "Let's chat", x: 70, y: 60, delay: 3 },
-            { text: "💡 Ideas", x: 15, y: 75, delay: 5 },
-            { text: "🚀 Ready", x: 80, y: 20, delay: 2 },
+            {
+              text: "Hello!",
+              x: 20,
+              y: 25,
+              delay: 1,
+              color: "from-pink-500/30 to-purple-500/30",
+              borderColor: "pink-300/40",
+              animation: "bounce"
+            },
+            {
+              text: "Let's chat",
+              x: 70,
+              y: 60,
+              delay: 3,
+              color: "from-blue-500/30 to-cyan-500/30",
+              borderColor: "blue-300/40",
+              animation: "typewriter"
+            },
+            {
+              text: "💡 Ideas",
+              x: 15,
+              y: 75,
+              delay: 5,
+              color: "from-yellow-500/30 to-orange-500/30",
+              borderColor: "yellow-300/40",
+              animation: "pulse"
+            },
+            {
+              text: "🚀 Ready",
+              x: 80,
+              y: 20,
+              delay: 2,
+              color: "from-green-500/30 to-emerald-500/30",
+              borderColor: "green-300/40",
+              animation: "rocket"
+            },
           ].map((bubble, i) => (
             <motion.div
               key={`message-bubble-${i}`}
-              className="absolute bg-blue-500/20 backdrop-blur-sm border border-blue-300/30 rounded-full px-3 py-1.5 text-xs font-medium text-white"
+              className={`absolute bg-gradient-to-r ${bubble.color} backdrop-blur-sm border border-${bubble.borderColor} rounded-full px-3 py-1.5 text-xs font-medium text-white shadow-lg relative overflow-hidden`}
               style={{
                 left: `${bubble.x}%`,
                 top: `${bubble.y}%`,
+                boxShadow: "0 0 20px rgba(255, 255, 255, 0.1)",
               }}
-              initial={{ opacity: 0, scale: 0, y: 20 }}
-              animate={{
-                opacity: [0, 1, 1, 0],
-                scale: [0.8, 1, 1, 0.8],
-                y: [20, 0, -5, 20],
+              initial={{
+                opacity: 0,
+                scale: 0,
+                rotateZ: -45,
+                filter: "blur(4px)"
               }}
+              animate={(() => {
+                switch(bubble.animation) {
+                  case "bounce":
+                    return {
+                      opacity: [0, 1, 1, 1, 0],
+                      scale: [0, 1.2, 0.9, 1.1, 0],
+                      rotateZ: [-45, 5, -2, 0, 45],
+                      y: [30, -10, 5, -5, 30],
+                      filter: ["blur(4px)", "blur(0px)", "blur(0px)", "blur(0px)", "blur(4px)"],
+                    };
+                  case "typewriter":
+                    return {
+                      opacity: [0, 1, 1, 1, 0],
+                      scale: [0.5, 1, 1, 1, 0.5],
+                      rotateZ: [-30, 0, 0, 0, 30],
+                      x: [-20, 5, -2, 0, 20],
+                      filter: ["blur(3px)", "blur(0px)", "blur(0px)", "blur(0px)", "blur(3px)"],
+                    };
+                  case "pulse":
+                    return {
+                      opacity: [0, 0.8, 1, 0.8, 0],
+                      scale: [0.3, 0.9, 1.3, 1, 0.3],
+                      rotateZ: [0, 0, 0, 0, 0],
+                      filter: ["blur(5px)", "blur(1px)", "blur(0px)", "blur(1px)", "blur(5px)"],
+                    };
+                  case "rocket":
+                    return {
+                      opacity: [0, 1, 1, 1, 0],
+                      scale: [0.2, 1, 1, 1, 0.2],
+                      rotateZ: [-90, -15, 5, 15, 90],
+                      x: [-30, 10, -5, 0, 30],
+                      y: [50, -15, 5, -10, 50],
+                      filter: ["blur(6px)", "blur(0px)", "blur(0px)", "blur(0px)", "blur(6px)"],
+                    };
+                  default:
+                    return {};
+                }
+              })()}
               transition={{
-                duration: 4,
+                duration: bubble.animation === "pulse" ? 3.5 : 5,
                 delay: bubble.delay,
                 repeat: Infinity,
-                repeatDelay: 6,
+                repeatDelay: bubble.animation === "bounce" ? 8 : bubble.animation === "pulse" ? 6 : 7,
+                ease: bubble.animation === "bounce" ? "easeOut" :
+                      bubble.animation === "rocket" ? [0.25, 0.46, 0.45, 0.94] :
+                      bubble.animation === "pulse" ? "easeInOut" : "easeInOut",
               }}
             >
-              {bubble.text}
+              {/* Shimmer effect overlay */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full"
+                initial={{ x: "-100%" }}
+                animate={{ x: "200%" }}
+                transition={{
+                  duration: 2,
+                  delay: bubble.delay + 1,
+                  repeat: Infinity,
+                  repeatDelay: 8,
+                  ease: "easeInOut",
+                }}
+              />
+
+              {/* Text with individual letter animations for typewriter effect */}
+              {bubble.animation === "typewriter" ? (
+                <span className="relative z-10">
+                  {bubble.text.split("").map((char, charIndex) => (
+                    <motion.span
+                      key={charIndex}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{
+                        duration: 0.1,
+                        delay: bubble.delay + 0.5 + charIndex * 0.1,
+                        repeat: Infinity,
+                        repeatDelay: 7,
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </span>
+              ) : (
+                <span className="relative z-10">{bubble.text}</span>
+              )}
+
+              {/* Particle trail effect for rocket */}
+              {bubble.animation === "rocket" && (
+                <>
+                  {[...Array(3)].map((_, particleIndex) => (
+                    <motion.div
+                      key={`particle-${particleIndex}`}
+                      className="absolute w-1 h-1 bg-orange-400 rounded-full"
+                      style={{
+                        left: "-5px",
+                        top: "50%",
+                      }}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{
+                        opacity: [0, 1, 0],
+                        scale: [0, 1, 0],
+                        x: [-10, -20, -30],
+                        y: [0, Math.random() * 10 - 5, Math.random() * 20 - 10],
+                      }}
+                      transition={{
+                        duration: 1,
+                        delay: bubble.delay + 1 + particleIndex * 0.2,
+                        repeat: Infinity,
+                        repeatDelay: 7,
+                      }}
+                    />
+                  ))}
+                </>
+              )}
+
+              {/* Glow effect for Ideas bubble */}
+              {bubble.animation === "pulse" && (
+                <motion.div
+                  className="absolute inset-0 bg-yellow-400/20 rounded-full"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0, 0.3, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    delay: bubble.delay + 1,
+                    repeat: Infinity,
+                    repeatDelay: 6,
+                  }}
+                />
+              )}
             </motion.div>
           ))}
         </div>
