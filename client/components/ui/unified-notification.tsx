@@ -3,17 +3,17 @@ import { NotificationProvider } from "./floating-notification";
 import { MobileNotificationProvider } from "./mobile-notification";
 import { useDeviceType } from "@/hooks/use-device-type";
 
+// Always provide both contexts to avoid timing issues
 export const UnifiedNotificationProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const deviceType = useDeviceType();
-  const isDesktop = deviceType === "desktop";
-
-  if (isDesktop) {
-    return <NotificationProvider>{children}</NotificationProvider>;
-  }
-
-  return <MobileNotificationProvider>{children}</MobileNotificationProvider>;
+  return (
+    <NotificationProvider>
+      <MobileNotificationProvider>
+        {children}
+      </MobileNotificationProvider>
+    </NotificationProvider>
+  );
 };
 
 // Import both notification systems
@@ -24,9 +24,24 @@ import { useMobileNotificationHelpers } from "./mobile-notification";
 export const useUnifiedNotifications = () => {
   const deviceType = useDeviceType();
 
-  if (deviceType === "desktop") {
-    return useFloatingNotifications();
-  } else {
-    return useMobileNotificationHelpers();
+  try {
+    if (deviceType === "desktop") {
+      return useFloatingNotifications();
+    } else {
+      return useMobileNotificationHelpers();
+    }
+  } catch (error) {
+    // Fallback if any context is not available
+    console.warn("Notification context not available, using fallback", error);
+    return {
+      showSuccess: () => {},
+      showError: () => {},
+      showWarning: () => {},
+      showInfo: () => {},
+      remove: () => {},
+      clearAll: () => {},
+      notifications: [],
+      count: 0,
+    };
   }
 };
