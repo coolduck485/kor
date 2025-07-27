@@ -780,7 +780,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████�� ███����������█╗
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
-██╔═██╗ ██║   ██║██╔══█������
+██╔═██╗ ██║   ██║██╔══█�������
 ██║  ██╗╚██████�����╝██║  ██║
 ╚═╝  ╚═╝ ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
@@ -6836,16 +6836,17 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           </motion.div>
         </div>
 
-        {/* Floating Achievement Badges */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[
-            {
-              icon: "🏆",
-              label: "Award",
-              x: 8,
-              y: 15,
-              color: "from-yellow-500 to-orange-500",
-            },
+        {/* Floating Achievement Badges - Desktop Only */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[
+              {
+                icon: "🏆",
+                label: "Award",
+                x: 8,
+                y: 15,
+                color: "from-yellow-500 to-orange-500",
+              },
             {
               icon: "⭐",
               label: "Featured",
@@ -6896,7 +6897,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
               </div>
             </motion.div>
           ))}
-        </div>
+          </div>
+        )}
 
         {/* Interactive Network Connections */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
