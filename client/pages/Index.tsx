@@ -782,7 +782,7 @@ export default function Index() {
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█�������
 ██║  ██╗╚██████�����╝██║  ██║
-╚═╝  ╚═╝ ╚═����═══╝ ╚═╝  ����═╝`}
+╚═╝  ╚═�� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -5000,13 +5000,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* SPECTACULAR ABOUT SECTION ENHANCEMENTS */}
 
-        {/* Floating Code Blocks with Syntax Highlighting Effect - Responsive */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[
-            ...Array(
-              screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 8,
-            ),
-          ].map((_, i) => (
+        {/* Floating Code Blocks with Syntax Highlighting Effect - Desktop Only for Performance */}
+        {screenSize === "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(8)].map((_, i) => (
             <motion.div
               key={`code-block-${i}`}
               className="absolute"
@@ -5015,28 +5012,17 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 top: `${15 + ((i * 45) % 70)}%`,
                 width: `${60 + (i % 3) * 20}px`,
                 height: `${30 + (i % 2) * 15}px`,
-                opacity:
-                  screenSize === "mobile"
-                    ? 0.15
-                    : screenSize === "tablet"
-                      ? 0.2
-                      : 0.3,
+                opacity: 0.3,
               }}
-              animate={
-                isMobileOrTablet
-                  ? {
-                      y: [-3, 3, -3],
-                    }
-                  : {
-                      y: [-10, 10, -10],
-                      x: [-5, 5, -5],
-                      rotateZ: [-2, 2, -2],
-                    }
-              }
+              animate={{
+                y: [-10, 10, -10],
+                x: [-5, 5, -5],
+                rotateZ: [-2, 2, -2],
+              }}
               transition={{
-                duration: isMobileOrTablet ? 8 + (i % 2) : 4 + (i % 3),
+                duration: 4 + (i % 3),
                 repeat: Infinity,
-                delay: i * (isMobileOrTablet ? 1.5 : 0.5),
+                delay: i * 0.5,
               }}
             >
               <div
@@ -5068,9 +5054,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               </div>
             </motion.div>
           ))}
-        </div>
+          </div>
+        )}
 
-        {/* Floating UI Components Preview - Mobile Optimized */}
+        {/* Floating UI Components Preview - Desktop Only for Performance */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             {
