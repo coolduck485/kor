@@ -292,7 +292,7 @@ const FloatingNotificationItem = React.forwardRef<
 
         {/* Close button - larger touch target for mobile */}
         <motion.button
-          onClick={onClose}
+          onClick={handleClose}
           className={cn(
             "absolute rounded-md",
             "text-white/60 hover:text-white",
