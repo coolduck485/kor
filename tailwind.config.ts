@@ -68,6 +68,20 @@ export default {
           "blue-dark": "#3987E3",
           "text-light": "#B2E3FF",
         },
+        pink: {
+          50: "hsl(340, 50%, 98%)",
+          100: "hsl(340, 40%, 94%)",
+          200: "hsl(340, 45%, 85%)",
+          300: "hsl(340, 50%, 75%)",
+          400: "hsl(340, 65%, 65%)",
+          500: "hsl(340, 75%, 55%)",
+          600: "hsl(340, 80%, 45%)",
+          700: "hsl(340, 85%, 35%)",
+          800: "hsl(340, 90%, 25%)",
+          900: "hsl(340, 95%, 15%)",
+          glow: "hsl(340, 100%, 70%)",
+          neon: "hsl(340, 100%, 80%)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -298,6 +312,52 @@ export default {
             filter: "blur(3px)",
           },
         },
+        "pink-pulse": {
+          "0%, 100%": {
+            boxShadow:
+              "0 0 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3), 0 0 60px rgba(236, 72, 153, 0.1)",
+            transform: "scale(1)",
+          },
+          "50%": {
+            boxShadow:
+              "0 0 30px rgba(236, 72, 153, 0.8), 0 0 60px rgba(236, 72, 153, 0.5), 0 0 90px rgba(236, 72, 153, 0.2)",
+            transform: "scale(1.02)",
+          },
+        },
+        "pink-neon-glow": {
+          "0%, 100%": {
+            textShadow:
+              "0 0 5px rgba(236, 72, 153, 0.8), 0 0 10px rgba(236, 72, 153, 0.6), 0 0 20px rgba(236, 72, 153, 0.4)",
+            filter: "brightness(1)",
+          },
+          "50%": {
+            textShadow:
+              "0 0 10px rgba(236, 72, 153, 1), 0 0 20px rgba(236, 72, 153, 0.8), 0 0 30px rgba(236, 72, 153, 0.6)",
+            filter: "brightness(1.2)",
+          },
+        },
+        "pink-heartbeat": {
+          "0%, 100%": {
+            transform: "scale(1)",
+            filter: "drop-shadow(0 0 5px rgba(236, 72, 153, 0.5))",
+          },
+          "14%": {
+            transform: "scale(1.1)",
+            filter: "drop-shadow(0 0 10px rgba(236, 72, 153, 0.8))",
+          },
+          "28%": {
+            transform: "scale(1)",
+            filter: "drop-shadow(0 0 5px rgba(236, 72, 153, 0.5))",
+          },
+          "42%": {
+            transform: "scale(1.1)",
+            filter: "drop-shadow(0 0 10px rgba(236, 72, 153, 0.8))",
+          },
+          "70%": {
+            transform: "scale(1)",
+            filter: "drop-shadow(0 0 5px rgba(236, 72, 153, 0.5))",
+          },
+        },
         "tablet-notification-enter": {
           "0%": {
             transform: "scale(0.85) translateX(80px) translateY(-15px)",
@@ -363,6 +423,9 @@ export default {
         textGlow: "text-glow 4s ease-in-out infinite",
         "swipe-down": "swipe-down 2s ease-in-out infinite",
         "swipe-down-delayed": "swipe-down-delayed 2s ease-in-out infinite 0.3s",
+        "pink-pulse": "pink-pulse 3s ease-in-out infinite",
+        "pink-neon-glow": "pink-neon-glow 4s ease-in-out infinite",
+        "pink-heartbeat": "pink-heartbeat 2s ease-in-out infinite",
         "mobile-notification-enter":
           "mobile-notification-enter 0.3s ease-out forwards",
         "mobile-notification-exit":
@@ -375,6 +438,12 @@ export default {
           "desktop-notification-enter 0.4s ease-out forwards",
         "desktop-notification-exit":
           "desktop-notification-exit 0.35s ease-in forwards",
+        "pink-pulse": "pink-pulse 3s ease-in-out infinite",
+        "pink-neon-glow": "pink-neon-glow 4s ease-in-out infinite",
+        "pink-heartbeat": "pink-heartbeat 2s ease-in-out infinite",
+        "pink-floating-particles":
+          "pink-floating-particles 20s linear infinite",
+        "pink-floating-orbs": "pink-floating-orbs 30s ease-in-out infinite",
       },
       boxShadow: {
         glow: "0 0 100px rgba(73, 146, 255, 0.5), 0 0 200px rgba(73, 146, 255, 0.3), 0 0 300px rgba(73, 146, 255, 0.2)",

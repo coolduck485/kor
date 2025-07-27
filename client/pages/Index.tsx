@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { RetroToggle } from "@/components/ui/retro-toggle";
+import { PinkThemeToggle } from "@/components/ui/pink-theme-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
+import { usePinkTheme } from "@/hooks/use-pink-theme";
 import { useUnifiedNotifications } from "@/components/ui/unified-notification";
 import { useMobilePerformance } from "@/hooks/use-mobile-performance";
 import { useBrowserDetection } from "@/hooks/use-browser-detection";
@@ -29,6 +31,7 @@ import {
 export default function Index() {
   const { theme, setTheme } = useTheme();
   const { mode, toggleMode } = useRetroMode();
+  const { isPinkActive } = usePinkTheme();
   const { showSuccess, showError, showWarning, showInfo } =
     useUnifiedNotifications();
   const { isMobile, animationConfig, deviceType } = useMobilePerformance();
@@ -93,35 +96,20 @@ export default function Index() {
   const [isContentVisible, setIsContentVisible] = useState(true);
   const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
 
-  // Test notification - shows last (after other notifications)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log("Showing test notification last...");
-      showError(
-        "TEST NOTIFICATION",
-        "If you can see this, the notification system works!",
-        0, // No auto-dismiss
-      );
-    }, 4000); // Show after 4 seconds (after mobile performance notification)
+  // Test notification removed
 
-    return () => clearTimeout(timer);
-  }, [showError]);
-
-  // Welcome notification - shows immediately on mobile/tablet devices
+  // Welcome notification - shows immediately on all devices
   useEffect(() => {
-    if (
-      !hasShownWelcomeRef.current &&
-      (currentDeviceType === "mobile" || currentDeviceType === "tablet")
-    ) {
+    if (!hasShownWelcomeRef.current) {
       hasShownWelcomeRef.current = true;
-      console.log("Showing welcome notification on mobile/tablet...");
+      console.log("Showing welcome notification on all devices...");
       showInfo(
         "Welcome to KOR!",
         "Experience the future of modern web development. Click the X to dismiss.",
         0, // No auto-dismiss
       );
     }
-  }, [currentDeviceType, showInfo]); // React to device type changes
+  }, [showInfo]); // Shows once on load
 
   // Mobile/Tablet performance notification - shows immediately on mobile/tablet devices
   useEffect(() => {
@@ -823,11 +811,11 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████�� ███����������█╗
-██║ █��╔╝��█╔═���═██╗█����╔����══██╗
-█████╔╝ █������   █��║██���███╔╝
+                  {`██╗  ██╗ ██████���� ███����������█╗
+██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
+█████╔╝ █������   █��║██����███╔╝
 ██╔═��█╗ █��║   ██║██╔══█�������
-██║  ���█╗╚███��██�����╝██║  ���█║
+██║  ���█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -896,7 +884,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������█████��███████ 60%
+                      CPU: █��������█������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -974,7 +962,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◄���◄►�����</span>
+                  <span className="text-green-400 ml-4">������◄►�����</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -1699,37 +1687,6 @@ export default function Index() {
         contain: "layout style paint",
       }}
     >
-      {/* Debug Panel - Remove in production */}
-      <div className="fixed top-2 left-2 z-50 bg-black/80 text-white text-xs p-2 rounded border border-white/20 backdrop-blur-sm max-w-xs">
-        <div>Device: {deviceType}</div>
-        <div>
-          Width: {typeof window !== "undefined" ? window.innerWidth : "N/A"}
-        </div>
-        <div>Mobile Hook: {isMobile ? "Yes" : "No"}</div>
-        <div>Safari: {isSafari ? "Yes" : "No"}</div>
-        <div>iOS: {isIOS ? "Yes" : "No"}</div>
-        <div>Mobile Safari: {isMobileSafari ? "Yes" : "No"}</div>
-        <div>
-          Mobile Perf Shown:{" "}
-          {hasShownMobilePerformanceRef.current ? "Yes" : "No"}
-        </div>
-        <button
-          onClick={() => {
-            console.log(
-              "Manual trigger: showing mobile performance notification",
-            );
-            showWarning(
-              "Mobile Performance Mode",
-              "Visual effects and animations have been limited to improve performance.",
-              6000,
-            );
-          }}
-          className="mt-1 px-2 py-1 bg-orange-600 text-white text-xs rounded hover:bg-orange-700"
-        >
-          Test Mobile Notif
-        </button>
-      </div>
-
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
         <div
@@ -1749,7 +1706,11 @@ export default function Index() {
             {/* Mouse scroll indicator - now visible on all devices */}
             <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
               <div
-                className="w-1 h-3 bg-gradient-to-b from-glow-blue to-white/80 rounded-full mt-2 animate-float shadow-lg"
+                className={`w-1 h-3 rounded-full mt-2 animate-float shadow-lg ${
+                  isPinkActive
+                    ? "bg-gradient-to-b from-pink-400 to-pink-200"
+                    : "bg-gradient-to-b from-glow-blue to-white/80"
+                }`}
                 style={{
                   boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
                 }}
@@ -1779,7 +1740,11 @@ export default function Index() {
             {/* Mouse scroll indicator - pointing up - now visible on all devices */}
             <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
               <div
-                className="w-1 h-3 bg-gradient-to-t from-glow-blue to-white/80 rounded-full mb-2 animate-float shadow-lg"
+                className={`w-1 h-3 rounded-full mb-2 animate-float shadow-lg ${
+                  isPinkActive
+                    ? "bg-gradient-to-t from-pink-400 to-pink-200"
+                    : "bg-gradient-to-t from-glow-blue to-white/80"
+                }`}
                 style={{
                   boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
                   alignSelf: "flex-end",
@@ -1801,24 +1766,30 @@ export default function Index() {
           <button
             onClick={() => scrollToSection(0)}
             className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
-              theme === "light"
-                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+              isPinkActive
+                ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
+                : theme === "light"
+                  ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                  : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
             }`}
             style={{
               background:
                 theme === "light"
                   ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
                   : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-              boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+              boxShadow: isPinkActive
+                ? "0 0 20px rgba(236, 72, 153, 0.4)"
+                : "0 0 20px rgba(73, 146, 255, 0.3)",
             }}
           >
             {/* Icon */}
             <ChevronUp
               className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${
-                theme === "light"
-                  ? "text-blue-600 group-hover:text-blue-700"
-                  : "text-white group-hover:text-blue-300"
+                isPinkActive
+                  ? "text-pink-400 group-hover:text-pink-300"
+                  : theme === "light"
+                    ? "text-blue-600 group-hover:text-blue-700"
+                    : "text-white group-hover:text-blue-300"
               }`}
             />
 
@@ -1947,65 +1918,27 @@ export default function Index() {
               {/* Container for existing toggles */}
               <div
                 className={`rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 ${
-                  theme === "light"
-                    ? "border-blue-400/40 bg-white/30"
-                    : "border-blue-300/30 bg-blue-400/5"
+                  isPinkActive
+                    ? "border-pink-400/50 bg-pink-500/10"
+                    : theme === "light"
+                      ? "border-blue-400/40 bg-white/30"
+                      : "border-blue-300/30 bg-blue-400/5"
                 }`}
                 style={{
                   background:
                     theme === "light"
                       ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
                       : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                  boxShadow:
-                    "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
+                  boxShadow: isPinkActive
+                    ? "0 0 25px rgba(236, 72, 153, 0.5), 0 0 50px rgba(236, 72, 153, 0.3)"
+                    : "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
                 }}
               >
                 {/* Original Toggle Buttons */}
                 <div className="flex flex-col gap-2 sm:gap-3">
                   <ThemeToggle />
                   <RetroToggle />
-
-                  {/* Mobile/Tablet Notification Test Buttons */}
-                  {(currentDeviceType === "mobile" ||
-                    currentDeviceType === "tablet") && (
-                    <div className="flex flex-col gap-1 mt-2 pt-2 border-t border-current/10">
-                      <div className="text-xs text-center opacity-70 mb-1">
-                        Test Notifications
-                      </div>
-                      <div className="grid grid-cols-2 gap-1">
-                        <button
-                          onClick={() =>
-                            showSuccess("Success!", "Mobile notification test")
-                          }
-                          className="text-xs px-2 py-1 bg-green-500/20 border border-green-500/30 rounded text-green-600 dark:text-green-400 hover:bg-green-500/30 transition-colors"
-                        >
-                          Success
-                        </button>
-                        <button
-                          onClick={() =>
-                            showError("Error!", "Mobile error test")
-                          }
-                          className="text-xs px-2 py-1 bg-red-500/20 border border-red-500/30 rounded text-red-600 dark:text-red-400 hover:bg-red-500/30 transition-colors"
-                        >
-                          Error
-                        </button>
-                        <button
-                          onClick={() =>
-                            showWarning("Warning!", "Mobile warning test")
-                          }
-                          className="text-xs px-2 py-1 bg-yellow-500/20 border border-yellow-500/30 rounded text-yellow-600 dark:text-yellow-400 hover:bg-yellow-500/30 transition-colors"
-                        >
-                          Warning
-                        </button>
-                        <button
-                          onClick={() => showInfo("Info!", "Mobile info test")}
-                          className="text-xs px-2 py-1 bg-blue-500/20 border border-blue-500/30 rounded text-blue-600 dark:text-blue-400 hover:bg-blue-500/30 transition-colors"
-                        >
-                          Info
-                        </button>
-                      </div>
-                    </div>
-                  )}
+                  <PinkThemeToggle />
                 </div>
               </div>
             </div>
@@ -2034,8 +1967,9 @@ export default function Index() {
                   left: "-15%",
                   right: "-15%",
                   height: "120px",
-                  background:
-                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.4) 15%, rgba(20, 184, 166, 0.5) 30%, rgba(34, 197, 94, 0.4) 50%, rgba(6, 182, 212, 0.5) 70%, rgba(20, 184, 166, 0.4) 85%, transparent 100%)",
+                  background: isPinkActive
+                    ? "linear-gradient(90deg, transparent 0%, rgba(236, 72, 153, 0.4) 15%, rgba(244, 114, 182, 0.5) 30%, rgba(251, 113, 133, 0.4) 50%, rgba(236, 72, 153, 0.5) 70%, rgba(244, 114, 182, 0.4) 85%, transparent 100%)"
+                    : "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.4) 15%, rgba(20, 184, 166, 0.5) 30%, rgba(34, 197, 94, 0.4) 50%, rgba(6, 182, 212, 0.5) 70%, rgba(20, 184, 166, 0.4) 85%, transparent 100%)",
                   borderRadius: "40% 60% 80% 20% / 60% 40% 80% 20%",
                   filter: "blur(15px)",
                   animation: "aurora-wave-subtle-1 28s ease-in-out infinite",
@@ -2050,8 +1984,9 @@ export default function Index() {
                   left: "-20%",
                   right: "-20%",
                   height: "140px",
-                  background:
-                    "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.35) 10%, rgba(6, 182, 212, 0.45) 25%, rgba(16, 185, 129, 0.4) 40%, rgba(20, 184, 166, 0.45) 60%, rgba(34, 197, 94, 0.4) 75%, rgba(6, 182, 212, 0.35) 90%, transparent 100%)",
+                  background: isPinkActive
+                    ? "linear-gradient(90deg, transparent 0%, rgba(251, 113, 133, 0.35) 10%, rgba(236, 72, 153, 0.45) 25%, rgba(244, 114, 182, 0.4) 40%, rgba(190, 24, 93, 0.45) 60%, rgba(251, 113, 133, 0.4) 75%, rgba(236, 72, 153, 0.35) 90%, transparent 100%)"
+                    : "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.35) 10%, rgba(6, 182, 212, 0.45) 25%, rgba(16, 185, 129, 0.4) 40%, rgba(20, 184, 166, 0.45) 60%, rgba(34, 197, 94, 0.4) 75%, rgba(6, 182, 212, 0.35) 90%, transparent 100%)",
                   borderRadius: "30% 70% 40% 60% / 70% 30% 60% 40%",
                   filter: "blur(18px)",
                   animation: "aurora-wave-subtle-2 34s ease-in-out infinite",
@@ -2066,8 +2001,9 @@ export default function Index() {
                   left: "-25%",
                   right: "-25%",
                   height: "100px",
-                  background:
-                    "linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.3) 20%, rgba(34, 197, 94, 0.4) 35%, rgba(6, 182, 212, 0.35) 50%, rgba(16, 185, 129, 0.4) 65%, rgba(20, 184, 166, 0.3) 80%, transparent 100%)",
+                  background: isPinkActive
+                    ? "linear-gradient(90deg, transparent 0%, rgba(244, 114, 182, 0.3) 20%, rgba(251, 113, 133, 0.4) 35%, rgba(236, 72, 153, 0.35) 50%, rgba(244, 114, 182, 0.4) 65%, rgba(190, 24, 93, 0.3) 80%, transparent 100%)"
+                    : "linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.3) 20%, rgba(34, 197, 94, 0.4) 35%, rgba(6, 182, 212, 0.35) 50%, rgba(16, 185, 129, 0.4) 65%, rgba(20, 184, 166, 0.3) 80%, transparent 100%)",
                   borderRadius: "60% 40% 80% 20% / 40% 60% 20% 80%",
                   filter: "blur(20px)",
                   animation: "aurora-wave-subtle-3 40s ease-in-out infinite",
@@ -2082,8 +2018,9 @@ export default function Index() {
                   left: "-30%",
                   right: "-30%",
                   height: "160px",
-                  background:
-                    "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.25) 12%, rgba(34, 197, 94, 0.3) 25%, rgba(20, 184, 166, 0.28) 37%, rgba(16, 185, 129, 0.3) 50%, rgba(6, 182, 212, 0.28) 62%, rgba(34, 197, 94, 0.25) 75%, rgba(20, 184, 166, 0.22) 87%, transparent 100%)",
+                  background: isPinkActive
+                    ? "linear-gradient(90deg, transparent 0%, rgba(236, 72, 153, 0.25) 12%, rgba(251, 113, 133, 0.3) 25%, rgba(244, 114, 182, 0.28) 37%, rgba(190, 24, 93, 0.3) 50%, rgba(236, 72, 153, 0.28) 62%, rgba(251, 113, 133, 0.25) 75%, rgba(244, 114, 182, 0.22) 87%, transparent 100%)"
+                    : "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.25) 12%, rgba(34, 197, 94, 0.3) 25%, rgba(20, 184, 166, 0.28) 37%, rgba(16, 185, 129, 0.3) 50%, rgba(6, 182, 212, 0.28) 62%, rgba(34, 197, 94, 0.25) 75%, rgba(20, 184, 166, 0.22) 87%, transparent 100%)",
                   borderRadius: "50% 80% 30% 70% / 80% 20% 70% 30%",
                   filter: "blur(25px)",
                   animation: "aurora-base-flow-subtle 46s ease-in-out infinite",
@@ -2446,6 +2383,118 @@ export default function Index() {
             </div>
           )}
 
+          {/* Pink Theme Exclusive Background Effects */}
+          {isPinkActive && isHighPerformance && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              {/* Pink Aurora Curtains - Desktop */}
+              <div className="hidden lg:block opacity-70">
+                {[...Array(4)].map((_, i) => (
+                  <div
+                    key={`pink-aurora-${i}`}
+                    className="absolute"
+                    style={{
+                      top: `${15 + i * 20}%`,
+                      left: "-20%",
+                      right: "-20%",
+                      height: `${100 + i * 20}px`,
+                      background: `linear-gradient(90deg,
+                        transparent 0%,
+                        rgba(236, 72, 153, ${0.4 + i * 0.1}) 20%,
+                        rgba(244, 114, 182, ${0.5 + i * 0.1}) 40%,
+                        rgba(251, 113, 133, ${0.6 + i * 0.1}) 60%,
+                        rgba(190, 24, 93, ${0.4 + i * 0.1}) 80%,
+                        transparent 100%)`,
+                      borderRadius: `${40 + i * 15}% ${80 - i * 10}% ${60 + i * 12}% ${30 - i * 8}% / ${70 + i * 8}% ${40 - i * 5}% ${50 + i * 10}% ${90 - i * 15}%`,
+                      filter: `blur(${12 + i * 4}px)`,
+                      animation: `pink-floating-orbs ${25 + i * 5}s ease-in-out infinite ${i * 2}s`,
+                      transform: `skewY(${-2 + i * 0.8}deg) rotate(${i * 2}deg)`,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Pink Floating Hearts - All Devices */}
+              <div className="absolute inset-0">
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={`pink-heart-bg-${i}`}
+                    className="absolute"
+                    style={{
+                      left: `${10 + ((i * 80) % 85)}%`,
+                      top: `${15 + ((i * 60) % 70)}%`,
+                      width: `${12 + (i % 4) * 4}px`,
+                      height: `${12 + (i % 4) * 4}px`,
+                      animation: `pink-heartbeat ${3 + (i % 3)}s ease-in-out infinite ${i * 0.7}s`,
+                      transform: "translateZ(0)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        background: `rgba(236, 72, 153, ${0.6 + (i % 3) * 0.1})`,
+                        clipPath:
+                          "polygon(50% 10%, 83% 25%, 100% 60%, 50% 100%, 0% 60%, 17% 25%)",
+                        boxShadow: "0 0 8px rgba(236, 72, 153, 0.5)",
+                        filter: "blur(1px)",
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Pink Sparkle Effects */}
+              <div className="absolute inset-0">
+                {[...Array(15)].map((_, i) => (
+                  <div
+                    key={`pink-sparkle-${i}`}
+                    className="absolute rounded-full"
+                    style={{
+                      left: `${5 + ((i * 70) % 90)}%`,
+                      top: `${10 + ((i * 50) % 80)}%`,
+                      width: `${2 + (i % 3)}px`,
+                      height: `${2 + (i % 3)}px`,
+                      background: [
+                        "rgba(236, 72, 153, 0.9)",
+                        "rgba(244, 114, 182, 0.8)",
+                        "rgba(251, 113, 133, 0.7)",
+                        "rgba(190, 24, 93, 0.9)",
+                      ][i % 4],
+                      animation: `pink-pulse ${2 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                      boxShadow: "0 0 6px currentColor",
+                      filter: "blur(0.5px)",
+                      transform: "translateZ(0)",
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Pink Mobile/Tablet Wave Effects */}
+              <div className="lg:hidden absolute inset-0 opacity-60">
+                {[...Array(3)].map((_, i) => (
+                  <div
+                    key={`pink-mobile-wave-${i}`}
+                    className="absolute w-full"
+                    style={{
+                      top: `${20 + i * 25}%`,
+                      height: "100px",
+                      background: `linear-gradient(90deg,
+                        transparent 0%,
+                        rgba(236, 72, 153, ${0.3 + i * 0.1}) 30%,
+                        rgba(244, 114, 182, ${0.4 + i * 0.1}) 50%,
+                        rgba(251, 113, 133, ${0.3 + i * 0.1}) 70%,
+                        transparent 100%)`,
+                      borderRadius: `${50 + i * 10}% ${70 - i * 5}% ${40 + i * 8}% ${80 - i * 12}% / ${60 + i * 15}% ${30 - i * 3}% ${50 + i * 7}% ${70 - i * 10}%`,
+                      filter: `blur(${8 + i * 2}px)`,
+                      animation: `pink-floating-particles ${15 + i * 3}s linear infinite ${i * 1.5}s`,
+                      transform: `skewY(${-1.5 + i * 0.5}deg)`,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Optimized Floating Ambient Particles - Reduced count for 60fps */}
           <motion.div
             className="absolute inset-0 pointer-events-none overflow-hidden will-change-transform"
@@ -2464,15 +2513,27 @@ export default function Index() {
                     width: `${3 + (i % 4)}px`,
                     height: `${3 + (i % 4)}px`,
                     background: (() => {
-                      const colorPalettes = [
-                        `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`, // Pink-Orange
-                        `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`, // Green-Blue
-                        `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`, // Purple-Yellow
-                        `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`, // Blue-Green
-                        `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`, // Orange-Purple
-                        `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`, // Pink-Mint
-                      ];
-                      return colorPalettes[i % colorPalettes.length];
+                      if (isPinkActive) {
+                        const pinkPalettes = [
+                          `radial-gradient(circle, rgba(236, 72, 153, 0.9) 0%, rgba(244, 114, 182, 0.5) 70%, transparent 90%)`, // Pink
+                          `radial-gradient(circle, rgba(244, 114, 182, 0.8) 0%, rgba(251, 113, 133, 0.4) 70%, transparent 90%)`, // Light Pink
+                          `radial-gradient(circle, rgba(251, 113, 133, 0.8) 0%, rgba(236, 72, 153, 0.4) 70%, transparent 90%)`, // Rose Pink
+                          `radial-gradient(circle, rgba(190, 24, 93, 0.8) 0%, rgba(244, 114, 182, 0.4) 70%, transparent 90%)`, // Dark Pink
+                          `radial-gradient(circle, rgba(236, 72, 153, 0.9) 0%, rgba(190, 24, 93, 0.5) 70%, transparent 90%)`, // Pink-Dark Pink
+                          `radial-gradient(circle, rgba(244, 114, 182, 0.8) 0%, rgba(236, 72, 153, 0.4) 70%, transparent 90%)`, // Light-Pink Mix
+                        ];
+                        return pinkPalettes[i % pinkPalettes.length];
+                      } else {
+                        const colorPalettes = [
+                          `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`, // Pink-Orange
+                          `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`, // Green-Blue
+                          `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`, // Purple-Yellow
+                          `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`, // Blue-Green
+                          `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`, // Orange-Purple
+                          `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`, // Pink-Mint
+                        ];
+                        return colorPalettes[i % colorPalettes.length];
+                      }
                     })(),
                     animation: isScrollingActive
                       ? "none"
@@ -2784,7 +2845,11 @@ export default function Index() {
 
               {/* Vertical progress line */}
               <motion.div
-                className="absolute left-1/2 -translate-x-1/2 top-12 sm:top-16 w-px h-16 sm:h-24 bg-gradient-to-b from-blue-400/40 via-blue-300/20 to-transparent"
+                className={`absolute left-1/2 -translate-x-1/2 top-12 sm:top-16 w-px h-16 sm:h-24 ${
+                  isPinkActive
+                    ? "bg-gradient-to-b from-pink-400/50 via-pink-300/25 to-transparent"
+                    : "bg-gradient-to-b from-blue-400/40 via-blue-300/20 to-transparent"
+                }`}
                 initial={{ opacity: 0, scaleY: 0 }}
                 animate={animationStep >= 1 ? { opacity: 1, scaleY: 1 } : {}}
                 transition={{ delay: 3, duration: 1.5 }}
@@ -2792,7 +2857,11 @@ export default function Index() {
 
               {/* Connecting line to center (desktop only) */}
               <motion.div
-                className="hidden lg:block absolute top-8 left-4 w-32 h-px bg-gradient-to-r from-blue-400/30 to-transparent"
+                className={`hidden lg:block absolute top-8 left-4 w-32 h-px ${
+                  isPinkActive
+                    ? "bg-gradient-to-r from-pink-400/40 to-transparent"
+                    : "bg-gradient-to-r from-blue-400/30 to-transparent"
+                }`}
                 initial={{ opacity: 0, scaleX: 0 }}
                 animate={animationStep >= 1 ? { opacity: 1, scaleX: 1 } : {}}
                 transition={{ delay: 3.5, duration: 1 }}
@@ -2905,7 +2974,11 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="11.79" />
                       <feColorMatrix
                         type="matrix"
-                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={
+                          isPinkActive
+                            ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                            : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        }
                       />
                       <feBlend
                         mode="normal"
@@ -2922,7 +2995,11 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="41.265" />
                       <feColorMatrix
                         type="matrix"
-                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={
+                          isPinkActive
+                            ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                            : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        }
                       />
                       <feBlend
                         mode="normal"
@@ -2939,7 +3016,11 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="82.53" />
                       <feColorMatrix
                         type="matrix"
-                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={
+                          isPinkActive
+                            ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                            : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        }
                       />
                       <feBlend
                         mode="normal"
@@ -2956,7 +3037,11 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="141.48" />
                       <feColorMatrix
                         type="matrix"
-                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={
+                          isPinkActive
+                            ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                            : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        }
                       />
                       <feBlend
                         mode="normal"
@@ -2973,7 +3058,11 @@ export default function Index() {
                       <feGaussianBlur stdDeviation="247.59" />
                       <feColorMatrix
                         type="matrix"
-                        values="0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        values={
+                          isPinkActive
+                            ? "0 0 0 0 0.925 0 0 0 0 0.282 0 0 0 0 0.596 0 0 0 1 0"
+                            : "0 0 0 0 0.286275 0 0 0 0 0.572549 0 0 0 0 1 0 0 0 1 0"
+                        }
                       />
                       <feBlend
                         mode="normal"
@@ -2999,9 +3088,19 @@ export default function Index() {
                       y2="451.438"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stopColor="#3FBAFF" />
-                      <stop offset="0.493374" stopColor="#4992FF" />
-                      <stop offset="1" stopColor="#3987E3" />
+                      {isPinkActive ? (
+                        <>
+                          <stop stopColor="#F472B6" />
+                          <stop offset="0.493374" stopColor="#EC4899" />
+                          <stop offset="1" stopColor="#BE185D" />
+                        </>
+                      ) : (
+                        <>
+                          <stop stopColor="#3FBAFF" />
+                          <stop offset="0.493374" stopColor="#4992FF" />
+                          <stop offset="1" stopColor="#3987E3" />
+                        </>
+                      )}
                     </linearGradient>
                   </defs>
                   <g filter="url(#orbFilter)">
@@ -3058,8 +3157,22 @@ export default function Index() {
               >
                 <h1
                   className={`font-poppins text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
-                    theme === "light" ? "text-gray-900" : "text-white"
+                    isPinkActive
+                      ? "text-pink-300 animate-pink-neon-glow"
+                      : theme === "light"
+                        ? "text-gray-900"
+                        : "text-white"
                   }`}
+                  style={
+                    isPinkActive
+                      ? {
+                          textShadow:
+                            "0 0 10px rgba(236, 72, 153, 0.8), 0 0 20px rgba(244, 114, 182, 0.6), 0 0 30px rgba(251, 113, 133, 0.4)",
+                          filter:
+                            "drop-shadow(0 0 15px rgba(236, 72, 153, 0.5))",
+                        }
+                      : {}
+                  }
                 >
                   <span className="inline-block relative warm-glow-text animate-warm-glow-pulse animate-wavy-text">
                     K
@@ -3122,18 +3235,83 @@ export default function Index() {
                     />
                   ))}
 
+                  {/* Pink Theme Floating Hearts and Sparkles */}
+                  {isPinkActive &&
+                    [...Array(12)].map((_, i) => (
+                      <div
+                        key={`pink-particle-${i}`}
+                        className="absolute rounded-full pointer-events-none"
+                        style={{
+                          left: `${10 + ((i * 70) % 180)}%`,
+                          top: `${20 + ((i * 60) % 80)}%`,
+                          width: `${3 + (i % 3)}px`,
+                          height: `${3 + (i % 3)}px`,
+                          background:
+                            i % 3 === 0
+                              ? "rgba(236, 72, 153, 0.8)"
+                              : i % 3 === 1
+                                ? "rgba(244, 114, 182, 0.7)"
+                                : "rgba(251, 113, 133, 0.6)",
+                          animation: `pink-pulse ${3 + (i % 2)}s ease-in-out infinite ${i * 0.4}s`,
+                          boxShadow: "0 0 8px rgba(236, 72, 153, 0.6)",
+                          willChange: "transform, opacity",
+                          transform: "translateZ(0)",
+                        }}
+                      />
+                    ))}
+
+                  {/* Pink Theme Heart Shapes */}
+                  {isPinkActive &&
+                    [...Array(6)].map((_, i) => (
+                      <div
+                        key={`pink-heart-${i}`}
+                        className="absolute pointer-events-none"
+                        style={{
+                          left: `${15 + ((i * 90) % 170)}%`,
+                          top: `${25 + ((i * 45) % 70)}%`,
+                          width: "8px",
+                          height: "8px",
+                          animation: `pink-heartbeat ${2 + (i % 2)}s ease-in-out infinite ${i * 0.6}s`,
+                          willChange: "transform",
+                          transform: "translateZ(0)",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            background: "rgba(236, 72, 153, 0.9)",
+                            transform: "rotate(45deg)",
+                            borderRadius: "0 50% 50% 50%",
+                            boxShadow: "0 0 6px rgba(236, 72, 153, 0.7)",
+                          }}
+                        />
+                      </div>
+                    ))}
+
                   <div className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                     <span
                       className={`relative inline-block ${
-                        theme === "light" ? "text-gray-900" : "text-white"
-                      }`}
-                      style={{
-                        filter:
-                          theme === "light"
-                            ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
-                            : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
-                      }}
-                      className="animate-text-pop"
+                        isPinkActive
+                          ? "text-pink-200"
+                          : theme === "light"
+                            ? "text-gray-900"
+                            : "text-white"
+                      } ${isPinkActive ? "animate-pink-neon-glow" : "animate-text-pop"}`}
+                      style={
+                        isPinkActive
+                          ? {
+                              filter:
+                                "drop-shadow(0 0 12px rgba(236, 72, 153, 0.7)) drop-shadow(0 0 25px rgba(244, 114, 182, 0.5))",
+                              textShadow: "0 0 8px rgba(236, 72, 153, 0.6)",
+                            }
+                          : {
+                              filter:
+                                theme === "light"
+                                  ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
+                                  : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
+                            }
+                      }
                     >
                       {/* Warm glow text with iOS-inspired styling */}
                       <span className="warm-glow-text animate-warm-glow-pulse">
@@ -4527,6 +4705,7 @@ function MobileHamburgerMenu({
   setIsOpen,
   theme,
 }: MobileHamburgerMenuProps) {
+  const { isPinkActive } = usePinkTheme();
   const [menuPosition, setMenuPosition] = useState({ left: 70, top: -80 });
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -4606,9 +4785,11 @@ function MobileHamburgerMenu({
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => !isOpen && setShowTooltip(false)}
           className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
-            theme === "light"
-              ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
-              : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
+            isPinkActive
+              ? "border-pink-400/50 bg-pink-500/10 hover:border-pink-500/70"
+              : theme === "light"
+                ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
+                : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
           }`}
           style={{
             background:
@@ -4618,7 +4799,13 @@ function MobileHamburgerMenu({
           }}
         >
           {/* Animated background layers */}
-          <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50 group-hover:opacity-70 transition-all duration-500" />
+          <div
+            className={`absolute inset-0 rounded-xl opacity-50 group-hover:opacity-70 transition-all duration-500 ${
+              isPinkActive
+                ? "bg-gradient-to-br from-pink-400/30 via-pink-300/15 to-transparent"
+                : "bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent"
+            }`}
+          />
           <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500" />
 
           {/* Hamburger Icon */}
@@ -4932,7 +5119,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ���  hoverScale: 1.15
+// Change: hoverScale: 1.05  �����  hoverScale: 1.15
 //
 // ========================================
 
@@ -7845,7 +8032,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Communication Icons - Contact specific */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
           {[
-            { icon: "📧", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
+            { icon: "���", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
             { icon: "��", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
@@ -7939,7 +8126,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             { type: "email", x: 15, y: 35, icon: "✉���" },
-            { type: "call", x: 75, y: 25, icon: "📞" },
+            { type: "call", x: 75, y: 25, icon: "��" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
           ].map((card, i) => (
@@ -8629,7 +8816,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "��",
+                        icon: "����",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
