@@ -120,9 +120,11 @@ export default function Index() {
 
   // Mobile performance notification - shows only on mobile devices (≤640px)
   useEffect(() => {
+    console.log("=== Mobile Performance Notification Check ===");
     console.log("Device type:", deviceType, "Window width:", window.innerWidth); // Debug log
     console.log("UserAgent:", navigator.userAgent); // Debug browser info
     console.log("Is mobile (useIsMobile):", isMobile); // Debug mobile detection
+    console.log("Has shown mobile performance:", hasShownMobilePerformanceRef.current);
 
     if (deviceType === "mobile" && !hasShownMobilePerformanceRef.current) {
       console.log(
@@ -8571,7 +8573,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Email",
                         subtitle: "contact@kor.dev",
                         url: "mailto:contact@kor.dev",
-                        icon: "✉️",
+                        icon: "✉���",
                         color: "from-emerald-500 via-green-500 to-lime-500",
                         shadowColor: "rgba(16, 185, 129, 0.3)",
                       },
