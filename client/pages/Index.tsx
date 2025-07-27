@@ -125,39 +125,29 @@ export default function Index() {
     }
   }, []); // Only run once on mount
 
-  // Mobile performance notification - shows only on mobile devices (≤640px)
+  // Mobile performance notification - shows once per page load on mobile devices
   useEffect(() => {
-    console.log("=== Mobile Performance Notification Check ===");
-    console.log("Device type:", deviceType, "Window width:", window.innerWidth); // Debug log
-    console.log("UserAgent:", navigator.userAgent); // Debug browser info
-    console.log("Is mobile (useIsMobile):", isMobile); // Debug mobile detection
-    console.log("Has shown mobile performance:", hasShownMobilePerformanceRef.current);
-
-    // Use multiple checks to ensure mobile detection is accurate
-    const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
-    const isActuallyMobile = deviceType === "mobile" || windowWidth <= 640 || isMobile;
-
-    console.log("Final mobile check - deviceType:", deviceType, "windowWidth:", windowWidth, "isMobile:", isMobile, "isActuallyMobile:", isActuallyMobile);
-
-    if (isActuallyMobile && !hasShownMobilePerformanceRef.current) {
-      console.log(
-        "✅ Mobile device confirmed, showing performance notification...",
-      ); // Debug log
+    if (!hasShownMobilePerformanceRef.current) {
       hasShownMobilePerformanceRef.current = true;
-      const timer = setTimeout(() => {
-        console.log("🚀 Triggering mobile performance notification NOW!");
-        showWarning(
-          "Mobile Performance Mode",
-          "Visual effects and animations have been limited to improve performance.",
-          0, // No auto-dismiss - user must click X
-        );
-      }, 3100); // Show immediately after welcome notification (3 seconds + small delay)
 
-      return () => clearTimeout(timer);
-    } else {
-      console.log("❌ Skipping notification - isActuallyMobile:", isActuallyMobile, "hasShown:", hasShownMobilePerformanceRef.current);
+      // Check if mobile on page load
+      const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
+      const isMobileDevice = windowWidth <= 640;
+
+      console.log("Mobile check on load - width:", windowWidth, "isMobile:", isMobileDevice);
+
+      if (isMobileDevice) {
+        setTimeout(() => {
+          console.log("🚀 Showing mobile performance notification on mobile device!");
+          showWarning(
+            "Mobile Performance Mode",
+            "Visual effects and animations have been limited to improve performance.",
+            0, // No auto-dismiss - user must click X
+          );
+        }, 3100); // Show after welcome notification
+      }
     }
-  }, [deviceType, showWarning, isMobile]);
+  }, []); // Only run once on mount
 
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
