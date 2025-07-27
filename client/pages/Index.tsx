@@ -101,6 +101,20 @@ export default function Index() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animationStep]);
 
+  // Test notification to check if system works
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('Triggering test notification...');
+      showInfo(
+        "System Test",
+        "Testing notification system...",
+        3000
+      );
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []); // Only run once on mount
+
   // Mobile performance notification - shows only on mobile devices (≤640px)
   useEffect(() => {
     console.log('Device type changed:', deviceType); // Debug log
@@ -112,7 +126,7 @@ export default function Index() {
           "Visual effects and animations have been limited to improve performance.",
           5000 // Show for 5 seconds
         );
-      }, 2000); // Show after 2 seconds to avoid overwhelming on page load
+      }, 4000); // Show after 4 seconds to avoid conflict with test notification
 
       return () => clearTimeout(timer);
     }
@@ -7807,7 +7821,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             { type: "email", x: 15, y: 35, icon: "✉️" },
-            { type: "call", x: 75, y: 25, icon: "📞" },
+            { type: "call", x: 75, y: 25, icon: "��" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
           ].map((card, i) => (
