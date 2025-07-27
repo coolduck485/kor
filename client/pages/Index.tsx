@@ -103,20 +103,21 @@ export default function Index() {
 
   // Mobile performance notification - shows only on mobile devices (≤640px)
   useEffect(() => {
-    console.log('Device type changed:', deviceType); // Debug log
+    console.log('Device type:', deviceType, 'Window width:', window.innerWidth); // Debug log
     if (deviceType === "mobile") {
-      console.log('Showing mobile notification...'); // Debug log
+      console.log('Mobile device detected, showing performance notification...'); // Debug log
       const timer = setTimeout(() => {
-        showInfo(
+        console.log('Triggering mobile performance notification...');
+        showWarning(
           "Mobile Performance Mode",
           "Visual effects and animations have been limited to improve performance.",
-          5000 // Show for 5 seconds
+          6000 // Show for 6 seconds
         );
-      }, 4000); // Show after 4 seconds to avoid conflict with test notification
+      }, 4000); // Show after 4 seconds
 
       return () => clearTimeout(timer);
     }
-  }, [deviceType, showInfo]);
+  }, [deviceType, showWarning]);
 
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
@@ -798,7 +799,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═���═██╗█���╔����══██╗
 █████╔╝ █������   █��║██���███╔╝
 ██╔═██╗ ██║   ██║██╔══█�������
-██║  ���█╗╚███��██������╝██║  ���█║
+██║  ���█╗╚███��██�����╝██║  ���█║
 ╚═╝  ╚═�� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -7807,7 +7808,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             { type: "email", x: 15, y: 35, icon: "✉️" },
-            { type: "call", x: 75, y: 25, icon: "��" },
+            { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
           ].map((card, i) => (
