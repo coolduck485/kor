@@ -160,6 +160,14 @@ const FloatingNotificationItem = React.forwardRef<
     setMousePosition({ x: 0, y: 0, isNear: false });
   };
 
+  const handleClose = () => {
+    setIsClosing(true);
+    // Delay the actual removal to allow exit animation to play
+    setTimeout(() => {
+      onClose();
+    }, 400); // Match the exit animation duration
+  };
+
   const getTypeColors = (type: FloatingNotification["type"]) => {
     switch (type) {
       case "success":
