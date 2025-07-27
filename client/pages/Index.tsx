@@ -890,7 +890,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█��█████████��███ 50%
+                      RAM: █���████��█���█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1779,7 +1779,9 @@ export default function Index() {
                 theme === "light"
                   ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
                   : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-              boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+              boxShadow: isPinkActive
+                ? "0 0 20px rgba(236, 72, 153, 0.4)"
+                : "0 0 20px rgba(73, 146, 255, 0.3)",
             }}
           >
             {/* Icon */}
