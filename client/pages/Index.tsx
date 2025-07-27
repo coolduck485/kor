@@ -6230,25 +6230,34 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         ))}
         </div>
 
-        {/* Enhanced Floating Ambient Particles with Color Shifting - Reduced for Mobile/Tablet */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(screenSize === "desktop" ? 12 : screenSize === "tablet" ? 3 : 1)].map((_, i) => (
-            <div
-              key={`particle-${i}`}
-              className="absolute rounded-full opacity-60"
-              style={{
-                left: `${5 + ((i * 60) % 95)}%`,
-                top: `${10 + ((i * 35) % 85)}%`,
-                width: `${1 + (i % 4)}px`,
-                height: `${1 + (i % 4)}px`,
-                background: `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.2 + (i % 4) * 0.15})`,
-                animation: `gentleFloat ${3 + (i % 4)}s ease-in-out infinite ${i * 0.3}s, color-shift ${12 + (i % 5)}s ease-in-out infinite ${i * 0.2}s`,
-                filter: "blur(0.3px)",
-                transform: `scale(${0.5 + (i % 3) * 0.3})`,
-              }}
-            />
-          ))}
-        </div>
+        {/* Colorful Floating Orbs for Mobile/Tablet (replacing heavy particles) */}
+        {screenSize !== "desktop" && (
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {[...Array(screenSize === "tablet" ? 6 : 4)].map((_, i) => (
+              <div
+                key={`mobile-orb-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${10 + ((i * 70) % 80)}%`,
+                  top: `${15 + ((i * 50) % 70)}%`,
+                  width: `${screenSize === "tablet" ? 8 + (i % 3) * 2 : 6 + (i % 2)}px`,
+                  height: `${screenSize === "tablet" ? 8 + (i % 3) * 2 : 6 + (i % 2)}px`,
+                  background: [
+                    "radial-gradient(circle, rgba(34, 197, 94, 0.7) 0%, rgba(34, 197, 94, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(59, 130, 246, 0.7) 0%, rgba(59, 130, 246, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(147, 51, 234, 0.7) 0%, rgba(147, 51, 234, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(236, 72, 153, 0.7) 0%, rgba(236, 72, 153, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(6, 182, 212, 0.7) 0%, rgba(6, 182, 212, 0.2) 60%, transparent 80%)",
+                    "radial-gradient(circle, rgba(245, 158, 11, 0.7) 0%, rgba(245, 158, 11, 0.2) 60%, transparent 80%)",
+                  ][i % 6],
+                  animation: `gentleFloat ${4 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+                  filter: `blur(${1 + (i % 2) * 0.5}px)`,
+                  boxShadow: `0 0 ${8 + (i % 2) * 4}px currentColor`,
+                }}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Animated Geometric Patterns */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
