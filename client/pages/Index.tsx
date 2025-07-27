@@ -884,7 +884,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������█████��███████ 60%
+                      CPU: █��������█������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2514,15 +2514,27 @@ export default function Index() {
                     width: `${3 + (i % 4)}px`,
                     height: `${3 + (i % 4)}px`,
                     background: (() => {
-                      const colorPalettes = [
-                        `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`, // Pink-Orange
-                        `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`, // Green-Blue
-                        `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`, // Purple-Yellow
-                        `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`, // Blue-Green
-                        `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`, // Orange-Purple
-                        `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`, // Pink-Mint
-                      ];
-                      return colorPalettes[i % colorPalettes.length];
+                      if (isPinkActive) {
+                        const pinkPalettes = [
+                          `radial-gradient(circle, rgba(236, 72, 153, 0.9) 0%, rgba(244, 114, 182, 0.5) 70%, transparent 90%)`, // Pink
+                          `radial-gradient(circle, rgba(244, 114, 182, 0.8) 0%, rgba(251, 113, 133, 0.4) 70%, transparent 90%)`, // Light Pink
+                          `radial-gradient(circle, rgba(251, 113, 133, 0.8) 0%, rgba(236, 72, 153, 0.4) 70%, transparent 90%)`, // Rose Pink
+                          `radial-gradient(circle, rgba(190, 24, 93, 0.8) 0%, rgba(244, 114, 182, 0.4) 70%, transparent 90%)`, // Dark Pink
+                          `radial-gradient(circle, rgba(236, 72, 153, 0.9) 0%, rgba(190, 24, 93, 0.5) 70%, transparent 90%)`, // Pink-Dark Pink
+                          `radial-gradient(circle, rgba(244, 114, 182, 0.8) 0%, rgba(236, 72, 153, 0.4) 70%, transparent 90%)`, // Light-Pink Mix
+                        ];
+                        return pinkPalettes[i % pinkPalettes.length];
+                      } else {
+                        const colorPalettes = [
+                          `radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(255, 150, 100, 0.4) 70%, transparent 90%)`, // Pink-Orange
+                          `radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(100, 200, 255, 0.4) 70%, transparent 90%)`, // Green-Blue
+                          `radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(255, 200, 100, 0.4) 70%, transparent 90%)`, // Purple-Yellow
+                          `radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(200, 255, 150, 0.4) 70%, transparent 90%)`, // Blue-Green
+                          `radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(200, 100, 255, 0.4) 70%, transparent 90%)`, // Orange-Purple
+                          `radial-gradient(circle, rgba(255, 150, 200, 0.8) 0%, rgba(150, 255, 200, 0.4) 70%, transparent 90%)`, // Pink-Mint
+                        ];
+                        return colorPalettes[i % colorPalettes.length];
+                      }
                     })(),
                     animation: isScrollingActive
                       ? "none"
