@@ -111,9 +111,12 @@ export default function Index() {
     }
   }, []); // Only run once on mount
 
-  // Mobile performance notification - shows only on mobile devices (≤640px)
+  // Mobile performance notification - shows only on mobile devices (≤767px)
   useEffect(() => {
     console.log("Device type:", deviceType, "Window width:", window.innerWidth); // Debug log
+    console.log("UserAgent:", navigator.userAgent); // Debug browser info
+    console.log("Is mobile (useIsMobile):", isMobile); // Debug mobile detection
+
     if (deviceType === "mobile") {
       console.log(
         "Mobile device detected, showing performance notification...",
@@ -128,8 +131,10 @@ export default function Index() {
       }, 4000); // Show after 4 seconds
 
       return () => clearTimeout(timer);
+    } else {
+      console.log("Not mobile device, skipping performance notification");
     }
-  }, [deviceType, showWarning]);
+  }, [deviceType, showWarning, isMobile]);
 
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
