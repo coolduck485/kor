@@ -89,16 +89,15 @@ export default function Index() {
 
   // Welcome notification - shows once per page load
   useEffect(() => {
-    // Temporarily disabled to test button functionality
-    // if (animationStep >= 2 && !hasShownWelcomeRef.current) {
-    //   hasShownWelcomeRef.current = true;
-    //   setTimeout(() => {
-    //     showInfo(
-    //       "Welcome to KOR!",
-    //       "Experience the future of modern web development. Click the X to dismiss.",
-    //     );
-    //   }, 3000);
-    // }
+    if (animationStep >= 2 && !hasShownWelcomeRef.current) {
+      hasShownWelcomeRef.current = true;
+      setTimeout(() => {
+        showInfo(
+          "Welcome to KOR!",
+          "Experience the future of modern web development. Click the X to dismiss.",
+        );
+      }, 3000);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animationStep]);
 
