@@ -279,7 +279,11 @@
       rgba(190, 24, 93, 0.08) 0%,
       transparent 70%
     ),
-    linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--background)) 100%);
+    linear-gradient(
+      180deg,
+      hsl(var(--background)) 0%,
+      hsl(var(--background)) 100%
+    );
   background-attachment: fixed;
 }
 
@@ -307,15 +311,17 @@
 
 /* Pink theme glow effects */
 .pink-theme .glow {
-  box-shadow: 0 0 60px rgba(236, 72, 153, 0.8),
-              0 0 120px rgba(236, 72, 153, 0.6),
-              0 0 200px rgba(236, 72, 153, 0.4) !important;
+  box-shadow:
+    0 0 60px rgba(236, 72, 153, 0.8),
+    0 0 120px rgba(236, 72, 153, 0.6),
+    0 0 200px rgba(236, 72, 153, 0.4) !important;
 }
 
 .pink-theme .text-glow {
-  text-shadow: 0 0 10px rgba(236, 72, 153, 1),
-               0 0 20px rgba(236, 72, 153, 0.8),
-               0 0 30px rgba(236, 72, 153, 0.6) !important;
+  text-shadow:
+    0 0 10px rgba(236, 72, 153, 1),
+    0 0 20px rgba(236, 72, 153, 0.8),
+    0 0 30px rgba(236, 72, 153, 0.6) !important;
 }
 
 /* Pink Theme Animated Background Particles */
@@ -383,25 +389,38 @@
 /* Pink Theme Keyframe Animations */
 @keyframes pinkFloatingParticles {
   0% {
-    background-position: 0% 0%, 0% 0%, 0% 0%;
+    background-position:
+      0% 0%,
+      0% 0%,
+      0% 0%;
     transform: rotate(0deg) scale(1);
   }
   33% {
-    background-position: 30% 30%, 60% 20%, 20% 60%;
+    background-position:
+      30% 30%,
+      60% 20%,
+      20% 60%;
     transform: rotate(120deg) scale(1.1);
   }
   66% {
-    background-position: 70% 80%, 20% 70%, 80% 30%;
+    background-position:
+      70% 80%,
+      20% 70%,
+      80% 30%;
     transform: rotate(240deg) scale(0.9);
   }
   100% {
-    background-position: 100% 100%, 100% 100%, 100% 100%;
+    background-position:
+      100% 100%,
+      100% 100%,
+      100% 100%;
     transform: rotate(360deg) scale(1);
   }
 }
 
 @keyframes pinkFloatingOrbs {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(0deg) scale(1);
     opacity: 0.6;
   }
@@ -420,29 +439,44 @@
 }
 
 @keyframes pinkPulse {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5), 0 0 40px rgba(236, 72, 153, 0.3), 0 0 60px rgba(236, 72, 153, 0.1);
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(236, 72, 153, 0.5),
+      0 0 40px rgba(236, 72, 153, 0.3),
+      0 0 60px rgba(236, 72, 153, 0.1);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 30px rgba(236, 72, 153, 0.8), 0 0 60px rgba(236, 72, 153, 0.5), 0 0 90px rgba(236, 72, 153, 0.2);
+    box-shadow:
+      0 0 30px rgba(236, 72, 153, 0.8),
+      0 0 60px rgba(236, 72, 153, 0.5),
+      0 0 90px rgba(236, 72, 153, 0.2);
     transform: scale(1.02);
   }
 }
 
 @keyframes pinkGlow {
-  0%, 100% {
-    text-shadow: 0 0 5px rgba(236, 72, 153, 0.8), 0 0 10px rgba(236, 72, 153, 0.6), 0 0 20px rgba(236, 72, 153, 0.4);
+  0%,
+  100% {
+    text-shadow:
+      0 0 5px rgba(236, 72, 153, 0.8),
+      0 0 10px rgba(236, 72, 153, 0.6),
+      0 0 20px rgba(236, 72, 153, 0.4);
     filter: brightness(1);
   }
   50% {
-    text-shadow: 0 0 10px rgba(236, 72, 153, 1), 0 0 20px rgba(236, 72, 153, 0.8), 0 0 30px rgba(236, 72, 153, 0.6);
+    text-shadow:
+      0 0 10px rgba(236, 72, 153, 1),
+      0 0 20px rgba(236, 72, 153, 0.8),
+      0 0 30px rgba(236, 72, 153, 0.6);
     filter: brightness(1.2);
   }
 }
 
 @keyframes pinkHeartbeat {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     filter: drop-shadow(0 0 5px rgba(236, 72, 153, 0.5));
   }
@@ -463,8 +497,6 @@
     filter: drop-shadow(0 0 5px rgba(236, 72, 153, 0.5));
   }
 }
-
-
 
 @layer base {
   * {

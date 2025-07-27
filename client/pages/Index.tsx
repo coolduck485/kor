@@ -257,8 +257,6 @@ export default function Index() {
     return timeouts;
   };
 
-
-
   // Optimized loading sequence for better performance
   const triggerOptimizedLoadingSequence = () => {
     setIsLoading(true);
@@ -360,8 +358,6 @@ export default function Index() {
       }
     }
   }, [mode, previousMode]);
-
-
 
   // Dynamic network stats updates
   useEffect(() => {
@@ -582,8 +578,6 @@ export default function Index() {
         handleScrollToSection as EventListener,
       );
   }, []);
-
-
 
   // If retro mode is enabled, show retro version
   if (mode === "retro") {
