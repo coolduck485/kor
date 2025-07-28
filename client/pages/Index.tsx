@@ -793,7 +793,7 @@ export default function Index() {
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.8, opacity: 0 }}
                     transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
-                    className="relative max-w-md w-full mx-4 bg-black border-2 border-green-400 font-mono text-green-400 p-6"
+                    className="relative max-w-xs sm:max-w-sm w-full mx-3 sm:mx-4 bg-black border-2 border-green-400 font-mono text-green-400 p-3 sm:p-4 max-h-[90vh] overflow-y-auto"
                     style={{
                       boxShadow: "0 0 30px rgba(0, 255, 65, 0.5), inset 0 0 20px rgba(0, 255, 65, 0.1)",
                     }}
@@ -918,7 +918,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██��  ██╗ ██████���� ███����������█╗
+                  {`██��  ██╗ ██████���� ███�����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
