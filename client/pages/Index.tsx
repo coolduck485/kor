@@ -1961,24 +1961,6 @@ export default function Index() {
 
               {/* Modal Header */}
               <div className="text-center mb-4 sm:mb-6">
-                <div className="mb-2 sm:mb-3">
-                  <div
-                    className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full flex items-center justify-center ${
-                      theme === "light"
-                        ? "bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-600"
-                        : "bg-gradient-to-br from-blue-500/20 to-indigo-500/20 text-blue-400"
-                    }`}
-                    style={{
-                      backdropFilter: "blur(10px)",
-                      boxShadow:
-                        theme === "light"
-                          ? "0 8px 25px rgba(59,130,246,0.15)"
-                          : "0 8px 25px rgba(99,102,241,0.25)",
-                    }}
-                  >
-                    <span className="text-lg sm:text-xl">🔍</span>
-                  </div>
-                </div>
                 <h2
                   className={`text-lg sm:text-xl font-bold mb-2 ${
                     theme === "light" ? "text-gray-900" : "text-white"
