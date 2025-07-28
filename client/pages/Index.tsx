@@ -95,6 +95,10 @@ export default function Index() {
   const [isContentVisible, setIsContentVisible] = useState(true);
   const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
 
+  // Zoom warning modal state
+  const [showZoomModal, setShowZoomModal] = useState(false);
+  const hasShownZoomModalRef = useRef(false);
+
   // Test notification removed
 
   // Welcome notification - shows immediately on all devices
@@ -883,7 +887,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������█████����██████ 60%
+                      CPU: █��������█������████������██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
