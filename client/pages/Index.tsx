@@ -785,6 +785,95 @@ export default function Index() {
         {/* Retro Main Content - Only show after loading */}
         {!isLoading && (
           <>
+            {/* Zoom Warning Modal - Retro Style */}
+            <AnimatePresence>
+              {showZoomModal && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="fixed inset-0 z-[10001] flex items-center justify-center"
+                >
+                  {/* Modal Backdrop */}
+                  <div
+                    className="absolute inset-0 bg-black/70"
+                    onClick={() => setShowZoomModal(false)}
+                  />
+
+                  {/* Retro Modal Content */}
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
+                    className="relative max-w-md w-full mx-4 bg-black border-2 border-green-400 font-mono text-green-400 p-6"
+                    style={{
+                      boxShadow: "0 0 30px rgba(0, 255, 65, 0.5), inset 0 0 20px rgba(0, 255, 65, 0.1)",
+                    }}
+                  >
+                    {/* Close Button - Retro Style */}
+                    <button
+                      onClick={() => setShowZoomModal(false)}
+                      className="absolute top-2 right-2 w-6 h-6 bg-green-400 text-black font-bold text-sm hover:bg-green-300 transition-colors"
+                    >
+                      X
+                    </button>
+
+                    {/* Modal Header - Retro Style */}
+                    <div className="text-center mb-4">
+                      <div className="text-2xl mb-2 text-amber-400">{">>> WARNING <<<"}</div>
+                      <h2 className="text-lg font-bold mb-2 text-green-400">
+                        CONTENT VISIBILITY ISSUE DETECTED
+                      </h2>
+                      <p className="text-xs text-amber-400">
+                        IF CONTENT APPEARS CUT OFF, EXECUTE ZOOM OUT PROTOCOL
+                      </p>
+                    </div>
+
+                    {/* Guide Image - Retro Border */}
+                    <div className="mb-4">
+                      <div className="border-2 border-green-400 bg-black p-1">
+                        <img
+                          src="https://cdn.builder.io/api/v1/image/assets%2F85794720c0214737bd32d535722cec7f%2F15182dbd9d354cc68694609b96f5f029?format=webp&width=800"
+                          alt="Browser zoom guide"
+                          className="w-full h-auto filter brightness-75 contrast-125"
+                          style={{ maxHeight: "150px", objectFit: "contain" }}
+                        />
+                      </div>
+                      <p className="text-xs text-center mt-1 text-amber-400">
+                        REFERENCE: RIGHT-CLICK -&gt; ZOOM OUT
+                      </p>
+                    </div>
+
+                    {/* Instructions - Terminal Style */}
+                    <div className="text-xs space-y-1 text-green-400">
+                      <div className="text-amber-400 font-bold mb-2">ZOOM COMMANDS:</div>
+                      <div className="flex items-center space-x-2">
+                        <span className="bg-green-400 text-black px-1">CTRL + -</span>
+                        <span>ZOOM OUT</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <span className="bg-green-400 text-black px-1">CTRL + 0</span>
+                        <span>RESET ZOOM</span>
+                      </div>
+                      <div className="text-amber-400 mt-2">
+                        MAC USERS: USE CMD INSTEAD OF CTRL
+                      </div>
+                    </div>
+
+                    {/* Action Button - Terminal Style */}
+                    <button
+                      onClick={() => setShowZoomModal(false)}
+                      className="w-full mt-4 py-2 bg-green-400 text-black font-bold hover:bg-green-300 transition-colors border-2 border-green-400"
+                    >
+                      ACKNOWLEDGED
+                    </button>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {/* Toggle Buttons Container */}
             <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
               <div
