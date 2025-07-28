@@ -1967,8 +1967,8 @@ export default function Index() {
                 className="absolute aurora-curtain-1"
                 style={{
                   top: "20%",
-                  left: "-15%",
-                  right: "-15%",
+                  left: "-5%",
+                  right: "-5%",
                   height: "120px",
                   background: isPinkActive
                     ? "linear-gradient(90deg, transparent 0%, rgba(236, 72, 153, 0.4) 15%, rgba(244, 114, 182, 0.5) 30%, rgba(251, 113, 133, 0.4) 50%, rgba(236, 72, 153, 0.5) 70%, rgba(244, 114, 182, 0.4) 85%, transparent 100%)"
