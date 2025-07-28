@@ -1844,7 +1844,7 @@ export default function Index() {
               {/* Close Button */}
               <button
                 onClick={() => setShowZoomModal(false)}
-                className={`absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 group ${
+                className={`absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 group ${
                   theme === "light"
                     ? "bg-gray-100/80 hover:bg-red-50 text-gray-500 hover:text-red-500 border border-gray-200/50"
                     : "bg-white/5 hover:bg-red-500/10 text-white/60 hover:text-red-400 border border-white/10"
@@ -1853,13 +1853,13 @@ export default function Index() {
                   backdropFilter: "blur(10px)",
                 }}
               >
-                <span className="text-sm font-medium transition-transform duration-300 group-hover:scale-110">✕</span>
+                <span className="text-xs font-medium transition-transform duration-300 group-hover:scale-110">✕</span>
               </button>
 
               {/* Modal Header */}
-              <div className="text-center mb-8">
-                <div className="mb-4">
-                  <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center ${
+              <div className="text-center mb-4 sm:mb-6">
+                <div className="mb-2 sm:mb-3">
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full flex items-center justify-center ${
                     theme === "light"
                       ? "bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-600"
                       : "bg-gradient-to-br from-blue-500/20 to-indigo-500/20 text-blue-400"
@@ -1870,18 +1870,18 @@ export default function Index() {
                       ? "0 8px 25px rgba(59,130,246,0.15)"
                       : "0 8px 25px rgba(99,102,241,0.25)"
                   }}>
-                    <span className="text-2xl">🔍</span>
+                    <span className="text-lg sm:text-xl">🔍</span>
                   </div>
                 </div>
-                <h2 className={`text-2xl font-bold mb-3 ${
+                <h2 className={`text-lg sm:text-xl font-bold mb-2 ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}>
                   Need help seeing all content?
                 </h2>
-                <p className={`text-base leading-relaxed ${
+                <p className={`text-sm sm:text-base leading-relaxed ${
                   theme === "light" ? "text-gray-600" : "text-white/70"
                 }`}>
-                  If parts of the website appear cut off or you can't see all the content, try zooming out your browser for the best experience.
+                  If parts of the website appear cut off, try zooming out your browser.
                 </p>
               </div>
 
