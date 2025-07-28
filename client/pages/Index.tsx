@@ -138,32 +138,14 @@ export default function Index() {
     }
   }, [currentDeviceType, showWarning]); // React to device type changes
 
-  // Zoom warning modal - show if content might be cut off
+  // Zoom warning modal - show on all devices
   useEffect(() => {
     if (!hasShownZoomModalRef.current) {
-      const checkZoomLevel = () => {
-        const viewport = {
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-
-        // Show modal if viewport is very small or zoom is likely high
-        const shouldShowModal =
-          viewport.width < 1200 || // Small screen width
-          viewport.height < 650 || // Small screen height
-          (viewport.width < 1366 && viewport.height < 768) || // Common small laptop/chromebook
-          window.devicePixelRatio > 1.25; // High zoom level detected
-
-        if (shouldShowModal) {
-          hasShownZoomModalRef.current = true;
-          // Delay to let page load first
-          setTimeout(() => {
-            setShowZoomModal(true);
-          }, 2000);
-        }
-      };
-
-      checkZoomLevel();
+      hasShownZoomModalRef.current = true;
+      // Delay to let page load first
+      setTimeout(() => {
+        setShowZoomModal(true);
+      }, 2000);
     }
   }, []); // Run once on mount
 
