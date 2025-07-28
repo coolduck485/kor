@@ -774,12 +774,16 @@ export default function Index() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="fixed inset-0 z-[10001] flex items-center justify-center"
+                  transition={{ duration: 0.4 }}
+                  className="fixed inset-0 z-[100001] flex items-center justify-center"
+                  style={{
+                    backdropFilter: "blur(20px) saturate(120%)",
+                    WebkitBackdropFilter: "blur(20px) saturate(120%)"
+                  }}
                 >
-                  {/* Modal Backdrop */}
+                  {/* Enhanced Modal Backdrop */}
                   <div
-                    className="absolute inset-0 bg-black/70"
+                    className="absolute inset-0 bg-gradient-to-br from-black/80 via-green-900/20 to-black/80"
                     onClick={() => setShowZoomModal(false)}
                   />
 
@@ -915,7 +919,7 @@ export default function Index() {
                   }}
                 >
                   {`██��  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═�������═█��╗█����╔����══██╗
+██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
