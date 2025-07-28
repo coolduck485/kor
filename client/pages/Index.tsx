@@ -1157,7 +1157,7 @@ export default function Index() {
                 <div className="loading-indicators">
                   <span>█��▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░���▓█</span>
+                  <span>░�����▓█</span>
                 </div>
               </motion.div>
 
@@ -1937,7 +1937,7 @@ export default function Index() {
                   theme === "light"
                     ? "0 32px 64px -12px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.4), 0 0 120px rgba(59,130,246,0.2), inset 0 1px 0 rgba(255,255,255,0.6)"
                     : "0 32px 64px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.15), 0 0 120px rgba(99,102,241,0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
-                padding: "1.25rem",
+                padding: "0.75rem",
                 backdropFilter: "blur(40px) saturate(150%)",
                 WebkitBackdropFilter: "blur(40px) saturate(150%)",
               }}
