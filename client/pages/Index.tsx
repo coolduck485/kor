@@ -817,18 +817,18 @@ export default function Index() {
                       </p>
                     </div>
 
-                    {/* Guide Image - Retro Border */}
+                    {/* Access Instructions - Retro Style */}
                     <div className="mb-3">
-                      <div className="border border-green-400 bg-black p-1">
-                        <img
-                          src="https://cdn.builder.io/api/v1/image/assets%2F85794720c0214737bd32d535722cec7f%2F15182dbd9d354cc68694609b96f5f029?format=webp&width=800"
-                          alt="Browser zoom guide"
-                          className="w-full h-auto filter brightness-75 contrast-125"
-                          style={{ maxHeight: "100px", objectFit: "contain" }}
-                        />
+                      <div className="border border-green-400 bg-black p-2 text-center">
+                        <div className="text-amber-400 mb-1">🖱️ MENU ACCESS:</div>
+                        <div className="text-green-400 text-xs space-y-0.5">
+                          <div>1. RIGHT-CLICK ON PAGE</div>
+                          <div>2. SELECT "ZOOM OUT"</div>
+                          <div>3. REPEAT IF NEEDED</div>
+                        </div>
                       </div>
                       <p className="text-xs text-center mt-1 text-amber-400">
-                        RIGHT-CLICK → ZOOM OUT
+                        OR USE KEYBOARD COMMANDS BELOW
                       </p>
                     </div>
 
