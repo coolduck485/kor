@@ -1799,32 +1799,42 @@ export default function Index() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[10000] flex items-center justify-center"
-            style={{ backdropFilter: "blur(8px)" }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[100000] flex items-center justify-center"
+            style={{
+              backdropFilter: "blur(20px) saturate(180%)",
+              WebkitBackdropFilter: "blur(20px) saturate(180%)"
+            }}
           >
-            {/* Modal Backdrop */}
+            {/* Enhanced Modal Backdrop */}
             <div
-              className="absolute inset-0 bg-black/50"
+              className={`absolute inset-0 ${
+                theme === "light"
+                  ? "bg-gradient-to-br from-slate-100/60 via-blue-50/50 to-indigo-100/60"
+                  : "bg-gradient-to-br from-black/60 via-gray-900/50 to-black/60"
+              }`}
               onClick={() => setShowZoomModal(false)}
             />
 
-            {/* Modal Content */}
+            {/* Enhanced Modal Content */}
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
-              className={`relative max-w-md w-full mx-4 rounded-2xl border-2 backdrop-blur-xl p-6 ${
+              initial={{ scale: 0.8, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
+              className={`relative max-w-lg w-full mx-4 rounded-3xl backdrop-blur-3xl border shadow-2xl ${
                 theme === "light"
-                  ? "bg-white/90 border-blue-400/40 text-gray-800"
-                  : "bg-black/90 border-blue-300/30 text-white"
+                  ? "bg-white/95 border-white/40 text-gray-800 shadow-blue-500/20"
+                  : "bg-black/95 border-white/20 text-white shadow-blue-400/30"
               }`}
               style={{
                 background: theme === "light"
-                  ? "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)"
-                  : "linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 100%)",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.3), 0 0 60px rgba(73, 146, 255, 0.2)",
+                  ? "linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.95) 50%, rgba(241,245,249,0.92) 100%)"
+                  : "linear-gradient(135deg, rgba(0,0,0,0.98) 0%, rgba(15,23,42,0.95) 50%, rgba(30,41,59,0.92) 100%)",
+                boxShadow: theme === "light"
+                  ? "0 25px 50px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.3), 0 0 80px rgba(59,130,246,0.15)"
+                  : "0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1), 0 0 80px rgba(99,102,241,0.2)",
+                padding: "2rem",
               }}
             >
               {/* Close Button */}
