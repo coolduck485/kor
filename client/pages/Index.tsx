@@ -110,29 +110,26 @@ export default function Index() {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
 
-      // More aggressive scroll prevention
-      const preventScroll = (e: Event) => {
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
+      // Targeted scroll prevention - only prevent if not from modal
+      const preventBackgroundScroll = (e: WheelEvent | TouchEvent) => {
+        const target = e.target as Element;
+        // Check if the event comes from within the modal
+        const isFromModal = target?.closest('.zoom-modal-scrollbar');
+
+        if (!isFromModal) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
       };
 
-      // Prevent all forms of scrolling
-      document.addEventListener('wheel', preventScroll, { passive: false, capture: true });
-      document.addEventListener('touchmove', preventScroll, { passive: false, capture: true });
-      document.addEventListener('scroll', preventScroll, { passive: false, capture: true });
-      window.addEventListener('wheel', preventScroll, { passive: false });
-      window.addEventListener('touchmove', preventScroll, { passive: false });
-      window.addEventListener('scroll', preventScroll, { passive: false });
+      // Add targeted scroll prevention
+      document.addEventListener('wheel', preventBackgroundScroll, { passive: false });
+      document.addEventListener('touchmove', preventBackgroundScroll, { passive: false });
 
       return () => {
-        // Remove all event listeners
-        document.removeEventListener('wheel', preventScroll, { capture: true });
-        document.removeEventListener('touchmove', preventScroll, { capture: true });
-        document.removeEventListener('scroll', preventScroll, { capture: true });
-        window.removeEventListener('wheel', preventScroll);
-        window.removeEventListener('touchmove', preventScroll);
-        window.removeEventListener('scroll', preventScroll);
+        // Remove event listeners
+        document.removeEventListener('wheel', preventBackgroundScroll);
+        document.removeEventListener('touchmove', preventBackgroundScroll);
       };
     } else {
       // Restore scroll position when modal closes
