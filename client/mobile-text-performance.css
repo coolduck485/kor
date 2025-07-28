@@ -63,26 +63,49 @@
   }
 }
 
-/* Mobile only (640px and below) - even more aggressive optimizations */
+/* Mobile only (640px and below) - optimized for mobile while preserving essential animations */
 @media (max-width: 640px) {
-  /* Remove all text animations completely */
-  * {
+  /* Optimize heavy text animations but preserve essential mobile animations */
+  .heavy-animation {
     animation-duration: 0s !important;
     animation-delay: 0s !important;
+  }
+
+  /* Preserve mobile-specific animations */
+  .mobile-wave-1,
+  .mobile-wave-2,
+  .mobile-wave-3,
+  .mobile-float-1,
+  .mobile-lively-particle,
+  .mobile-lively-text,
+  .mobile-lively-card,
+  .mobile-lively-icon,
+  .mobile-lively-float,
+  .mobile-lively-glow,
+  .animate-mobile-wave-1,
+  .animate-mobile-wave-2,
+  .animate-mobile-wave-3,
+  .animate-mobile-float-1,
+  .animate-enhanced-mobile-float-1,
+  .animate-enhanced-mobile-float-2,
+  .animate-enhanced-mobile-float-3,
+  .animate-mobile-pulse-corner,
+  .animate-mobile-scan-line {
+    animation-duration: initial !important;
+    animation-delay: initial !important;
+    transition-duration: initial !important;
+  }
+
+  /* Faster transitions for better mobile responsiveness */
+  button, input, textarea {
     transition-duration: 0.2s !important;
   }
 
-  /* Disable all text shadow effects */
+  /* Disable heavy text shadow effects but preserve mobile-specific text animations */
   .warm-glow-text,
   .animate-warm-glow-pulse,
   .animate-text-glow,
-  .animate-textGlow,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  .animate-textGlow {
     text-shadow: none !important;
     filter: none !important;
     animation: none !important;
@@ -93,9 +116,21 @@
     color: white !important;
   }
 
-  /* Override any remaining glow effects */
-  .animate-pulse-glow,
-  .animate-button-float {
+  /* Keep headings clean but allow mobile text animations */
+  h1:not(.mobile-lively-text),
+  h2:not(.mobile-lively-text),
+  h3:not(.mobile-lively-text),
+  h4:not(.mobile-lively-text),
+  h5:not(.mobile-lively-text),
+  h6:not(.mobile-lively-text) {
+    text-shadow: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
+  /* Disable heavy glow effects but preserve mobile particle animations */
+  .animate-pulse-glow:not(.mobile-lively-particle),
+  .animate-button-float:not(.mobile-lively-float) {
     animation: none !important;
   }
 }
