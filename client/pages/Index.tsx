@@ -915,8 +915,8 @@ export default function Index() {
                   }}
                 >
                   {`██��  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
-█████╔╝ █������   █��║██������███╔���
+██║ █��╔╝��█╔═�������═█��╗█����╔����══██╗
+█████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
 ╚═��  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
@@ -1882,61 +1882,88 @@ export default function Index() {
               </div>
 
               {/* Guide Image */}
-              <div className="mb-6">
-                <div className={`relative rounded-lg overflow-hidden border ${
-                  theme === "light" ? "border-gray-200" : "border-white/20"
-                }`}>
+              <div className="mb-8">
+                <div className={`relative rounded-2xl overflow-hidden border-2 p-3 ${
+                  theme === "light"
+                    ? "border-blue-200/50 bg-gradient-to-br from-blue-50/50 to-indigo-50/30"
+                    : "border-blue-400/20 bg-gradient-to-br from-blue-500/10 to-indigo-500/10"
+                }`}
+                style={{
+                  backdropFilter: "blur(10px)"
+                }}>
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets%2F85794720c0214737bd32d535722cec7f%2F15182dbd9d354cc68694609b96f5f029?format=webp&width=800"
                     alt="Browser zoom guide showing right-click menu with zoom option highlighted"
-                    className="w-full h-auto"
-                    style={{ maxHeight: "200px", objectFit: "contain" }}
+                    className="w-full h-auto rounded-xl"
+                    style={{ maxHeight: "180px", objectFit: "contain" }}
                   />
                 </div>
-                <p className={`text-xs text-center mt-2 ${
-                  theme === "light" ? "text-gray-500" : "text-white/60"
+                <p className={`text-sm text-center mt-3 font-medium ${
+                  theme === "light" ? "text-gray-600" : "text-white/70"
                 }`}>
-                  Right-click and select "Zoom out" or use Ctrl+- (Cmd+- on Mac)
+                  Right-click and select "Zoom out" or use keyboard shortcuts
                 </p>
               </div>
 
               {/* Instructions */}
-              <div className={`text-sm space-y-2 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
-                <div className="font-semibold mb-3">Quick zoom options:</div>
-                <div className="flex items-center space-x-2">
-                  <span className={`px-2 py-1 rounded text-xs font-mono ${
-                    theme === "light" ? "bg-gray-100" : "bg-white/10"
-                  }`}>
-                    Ctrl + -
-                  </span>
-                  <span>Zoom out</span>
+              <div className={`space-y-4 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                <div className={`font-bold text-lg mb-4 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                  Quick zoom options:
                 </div>
-                <div className="flex items-center space-x-2">
-                  <span className={`px-2 py-1 rounded text-xs font-mono ${
-                    theme === "light" ? "bg-gray-100" : "bg-white/10"
+                <div className="space-y-3">
+                  <div className={`flex items-center justify-between p-3 rounded-xl ${
+                    theme === "light"
+                      ? "bg-gradient-to-r from-gray-50 to-blue-50/50 border border-gray-200/50"
+                      : "bg-gradient-to-r from-white/5 to-blue-500/10 border border-white/10"
                   }`}>
-                    Ctrl + 0
-                  </span>
-                  <span>Reset zoom to 100%</span>
+                    <span className="font-medium">Zoom out</span>
+                    <span className={`px-3 py-1.5 rounded-lg text-sm font-mono font-bold ${
+                      theme === "light"
+                        ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
+                        : "bg-black/50 text-white border border-white/20"
+                    }`}>
+                      Ctrl + -
+                    </span>
+                  </div>
+                  <div className={`flex items-center justify-between p-3 rounded-xl ${
+                    theme === "light"
+                      ? "bg-gradient-to-r from-gray-50 to-green-50/50 border border-gray-200/50"
+                      : "bg-gradient-to-r from-white/5 to-green-500/10 border border-white/10"
+                  }`}>
+                    <span className="font-medium">Reset zoom</span>
+                    <span className={`px-3 py-1.5 rounded-lg text-sm font-mono font-bold ${
+                      theme === "light"
+                        ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
+                        : "bg-black/50 text-white border border-white/20"
+                    }`}>
+                      Ctrl + 0
+                    </span>
+                  </div>
                 </div>
-                <div className="text-xs mt-3 opacity-75">
-                  On Mac, use Cmd instead of Ctrl
+                <div className={`text-center text-sm mt-4 p-3 rounded-lg ${
+                  theme === "light"
+                    ? "bg-amber-50 text-amber-700 border border-amber-200/50"
+                    : "bg-amber-500/10 text-amber-300 border border-amber-400/20"
+                }`}>
+                  💡 On Mac, use <strong>Cmd</strong> instead of <strong>Ctrl</strong>
                 </div>
               </div>
 
               {/* Action Button */}
               <button
                 onClick={() => setShowZoomModal(false)}
-                className={`w-full mt-6 py-3 px-4 rounded-xl font-semibold transition-all duration-200 hover:scale-105 ${
+                className={`w-full mt-8 py-4 px-6 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
                   theme === "light"
-                    ? "bg-blue-500 hover:bg-blue-600 text-white"
-                    : "bg-blue-400 hover:bg-blue-300 text-black"
+                    ? "bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white"
+                    : "bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-300 hover:to-indigo-400 text-black"
                 }`}
                 style={{
-                  boxShadow: "0 8px 20px rgba(59, 130, 246, 0.3)",
+                  boxShadow: theme === "light"
+                    ? "0 10px 25px rgba(59, 130, 246, 0.4), 0 4px 12px rgba(99, 102, 241, 0.3)"
+                    : "0 10px 25px rgba(99, 102, 241, 0.5), 0 4px 12px rgba(139, 92, 246, 0.4)",
                 }}
               >
-                Got it, thanks!
+                Got it, thanks! 🚀
               </button>
             </motion.div>
           </motion.div>
