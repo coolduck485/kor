@@ -127,6 +127,46 @@ html, body {
   .responsive-padding {
     padding: clamp(0.5rem, 2vw, 1rem) !important;
   }
+
+  /* Ensure SVGs and large elements scale down */
+  svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Fix large text elements */
+  h1, .text-9xl, .text-8xl, .text-7xl {
+    font-size: clamp(2rem, 8vw, 4rem) !important;
+  }
+
+  h2, .text-6xl, .text-5xl {
+    font-size: clamp(1.5rem, 6vw, 2.5rem) !important;
+  }
+
+  /* Fix button sizing */
+  button {
+    min-height: 44px !important; /* Touch-friendly minimum */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Very small mobile devices */
+  .responsive-text {
+    font-size: clamp(0.7rem, 3vw, 0.9rem) !important;
+  }
+
+  .responsive-heading {
+    font-size: clamp(1rem, 5vw, 1.5rem) !important;
+  }
+
+  h1, .text-9xl, .text-8xl, .text-7xl {
+    font-size: clamp(1.5rem, 10vw, 3rem) !important;
+  }
+
+  /* Reduce spacing on very small screens */
+  .responsive-padding {
+    padding: clamp(0.25rem, 1.5vw, 0.75rem) !important;
+  }
 }
 
 @layer base {
