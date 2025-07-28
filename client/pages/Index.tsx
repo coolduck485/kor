@@ -99,6 +99,33 @@ export default function Index() {
   const [showZoomModal, setShowZoomModal] = useState(false);
   const hasShownZoomModalRef = useRef(false);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (showZoomModal) {
+      // Store the current scroll position
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+    } else {
+      // Restore scroll position when modal closes
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+
+    // Cleanup function
+    return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    };
+  }, [showZoomModal]);
+
   // Test notification removed
 
   // Welcome notification - shows immediately on all devices
@@ -1006,7 +1033,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������█████����██████ 60%
+                      CPU: █����������█������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
