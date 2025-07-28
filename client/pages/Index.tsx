@@ -1157,7 +1157,7 @@ export default function Index() {
                 <div className="loading-indicators">
                   <span>█��▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░�����▓█</span>
+                  <span>░���▓█</span>
                 </div>
               </motion.div>
 
@@ -1945,7 +1945,7 @@ export default function Index() {
               {/* Close Button */}
               <button
                 onClick={closeModalAndScrollToTop}
-                className={`absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 group ${
+                className={`absolute top-2 right-2 w-6 h-6 sm:w-8 sm:h-8 sm:top-3 sm:right-3 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 group ${
                   theme === "light"
                     ? "bg-gray-100/80 hover:bg-red-50 text-gray-500 hover:text-red-500 border border-gray-200/50"
                     : "bg-white/5 hover:bg-red-500/10 text-white/60 hover:text-red-400 border border-white/10"
