@@ -775,7 +775,7 @@ export default function Index() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="fixed inset-0 z-[100001] flex items-center justify-center"
+                  className="fixed inset-0 z-[999999] flex items-center justify-center"
                   style={{
                     backdropFilter: "blur(20px) saturate(120%)",
                     WebkitBackdropFilter: "blur(20px) saturate(120%)"
@@ -919,7 +919,7 @@ export default function Index() {
                   }}
                 >
                   {`██��  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═���������═██╗█����╔����══██╗
+██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
@@ -997,7 +997,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█��██��██████��███ 50%
+                      RAM: █���████��█��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
