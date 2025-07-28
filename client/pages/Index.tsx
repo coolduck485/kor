@@ -151,15 +151,17 @@ export default function Index() {
         document.removeEventListener('touchmove', preventBackgroundScroll);
       };
     } else {
-      // Restore scroll position when modal closes
-      const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      // Restore scroll position when modal closes (only if not already restored by closeModalAndScrollToTop)
+      if (document.body.style.position === 'fixed') {
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
       }
     }
   }, [showZoomModal]);
