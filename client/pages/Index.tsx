@@ -1910,7 +1910,7 @@ export default function Index() {
                 <p className={`text-xs sm:text-sm text-center mt-2 font-medium ${
                   theme === "light" ? "text-gray-600" : "text-white/70"
                 }`}>
-                  Or use the keyboard shortcuts below
+                  Or use the faster keyboard shortcuts below
                 </p>
               </div>
 
@@ -8995,7 +8995,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Telegram",
                             url: "https://telegram.org",
-                            icon: "����",
+                            icon: "📱",
                             color: "from-blue-500 to-cyan-500",
                           },
                         ].map((social) => (
