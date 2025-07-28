@@ -1886,8 +1886,8 @@ export default function Index() {
               </div>
 
               {/* Guide Image */}
-              <div className="mb-8">
-                <div className={`relative rounded-2xl overflow-hidden border-2 p-3 ${
+              <div className="mb-4 sm:mb-6">
+                <div className={`relative rounded-xl overflow-hidden border p-2 sm:p-3 ${
                   theme === "light"
                     ? "border-blue-200/50 bg-gradient-to-br from-blue-50/50 to-indigo-50/30"
                     : "border-blue-400/20 bg-gradient-to-br from-blue-500/10 to-indigo-500/10"
@@ -1898,14 +1898,14 @@ export default function Index() {
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets%2F85794720c0214737bd32d535722cec7f%2F15182dbd9d354cc68694609b96f5f029?format=webp&width=800"
                     alt="Browser zoom guide showing right-click menu with zoom option highlighted"
-                    className="w-full h-auto rounded-xl"
-                    style={{ maxHeight: "180px", objectFit: "contain" }}
+                    className="w-full h-auto rounded-lg"
+                    style={{ maxHeight: "120px", objectFit: "contain" }}
                   />
                 </div>
-                <p className={`text-sm text-center mt-3 font-medium ${
+                <p className={`text-xs sm:text-sm text-center mt-2 font-medium ${
                   theme === "light" ? "text-gray-600" : "text-white/70"
                 }`}>
-                  Right-click and select "Zoom out" or use keyboard shortcuts
+                  Right-click → "Zoom out" or use shortcuts below
                 </p>
               </div>
 
