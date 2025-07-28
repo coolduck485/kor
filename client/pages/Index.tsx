@@ -1854,13 +1854,15 @@ export default function Index() {
               style={{
                 background:
                   theme === "light"
-                    ? "linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.95) 50%, rgba(241,245,249,0.92) 100%)"
-                    : "linear-gradient(135deg, rgba(0,0,0,0.98) 0%, rgba(15,23,42,0.95) 50%, rgba(30,41,59,0.92) 100%)",
+                    ? "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.9) 30%, rgba(239,246,255,0.95) 70%, rgba(255,255,255,0.98) 100%)"
+                    : "linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(15,23,42,0.9) 30%, rgba(30,41,59,0.85) 70%, rgba(0,0,0,0.98) 100%)",
                 boxShadow:
                   theme === "light"
-                    ? "0 25px 50px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.3), 0 0 80px rgba(59,130,246,0.15)"
-                    : "0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1), 0 0 80px rgba(99,102,241,0.2)",
+                    ? "0 32px 64px -12px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.4), 0 0 120px rgba(59,130,246,0.2), inset 0 1px 0 rgba(255,255,255,0.6)"
+                    : "0 32px 64px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.15), 0 0 120px rgba(99,102,241,0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
                 padding: "1.25rem",
+                backdropFilter: "blur(40px) saturate(150%)",
+                WebkitBackdropFilter: "blur(40px) saturate(150%)",
               }}
             >
               {/* Close Button */}
