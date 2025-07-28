@@ -1069,7 +1069,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">���������►�����</span>
+                  <span className="text-green-400 ml-4">������◄►�����</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -1826,7 +1826,7 @@ export default function Index() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.8, opacity: 0, y: 20 }}
               transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
-              className={`relative max-w-lg w-full mx-4 rounded-3xl backdrop-blur-3xl border shadow-2xl ${
+              className={`relative max-w-sm sm:max-w-md w-full mx-3 sm:mx-4 rounded-2xl sm:rounded-3xl backdrop-blur-3xl border shadow-2xl max-h-[90vh] overflow-y-auto ${
                 theme === "light"
                   ? "bg-white/95 border-white/40 text-gray-800 shadow-blue-500/20"
                   : "bg-black/95 border-white/20 text-white shadow-blue-400/30"
@@ -1838,7 +1838,7 @@ export default function Index() {
                 boxShadow: theme === "light"
                   ? "0 25px 50px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.3), 0 0 80px rgba(59,130,246,0.15)"
                   : "0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1), 0 0 80px rgba(99,102,241,0.2)",
-                padding: "2rem",
+                padding: "1.25rem",
               }}
             >
               {/* Close Button */}
