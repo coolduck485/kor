@@ -1682,6 +1682,8 @@ export default function Index() {
         height: "100vh",
         overflow: "hidden",
         maxWidth: "100vw",
+        width: "100vw",
+        position: "relative",
         willChange: isScrollingActive ? "auto" : "transform",
         contain: "layout style paint",
       }}
@@ -1859,7 +1861,7 @@ export default function Index() {
         {/* Home Section */}
         <motion.div
           ref={(el) => (sectionsRef.current[0] = el!)}
-          className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
+          className={`relative min-h-screen max-w-full overflow-hidden transition-all duration-500 ${
             isMobileMenuOpen ? "blur-sm" : ""
           } ${
             theme === "light"
@@ -1868,6 +1870,9 @@ export default function Index() {
           }`}
           style={{
             display: currentSection === 0 ? "block" : "none",
+            width: "100vw",
+            maxWidth: "100vw",
+            boxSizing: "border-box",
           }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
