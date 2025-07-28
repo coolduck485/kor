@@ -839,7 +839,7 @@ export default function Index() {
                   {/* Enhanced Modal Backdrop */}
                   <div
                     className="absolute inset-0 bg-gradient-to-br from-black/80 via-green-900/20 to-black/80"
-                    onClick={() => setShowZoomModal(false)}
+                    onClick={closeModalAndScrollToTop}
                   />
 
                   {/* Retro Modal Content */}
@@ -860,7 +860,7 @@ export default function Index() {
                   >
                     {/* Close Button - Retro Style */}
                     <button
-                      onClick={() => setShowZoomModal(false)}
+                      onClick={closeModalAndScrollToTop}
                       className="absolute top-2 right-2 w-6 h-6 bg-green-400 text-black font-bold text-sm hover:bg-green-300 transition-colors"
                     >
                       X
@@ -920,7 +920,7 @@ export default function Index() {
 
                     {/* Action Button - Terminal Style */}
                     <button
-                      onClick={() => setShowZoomModal(false)}
+                      onClick={closeModalAndScrollToTop}
                       className="w-full py-2 bg-green-400 text-black font-bold hover:bg-green-300 transition-colors border border-green-400 text-sm"
                     >
                       OK
@@ -1889,7 +1889,7 @@ export default function Index() {
                   ? "bg-gradient-to-br from-slate-100/60 via-blue-50/50 to-indigo-100/60"
                   : "bg-gradient-to-br from-black/60 via-gray-900/50 to-black/60"
               }`}
-              onClick={() => setShowZoomModal(false)}
+              onClick={closeModalAndScrollToTop}
             />
 
             {/* Enhanced Modal Content */}
@@ -1932,7 +1932,7 @@ export default function Index() {
             >
               {/* Close Button */}
               <button
-                onClick={() => setShowZoomModal(false)}
+                onClick={closeModalAndScrollToTop}
                 className={`absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 group ${
                   theme === "light"
                     ? "bg-gray-100/80 hover:bg-red-50 text-gray-500 hover:text-red-500 border border-gray-200/50"
@@ -2089,7 +2089,7 @@ export default function Index() {
 
               {/* Action Button */}
               <button
-                onClick={() => setShowZoomModal(false)}
+                onClick={closeModalAndScrollToTop}
                 className={`w-full mt-4 sm:mt-6 py-3 px-4 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
                   theme === "light"
                     ? "bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white"
