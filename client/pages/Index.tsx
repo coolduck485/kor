@@ -1888,6 +1888,14 @@ export default function Index() {
                   ? "bg-white/95 border-white/40 text-gray-800 shadow-blue-500/20 light-theme"
                   : "bg-black/95 border-white/20 text-white shadow-blue-400/30"
               }`}
+              onWheel={(e) => {
+                // Allow scrolling within modal, prevent propagation to background
+                e.stopPropagation();
+              }}
+              onTouchMove={(e) => {
+                // Allow touch scrolling within modal, prevent propagation to background
+                e.stopPropagation();
+              }}
               style={{
                 background:
                   theme === "light"
