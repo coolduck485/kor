@@ -108,20 +108,31 @@ export default function Index() {
       document.body.style.top = `-${scrollY}px`;
       document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
 
-      // Prevent scroll on window
-      const preventScroll = (e: WheelEvent | TouchEvent) => {
+      // More aggressive scroll prevention
+      const preventScroll = (e: Event) => {
         e.preventDefault();
+        e.stopPropagation();
+        return false;
       };
 
-      // Add event listeners to prevent scrolling
+      // Prevent all forms of scrolling
+      document.addEventListener('wheel', preventScroll, { passive: false, capture: true });
+      document.addEventListener('touchmove', preventScroll, { passive: false, capture: true });
+      document.addEventListener('scroll', preventScroll, { passive: false, capture: true });
       window.addEventListener('wheel', preventScroll, { passive: false });
       window.addEventListener('touchmove', preventScroll, { passive: false });
+      window.addEventListener('scroll', preventScroll, { passive: false });
 
       return () => {
-        // Remove event listeners
+        // Remove all event listeners
+        document.removeEventListener('wheel', preventScroll, { capture: true });
+        document.removeEventListener('touchmove', preventScroll, { capture: true });
+        document.removeEventListener('scroll', preventScroll, { capture: true });
         window.removeEventListener('wheel', preventScroll);
         window.removeEventListener('touchmove', preventScroll);
+        window.removeEventListener('scroll', preventScroll);
       };
     } else {
       // Restore scroll position when modal closes
@@ -130,6 +141,7 @@ export default function Index() {
       document.body.style.top = '';
       document.body.style.width = '';
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
       if (scrollY) {
         window.scrollTo(0, parseInt(scrollY || '0') * -1);
       }
@@ -792,7 +804,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ��
+                      ���
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -970,7 +982,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██��  ██╗ ██████���� ███����������█╗
+                  {`██��  ██╗ ██████���� ███�����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
@@ -8562,7 +8574,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "✉���" },
+            { type: "email", x: 15, y: 35, icon: "������" },
             { type: "call", x: 75, y: 25, icon: "��" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
