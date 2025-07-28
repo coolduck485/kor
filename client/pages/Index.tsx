@@ -810,7 +810,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███����������█╗
+                  {`██��  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
@@ -889,7 +889,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���█��██��█��█████████��███ 50%
+                      RAM: █���████��█��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -2250,8 +2250,8 @@ export default function Index() {
                   className="absolute"
                   style={{
                     top: "55%",
-                    left: "-15%",
-                    right: "-15%",
+                    left: "-5%",
+                    right: "-5%",
                     height: window.innerWidth <= 640 ? "70px" : "90px",
                     background:
                       window.innerWidth <= 640
