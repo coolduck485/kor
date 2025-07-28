@@ -982,7 +982,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██��  ██╗ ██████���� ███�����������█╗
+                  {`██��  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
@@ -1903,11 +1903,21 @@ export default function Index() {
                   : "bg-black/95 border-white/20 text-white shadow-blue-400/30"
               }`}
               onWheel={(e) => {
-                // Allow scrolling within modal, prevent propagation to background
+                // Allow scrolling within modal only
+                const target = e.currentTarget;
+                const { scrollTop, scrollHeight, clientHeight } = target;
+                const isScrollingUp = e.deltaY < 0;
+                const isScrollingDown = e.deltaY > 0;
+
+                // Only prevent if we're at the boundaries
+                if ((isScrollingUp && scrollTop === 0) ||
+                    (isScrollingDown && scrollTop + clientHeight >= scrollHeight)) {
+                  e.preventDefault();
+                }
                 e.stopPropagation();
               }}
               onTouchMove={(e) => {
-                // Allow touch scrolling within modal, prevent propagation to background
+                // Allow touch scrolling within modal, prevent propagation
                 e.stopPropagation();
               }}
               style={{
