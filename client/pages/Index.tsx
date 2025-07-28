@@ -1846,9 +1846,9 @@ export default function Index() {
                 stiffness: 200,
                 damping: 20,
               }}
-              className={`relative max-w-sm sm:max-w-md w-full mx-3 sm:mx-4 rounded-2xl sm:rounded-3xl backdrop-blur-3xl border shadow-2xl max-h-[90vh] overflow-y-auto ${
+              className={`relative max-w-sm sm:max-w-md w-full mx-3 sm:mx-4 rounded-2xl sm:rounded-3xl backdrop-blur-3xl border shadow-2xl max-h-[90vh] overflow-y-auto zoom-modal-scrollbar ${
                 theme === "light"
-                  ? "bg-white/95 border-white/40 text-gray-800 shadow-blue-500/20"
+                  ? "bg-white/95 border-white/40 text-gray-800 shadow-blue-500/20 light-theme"
                   : "bg-black/95 border-white/20 text-white shadow-blue-400/30"
               }`}
               style={{
