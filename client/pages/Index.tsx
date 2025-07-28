@@ -807,53 +807,53 @@ export default function Index() {
                     </button>
 
                     {/* Modal Header - Retro Style */}
-                    <div className="text-center mb-4">
-                      <div className="text-2xl mb-2 text-amber-400">{">>> WARNING <<<"}</div>
-                      <h2 className="text-lg font-bold mb-2 text-green-400">
-                        CONTENT VISIBILITY ISSUE DETECTED
+                    <div className="text-center mb-3">
+                      <div className="text-lg sm:text-xl mb-1 text-amber-400">{">>> WARNING <<<"}</div>
+                      <h2 className="text-sm sm:text-base font-bold mb-1 text-green-400">
+                        ZOOM OUT REQUIRED
                       </h2>
                       <p className="text-xs text-amber-400">
-                        IF CONTENT APPEARS CUT OFF, EXECUTE ZOOM OUT PROTOCOL
+                        CONTENT MAY BE CUT OFF
                       </p>
                     </div>
 
                     {/* Guide Image - Retro Border */}
-                    <div className="mb-4">
-                      <div className="border-2 border-green-400 bg-black p-1">
+                    <div className="mb-3">
+                      <div className="border border-green-400 bg-black p-1">
                         <img
                           src="https://cdn.builder.io/api/v1/image/assets%2F85794720c0214737bd32d535722cec7f%2F15182dbd9d354cc68694609b96f5f029?format=webp&width=800"
                           alt="Browser zoom guide"
                           className="w-full h-auto filter brightness-75 contrast-125"
-                          style={{ maxHeight: "150px", objectFit: "contain" }}
+                          style={{ maxHeight: "100px", objectFit: "contain" }}
                         />
                       </div>
                       <p className="text-xs text-center mt-1 text-amber-400">
-                        REFERENCE: RIGHT-CLICK -&gt; ZOOM OUT
+                        RIGHT-CLICK → ZOOM OUT
                       </p>
                     </div>
 
                     {/* Instructions - Terminal Style */}
-                    <div className="text-xs space-y-1 text-green-400">
-                      <div className="text-amber-400 font-bold mb-2">ZOOM COMMANDS:</div>
-                      <div className="flex items-center space-x-2">
-                        <span className="bg-green-400 text-black px-1">CTRL + -</span>
+                    <div className="text-xs space-y-1 text-green-400 mb-3">
+                      <div className="text-amber-400 font-bold mb-1">COMMANDS:</div>
+                      <div className="flex items-center justify-between">
                         <span>ZOOM OUT</span>
+                        <span className="bg-green-400 text-black px-1 text-xs">CTRL+-</span>
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <span className="bg-green-400 text-black px-1">CTRL + 0</span>
-                        <span>RESET ZOOM</span>
+                      <div className="flex items-center justify-between">
+                        <span>RESET</span>
+                        <span className="bg-green-400 text-black px-1 text-xs">CTRL+0</span>
                       </div>
-                      <div className="text-amber-400 mt-2">
-                        MAC USERS: USE CMD INSTEAD OF CTRL
+                      <div className="text-amber-400 text-xs mt-1">
+                        MAC: USE CMD
                       </div>
                     </div>
 
                     {/* Action Button - Terminal Style */}
                     <button
                       onClick={() => setShowZoomModal(false)}
-                      className="w-full mt-4 py-2 bg-green-400 text-black font-bold hover:bg-green-300 transition-colors border-2 border-green-400"
+                      className="w-full py-2 bg-green-400 text-black font-bold hover:bg-green-300 transition-colors border border-green-400 text-sm"
                     >
-                      ACKNOWLEDGED
+                      OK
                     </button>
                   </motion.div>
                 </motion.div>
@@ -918,7 +918,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██��  ██╗ ██████���� ███�����������█╗
+                  {`██��  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
