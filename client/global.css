@@ -67,26 +67,26 @@
 .zoom-modal-scrollbar.light-theme::-webkit-scrollbar-thumb {
   background: linear-gradient(
     135deg,
-    rgba(59, 130, 246, 0.8) 0%,
-    rgba(37, 99, 235, 0.9) 50%,
-    rgba(29, 78, 216, 0.8) 100%
+    rgba(156, 163, 175, 0.8) 0%,
+    rgba(107, 114, 128, 0.9) 50%,
+    rgba(75, 85, 99, 0.8) 100%
   );
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   box-shadow:
-    0 0 10px rgba(59, 130, 246, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    0 2px 4px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .zoom-modal-scrollbar.light-theme::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     135deg,
-    rgba(59, 130, 246, 0.95) 0%,
-    rgba(37, 99, 235, 1) 50%,
-    rgba(29, 78, 216, 0.95) 100%
+    rgba(156, 163, 175, 0.95) 0%,
+    rgba(107, 114, 128, 1) 50%,
+    rgba(75, 85, 99, 0.95) 100%
   );
   box-shadow:
-    0 0 15px rgba(59, 130, 246, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    0 3px 6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* Ensure notifications stay visible across all sections */
