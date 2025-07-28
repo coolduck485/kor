@@ -138,6 +138,35 @@ export default function Index() {
     }
   }, [currentDeviceType, showWarning]); // React to device type changes
 
+  // Zoom warning modal - show if content might be cut off
+  useEffect(() => {
+    if (!hasShownZoomModalRef.current) {
+      const checkZoomLevel = () => {
+        const viewport = {
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+
+        // Show modal if viewport is very small or zoom is likely high
+        const shouldShowModal =
+          viewport.width < 1200 || // Small screen width
+          viewport.height < 650 || // Small screen height
+          (viewport.width < 1366 && viewport.height < 768) || // Common small laptop/chromebook
+          window.devicePixelRatio > 1.25; // High zoom level detected
+
+        if (shouldShowModal) {
+          hasShownZoomModalRef.current = true;
+          // Delay to let page load first
+          setTimeout(() => {
+            setShowZoomModal(true);
+          }, 2000);
+        }
+      };
+
+      checkZoomLevel();
+    }
+  }, []); // Run once on mount
+
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
@@ -887,7 +916,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������████������██████ 60%
+                      CPU: █��������█������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
