@@ -848,7 +848,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
-╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
+╚═��  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1721,6 +1721,126 @@ export default function Index() {
         contain: "layout style paint",
       }}
     >
+      {/* Zoom Warning Modal */}
+      <AnimatePresence>
+        {showZoomModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[10000] flex items-center justify-center"
+            style={{ backdropFilter: "blur(8px)" }}
+          >
+            {/* Modal Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/50"
+              onClick={() => setShowZoomModal(false)}
+            />
+
+            {/* Modal Content */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
+              className={`relative max-w-md w-full mx-4 rounded-2xl border-2 backdrop-blur-xl p-6 ${
+                theme === "light"
+                  ? "bg-white/90 border-blue-400/40 text-gray-800"
+                  : "bg-black/90 border-blue-300/30 text-white"
+              }`}
+              style={{
+                background: theme === "light"
+                  ? "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)"
+                  : "linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 100%)",
+                boxShadow: "0 20px 40px rgba(0,0,0,0.3), 0 0 60px rgba(73, 146, 255, 0.2)",
+              }}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowZoomModal(false)}
+                className={`absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 ${
+                  theme === "light"
+                    ? "bg-gray-100 hover:bg-gray-200 text-gray-600"
+                    : "bg-white/10 hover:bg-white/20 text-white/80"
+                }`}
+              >
+                ✕
+              </button>
+
+              {/* Modal Header */}
+              <div className="text-center mb-6">
+                <div className="text-3xl mb-2">🔍</div>
+                <h2 className="text-xl font-bold mb-2">
+                  Can't see all content?
+                </h2>
+                <p className={`text-sm ${theme === "light" ? "text-gray-600" : "text-white/70"}`}>
+                  If parts of the website appear cut off or you can't see all the content, try zooming out your browser.
+                </p>
+              </div>
+
+              {/* Guide Image */}
+              <div className="mb-6">
+                <div className={`relative rounded-lg overflow-hidden border ${
+                  theme === "light" ? "border-gray-200" : "border-white/20"
+                }`}>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F85794720c0214737bd32d535722cec7f%2F15182dbd9d354cc68694609b96f5f029?format=webp&width=800"
+                    alt="Browser zoom guide showing right-click menu with zoom option highlighted"
+                    className="w-full h-auto"
+                    style={{ maxHeight: "200px", objectFit: "contain" }}
+                  />
+                </div>
+                <p className={`text-xs text-center mt-2 ${
+                  theme === "light" ? "text-gray-500" : "text-white/60"
+                }`}>
+                  Right-click and select "Zoom out" or use Ctrl+- (Cmd+- on Mac)
+                </p>
+              </div>
+
+              {/* Instructions */}
+              <div className={`text-sm space-y-2 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                <div className="font-semibold mb-3">Quick zoom options:</div>
+                <div className="flex items-center space-x-2">
+                  <span className={`px-2 py-1 rounded text-xs font-mono ${
+                    theme === "light" ? "bg-gray-100" : "bg-white/10"
+                  }`}>
+                    Ctrl + -
+                  </span>
+                  <span>Zoom out</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className={`px-2 py-1 rounded text-xs font-mono ${
+                    theme === "light" ? "bg-gray-100" : "bg-white/10"
+                  }`}>
+                    Ctrl + 0
+                  </span>
+                  <span>Reset zoom to 100%</span>
+                </div>
+                <div className="text-xs mt-3 opacity-75">
+                  On Mac, use Cmd instead of Ctrl
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <button
+                onClick={() => setShowZoomModal(false)}
+                className={`w-full mt-6 py-3 px-4 rounded-xl font-semibold transition-all duration-200 hover:scale-105 ${
+                  theme === "light"
+                    ? "bg-blue-500 hover:bg-blue-600 text-white"
+                    : "bg-blue-400 hover:bg-blue-300 text-black"
+                }`}
+                style={{
+                  boxShadow: "0 8px 20px rgba(59, 130, 246, 0.3)",
+                }}
+              >
+                Got it, thanks!
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
         <div
