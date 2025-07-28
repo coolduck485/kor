@@ -1071,7 +1071,7 @@ export default function Index() {
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
-                      {systemStats.networkDown}MB/s ���
+                      {systemStats.networkDown}MB/s ↓
                     </div>
                   </div>
                 </div>
@@ -1174,7 +1174,7 @@ export default function Index() {
                       className="close-terminal"
                       onClick={() => setShowTerminal(false)}
                     >
-                      ���
+                      ✕
                     </button>
                   </div>
                   <div className="terminal-body">
@@ -1877,8 +1877,8 @@ export default function Index() {
             transition={{ duration: 0.4 }}
             className="fixed inset-0 z-[9999999] flex items-center justify-center"
             style={{
-              backdropFilter: "blur(20px) saturate(180%)",
-              WebkitBackdropFilter: "blur(20px) saturate(180%)",
+              backdropFilter: "blur(40px) saturate(200%)",
+              WebkitBackdropFilter: "blur(40px) saturate(200%)",
               pointerEvents: "auto",
             }}
           >
