@@ -3609,9 +3609,12 @@ export default function Index() {
 
         {/* Contact Us Section */}
         <motion.div
-          className={isMobileMenuOpen ? "blur-sm" : ""}
+          className={`max-w-full ${isMobileMenuOpen ? "blur-sm" : ""}`}
           style={{
             display: currentSection === 4 ? "block" : "none",
+            width: "100vw",
+            maxWidth: "100vw",
+            boxSizing: "border-box",
           }}
         >
           <ContactUsSection
