@@ -1861,6 +1861,7 @@ export default function Index() {
             style={{
               backdropFilter: "blur(20px) saturate(180%)",
               WebkitBackdropFilter: "blur(20px) saturate(180%)",
+              pointerEvents: "auto",
             }}
           >
             {/* Enhanced Modal Backdrop */}
