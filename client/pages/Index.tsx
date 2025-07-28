@@ -820,11 +820,11 @@ export default function Index() {
                     {/* Access Instructions - Retro Style */}
                     <div className="mb-3">
                       <div className="border border-green-400 bg-black p-2 text-center">
-                        <div className="text-amber-400 mb-1">🖱️ MENU ACCESS:</div>
+                        <div className="text-amber-400 mb-1">⚙️ BROWSER MENU:</div>
                         <div className="text-green-400 text-xs space-y-0.5">
-                          <div>1. RIGHT-CLICK ON PAGE</div>
-                          <div>2. SELECT "ZOOM OUT"</div>
-                          <div>3. REPEAT IF NEEDED</div>
+                          <div>1. CLICK MENU BUTTON (⋮)</div>
+                          <div>2. FIND "ZOOM" SECTION</div>
+                          <div>3. CLICK MINUS (-) BUTTON</div>
                         </div>
                       </div>
                       <p className="text-xs text-center mt-1 text-amber-400">
@@ -923,7 +923,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
-╚═����  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
+╚═��  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -8995,7 +8995,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Telegram",
                             url: "https://telegram.org",
-                            icon: "📱",
+                            icon: "����",
                             color: "from-blue-500 to-cyan-500",
                           },
                         ].map((social) => (
