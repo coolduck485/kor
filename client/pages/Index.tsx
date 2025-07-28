@@ -1910,18 +1910,18 @@ export default function Index() {
               </div>
 
               {/* Instructions */}
-              <div className={`space-y-4 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
-                <div className={`font-bold text-lg mb-4 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
-                  Quick zoom options:
+              <div className={`space-y-2 sm:space-y-3 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
+                <div className={`font-bold text-sm sm:text-base mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                  Quick shortcuts:
                 </div>
-                <div className="space-y-3">
-                  <div className={`flex items-center justify-between p-3 rounded-xl ${
+                <div className="space-y-2">
+                  <div className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
                     theme === "light"
                       ? "bg-gradient-to-r from-gray-50 to-blue-50/50 border border-gray-200/50"
                       : "bg-gradient-to-r from-white/5 to-blue-500/10 border border-white/10"
                   }`}>
-                    <span className="font-medium">Zoom out</span>
-                    <span className={`px-3 py-1.5 rounded-lg text-sm font-mono font-bold ${
+                    <span className="font-medium text-sm">Zoom out</span>
+                    <span className={`px-2 py-1 rounded text-xs font-mono font-bold ${
                       theme === "light"
                         ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
                         : "bg-black/50 text-white border border-white/20"
@@ -1929,13 +1929,13 @@ export default function Index() {
                       Ctrl + -
                     </span>
                   </div>
-                  <div className={`flex items-center justify-between p-3 rounded-xl ${
+                  <div className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
                     theme === "light"
                       ? "bg-gradient-to-r from-gray-50 to-green-50/50 border border-gray-200/50"
                       : "bg-gradient-to-r from-white/5 to-green-500/10 border border-white/10"
                   }`}>
-                    <span className="font-medium">Reset zoom</span>
-                    <span className={`px-3 py-1.5 rounded-lg text-sm font-mono font-bold ${
+                    <span className="font-medium text-sm">Reset zoom</span>
+                    <span className={`px-2 py-1 rounded text-xs font-mono font-bold ${
                       theme === "light"
                         ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
                         : "bg-black/50 text-white border border-white/20"
@@ -1944,30 +1944,30 @@ export default function Index() {
                     </span>
                   </div>
                 </div>
-                <div className={`text-center text-sm mt-4 p-3 rounded-lg ${
+                <div className={`text-center text-xs sm:text-sm mt-2 p-2 rounded-lg ${
                   theme === "light"
                     ? "bg-amber-50 text-amber-700 border border-amber-200/50"
                     : "bg-amber-500/10 text-amber-300 border border-amber-400/20"
                 }`}>
-                  💡 On Mac, use <strong>Cmd</strong> instead of <strong>Ctrl</strong>
+                  💡 Mac users: use <strong>Cmd</strong> instead
                 </div>
               </div>
 
               {/* Action Button */}
               <button
                 onClick={() => setShowZoomModal(false)}
-                className={`w-full mt-8 py-4 px-6 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
+                className={`w-full mt-4 sm:mt-6 py-3 px-4 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
                   theme === "light"
                     ? "bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white"
                     : "bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-300 hover:to-indigo-400 text-black"
                 }`}
                 style={{
                   boxShadow: theme === "light"
-                    ? "0 10px 25px rgba(59, 130, 246, 0.4), 0 4px 12px rgba(99, 102, 241, 0.3)"
-                    : "0 10px 25px rgba(99, 102, 241, 0.5), 0 4px 12px rgba(139, 92, 246, 0.4)",
+                    ? "0 8px 20px rgba(59, 130, 246, 0.3), 0 3px 10px rgba(99, 102, 241, 0.2)"
+                    : "0 8px 20px rgba(99, 102, 241, 0.4), 0 3px 10px rgba(139, 92, 246, 0.3)",
                 }}
               >
-                Got it, thanks! 🚀
+                Got it! 👍
               </button>
             </motion.div>
           </motion.div>
