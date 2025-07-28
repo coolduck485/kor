@@ -1846,6 +1846,7 @@ export default function Index() {
         position: "relative",
         willChange: isScrollingActive ? "auto" : "transform",
         contain: "layout style paint",
+        pointerEvents: showZoomModal ? "none" : "auto",
       }}
     >
       {/* Zoom Warning Modal */}
@@ -9259,7 +9260,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Email",
                         subtitle: "contact@kor.dev",
                         url: "mailto:contact@kor.dev",
-                        icon: "✉���",
+                        icon: "✉�����",
                         color: "from-emerald-500 via-green-500 to-lime-500",
                         shadowColor: "rgba(16, 185, 129, 0.3)",
                       },
