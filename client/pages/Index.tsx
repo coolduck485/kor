@@ -107,23 +107,33 @@ export default function Index() {
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollY}px`;
       document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+
+      // Prevent scroll on window
+      const preventScroll = (e: WheelEvent | TouchEvent) => {
+        e.preventDefault();
+      };
+
+      // Add event listeners to prevent scrolling
+      window.addEventListener('wheel', preventScroll, { passive: false });
+      window.addEventListener('touchmove', preventScroll, { passive: false });
+
+      return () => {
+        // Remove event listeners
+        window.removeEventListener('wheel', preventScroll);
+        window.removeEventListener('touchmove', preventScroll);
+      };
     } else {
       // Restore scroll position when modal closes
       const scrollY = document.body.style.top;
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
+      document.body.style.overflow = '';
       if (scrollY) {
         window.scrollTo(0, parseInt(scrollY || '0') * -1);
       }
     }
-
-    // Cleanup function
-    return () => {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-    };
   }, [showZoomModal]);
 
   // Test notification removed
@@ -1033,7 +1043,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █����������█������█████����██████ 60%
+                      CPU: █��������█������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
