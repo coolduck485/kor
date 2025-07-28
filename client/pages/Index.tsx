@@ -889,7 +889,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█��███��█████��███ 50%
+                      RAM: █���█��██��█��█████████��███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -2232,8 +2232,8 @@ export default function Index() {
                   className="absolute"
                   style={{
                     top: "25%",
-                    left: "-10%",
-                    right: "-10%",
+                    left: "-2%",
+                    right: "-2%",
                     height: window.innerWidth <= 640 ? "80px" : "100px",
                     background:
                       window.innerWidth <= 640
