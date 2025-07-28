@@ -85,6 +85,50 @@
   }
 }
 
+/* Prevent horizontal scrolling globally */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100vw !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure all elements respect container bounds */
+* {
+  box-sizing: border-box !important;
+}
+
+/* Specific responsive fixes for common breakpoints */
+@media (max-width: 1366px) {
+  /* Chromebook and smaller laptop screens */
+  .responsive-text {
+    font-size: clamp(0.875rem, 2.5vw, 1.125rem) !important;
+  }
+
+  .responsive-heading {
+    font-size: clamp(1.5rem, 5vw, 3rem) !important;
+  }
+
+  .responsive-padding {
+    padding: clamp(1rem, 3vw, 2rem) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Tablet and mobile devices */
+  .responsive-text {
+    font-size: clamp(0.75rem, 2vw, 1rem) !important;
+  }
+
+  .responsive-heading {
+    font-size: clamp(1.25rem, 4vw, 2rem) !important;
+  }
+
+  .responsive-padding {
+    padding: clamp(0.5rem, 2vw, 1rem) !important;
+  }
+}
+
 @layer base {
   /**
    * Tailwind CSS theme
