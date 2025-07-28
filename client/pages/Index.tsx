@@ -99,6 +99,15 @@ export default function Index() {
   const [showZoomModal, setShowZoomModal] = useState(false);
   const hasShownZoomModalRef = useRef(false);
 
+  // Function to close modal and scroll to top
+  const closeModalAndScrollToTop = () => {
+    setShowZoomModal(false);
+    // Scroll to top smoothly after a short delay to ensure modal closes first
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
   // Lock body scroll when modal is open
   useEffect(() => {
     if (showZoomModal) {
@@ -979,7 +988,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██��  ██╗ ██████����� ███����������█╗
+                  {`██��  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
@@ -1062,7 +1071,7 @@ export default function Index() {
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
-                      {systemStats.networkDown}MB/s ↓
+                      {systemStats.networkDown}MB/s ���
                     </div>
                   </div>
                 </div>
@@ -1165,7 +1174,7 @@ export default function Index() {
                       className="close-terminal"
                       onClick={() => setShowTerminal(false)}
                     >
-                      ✕
+                      ���
                     </button>
                   </div>
                   <div className="terminal-body">
