@@ -1004,7 +1004,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
-██║  �����█╗╚███��██�����╝██║  �����█║
+██║  �����█╗╚███��██�����╝██║  �����█��
 ╚═��  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1960,16 +1960,16 @@ export default function Index() {
               </button>
 
               {/* Modal Header */}
-              <div className="text-center mb-4 sm:mb-6">
+              <div className="text-center mb-3 sm:mb-4 md:mb-6">
                 <h2
-                  className={`text-lg sm:text-xl font-bold mb-2 ${
+                  className={`text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2 ${
                     theme === "light" ? "text-gray-900" : "text-white"
                   }`}
                 >
                   Need help seeing all content?
                 </h2>
                 <p
-                  className={`text-sm sm:text-base leading-relaxed ${
+                  className={`text-xs sm:text-sm md:text-base leading-relaxed ${
                     theme === "light" ? "text-gray-600" : "text-white/70"
                   }`}
                 >
