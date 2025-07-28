@@ -921,7 +921,7 @@ export default function Index() {
                   {`██��  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
-█���╔═��█╗ █��║   ██║██╔══█��������
+█���╔═��█╗ █��║   ██║██╔══�����������
 ██║  �����█╗╚███��██�����╝██║  �����█║
 ╚═��  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
@@ -1804,7 +1804,7 @@ export default function Index() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[999999] flex items-center justify-center"
+            className="fixed inset-0 z-[9999999] flex items-center justify-center"
             style={{
               backdropFilter: "blur(20px) saturate(180%)",
               WebkitBackdropFilter: "blur(20px) saturate(180%)"
