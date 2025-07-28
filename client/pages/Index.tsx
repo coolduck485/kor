@@ -923,7 +923,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
-╚═��  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
+╚═����  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1898,12 +1898,12 @@ export default function Index() {
                   <div className={`text-center space-y-2 ${
                     theme === "light" ? "text-gray-700" : "text-white/90"
                   }`}>
-                    <div className="text-lg mb-3">🖱️</div>
+                    <div className="text-lg mb-3">⚙️</div>
                     <h3 className="font-bold text-sm sm:text-base mb-2">How to access zoom options:</h3>
                     <div className="text-xs sm:text-sm space-y-1">
-                      <p><strong>1.</strong> Right-click anywhere on the page</p>
-                      <p><strong>2.</strong> Look for "Zoom out" in the menu</p>
-                      <p><strong>3.</strong> Click it to make content smaller</p>
+                      <p><strong>1.</strong> Click the menu button (⋮ or ☰) in your browser</p>
+                      <p><strong>2.</strong> Look for "Zoom" or "View" options</p>
+                      <p><strong>3.</strong> Click the minus (-) button to zoom out</p>
                     </div>
                   </div>
                 </div>
