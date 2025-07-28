@@ -3552,9 +3552,12 @@ export default function Index() {
 
         {/* About Us Section */}
         <motion.div
-          className={isMobileMenuOpen ? "blur-sm" : ""}
+          className={`max-w-full ${isMobileMenuOpen ? "blur-sm" : ""}`}
           style={{
             display: currentSection === 1 ? "block" : "none",
+            width: "100vw",
+            maxWidth: "100vw",
+            boxSizing: "border-box",
           }}
         >
           <AboutUsSection
@@ -3568,9 +3571,12 @@ export default function Index() {
 
         {/* Services Section */}
         <motion.div
-          className={isMobileMenuOpen ? "blur-sm" : ""}
+          className={`max-w-full ${isMobileMenuOpen ? "blur-sm" : ""}`}
           style={{
             display: currentSection === 2 ? "block" : "none",
+            width: "100vw",
+            maxWidth: "100vw",
+            boxSizing: "border-box",
           }}
         >
           <ServicesSection
@@ -3584,9 +3590,12 @@ export default function Index() {
 
         {/* Portfolio Section */}
         <motion.div
-          className={isMobileMenuOpen ? "blur-sm" : ""}
+          className={`max-w-full ${isMobileMenuOpen ? "blur-sm" : ""}`}
           style={{
             display: currentSection === 3 ? "block" : "none",
+            width: "100vw",
+            maxWidth: "100vw",
+            boxSizing: "border-box",
           }}
         >
           <PortfolioSection
