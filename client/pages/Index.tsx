@@ -6440,11 +6440,16 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
     return (
       <motion.div
         ref={ref}
-        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+        className={`relative min-h-screen max-w-full flex items-center justify-center overflow-hidden ${
           theme === "light"
             ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
             : "bg-black"
         }`}
+        style={{
+          width: "100vw",
+          maxWidth: "100vw",
+          boxSizing: "border-box",
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
