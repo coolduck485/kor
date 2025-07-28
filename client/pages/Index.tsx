@@ -101,11 +101,21 @@ export default function Index() {
 
   // Function to close modal and scroll to top
   const closeModalAndScrollToTop = () => {
+    // First restore the body scroll position
+    const scrollY = document.body.style.top;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+
+    // Close the modal
     setShowZoomModal(false);
-    // Scroll to top smoothly after a short delay to ensure modal closes first
+
+    // Immediately scroll to top (no need to restore previous position)
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
+    }, 50);
   };
 
   // Lock body scroll when modal is open
