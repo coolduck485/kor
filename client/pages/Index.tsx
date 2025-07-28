@@ -778,7 +778,7 @@ export default function Index() {
                   className="fixed inset-0 z-[9999999] flex items-center justify-center"
                   style={{
                     backdropFilter: "blur(20px) saturate(120%)",
-                    WebkitBackdropFilter: "blur(20px) saturate(120%)"
+                    WebkitBackdropFilter: "blur(20px) saturate(120%)",
                   }}
                 >
                   {/* Enhanced Modal Backdrop */}
@@ -792,10 +792,15 @@ export default function Index() {
                     initial={{ scale: 0.8, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.8, opacity: 0 }}
-                    transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
+                    transition={{
+                      duration: 0.3,
+                      type: "spring",
+                      stiffness: 300,
+                    }}
                     className="relative max-w-xs sm:max-w-sm w-full mx-3 sm:mx-4 bg-black border-2 border-green-400 font-mono text-green-400 p-3 sm:p-4 max-h-[90vh] overflow-y-auto"
                     style={{
-                      boxShadow: "0 0 30px rgba(0, 255, 65, 0.5), inset 0 0 20px rgba(0, 255, 65, 0.1)",
+                      boxShadow:
+                        "0 0 30px rgba(0, 255, 65, 0.5), inset 0 0 20px rgba(0, 255, 65, 0.1)",
                     }}
                   >
                     {/* Close Button - Retro Style */}
@@ -808,7 +813,9 @@ export default function Index() {
 
                     {/* Modal Header - Retro Style */}
                     <div className="text-center mb-3">
-                      <div className="text-lg sm:text-xl mb-1 text-amber-400">{">>> WARNING <<<"}</div>
+                      <div className="text-lg sm:text-xl mb-1 text-amber-400">
+                        {">>> WARNING <<<"}
+                      </div>
                       <h2 className="text-sm sm:text-base font-bold mb-1 text-green-400">
                         ZOOM OUT REQUIRED
                       </h2>
@@ -820,7 +827,9 @@ export default function Index() {
                     {/* Access Instructions - Retro Style */}
                     <div className="mb-3">
                       <div className="border border-green-400 bg-black p-2 text-center">
-                        <div className="text-amber-400 mb-1">⚙️ BROWSER MENU:</div>
+                        <div className="text-amber-400 mb-1">
+                          ⚙️ BROWSER MENU:
+                        </div>
                         <div className="text-green-400 text-xs space-y-0.5">
                           <div>1. CLICK MENU BUTTON (⋮)</div>
                           <div>2. FIND "ZOOM" SECTION</div>
@@ -834,14 +843,20 @@ export default function Index() {
 
                     {/* Instructions - Terminal Style */}
                     <div className="text-xs space-y-1 text-green-400 mb-3">
-                      <div className="text-amber-400 font-bold mb-1">COMMANDS:</div>
+                      <div className="text-amber-400 font-bold mb-1">
+                        COMMANDS:
+                      </div>
                       <div className="flex items-center justify-between">
                         <span>ZOOM OUT</span>
-                        <span className="bg-green-400 text-black px-1 text-xs">CTRL+-</span>
+                        <span className="bg-green-400 text-black px-1 text-xs">
+                          CTRL+-
+                        </span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span>RESET</span>
-                        <span className="bg-green-400 text-black px-1 text-xs">CTRL+0</span>
+                        <span className="bg-green-400 text-black px-1 text-xs">
+                          CTRL+0
+                        </span>
                       </div>
                       <div className="text-amber-400 text-xs mt-1">
                         MAC: USE CMD
@@ -1807,7 +1822,7 @@ export default function Index() {
             className="fixed inset-0 z-[9999999] flex items-center justify-center"
             style={{
               backdropFilter: "blur(20px) saturate(180%)",
-              WebkitBackdropFilter: "blur(20px) saturate(180%)"
+              WebkitBackdropFilter: "blur(20px) saturate(180%)",
             }}
           >
             {/* Enhanced Modal Backdrop */}
@@ -1825,19 +1840,26 @@ export default function Index() {
               initial={{ scale: 0.8, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.8, opacity: 0, y: 20 }}
-              transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
+              transition={{
+                duration: 0.4,
+                type: "spring",
+                stiffness: 200,
+                damping: 20,
+              }}
               className={`relative max-w-sm sm:max-w-md w-full mx-3 sm:mx-4 rounded-2xl sm:rounded-3xl backdrop-blur-3xl border shadow-2xl max-h-[90vh] overflow-y-auto ${
                 theme === "light"
                   ? "bg-white/95 border-white/40 text-gray-800 shadow-blue-500/20"
                   : "bg-black/95 border-white/20 text-white shadow-blue-400/30"
               }`}
               style={{
-                background: theme === "light"
-                  ? "linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.95) 50%, rgba(241,245,249,0.92) 100%)"
-                  : "linear-gradient(135deg, rgba(0,0,0,0.98) 0%, rgba(15,23,42,0.95) 50%, rgba(30,41,59,0.92) 100%)",
-                boxShadow: theme === "light"
-                  ? "0 25px 50px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.3), 0 0 80px rgba(59,130,246,0.15)"
-                  : "0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1), 0 0 80px rgba(99,102,241,0.2)",
+                background:
+                  theme === "light"
+                    ? "linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.95) 50%, rgba(241,245,249,0.92) 100%)"
+                    : "linear-gradient(135deg, rgba(0,0,0,0.98) 0%, rgba(15,23,42,0.95) 50%, rgba(30,41,59,0.92) 100%)",
+                boxShadow:
+                  theme === "light"
+                    ? "0 25px 50px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.3), 0 0 80px rgba(59,130,246,0.15)"
+                    : "0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1), 0 0 80px rgba(99,102,241,0.2)",
                 padding: "1.25rem",
               }}
             >
@@ -1853,107 +1875,147 @@ export default function Index() {
                   backdropFilter: "blur(10px)",
                 }}
               >
-                <span className="text-xs font-medium transition-transform duration-300 group-hover:scale-110">✕</span>
+                <span className="text-xs font-medium transition-transform duration-300 group-hover:scale-110">
+                  ✕
+                </span>
               </button>
 
               {/* Modal Header */}
               <div className="text-center mb-4 sm:mb-6">
                 <div className="mb-2 sm:mb-3">
-                  <div className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full flex items-center justify-center ${
-                    theme === "light"
-                      ? "bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-600"
-                      : "bg-gradient-to-br from-blue-500/20 to-indigo-500/20 text-blue-400"
-                  }`}
-                  style={{
-                    backdropFilter: "blur(10px)",
-                    boxShadow: theme === "light"
-                      ? "0 8px 25px rgba(59,130,246,0.15)"
-                      : "0 8px 25px rgba(99,102,241,0.25)"
-                  }}>
+                  <div
+                    className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full flex items-center justify-center ${
+                      theme === "light"
+                        ? "bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-600"
+                        : "bg-gradient-to-br from-blue-500/20 to-indigo-500/20 text-blue-400"
+                    }`}
+                    style={{
+                      backdropFilter: "blur(10px)",
+                      boxShadow:
+                        theme === "light"
+                          ? "0 8px 25px rgba(59,130,246,0.15)"
+                          : "0 8px 25px rgba(99,102,241,0.25)",
+                    }}
+                  >
                     <span className="text-lg sm:text-xl">🔍</span>
                   </div>
                 </div>
-                <h2 className={`text-lg sm:text-xl font-bold mb-2 ${
-                  theme === "light" ? "text-gray-900" : "text-white"
-                }`}>
+                <h2
+                  className={`text-lg sm:text-xl font-bold mb-2 ${
+                    theme === "light" ? "text-gray-900" : "text-white"
+                  }`}
+                >
                   Need help seeing all content?
                 </h2>
-                <p className={`text-sm sm:text-base leading-relaxed ${
-                  theme === "light" ? "text-gray-600" : "text-white/70"
-                }`}>
-                  If parts of the website appear cut off, try zooming out your browser.
+                <p
+                  className={`text-sm sm:text-base leading-relaxed ${
+                    theme === "light" ? "text-gray-600" : "text-white/70"
+                  }`}
+                >
+                  If parts of the website appear cut off, try zooming out your
+                  browser.
                 </p>
               </div>
 
               {/* How to Access Zoom Menu */}
               <div className="mb-4 sm:mb-6">
-                <div className={`relative rounded-xl border p-3 sm:p-4 ${
-                  theme === "light"
-                    ? "border-blue-200/50 bg-gradient-to-br from-blue-50/50 to-indigo-50/30"
-                    : "border-blue-400/20 bg-gradient-to-br from-blue-500/10 to-indigo-500/10"
-                }`}
-                style={{
-                  backdropFilter: "blur(10px)"
-                }}>
-                  <div className={`text-center space-y-2 ${
-                    theme === "light" ? "text-gray-700" : "text-white/90"
-                  }`}>
+                <div
+                  className={`relative rounded-xl border p-3 sm:p-4 ${
+                    theme === "light"
+                      ? "border-blue-200/50 bg-gradient-to-br from-blue-50/50 to-indigo-50/30"
+                      : "border-blue-400/20 bg-gradient-to-br from-blue-500/10 to-indigo-500/10"
+                  }`}
+                  style={{
+                    backdropFilter: "blur(10px)",
+                  }}
+                >
+                  <div
+                    className={`text-center space-y-2 ${
+                      theme === "light" ? "text-gray-700" : "text-white/90"
+                    }`}
+                  >
                     <div className="text-lg mb-3">⚙️</div>
-                    <h3 className="font-bold text-sm sm:text-base mb-2">How to access zoom options:</h3>
+                    <h3 className="font-bold text-sm sm:text-base mb-2">
+                      How to access zoom options:
+                    </h3>
                     <div className="text-xs sm:text-sm space-y-1">
-                      <p><strong>1.</strong> Click the menu button (⋮ or ☰) in your browser</p>
-                      <p><strong>2.</strong> Look for "Zoom" or "View" options</p>
-                      <p><strong>3.</strong> Click the minus (-) button to zoom out</p>
+                      <p>
+                        <strong>1.</strong> Click the menu button (⋮ or ☰) in
+                        your browser
+                      </p>
+                      <p>
+                        <strong>2.</strong> Look for "Zoom" or "View" options
+                      </p>
+                      <p>
+                        <strong>3.</strong> Click the minus (-) button to zoom
+                        out
+                      </p>
                     </div>
                   </div>
                 </div>
-                <p className={`text-xs sm:text-sm text-center mt-2 font-medium ${
-                  theme === "light" ? "text-gray-600" : "text-white/70"
-                }`}>
+                <p
+                  className={`text-xs sm:text-sm text-center mt-2 font-medium ${
+                    theme === "light" ? "text-gray-600" : "text-white/70"
+                  }`}
+                >
                   Or use the faster keyboard shortcuts below
                 </p>
               </div>
 
               {/* Instructions */}
-              <div className={`space-y-2 sm:space-y-3 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}>
-                <div className={`font-bold text-sm sm:text-base mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+              <div
+                className={`space-y-2 sm:space-y-3 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
+              >
+                <div
+                  className={`font-bold text-sm sm:text-base mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                >
                   Quick shortcuts:
                 </div>
                 <div className="space-y-2">
-                  <div className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
-                    theme === "light"
-                      ? "bg-gradient-to-r from-gray-50 to-blue-50/50 border border-gray-200/50"
-                      : "bg-gradient-to-r from-white/5 to-blue-500/10 border border-white/10"
-                  }`}>
-                    <span className="font-medium text-sm">Zoom out</span>
-                    <span className={`px-2 py-1 rounded text-xs font-mono font-bold ${
+                  <div
+                    className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
                       theme === "light"
-                        ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
-                        : "bg-black/50 text-white border border-white/20"
-                    }`}>
+                        ? "bg-gradient-to-r from-gray-50 to-blue-50/50 border border-gray-200/50"
+                        : "bg-gradient-to-r from-white/5 to-blue-500/10 border border-white/10"
+                    }`}
+                  >
+                    <span className="font-medium text-sm">Zoom out</span>
+                    <span
+                      className={`px-2 py-1 rounded text-xs font-mono font-bold ${
+                        theme === "light"
+                          ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
+                          : "bg-black/50 text-white border border-white/20"
+                      }`}
+                    >
                       Ctrl + -
                     </span>
                   </div>
-                  <div className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
-                    theme === "light"
-                      ? "bg-gradient-to-r from-gray-50 to-green-50/50 border border-gray-200/50"
-                      : "bg-gradient-to-r from-white/5 to-green-500/10 border border-white/10"
-                  }`}>
-                    <span className="font-medium text-sm">Reset zoom</span>
-                    <span className={`px-2 py-1 rounded text-xs font-mono font-bold ${
+                  <div
+                    className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
                       theme === "light"
-                        ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
-                        : "bg-black/50 text-white border border-white/20"
-                    }`}>
+                        ? "bg-gradient-to-r from-gray-50 to-green-50/50 border border-gray-200/50"
+                        : "bg-gradient-to-r from-white/5 to-green-500/10 border border-white/10"
+                    }`}
+                  >
+                    <span className="font-medium text-sm">Reset zoom</span>
+                    <span
+                      className={`px-2 py-1 rounded text-xs font-mono font-bold ${
+                        theme === "light"
+                          ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
+                          : "bg-black/50 text-white border border-white/20"
+                      }`}
+                    >
                       Ctrl + 0
                     </span>
                   </div>
                 </div>
-                <div className={`text-center text-xs sm:text-sm mt-2 p-2 rounded-lg ${
-                  theme === "light"
-                    ? "bg-amber-50 text-amber-700 border border-amber-200/50"
-                    : "bg-amber-500/10 text-amber-300 border border-amber-400/20"
-                }`}>
+                <div
+                  className={`text-center text-xs sm:text-sm mt-2 p-2 rounded-lg ${
+                    theme === "light"
+                      ? "bg-amber-50 text-amber-700 border border-amber-200/50"
+                      : "bg-amber-500/10 text-amber-300 border border-amber-400/20"
+                  }`}
+                >
                   💡 Mac users: use <strong>Cmd</strong> instead
                 </div>
               </div>
@@ -1967,9 +2029,10 @@ export default function Index() {
                     : "bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-300 hover:to-indigo-400 text-black"
                 }`}
                 style={{
-                  boxShadow: theme === "light"
-                    ? "0 8px 20px rgba(59, 130, 246, 0.3), 0 3px 10px rgba(99, 102, 241, 0.2)"
-                    : "0 8px 20px rgba(99, 102, 241, 0.4), 0 3px 10px rgba(139, 92, 246, 0.3)",
+                  boxShadow:
+                    theme === "light"
+                      ? "0 8px 20px rgba(59, 130, 246, 0.3), 0 3px 10px rgba(99, 102, 241, 0.2)"
+                      : "0 8px 20px rgba(99, 102, 241, 0.4), 0 3px 10px rgba(139, 92, 246, 0.3)",
                 }}
               >
                 Got it! 👍
