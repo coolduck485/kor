@@ -813,15 +813,9 @@ export default function Index() {
                   {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
-<<<<<<< HEAD
-█���╔═��█╗ █��║   ██║██╔══█��������
-█���║  �����█╗╚███��██�����╝██║  �����█��
-╚═��  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
-=======
 ██╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
->>>>>>> origin/main
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -2969,11 +2963,7 @@ export default function Index() {
                   viewBox="0 0 1284 810"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-<<<<<<< HEAD
                   className="w-[25rem] h-[25rem] sm:w-[35rem] sm:h-[35rem] md:w-[45rem] md:h-[45rem] lg:w-[75rem] lg:h-[75rem] xl:w-[90rem] xl:h-[90rem] pointer-events-none"
-=======
-                  className="w-[58rem] h-[58rem] sm:w-[78rem] sm:h-[78rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem] pointer-events-none"
->>>>>>> origin/main
                   style={{
                     position: "absolute",
                     left: "50%",
@@ -8851,11 +8841,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Email",
                         subtitle: "contact@kor.dev",
                         url: "mailto:contact@kor.dev",
-<<<<<<< HEAD
-                        icon: "✉�������",
-=======
                         icon: "✉���",
->>>>>>> origin/main
                         color: "from-emerald-500 via-green-500 to-lime-500",
                         shadowColor: "rgba(16, 185, 129, 0.3)",
                       },
