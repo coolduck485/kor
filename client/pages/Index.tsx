@@ -3339,16 +3339,12 @@ export default function Index() {
                   y: -100,
                   filter: "blur(15px)",
                 }}
-                animate={
-                  animationStep >= 2
-                    ? {
-                        opacity: 1,
-                        scale: 1,
-                        y: 0,
-                        filter: "blur(0px)",
-                      }
-                    : {}
-                }
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                }}
                 transition={{
                   duration: 0.8,
                   ease: "easeOut",
@@ -9288,7 +9284,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Email",
                         subtitle: "contact@kor.dev",
                         url: "mailto:contact@kor.dev",
-                        icon: "✉�����",
+                        icon: "✉�������",
                         color: "from-emerald-500 via-green-500 to-lime-500",
                         shadowColor: "rgba(16, 185, 129, 0.3)",
                       },
