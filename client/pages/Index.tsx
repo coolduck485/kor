@@ -1919,7 +1919,7 @@ export default function Index() {
                 stiffness: 200,
                 damping: 20,
               }}
-              className={`relative max-w-xs sm:max-w-sm md:max-w-md w-full mx-2 sm:mx-3 md:mx-4 rounded-xl sm:rounded-2xl md:rounded-3xl backdrop-blur-3xl border shadow-2xl max-h-[95vh] overflow-hidden ${
+              className={`relative max-w-xs sm:max-w-sm md:max-w-md w-full mx-2 sm:mx-3 md:mx-4 rounded-xl sm:rounded-2xl md:rounded-3xl backdrop-blur-3xl border shadow-2xl max-h-[90vh] sm:max-h-[95vh] overflow-hidden ${
                 theme === "light"
                   ? "bg-white/95 border-white/40 text-gray-800 shadow-blue-500/20"
                   : "bg-black/95 border-white/20 text-white shadow-blue-400/30"
