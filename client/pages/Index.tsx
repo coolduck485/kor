@@ -3378,7 +3378,7 @@ export default function Index() {
                   viewBox="0 0 1284 810"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-[25rem] h-[25rem] sm:w-[35rem] sm:h-[35rem] md:w-[45rem] md:h-[45rem] lg:w-[60rem] lg:h-[60rem] xl:w-[75rem] xl:h-[75rem] pointer-events-none"
+                  className="w-[45rem] h-[45rem] sm:w-[60rem] sm:h-[60rem] md:w-[80rem] md:h-[80rem] lg:w-[100rem] lg:h-[100rem] xl:w-[120rem] xl:h-[120rem] pointer-events-none"
                   style={{
                     position: "absolute",
                     left: "50%",
