@@ -1008,7 +1008,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
-██║  �����█╗╚███��██�����╝██║  �����█��
+█���║  �����█╗╚███��██�����╝██║  �����█��
 ╚═��  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -2378,6 +2378,30 @@ export default function Index() {
           </div>
 
           {/* Enhanced Background Elements - Performance optimized */}
+
+          {/* Large Blue Orb Background for Mobile and Tablet */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none lg:hidden">
+            <div
+              className="w-[200vw] h-[200vw] sm:w-[150vw] sm:h-[150vw] rounded-full opacity-60 blur-[2px]"
+              style={{
+                background: `
+                  radial-gradient(circle at center,
+                    rgba(73, 146, 255, 0.8) 0%,
+                    rgba(99, 162, 255, 0.6) 15%,
+                    rgba(125, 178, 255, 0.4) 30%,
+                    rgba(151, 194, 255, 0.25) 45%,
+                    rgba(177, 210, 255, 0.15) 60%,
+                    rgba(203, 226, 255, 0.08) 75%,
+                    rgba(229, 242, 255, 0.03) 85%,
+                    transparent 95%
+                  )
+                `,
+                animation: "gentle-pulse 8s ease-in-out infinite",
+                transform: "translateZ(0)",
+                willChange: "transform",
+              }}
+            />
+          </div>
 
           {/* Animated Noise Texture - Now on all devices */}
           {isHighPerformance && (
