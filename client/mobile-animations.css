@@ -93,52 +93,27 @@
 /* Mobile/Tablet Responsive Animation Classes */
 @media (max-width: 991px) {
   .mobile-lively-text {
-    animation: mobile-text-breathe 4s ease-in-out infinite !important;
+    animation: mobile-text-breathe 4s ease-in-out infinite;
   }
 
   .mobile-lively-card {
-    animation: mobile-card-pulse 6s ease-in-out infinite !important;
+    animation: mobile-card-pulse 6s ease-in-out infinite;
   }
 
   .mobile-lively-icon {
-    animation: mobile-icon-bounce 3s ease-in-out infinite !important;
+    animation: mobile-icon-bounce 3s ease-in-out infinite;
   }
 
   .mobile-lively-float {
-    animation: mobile-gentle-float 5s ease-in-out infinite !important;
+    animation: mobile-gentle-float 5s ease-in-out infinite;
   }
 
   .mobile-lively-particle {
-    animation: mobile-particle-dance 4s ease-in-out infinite !important;
+    animation: mobile-particle-dance 4s ease-in-out infinite;
   }
 
   .mobile-lively-glow {
-    animation: mobile-text-glow 3s ease-in-out infinite !important;
-  }
-}
-
-/* Desktop and tablet animations */
-@media (min-width: 641px) {
-  .desktop-tablet-animations {
-    animation-play-state: running !important;
-  }
-}
-
-/* Mobile specific animations - ensure they work */
-@media (max-width: 640px) {
-  .mobile-wave-1,
-  .mobile-wave-2,
-  .mobile-wave-3,
-  .mobile-float-1,
-  .mobile-lively-particle,
-  .mobile-lively-text,
-  .mobile-lively-card,
-  .mobile-lively-icon,
-  .mobile-lively-float,
-  .mobile-lively-glow {
-    animation-play-state: running !important;
-    will-change: transform !important;
-    transform: translateZ(0) !important;
+    animation: mobile-text-glow 3s ease-in-out infinite;
   }
 }
 
