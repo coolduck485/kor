@@ -3373,7 +3373,7 @@ export default function Index() {
                   viewBox="0 0 1284 810"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-[58rem] h-[58rem] sm:w-[78rem] sm:h-[78rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem] pointer-events-none"
+                  className="w-[25rem] h-[25rem] sm:w-[35rem] sm:h-[35rem] md:w-[45rem] md:h-[45rem] lg:w-[60rem] lg:h-[60rem] xl:w-[75rem] xl:h-[75rem] pointer-events-none"
                   style={{
                     position: "absolute",
                     left: "50%",
@@ -9129,7 +9129,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Telegram",
                             url: "https://telegram.org",
-                            icon: "📱",
+                            icon: "��",
                             color: "from-blue-500 to-cyan-500",
                           },
                         ].map((social) => (
