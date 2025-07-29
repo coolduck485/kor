@@ -1947,149 +1947,154 @@ export default function Index() {
               }}
             >
               {/* Scrollable Content Wrapper */}
-              <div className="max-h-[75vh] sm:max-h-[80vh] overflow-y-auto" style={{
-                scrollbarWidth: 'thin',
-                scrollbarColor: theme === "light" ? '#cbd5e1 transparent' : '#64748b transparent'
-              }}>
-              {/* Close Button */}
-              <button
-                onClick={closeModalAndScrollToTop}
-                className={`absolute top-2 right-2 w-6 h-6 sm:w-8 sm:h-8 sm:top-3 sm:right-3 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 group ${
-                  theme === "light"
-                    ? "bg-gray-100/80 hover:bg-red-50 text-gray-500 hover:text-red-500 border border-gray-200/50"
-                    : "bg-white/5 hover:bg-red-500/10 text-white/60 hover:text-red-400 border border-white/10"
-                }`}
+              <div
+                className="max-h-[75vh] sm:max-h-[80vh] overflow-y-auto"
                 style={{
-                  backdropFilter: "blur(10px)",
+                  scrollbarWidth: "thin",
+                  scrollbarColor:
+                    theme === "light"
+                      ? "#cbd5e1 transparent"
+                      : "#64748b transparent",
                 }}
               >
-                <span className="text-xs font-medium transition-transform duration-300 group-hover:scale-110">
-                  ✕
-                </span>
-              </button>
-
-              {/* Modal Header */}
-              <div className="text-center mb-2 sm:mb-3 md:mb-4">
-                <h2
-                  className={`text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2 ${
-                    theme === "light" ? "text-gray-900" : "text-white"
-                  }`}
-                >
-                  Need help seeing all content?
-                </h2>
-                <p
-                  className={`text-xs sm:text-sm md:text-base leading-relaxed ${
-                    theme === "light" ? "text-gray-600" : "text-white/70"
-                  }`}
-                >
-                  If parts of the website appear cut off, try zooming out your
-                  browser.
-                </p>
-              </div>
-
-              {/* How to Access Zoom Menu */}
-              <div className="mb-3 sm:mb-4">
-                <div
-                  className={`relative rounded-xl border p-3 sm:p-4 ${
+                {/* Close Button */}
+                <button
+                  onClick={closeModalAndScrollToTop}
+                  className={`absolute top-2 right-2 w-6 h-6 sm:w-8 sm:h-8 sm:top-3 sm:right-3 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 group ${
                     theme === "light"
-                      ? "border-blue-200/50 bg-gradient-to-br from-blue-50/50 to-indigo-50/30"
-                      : "border-blue-400/20 bg-gradient-to-br from-blue-500/10 to-indigo-500/10"
+                      ? "bg-gray-100/80 hover:bg-red-50 text-gray-500 hover:text-red-500 border border-gray-200/50"
+                      : "bg-white/5 hover:bg-red-500/10 text-white/60 hover:text-red-400 border border-white/10"
                   }`}
                   style={{
                     backdropFilter: "blur(10px)",
                   }}
                 >
-                  <div
-                    className={`text-center space-y-2 ${
-                      theme === "light" ? "text-gray-700" : "text-white/90"
+                  <span className="text-xs font-medium transition-transform duration-300 group-hover:scale-110">
+                    ✕
+                  </span>
+                </button>
+
+                {/* Modal Header */}
+                <div className="text-center mb-2 sm:mb-3 md:mb-4">
+                  <h2
+                    className={`text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2 ${
+                      theme === "light" ? "text-gray-900" : "text-white"
                     }`}
                   >
-                    <div className="text-lg mb-3">⚙️</div>
-                    <h3 className="font-bold text-sm sm:text-base mb-2">
-                      How to access zoom options:
-                    </h3>
-                    <div className="text-xs sm:text-sm space-y-0.5">
-                      <p>
-                        <strong>1.</strong> Click the menu button (⋮ or ☰) in
-                        your browser
-                      </p>
-                      <p>
-                        <strong>2.</strong> Look for "Zoom" or "View" options
-                      </p>
-                      <p>
-                        <strong>3.</strong> Click the minus (-) button to zoom
-                        out
-                      </p>
+                    Need help seeing all content?
+                  </h2>
+                  <p
+                    className={`text-xs sm:text-sm md:text-base leading-relaxed ${
+                      theme === "light" ? "text-gray-600" : "text-white/70"
+                    }`}
+                  >
+                    If parts of the website appear cut off, try zooming out your
+                    browser.
+                  </p>
+                </div>
+
+                {/* How to Access Zoom Menu */}
+                <div className="mb-3 sm:mb-4">
+                  <div
+                    className={`relative rounded-xl border p-3 sm:p-4 ${
+                      theme === "light"
+                        ? "border-blue-200/50 bg-gradient-to-br from-blue-50/50 to-indigo-50/30"
+                        : "border-blue-400/20 bg-gradient-to-br from-blue-500/10 to-indigo-500/10"
+                    }`}
+                    style={{
+                      backdropFilter: "blur(10px)",
+                    }}
+                  >
+                    <div
+                      className={`text-center space-y-2 ${
+                        theme === "light" ? "text-gray-700" : "text-white/90"
+                      }`}
+                    >
+                      <div className="text-lg mb-3">⚙️</div>
+                      <h3 className="font-bold text-sm sm:text-base mb-2">
+                        How to access zoom options:
+                      </h3>
+                      <div className="text-xs sm:text-sm space-y-0.5">
+                        <p>
+                          <strong>1.</strong> Click the menu button (⋮ or ☰) in
+                          your browser
+                        </p>
+                        <p>
+                          <strong>2.</strong> Look for "Zoom" or "View" options
+                        </p>
+                        <p>
+                          <strong>3.</strong> Click the minus (-) button to zoom
+                          out
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <p
-                  className={`text-xs sm:text-sm text-center mt-2 font-medium ${
-                    theme === "light" ? "text-gray-600" : "text-white/70"
-                  }`}
-                >
-                  Or use the faster keyboard shortcuts below
-                </p>
-              </div>
-
-              {/* Instructions */}
-              <div
-                className={`space-y-2 sm:space-y-3 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
-              >
-                <div
-                  className={`font-bold text-sm sm:text-base mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
-                >
-                  Quick shortcuts:
-                </div>
-                <div className="space-y-2">
-                  <div
-                    className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
-                      theme === "light"
-                        ? "bg-gradient-to-r from-gray-50 to-blue-50/50 border border-gray-200/50"
-                        : "bg-gradient-to-r from-white/5 to-blue-500/10 border border-white/10"
+                  <p
+                    className={`text-xs sm:text-sm text-center mt-2 font-medium ${
+                      theme === "light" ? "text-gray-600" : "text-white/70"
                     }`}
                   >
-                    <span className="font-medium text-sm">Zoom out</span>
-                    <span
-                      className={`px-2 py-1 rounded text-xs font-mono font-bold ${
+                    Or use the faster keyboard shortcuts below
+                  </p>
+                </div>
+
+                {/* Instructions */}
+                <div
+                  className={`space-y-2 sm:space-y-3 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
+                >
+                  <div
+                    className={`font-bold text-sm sm:text-base mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                  >
+                    Quick shortcuts:
+                  </div>
+                  <div className="space-y-2">
+                    <div
+                      className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
                         theme === "light"
-                          ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
-                          : "bg-black/50 text-white border border-white/20"
+                          ? "bg-gradient-to-r from-gray-50 to-blue-50/50 border border-gray-200/50"
+                          : "bg-gradient-to-r from-white/5 to-blue-500/10 border border-white/10"
                       }`}
                     >
-                      Ctrl + -
-                    </span>
+                      <span className="font-medium text-sm">Zoom out</span>
+                      <span
+                        className={`px-2 py-1 rounded text-xs font-mono font-bold ${
+                          theme === "light"
+                            ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
+                            : "bg-black/50 text-white border border-white/20"
+                        }`}
+                      >
+                        Ctrl + -
+                      </span>
+                    </div>
+                    <div
+                      className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
+                        theme === "light"
+                          ? "bg-gradient-to-r from-gray-50 to-green-50/50 border border-gray-200/50"
+                          : "bg-gradient-to-r from-white/5 to-green-500/10 border border-white/10"
+                      }`}
+                    >
+                      <span className="font-medium text-sm">Reset zoom</span>
+                      <span
+                        className={`px-2 py-1 rounded text-xs font-mono font-bold ${
+                          theme === "light"
+                            ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
+                            : "bg-black/50 text-white border border-white/20"
+                        }`}
+                      >
+                        Ctrl + 0
+                      </span>
+                    </div>
                   </div>
                   <div
-                    className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
+                    className={`text-center text-xs sm:text-sm mt-2 p-2 rounded-lg ${
                       theme === "light"
-                        ? "bg-gradient-to-r from-gray-50 to-green-50/50 border border-gray-200/50"
-                        : "bg-gradient-to-r from-white/5 to-green-500/10 border border-white/10"
+                        ? "bg-amber-50 text-amber-700 border border-amber-200/50"
+                        : "bg-amber-500/10 text-amber-300 border border-amber-400/20"
                     }`}
                   >
-                    <span className="font-medium text-sm">Reset zoom</span>
-                    <span
-                      className={`px-2 py-1 rounded text-xs font-mono font-bold ${
-                        theme === "light"
-                          ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
-                          : "bg-black/50 text-white border border-white/20"
-                      }`}
-                    >
-                      Ctrl + 0
-                    </span>
+                    💡 Mac users: use <strong>Cmd</strong> instead
                   </div>
                 </div>
-                <div
-                  className={`text-center text-xs sm:text-sm mt-2 p-2 rounded-lg ${
-                    theme === "light"
-                      ? "bg-amber-50 text-amber-700 border border-amber-200/50"
-                      : "bg-amber-500/10 text-amber-300 border border-amber-400/20"
-                  }`}
-                >
-                  💡 Mac users: use <strong>Cmd</strong> instead
-                </div>
-              </div>
-
               </div>
               {/* Action Button */}
               <button
