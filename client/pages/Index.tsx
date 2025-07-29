@@ -99,6 +99,77 @@ export default function Index() {
   const [showZoomModal, setShowZoomModal] = useState(false);
   const hasShownZoomModalRef = useRef(false);
 
+  // Function to close modal and scroll to top
+  const closeModalAndScrollToTop = () => {
+    // First restore the body scroll position
+    const scrollY = document.body.style.top;
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+
+    // Close the modal
+    setShowZoomModal(false);
+
+    // Immediately scroll to top (no need to restore previous position)
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 50);
+  };
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (showZoomModal) {
+      // Store the current scroll position
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+
+      // Targeted scroll prevention - only prevent if not from modal
+      const preventBackgroundScroll = (e: WheelEvent | TouchEvent) => {
+        const target = e.target as Element;
+        // Check if the event comes from within the modal
+        const isFromModal = target?.closest(".zoom-modal-scrollbar");
+
+        if (!isFromModal) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      };
+
+      // Add targeted scroll prevention
+      document.addEventListener("wheel", preventBackgroundScroll, {
+        passive: false,
+      });
+      document.addEventListener("touchmove", preventBackgroundScroll, {
+        passive: false,
+      });
+
+      return () => {
+        // Remove event listeners
+        document.removeEventListener("wheel", preventBackgroundScroll);
+        document.removeEventListener("touchmove", preventBackgroundScroll);
+      };
+    } else {
+      // Restore scroll position when modal closes (only if not already restored by closeModalAndScrollToTop)
+      if (document.body.style.position === "fixed") {
+        const scrollY = document.body.style.top;
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || "0") * -1);
+        }
+      }
+    }
+  }, [showZoomModal]);
+
   // Test notification removed
 
   // Welcome notification - shows immediately on all devices
@@ -755,7 +826,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ��
+                      ���
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -784,7 +855,7 @@ export default function Index() {
                   {/* Enhanced Modal Backdrop */}
                   <div
                     className="absolute inset-0 bg-gradient-to-br from-black/80 via-green-900/20 to-black/80"
-                    onClick={() => setShowZoomModal(false)}
+                    onClick={closeModalAndScrollToTop}
                   />
 
                   {/* Retro Modal Content */}
@@ -805,7 +876,7 @@ export default function Index() {
                   >
                     {/* Close Button - Retro Style */}
                     <button
-                      onClick={() => setShowZoomModal(false)}
+                      onClick={closeModalAndScrollToTop}
                       className="absolute top-2 right-2 w-6 h-6 bg-green-400 text-black font-bold text-sm hover:bg-green-300 transition-colors"
                     >
                       X
@@ -865,7 +936,7 @@ export default function Index() {
 
                     {/* Action Button - Terminal Style */}
                     <button
-                      onClick={() => setShowZoomModal(false)}
+                      onClick={closeModalAndScrollToTop}
                       className="w-full py-2 bg-green-400 text-black font-bold hover:bg-green-300 transition-colors border border-green-400 text-sm"
                     >
                       OK
@@ -937,7 +1008,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 █���╔═��█╗ █��║   ██║██╔══█��������
-██║  �����█╗╚███��██�����╝██║  �����█║
+██║  �����█╗╚███��██�����╝██║  �����█��
 ╚═��  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1809,6 +1880,7 @@ export default function Index() {
         position: "relative",
         willChange: isScrollingActive ? "auto" : "transform",
         contain: "layout style paint",
+        pointerEvents: showZoomModal ? "none" : "auto",
       }}
     >
       {/* Zoom Warning Modal */}
@@ -1821,8 +1893,9 @@ export default function Index() {
             transition={{ duration: 0.4 }}
             className="fixed inset-0 z-[9999999] flex items-center justify-center"
             style={{
-              backdropFilter: "blur(20px) saturate(180%)",
-              WebkitBackdropFilter: "blur(20px) saturate(180%)",
+              backdropFilter: "blur(40px) saturate(200%)",
+              WebkitBackdropFilter: "blur(40px) saturate(200%)",
+              pointerEvents: "auto",
             }}
           >
             {/* Enhanced Modal Backdrop */}
@@ -1832,7 +1905,7 @@ export default function Index() {
                   ? "bg-gradient-to-br from-slate-100/60 via-blue-50/50 to-indigo-100/60"
                   : "bg-gradient-to-br from-black/60 via-gray-900/50 to-black/60"
               }`}
-              onClick={() => setShowZoomModal(false)}
+              onClick={closeModalAndScrollToTop}
             />
 
             {/* Enhanced Modal Content */}
@@ -1846,27 +1919,37 @@ export default function Index() {
                 stiffness: 200,
                 damping: 20,
               }}
-              className={`relative max-w-sm sm:max-w-md w-full mx-3 sm:mx-4 rounded-2xl sm:rounded-3xl backdrop-blur-3xl border shadow-2xl max-h-[90vh] overflow-y-auto ${
+              className={`relative max-w-xs sm:max-w-sm md:max-w-md w-full mx-2 sm:mx-3 md:mx-4 rounded-xl sm:rounded-2xl md:rounded-3xl backdrop-blur-3xl border shadow-2xl max-h-[95vh] overflow-hidden ${
                 theme === "light"
                   ? "bg-white/95 border-white/40 text-gray-800 shadow-blue-500/20"
                   : "bg-black/95 border-white/20 text-white shadow-blue-400/30"
               }`}
+              onWheel={(e) => {
+                // Modal scrolling is now handled naturally since we use .closest() check
+                e.stopPropagation();
+              }}
+              onTouchMove={(e) => {
+                // Modal scrolling is now handled naturally since we use .closest() check
+                e.stopPropagation();
+              }}
               style={{
                 background:
                   theme === "light"
-                    ? "linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.95) 50%, rgba(241,245,249,0.92) 100%)"
-                    : "linear-gradient(135deg, rgba(0,0,0,0.98) 0%, rgba(15,23,42,0.95) 50%, rgba(30,41,59,0.92) 100%)",
+                    ? "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.9) 30%, rgba(239,246,255,0.95) 70%, rgba(255,255,255,0.98) 100%)"
+                    : "linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(15,23,42,0.9) 30%, rgba(30,41,59,0.85) 70%, rgba(0,0,0,0.98) 100%)",
                 boxShadow:
                   theme === "light"
-                    ? "0 25px 50px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.3), 0 0 80px rgba(59,130,246,0.15)"
-                    : "0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1), 0 0 80px rgba(99,102,241,0.2)",
-                padding: "1.25rem",
+                    ? "0 32px 64px -12px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.4), 0 0 120px rgba(59,130,246,0.2), inset 0 1px 0 rgba(255,255,255,0.6)"
+                    : "0 32px 64px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.15), 0 0 120px rgba(99,102,241,0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
+                padding: "0.75rem",
+                backdropFilter: "blur(40px) saturate(150%)",
+                WebkitBackdropFilter: "blur(40px) saturate(150%)",
               }}
             >
               {/* Close Button */}
               <button
-                onClick={() => setShowZoomModal(false)}
-                className={`absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 group ${
+                onClick={closeModalAndScrollToTop}
+                className={`absolute top-2 right-2 w-6 h-6 sm:w-8 sm:h-8 sm:top-3 sm:right-3 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 group ${
                   theme === "light"
                     ? "bg-gray-100/80 hover:bg-red-50 text-gray-500 hover:text-red-500 border border-gray-200/50"
                     : "bg-white/5 hover:bg-red-500/10 text-white/60 hover:text-red-400 border border-white/10"
@@ -1881,34 +1964,16 @@ export default function Index() {
               </button>
 
               {/* Modal Header */}
-              <div className="text-center mb-4 sm:mb-6">
-                <div className="mb-2 sm:mb-3">
-                  <div
-                    className={`w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full flex items-center justify-center ${
-                      theme === "light"
-                        ? "bg-gradient-to-br from-blue-100 to-indigo-100 text-blue-600"
-                        : "bg-gradient-to-br from-blue-500/20 to-indigo-500/20 text-blue-400"
-                    }`}
-                    style={{
-                      backdropFilter: "blur(10px)",
-                      boxShadow:
-                        theme === "light"
-                          ? "0 8px 25px rgba(59,130,246,0.15)"
-                          : "0 8px 25px rgba(99,102,241,0.25)",
-                    }}
-                  >
-                    <span className="text-lg sm:text-xl">🔍</span>
-                  </div>
-                </div>
+              <div className="text-center mb-3 sm:mb-4 md:mb-6">
                 <h2
-                  className={`text-lg sm:text-xl font-bold mb-2 ${
+                  className={`text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2 ${
                     theme === "light" ? "text-gray-900" : "text-white"
                   }`}
                 >
                   Need help seeing all content?
                 </h2>
                 <p
-                  className={`text-sm sm:text-base leading-relaxed ${
+                  className={`text-xs sm:text-sm md:text-base leading-relaxed ${
                     theme === "light" ? "text-gray-600" : "text-white/70"
                   }`}
                 >
@@ -2022,7 +2087,7 @@ export default function Index() {
 
               {/* Action Button */}
               <button
-                onClick={() => setShowZoomModal(false)}
+                onClick={closeModalAndScrollToTop}
                 className={`w-full mt-4 sm:mt-6 py-3 px-4 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
                   theme === "light"
                     ? "bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white"
@@ -8513,7 +8578,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "✉���" },
+            { type: "email", x: 15, y: 35, icon: "������" },
             { type: "call", x: 75, y: 25, icon: "��" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
@@ -9212,7 +9277,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Email",
                         subtitle: "contact@kor.dev",
                         url: "mailto:contact@kor.dev",
-                        icon: "✉���",
+                        icon: "✉�����",
                         color: "from-emerald-500 via-green-500 to-lime-500",
                         shadowColor: "rgba(16, 185, 129, 0.3)",
                       },
