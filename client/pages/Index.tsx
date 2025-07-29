@@ -103,18 +103,18 @@ export default function Index() {
   const closeModalAndScrollToTop = () => {
     // First restore the body scroll position
     const scrollY = document.body.style.top;
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    document.body.style.overflow = '';
-    document.documentElement.style.overflow = '';
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
 
     // Close the modal
     setShowZoomModal(false);
 
     // Immediately scroll to top (no need to restore previous position)
     setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }, 50);
   };
 
@@ -123,17 +123,17 @@ export default function Index() {
     if (showZoomModal) {
       // Store the current scroll position
       const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
+      document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
 
       // Targeted scroll prevention - only prevent if not from modal
       const preventBackgroundScroll = (e: WheelEvent | TouchEvent) => {
         const target = e.target as Element;
         // Check if the event comes from within the modal
-        const isFromModal = target?.closest('.zoom-modal-scrollbar');
+        const isFromModal = target?.closest(".zoom-modal-scrollbar");
 
         if (!isFromModal) {
           e.preventDefault();
@@ -142,25 +142,29 @@ export default function Index() {
       };
 
       // Add targeted scroll prevention
-      document.addEventListener('wheel', preventBackgroundScroll, { passive: false });
-      document.addEventListener('touchmove', preventBackgroundScroll, { passive: false });
+      document.addEventListener("wheel", preventBackgroundScroll, {
+        passive: false,
+      });
+      document.addEventListener("touchmove", preventBackgroundScroll, {
+        passive: false,
+      });
 
       return () => {
         // Remove event listeners
-        document.removeEventListener('wheel', preventBackgroundScroll);
-        document.removeEventListener('touchmove', preventBackgroundScroll);
+        document.removeEventListener("wheel", preventBackgroundScroll);
+        document.removeEventListener("touchmove", preventBackgroundScroll);
       };
     } else {
       // Restore scroll position when modal closes (only if not already restored by closeModalAndScrollToTop)
-      if (document.body.style.position === 'fixed') {
+      if (document.body.style.position === "fixed") {
         const scrollY = document.body.style.top;
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
         if (scrollY) {
-          window.scrollTo(0, parseInt(scrollY || '0') * -1);
+          window.scrollTo(0, parseInt(scrollY || "0") * -1);
         }
       }
     }
