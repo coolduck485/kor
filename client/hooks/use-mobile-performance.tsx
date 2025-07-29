@@ -92,7 +92,7 @@ export function useMobilePerformance() {
           blurAmount: 1,
           enableComplexAnimations: false,
           enableBackgroundParticles: false,
-          enableFloatingOrbs: false,
+          enableFloatingOrbs: true,
           enableGradientShifts: false,
           enableBackgroundEffects: false,
           enableFloatingElements: false,
