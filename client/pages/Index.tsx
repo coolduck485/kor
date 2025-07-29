@@ -95,81 +95,6 @@ export default function Index() {
   const [isContentVisible, setIsContentVisible] = useState(true);
   const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
 
-  // Zoom warning modal state
-  const [showZoomModal, setShowZoomModal] = useState(false);
-  const hasShownZoomModalRef = useRef(false);
-
-  // Function to close modal and scroll to top
-  const closeModalAndScrollToTop = () => {
-    // First restore the body scroll position
-    const scrollY = document.body.style.top;
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.width = "";
-    document.body.style.overflow = "";
-    document.documentElement.style.overflow = "";
-
-    // Close the modal
-    setShowZoomModal(false);
-
-    // Immediately scroll to top (no need to restore previous position)
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 50);
-  };
-
-  // Lock body scroll when modal is open
-  useEffect(() => {
-    if (showZoomModal) {
-      // Store the current scroll position
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-
-      // Targeted scroll prevention - only prevent if not from modal
-      const preventBackgroundScroll = (e: WheelEvent | TouchEvent) => {
-        const target = e.target as Element;
-        // Check if the event comes from within the modal
-        const isFromModal = target?.closest(".zoom-modal-scrollbar");
-
-        if (!isFromModal) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      };
-
-      // Add targeted scroll prevention
-      document.addEventListener("wheel", preventBackgroundScroll, {
-        passive: false,
-      });
-      document.addEventListener("touchmove", preventBackgroundScroll, {
-        passive: false,
-      });
-
-      return () => {
-        // Remove event listeners
-        document.removeEventListener("wheel", preventBackgroundScroll);
-        document.removeEventListener("touchmove", preventBackgroundScroll);
-      };
-    } else {
-      // Restore scroll position when modal closes (only if not already restored by closeModalAndScrollToTop)
-      if (document.body.style.position === "fixed") {
-        const scrollY = document.body.style.top;
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.width = "";
-        document.body.style.overflow = "";
-        document.documentElement.style.overflow = "";
-        if (scrollY) {
-          window.scrollTo(0, parseInt(scrollY || "0") * -1);
-        }
-      }
-    }
-  }, [showZoomModal]);
-
   // Test notification removed
 
   // Welcome notification - shows immediately on all devices
@@ -208,17 +133,6 @@ export default function Index() {
       );
     }
   }, [currentDeviceType, showWarning]); // React to device type changes
-
-  // Zoom warning modal - show on all devices
-  useEffect(() => {
-    if (!hasShownZoomModalRef.current) {
-      hasShownZoomModalRef.current = true;
-      // Delay to let page load first
-      setTimeout(() => {
-        setShowZoomModal(true);
-      }, 2000);
-    }
-  }, []); // Run once on mount
 
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
@@ -826,7 +740,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ���
+                      ��
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -838,114 +752,6 @@ export default function Index() {
         {/* Retro Main Content - Only show after loading */}
         {!isLoading && (
           <>
-            {/* Zoom Warning Modal - Retro Style */}
-            <AnimatePresence>
-              {showZoomModal && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="fixed inset-0 z-[9999999] flex items-center justify-center"
-                  style={{
-                    backdropFilter: "blur(20px) saturate(120%)",
-                    WebkitBackdropFilter: "blur(20px) saturate(120%)",
-                  }}
-                >
-                  {/* Enhanced Modal Backdrop */}
-                  <div
-                    className="absolute inset-0 bg-gradient-to-br from-black/80 via-green-900/20 to-black/80"
-                    onClick={closeModalAndScrollToTop}
-                  />
-
-                  {/* Retro Modal Content */}
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.8, opacity: 0 }}
-                    transition={{
-                      duration: 0.3,
-                      type: "spring",
-                      stiffness: 300,
-                    }}
-                    className="relative max-w-xs sm:max-w-sm w-full mx-3 sm:mx-4 bg-black border-2 border-green-400 font-mono text-green-400 p-3 sm:p-4 max-h-[90vh] overflow-y-auto"
-                    style={{
-                      boxShadow:
-                        "0 0 30px rgba(0, 255, 65, 0.5), inset 0 0 20px rgba(0, 255, 65, 0.1)",
-                    }}
-                  >
-                    {/* Close Button - Retro Style */}
-                    <button
-                      onClick={closeModalAndScrollToTop}
-                      className="absolute top-2 right-2 w-6 h-6 bg-green-400 text-black font-bold text-sm hover:bg-green-300 transition-colors"
-                    >
-                      X
-                    </button>
-
-                    {/* Modal Header - Retro Style */}
-                    <div className="text-center mb-3">
-                      <div className="text-lg sm:text-xl mb-1 text-amber-400">
-                        {">>> WARNING <<<"}
-                      </div>
-                      <h2 className="text-sm sm:text-base font-bold mb-1 text-green-400">
-                        ZOOM OUT REQUIRED
-                      </h2>
-                      <p className="text-xs text-amber-400">
-                        CONTENT MAY BE CUT OFF
-                      </p>
-                    </div>
-
-                    {/* Access Instructions - Retro Style */}
-                    <div className="mb-3">
-                      <div className="border border-green-400 bg-black p-2 text-center">
-                        <div className="text-amber-400 mb-1">
-                          ⚙️ BROWSER MENU:
-                        </div>
-                        <div className="text-green-400 text-xs space-y-0.5">
-                          <div>1. CLICK MENU BUTTON (⋮)</div>
-                          <div>2. FIND "ZOOM" SECTION</div>
-                          <div>3. CLICK MINUS (-) BUTTON</div>
-                        </div>
-                      </div>
-                      <p className="text-xs text-center mt-1 text-amber-400">
-                        OR USE KEYBOARD COMMANDS BELOW
-                      </p>
-                    </div>
-
-                    {/* Instructions - Terminal Style */}
-                    <div className="text-xs space-y-1 text-green-400 mb-3">
-                      <div className="text-amber-400 font-bold mb-1">
-                        COMMANDS:
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span>ZOOM OUT</span>
-                        <span className="bg-green-400 text-black px-1 text-xs">
-                          CTRL+-
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span>RESET</span>
-                        <span className="bg-green-400 text-black px-1 text-xs">
-                          CTRL+0
-                        </span>
-                      </div>
-                      <div className="text-amber-400 text-xs mt-1">
-                        MAC: USE CMD
-                      </div>
-                    </div>
-
-                    {/* Action Button - Terminal Style */}
-                    <button
-                      onClick={closeModalAndScrollToTop}
-                      className="w-full py-2 bg-green-400 text-black font-bold hover:bg-green-300 transition-colors border border-green-400 text-sm"
-                    >
-                      OK
-                    </button>
-                  </motion.div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
             {/* Toggle Buttons Container */}
             <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
               <div
@@ -1004,12 +810,18 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██��  ██╗ ██████���� ███����������█╗
+                  {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
+<<<<<<< HEAD
 █���╔═��█╗ █��║   ██║██╔══█��������
 █���║  �����█╗╚███��██�����╝██║  �����█��
 ╚═��  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
+=======
+██╔═��█╗ █��║   ██║██╔══█��������
+██║  �����█╗╚███��██�����╝██║  �����█║
+╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
+>>>>>>> origin/main
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1159,7 +971,7 @@ export default function Index() {
                 </div>
 
                 <div className="loading-indicators">
-                  <span>█��▒░</span>
+                  <span>█▓▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
                   <span>░���▓█</span>
                 </div>
@@ -1876,248 +1688,10 @@ export default function Index() {
         height: "100vh",
         overflow: "hidden",
         maxWidth: "100vw",
-        width: "100vw",
-        position: "relative",
         willChange: isScrollingActive ? "auto" : "transform",
         contain: "layout style paint",
-        pointerEvents: showZoomModal ? "none" : "auto",
       }}
     >
-      {/* Zoom Warning Modal */}
-      <AnimatePresence>
-        {showZoomModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[9999999] flex items-center justify-center"
-            style={{
-              backdropFilter: "blur(40px) saturate(200%)",
-              WebkitBackdropFilter: "blur(40px) saturate(200%)",
-              pointerEvents: "auto",
-            }}
-          >
-            {/* Enhanced Modal Backdrop */}
-            <div
-              className={`absolute inset-0 ${
-                theme === "light"
-                  ? "bg-gradient-to-br from-slate-100/60 via-blue-50/50 to-indigo-100/60"
-                  : "bg-gradient-to-br from-black/60 via-gray-900/50 to-black/60"
-              }`}
-              onClick={closeModalAndScrollToTop}
-            />
-
-            {/* Enhanced Modal Content */}
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: 20 }}
-              transition={{
-                duration: 0.4,
-                type: "spring",
-                stiffness: 200,
-                damping: 20,
-              }}
-              className={`relative max-w-xs sm:max-w-sm md:max-w-md w-full mx-2 sm:mx-3 md:mx-4 rounded-xl sm:rounded-2xl md:rounded-3xl backdrop-blur-3xl border shadow-2xl max-h-[90vh] sm:max-h-[95vh] overflow-hidden ${
-                theme === "light"
-                  ? "bg-white/95 border-white/40 text-gray-800 shadow-blue-500/20"
-                  : "bg-black/95 border-white/20 text-white shadow-blue-400/30"
-              }`}
-              onWheel={(e) => {
-                // Modal scrolling is now handled naturally since we use .closest() check
-                e.stopPropagation();
-              }}
-              onTouchMove={(e) => {
-                // Modal scrolling is now handled naturally since we use .closest() check
-                e.stopPropagation();
-              }}
-              style={{
-                background:
-                  theme === "light"
-                    ? "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.9) 30%, rgba(239,246,255,0.95) 70%, rgba(255,255,255,0.98) 100%)"
-                    : "linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(15,23,42,0.9) 30%, rgba(30,41,59,0.85) 70%, rgba(0,0,0,0.98) 100%)",
-                boxShadow:
-                  theme === "light"
-                    ? "0 32px 64px -12px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.4), 0 0 120px rgba(59,130,246,0.2), inset 0 1px 0 rgba(255,255,255,0.6)"
-                    : "0 32px 64px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.15), 0 0 120px rgba(99,102,241,0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
-                padding: "0.5rem",
-                backdropFilter: "blur(40px) saturate(150%)",
-                WebkitBackdropFilter: "blur(40px) saturate(150%)",
-              }}
-            >
-              {/* Scrollable Content Wrapper */}
-              <div
-                className="max-h-[75vh] sm:max-h-[80vh] overflow-y-auto"
-                style={{
-                  scrollbarWidth: "thin",
-                  scrollbarColor:
-                    theme === "light"
-                      ? "#cbd5e1 transparent"
-                      : "#64748b transparent",
-                }}
-              >
-                {/* Close Button */}
-                <button
-                  onClick={closeModalAndScrollToTop}
-                  className={`absolute top-2 right-2 w-6 h-6 sm:w-8 sm:h-8 sm:top-3 sm:right-3 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 group ${
-                    theme === "light"
-                      ? "bg-gray-100/80 hover:bg-red-50 text-gray-500 hover:text-red-500 border border-gray-200/50"
-                      : "bg-white/5 hover:bg-red-500/10 text-white/60 hover:text-red-400 border border-white/10"
-                  }`}
-                  style={{
-                    backdropFilter: "blur(10px)",
-                  }}
-                >
-                  <span className="text-xs font-medium transition-transform duration-300 group-hover:scale-110">
-                    ✕
-                  </span>
-                </button>
-
-                {/* Modal Header */}
-                <div className="text-center mb-2 sm:mb-3 md:mb-4">
-                  <h2
-                    className={`text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2 ${
-                      theme === "light" ? "text-gray-900" : "text-white"
-                    }`}
-                  >
-                    Need help seeing all content?
-                  </h2>
-                  <p
-                    className={`text-xs sm:text-sm md:text-base leading-relaxed ${
-                      theme === "light" ? "text-gray-600" : "text-white/70"
-                    }`}
-                  >
-                    If parts of the website appear cut off, try zooming out your
-                    browser.
-                  </p>
-                </div>
-
-                {/* How to Access Zoom Menu */}
-                <div className="mb-3 sm:mb-4">
-                  <div
-                    className={`relative rounded-xl border p-3 sm:p-4 ${
-                      theme === "light"
-                        ? "border-blue-200/50 bg-gradient-to-br from-blue-50/50 to-indigo-50/30"
-                        : "border-blue-400/20 bg-gradient-to-br from-blue-500/10 to-indigo-500/10"
-                    }`}
-                    style={{
-                      backdropFilter: "blur(10px)",
-                    }}
-                  >
-                    <div
-                      className={`text-center space-y-2 ${
-                        theme === "light" ? "text-gray-700" : "text-white/90"
-                      }`}
-                    >
-                      <div className="text-lg mb-3">⚙️</div>
-                      <h3 className="font-bold text-sm sm:text-base mb-2">
-                        How to access zoom options:
-                      </h3>
-                      <div className="text-xs sm:text-sm space-y-0.5">
-                        <p>
-                          <strong>1.</strong> Click the menu button (⋮ or ☰) in
-                          your browser
-                        </p>
-                        <p>
-                          <strong>2.</strong> Look for "Zoom" or "View" options
-                        </p>
-                        <p>
-                          <strong>3.</strong> Click the minus (-) button to zoom
-                          out
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <p
-                    className={`text-xs sm:text-sm text-center mt-2 font-medium ${
-                      theme === "light" ? "text-gray-600" : "text-white/70"
-                    }`}
-                  >
-                    Or use the faster keyboard shortcuts below
-                  </p>
-                </div>
-
-                {/* Instructions */}
-                <div
-                  className={`space-y-2 sm:space-y-3 ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
-                >
-                  <div
-                    className={`font-bold text-sm sm:text-base mb-2 ${theme === "light" ? "text-gray-900" : "text-white"}`}
-                  >
-                    Quick shortcuts:
-                  </div>
-                  <div className="space-y-2">
-                    <div
-                      className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
-                        theme === "light"
-                          ? "bg-gradient-to-r from-gray-50 to-blue-50/50 border border-gray-200/50"
-                          : "bg-gradient-to-r from-white/5 to-blue-500/10 border border-white/10"
-                      }`}
-                    >
-                      <span className="font-medium text-sm">Zoom out</span>
-                      <span
-                        className={`px-2 py-1 rounded text-xs font-mono font-bold ${
-                          theme === "light"
-                            ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
-                            : "bg-black/50 text-white border border-white/20"
-                        }`}
-                      >
-                        Ctrl + -
-                      </span>
-                    </div>
-                    <div
-                      className={`flex items-center justify-between p-2 sm:p-2.5 rounded-lg ${
-                        theme === "light"
-                          ? "bg-gradient-to-r from-gray-50 to-green-50/50 border border-gray-200/50"
-                          : "bg-gradient-to-r from-white/5 to-green-500/10 border border-white/10"
-                      }`}
-                    >
-                      <span className="font-medium text-sm">Reset zoom</span>
-                      <span
-                        className={`px-2 py-1 rounded text-xs font-mono font-bold ${
-                          theme === "light"
-                            ? "bg-white text-gray-700 border border-gray-300 shadow-sm"
-                            : "bg-black/50 text-white border border-white/20"
-                        }`}
-                      >
-                        Ctrl + 0
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className={`text-center text-xs sm:text-sm mt-2 p-2 rounded-lg ${
-                      theme === "light"
-                        ? "bg-amber-50 text-amber-700 border border-amber-200/50"
-                        : "bg-amber-500/10 text-amber-300 border border-amber-400/20"
-                    }`}
-                  >
-                    💡 Mac users: use <strong>Cmd</strong> instead
-                  </div>
-                </div>
-              </div>
-              {/* Action Button */}
-              <button
-                onClick={closeModalAndScrollToTop}
-                className={`w-full mt-3 sm:mt-4 py-2.5 sm:py-3 px-4 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
-                  theme === "light"
-                    ? "bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white"
-                    : "bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-300 hover:to-indigo-400 text-black"
-                }`}
-                style={{
-                  boxShadow:
-                    theme === "light"
-                      ? "0 8px 20px rgba(59, 130, 246, 0.3), 0 3px 10px rgba(99, 102, 241, 0.2)"
-                      : "0 8px 20px rgba(99, 102, 241, 0.4), 0 3px 10px rgba(139, 92, 246, 0.3)",
-                }}
-              >
-                Got it! 👍
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Universal Scroll Navigation */}
       {currentSection < sections.length - 1 && (
         <div
@@ -2291,7 +1865,7 @@ export default function Index() {
         {/* Home Section */}
         <motion.div
           ref={(el) => (sectionsRef.current[0] = el!)}
-          className={`relative min-h-screen max-w-full overflow-hidden transition-all duration-500 ${
+          className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
             isMobileMenuOpen ? "blur-sm" : ""
           } ${
             theme === "light"
@@ -2300,9 +1874,6 @@ export default function Index() {
           }`}
           style={{
             display: currentSection === 0 ? "block" : "none",
-            width: "100vw",
-            maxWidth: "100vw",
-            boxSizing: "border-box",
           }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
@@ -2421,8 +1992,8 @@ export default function Index() {
                 className="absolute aurora-curtain-1"
                 style={{
                   top: "20%",
-                  left: "-5%",
-                  right: "-5%",
+                  left: "-15%",
+                  right: "-15%",
                   height: "120px",
                   background: isPinkActive
                     ? "linear-gradient(90deg, transparent 0%, rgba(236, 72, 153, 0.4) 15%, rgba(244, 114, 182, 0.5) 30%, rgba(251, 113, 133, 0.4) 50%, rgba(236, 72, 153, 0.5) 70%, rgba(244, 114, 182, 0.4) 85%, transparent 100%)"
@@ -2438,8 +2009,8 @@ export default function Index() {
                 className="absolute aurora-curtain-2"
                 style={{
                   top: "45%",
-                  left: "-8%",
-                  right: "-8%",
+                  left: "-20%",
+                  right: "-20%",
                   height: "140px",
                   background: isPinkActive
                     ? "linear-gradient(90deg, transparent 0%, rgba(251, 113, 133, 0.35) 10%, rgba(236, 72, 153, 0.45) 25%, rgba(244, 114, 182, 0.4) 40%, rgba(190, 24, 93, 0.45) 60%, rgba(251, 113, 133, 0.4) 75%, rgba(236, 72, 153, 0.35) 90%, transparent 100%)"
@@ -2455,8 +2026,8 @@ export default function Index() {
                 className="absolute aurora-curtain-3"
                 style={{
                   top: "70%",
-                  left: "-10%",
-                  right: "-10%",
+                  left: "-25%",
+                  right: "-25%",
                   height: "100px",
                   background: isPinkActive
                     ? "linear-gradient(90deg, transparent 0%, rgba(244, 114, 182, 0.3) 20%, rgba(251, 113, 133, 0.4) 35%, rgba(236, 72, 153, 0.35) 50%, rgba(244, 114, 182, 0.4) 65%, rgba(190, 24, 93, 0.3) 80%, transparent 100%)"
@@ -2472,8 +2043,8 @@ export default function Index() {
                 className="absolute aurora-base-flow"
                 style={{
                   top: "30%",
-                  left: "-12%",
-                  right: "-12%",
+                  left: "-30%",
+                  right: "-30%",
                   height: "160px",
                   background: isPinkActive
                     ? "linear-gradient(90deg, transparent 0%, rgba(236, 72, 153, 0.25) 12%, rgba(251, 113, 133, 0.3) 25%, rgba(244, 114, 182, 0.28) 37%, rgba(190, 24, 93, 0.3) 50%, rgba(236, 72, 153, 0.28) 62%, rgba(251, 113, 133, 0.25) 75%, rgba(244, 114, 182, 0.22) 87%, transparent 100%)"
@@ -2686,8 +2257,8 @@ export default function Index() {
                   className="absolute"
                   style={{
                     top: "25%",
-                    left: "-2%",
-                    right: "-2%",
+                    left: "-10%",
+                    right: "-10%",
                     height: window.innerWidth <= 640 ? "80px" : "100px",
                     background:
                       window.innerWidth <= 640
@@ -2704,8 +2275,8 @@ export default function Index() {
                   className="absolute"
                   style={{
                     top: "55%",
-                    left: "-5%",
-                    right: "-5%",
+                    left: "-15%",
+                    right: "-15%",
                     height: window.innerWidth <= 640 ? "70px" : "90px",
                     background:
                       window.innerWidth <= 640
@@ -3398,7 +2969,11 @@ export default function Index() {
                   viewBox="0 0 1284 810"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+<<<<<<< HEAD
                   className="w-[25rem] h-[25rem] sm:w-[35rem] sm:h-[35rem] md:w-[45rem] md:h-[45rem] lg:w-[75rem] lg:h-[75rem] xl:w-[90rem] xl:h-[90rem] pointer-events-none"
+=======
+                  className="w-[58rem] h-[58rem] sm:w-[78rem] sm:h-[78rem] md:w-[75rem] md:h-[75rem] lg:w-[90rem] lg:h-[90rem] pointer-events-none"
+>>>>>>> origin/main
                   style={{
                     position: "absolute",
                     left: "50%",
@@ -4002,12 +3577,9 @@ export default function Index() {
 
         {/* About Us Section */}
         <motion.div
-          className={`max-w-full ${isMobileMenuOpen ? "blur-sm" : ""}`}
+          className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
             display: currentSection === 1 ? "block" : "none",
-            width: "100vw",
-            maxWidth: "100vw",
-            boxSizing: "border-box",
           }}
         >
           <AboutUsSection
@@ -4021,12 +3593,9 @@ export default function Index() {
 
         {/* Services Section */}
         <motion.div
-          className={`max-w-full ${isMobileMenuOpen ? "blur-sm" : ""}`}
+          className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
             display: currentSection === 2 ? "block" : "none",
-            width: "100vw",
-            maxWidth: "100vw",
-            boxSizing: "border-box",
           }}
         >
           <ServicesSection
@@ -4040,12 +3609,9 @@ export default function Index() {
 
         {/* Portfolio Section */}
         <motion.div
-          className={`max-w-full ${isMobileMenuOpen ? "blur-sm" : ""}`}
+          className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
             display: currentSection === 3 ? "block" : "none",
-            width: "100vw",
-            maxWidth: "100vw",
-            boxSizing: "border-box",
           }}
         >
           <PortfolioSection
@@ -4059,12 +3625,9 @@ export default function Index() {
 
         {/* Contact Us Section */}
         <motion.div
-          className={`max-w-full ${isMobileMenuOpen ? "blur-sm" : ""}`}
+          className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
             display: currentSection === 4 ? "block" : "none",
-            width: "100vw",
-            maxWidth: "100vw",
-            boxSizing: "border-box",
           }}
         >
           <ContactUsSection
@@ -5906,16 +5469,11 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
     return (
       <motion.div
         ref={ref}
-        className={`relative min-h-screen max-w-full flex items-center justify-center overflow-hidden ${
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
             ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
             : "bg-black"
         }`}
-        style={{
-          width: "100vw",
-          maxWidth: "100vw",
-          boxSizing: "border-box",
-        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
@@ -6890,16 +6448,11 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
     return (
       <motion.div
         ref={ref}
-        className={`relative min-h-screen max-w-full flex items-center justify-center overflow-hidden ${
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
             ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
             : "bg-black"
         }`}
-        style={{
-          width: "100vw",
-          maxWidth: "100vw",
-          boxSizing: "border-box",
-        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
@@ -7640,16 +7193,11 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
     return (
       <motion.div
         ref={ref}
-        className={`relative min-h-screen max-w-full flex items-center justify-center overflow-hidden ${
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
             ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
             : "bg-black"
         }`}
-        style={{
-          width: "100vw",
-          maxWidth: "100vw",
-          boxSizing: "border-box",
-        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
@@ -8497,16 +8045,11 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
     return (
       <motion.div
         ref={ref}
-        className={`relative min-h-screen max-w-full flex items-center justify-center overflow-hidden ${
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
             ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
             : "bg-black"
         }`}
-        style={{
-          width: "100vw",
-          maxWidth: "100vw",
-          boxSizing: "border-box",
-        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
@@ -8609,7 +8152,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "������" },
+            { type: "email", x: 15, y: 35, icon: "✉���" },
             { type: "call", x: 75, y: 25, icon: "��" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
@@ -9154,7 +8697,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Telegram",
                             url: "https://telegram.org",
-                            icon: "��",
+                            icon: "📱",
                             color: "from-blue-500 to-cyan-500",
                           },
                         ].map((social) => (
@@ -9308,7 +8851,11 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Email",
                         subtitle: "contact@kor.dev",
                         url: "mailto:contact@kor.dev",
+<<<<<<< HEAD
                         icon: "✉�������",
+=======
+                        icon: "✉���",
+>>>>>>> origin/main
                         color: "from-emerald-500 via-green-500 to-lime-500",
                         shadowColor: "rgba(16, 185, 129, 0.3)",
                       },
