@@ -1941,11 +1941,16 @@ export default function Index() {
                   theme === "light"
                     ? "0 32px 64px -12px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.4), 0 0 120px rgba(59,130,246,0.2), inset 0 1px 0 rgba(255,255,255,0.6)"
                     : "0 32px 64px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.15), 0 0 120px rgba(99,102,241,0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
-                padding: "0.75rem",
+                padding: "0.5rem",
                 backdropFilter: "blur(40px) saturate(150%)",
                 WebkitBackdropFilter: "blur(40px) saturate(150%)",
               }}
             >
+              {/* Scrollable Content Wrapper */}
+              <div className="max-h-[75vh] sm:max-h-[80vh] overflow-y-auto" style={{
+                scrollbarWidth: 'thin',
+                scrollbarColor: theme === "light" ? '#cbd5e1 transparent' : '#64748b transparent'
+              }}>
               {/* Close Button */}
               <button
                 onClick={closeModalAndScrollToTop}
@@ -1964,7 +1969,7 @@ export default function Index() {
               </button>
 
               {/* Modal Header */}
-              <div className="text-center mb-3 sm:mb-4 md:mb-6">
+              <div className="text-center mb-2 sm:mb-3 md:mb-4">
                 <h2
                   className={`text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2 ${
                     theme === "light" ? "text-gray-900" : "text-white"
@@ -1983,7 +1988,7 @@ export default function Index() {
               </div>
 
               {/* How to Access Zoom Menu */}
-              <div className="mb-4 sm:mb-6">
+              <div className="mb-3 sm:mb-4">
                 <div
                   className={`relative rounded-xl border p-3 sm:p-4 ${
                     theme === "light"
@@ -2003,7 +2008,7 @@ export default function Index() {
                     <h3 className="font-bold text-sm sm:text-base mb-2">
                       How to access zoom options:
                     </h3>
-                    <div className="text-xs sm:text-sm space-y-1">
+                    <div className="text-xs sm:text-sm space-y-0.5">
                       <p>
                         <strong>1.</strong> Click the menu button (⋮ or ☰) in
                         your browser
@@ -2085,10 +2090,11 @@ export default function Index() {
                 </div>
               </div>
 
+              </div>
               {/* Action Button */}
               <button
                 onClick={closeModalAndScrollToTop}
-                className={`w-full mt-4 sm:mt-6 py-3 px-4 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
+                className={`w-full mt-3 sm:mt-4 py-2.5 sm:py-3 px-4 rounded-xl font-bold text-sm sm:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
                   theme === "light"
                     ? "bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white"
                     : "bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-300 hover:to-indigo-400 text-black"
