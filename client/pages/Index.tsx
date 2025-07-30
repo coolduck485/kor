@@ -882,7 +882,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔═��██╗
+██║ ██╔╝██╔═══██╗██╔═���██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -9510,7 +9510,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "�����",
+                        icon: "✈️",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
