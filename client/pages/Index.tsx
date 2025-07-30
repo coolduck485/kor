@@ -6968,7 +6968,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   >
                     {/* Service Card */}
                     <div
-                      className="relative p-1 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full mobile-lively-card"
+                      className="relative p-1 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg overflow-hidden transition-all duration-500 h-full mobile-lively-card"
                       style={{
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "2px solid rgba(255, 255, 255, 0.1)",
