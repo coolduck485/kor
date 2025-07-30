@@ -1870,6 +1870,16 @@ export default function Index() {
         html, body {
           overflow-x: hidden !important;
           max-width: 100vw !important;
+          width: 100vw !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        /* Ensure root container fills full width */
+        #root {
+          width: 100vw !important;
+          margin: 0 !important;
+          padding: 0 !important;
         }
 
         /* Prevent any child elements from causing horizontal overflow */
@@ -5757,7 +5767,7 @@ const ORB_BUTTON_CONFIG = {
 // ========================================
 //
 // To move "Services" button 50px to the right:
-// Change: xOffset: 0  ��  xOffset: 50
+// Change: xOffset: 0  →  xOffset: 50
 //
 // To move "About us" button 30px up:
 // Change: yOffset: 0  →  yOffset: -30
