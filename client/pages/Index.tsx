@@ -890,7 +890,7 @@ export default function Index() {
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚���╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+������╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -2044,7 +2044,8 @@ export default function Index() {
 
       {/* Section Navigation Buttons */}
       <div
-        className="fixed right-2 sm:right-3 md:right-4 lg:right-4 xl:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3"
+        className="fixed right-2 sm:right-3 md:right-4 lg:right-4 xl:right-6 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
+        style={{ position: 'fixed' }}
         onMouseLeave={() => setShowNavigationTooltip(true)}
       >
         {/* Shared Navigation Tooltip - Positioned between buttons */}
@@ -2384,7 +2385,7 @@ export default function Index() {
       )}
 
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
-      <div className="hidden md:flex fixed left-2 sm:left-3 md:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 flex-col space-y-1 md:space-y-1 lg:space-y-2">
+      <div className="hidden md:flex fixed left-2 sm:left-3 md:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2" style={{ position: 'fixed' }}>
         {sections.map((section, index) => (
           <button
             key={section.id}
@@ -2414,12 +2415,13 @@ export default function Index() {
       {/* Help Button - Available on all sections, above notifications */}
       {
         <div
-          className={`help-button fixed right-3 sm:right-4 md:right-6 lg:right-8 z-[150] transition-all duration-300 ${
+          className={`help-button fixed right-3 sm:right-4 md:right-6 lg:right-8 z-[9999] transition-all duration-300 ${
             isMobileSafari || (isSafari && isMobile)
               ? ""
               : "bottom-6 sm:bottom-8"
           } ${isMobileMenuOpen ? "blur-sm" : ""}`}
           style={{
+            position: 'fixed',
             bottom:
               isMobileSafari || (isSafari && isMobile) ? "120px" : undefined,
           }}
