@@ -511,7 +511,7 @@ export default function Index() {
     }
   }, [currentSection]);
 
-  // Handle wheel scroll with desktop optimizations
+  // Disabled automatic scroll transitions - now using navigation buttons only
   useEffect(() => {
     // Update desktop detection on resize
     const updateIsDesktop = () => {
@@ -519,115 +519,14 @@ export default function Index() {
     };
     window.addEventListener('resize', updateIsDesktop);
 
-    const handleWheel = (e: WheelEvent) => {
-      if (isScrolling || mode === "retro") return;
-
-      const currentTime = Date.now();
-      const deltaTime = currentTime - lastScrollTime.current;
-      lastScrollTime.current = currentTime;
-
-      // Desktop optimizations
-      if (isDesktop.current) {
-        // Smooth scroll accumulation for desktop precision
-        scrollAccumulator.current += e.deltaY;
-
-        // Clear any existing timeout
-        if (scrollTimeout.current) {
-          clearTimeout(scrollTimeout.current);
-        }
-
-        // Reset accumulator after brief pause (smooth momentum)
-        scrollTimeout.current = setTimeout(() => {
-          scrollAccumulator.current = 0;
-        }, 150);
-
-        // Require more intentional scrolling for section changes on desktop
-        const scrollThreshold = 100; // Increased threshold for desktop
-
-        // For home section (index 0), allow immediate section transitions with threshold
-        if (currentSection === 0) {
-          if (Math.abs(scrollAccumulator.current) > scrollThreshold) {
-            e.preventDefault();
-            if (scrollAccumulator.current > 0 && currentSection < sections.length - 1) {
-              scrollToSection(currentSection + 1);
-              scrollAccumulator.current = 0;
-            } else if (scrollAccumulator.current < 0 && currentSection > 0) {
-              scrollToSection(currentSection - 1);
-              scrollAccumulator.current = 0;
-            }
-          }
-          return;
-        }
-
-        // For other sections with scrollable content
-        const mainContainer = containerRef.current;
-        if (mainContainer) {
-          const { scrollTop, scrollHeight, clientHeight } = mainContainer;
-          const isAtTop = scrollTop <= 3; // Tighter tolerance for desktop
-          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 3;
-
-          // Only allow section transitions at boundaries with accumulated scroll
-          if (((scrollAccumulator.current > scrollThreshold && isAtBottom) ||
-               (scrollAccumulator.current < -scrollThreshold && isAtTop))) {
-            e.preventDefault();
-            if (scrollAccumulator.current > 0 && currentSection < sections.length - 1) {
-              scrollToSection(currentSection + 1);
-              scrollAccumulator.current = 0;
-            } else if (scrollAccumulator.current < 0 && currentSection > 0) {
-              scrollToSection(currentSection - 1);
-              scrollAccumulator.current = 0;
-            }
-          }
-        }
-      } else {
-        // Mobile/tablet behavior (original logic)
-        if (currentSection === 0) {
-          e.preventDefault();
-          if (e.deltaY > 0 && currentSection < sections.length - 1) {
-            scrollToSection(currentSection + 1);
-          } else if (e.deltaY < 0 && currentSection > 0) {
-            scrollToSection(currentSection - 1);
-          }
-          return;
-        }
-
-        const mainContainer = containerRef.current;
-        if (mainContainer) {
-          const { scrollTop, scrollHeight, clientHeight } = mainContainer;
-          const isAtTop = scrollTop <= 5;
-          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5;
-
-          if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
-            e.preventDefault();
-            if (e.deltaY > 0 && currentSection < sections.length - 1) {
-              scrollToSection(currentSection + 1);
-            } else if (e.deltaY < 0 && currentSection > 0) {
-              scrollToSection(currentSection - 1);
-            }
-          }
-        }
-      }
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("wheel", handleWheel, { passive: false });
-      return () => {
-        container.removeEventListener("wheel", handleWheel);
-        window.removeEventListener('resize', updateIsDesktop);
-        if (scrollTimeout.current) {
-          clearTimeout(scrollTimeout.current);
-        }
-      };
-    }
-
+    // No wheel event handler - allow natural scrolling within sections
     return () => {
       window.removeEventListener('resize', updateIsDesktop);
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current);
       }
     };
-  }, [currentSection, isScrolling, sections.length, mode]);
+  }, []);
 
   // Handle touch scroll for mobile - Enhanced with better swipe detection
   useEffect(() => {
