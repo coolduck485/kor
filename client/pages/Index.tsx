@@ -574,46 +574,36 @@ export default function Index() {
       const minSwipeDistance = 50;
       const minSwipeVelocity = 0.1; // pixels per millisecond
 
-      // Check if we're in services section on mobile/tablet
-      const isMobileTablet = window.innerWidth <= 1024;
-      const isServicesSection = currentSection === 2;
-
-      if (isMobileTablet && isServicesSection) {
-        // For services section, only trigger section change if at boundaries
-        const servicesElement = document.querySelector(
-          '[data-section="services"]',
-        ) as HTMLElement;
-        if (servicesElement) {
-          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
-          const isAtTop = scrollTop <= 0;
-          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
-
-          if (
-            Math.abs(deltaY) > minSwipeDistance &&
-            swipeVelocity > minSwipeVelocity
-          ) {
-            // Only change sections if at boundaries
-            if (
-              deltaY > 0 &&
-              isAtBottom &&
-              currentSection < sections.length - 1
-            ) {
-              scrollToSection(currentSection + 1);
-            } else if (deltaY < 0 && isAtTop && currentSection > 0) {
-              scrollToSection(currentSection - 1);
-            }
-          }
-        }
-      } else {
-        // Default behavior for other sections
-        if (
-          Math.abs(deltaY) > minSwipeDistance &&
-          swipeVelocity > minSwipeVelocity
-        ) {
+      if (
+        Math.abs(deltaY) > minSwipeDistance &&
+        swipeVelocity > minSwipeVelocity
+      ) {
+        // For home section, allow immediate section transitions
+        if (currentSection === 0) {
           if (deltaY > 0 && currentSection < sections.length - 1) {
             scrollToSection(currentSection + 1);
           } else if (deltaY < 0 && currentSection > 0) {
             scrollToSection(currentSection - 1);
+          }
+        } else {
+          // For all other sections, check scroll boundaries
+          const container = containerRef.current;
+          if (container) {
+            const { scrollTop, scrollHeight, clientHeight } = container;
+            const isAtTop = scrollTop <= 5;
+            const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5;
+
+            // Only change sections if at boundaries
+            if (
+              (deltaY > 0 && isAtBottom && currentSection < sections.length - 1) ||
+              (deltaY < 0 && isAtTop && currentSection > 0)
+            ) {
+              if (deltaY > 0) {
+                scrollToSection(currentSection + 1);
+              } else {
+                scrollToSection(currentSection - 1);
+              }
+            }
           }
         }
       }
@@ -893,7 +883,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
-██║  �����█╗���███����██�����╝██║  ���������
+██║  �����█╗���███����██�����╝██║  ����������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
