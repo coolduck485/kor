@@ -953,7 +953,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █�����������█��������█████����██████ 60%
+                      CPU: █�����������█��������████�������██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1859,6 +1859,40 @@ export default function Index() {
           .fixed[style*="left"] {
             left: clamp(8px, 2vw, 24px) !important;
           }
+        }
+
+        /* Comprehensive horizontal scrollbar prevention */
+        * {
+          max-width: 100vw;
+        }
+
+        html, body {
+          overflow-x: hidden !important;
+          max-width: 100vw !important;
+        }
+
+        /* Prevent any child elements from causing horizontal overflow */
+        div, section, main, article, aside, nav, header, footer {
+          max-width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Hide horizontal scrollbars completely on all elements */
+        ::-webkit-scrollbar:horizontal {
+          display: none !important;
+        }
+
+        /* Firefox horizontal scrollbar hiding */
+        * {
+          scrollbar-width: thin;
+          scrollbar-color: transparent transparent;
+        }
+
+        /* Ensure no element can exceed viewport width */
+        [data-section] {
+          max-width: 100vw !important;
+          overflow-x: hidden !important;
+          box-sizing: border-box !important;
         }
       `}</style>
       </div>
