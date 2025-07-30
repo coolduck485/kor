@@ -900,7 +900,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███����������█╗
+                  {`██╗  ██╗ ██████���� ███������������█╗
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
@@ -3656,7 +3656,7 @@ export default function Index() {
         {/* Services Section */}
         <motion.div
           data-section="services"
-          className={`${isMobileMenuOpen ? "blur-sm" : ""} lg:overflow-hidden overflow-y-auto lg:h-auto h-screen`}
+          className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
           style={{
             display: currentSection === 2 ? "block" : "none",
           }}
