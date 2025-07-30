@@ -903,7 +903,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
-██╔����█╗ █��║   ██║██╔══█��������
+██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███��██�����╝██║  �������║
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
@@ -1051,7 +1051,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">������◄►������</span>
+                  <span className="text-green-400 ml-4">������◄��������</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -6950,9 +6950,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             }}
           >
             {/* Services Title - matching home style */}
-            <div className="text-center mb-3">
+            <div className="text-center mb-2">
               <h1
-                className={`font-poppins text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight relative mobile-lively-text ${
+                className={`font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight relative mobile-lively-text ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
@@ -6971,7 +6971,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle - matching development services style */}
-            <div className="text-center mb-3">
+            <div className="text-center mb-2">
               <div className="relative">
                 {/* Background glow effect */}
                 <div
