@@ -882,8 +882,8 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██��██╔══██╗
-█████╔╝ ██║   ██║██████╔╝
+██║ ██╔╝██╔═══██╗██╔══██╗
+█████╔╝ ���█║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
@@ -963,7 +963,7 @@ export default function Index() {
                       RAM: ████████████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
-                      NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
+                      NETWORK: {systemStats.networkUp}GB/s �� |{" "}
                       {systemStats.networkDown}MB/s ↓
                     </div>
                   </div>
@@ -1038,9 +1038,9 @@ export default function Index() {
                 </div>
 
                 <div className="loading-indicators">
-                  <span>█��▒░</span>
+                  <span>█▓▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░���▓█</span>
+                  <span>░▒▓█</span>
                 </div>
               </motion.div>
 
