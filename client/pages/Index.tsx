@@ -24,6 +24,8 @@ import {
   Smartphone,
   Globe,
   Users,
+  HelpCircle,
+  X,
 } from "lucide-react";
 
 export default function Index() {
@@ -876,7 +878,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������█████������██████ 60%
+                      CPU: █��������█������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8258,7 +8260,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Communication Icons - Contact specific */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
           {[
-            { icon: "�������", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
+            { icon: "�����", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
             { icon: "��", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
