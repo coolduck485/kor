@@ -881,12 +881,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`█��╗  ██╗ ██████╗ ██████╗
+                  {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚════���╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -5763,7 +5763,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ��������  hoverScale: 1.15
+// Change: hoverScale: 1.05  ———————→  hoverScale: 1.15
 //
 // ========================================
 
