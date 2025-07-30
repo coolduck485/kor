@@ -9494,7 +9494,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Instagram",
                         subtitle: "Follow us for updates",
                         url: "https://instagram.com",
-                        icon: "���",
+                        icon: "📷",
                         color: "from-pink-500 via-purple-500 to-indigo-500",
                         shadowColor: "rgba(236, 72, 153, 0.3)",
                       },
