@@ -28,7 +28,6 @@
 
 /* Mobile Safari specific adjustments */
 @supports (-webkit-touch-callout: none) {
-
   /* This targets iOS Safari specifically */
   .notification-container {
     bottom: calc(env(safe-area-inset-bottom) + 80px) !important;
@@ -88,7 +87,6 @@
 }
 
 @layer base {
-
   /**
    * Tailwind CSS theme
    * tailwind.config.ts expects the following color variables to be expressed as HSL values.
@@ -232,7 +230,6 @@
 
 /* Gentle floating animations */
 @keyframes gentleFloat {
-
   0%,
   100% {
     transform: translateY(0px);
@@ -244,7 +241,6 @@
 }
 
 @keyframes gentleBounce {
-
   0%,
   100% {
     transform: translateY(0px) scale(1);
@@ -256,7 +252,6 @@
 }
 
 @keyframes sparkle {
-
   0%,
   100% {
     transform: rotate(0deg) scale(1);
@@ -280,7 +275,6 @@
 }
 
 @keyframes textGlow {
-
   0%,
   100% {
     text-shadow: 0 0 5px rgba(34, 211, 238, 0.3);
@@ -383,7 +377,6 @@
 
 /* Enhanced animations for Development services text */
 @keyframes text-pop {
-
   0%,
   100% {
     transform: scale(1) translateY(0px);
@@ -450,25 +443,29 @@
 /* Eye-catching utility classes */
 
 .rainbow-glow {
-  background: linear-gradient(45deg,
-      #ff6b6b,
-      #4ecdc4,
-      #45b7d1,
-      #96ceb4,
-      #feca57,
-      #ff9ff3,
-      #54a0ff);
+  background: linear-gradient(
+    45deg,
+    #ff6b6b,
+    #4ecdc4,
+    #45b7d1,
+    #96ceb4,
+    #feca57,
+    #ff9ff3,
+    #54a0ff
+  );
   background-size: 400% 400%;
   animation: rainbow-pulse 8s ease-in-out infinite;
 }
 
 .crystalline-effect {
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(79, 209, 197, 0.4),
-      rgba(59, 130, 246, 0.4),
-      rgba(139, 92, 246, 0.4),
-      transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(79, 209, 197, 0.4),
+    rgba(59, 130, 246, 0.4),
+    rgba(139, 92, 246, 0.4),
+    transparent
+  );
   background-size: 200% 100%;
   animation: crystalline-shimmer 6s ease-in-out infinite;
 }
@@ -479,14 +476,18 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(135deg,
+    linear-gradient(
+      135deg,
       rgba(34, 197, 94, 0.1) 0%,
       transparent 50%,
-      rgba(59, 130, 246, 0.1) 100%),
-    linear-gradient(45deg,
+      rgba(59, 130, 246, 0.1) 100%
+    ),
+    linear-gradient(
+      45deg,
       rgba(249, 115, 22, 0.08) 0%,
       transparent 50%,
-      rgba(139, 92, 246, 0.08) 100%);
+      rgba(139, 92, 246, 0.08) 100%
+    );
   animation: rainbow-pulse 12s ease-in-out infinite;
   pointer-events: none;
 }
@@ -496,23 +497,28 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 30% 70%,
+    radial-gradient(
+      circle at 30% 70%,
       rgba(236, 72, 153, 0.15) 0%,
-      transparent 50%),
-    radial-gradient(circle at 70% 30%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 30%,
       rgba(59, 130, 246, 0.12) 0%,
-      transparent 50%),
-    linear-gradient(45deg,
+      transparent 50%
+    ),
+    linear-gradient(
+      45deg,
       rgba(147, 51, 234, 0.08) 0%,
       transparent 50%,
-      rgba(34, 197, 94, 0.08) 100%);
+      rgba(34, 197, 94, 0.08) 100%
+    );
   animation: rainbow-pulse 15s ease-in-out infinite reverse;
   pointer-events: none;
 }
 
 /* Tech circuit animation */
 @keyframes circuit-pulse {
-
   0%,
   100% {
     opacity: 0.3;
@@ -556,7 +562,6 @@
 }
 
 @keyframes text-glow-pulse {
-
   0%,
   100% {
     filter: brightness(1) saturate(1);
@@ -568,7 +573,6 @@
 }
 
 @keyframes pulse-glow {
-
   0%,
   100% {
     opacity: 0.3;
@@ -582,7 +586,6 @@
 }
 
 @keyframes energy-float {
-
   0%,
   100% {
     transform: translateY(0px) translateX(0px) scale(1);
@@ -601,7 +604,6 @@
 }
 
 @keyframes letter-float {
-
   0%,
   100% {
     transform: translateY(0px) scale(1);
@@ -629,7 +631,6 @@
 }
 
 @keyframes sparkle-enhanced {
-
   0%,
   100% {
     opacity: 0.6;
@@ -673,7 +674,6 @@
 }
 
 @keyframes pulse-fast {
-
   0%,
   100% {
     opacity: 0.6;
@@ -697,7 +697,6 @@
 }
 
 @keyframes gentle-pulse {
-
   0%,
   100% {
     opacity: 0.4;
@@ -711,7 +710,6 @@
 }
 
 @keyframes orb-pulse {
-
   0%,
   100% {
     transform: translate(-50%, -50%) scale(1);
@@ -735,7 +733,6 @@
 }
 
 @keyframes button-drift {
-
   0%,
   100% {
     transform: translate(0px, 0px);
@@ -767,7 +764,6 @@
 }
 
 @keyframes magnetic-pull {
-
   0%,
   100% {
     transform: scale(1) translate(0px, 0px);
@@ -779,7 +775,6 @@
 }
 
 @keyframes color-shift {
-
   0%,
   100% {
     filter: hue-rotate(0deg) saturate(1);
@@ -799,7 +794,6 @@
 }
 
 @keyframes geometric-pulse {
-
   0%,
   100% {
     stroke-dashoffset: 0;
@@ -813,7 +807,6 @@
 }
 
 @keyframes breath {
-
   0%,
   100% {
     transform: scale(1) rotate(0deg);
@@ -827,7 +820,6 @@
 }
 
 @keyframes warm-glow-pulse {
-
   0%,
   100% {
     text-shadow:
@@ -1168,7 +1160,7 @@
   }
 
   /* Fix service card gaps on mobile */
-  .responsive-grid>* {
+  .responsive-grid > * {
     width: 100% !important;
     min-height: 100% !important;
   }
@@ -1207,7 +1199,6 @@
 
   /* Reduce motion for better mobile performance */
   @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
@@ -1325,7 +1316,6 @@
 
 /* Performance optimizations for all mobile devices */
 @media (max-width: 768px) {
-
   /* Reduce complex animations on mobile */
   .animate-orb-pulse,
   .animate-glow-intensity,
@@ -1394,14 +1384,16 @@
 
 .chrome-wavy-text .wavy-letter {
   display: inline-block;
-  background: linear-gradient(145deg,
-      #8e8e93 0%,
-      #c7c7cc 25%,
-      #f2f2f7 45%,
-      #ffffff 50%,
-      #f2f2f7 55%,
-      #c7c7cc 75%,
-      #8e8e93 100%);
+  background: linear-gradient(
+    145deg,
+    #8e8e93 0%,
+    #c7c7cc 25%,
+    #f2f2f7 45%,
+    #ffffff 50%,
+    #f2f2f7 55%,
+    #c7c7cc 75%,
+    #8e8e93 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1414,14 +1406,16 @@
 .shine-text-enhanced {
   color: white;
   /* Fallback color */
-  background: linear-gradient(120deg,
-      rgba(178, 227, 255, 0.7) 0%,
-      rgba(178, 227, 255, 0.8) 20%,
-      rgba(255, 255, 255, 0.9) 35%,
-      rgba(255, 255, 255, 1) 50%,
-      rgba(255, 255, 255, 0.9) 65%,
-      rgba(178, 227, 255, 0.8) 80%,
-      rgba(178, 227, 255, 0.7) 100%);
+  background: linear-gradient(
+    120deg,
+    rgba(178, 227, 255, 0.7) 0%,
+    rgba(178, 227, 255, 0.8) 20%,
+    rgba(255, 255, 255, 0.9) 35%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.9) 65%,
+    rgba(178, 227, 255, 0.8) 80%,
+    rgba(178, 227, 255, 0.7) 100%
+  );
   background-size: 300% 100%;
   background-position: 0% 50%;
   -webkit-background-clip: text;
@@ -1451,14 +1445,16 @@
 
 /* Light mode chrome */
 .light .chrome-wavy-text .wavy-letter {
-  background: linear-gradient(145deg,
-      #2c2c2e 0%,
-      #48484a 25%,
-      #6d6d70 45%,
-      #8e8e93 50%,
-      #6d6d70 55%,
-      #48484a 75%,
-      #2c2c2e 100%);
+  background: linear-gradient(
+    145deg,
+    #2c2c2e 0%,
+    #48484a 25%,
+    #6d6d70 45%,
+    #8e8e93 50%,
+    #6d6d70 55%,
+    #48484a 75%,
+    #2c2c2e 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1469,14 +1465,16 @@
 .light .shine-text-enhanced {
   color: #1f2937;
   /* Fallback color for light mode */
-  background: linear-gradient(120deg,
-      rgba(59, 130, 246, 0.6) 0%,
-      rgba(59, 130, 246, 0.7) 20%,
-      rgba(17, 24, 39, 0.8) 35%,
-      rgba(17, 24, 39, 1) 50%,
-      rgba(17, 24, 39, 0.8) 65%,
-      rgba(59, 130, 246, 0.7) 80%,
-      rgba(59, 130, 246, 0.6) 100%);
+  background: linear-gradient(
+    120deg,
+    rgba(59, 130, 246, 0.6) 0%,
+    rgba(59, 130, 246, 0.7) 20%,
+    rgba(17, 24, 39, 0.8) 35%,
+    rgba(17, 24, 39, 1) 50%,
+    rgba(17, 24, 39, 0.8) 65%,
+    rgba(59, 130, 246, 0.7) 80%,
+    rgba(59, 130, 246, 0.6) 100%
+  );
   background-size: 300% 100%;
   background-position: 0% 50%;
 }
@@ -1491,28 +1489,32 @@
   }
 
   20% {
-    transform: translateX(-5%) translateY(-25px) skewX(-12deg) scaleX(1.1) scaleY(1.15);
+    transform: translateX(-5%) translateY(-25px) skewX(-12deg) scaleX(1.1)
+      scaleY(1.15);
     opacity: 0.9;
     filter: hue-rotate(20deg) brightness(1.6) blur(18px);
     borderradius: "70% 60% 90% 70% / 40% 25% 20% 10%";
   }
 
   40% {
-    transform: translateX(10%) translateY(15px) skewX(15deg) scaleX(1.05) scaleY(1.25);
+    transform: translateX(10%) translateY(15px) skewX(15deg) scaleX(1.05)
+      scaleY(1.25);
     opacity: 1;
     filter: hue-rotate(35deg) brightness(1.8) blur(22px);
     borderradius: "60% 80% 70% 90% / 35% 40% 25% 20%";
   }
 
   60% {
-    transform: translateX(20%) translateY(-10px) skewX(-8deg) scaleX(1.15) scaleY(1.1);
+    transform: translateX(20%) translateY(-10px) skewX(-8deg) scaleX(1.15)
+      scaleY(1.1);
     opacity: 0.8;
     filter: hue-rotate(50deg) brightness(1.5) blur(24px);
     borderradius: "80% 70% 60% 80% / 30% 35% 30% 15%";
   }
 
   80% {
-    transform: translateX(5%) translateY(20px) skewX(10deg) scaleX(1.02) scaleY(1.2);
+    transform: translateX(5%) translateY(20px) skewX(10deg) scaleX(1.02)
+      scaleY(1.2);
     opacity: 0.9;
     filter: hue-rotate(25deg) brightness(1.4) blur(19px);
     borderradius: "65% 85% 75% 65% / 25% 20% 35% 25%";
@@ -1528,31 +1530,36 @@
 
 @keyframes aurora-wave-2 {
   0% {
-    transform: translateX(-25%) translateY(0px) skewX(-10deg) scaleX(1) scaleY(1);
+    transform: translateX(-25%) translateY(0px) skewX(-10deg) scaleX(1)
+      scaleY(1);
     opacity: 0.6;
     filter: hue-rotate(0deg) brightness(1.2) blur(25px);
   }
 
   25% {
-    transform: translateX(-10%) translateY(30px) skewX(15deg) scaleX(1.2) scaleY(1.1);
+    transform: translateX(-10%) translateY(30px) skewX(15deg) scaleX(1.2)
+      scaleY(1.1);
     opacity: 0.8;
     filter: hue-rotate(40deg) brightness(1.5) blur(23px);
   }
 
   50% {
-    transform: translateX(15%) translateY(-20px) skewX(-18deg) scaleX(1.08) scaleY(1.3);
+    transform: translateX(15%) translateY(-20px) skewX(-18deg) scaleX(1.08)
+      scaleY(1.3);
     opacity: 1;
     filter: hue-rotate(60deg) brightness(1.7) blur(27px);
   }
 
   75% {
-    transform: translateX(30%) translateY(25px) skewX(12deg) scaleX(1.15) scaleY(1.05);
+    transform: translateX(30%) translateY(25px) skewX(12deg) scaleX(1.15)
+      scaleY(1.05);
     opacity: 0.9;
     filter: hue-rotate(30deg) brightness(1.6) blur(24px);
   }
 
   100% {
-    transform: translateX(-25%) translateY(0px) skewX(-10deg) scaleX(1) scaleY(1);
+    transform: translateX(-25%) translateY(0px) skewX(-10deg) scaleX(1)
+      scaleY(1);
     opacity: 0.6;
     filter: hue-rotate(0deg) brightness(1.2) blur(25px);
   }
@@ -1566,19 +1573,22 @@
   }
 
   30% {
-    transform: translateX(-15%) translateY(-35px) skewX(-15deg) scaleX(1.1) scaleY(1.2);
+    transform: translateX(-15%) translateY(-35px) skewX(-15deg) scaleX(1.1)
+      scaleY(1.2);
     opacity: 0.8;
     filter: hue-rotate(45deg) brightness(1.4) blur(28px);
   }
 
   60% {
-    transform: translateX(20%) translateY(40px) skewX(20deg) scaleX(1.05) scaleY(1.4);
+    transform: translateX(20%) translateY(40px) skewX(20deg) scaleX(1.05)
+      scaleY(1.4);
     opacity: 0.9;
     filter: hue-rotate(70deg) brightness(1.6) blur(32px);
   }
 
   90% {
-    transform: translateX(35%) translateY(-15px) skewX(-8deg) scaleX(1.2) scaleY(1.1);
+    transform: translateX(35%) translateY(-15px) skewX(-8deg) scaleX(1.2)
+      scaleY(1.1);
     opacity: 0.7;
     filter: hue-rotate(35deg) brightness(1.3) blur(29px);
   }
@@ -1598,19 +1608,22 @@
   }
 
   25% {
-    transform: translateX(-25%) translateY(-50px) skewX(-20deg) scaleX(1.3) scaleY(1.15);
+    transform: translateX(-25%) translateY(-50px) skewX(-20deg) scaleX(1.3)
+      scaleY(1.15);
     opacity: 0.6;
     filter: hue-rotate(55deg) brightness(1.2) blur(33px);
   }
 
   50% {
-    transform: translateX(0%) translateY(30px) skewX(25deg) scaleX(1.1) scaleY(1.4);
+    transform: translateX(0%) translateY(30px) skewX(25deg) scaleX(1.1)
+      scaleY(1.4);
     opacity: 0.8;
     filter: hue-rotate(80deg) brightness(1.4) blur(37px);
   }
 
   75% {
-    transform: translateX(25%) translateY(-20px) skewX(-15deg) scaleX(1.4) scaleY(1.2);
+    transform: translateX(25%) translateY(-20px) skewX(-15deg) scaleX(1.4)
+      scaleY(1.2);
     opacity: 0.7;
     filter: hue-rotate(40deg) brightness(1.3) blur(34px);
   }
@@ -1625,49 +1638,56 @@
 /* Subtle wavy aurora animations for smaller, more wavy background effects */
 @keyframes aurora-wave-subtle-1 {
   0% {
-    transform: translateX(-8%) translateY(0px) skewX(3deg) scaleX(1) scaleY(1) rotate(0deg);
+    transform: translateX(-8%) translateY(0px) skewX(3deg) scaleX(1) scaleY(1)
+      rotate(0deg);
     opacity: 0.3;
     filter: hue-rotate(0deg) brightness(1.1) blur(15px);
     border-radius: 40% 60% 80% 20% / 60% 40% 80% 20%;
   }
 
   16% {
-    transform: translateX(-2%) translateY(-8px) skewX(-6deg) scaleX(1.02) scaleY(1.05) rotate(1deg);
+    transform: translateX(-2%) translateY(-8px) skewX(-6deg) scaleX(1.02)
+      scaleY(1.05) rotate(1deg);
     opacity: 0.4;
     filter: hue-rotate(15deg) brightness(1.15) blur(14px);
     border-radius: 50% 50% 70% 30% / 70% 30% 90% 10%;
   }
 
   33% {
-    transform: translateX(4%) translateY(5px) skewX(8deg) scaleX(1.01) scaleY(1.08) rotate(-0.5deg);
+    transform: translateX(4%) translateY(5px) skewX(8deg) scaleX(1.01)
+      scaleY(1.08) rotate(-0.5deg);
     opacity: 0.45;
     filter: hue-rotate(25deg) brightness(1.2) blur(16px);
     border-radius: 30% 70% 60% 40% / 80% 20% 70% 30%;
   }
 
   50% {
-    transform: translateX(8%) translateY(-3px) skewX(-4deg) scaleX(1.03) scaleY(1.02) rotate(1.5deg);
+    transform: translateX(8%) translateY(-3px) skewX(-4deg) scaleX(1.03)
+      scaleY(1.02) rotate(1.5deg);
     opacity: 0.4;
     filter: hue-rotate(35deg) brightness(1.18) blur(17px);
     border-radius: 60% 40% 50% 50% / 40% 60% 50% 50%;
   }
 
   66% {
-    transform: translateX(2%) translateY(7px) skewX(5deg) scaleX(1.01) scaleY(1.06) rotate(-1deg);
+    transform: translateX(2%) translateY(7px) skewX(5deg) scaleX(1.01)
+      scaleY(1.06) rotate(-1deg);
     opacity: 0.42;
     filter: hue-rotate(20deg) brightness(1.16) blur(15px);
     border-radius: 45% 55% 75% 25% / 65% 35% 85% 15%;
   }
 
   83% {
-    transform: translateX(-3%) translateY(-5px) skewX(-7deg) scaleX(1.02) scaleY(1.04) rotate(0.8deg);
+    transform: translateX(-3%) translateY(-5px) skewX(-7deg) scaleX(1.02)
+      scaleY(1.04) rotate(0.8deg);
     opacity: 0.38;
     filter: hue-rotate(10deg) brightness(1.13) blur(14px);
     border-radius: 55% 45% 65% 35% / 55% 45% 75% 25%;
   }
 
   100% {
-    transform: translateX(-8%) translateY(0px) skewX(3deg) scaleX(1) scaleY(1) rotate(0deg);
+    transform: translateX(-8%) translateY(0px) skewX(3deg) scaleX(1) scaleY(1)
+      rotate(0deg);
     opacity: 0.3;
     filter: hue-rotate(0deg) brightness(1.1) blur(15px);
     border-radius: 40% 60% 80% 20% / 60% 40% 80% 20%;
@@ -1676,42 +1696,48 @@
 
 @keyframes aurora-wave-subtle-2 {
   0% {
-    transform: translateX(-12%) translateY(0px) skewX(-2deg) scaleX(1) scaleY(1) rotate(0deg);
+    transform: translateX(-12%) translateY(0px) skewX(-2deg) scaleX(1) scaleY(1)
+      rotate(0deg);
     opacity: 0.25;
     filter: hue-rotate(0deg) brightness(1.05) blur(18px);
     border-radius: 30% 70% 40% 60% / 70% 30% 60% 40%;
   }
 
   20% {
-    transform: translateX(-5%) translateY(6px) skewX(7deg) scaleX(1.04) scaleY(1.02) rotate(-1.2deg);
+    transform: translateX(-5%) translateY(6px) skewX(7deg) scaleX(1.04)
+      scaleY(1.02) rotate(-1.2deg);
     opacity: 0.35;
     filter: hue-rotate(25deg) brightness(1.12) blur(17px);
     border-radius: 65% 35% 55% 45% / 45% 55% 75% 25%;
   }
 
   40% {
-    transform: translateX(6%) translateY(-4px) skewX(-9deg) scaleX(1.01) scaleY(1.07) rotate(1.8deg);
+    transform: translateX(6%) translateY(-4px) skewX(-9deg) scaleX(1.01)
+      scaleY(1.07) rotate(1.8deg);
     opacity: 0.4;
     filter: hue-rotate(40deg) brightness(1.18) blur(19px);
     border-radius: 25% 75% 70% 30% / 85% 15% 55% 45%;
   }
 
   60% {
-    transform: translateX(10%) translateY(8px) skewX(4deg) scaleX(1.03) scaleY(1.01) rotate(-0.6deg);
+    transform: translateX(10%) translateY(8px) skewX(4deg) scaleX(1.03)
+      scaleY(1.01) rotate(-0.6deg);
     opacity: 0.32;
     filter: hue-rotate(30deg) brightness(1.15) blur(20px);
     border-radius: 50% 50% 45% 55% / 35% 65% 80% 20%;
   }
 
   80% {
-    transform: translateX(3%) translateY(-7px) skewX(-5deg) scaleX(1.02) scaleY(1.05) rotate(1.4deg);
+    transform: translateX(3%) translateY(-7px) skewX(-5deg) scaleX(1.02)
+      scaleY(1.05) rotate(1.4deg);
     opacity: 0.3;
     filter: hue-rotate(15deg) brightness(1.08) blur(18px);
     border-radius: 40% 60% 65% 35% / 60% 40% 70% 30%;
   }
 
   100% {
-    transform: translateX(-12%) translateY(0px) skewX(-2deg) scaleX(1) scaleY(1) rotate(0deg);
+    transform: translateX(-12%) translateY(0px) skewX(-2deg) scaleX(1) scaleY(1)
+      rotate(0deg);
     opacity: 0.25;
     filter: hue-rotate(0deg) brightness(1.05) blur(18px);
     border-radius: 30% 70% 40% 60% / 70% 30% 60% 40%;
@@ -1720,35 +1746,40 @@
 
 @keyframes aurora-wave-subtle-3 {
   0% {
-    transform: translateX(-10%) translateY(0px) skewX(1deg) scaleX(1) scaleY(1) rotate(0deg);
+    transform: translateX(-10%) translateY(0px) skewX(1deg) scaleX(1) scaleY(1)
+      rotate(0deg);
     opacity: 0.2;
     filter: hue-rotate(0deg) brightness(1.02) blur(20px);
     border-radius: 60% 40% 80% 20% / 40% 60% 20% 80%;
   }
 
   25% {
-    transform: translateX(-3%) translateY(-9px) skewX(-8deg) scaleX(1.02) scaleY(1.06) rotate(2deg);
+    transform: translateX(-3%) translateY(-9px) skewX(-8deg) scaleX(1.02)
+      scaleY(1.06) rotate(2deg);
     opacity: 0.28;
     filter: hue-rotate(30deg) brightness(1.08) blur(19px);
     border-radius: 35% 65% 55% 45% / 75% 25% 65% 35%;
   }
 
   50% {
-    transform: translateX(7%) translateY(5px) skewX(6deg) scaleX(1.01) scaleY(1.03) rotate(-1.5deg);
+    transform: translateX(7%) translateY(5px) skewX(6deg) scaleX(1.01)
+      scaleY(1.03) rotate(-1.5deg);
     opacity: 0.32;
     filter: hue-rotate(45deg) brightness(1.12) blur(22px);
     border-radius: 70% 30% 35% 65% / 25% 75% 85% 15%;
   }
 
   75% {
-    transform: translateX(12%) translateY(-6px) skewX(-3deg) scaleX(1.03) scaleY(1.02) rotate(1.2deg);
+    transform: translateX(12%) translateY(-6px) skewX(-3deg) scaleX(1.03)
+      scaleY(1.02) rotate(1.2deg);
     opacity: 0.26;
     filter: hue-rotate(20deg) brightness(1.06) blur(21px);
     border-radius: 45% 55% 75% 25% / 55% 45% 45% 55%;
   }
 
   100% {
-    transform: translateX(-10%) translateY(0px) skewX(1deg) scaleX(1) scaleY(1) rotate(0deg);
+    transform: translateX(-10%) translateY(0px) skewX(1deg) scaleX(1) scaleY(1)
+      rotate(0deg);
     opacity: 0.2;
     filter: hue-rotate(0deg) brightness(1.02) blur(20px);
     border-radius: 60% 40% 80% 20% / 40% 60% 20% 80%;
@@ -1757,42 +1788,48 @@
 
 @keyframes aurora-base-flow-subtle {
   0% {
-    transform: translateX(-15%) translateY(0px) skewX(2deg) scaleX(1) scaleY(1) rotate(0deg);
+    transform: translateX(-15%) translateY(0px) skewX(2deg) scaleX(1) scaleY(1)
+      rotate(0deg);
     opacity: 0.15;
     filter: hue-rotate(0deg) brightness(1.01) blur(25px);
     border-radius: 50% 80% 30% 70% / 80% 20% 70% 30%;
   }
 
   20% {
-    transform: translateX(-8%) translateY(-12px) skewX(-10deg) scaleX(1.05) scaleY(1.03) rotate(-2deg);
+    transform: translateX(-8%) translateY(-12px) skewX(-10deg) scaleX(1.05)
+      scaleY(1.03) rotate(-2deg);
     opacity: 0.22;
     filter: hue-rotate(35deg) brightness(1.06) blur(24px);
     border-radius: 35% 65% 70% 30% / 60% 40% 50% 50%;
   }
 
   40% {
-    transform: translateX(3%) translateY(8px) skewX(12deg) scaleX(1.02) scaleY(1.08) rotate(2.5deg);
+    transform: translateX(3%) translateY(8px) skewX(12deg) scaleX(1.02)
+      scaleY(1.08) rotate(2.5deg);
     opacity: 0.28;
     filter: hue-rotate(50deg) brightness(1.1) blur(27px);
     border-radius: 75% 25% 45% 55% / 30% 70% 85% 15%;
   }
 
   60% {
-    transform: translateX(9%) translateY(-5px) skewX(-6deg) scaleX(1.04) scaleY(1.01) rotate(-1.8deg);
+    transform: translateX(9%) translateY(-5px) skewX(-6deg) scaleX(1.04)
+      scaleY(1.01) rotate(-1.8deg);
     opacity: 0.24;
     filter: hue-rotate(25deg) brightness(1.08) blur(26px);
     border-radius: 40% 60% 85% 15% / 70% 30% 40% 60%;
   }
 
   80% {
-    transform: translateX(1%) translateY(10px) skewX(8deg) scaleX(1.01) scaleY(1.05) rotate(1.5deg);
+    transform: translateX(1%) translateY(10px) skewX(8deg) scaleX(1.01)
+      scaleY(1.05) rotate(1.5deg);
     opacity: 0.19;
     filter: hue-rotate(15deg) brightness(1.04) blur(25px);
     border-radius: 65% 35% 60% 40% / 45% 55% 75% 25%;
   }
 
   100% {
-    transform: translateX(-15%) translateY(0px) skewX(2deg) scaleX(1) scaleY(1) rotate(0deg);
+    transform: translateX(-15%) translateY(0px) skewX(2deg) scaleX(1) scaleY(1)
+      rotate(0deg);
     opacity: 0.15;
     filter: hue-rotate(0deg) brightness(1.01) blur(25px);
     border-radius: 50% 80% 30% 70% / 80% 20% 70% 30%;
@@ -1801,7 +1838,6 @@
 
 /* Mobile/Tablet Effects Animations - Lively and Energetic */
 @keyframes mobile-wave-1 {
-
   0%,
   100% {
     transform: translateX(-20%) skewY(-2deg) rotate(0deg) scaleX(1) scaleY(1);
@@ -1814,18 +1850,19 @@
   }
 
   50% {
-    transform: translateX(10%) skewY(-1deg) rotate(-0.5deg) scaleX(1.05) scaleY(1.1);
+    transform: translateX(10%) skewY(-1deg) rotate(-0.5deg) scaleX(1.05)
+      scaleY(1.1);
     opacity: 0.4;
   }
 
   75% {
-    transform: translateX(5%) skewY(0.5deg) rotate(0.8deg) scaleX(1.08) scaleY(1.02);
+    transform: translateX(5%) skewY(0.5deg) rotate(0.8deg) scaleX(1.08)
+      scaleY(1.02);
     opacity: 0.45;
   }
 }
 
 @keyframes mobile-wave-2 {
-
   0%,
   100% {
     transform: translateX(15%) skewY(1deg) rotate(2deg) scaleX(1) scaleY(1);
@@ -1833,18 +1870,19 @@
   }
 
   33% {
-    transform: translateX(-10%) skewY(-1.5deg) rotate(-1deg) scaleX(1.05) scaleY(1.08);
+    transform: translateX(-10%) skewY(-1.5deg) rotate(-1deg) scaleX(1.05)
+      scaleY(1.08);
     opacity: 0.5;
   }
 
   66% {
-    transform: translateX(8%) skewY(0.8deg) rotate(1.2deg) scaleX(1.12) scaleY(1.03);
+    transform: translateX(8%) skewY(0.8deg) rotate(1.2deg) scaleX(1.12)
+      scaleY(1.03);
     opacity: 0.42;
   }
 }
 
 @keyframes mobile-wave-3 {
-
   0%,
   100% {
     transform: translateX(-10%) skewY(-0.5deg) rotate(-1deg) scaleX(1) scaleY(1);
@@ -1852,18 +1890,19 @@
   }
 
   40% {
-    transform: translateX(20%) skewY(1.2deg) rotate(1.5deg) scaleX(1.03) scaleY(1.12);
+    transform: translateX(20%) skewY(1.2deg) rotate(1.5deg) scaleX(1.03)
+      scaleY(1.12);
     opacity: 0.55;
   }
 
   80% {
-    transform: translateX(-5%) skewY(-0.8deg) rotate(-0.3deg) scaleX(1.08) scaleY(1.05);
+    transform: translateX(-5%) skewY(-0.8deg) rotate(-0.3deg) scaleX(1.08)
+      scaleY(1.05);
     opacity: 0.48;
   }
 }
 
 @keyframes mobile-float-1 {
-
   0%,
   100% {
     transform: translateY(0px) translateX(0px) scale(1);
@@ -1882,7 +1921,6 @@
 }
 
 @keyframes mobile-float-2 {
-
   0%,
   100% {
     transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
@@ -1896,7 +1934,6 @@
 }
 
 @keyframes mobile-float-3 {
-
   0%,
   100% {
     transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
@@ -1915,7 +1952,6 @@
 }
 
 @keyframes mobile-pulse-corner {
-
   0%,
   100% {
     transform: scale(1) rotate(0deg);
@@ -1956,7 +1992,6 @@
 
 /* Enhanced Mobile/Tablet Animations */
 @keyframes mobile-aurora-1 {
-
   0%,
   100% {
     transform: skewY(-0.5deg) translateX(0px);
@@ -1980,7 +2015,6 @@
 }
 
 @keyframes mobile-aurora-2 {
-
   0%,
   100% {
     transform: skewY(0.8deg) translateX(0px) translateY(0px);
@@ -2004,7 +2038,6 @@
 }
 
 @keyframes enhanced-mobile-float-1 {
-
   0%,
   100% {
     transform: translateY(0px) translateX(0px) scale(1);
@@ -2023,7 +2056,6 @@
 }
 
 @keyframes enhanced-mobile-float-2 {
-
   0%,
   100% {
     transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
@@ -2042,7 +2074,6 @@
 }
 
 @keyframes enhanced-mobile-float-3 {
-
   0%,
   100% {
     transform: translateY(0px) translateX(0px) scale(1);
@@ -2056,7 +2087,6 @@
 }
 
 @keyframes enhanced-mobile-pulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -2070,7 +2100,6 @@
 }
 
 @keyframes enhanced-mobile-wave-1 {
-
   0%,
   100% {
     transform: skewY(-1deg) rotate(0deg) translateX(0px);
@@ -2094,7 +2123,6 @@
 }
 
 @keyframes enhanced-mobile-wave-2 {
-
   0%,
   100% {
     transform: skewY(-0.3deg) rotate(1.2deg) translateX(0px) translateY(0px);
@@ -2118,7 +2146,6 @@
 }
 
 @keyframes enhanced-mobile-wave-3 {
-
   0%,
   100% {
     transform: skewY(-0.1deg) rotate(2.4deg) translateX(0px);
@@ -2138,7 +2165,6 @@
 
 /* Desktop Eye Candy Animations */
 @keyframes desktop-float-1 {
-
   0%,
   100% {
     transform: translateY(0px) translateX(0px) scale(1);
@@ -2162,7 +2188,6 @@
 }
 
 @keyframes desktop-float-2 {
-
   0%,
   100% {
     transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
@@ -2181,7 +2206,6 @@
 }
 
 @keyframes desktop-float-3 {
-
   0%,
   100% {
     transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
@@ -2200,7 +2224,6 @@
 }
 
 @keyframes desktop-float-4 {
-
   0%,
   100% {
     transform: translateY(0px) translateX(0px) scale(1);
@@ -2214,7 +2237,6 @@
 }
 
 @keyframes desktop-pulse-corner {
-
   0%,
   100% {
     transform: scale(1) rotate(0deg);
@@ -2242,7 +2264,6 @@
 }
 
 @keyframes desktop-wave-1 {
-
   0%,
   100% {
     transform: skewY(-1.5deg) rotate(0deg) scaleX(1);
@@ -2266,7 +2287,6 @@
 }
 
 @keyframes desktop-wave-2 {
-
   0%,
   100% {
     transform: skewY(-1deg) rotate(1.5deg) scaleY(1);
@@ -2285,7 +2305,6 @@
 }
 
 @keyframes desktop-wave-3 {
-
   0%,
   100% {
     transform: skewY(-0.5deg) rotate(3deg) scaleX(1) scaleY(1);
@@ -2299,7 +2318,6 @@
 }
 
 @keyframes desktop-wave-4 {
-
   0%,
   100% {
     transform: skewY(0deg) rotate(4.5deg) scale(1);
@@ -2353,7 +2371,6 @@
 
 /* Wavy Text Animation - Slowed down for better readability */
 @keyframes wavy-text {
-
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -2387,7 +2404,6 @@
 
 /* Development Services Text Animation - Eye-catching for customers */
 @keyframes dev-services-text {
-
   0%,
   100% {
     transform: translateY(0px) scale(1) skewX(0deg);
@@ -2579,7 +2595,6 @@
 
 /* Ensure mobile animations work across all breakpoints */
 @media (max-width: 640px) {
-
   .mobile-wave-1,
   .mobile-wave-2,
   .mobile-wave-3,
