@@ -2816,8 +2816,8 @@ export default function Index() {
           )}
 
           {/* Custom Mobile/Tablet Effects - Lively and Energetic (Under 992px) */}
-          {
-            <div className="absolute inset-0 pointer-events-none overflow-hidden lg:hidden">
+          {isHighPerformance && window.innerWidth <= 991 && (
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
               {/* Animated Gradient Waves - Mobile/Tablet Only */}
               <div className="absolute inset-0">
                 {[...Array(3)].map((_, i) => (
@@ -3062,7 +3062,7 @@ export default function Index() {
 
               {/* Scanlines removed for mobile/tablet devices */}
             </div>
-          }
+          )}
 
           {/* Pink Theme Exclusive Background Effects */}
           {isPinkActive && isHighPerformance && (
