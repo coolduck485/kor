@@ -907,7 +907,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �������║
-╚═╝  ╚����� ╚═����══���╝ ╚═╝  ����═��`}
+╚���╝  ╚����� ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -975,7 +975,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������██��██����██████ 60%
+                      CPU: █��������█������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1778,37 +1778,74 @@ export default function Index() {
         contain: "layout style paint",
       }}
     >
-      {/* Universal Scroll Navigation - Always visible, indicates more content below */}
-      <div
-        className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
-          isMobileMenuOpen ? "blur-sm" : ""
-        }`}
-      >
-        <div className="flex flex-col items-center space-y-3 animate-button-float">
-          <span
-            className={`font-inter text-sm font-medium animate-text-glow ${
-              theme === "light" ? "text-gray-600" : "text-white/70"
-            }`}
-          >
-            Scroll to Explore
-          </span>
-
-          {/* Mouse scroll indicator - visible on all devices */}
-          <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
-            <div
-              className={`w-1 h-3 rounded-full mt-2 animate-float shadow-lg ${
-                isPinkActive
-                  ? "bg-gradient-to-b from-pink-400 to-pink-200"
-                  : "bg-gradient-to-b from-glow-blue to-white/80"
+      {/* Universal Scroll Navigation */}
+      {currentSection < sections.length - 1 && (
+        <div
+          className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
+          <div className="flex flex-col items-center space-y-3 animate-button-float">
+            <span
+              className={`font-inter text-sm font-medium animate-text-glow ${
+                theme === "light" ? "text-gray-600" : "text-white/70"
               }`}
-              style={{
-                boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
-              }}
-            />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
+            >
+              Scroll Down
+            </span>
+
+            {/* Mouse scroll indicator - now visible on all devices */}
+            <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
+              <div
+                className={`w-1 h-3 rounded-full mt-2 animate-float shadow-lg ${
+                  isPinkActive
+                    ? "bg-gradient-to-b from-pink-400 to-pink-200"
+                    : "bg-gradient-to-b from-glow-blue to-white/80"
+                }`}
+                style={{
+                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
+                }}
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
+      {/* Scroll Up Indicator - Last Section */}
+      {currentSection === sections.length - 1 && (
+        <div
+          className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
+          }`}
+        >
+          <div className="flex flex-col items-center space-y-3 animate-button-float">
+            <span
+              className={`font-inter text-sm font-medium animate-text-glow ${
+                theme === "light" ? "text-gray-600" : "text-white/70"
+              }`}
+            >
+              Scroll Up
+            </span>
+
+            {/* Mouse scroll indicator - pointing up - now visible on all devices */}
+            <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
+              <div
+                className={`w-1 h-3 rounded-full mb-2 animate-float shadow-lg ${
+                  isPinkActive
+                    ? "bg-gradient-to-t from-pink-400 to-pink-200"
+                    : "bg-gradient-to-t from-glow-blue to-white/80"
+                }`}
+                style={{
+                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
+                  alignSelf: "flex-end",
+                }}
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-white/10 to-transparent" />
+            </div>
+          </div>
+        </div>
+      )}
 
 
 
