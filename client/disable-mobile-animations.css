@@ -2,150 +2,198 @@
 
 /* Mobile breakpoint: 640px and smaller */
 @media (max-width: 640px) {
-  /* Remove all framer motion animations for non-main sections */
-  [data-section]:not([data-section="home"]) * {
+  /* Target sections by their data attributes and disable animations */
+  [data-section="about"] *,
+  [data-section="services"] *,
+  [data-section="portfolio"] *,
+  [data-section="contact"] * {
     animation: none !important;
     transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
-  /* Remove specific animation classes for non-main sections */
-  [data-section]:not([data-section="home"]) .animate-button-float,
-  [data-section]:not([data-section="home"]) .animate-text-glow,
-  [data-section]:not([data-section="home"]) .animate-float,
-  [data-section]:not([data-section="home"]) .animate-gentle-float,
-  [data-section]:not([data-section="home"]) .animate-gentle-bounce,
-  [data-section]:not([data-section="home"]) .animate-sparkle,
-  [data-section]:not([data-section="home"]) .animate-fade-in,
-  [data-section]:not([data-section="home"]) .animate-slide-in,
-  [data-section]:not([data-section="home"]) .animate-slide-up,
-  [data-section]:not([data-section="home"]) .animate-scale-in,
-  [data-section]:not([data-section="home"]) .animate-bounce,
-  [data-section]:not([data-section="home"]) .animate-pulse,
-  [data-section]:not([data-section="home"]) .animate-spin,
-  [data-section]:not([data-section="home"]) .animate-ping,
-  [data-section]:not([data-section="home"]) .animate-wiggle,
-  [data-section]:not([data-section="home"]) .animate-shake,
-  [data-section]:not([data-section="home"]) .animate-pop,
-  [data-section]:not([data-section="home"]) .animate-zoom,
-  [data-section]:not([data-section="home"]) .animate-flip,
-  [data-section]:not([data-section="home"]) .animate-rotate,
-  [data-section]:not([data-section="home"]) .animate-slide-down,
-  [data-section]:not([data-section="home"]) .animate-slide-left,
-  [data-section]:not([data-section="home"]) .animate-slide-right {
+  /* Disable all CSS animations for non-home sections */
+  [data-section="about"] [class*="animate-"],
+  [data-section="services"] [class*="animate-"],
+  [data-section="portfolio"] [class*="animate-"],
+  [data-section="contact"] [class*="animate-"] {
     animation: none !important;
     transform: none !important;
     transition: none !important;
   }
 
-  /* Remove transform and transition animations */
-  [data-section]:not([data-section="home"]) * {
+  /* Force override any motion components in non-home sections */
+  [data-section="about"] div[style*="opacity"],
+  [data-section="about"] div[style*="transform"],
+  [data-section="services"] div[style*="opacity"],
+  [data-section="services"] div[style*="transform"],
+  [data-section="portfolio"] div[style*="opacity"],
+  [data-section="portfolio"] div[style*="transform"],
+  [data-section="contact"] div[style*="opacity"],
+  [data-section="contact"] div[style*="transform"] {
+    opacity: 1 !important;
     transform: none !important;
-    transition: none !important;
   }
 
-  /* Ensure cards and content blocks appear statically */
-  [data-section]:not([data-section="home"]) .card,
-  [data-section]:not([data-section="home"]) .service-card,
-  [data-section]:not([data-section="home"]) .portfolio-card,
-  [data-section]:not([data-section="home"]) .contact-card,
-  [data-section]:not([data-section="home"]) .button,
-  [data-section]:not([data-section="home"]) button,
-  [data-section]:not([data-section="home"]) .text-content,
-  [data-section]:not([data-section="home"]) h1,
-  [data-section]:not([data-section="home"]) h2,
-  [data-section]:not([data-section="home"]) h3,
-  [data-section]:not([data-section="home"]) p,
-  [data-section]:not([data-section="home"]) .grid > *,
-  [data-section]:not([data-section="home"]) .flex > * {
+  /* Disable specific animation classes */
+  [data-section="about"] .animate-fade-in,
+  [data-section="about"] .animate-slide-up,
+  [data-section="about"] .animate-scale-in,
+  [data-section="services"] .animate-fade-in,
+  [data-section="services"] .animate-slide-up,
+  [data-section="services"] .animate-scale-in,
+  [data-section="portfolio"] .animate-fade-in,
+  [data-section="portfolio"] .animate-slide-up,
+  [data-section="portfolio"] .animate-scale-in,
+  [data-section="contact"] .animate-fade-in,
+  [data-section="contact"] .animate-slide-up,
+  [data-section="contact"] .animate-scale-in,
+  /* All possible animation classes */
+  [data-section="about"] .animate-button-float,
+  [data-section="about"] .animate-text-glow,
+  [data-section="about"] .animate-float,
+  [data-section="about"] .animate-gentle-float,
+  [data-section="about"] .animate-gentle-bounce,
+  [data-section="about"] .animate-sparkle,
+  [data-section="about"] .animate-bounce,
+  [data-section="about"] .animate-pulse,
+  [data-section="about"] .animate-spin,
+  [data-section="about"] .animate-ping,
+  [data-section="services"] .animate-button-float,
+  [data-section="services"] .animate-text-glow,
+  [data-section="services"] .animate-float,
+  [data-section="services"] .animate-gentle-float,
+  [data-section="services"] .animate-gentle-bounce,
+  [data-section="services"] .animate-sparkle,
+  [data-section="services"] .animate-bounce,
+  [data-section="services"] .animate-pulse,
+  [data-section="services"] .animate-spin,
+  [data-section="services"] .animate-ping,
+  [data-section="portfolio"] .animate-button-float,
+  [data-section="portfolio"] .animate-text-glow,
+  [data-section="portfolio"] .animate-float,
+  [data-section="portfolio"] .animate-gentle-float,
+  [data-section="portfolio"] .animate-gentle-bounce,
+  [data-section="portfolio"] .animate-sparkle,
+  [data-section="portfolio"] .animate-bounce,
+  [data-section="portfolio"] .animate-pulse,
+  [data-section="portfolio"] .animate-spin,
+  [data-section="portfolio"] .animate-ping,
+  [data-section="contact"] .animate-button-float,
+  [data-section="contact"] .animate-text-glow,
+  [data-section="contact"] .animate-float,
+  [data-section="contact"] .animate-gentle-float,
+  [data-section="contact"] .animate-gentle-bounce,
+  [data-section="contact"] .animate-sparkle,
+  [data-section="contact"] .animate-bounce,
+  [data-section="contact"] .animate-pulse,
+  [data-section="contact"] .animate-spin,
+  [data-section="contact"] .animate-ping {
     animation: none !important;
     transform: none !important;
     transition: none !important;
     opacity: 1 !important;
     visibility: visible !important;
-  }
-
-  /* Disable Framer Motion initial states */
-  [data-section]:not([data-section="home"]) [style*="opacity: 0"],
-  [data-section]:not([data-section="home"]) [style*="transform"],
-  [data-section]:not([data-section="home"]) [style*="scale"],
-  [data-section]:not([data-section="home"]) [style*="translateY"],
-  [data-section]:not([data-section="home"]) [style*="translateX"] {
-    opacity: 1 !important;
-    transform: none !important;
   }
 }
 
 /* Tablet breakpoint: 641px to 991px */
 @media (min-width: 641px) and (max-width: 991px) {
-  /* Remove all framer motion animations for non-main sections */
-  [data-section]:not([data-section="home"]) * {
+  /* Target sections by their data attributes and disable animations */
+  [data-section="about"] *,
+  [data-section="services"] *,
+  [data-section="portfolio"] *,
+  [data-section="contact"] * {
     animation: none !important;
     transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
-  /* Remove specific animation classes for non-main sections */
-  [data-section]:not([data-section="home"]) .animate-button-float,
-  [data-section]:not([data-section="home"]) .animate-text-glow,
-  [data-section]:not([data-section="home"]) .animate-float,
-  [data-section]:not([data-section="home"]) .animate-gentle-float,
-  [data-section]:not([data-section="home"]) .animate-gentle-bounce,
-  [data-section]:not([data-section="home"]) .animate-sparkle,
-  [data-section]:not([data-section="home"]) .animate-fade-in,
-  [data-section]:not([data-section="home"]) .animate-slide-in,
-  [data-section]:not([data-section="home"]) .animate-slide-up,
-  [data-section]:not([data-section="home"]) .animate-scale-in,
-  [data-section]:not([data-section="home"]) .animate-bounce,
-  [data-section]:not([data-section="home"]) .animate-pulse,
-  [data-section]:not([data-section="home"]) .animate-spin,
-  [data-section]:not([data-section="home"]) .animate-ping,
-  [data-section]:not([data-section="home"]) .animate-wiggle,
-  [data-section]:not([data-section="home"]) .animate-shake,
-  [data-section]:not([data-section="home"]) .animate-pop,
-  [data-section]:not([data-section="home"]) .animate-zoom,
-  [data-section]:not([data-section="home"]) .animate-flip,
-  [data-section]:not([data-section="home"]) .animate-rotate,
-  [data-section]:not([data-section="home"]) .animate-slide-down,
-  [data-section]:not([data-section="home"]) .animate-slide-left,
-  [data-section]:not([data-section="home"]) .animate-slide-right {
+  /* Disable all CSS animations for non-home sections */
+  [data-section="about"] [class*="animate-"],
+  [data-section="services"] [class*="animate-"],
+  [data-section="portfolio"] [class*="animate-"],
+  [data-section="contact"] [class*="animate-"] {
     animation: none !important;
     transform: none !important;
     transition: none !important;
   }
 
-  /* Remove transform and transition animations */
-  [data-section]:not([data-section="home"]) * {
+  /* Force override any motion components in non-home sections */
+  [data-section="about"] div[style*="opacity"],
+  [data-section="about"] div[style*="transform"],
+  [data-section="services"] div[style*="opacity"],
+  [data-section="services"] div[style*="transform"],
+  [data-section="portfolio"] div[style*="opacity"],
+  [data-section="portfolio"] div[style*="transform"],
+  [data-section="contact"] div[style*="opacity"],
+  [data-section="contact"] div[style*="transform"] {
+    opacity: 1 !important;
     transform: none !important;
-    transition: none !important;
   }
 
-  /* Ensure cards and content blocks appear statically */
-  [data-section]:not([data-section="home"]) .card,
-  [data-section]:not([data-section="home"]) .service-card,
-  [data-section]:not([data-section="home"]) .portfolio-card,
-  [data-section]:not([data-section="home"]) .contact-card,
-  [data-section]:not([data-section="home"]) .button,
-  [data-section]:not([data-section="home"]) button,
-  [data-section]:not([data-section="home"]) .text-content,
-  [data-section]:not([data-section="home"]) h1,
-  [data-section]:not([data-section="home"]) h2,
-  [data-section]:not([data-section="home"]) h3,
-  [data-section]:not([data-section="home"]) p,
-  [data-section]:not([data-section="home"]) .grid > *,
-  [data-section]:not([data-section="home"]) .flex > * {
+  /* Disable specific animation classes */
+  [data-section="about"] .animate-fade-in,
+  [data-section="about"] .animate-slide-up,
+  [data-section="about"] .animate-scale-in,
+  [data-section="services"] .animate-fade-in,
+  [data-section="services"] .animate-slide-up,
+  [data-section="services"] .animate-scale-in,
+  [data-section="portfolio"] .animate-fade-in,
+  [data-section="portfolio"] .animate-slide-up,
+  [data-section="portfolio"] .animate-scale-in,
+  [data-section="contact"] .animate-fade-in,
+  [data-section="contact"] .animate-slide-up,
+  [data-section="contact"] .animate-scale-in,
+  /* All possible animation classes */
+  [data-section="about"] .animate-button-float,
+  [data-section="about"] .animate-text-glow,
+  [data-section="about"] .animate-float,
+  [data-section="about"] .animate-gentle-float,
+  [data-section="about"] .animate-gentle-bounce,
+  [data-section="about"] .animate-sparkle,
+  [data-section="about"] .animate-bounce,
+  [data-section="about"] .animate-pulse,
+  [data-section="about"] .animate-spin,
+  [data-section="about"] .animate-ping,
+  [data-section="services"] .animate-button-float,
+  [data-section="services"] .animate-text-glow,
+  [data-section="services"] .animate-float,
+  [data-section="services"] .animate-gentle-float,
+  [data-section="services"] .animate-gentle-bounce,
+  [data-section="services"] .animate-sparkle,
+  [data-section="services"] .animate-bounce,
+  [data-section="services"] .animate-pulse,
+  [data-section="services"] .animate-spin,
+  [data-section="services"] .animate-ping,
+  [data-section="portfolio"] .animate-button-float,
+  [data-section="portfolio"] .animate-text-glow,
+  [data-section="portfolio"] .animate-float,
+  [data-section="portfolio"] .animate-gentle-float,
+  [data-section="portfolio"] .animate-gentle-bounce,
+  [data-section="portfolio"] .animate-sparkle,
+  [data-section="portfolio"] .animate-bounce,
+  [data-section="portfolio"] .animate-pulse,
+  [data-section="portfolio"] .animate-spin,
+  [data-section="portfolio"] .animate-ping,
+  [data-section="contact"] .animate-button-float,
+  [data-section="contact"] .animate-text-glow,
+  [data-section="contact"] .animate-float,
+  [data-section="contact"] .animate-gentle-float,
+  [data-section="contact"] .animate-gentle-bounce,
+  [data-section="contact"] .animate-sparkle,
+  [data-section="contact"] .animate-bounce,
+  [data-section="contact"] .animate-pulse,
+  [data-section="contact"] .animate-spin,
+  [data-section="contact"] .animate-ping {
     animation: none !important;
     transform: none !important;
     transition: none !important;
     opacity: 1 !important;
     visibility: visible !important;
-  }
-
-  /* Disable Framer Motion initial states */
-  [data-section]:not([data-section="home"]) [style*="opacity: 0"],
-  [data-section]:not([data-section="home"]) [style*="transform"],
-  [data-section]:not([data-section="home"]) [style*="scale"],
-  [data-section]:not([data-section="home"]) [style*="translateY"],
-  [data-section]:not([data-section="home"]) [style*="translateX"] {
-    opacity: 1 !important;
-    transform: none !important;
   }
 }
