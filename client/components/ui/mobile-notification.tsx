@@ -127,15 +127,9 @@ const MobileNotificationItem = React.forwardRef<
   HTMLDivElement,
   MobileNotificationItemProps
 >(({ notification, onClose, isMobile }, ref) => {
-  const [isClosing, setIsClosing] = useState(false);
-
   const handleClose = () => {
-    setIsClosing(true);
-    // Optimized exit timing for mobile
-    const exitDuration = isMobile ? 200 : 250;
-    setTimeout(() => {
-      onClose();
-    }, exitDuration);
+    // Immediate removal on mobile/tablet to avoid glitchy animation
+    onClose();
   };
 
   const getTypeColors = (type: MobileNotification["type"]) => {
@@ -180,44 +174,25 @@ const MobileNotificationItem = React.forwardRef<
         y: isMobile ? -30 : 0,
         filter: isMobile ? "blur(2px)" : "blur(4px)",
       }}
-      animate={
-        isClosing
-          ? {
-              opacity: 0,
-              scale: isMobile ? 0.85 : 0.9,
-              x: isMobile ? 0 : 60,
-              y: isMobile ? -20 : 0,
-              filter: isMobile ? "blur(1px)" : "blur(2px)",
-              transition: {
-                duration: isMobile ? 0.2 : 0.25,
-                ease: "easeInOut",
-              },
-            }
-          : {
-              opacity: 1,
-              scale: 1,
-              x: 0,
-              y: 0,
-              filter: "blur(0px)",
-            }
-      }
+      animate={{
+        opacity: 1,
+        scale: 1,
+        x: 0,
+        y: 0,
+        filter: "blur(0px)",
+      }}
       exit={{
         opacity: 0,
-        scale: isMobile ? 0.75 : 0.8,
-        x: isMobile ? 0 : 120,
-        y: isMobile ? -25 : 0,
-        filter: isMobile ? "blur(3px)" : "blur(6px)",
+        scale: 0.95,
         transition: {
-          duration: isMobile ? 0.2 : 0.25,
-          ease: "easeInOut",
+          duration: 0.15,
+          ease: "easeOut",
         },
       }}
       transition={{
-        type: isMobile ? "tween" : "spring",
-        stiffness: isMobile ? undefined : 280,
-        damping: isMobile ? undefined : 25,
-        duration: isMobile ? 0.3 : undefined,
-        ease: isMobile ? "easeOut" : undefined,
+        type: "tween",
+        duration: 0.2,
+        ease: "easeOut",
       }}
       className={cn(
         "relative group notification-item pointer-events-auto",
@@ -309,16 +284,6 @@ const MobileNotificationItem = React.forwardRef<
           )}
           whileHover={isMobile ? undefined : { scale: 1.1, rotate: 90 }}
           whileTap={isMobile ? { scale: 0.85 } : { scale: 0.8, rotate: 180 }}
-          animate={
-            isClosing
-              ? {
-                  scale: isMobile ? 0.7 : 0.8,
-                  rotate: isMobile ? 180 : 360,
-                  opacity: 0.3,
-                  transition: { duration: isMobile ? 0.2 : 0.3 },
-                }
-              : {}
-          }
           onTouchStart={(e) => e.stopPropagation()}
           onTouchEnd={(e) => e.stopPropagation()}
         >

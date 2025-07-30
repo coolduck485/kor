@@ -58,6 +58,38 @@ export default function Index() {
   const hasShownWelcomeRef = useRef(false);
   const hasShownMobilePerformanceRef = useRef(false);
 
+  // Tooltip management state
+  const [dismissedTooltips, setDismissedTooltips] = useState<Set<string>>(
+    () => {
+      try {
+        const saved = localStorage.getItem("dismissedTooltips");
+        return saved ? new Set(JSON.parse(saved)) : new Set();
+      } catch {
+        return new Set();
+      }
+    },
+  );
+
+  // Function to dismiss a tooltip permanently
+  const dismissTooltip = (tooltipId: string) => {
+    const newDismissed = new Set(dismissedTooltips);
+    newDismissed.add(tooltipId);
+    setDismissedTooltips(newDismissed);
+    try {
+      localStorage.setItem(
+        "dismissedTooltips",
+        JSON.stringify([...newDismissed]),
+      );
+    } catch {
+      // Handle localStorage errors gracefully
+    }
+  };
+
+  // Check if tooltip should be shown
+  const shouldShowTooltip = (tooltipId: string) => {
+    return !dismissedTooltips.has(tooltipId);
+  };
+
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
 
@@ -848,12 +880,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███������������█╗
-██║ █��╔╝��█╔═�������═██╗█�������������══██╗
+                  {`██╗  ██╗ ██████���� ███�������������█╗
+██║ █��╔╝�����╔�������������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
-██║  �����█╗���███����██�����╝██║  ���������
-╚���╝  ╚������ ╚═����══�����╝ ╚═╝  ����═��`}
+██║  �����█╗���███����██�����╝██║  �����������
+╚�����╝  ╚������ ╚�������══�����╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -921,7 +953,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █����������█������█████����██████ 60%
+                      CPU: █�����������█��������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -999,7 +1031,9 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">������◄����������</span>
+                  <span className="text-green-400 ml-4">
+                    ������◄�����������
+                  </span>
                 </div>
 
                 <div className="loading-indicators">
@@ -1854,14 +1888,17 @@ export default function Index() {
       )}
 
       {/* Section Navigation Buttons */}
-      <div className="fixed right-1 sm:right-2 lg:right-3 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3">
+      <div className="fixed right-2 sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3">
         {/* Previous Section Button */}
         {currentSection > 0 && (
           <button
             onClick={() => {
               scrollToSection(currentSection - 1);
               setShowNavigationHints(false);
+              dismissTooltip("nav-up");
             }}
+            onMouseEnter={() => dismissTooltip("nav-up")}
+            onTouchStart={() => dismissTooltip("nav-up")}
             className={`group relative p-2 sm:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
@@ -1884,24 +1921,26 @@ export default function Index() {
             />
 
             {/* Tooltip */}
-            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
-              <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                  theme === "light"
-                    ? "border-blue-400/40 bg-white/90 text-gray-800"
-                    : "border-blue-300/30 bg-black/80 text-white"
-                }`}
-              >
-                Click here to move up
+            {shouldShowTooltip("nav-up") && (
+              <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
                 <div
-                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
                     theme === "light"
-                      ? "border-l-white/90"
-                      : "border-l-black/80"
+                      ? "border-blue-400/40 bg-white/90 text-gray-800"
+                      : "border-blue-300/30 bg-black/80 text-white"
                   }`}
-                />
+                >
+                  Click here to move up/down or use Ctrl+Arrow keys
+                  <div
+                    className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                      theme === "light"
+                        ? "border-l-white/90"
+                        : "border-l-black/80"
+                    }`}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </button>
         )}
 
@@ -1911,7 +1950,10 @@ export default function Index() {
             onClick={() => {
               scrollToSection(currentSection + 1);
               setShowNavigationHints(false);
+              dismissTooltip("nav-down");
             }}
+            onMouseEnter={() => dismissTooltip("nav-down")}
+            onTouchStart={() => dismissTooltip("nav-down")}
             className={`group relative p-2 sm:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
@@ -1934,44 +1976,33 @@ export default function Index() {
             />
 
             {/* Tooltip */}
-            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
-              <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                  theme === "light"
-                    ? "border-blue-400/40 bg-white/90 text-gray-800"
-                    : "border-blue-300/30 bg-black/80 text-white"
-                }`}
-              >
-                Next Section
+            {shouldShowTooltip("nav-down") && (
+              <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
                 <div
-                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
                     theme === "light"
-                      ? "border-l-white/90"
-                      : "border-l-black/80"
+                      ? "border-blue-400/40 bg-white/90 text-gray-800"
+                      : "border-blue-300/30 bg-black/80 text-white"
                   }`}
-                />
+                >
+                  Click here to move up/down or use Ctrl+Arrow keys
+                  <div
+                    className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                      theme === "light"
+                        ? "border-l-white/90"
+                        : "border-l-black/80"
+                    }`}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </button>
-        )}
-
-        {/* Navigation Help Text - shows on content sections */}
-        {currentSection > 0 && (
-          <div className="mt-6 text-center">
-            <p
-              className={`text-xs opacity-60 ${
-                theme === "light" ? "text-gray-500" : "text-white/60"
-              }`}
-            >
-              Use buttons or Ctrl+Arrow keys
-            </p>
-          </div>
         )}
       </div>
 
       {/* Help Modal */}
       {isHelpModalOpen && (
-        <div className="fixed inset-0 z-[10000] flex items-center justify-center">
+        <div className="fixed inset-0 z-[20000] flex items-center justify-center">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -2194,8 +2225,8 @@ export default function Index() {
         </div>
       )}
 
-      {/* Section Position Indicator */}
-      <div className="fixed left-3 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-1 sm:space-y-1.5 lg:space-y-2">
+      {/* Section Position Indicator - Hidden on mobile, smaller on tablet */}
+      <div className="hidden lg:flex fixed left-3 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 flex-col space-y-1 sm:space-y-1 lg:space-y-2">
         {sections.map((section, index) => (
           <button
             key={section.id}
@@ -2203,7 +2234,7 @@ export default function Index() {
               scrollToSection(index);
               setShowNavigationHints(false);
             }}
-            className={`group relative w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
+            className={`relative w-1 h-1 sm:w-1 sm:h-1 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
               index === currentSection
                 ? theme === "light"
                   ? "bg-blue-600 shadow-lg scale-125"
@@ -2218,27 +2249,7 @@ export default function Index() {
                   ? "0 0 15px rgba(73, 146, 255, 0.5)"
                   : "none",
             }}
-          >
-            {/* Tooltip */}
-            <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 pointer-events-none">
-              <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                  theme === "light"
-                    ? "border-blue-400/40 bg-white/90 text-gray-800"
-                    : "border-blue-300/30 bg-black/80 text-white"
-                }`}
-              >
-                {section.title}
-                <div
-                  className={`absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent ${
-                    theme === "light"
-                      ? "border-r-white/90"
-                      : "border-r-black/80"
-                  }`}
-                />
-              </div>
-            </div>
-          </button>
+          />
         ))}
       </div>
 
@@ -2253,7 +2264,10 @@ export default function Index() {
             onClick={() => {
               setIsHelpModalOpen(true);
               setHasInteractedWithHelp(true);
+              dismissTooltip("help-button");
             }}
+            onMouseEnter={() => dismissTooltip("help-button")}
+            onTouchStart={() => dismissTooltip("help-button")}
             className={`group relative p-2.5 sm:p-3 lg:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
               isPinkActive
                 ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
@@ -2286,24 +2300,26 @@ export default function Index() {
             <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
 
             {/* Tooltip */}
-            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
-              <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                  theme === "light"
-                    ? "border-blue-400/40 bg-white/90 text-gray-800"
-                    : "border-blue-300/30 bg-black/80 text-white"
-                }`}
-              >
-                Navigation Help
+            {shouldShowTooltip("help-button") && (
+              <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-100 transition-all duration-300 transform translate-y-0 pointer-events-none">
                 <div
-                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
                     theme === "light"
-                      ? "border-l-white/90"
-                      : "border-l-black/80"
+                      ? "border-blue-400/40 bg-white/90 text-gray-800"
+                      : "border-blue-300/30 bg-black/80 text-white"
                   }`}
-                />
+                >
+                  Click here for help
+                  <div
+                    className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
+                      theme === "light"
+                        ? "border-t-white/90"
+                        : "border-t-black/80"
+                    }`}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </button>
         </div>
       }
@@ -5611,7 +5627,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ������  hoverScale: 1.15
+// Change: hoverScale: 1.05  ��������  hoverScale: 1.15
 //
 // ========================================
 
@@ -7906,7 +7922,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {[
               {
-                icon: "🏆",
+                icon: "���",
                 label: "Award",
                 x: 8,
                 y: 15,
@@ -8569,7 +8585,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Communication Icons - Contact specific */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
           {[
-            { icon: "�����", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
+            { icon: "�������", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
             { icon: "��", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
