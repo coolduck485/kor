@@ -130,12 +130,8 @@ const MobileNotificationItem = React.forwardRef<
   const [isClosing, setIsClosing] = useState(false);
 
   const handleClose = () => {
-    setIsClosing(true);
-    // Optimized exit timing for mobile
-    const exitDuration = isMobile ? 200 : 250;
-    setTimeout(() => {
-      onClose();
-    }, exitDuration);
+    // Immediate removal on mobile/tablet to avoid glitchy animation
+    onClose();
   };
 
   const getTypeColors = (type: MobileNotification["type"]) => {
