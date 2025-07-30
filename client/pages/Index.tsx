@@ -813,7 +813,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
-██╔═��█╗ █��║   ██║██╔══█��������
+██╔═��█╗ █��║   ���█║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
@@ -967,7 +967,7 @@ export default function Index() {
                 <div className="loading-indicators">
                   <span>█▓▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░���▓█</span>
+                  <span>░���▓���</span>
                 </div>
               </motion.div>
 
@@ -6951,8 +6951,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="flex justify-center mt-12 sm:mt-16 lg:mt-20">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 responsive-grid w-full max-w-7xl px-4">
+            <div className="flex justify-center mt-8 sm:mt-12 lg:mt-16">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 responsive-grid w-full max-w-6xl px-4 sm:px-6 lg:px-8">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
@@ -6971,12 +6971,12 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                     whileHover={{
                       scale: 1.02,
-                      y: -8,
+                      y: -5,
                       transition: { duration: 0.3 }
                     }}
                   >
                     {/* Main Card Container */}
-                    <div className="relative h-full min-h-[320px] sm:min-h-[280px] lg:min-h-[300px]">
+                    <div className="relative h-full min-h-[240px] sm:min-h-[220px] lg:min-h-[240px]">
                       {/* Outer Glow Effect */}
                       <div
                         className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"
