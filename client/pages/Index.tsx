@@ -1936,15 +1936,15 @@ export default function Index() {
         ))}
       </div>
 
-      {/* Back to Top Button - All sections except first */}
+      {/* Help Button - All sections except first */}
       {currentSection > 0 && (
         <div
-          className={`back-to-top fixed bottom-8 right-4 sm:right-8 z-50 transition-all duration-300 ${
+          className={`help-button fixed bottom-8 right-4 sm:right-8 z-50 transition-all duration-300 ${
             isMobileMenuOpen ? "blur-sm" : ""
           }`}
         >
           <button
-            onClick={() => scrollToSection(0)}
+            onClick={() => setIsHelpModalOpen(true)}
             className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
               isPinkActive
                 ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
@@ -1962,8 +1962,8 @@ export default function Index() {
                 : "0 0 20px rgba(73, 146, 255, 0.3)",
             }}
           >
-            {/* Icon */}
-            <ChevronUp
+            {/* Help Icon */}
+            <HelpCircle
               className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${
                 isPinkActive
                   ? "text-pink-400 group-hover:text-pink-300"
@@ -1985,7 +1985,7 @@ export default function Index() {
                     : "border-blue-300/30 bg-black/80 text-white"
                 }`}
               >
-                Back to Top
+                Navigation Help
                 <div
                   className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                     theme === "light"
@@ -8353,7 +8353,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "✉���" },
+            { type: "email", x: 15, y: 35, icon: "✉�����" },
             { type: "call", x: 75, y: 25, icon: "���" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
