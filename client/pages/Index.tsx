@@ -1883,7 +1883,7 @@ export default function Index() {
       )}
 
       {/* Section Navigation Buttons */}
-      <div className="fixed right-3 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3">
+      <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3">
         {/* Previous Section Button */}
         {currentSection > 0 && (
           <button
