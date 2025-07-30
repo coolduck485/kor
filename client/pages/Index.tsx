@@ -810,7 +810,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███����������█╗
+                  {`██╗  ██╗ ██████���� ███�����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
@@ -7021,53 +7021,53 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         </div>
 
                         {/* Content Container */}
-                        <div className="relative z-10 h-full flex flex-col p-4 sm:p-5 lg:p-6">
+                        <div className="relative z-10 h-full flex flex-col p-2 sm:p-3 lg:p-4">
 
                           {/* Icon Section */}
-                          <div className="flex justify-center mb-4">
+                          <div className="flex justify-center mb-2">
                             <motion.div
                               className="relative"
                               whileHover={{
-                                rotate: [0, -10, 10, 0],
-                                scale: 1.1
+                                rotate: [0, -5, 5, 0],
+                                scale: 1.05
                               }}
-                              transition={{ duration: 0.5 }}
+                              transition={{ duration: 0.3 }}
                             >
                               {/* Icon Background */}
                               <div
-                                className={`w-12 h-12 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${service.color} shadow-lg`}
+                                className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.color} shadow-md`}
                                 style={{
-                                  boxShadow: `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`
+                                  boxShadow: `0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`
                                 }}
                               >
-                                <service.icon className="w-6 h-6 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-white drop-shadow-lg" />
+                                <service.icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white drop-shadow-md" />
                               </div>
 
                               {/* Icon Glow */}
                               <div
-                                className={`absolute inset-0 rounded-xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-50 transition-opacity duration-500 blur-md -z-10`}
+                                className={`absolute inset-0 rounded-lg bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-40 transition-opacity duration-300 blur-sm -z-10`}
                               />
                             </motion.div>
                           </div>
 
                           {/* Title */}
-                          <div className="text-center mb-3">
-                            <h3 className="text-lg sm:text-base lg:text-lg font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
+                          <div className="text-center mb-2">
+                            <h3 className="text-sm sm:text-base lg:text-base font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
                               {service.title}
                             </h3>
                           </div>
 
                           {/* Description */}
                           <div className="flex-1 flex items-center">
-                            <p className="text-gray-300 text-xs sm:text-sm lg:text-sm leading-relaxed text-center opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+                            <p className="text-gray-300 text-xs sm:text-xs lg:text-sm leading-snug text-center opacity-90 group-hover:opacity-100 transition-opacity duration-300">
                               {service.description}
                             </p>
                           </div>
 
                           {/* Bottom Accent */}
-                          <div className="mt-4 flex justify-center">
+                          <div className="mt-2 flex justify-center">
                             <div
-                              className={`w-10 h-1 rounded-full bg-gradient-to-r ${service.color} opacity-60 group-hover:opacity-100 group-hover:w-12 transition-all duration-500`}
+                              className={`w-8 h-0.5 rounded-full bg-gradient-to-r ${service.color} opacity-60 group-hover:opacity-100 group-hover:w-10 transition-all duration-300`}
                             />
                           </div>
                         </div>
