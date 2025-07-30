@@ -2005,10 +2005,12 @@ export default function Index() {
             onMouseEnter={() => {
               setShowNavigationTooltip(false);
               dismissTooltip("nav-up");
+              dismissTooltip("nav-shared");
             }}
             onTouchStart={() => {
               setShowNavigationTooltip(false);
               dismissTooltip("nav-up");
+              dismissTooltip("nav-shared");
             }}
             className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
               theme === "light"
