@@ -53,6 +53,7 @@ export default function Index() {
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [showNavigationHints, setShowNavigationHints] = useState(true);
+  const [initialLoadingComplete, setInitialLoadingComplete] = useState(false);
   const hasShownWelcomeRef = useRef(false);
   const hasShownMobilePerformanceRef = useRef(false);
 
@@ -821,7 +822,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████���� ███������������█╗
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
-██╔����█╗ █��║   ██║██╔══�����������
+██╔����█╗ �����║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══�����╝ ╚═╝  ����═��`}
                 </pre>
