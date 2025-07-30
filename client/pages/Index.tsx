@@ -54,6 +54,7 @@ export default function Index() {
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [showNavigationHints, setShowNavigationHints] = useState(true);
   const [initialLoadingComplete, setInitialLoadingComplete] = useState(false);
+  const [hasInteractedWithHelp, setHasInteractedWithHelp] = useState(false);
   const hasShownWelcomeRef = useRef(false);
   const hasShownMobilePerformanceRef = useRef(false);
 
