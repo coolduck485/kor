@@ -1,6 +1,7 @@
 @import "./performance-addon.css";
 @import "./cinematic-transitions.css";
 @import "./mobile-performance.css";
+@import "./disable-mobile-animations.css";
 
 @tailwind base;
 @tailwind components;
