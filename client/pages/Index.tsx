@@ -1892,8 +1892,12 @@ export default function Index() {
         /* Ensure no element can exceed viewport width */
         [data-section] {
           max-width: 100vw !important;
+          width: 100vw !important;
           overflow-x: hidden !important;
           box-sizing: border-box !important;
+          margin: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
         }
 
         /* Specific services section overflow prevention */
@@ -5753,7 +5757,7 @@ const ORB_BUTTON_CONFIG = {
 // ========================================
 //
 // To move "Services" button 50px to the right:
-// Change: xOffset: 0  →  xOffset: 50
+// Change: xOffset: 0  ��  xOffset: 50
 //
 // To move "About us" button 30px up:
 // Change: yOffset: 0  →  yOffset: -30
