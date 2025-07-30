@@ -448,10 +448,10 @@ export default function Index() {
         containerRef.current.scrollTop = 0;
         // Enhanced smooth reset for desktop
         if (isDesktopTransition) {
-          containerRef.current.style.scrollBehavior = 'auto';
+          containerRef.current.style.scrollBehavior = "auto";
           setTimeout(() => {
             if (containerRef.current) {
-              containerRef.current.style.scrollBehavior = 'smooth';
+              containerRef.current.style.scrollBehavior = "smooth";
             }
           }, 50);
         }
@@ -512,8 +512,11 @@ export default function Index() {
 
     const container = containerRef.current;
     if (container && currentSection > 0) {
-      container.addEventListener('scroll', updateScrollProgress, { passive: true });
-      return () => container.removeEventListener('scroll', updateScrollProgress);
+      container.addEventListener("scroll", updateScrollProgress, {
+        passive: true,
+      });
+      return () =>
+        container.removeEventListener("scroll", updateScrollProgress);
     }
   }, [currentSection]);
 
@@ -523,11 +526,11 @@ export default function Index() {
     const updateIsDesktop = () => {
       isDesktop.current = window.innerWidth > 1024;
     };
-    window.addEventListener('resize', updateIsDesktop);
+    window.addEventListener("resize", updateIsDesktop);
 
     // No wheel event handler - allow natural scrolling within sections
     return () => {
-      window.removeEventListener('resize', updateIsDesktop);
+      window.removeEventListener("resize", updateIsDesktop);
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current);
       }
@@ -574,11 +577,14 @@ export default function Index() {
 
       // Only trigger on specific key combinations to avoid interfering with normal usage
       if (e.ctrlKey || e.metaKey) {
-        if (e.key === 'ArrowUp' && currentSection > 0) {
+        if (e.key === "ArrowUp" && currentSection > 0) {
           e.preventDefault();
           scrollToSection(currentSection - 1);
           setShowNavigationHints(false); // Dismiss hints when user uses navigation
-        } else if (e.key === 'ArrowDown' && currentSection < sections.length - 1) {
+        } else if (
+          e.key === "ArrowDown" &&
+          currentSection < sections.length - 1
+        ) {
           e.preventDefault();
           scrollToSection(currentSection + 1);
           setShowNavigationHints(false); // Dismiss hints when user uses navigation
@@ -586,8 +592,8 @@ export default function Index() {
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [currentSection, isScrolling, sections.length, mode]);
 
   // Disabled touch scroll section transitions - allow natural scrolling within sections
@@ -1696,8 +1702,8 @@ export default function Index() {
           </>
         )}
 
-      {/* Custom Scrollbar Styling with Desktop Optimizations */}
-      <style>{`
+        {/* Custom Scrollbar Styling with Desktop Optimizations */}
+        <style>{`
         /* Custom scrollbar for sections with content overflow */
         div[data-section]:not([data-section="home"]) {
           scrollbar-width: thin;
@@ -1778,7 +1784,6 @@ export default function Index() {
           }
         }
       `}</style>
-
       </div>
     );
   }
@@ -1953,9 +1958,11 @@ export default function Index() {
         {/* Navigation Help Text - shows on content sections */}
         {currentSection > 0 && (
           <div className="mt-6 text-center">
-            <p className={`text-xs opacity-60 ${
-              theme === "light" ? "text-gray-500" : "text-white/60"
-            }`}>
+            <p
+              className={`text-xs opacity-60 ${
+                theme === "light" ? "text-gray-500" : "text-white/60"
+              }`}
+            >
               Use buttons or Ctrl+Arrow keys
             </p>
           </div>
@@ -2051,7 +2058,8 @@ export default function Index() {
                       theme === "light" ? "text-gray-600" : "text-gray-300"
                     }`}
                   >
-                    Use the up/down arrow buttons on the right side to move between sections
+                    Use the up/down arrow buttons on the right side to move
+                    between sections
                   </p>
                 </div>
               </div>
@@ -2076,7 +2084,8 @@ export default function Index() {
                       theme === "light" ? "text-gray-600" : "text-gray-300"
                     }`}
                   >
-                    Click the dots on the left side to jump directly to any section
+                    Click the dots on the left side to jump directly to any
+                    section
                   </p>
                 </div>
               </div>
@@ -2140,7 +2149,8 @@ export default function Index() {
                       theme === "light" ? "text-gray-600" : "text-gray-300"
                     }`}
                   >
-                    Scroll naturally within each section to view all content. Section changes only happen via buttons.
+                    Scroll naturally within each section to view all content.
+                    Section changes only happen via buttons.
                   </p>
                 </div>
               </div>
@@ -2169,14 +2179,16 @@ export default function Index() {
 
       {/* Desktop Scroll Progress Indicator */}
       {currentSection > 0 && window.innerWidth > 1024 && (
-        <div className={`fixed top-0 left-0 w-full h-1 z-50 pointer-events-none transition-opacity duration-300 ${
-          theme === "light" ? "bg-gray-200/50" : "bg-white/10"
-        }`}>
+        <div
+          className={`fixed top-0 left-0 w-full h-1 z-50 pointer-events-none transition-opacity duration-300 ${
+            theme === "light" ? "bg-gray-200/50" : "bg-white/10"
+          }`}
+        >
           <div
             className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-200 ease-out"
             style={{
               width: `${scrollProgress}%`,
-              boxShadow: '0 0 10px rgba(73, 146, 255, 0.5)'
+              boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
             }}
           />
         </div>
@@ -2201,9 +2213,10 @@ export default function Index() {
                   : "bg-white/30 hover:bg-white/50"
             }`}
             style={{
-              boxShadow: index === currentSection
-                ? "0 0 15px rgba(73, 146, 255, 0.5)"
-                : "none"
+              boxShadow:
+                index === currentSection
+                  ? "0 0 15px rgba(73, 146, 255, 0.5)"
+                  : "none",
             }}
           >
             {/* Tooltip */}
@@ -2230,7 +2243,7 @@ export default function Index() {
       </div>
 
       {/* Help Button - Available on all sections, above notifications */}
-      {(
+      {
         <div
           className={`help-button fixed bottom-6 right-3 sm:bottom-8 sm:right-4 lg:right-8 z-[150] transition-all duration-300 ${
             isMobileMenuOpen ? "blur-sm" : ""
@@ -2293,7 +2306,7 @@ export default function Index() {
             </div>
           </button>
         </div>
-      )}
+      }
 
       {/* Mobile Hamburger Menu - Only show in home section */}
       {currentSection === 0 && (
