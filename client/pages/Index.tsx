@@ -416,23 +416,55 @@ export default function Index() {
     { id: "contact", title: "Contact Us", component: "contact" },
   ];
 
-  // Smooth scroll to section function
+  // Scroll to section function with black transition
   const scrollToSection = (index: number) => {
-    if (!containerRef.current || index < 0 || index >= sections.length) return;
+    if (isScrolling || !containerRef.current) return;
 
-    const targetSection = sectionsRef.current[index];
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+    setIsScrolling(true);
+    setIsScrollingActive(true);
+    setTransitioningSectionIndex(index);
+
+    // Start black transition animation
+    setIsBlackTransition(true);
+    setIsContentVisible(false);
+
+    // Wait for fade to black, then change section
+    setTimeout(() => {
+      setCurrentSection(index);
 
       // Update URL based on section
       const sectionPath = index === 0 ? "/" : `/${sections[index].id}`;
-      if (window.location.pathname !== sectionPath) {
-        window.history.pushState({}, "", sectionPath);
+      window.history.pushState({}, "", sectionPath);
+
+      const targetSection = sectionsRef.current[index];
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: "auto", // Instant scroll during black screen
+          block: "start",
+        });
       }
-    }
+
+      // If returning to home section (index 0), trigger loading animation
+      if (index === 0) {
+        triggerOptimizedLoadingSequence();
+      }
+
+      // Start revealing new content after a cinematic pause
+      setTimeout(() => {
+        setIsBlackTransition(false);
+
+        // Delay content visibility for dramatic effect
+        setTimeout(() => {
+          setIsContentVisible(true);
+
+          // Complete the transition
+          setTimeout(() => {
+            setIsScrolling(false);
+            setIsScrollingActive(false);
+          }, 900); // Allow time for content to fully appear
+        }, 150); // Small delay for content to start appearing
+      }, 100); // Short delay to ensure scroll is complete
+    }, 350); // Time for fade to black
   };
 
   // Handle wheel scroll
