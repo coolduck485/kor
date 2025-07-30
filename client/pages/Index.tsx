@@ -3599,6 +3599,7 @@ export default function Index() {
 
         {/* Contact Us Section */}
         <motion.div
+          data-section="contact"
           className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
             display: currentSection === 4 ? "block" : "none",
@@ -8809,7 +8810,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Discord",
                         subtitle: "Join our community",
                         url: "https://discord.com",
-                        icon: "💬",
+                        icon: "����",
                         color: "from-indigo-500 via-blue-500 to-purple-500",
                         shadowColor: "rgba(99, 102, 241, 0.3)",
                       },
