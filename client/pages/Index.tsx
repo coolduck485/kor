@@ -2198,8 +2198,8 @@ export default function Index() {
         ))}
       </div>
 
-      {/* Help Button - All sections except first */}
-      {currentSection > 0 && (
+      {/* Help Button - Available on all sections, above notifications */}
+      {(
         <div
           className={`help-button fixed bottom-8 right-4 sm:right-8 z-50 transition-all duration-300 ${
             isMobileMenuOpen ? "blur-sm" : ""
