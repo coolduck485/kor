@@ -2651,7 +2651,7 @@ export default function Index() {
 
             {/* Enhanced Spectacular Full-Width Wavy Aurora Curtains - Desktop Only (992px+) */}
             {isHighPerformance && (
-              <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 hidden lg:block">
+              <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40 sm:opacity-50 lg:opacity-60">
                 {/* Primary aurora curtain - Top layer */}
                 <div
                   className="absolute aurora-curtain-1"
@@ -3081,7 +3081,7 @@ export default function Index() {
             {isPinkActive && isHighPerformance && (
               <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 {/* Pink Aurora Curtains - Desktop */}
-                <div className="hidden lg:block opacity-70">
+                <div className="opacity-50 sm:opacity-60 lg:opacity-70">
                   {[...Array(4)].map((_, i) => (
                     <div
                       key={`pink-aurora-${i}`}
@@ -6391,7 +6391,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         )}
 
         {/* Interactive Holographic Stats Display */}
-        <div className="absolute top-20 right-10 hidden lg:block pointer-events-none">
+        <div className="absolute top-20 right-4 sm:right-6 lg:right-10 hidden sm:block pointer-events-none">
           <motion.div
             className="relative"
             animate={{
@@ -6447,7 +6447,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Desktop Aurora Curtains */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 hidden lg:block">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40 sm:opacity-50 lg:opacity-60">
           <div
             className="absolute aurora-curtain-1"
             style={{
@@ -7350,7 +7350,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         )}
 
         {/* Technology Stack Visualization */}
-        <div className="absolute top-10 left-10 hidden lg:block pointer-events-none">
+        <div className="absolute top-10 left-4 sm:left-6 lg:left-10 hidden sm:block pointer-events-none">
           <motion.div
             className="relative"
             animate={{
@@ -8089,7 +8089,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         )}
 
         {/* Code Repository Visualization */}
-        <div className="absolute top-10 right-10 hidden lg:block pointer-events-none">
+        <div className="absolute top-10 right-4 sm:right-6 lg:right-10 hidden sm:block pointer-events-none">
           <motion.div
             className="relative"
             animate={{
