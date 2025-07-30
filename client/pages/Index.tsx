@@ -1963,6 +1963,7 @@ export default function Index() {
       }`}
       style={{
         height: "100vh",
+        width: "100vw", // Ensure full viewport width
         overflowY: currentSection === 0 ? "hidden" : "auto", // Allow vertical scrolling on content sections
         overflowX: "hidden", // Always disable horizontal scrolling
         maxWidth: "100vw",
