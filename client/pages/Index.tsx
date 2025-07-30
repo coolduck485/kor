@@ -7536,7 +7536,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
             {/* Services Stack */}
             <div className="flex justify-center mt-4 sm:mt-6 lg:mt-8 px-4">
-              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-6 w-full max-w-xl sm:max-w-2xl lg:max-w-5xl">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-6 w-full max-w-xl sm:max-w-2xl lg:max-w-4xl xl:max-w-5xl overflow-hidden">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
