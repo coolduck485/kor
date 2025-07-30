@@ -577,14 +577,41 @@ export default function Index() {
       const minSwipeDistance = 50;
       const minSwipeVelocity = 0.1; // pixels per millisecond
 
-      if (
-        Math.abs(deltaY) > minSwipeDistance &&
-        swipeVelocity > minSwipeVelocity
-      ) {
-        if (deltaY > 0 && currentSection < sections.length - 1) {
-          scrollToSection(currentSection + 1);
-        } else if (deltaY < 0 && currentSection > 0) {
-          scrollToSection(currentSection - 1);
+      // Check if we're in services section on mobile/tablet
+      const isMobileTablet = window.innerWidth <= 1024;
+      const isServicesSection = currentSection === 2;
+
+      if (isMobileTablet && isServicesSection) {
+        // For services section, only trigger section change if at boundaries
+        const servicesElement = document.querySelector('[data-section="services"]') as HTMLElement;
+        if (servicesElement) {
+          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
+          const isAtTop = scrollTop <= 0;
+          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+
+          if (
+            Math.abs(deltaY) > minSwipeDistance &&
+            swipeVelocity > minSwipeVelocity
+          ) {
+            // Only change sections if at boundaries
+            if (deltaY > 0 && isAtBottom && currentSection < sections.length - 1) {
+              scrollToSection(currentSection + 1);
+            } else if (deltaY < 0 && isAtTop && currentSection > 0) {
+              scrollToSection(currentSection - 1);
+            }
+          }
+        }
+      } else {
+        // Default behavior for other sections
+        if (
+          Math.abs(deltaY) > minSwipeDistance &&
+          swipeVelocity > minSwipeVelocity
+        ) {
+          if (deltaY > 0 && currentSection < sections.length - 1) {
+            scrollToSection(currentSection + 1);
+          } else if (deltaY < 0 && currentSection > 0) {
+            scrollToSection(currentSection - 1);
+          }
         }
       }
 
@@ -863,7 +890,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
-██║  �����█╗╚███��██�����╝██║  �����█║
+██║  �����█╗╚███��██�����╝██║  �������║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -8210,7 +8237,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             { type: "email", x: 15, y: 35, icon: "✉���" },
-            { type: "call", x: 75, y: 25, icon: "��" },
+            { type: "call", x: 75, y: 25, icon: "���" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
           ].map((card, i) => (
