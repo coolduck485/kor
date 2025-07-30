@@ -346,8 +346,11 @@ export default function Index() {
       const isSlowConnection =
         navigator.connection &&
         navigator.connection.effectiveType === "slow-2g";
+
+      // Enable high performance for mobile and tablet devices regardless of hardware
+      const isMobileOrTablet = window.innerWidth < 1024;
       setIsHighPerformance(
-        !isLowEnd && !isSlowConnection && !prefersReducedMotion,
+        isMobileOrTablet || (!isLowEnd && !isSlowConnection && !prefersReducedMotion),
       );
     };
 
@@ -886,7 +889,7 @@ export default function Index() {
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚���╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
