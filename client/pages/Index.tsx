@@ -880,9 +880,9 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ��██�������������█╗
+                  {`██╗  ██╗ ██████���� ███�������������█╗
 ██║ █��╔╝�����╔�������������═██╗█�������������══██╗
-██���██╔╝ █������   █���║██����███╔���
+██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  �����������
 ╚�����╝  ╚������ ╚�������══�����╝ ╚═╝  ����═��`}
@@ -2287,7 +2287,7 @@ export default function Index() {
           >
             {/* Help Icon */}
             <HelpCircle
-              className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 transition-colors duration-300 ${
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 transition-colors duration-300 ${
                 isPinkActive
                   ? "text-pink-400 group-hover:text-pink-300"
                   : theme === "light"
@@ -9369,7 +9369,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "������",
+                        icon: "�����",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
