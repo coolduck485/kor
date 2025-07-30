@@ -823,7 +823,7 @@ export default function Index() {
         {!isLoading && (
           <>
             {/* Toggle Buttons Container */}
-            <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
+            <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[9999] pointer-events-auto">
               <div
                 className="group relative"
                 onMouseEnter={() => setIsTooltipDismissed(true)}
@@ -881,7 +881,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███�������������█╗
-██║ █��╔╝�������╔�������������═██╗█�������������══██╗
+██║ █��╔╝�����╔�������������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 █���║  �����█╗���███����██�����╝██║  �����������
