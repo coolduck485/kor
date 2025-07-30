@@ -555,9 +555,9 @@ export default function Index() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Automatically show help modal once initial loading is complete
+  // Automatically show help modal once initial loading is complete (first-time users only)
   useEffect(() => {
-    if (initialLoadingComplete && !isHelpModalOpen) {
+    if (initialLoadingComplete && !isHelpModalOpen && !hasInteractedWithHelp) {
       // Small delay to ensure user sees the page first
       const timer = setTimeout(() => {
         setIsHelpModalOpen(true);
@@ -565,7 +565,7 @@ export default function Index() {
 
       return () => clearTimeout(timer);
     }
-  }, [initialLoadingComplete, isHelpModalOpen]);
+  }, [initialLoadingComplete, isHelpModalOpen, hasInteractedWithHelp]);
 
   // Keyboard navigation for sections
   useEffect(() => {
