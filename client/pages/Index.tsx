@@ -882,7 +882,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███�������������█╗
-���█║ █��╔╝�����╔��������������═██╗█�������������══██╗
+���█║ █��╔╝�����╔�������������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 █���║  �����█╗���███����██�����╝██║  �����������
@@ -1967,7 +1967,10 @@ export default function Index() {
       )}
 
       {/* Section Navigation Buttons */}
-      <div className="fixed right-2 sm:right-3 md:right-4 lg:right-4 xl:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3">
+      <div
+        className="fixed right-2 sm:right-3 md:right-4 lg:right-4 xl:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3"
+        onMouseLeave={() => setShowNavigationTooltip(true)}
+      >
         {/* Shared Navigation Tooltip - Positioned between buttons */}
         {showNavigationTooltip && (currentSection > 0 || currentSection < sections.length - 1) && (
           <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
@@ -5693,7 +5696,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: yOffset: 0  →  yOffset: -30
 //
 // To make all buttons closer to center on mobile:
-// Change: mobileRadiusMultiplier: 0.5  →  mobileRadiusMultiplier: 0.3
+// Change: mobileRadiusMultiplier: 0.5  ��  mobileRadiusMultiplier: 0.3
 //
 // To make "Portfolio" button appear at the top:
 // Change: angle: 125  →  angle: -90
