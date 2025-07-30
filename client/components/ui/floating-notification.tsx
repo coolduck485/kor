@@ -288,12 +288,12 @@ const FloatingNotificationItem = React.forwardRef<
         willChange: "transform, opacity",
       }}
     >
-      {/* Simplified Border Effect - more mobile-friendly */}
+      {/* Fixed Border Effect - only animates color, stays static */}
       <div
-        className="absolute inset-0 rounded-xl pointer-events-none transition-all duration-300"
+        className="absolute inset-0 rounded-xl pointer-events-none transition-colors duration-300"
         style={{
           border: `1px solid ${mousePosition.isNear ? colors.accent : colors.border}`,
-          borderRadius: "inherit",
+          borderRadius: "0.75rem", // Match rounded-xl exactly (12px)
         }}
       />
 
