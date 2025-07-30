@@ -881,10 +881,10 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██��  ██╗ ██████╗ ██████╗
+                  {`██��  ██╗ ��█████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══██���
+██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
@@ -8084,7 +8084,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-green-500 to-blue-500",
               },
               {
-                icon: "💎",
+                icon: "��",
                 label: "Premium",
                 x: 85,
                 y: 82,
