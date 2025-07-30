@@ -1895,6 +1895,16 @@ export default function Index() {
           overflow-x: hidden !important;
           box-sizing: border-box !important;
         }
+
+        /* Specific services section overflow prevention */
+        [data-section="services"] * {
+          max-width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        [data-section="services"] .absolute {
+          max-width: 100vw !important;
+        }
       `}</style>
       </div>
     );
