@@ -430,6 +430,11 @@ export default function Index() {
     setTimeout(() => {
       setCurrentSection(index);
 
+      // Reset scroll position to top for non-home sections IMMEDIATELY
+      if (index !== 0 && containerRef.current) {
+        containerRef.current.scrollTop = 0;
+      }
+
       // Update URL based on section
       const sectionPath = index === 0 ? "/" : `/${sections[index].id}`;
       window.history.pushState({}, "", sectionPath);
@@ -445,11 +450,6 @@ export default function Index() {
       // If returning to home section (index 0), trigger loading animation
       if (index === 0) {
         triggerOptimizedLoadingSequence();
-      }
-
-      // Reset scroll position to top for non-home sections
-      if (index !== 0 && containerRef.current) {
-        containerRef.current.scrollTop = 0;
       }
 
       // Start revealing new content after a cinematic pause
@@ -886,7 +886,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████���� ███������������█╗
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
-█████╔╝ █������   █����║██����███╔���
+█████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
