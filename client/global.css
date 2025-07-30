@@ -2,7 +2,6 @@
 @import "./cinematic-transitions.css";
 @import "./mobile-performance.css";
 @import "./disable-mobile-animations.css";
-@import "./scroll-enhancements.css";
 
 @tailwind base;
 @tailwind components;
