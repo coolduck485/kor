@@ -2836,7 +2836,7 @@ export default function Index() {
                   {[...Array(3)].map((_, i) => (
                     <div
                       key={`mobile-wave-${i}`}
-                      className="absolute w-full h-32 opacity-40"
+                      className="absolute w-full h-32 opacity-80"
                       style={{
                         top: `${20 + i * 25}%`,
                         background: `linear-gradient(90deg,
