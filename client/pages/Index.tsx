@@ -881,8 +881,8 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██���  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔══██╗
+                  {`██╗  ██╗ ██████╗ ██████╗
+██║ ██╔╝██╔═══██��██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -1033,7 +1033,7 @@ export default function Index() {
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
                   <span className="text-green-400 ml-4">
-                    ������◄�����������
+                    ◆◆◆◆◄◆◆◆◆◆
                   </span>
                 </div>
 
