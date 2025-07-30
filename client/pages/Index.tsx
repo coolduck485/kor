@@ -470,39 +470,107 @@ export default function Index() {
     }, 350); // Time for fade to black
   };
 
-  // Handle wheel scroll
+  // Desktop scroll optimization variables
+  const scrollAccumulator = useRef(0);
+  const lastScrollTime = useRef(0);
+  const scrollTimeout = useRef<NodeJS.Timeout>();
+  const isDesktop = useRef(window.innerWidth > 1024);
+
+  // Handle wheel scroll with desktop optimizations
   useEffect(() => {
+    // Update desktop detection on resize
+    const updateIsDesktop = () => {
+      isDesktop.current = window.innerWidth > 1024;
+    };
+    window.addEventListener('resize', updateIsDesktop);
+
     const handleWheel = (e: WheelEvent) => {
       if (isScrolling || mode === "retro") return;
 
-      // For home section (index 0), allow immediate section transitions
-      if (currentSection === 0) {
-        e.preventDefault();
-        if (e.deltaY > 0 && currentSection < sections.length - 1) {
-          scrollToSection(currentSection + 1);
-        } else if (e.deltaY < 0 && currentSection > 0) {
-          scrollToSection(currentSection - 1);
+      const currentTime = Date.now();
+      const deltaTime = currentTime - lastScrollTime.current;
+      lastScrollTime.current = currentTime;
+
+      // Desktop optimizations
+      if (isDesktop.current) {
+        // Smooth scroll accumulation for desktop precision
+        scrollAccumulator.current += e.deltaY;
+
+        // Clear any existing timeout
+        if (scrollTimeout.current) {
+          clearTimeout(scrollTimeout.current);
         }
-        return;
-      }
 
-      // For all other sections, check scroll boundaries before allowing section transitions
-      const mainContainer = containerRef.current;
-      if (mainContainer) {
-        const { scrollTop, scrollHeight, clientHeight } = mainContainer;
-        const isAtTop = scrollTop <= 5; // 5px tolerance
-        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5; // 5px tolerance
+        // Reset accumulator after brief pause (smooth momentum)
+        scrollTimeout.current = setTimeout(() => {
+          scrollAccumulator.current = 0;
+        }, 150);
 
-        // Only allow section transitions when at scroll boundaries
-        if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
+        // Require more intentional scrolling for section changes on desktop
+        const scrollThreshold = 100; // Increased threshold for desktop
+
+        // For home section (index 0), allow immediate section transitions with threshold
+        if (currentSection === 0) {
+          if (Math.abs(scrollAccumulator.current) > scrollThreshold) {
+            e.preventDefault();
+            if (scrollAccumulator.current > 0 && currentSection < sections.length - 1) {
+              scrollToSection(currentSection + 1);
+              scrollAccumulator.current = 0;
+            } else if (scrollAccumulator.current < 0 && currentSection > 0) {
+              scrollToSection(currentSection - 1);
+              scrollAccumulator.current = 0;
+            }
+          }
+          return;
+        }
+
+        // For other sections with scrollable content
+        const mainContainer = containerRef.current;
+        if (mainContainer) {
+          const { scrollTop, scrollHeight, clientHeight } = mainContainer;
+          const isAtTop = scrollTop <= 3; // Tighter tolerance for desktop
+          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 3;
+
+          // Only allow section transitions at boundaries with accumulated scroll
+          if (((scrollAccumulator.current > scrollThreshold && isAtBottom) ||
+               (scrollAccumulator.current < -scrollThreshold && isAtTop))) {
+            e.preventDefault();
+            if (scrollAccumulator.current > 0 && currentSection < sections.length - 1) {
+              scrollToSection(currentSection + 1);
+              scrollAccumulator.current = 0;
+            } else if (scrollAccumulator.current < 0 && currentSection > 0) {
+              scrollToSection(currentSection - 1);
+              scrollAccumulator.current = 0;
+            }
+          }
+        }
+      } else {
+        // Mobile/tablet behavior (original logic)
+        if (currentSection === 0) {
           e.preventDefault();
           if (e.deltaY > 0 && currentSection < sections.length - 1) {
             scrollToSection(currentSection + 1);
           } else if (e.deltaY < 0 && currentSection > 0) {
             scrollToSection(currentSection - 1);
           }
+          return;
         }
-        // If not at boundaries, allow normal scrolling (don't prevent default)
+
+        const mainContainer = containerRef.current;
+        if (mainContainer) {
+          const { scrollTop, scrollHeight, clientHeight } = mainContainer;
+          const isAtTop = scrollTop <= 5;
+          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5;
+
+          if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
+            e.preventDefault();
+            if (e.deltaY > 0 && currentSection < sections.length - 1) {
+              scrollToSection(currentSection + 1);
+            } else if (e.deltaY < 0 && currentSection > 0) {
+              scrollToSection(currentSection - 1);
+            }
+          }
+        }
       }
     };
 
