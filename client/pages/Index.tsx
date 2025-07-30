@@ -6952,100 +6952,133 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
             {/* Services Grid */}
             <div className="flex justify-center mt-12 sm:mt-16 lg:mt-20">
-              <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-3 lg:gap-4 xl:gap-5 responsive-grid w-full max-w-4xl">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 responsive-grid w-full max-w-7xl px-4">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
-                    className="group relative"
-                    initial={{ y: 50, opacity: 0, scale: 0.9 }}
+                    className="group relative h-full"
+                    initial={{ y: 60, opacity: 0, scale: 0.8 }}
                     animate={
                       isVisible
                         ? { y: 0, opacity: 1, scale: 1 }
-                        : { y: 50, opacity: 0, scale: 0.9 }
+                        : { y: 60, opacity: 0, scale: 0.8 }
                     }
-                    transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                    whileHover={{ scale: 1.05, y: -10 }}
+                    transition={{
+                      duration: 0.7,
+                      delay: 0.1 + index * 0.1,
+                      type: "spring",
+                      stiffness: 100
+                    }}
+                    whileHover={{
+                      scale: 1.02,
+                      y: -8,
+                      transition: { duration: 0.3 }
+                    }}
                   >
-                    {/* Service Card */}
-                    <div
-                      className="relative p-1 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg overflow-hidden transition-all duration-500 h-full mobile-lively-card"
-                      style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        border: "2px solid rgba(255, 255, 255, 0.1)",
-                        boxShadow: "0 0 40px rgba(73, 146, 255, 0.2)",
-                      }}
-                    >
-                      {/* Animated Background Gradient */}
+                    {/* Main Card Container */}
+                    <div className="relative h-full min-h-[320px] sm:min-h-[280px] lg:min-h-[300px]">
+                      {/* Outer Glow Effect */}
                       <div
-                        className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${service.color}`}
+                        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"
+                        style={{
+                          background: `linear-gradient(135deg, ${service.color.replace('from-', '').replace(' to-', ', ').replace('-500', '')})`,
+                          transform: "scale(1.05)"
+                        }}
                       />
 
-                      {/* Scanning line effect */}
-                      <div className="absolute inset-0 overflow-hidden rounded-3xl">
-                        <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                      </div>
-
-                      {/* Service Title - positioned at top of card */}
-                      <div className="relative z-10 mb-1 sm:mb-2 lg:mb-3">
-                        <h3
-                          className={`text-xs sm:text-sm lg:text-base font-bold warm-glow-text text-center ${
-                            theme === "light" ? "text-gray-900" : "text-white"
-                          }`}
-                          style={{
-                            textShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
-                          }}
-                        >
-                          {service.title}
-                        </h3>
-                      </div>
-
-                      {/* Icon - centered */}
-                      <motion.div
-                        className="relative z-10 mb-1 sm:mb-2 lg:mb-3 flex justify-center"
-                        whileHover={{ rotate: 10, scale: 1.2 }}
-                        transition={{ duration: 0.3 }}
+                      {/* Card Body */}
+                      <div
+                        className="relative h-full rounded-3xl overflow-hidden transition-all duration-500 backdrop-blur-xl border border-white/10"
+                        style={{
+                          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
+                          boxShadow: `
+                            0 25px 50px -12px rgba(0, 0, 0, 0.4),
+                            inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                            0 0 0 1px rgba(255, 255, 255, 0.05)
+                          `,
+                        }}
                       >
-                        <div
-                          className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br mobile-lively-icon ${service.color}`}
-                          style={{
-                            boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
-                          }}
-                        >
-                          <service.icon className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
+                        {/* Background Pattern */}
+                        <div className="absolute inset-0 opacity-[0.02]">
+                          <div className="absolute inset-0" style={{
+                            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                            backgroundSize: '20px 20px'
+                          }} />
                         </div>
-                      </motion.div>
 
-                      {/* Description Content */}
-                      <div className="relative z-10 text-center">
-                        <p
-                          className={`text-xs leading-relaxed ${
-                            theme === "light"
-                              ? "text-gray-600"
-                              : "text-gray-300"
-                          }`}
-                          style={{
-                            textShadow:
-                              theme === "dark"
-                                ? "0 0 5px rgba(255, 255, 255, 0.1)"
-                                : "none",
-                          }}
-                        >
-                          {service.description}
-                        </p>
-                      </div>
-
-                      {/* Circuit-like decorative elements */}
-                      <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-                        <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+                        {/* Animated Gradient Overlay */}
                         <div
-                          className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-                          style={{ animationDelay: "0.5s" }}
+                          className={`absolute inset-0 opacity-0 group-hover:opacity-30 transition-all duration-700 bg-gradient-to-br ${service.color}`}
                         />
-                        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
-                      </div>
 
-                      {/* Holographic shimmer effect */}
-                      <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-3xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
+                        {/* Dynamic Light Effects */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                          {/* Top Light */}
+                          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                          {/* Side Lights */}
+                          <div className="absolute top-8 left-0 w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
+                          <div className="absolute top-8 right-0 w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
+                        </div>
+
+                        {/* Content Container */}
+                        <div className="relative z-10 h-full flex flex-col p-8 sm:p-6 lg:p-8">
+
+                          {/* Icon Section */}
+                          <div className="flex justify-center mb-6">
+                            <motion.div
+                              className="relative"
+                              whileHover={{
+                                rotate: [0, -10, 10, 0],
+                                scale: 1.1
+                              }}
+                              transition={{ duration: 0.5 }}
+                            >
+                              {/* Icon Background */}
+                              <div
+                                className={`w-16 h-16 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${service.color} shadow-lg`}
+                                style={{
+                                  boxShadow: `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`
+                                }}
+                              >
+                                <service.icon className="w-8 h-8 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white drop-shadow-lg" />
+                              </div>
+
+                              {/* Icon Glow */}
+                              <div
+                                className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-50 transition-opacity duration-500 blur-md -z-10`}
+                              />
+                            </motion.div>
+                          </div>
+
+                          {/* Title */}
+                          <div className="text-center mb-4">
+                            <h3 className="text-xl sm:text-lg lg:text-xl font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
+                              {service.title}
+                            </h3>
+                          </div>
+
+                          {/* Description */}
+                          <div className="flex-1 flex items-center">
+                            <p className="text-gray-300 text-sm sm:text-sm lg:text-base leading-relaxed text-center opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+                              {service.description}
+                            </p>
+                          </div>
+
+                          {/* Bottom Accent */}
+                          <div className="mt-6 flex justify-center">
+                            <div
+                              className={`w-12 h-1 rounded-full bg-gradient-to-r ${service.color} opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-500`}
+                            />
+                          </div>
+                        </div>
+
+                        {/* Interactive Particles */}
+                        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: '0s' }} />
+                          <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-400 rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
+                          <div className="absolute top-1/2 left-3/4 w-1 h-1 bg-cyan-400 rounded-full animate-ping" style={{ animationDelay: '1s' }} />
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
