@@ -1713,28 +1713,7 @@ export default function Index() {
         </div>
       )}
 
-      {/* Black Transition Overlay with Cinematic Effects */}
-      <AnimatePresence>
-        {isBlackTransition && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              duration: 0.3,
-              ease: "easeInOut",
-            }}
-            className="fixed inset-0 z-[9999] pointer-events-none black-overlay-enhanced"
-            style={{
-              willChange: "opacity",
-              transform: "translateZ(0)",
-            }}
-          >
-            {/* Simple black overlay */}
-            <div className="absolute inset-0 bg-black" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+
 
       {/* Sections Container - All sections stacked vertically */}
       <div className="">
