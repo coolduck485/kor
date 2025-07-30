@@ -877,7 +877,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███������������█╗
+                  {`██╗  ██╗ ██████������ ███������������█╗
 ██║ █��╔╝��█╔�����������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
@@ -2241,7 +2241,10 @@ export default function Index() {
             onClick={() => {
               scrollToSection(index);
               setShowNavigationHints(false);
+              dismissTooltip(`section-dot-${index}`);
             }}
+            onMouseEnter={() => dismissTooltip(`section-dot-${index}`)}
+            onTouchStart={() => dismissTooltip(`section-dot-${index}`)}
             className={`group relative w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
               index === currentSection
                 ? theme === "light"
