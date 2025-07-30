@@ -884,7 +884,7 @@ export default function Index() {
 ██║ █��╔╝�����╔�������������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
-██║  �����█╗���███����██�����╝██║  �����������
+█���║  �����█╗���███����██�����╝██║  �����������
 ╚�����╝  ╚������ ╚�������══�����╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1838,6 +1838,7 @@ export default function Index() {
         overflowY: currentSection === 0 ? "hidden" : "auto", // Allow vertical scrolling on content sections
         overflowX: "hidden", // Always disable horizontal scrolling
         maxWidth: "100vw",
+        minHeight: "100vh", // Ensure minimum height
         willChange: isScrollingActive ? "auto" : "transform",
         contain: "layout style paint",
         scrollBehavior: "smooth", // Native smooth scrolling for content
