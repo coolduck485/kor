@@ -7041,8 +7041,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Stack */}
-            <div className="flex justify-center mt-6 sm:mt-8 lg:mt-12 px-4">
-              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-4 sm:gap-6 lg:gap-8 w-full max-w-2xl sm:max-w-3xl lg:max-w-6xl">
+            <div className="flex justify-center mt-4 sm:mt-6 lg:mt-8 px-4">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-6 w-full max-w-xl sm:max-w-2xl lg:max-w-5xl">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
@@ -7527,7 +7527,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-green-500 to-blue-500",
               },
               {
-                icon: "💎",
+                icon: "��",
                 label: "Premium",
                 x: 85,
                 y: 82,
