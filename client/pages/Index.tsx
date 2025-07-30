@@ -538,7 +538,30 @@ export default function Index() {
       // Determine if this is a vertical swipe (not horizontal)
       if (deltaY > 10 && deltaY > deltaX * 1.5) {
         isSwiping = true;
-        e.preventDefault(); // Prevent default scrolling only during vertical swipes
+
+        // Check if we're in services section on mobile/tablet
+        const isMobileTablet = window.innerWidth <= 1024;
+        const isServicesSection = currentSection === 2;
+
+        if (isMobileTablet && isServicesSection) {
+          // Allow normal scrolling within services section
+          const servicesElement = document.querySelector('[data-section="services"]') as HTMLElement;
+          if (servicesElement) {
+            const { scrollTop, scrollHeight, clientHeight } = servicesElement;
+            const isAtTop = scrollTop <= 0;
+            const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+            const scrollDirection = touchStartY - touchY;
+
+            // Only prevent default if at boundaries and trying to scroll beyond
+            if ((scrollDirection > 0 && isAtBottom) || (scrollDirection < 0 && isAtTop)) {
+              e.preventDefault();
+            }
+            // Otherwise allow normal scrolling
+            return;
+          }
+        }
+
+        e.preventDefault(); // Prevent default scrolling only during vertical swipes for other sections
       }
     };
 
@@ -839,7 +862,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
-██╔═��█╗ █��║   ██║██╔══█����������
+██╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
@@ -8731,7 +8754,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Telegram",
                             url: "https://telegram.org",
-                            icon: "���",
+                            icon: "📱",
                             color: "from-blue-500 to-cyan-500",
                           },
                         ].map((social) => (
