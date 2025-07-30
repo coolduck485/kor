@@ -1024,7 +1024,7 @@ export default function Index() {
                   <span className="status-dot text-amber-400">��</span>
                   <span>CONNECTED</span>
                   <span className="status-dot text-green-400 terminal-glow">
-                    ●
+                    ��
                   </span>
                   <span>ONLINE</span>
                 </div>
@@ -1888,7 +1888,7 @@ export default function Index() {
       )}
 
       {/* Section Navigation Buttons */}
-      <div className="fixed right-2 sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3">
+      <div className="fixed right-2 sm:right-3 md:right-4 lg:right-4 xl:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3">
         {/* Previous Section Button */}
         {currentSection > 0 && (
           <button
