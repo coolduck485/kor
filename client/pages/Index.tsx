@@ -2035,11 +2035,13 @@ export default function Index() {
 
       {/* Desktop Scroll Progress Indicator */}
       {currentSection > 0 && window.innerWidth > 1024 && (
-        <div className="fixed top-0 left-0 w-full h-1 bg-black/10 dark:bg-white/10 z-50 pointer-events-none">
+        <div className={`fixed top-0 left-0 w-full h-1 z-50 pointer-events-none transition-opacity duration-300 ${
+          theme === "light" ? "bg-gray-200/50" : "bg-white/10"
+        }`}>
           <div
-            className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 ease-out"
+            className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-200 ease-out"
             style={{
-              width: `${((containerRef.current?.scrollTop || 0) / Math.max((containerRef.current?.scrollHeight || 1) - (containerRef.current?.clientHeight || 0), 1)) * 100}%`,
+              width: `${scrollProgress}%`,
               boxShadow: '0 0 10px rgba(73, 146, 255, 0.5)'
             }}
           />
