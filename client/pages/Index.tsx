@@ -469,8 +469,34 @@ export default function Index() {
     const handleWheel = (e: WheelEvent) => {
       if (isScrolling || mode === "retro") return;
 
-      e.preventDefault();
+      // Check if we're on mobile/tablet and in services section (index 2)
+      const isMobileTablet = window.innerWidth <= 1024;
+      const isServicesSection = currentSection === 2;
 
+      if (isMobileTablet && isServicesSection) {
+        // Allow normal scrolling within services section
+        const servicesElement = document.querySelector('[data-section="services"]') as HTMLElement;
+        if (servicesElement) {
+          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
+          const isAtTop = scrollTop <= 0;
+          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10; // 10px tolerance
+
+          // Only prevent default and trigger section change at boundaries
+          if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
+            e.preventDefault();
+            if (e.deltaY > 0 && currentSection < sections.length - 1) {
+              scrollToSection(currentSection + 1);
+            } else if (e.deltaY < 0 && currentSection > 0) {
+              scrollToSection(currentSection - 1);
+            }
+          }
+          // If not at boundaries, allow normal scrolling (don't prevent default)
+          return;
+        }
+      }
+
+      // Default behavior for other sections or desktop
+      e.preventDefault();
       if (e.deltaY > 0 && currentSection < sections.length - 1) {
         scrollToSection(currentSection + 1);
       } else if (e.deltaY < 0 && currentSection > 0) {
@@ -813,7 +839,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
-██╔═��█╗ █��║   ██║██╔══█��������
+██╔═��█╗ █��║   ██║██╔══█����������
 ██║  �����█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
@@ -8705,7 +8731,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Telegram",
                             url: "https://telegram.org",
-                            icon: "📱",
+                            icon: "���",
                             color: "from-blue-500 to-cyan-500",
                           },
                         ].map((social) => (
