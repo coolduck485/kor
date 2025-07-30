@@ -724,7 +724,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═�������═██╗█�����������══██╗
+██║ █��╔╝��█╔═�������═██╗█�����������══█��╗
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �������║
@@ -3402,13 +3402,15 @@ export default function Index() {
         {/* About Us Section */}
         <motion.div
           data-section="about"
-          id="about"
-          className={`min-h-screen ${isMobileMenuOpen ? "blur-sm" : ""}`}
+          className={isMobileMenuOpen ? "blur-sm" : ""}
+          style={{
+            display: currentSection === 1 ? "block" : "none",
+          }}
         >
           <AboutUsSection
             ref={(el) => (sectionsRef.current[1] = el!)}
             theme={theme}
-            isVisible={true}
+            isVisible={currentSection === 1}
             isMobile={isMobile}
             animationConfig={animationConfig}
           />
@@ -3417,13 +3419,15 @@ export default function Index() {
         {/* Services Section */}
         <motion.div
           data-section="services"
-          id="services"
-          className={`min-h-screen ${isMobileMenuOpen ? "blur-sm" : ""}`}
+          className={`${isMobileMenuOpen ? "blur-sm" : ""} lg:overflow-hidden overflow-y-auto lg:h-auto h-screen`}
+          style={{
+            display: currentSection === 2 ? "block" : "none",
+          }}
         >
           <ServicesSection
             ref={(el) => (sectionsRef.current[2] = el!)}
             theme={theme}
-            isVisible={true}
+            isVisible={currentSection === 2}
             isMobile={isMobile}
             animationConfig={animationConfig}
           />
@@ -3432,13 +3436,15 @@ export default function Index() {
         {/* Portfolio Section */}
         <motion.div
           data-section="portfolio"
-          id="portfolio"
-          className={`min-h-screen ${isMobileMenuOpen ? "blur-sm" : ""}`}
+          className={isMobileMenuOpen ? "blur-sm" : ""}
+          style={{
+            display: currentSection === 3 ? "block" : "none",
+          }}
         >
           <PortfolioSection
             ref={(el) => (sectionsRef.current[3] = el!)}
             theme={theme}
-            isVisible={true}
+            isVisible={currentSection === 3}
             isMobile={isMobile}
             animationConfig={animationConfig}
           />
@@ -3447,13 +3453,15 @@ export default function Index() {
         {/* Contact Us Section */}
         <motion.div
           data-section="contact"
-          id="contact"
-          className={`min-h-screen ${isMobileMenuOpen ? "blur-sm" : ""}`}
+          className={isMobileMenuOpen ? "blur-sm" : ""}
+          style={{
+            display: currentSection === 4 ? "block" : "none",
+          }}
         >
           <ContactUsSection
             ref={(el) => (sectionsRef.current[4] = el!)}
             theme={theme}
-            isVisible={true}
+            isVisible={currentSection === 4}
             isMobile={isMobile}
             animationConfig={animationConfig}
           />
