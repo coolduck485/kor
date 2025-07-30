@@ -2508,36 +2508,7 @@ export default function Index() {
           </div>
         )}
 
-        {/* Section Position Indicator - Visible on desktop and larger tablets */}
-        <div
-          className="hidden md:flex fixed left-2 sm:left-3 md:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
-          style={{ position: "fixed" }}
-        >
-          {sections.map((section, index) => (
-            <button
-              key={section.id}
-              onClick={() => {
-                scrollToSection(index);
-                setShowNavigationHints(false);
-              }}
-              className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
-                index === currentSection
-                  ? theme === "light"
-                    ? "bg-blue-600 shadow-lg scale-125"
-                    : "bg-blue-400 shadow-lg scale-125"
-                  : theme === "light"
-                    ? "bg-gray-300 hover:bg-gray-400"
-                    : "bg-white/30 hover:bg-white/50"
-              }`}
-              style={{
-                boxShadow:
-                  index === currentSection
-                    ? "0 0 15px rgba(73, 146, 255, 0.5)"
-                    : "none",
-              }}
-            />
-          ))}
-        </div>
+
 
         {/* Help Button - Available on all sections, above notifications */}
         {
