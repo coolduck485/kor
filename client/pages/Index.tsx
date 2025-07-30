@@ -878,7 +878,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███������������█╗
-██║ █��╔╝��█╔═�������═██╗█�������������══██╗
+██║ █��╔╝��█╔���������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
@@ -1945,7 +1945,10 @@ export default function Index() {
             onClick={() => {
               scrollToSection(currentSection + 1);
               setShowNavigationHints(false);
+              dismissTooltip('nav-down');
             }}
+            onMouseEnter={() => dismissTooltip('nav-down')}
+            onTouchStart={() => dismissTooltip('nav-down')}
             className={`group relative p-2 sm:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
