@@ -2260,7 +2260,7 @@ export default function Index() {
           >
             {/* Help Icon */}
             <HelpCircle
-              className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${
+              className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 transition-colors duration-300 ${
                 isPinkActive
                   ? "text-pink-400 group-hover:text-pink-300"
                   : theme === "light"
