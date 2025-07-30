@@ -1756,7 +1756,7 @@ export default function Index() {
     );
   }
 
-  // Modern mode - original design
+  // Modern mode - original design with proper scroll behavior
   return (
     <div
       ref={containerRef}
@@ -1768,11 +1768,14 @@ export default function Index() {
           : "bg-black"
       }`}
       style={{
-        height: "100vh",
-        overflow: "hidden",
+        minHeight: "100vh",
+        overflow: "auto",
+        overflowX: "hidden",
         maxWidth: "100vw",
         willChange: isScrollingActive ? "auto" : "transform",
         contain: "layout style paint",
+        scrollBehavior: "smooth",
+        WebkitOverflowScrolling: "touch",
       }}
     >
       {/* Universal Scroll Navigation */}
@@ -1943,12 +1946,13 @@ export default function Index() {
         )}
       </AnimatePresence>
 
-      {/* Sections Container */}
-      <div className="h-full">
+      {/* Sections Container - All sections stacked vertically */}
+      <div className="">
         {/* Home Section */}
         <motion.div
           ref={(el) => (sectionsRef.current[0] = el!)}
           data-section="home"
+          id="home"
           className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
             isMobileMenuOpen ? "blur-sm" : ""
           } ${
@@ -1956,9 +1960,6 @@ export default function Index() {
               ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
               : "bg-black"
           }`}
-          style={{
-            display: currentSection === 0 ? "block" : "none",
-          }}
         >
           {/* Main Content - Always visible with orchestrated animations */}
           {/* Left Corner Visual Elements for Mobile Balance */}
