@@ -475,7 +475,9 @@ export default function Index() {
 
       if (isMobileTablet && isServicesSection) {
         // Allow normal scrolling within services section
-        const servicesElement = document.querySelector('[data-section="services"]') as HTMLElement;
+        const servicesElement = document.querySelector(
+          '[data-section="services"]',
+        ) as HTMLElement;
         if (servicesElement) {
           const { scrollTop, scrollHeight, clientHeight } = servicesElement;
           const isAtTop = scrollTop <= 0;
@@ -545,7 +547,9 @@ export default function Index() {
 
         if (isMobileTablet && isServicesSection) {
           // Allow normal scrolling within services section
-          const servicesElement = document.querySelector('[data-section="services"]') as HTMLElement;
+          const servicesElement = document.querySelector(
+            '[data-section="services"]',
+          ) as HTMLElement;
           if (servicesElement) {
             const { scrollTop, scrollHeight, clientHeight } = servicesElement;
             const isAtTop = scrollTop <= 0;
@@ -553,7 +557,10 @@ export default function Index() {
             const scrollDirection = touchStartY - touchY;
 
             // Only prevent default if at boundaries and trying to scroll beyond
-            if ((scrollDirection > 0 && isAtBottom) || (scrollDirection < 0 && isAtTop)) {
+            if (
+              (scrollDirection > 0 && isAtBottom) ||
+              (scrollDirection < 0 && isAtTop)
+            ) {
               e.preventDefault();
             }
             // Otherwise allow normal scrolling
@@ -583,7 +590,9 @@ export default function Index() {
 
       if (isMobileTablet && isServicesSection) {
         // For services section, only trigger section change if at boundaries
-        const servicesElement = document.querySelector('[data-section="services"]') as HTMLElement;
+        const servicesElement = document.querySelector(
+          '[data-section="services"]',
+        ) as HTMLElement;
         if (servicesElement) {
           const { scrollTop, scrollHeight, clientHeight } = servicesElement;
           const isAtTop = scrollTop <= 0;
@@ -594,7 +603,11 @@ export default function Index() {
             swipeVelocity > minSwipeVelocity
           ) {
             // Only change sections if at boundaries
-            if (deltaY > 0 && isAtBottom && currentSection < sections.length - 1) {
+            if (
+              deltaY > 0 &&
+              isAtBottom &&
+              currentSection < sections.length - 1
+            ) {
               scrollToSection(currentSection + 1);
             } else if (deltaY < 0 && isAtTop && currentSection > 0) {
               scrollToSection(currentSection - 1);
@@ -7043,12 +7056,12 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       duration: 0.6,
                       delay: 0.05 + index * 0.05,
                       type: "spring",
-                      stiffness: 120
+                      stiffness: 120,
                     }}
                     whileHover={{
                       scale: 1.01,
                       y: -3,
-                      transition: { duration: 0.2 }
+                      transition: { duration: 0.2 },
                     }}
                   >
                     {/* Main Card Container */}
@@ -7057,8 +7070,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div
                         className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"
                         style={{
-                          background: `linear-gradient(135deg, ${service.color.replace('from-', '').replace(' to-', ', ').replace('-500', '')})`,
-                          transform: "scale(1.05)"
+                          background: `linear-gradient(135deg, ${service.color.replace("from-", "").replace(" to-", ", ").replace("-500", "")})`,
+                          transform: "scale(1.05)",
                         }}
                       />
 
@@ -7066,7 +7079,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div
                         className="relative h-full rounded-3xl overflow-hidden transition-all duration-500 backdrop-blur-xl border border-white/10"
                         style={{
-                          background: "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
+                          background:
+                            "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
                           boxShadow: `
                             0 25px 50px -12px rgba(0, 0, 0, 0.4),
                             inset 0 1px 0 rgba(255, 255, 255, 0.1),
@@ -7076,10 +7090,13 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       >
                         {/* Background Pattern */}
                         <div className="absolute inset-0 opacity-[0.02]">
-                          <div className="absolute inset-0" style={{
-                            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-                            backgroundSize: '20px 20px'
-                          }} />
+                          <div
+                            className="absolute inset-0"
+                            style={{
+                              backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                              backgroundSize: "20px 20px",
+                            }}
+                          />
                         </div>
 
                         {/* Animated Gradient Overlay */}
@@ -7098,14 +7115,13 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                         {/* Content Container */}
                         <div className="relative z-10 h-full flex flex-col p-3 sm:p-3 lg:p-4">
-
                           {/* Icon Section */}
                           <div className="flex justify-center mb-3">
                             <motion.div
                               className="relative"
                               whileHover={{
                                 rotate: [0, -5, 5, 0],
-                                scale: 1.05
+                                scale: 1.05,
                               }}
                               transition={{ duration: 0.3 }}
                             >
@@ -7113,7 +7129,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                               <div
                                 className={`w-10 h-10 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.color} shadow-md`}
                                 style={{
-                                  boxShadow: `0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`
+                                  boxShadow: `0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
                                 }}
                               >
                                 <service.icon className="w-5 h-5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white drop-shadow-md" />
@@ -7150,9 +7166,18 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                         {/* Interactive Particles */}
                         <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                          <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: '0s' }} />
-                          <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-400 rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
-                          <div className="absolute top-1/2 left-3/4 w-1 h-1 bg-cyan-400 rounded-full animate-ping" style={{ animationDelay: '1s' }} />
+                          <div
+                            className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full animate-ping"
+                            style={{ animationDelay: "0s" }}
+                          />
+                          <div
+                            className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-400 rounded-full animate-ping"
+                            style={{ animationDelay: "0.5s" }}
+                          />
+                          <div
+                            className="absolute top-1/2 left-3/4 w-1 h-1 bg-cyan-400 rounded-full animate-ping"
+                            style={{ animationDelay: "1s" }}
+                          />
                         </div>
                       </div>
                     </div>
