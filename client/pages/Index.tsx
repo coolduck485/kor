@@ -470,40 +470,34 @@ export default function Index() {
     const handleWheel = (e: WheelEvent) => {
       if (isScrolling || mode === "retro") return;
 
-      // Check if we're on mobile/tablet and in services section (index 2)
-      const isMobileTablet = window.innerWidth <= 1024;
-      const isServicesSection = currentSection === 2;
-
-      if (isMobileTablet && isServicesSection) {
-        // Allow normal scrolling within services section
-        const servicesElement = document.querySelector(
-          '[data-section="services"]',
-        ) as HTMLElement;
-        if (servicesElement) {
-          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
-          const isAtTop = scrollTop <= 0;
-          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10; // 10px tolerance
-
-          // Only prevent default and trigger section change at boundaries
-          if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
-            e.preventDefault();
-            if (e.deltaY > 0 && currentSection < sections.length - 1) {
-              scrollToSection(currentSection + 1);
-            } else if (e.deltaY < 0 && currentSection > 0) {
-              scrollToSection(currentSection - 1);
-            }
-          }
-          // If not at boundaries, allow normal scrolling (don't prevent default)
-          return;
+      // For home section (index 0), allow immediate section transitions
+      if (currentSection === 0) {
+        e.preventDefault();
+        if (e.deltaY > 0 && currentSection < sections.length - 1) {
+          scrollToSection(currentSection + 1);
+        } else if (e.deltaY < 0 && currentSection > 0) {
+          scrollToSection(currentSection - 1);
         }
+        return;
       }
 
-      // Default behavior for other sections or desktop
-      e.preventDefault();
-      if (e.deltaY > 0 && currentSection < sections.length - 1) {
-        scrollToSection(currentSection + 1);
-      } else if (e.deltaY < 0 && currentSection > 0) {
-        scrollToSection(currentSection - 1);
+      // For all other sections, check scroll boundaries before allowing section transitions
+      const container = containerRef.current;
+      if (container) {
+        const { scrollTop, scrollHeight, clientHeight } = container;
+        const isAtTop = scrollTop <= 5; // 5px tolerance
+        const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5; // 5px tolerance
+
+        // Only allow section transitions when at scroll boundaries
+        if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
+          e.preventDefault();
+          if (e.deltaY > 0 && currentSection < sections.length - 1) {
+            scrollToSection(currentSection + 1);
+          } else if (e.deltaY < 0 && currentSection > 0) {
+            scrollToSection(currentSection - 1);
+          }
+        }
+        // If not at boundaries, allow normal scrolling (don't prevent default)
       }
     };
 
@@ -904,7 +898,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
-██║  �����█╗���███��██�����╝██║  ���������
+██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -8173,7 +8167,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "��", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "📞", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "��", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
