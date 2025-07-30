@@ -58,6 +58,35 @@ export default function Index() {
   const hasShownWelcomeRef = useRef(false);
   const hasShownMobilePerformanceRef = useRef(false);
 
+  // Tooltip management state
+  const [dismissedTooltips, setDismissedTooltips] = useState<Set<string>>(
+    () => {
+      try {
+        const saved = localStorage.getItem('dismissedTooltips');
+        return saved ? new Set(JSON.parse(saved)) : new Set();
+      } catch {
+        return new Set();
+      }
+    }
+  );
+
+  // Function to dismiss a tooltip permanently
+  const dismissTooltip = (tooltipId: string) => {
+    const newDismissed = new Set(dismissedTooltips);
+    newDismissed.add(tooltipId);
+    setDismissedTooltips(newDismissed);
+    try {
+      localStorage.setItem('dismissedTooltips', JSON.stringify([...newDismissed]));
+    } catch {
+      // Handle localStorage errors gracefully
+    }
+  };
+
+  // Check if tooltip should be shown
+  const shouldShowTooltip = (tooltipId: string) => {
+    return !dismissedTooltips.has(tooltipId);
+  };
+
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
 
@@ -853,7 +882,7 @@ export default function Index() {
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
-╚���╝  ╚������ ╚═����══�����╝ ╚═╝  ����═��`}
+╚���╝  ╚������ ╚�������══�����╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
