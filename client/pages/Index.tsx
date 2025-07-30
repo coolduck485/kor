@@ -469,8 +469,36 @@ export default function Index() {
     const handleWheel = (e: WheelEvent) => {
       if (isScrolling || mode === "retro") return;
 
-      e.preventDefault();
+      // Check if we're on mobile/tablet and in services section (index 2)
+      const isMobileTablet = window.innerWidth <= 1024;
+      const isServicesSection = currentSection === 2;
 
+      if (isMobileTablet && isServicesSection) {
+        // Allow normal scrolling within services section
+        const servicesElement = document.querySelector(
+          '[data-section="services"]',
+        ) as HTMLElement;
+        if (servicesElement) {
+          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
+          const isAtTop = scrollTop <= 0;
+          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10; // 10px tolerance
+
+          // Only prevent default and trigger section change at boundaries
+          if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
+            e.preventDefault();
+            if (e.deltaY > 0 && currentSection < sections.length - 1) {
+              scrollToSection(currentSection + 1);
+            } else if (e.deltaY < 0 && currentSection > 0) {
+              scrollToSection(currentSection - 1);
+            }
+          }
+          // If not at boundaries, allow normal scrolling (don't prevent default)
+          return;
+        }
+      }
+
+      // Default behavior for other sections or desktop
+      e.preventDefault();
       if (e.deltaY > 0 && currentSection < sections.length - 1) {
         scrollToSection(currentSection + 1);
       } else if (e.deltaY < 0 && currentSection > 0) {
@@ -512,7 +540,35 @@ export default function Index() {
       // Determine if this is a vertical swipe (not horizontal)
       if (deltaY > 10 && deltaY > deltaX * 1.5) {
         isSwiping = true;
-        e.preventDefault(); // Prevent default scrolling only during vertical swipes
+
+        // Check if we're in services section on mobile/tablet
+        const isMobileTablet = window.innerWidth <= 1024;
+        const isServicesSection = currentSection === 2;
+
+        if (isMobileTablet && isServicesSection) {
+          // Allow normal scrolling within services section
+          const servicesElement = document.querySelector(
+            '[data-section="services"]',
+          ) as HTMLElement;
+          if (servicesElement) {
+            const { scrollTop, scrollHeight, clientHeight } = servicesElement;
+            const isAtTop = scrollTop <= 0;
+            const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+            const scrollDirection = touchStartY - touchY;
+
+            // Only prevent default if at boundaries and trying to scroll beyond
+            if (
+              (scrollDirection > 0 && isAtBottom) ||
+              (scrollDirection < 0 && isAtTop)
+            ) {
+              e.preventDefault();
+            }
+            // Otherwise allow normal scrolling
+            return;
+          }
+        }
+
+        e.preventDefault(); // Prevent default scrolling only during vertical swipes for other sections
       }
     };
 
@@ -528,14 +584,47 @@ export default function Index() {
       const minSwipeDistance = 50;
       const minSwipeVelocity = 0.1; // pixels per millisecond
 
-      if (
-        Math.abs(deltaY) > minSwipeDistance &&
-        swipeVelocity > minSwipeVelocity
-      ) {
-        if (deltaY > 0 && currentSection < sections.length - 1) {
-          scrollToSection(currentSection + 1);
-        } else if (deltaY < 0 && currentSection > 0) {
-          scrollToSection(currentSection - 1);
+      // Check if we're in services section on mobile/tablet
+      const isMobileTablet = window.innerWidth <= 1024;
+      const isServicesSection = currentSection === 2;
+
+      if (isMobileTablet && isServicesSection) {
+        // For services section, only trigger section change if at boundaries
+        const servicesElement = document.querySelector(
+          '[data-section="services"]',
+        ) as HTMLElement;
+        if (servicesElement) {
+          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
+          const isAtTop = scrollTop <= 0;
+          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+
+          if (
+            Math.abs(deltaY) > minSwipeDistance &&
+            swipeVelocity > minSwipeVelocity
+          ) {
+            // Only change sections if at boundaries
+            if (
+              deltaY > 0 &&
+              isAtBottom &&
+              currentSection < sections.length - 1
+            ) {
+              scrollToSection(currentSection + 1);
+            } else if (deltaY < 0 && isAtTop && currentSection > 0) {
+              scrollToSection(currentSection - 1);
+            }
+          }
+        }
+      } else {
+        // Default behavior for other sections
+        if (
+          Math.abs(deltaY) > minSwipeDistance &&
+          swipeVelocity > minSwipeVelocity
+        ) {
+          if (deltaY > 0 && currentSection < sections.length - 1) {
+            scrollToSection(currentSection + 1);
+          } else if (deltaY < 0 && currentSection > 0) {
+            scrollToSection(currentSection - 1);
+          }
         }
       }
 
@@ -740,7 +829,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ��
+                      ����
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -814,7 +903,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
-██║  �����█╗╚███��██�����╝██║  �����█║
+██║  �����█╗╚███��██�����╝██║  �������║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -951,7 +1040,7 @@ export default function Index() {
                 <div className="status-indicators">
                   <span className="status-dot text-red-400">●</span>
                   <span>READY</span>
-                  <span className="status-dot text-amber-400">●</span>
+                  <span className="status-dot text-amber-400">��</span>
                   <span>CONNECTED</span>
                   <span className="status-dot text-green-400 terminal-glow">
                     ●
@@ -3566,7 +3655,7 @@ export default function Index() {
         {/* Services Section */}
         <motion.div
           data-section="services"
-          className={isMobileMenuOpen ? "blur-sm" : ""}
+          className={`${isMobileMenuOpen ? "blur-sm" : ""} lg:overflow-hidden overflow-y-auto lg:h-auto h-screen`}
           style={{
             display: currentSection === 2 ? "block" : "none",
           }}
@@ -6950,102 +7039,147 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
               </div>
             </div>
 
-            {/* Services Grid */}
-            <div className="flex justify-center mt-12 sm:mt-16 lg:mt-20">
-              <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-3 lg:gap-4 xl:gap-5 responsive-grid w-full max-w-4xl">
+            {/* Services Stack */}
+            <div className="flex justify-center mt-6 sm:mt-8 lg:mt-12 px-4">
+              <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8 w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
-                    className="group relative"
-                    initial={{ y: 50, opacity: 0, scale: 0.9 }}
+                    className="group relative h-full"
+                    initial={{ y: 40, opacity: 0, scale: 0.9 }}
                     animate={
                       isVisible
                         ? { y: 0, opacity: 1, scale: 1 }
-                        : { y: 50, opacity: 0, scale: 0.9 }
+                        : { y: 40, opacity: 0, scale: 0.9 }
                     }
-                    transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                    whileHover={{ scale: 1.05, y: -10 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.05 + index * 0.05,
+                      type: "spring",
+                      stiffness: 120,
+                    }}
+                    whileHover={{
+                      scale: 1.01,
+                      y: -3,
+                      transition: { duration: 0.2 },
+                    }}
                   >
-                    {/* Service Card */}
-                    <div
-                      className="relative p-1 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full mobile-lively-card"
-                      style={{
-                        background: "rgba(255, 255, 255, 0.05)",
-                        border: "2px solid rgba(255, 255, 255, 0.1)",
-                        boxShadow: "0 0 40px rgba(73, 146, 255, 0.2)",
-                      }}
-                    >
-                      {/* Animated Background Gradient */}
+                    {/* Main Card Container */}
+                    <div className="relative h-full min-h-[140px] sm:min-h-[150px] lg:min-h-[160px]">
+                      {/* Outer Glow Effect */}
                       <div
-                        className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br ${service.color}`}
+                        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"
+                        style={{
+                          background: `linear-gradient(135deg, ${service.color.replace("from-", "").replace(" to-", ", ").replace("-500", "")})`,
+                          transform: "scale(1.05)",
+                        }}
                       />
 
-                      {/* Scanning line effect */}
-                      <div className="absolute inset-0 overflow-hidden rounded-3xl">
-                        <div className="absolute top-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-                      </div>
-
-                      {/* Service Title - positioned at top of card */}
-                      <div className="relative z-10 mb-1 sm:mb-2 lg:mb-3">
-                        <h3
-                          className={`text-xs sm:text-sm lg:text-base font-bold warm-glow-text text-center ${
-                            theme === "light" ? "text-gray-900" : "text-white"
-                          }`}
-                          style={{
-                            textShadow: "0 0 10px rgba(73, 146, 255, 0.6)",
-                          }}
-                        >
-                          {service.title}
-                        </h3>
-                      </div>
-
-                      {/* Icon - centered */}
-                      <motion.div
-                        className="relative z-10 mb-1 sm:mb-2 lg:mb-3 flex justify-center"
-                        whileHover={{ rotate: 10, scale: 1.2 }}
-                        transition={{ duration: 0.3 }}
+                      {/* Card Body */}
+                      <div
+                        className="relative h-full rounded-3xl overflow-hidden transition-all duration-500 backdrop-blur-xl border border-white/10"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
+                          boxShadow: `
+                            0 25px 50px -12px rgba(0, 0, 0, 0.4),
+                            inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                            0 0 0 1px rgba(255, 255, 255, 0.05)
+                          `,
+                        }}
                       >
-                        <div
-                          className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br mobile-lively-icon ${service.color}`}
-                          style={{
-                            boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
-                          }}
-                        >
-                          <service.icon className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
+                        {/* Background Pattern */}
+                        <div className="absolute inset-0 opacity-[0.02]">
+                          <div
+                            className="absolute inset-0"
+                            style={{
+                              backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                              backgroundSize: "20px 20px",
+                            }}
+                          />
                         </div>
-                      </motion.div>
 
-                      {/* Description Content */}
-                      <div className="relative z-10 text-center">
-                        <p
-                          className={`text-xs leading-relaxed ${
-                            theme === "light"
-                              ? "text-gray-600"
-                              : "text-gray-300"
-                          }`}
-                          style={{
-                            textShadow:
-                              theme === "dark"
-                                ? "0 0 5px rgba(255, 255, 255, 0.1)"
-                                : "none",
-                          }}
-                        >
-                          {service.description}
-                        </p>
-                      </div>
-
-                      {/* Circuit-like decorative elements */}
-                      <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
-                        <div className="absolute top-2 left-2 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
+                        {/* Animated Gradient Overlay */}
                         <div
-                          className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-                          style={{ animationDelay: "0.5s" }}
+                          className={`absolute inset-0 opacity-0 group-hover:opacity-30 transition-all duration-700 bg-gradient-to-br ${service.color}`}
                         />
-                        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
-                      </div>
 
-                      {/* Holographic shimmer effect */}
-                      <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-3xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40 group-hover:opacity-70 transition-all duration-500" />
+                        {/* Dynamic Light Effects */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                          {/* Top Light */}
+                          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                          {/* Side Lights */}
+                          <div className="absolute top-8 left-0 w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
+                          <div className="absolute top-8 right-0 w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
+                        </div>
+
+                        {/* Content Container */}
+                        <div className="relative z-10 h-full flex flex-col p-3 sm:p-3 lg:p-4">
+                          {/* Icon Section */}
+                          <div className="flex justify-center mb-3">
+                            <motion.div
+                              className="relative"
+                              whileHover={{
+                                rotate: [0, -5, 5, 0],
+                                scale: 1.05,
+                              }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              {/* Icon Background */}
+                              <div
+                                className={`w-10 h-10 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.color} shadow-md`}
+                                style={{
+                                  boxShadow: `0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
+                                }}
+                              >
+                                <service.icon className="w-5 h-5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white drop-shadow-md" />
+                              </div>
+
+                              {/* Icon Glow */}
+                              <div
+                                className={`absolute inset-0 rounded-lg bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-40 transition-opacity duration-300 blur-sm -z-10`}
+                              />
+                            </motion.div>
+                          </div>
+
+                          {/* Title */}
+                          <div className="text-center mb-3">
+                            <h3 className="text-base sm:text-base lg:text-base font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
+                              {service.title}
+                            </h3>
+                          </div>
+
+                          {/* Description */}
+                          <div className="flex-1 flex items-center">
+                            <p className="text-gray-300 text-xs sm:text-xs lg:text-sm leading-snug text-center opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+                              {service.description}
+                            </p>
+                          </div>
+
+                          {/* Bottom Accent */}
+                          <div className="mt-3 flex justify-center">
+                            <div
+                              className={`w-10 h-0.5 rounded-full bg-gradient-to-r ${service.color} opacity-60 group-hover:opacity-100 group-hover:w-12 transition-all duration-300`}
+                            />
+                          </div>
+                        </div>
+
+                        {/* Interactive Particles */}
+                        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <div
+                            className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full animate-ping"
+                            style={{ animationDelay: "0s" }}
+                          />
+                          <div
+                            className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-400 rounded-full animate-ping"
+                            style={{ animationDelay: "0.5s" }}
+                          />
+                          <div
+                            className="absolute top-1/2 left-3/4 w-1 h-1 bg-cyan-400 rounded-full animate-ping"
+                            style={{ animationDelay: "1s" }}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -7791,7 +7925,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       whileHover={{ scale: 1.02, y: -3 }}
                     >
                       <div
-                        className="relative p-2 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full mobile-lively-card"
+                        className="relative p-2 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg overflow-hidden transition-all duration-500 h-full mobile-lively-card"
                         style={{
                           background: "rgba(255, 255, 255, 0.05)",
                           border: "2px solid rgba(255, 255, 255, 0.1)",
@@ -8128,7 +8262,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             { type: "email", x: 15, y: 35, icon: "✉���" },
-            { type: "call", x: 75, y: 25, icon: "��" },
+            { type: "call", x: 75, y: 25, icon: "���" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
           ].map((card, i) => (
