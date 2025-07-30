@@ -886,7 +886,7 @@ export default function Index() {
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 █���║  �����█╗���███����██�����╝██║  �����������
-╚�����╝  ╚������ ╚�������══�����╝ ╚═╝  ����═����`}
+╚�����╝  ╚������ ╚�������══�����╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -7405,14 +7405,14 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Breathing Orbs - Desktop Only */}
         {screenSize === "desktop" && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ clipPath: "inset(0)" }}>
             {[...Array(6)].map((_, i) => (
               <div
                 key={`breath-orb-${i}`}
                 className="absolute rounded-full"
                 style={{
-                  left: `${15 + ((i * 80) % 70)}%`,
-                  top: `${20 + ((i * 60) % 60)}%`,
+                  left: `${20 + ((i * 60) % 60)}%`, // Constrained from 15-85% to 20-80%
+                  top: `${25 + ((i * 50) % 50)}%`, // Constrained positioning
                   width: `${20 + (i % 3) * 15}px`,
                   height: `${20 + (i % 3) * 15}px`,
                   background: `radial-gradient(circle, rgba(${73 + i * 10}, ${146 + i * 5}, 255, 0.3) 0%, transparent 70%)`,
@@ -8804,7 +8804,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
             { type: "email", x: 15, y: 35, icon: "✉���" },
-            { type: "call", x: 75, y: 25, icon: "����" },
+            { type: "call", x: 75, y: 25, icon: "���" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
           ].map((card, i) => (
