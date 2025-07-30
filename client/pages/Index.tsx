@@ -7115,7 +7115,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         </div>
 
                         {/* Content Container */}
-                        <div className="relative z-10 h-full flex flex-col p-3 sm:p-3 lg:p-4">
+                        <div className="relative z-10 h-full flex flex-col p-2 sm:p-2.5 lg:p-3">
                           {/* Icon Section */}
                           <div className="flex justify-center mb-3">
                             <motion.div
