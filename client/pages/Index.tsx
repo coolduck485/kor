@@ -1995,7 +1995,10 @@ export default function Index() {
           >
             {/* Close Button */}
             <button
-              onClick={() => setIsHelpModalOpen(false)}
+              onClick={() => {
+                setIsHelpModalOpen(false);
+                setHasInteractedWithHelp(true);
+              }}
               className={`absolute top-4 right-4 p-2 rounded-full transition-colors duration-200 ${
                 theme === "light"
                   ? "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
@@ -5594,7 +5597,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  �����  hoverScale: 1.15
+// Change: hoverScale: 1.05  ������  hoverScale: 1.15
 //
 // ========================================
 
@@ -9184,7 +9187,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Discord",
                             url: "https://discord.com",
-                            icon: "����",
+                            icon: "��",
                             color: "from-indigo-500 to-blue-500",
                           },
                           {
