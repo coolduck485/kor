@@ -811,7 +811,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ����
+                      ������
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -7048,14 +7048,14 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
               {
                 Icon: Globe,
                 color: "from-blue-500 to-cyan-500",
-                x: 85,
+                x: 75, // Reduced from 85 to prevent overflow
                 y: 20,
                 delay: 0,
               },
               {
                 Icon: Smartphone,
                 color: "from-purple-500 to-pink-500",
-                x: 15,
+                x: 20, // Increased from 15 to prevent overflow
                 y: 30,
                 delay: 1,
               },
@@ -7064,28 +7064,28 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     {
                       Icon: Palette,
                       color: "from-green-500 to-emerald-500",
-                      x: 80,
+                      x: 70, // Reduced from 80
                       y: 65,
                       delay: 2,
                     },
                     {
                       Icon: Zap,
                       color: "from-orange-500 to-red-500",
-                      x: 10,
+                      x: 20, // Increased from 10
                       y: 70,
                       delay: 3,
                     },
                     {
                       Icon: Users,
                       color: "from-indigo-500 to-purple-500",
-                      x: 85,
+                      x: 75, // Reduced from 85
                       y: 85,
                       delay: 4,
                     },
                     {
                       Icon: Code,
                       color: "from-teal-500 to-blue-500",
-                      x: 15,
+                      x: 20, // Increased from 15
                       y: 15,
                       delay: 5,
                     },
@@ -7094,7 +7094,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     {
                       Icon: Palette,
                       color: "from-green-500 to-emerald-500",
-                      x: 75,
+                      x: 65, // Reduced from 75
                       y: 75,
                       delay: 2,
                     },
