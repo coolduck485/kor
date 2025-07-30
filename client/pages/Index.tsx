@@ -1932,6 +1932,19 @@ export default function Index() {
           scrollbar-width: none !important;
           -ms-overflow-style: none !important;
         }
+
+        /* Prevent transform animations from causing overflow */
+        [data-section="services"] motion-div,
+        [data-section="services"] [class*="motion"],
+        [data-section="services"] [style*="transform"] {
+          transform-box: fill-box !important;
+          overflow: visible !important;
+        }
+
+        /* Clip all absolute positioned children to prevent overflow */
+        [data-section="services"] > * {
+          clip-path: inset(0) !important;
+        }
       `}</style>
       </div>
     );
