@@ -2459,9 +2459,13 @@ export default function Index() {
             {/* Ripple effect */}
             <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
 
-            {/* Tooltip */}
+            {/* Tooltip - positioned to left on mobile/tablet, above on desktop */}
             {shouldShowTooltip("help-button") && (
-              <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-100 transition-all duration-300 transform translate-y-0 pointer-events-none">
+              <div className={`absolute opacity-100 transition-all duration-300 transform pointer-events-none ${
+                window.innerWidth < 1024
+                  ? "right-full mr-3 top-1/2 -translate-y-1/2"
+                  : "bottom-full mb-3 left-1/2 -translate-x-1/2"
+              }`}>
                 <div
                   className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
                     theme === "light"
@@ -2471,10 +2475,18 @@ export default function Index() {
                 >
                   Click here for help
                   <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
-                      theme === "light"
-                        ? "border-t-white/90"
-                        : "border-t-black/80"
+                    className={`absolute w-0 h-0 border-4 border-transparent ${
+                      window.innerWidth < 1024
+                        ? `left-full top-1/2 -translate-y-1/2 border-l-4 ${
+                            theme === "light"
+                              ? "border-l-white/90"
+                              : "border-l-black/80"
+                          }`
+                        : `top-full left-1/2 -translate-x-1/2 border-t-4 ${
+                            theme === "light"
+                              ? "border-t-white/90"
+                              : "border-t-black/80"
+                          }`
                     }`}
                   />
                 </div>
@@ -2800,7 +2812,7 @@ export default function Index() {
           )}
 
           {/* Custom Mobile/Tablet Effects - Lively and Energetic (Under 992px) */}
-          {isHighPerformance && (
+          {
             <div className="absolute inset-0 pointer-events-none overflow-hidden lg:hidden">
               {/* Animated Gradient Waves - Mobile/Tablet Only */}
               <div className="absolute inset-0">
@@ -3046,7 +3058,7 @@ export default function Index() {
 
               {/* Scanlines removed for mobile/tablet devices */}
             </div>
-          )}
+          }
 
           {/* Pink Theme Exclusive Background Effects */}
           {isPinkActive && isHighPerformance && (
