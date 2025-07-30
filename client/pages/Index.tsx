@@ -1994,9 +1994,12 @@ export default function Index() {
           </button>
         )}
 
-        {/* Navigation Help Text - shows on content sections, desktop only */}
-        {currentSection > 0 && (
-          <div className="mt-6 text-center hidden lg:block">
+      </div>
+
+      {/* Navigation Help Text - separate group, desktop only */}
+      {currentSection > 0 && (
+        <div className="fixed right-2 sm:right-3 lg:right-4 top-1/2 translate-y-12 z-40 hidden lg:block">
+          <div className="text-center">
             <p
               className={`text-xs opacity-60 ${
                 theme === "light" ? "text-gray-500" : "text-white/60"
@@ -2005,8 +2008,8 @@ export default function Index() {
               Use buttons or Ctrl+Arrow keys
             </p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Help Modal */}
       {isHelpModalOpen && (
