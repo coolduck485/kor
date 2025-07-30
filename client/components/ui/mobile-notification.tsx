@@ -192,11 +192,9 @@ const MobileNotificationItem = React.forwardRef<
         },
       }}
       transition={{
-        type: isMobile ? "tween" : "spring",
-        stiffness: isMobile ? undefined : 280,
-        damping: isMobile ? undefined : 25,
-        duration: isMobile ? 0.3 : undefined,
-        ease: isMobile ? "easeOut" : undefined,
+        type: "tween",
+        duration: 0.2,
+        ease: "easeOut",
       }}
       className={cn(
         "relative group notification-item pointer-events-auto",
