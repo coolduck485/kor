@@ -1968,7 +1968,10 @@ export default function Index() {
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            onClick={() => setIsHelpModalOpen(false)}
+            onClick={() => {
+              setIsHelpModalOpen(false);
+              setHasInteractedWithHelp(true);
+            }}
           />
 
           {/* Modal */}
@@ -9181,7 +9184,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Discord",
                             url: "https://discord.com",
-                            icon: "��",
+                            icon: "����",
                             color: "from-indigo-500 to-blue-500",
                           },
                           {
