@@ -1,0 +1,151 @@
+/* Disable all content loading animations for mobile and tablet (except main section with KOR text) */
+
+/* Mobile breakpoint: 640px and smaller */
+@media (max-width: 640px) {
+  /* Remove all framer motion animations for non-main sections */
+  [data-section]:not([data-section="home"]) * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Remove specific animation classes for non-main sections */
+  [data-section]:not([data-section="home"]) .animate-button-float,
+  [data-section]:not([data-section="home"]) .animate-text-glow,
+  [data-section]:not([data-section="home"]) .animate-float,
+  [data-section]:not([data-section="home"]) .animate-gentle-float,
+  [data-section]:not([data-section="home"]) .animate-gentle-bounce,
+  [data-section]:not([data-section="home"]) .animate-sparkle,
+  [data-section]:not([data-section="home"]) .animate-fade-in,
+  [data-section]:not([data-section="home"]) .animate-slide-in,
+  [data-section]:not([data-section="home"]) .animate-slide-up,
+  [data-section]:not([data-section="home"]) .animate-scale-in,
+  [data-section]:not([data-section="home"]) .animate-bounce,
+  [data-section]:not([data-section="home"]) .animate-pulse,
+  [data-section]:not([data-section="home"]) .animate-spin,
+  [data-section]:not([data-section="home"]) .animate-ping,
+  [data-section]:not([data-section="home"]) .animate-wiggle,
+  [data-section]:not([data-section="home"]) .animate-shake,
+  [data-section]:not([data-section="home"]) .animate-pop,
+  [data-section]:not([data-section="home"]) .animate-zoom,
+  [data-section]:not([data-section="home"]) .animate-flip,
+  [data-section]:not([data-section="home"]) .animate-rotate,
+  [data-section]:not([data-section="home"]) .animate-slide-down,
+  [data-section]:not([data-section="home"]) .animate-slide-left,
+  [data-section]:not([data-section="home"]) .animate-slide-right {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Remove transform and transition animations */
+  [data-section]:not([data-section="home"]) * {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Ensure cards and content blocks appear statically */
+  [data-section]:not([data-section="home"]) .card,
+  [data-section]:not([data-section="home"]) .service-card,
+  [data-section]:not([data-section="home"]) .portfolio-card,
+  [data-section]:not([data-section="home"]) .contact-card,
+  [data-section]:not([data-section="home"]) .button,
+  [data-section]:not([data-section="home"]) button,
+  [data-section]:not([data-section="home"]) .text-content,
+  [data-section]:not([data-section="home"]) h1,
+  [data-section]:not([data-section="home"]) h2,
+  [data-section]:not([data-section="home"]) h3,
+  [data-section]:not([data-section="home"]) p,
+  [data-section]:not([data-section="home"]) .grid > *,
+  [data-section]:not([data-section="home"]) .flex > * {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Disable Framer Motion initial states */
+  [data-section]:not([data-section="home"]) [style*="opacity: 0"],
+  [data-section]:not([data-section="home"]) [style*="transform"],
+  [data-section]:not([data-section="home"]) [style*="scale"],
+  [data-section]:not([data-section="home"]) [style*="translateY"],
+  [data-section]:not([data-section="home"]) [style*="translateX"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Tablet breakpoint: 641px to 991px */
+@media (min-width: 641px) and (max-width: 991px) {
+  /* Remove all framer motion animations for non-main sections */
+  [data-section]:not([data-section="home"]) * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Remove specific animation classes for non-main sections */
+  [data-section]:not([data-section="home"]) .animate-button-float,
+  [data-section]:not([data-section="home"]) .animate-text-glow,
+  [data-section]:not([data-section="home"]) .animate-float,
+  [data-section]:not([data-section="home"]) .animate-gentle-float,
+  [data-section]:not([data-section="home"]) .animate-gentle-bounce,
+  [data-section]:not([data-section="home"]) .animate-sparkle,
+  [data-section]:not([data-section="home"]) .animate-fade-in,
+  [data-section]:not([data-section="home"]) .animate-slide-in,
+  [data-section]:not([data-section="home"]) .animate-slide-up,
+  [data-section]:not([data-section="home"]) .animate-scale-in,
+  [data-section]:not([data-section="home"]) .animate-bounce,
+  [data-section]:not([data-section="home"]) .animate-pulse,
+  [data-section]:not([data-section="home"]) .animate-spin,
+  [data-section]:not([data-section="home"]) .animate-ping,
+  [data-section]:not([data-section="home"]) .animate-wiggle,
+  [data-section]:not([data-section="home"]) .animate-shake,
+  [data-section]:not([data-section="home"]) .animate-pop,
+  [data-section]:not([data-section="home"]) .animate-zoom,
+  [data-section]:not([data-section="home"]) .animate-flip,
+  [data-section]:not([data-section="home"]) .animate-rotate,
+  [data-section]:not([data-section="home"]) .animate-slide-down,
+  [data-section]:not([data-section="home"]) .animate-slide-left,
+  [data-section]:not([data-section="home"]) .animate-slide-right {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Remove transform and transition animations */
+  [data-section]:not([data-section="home"]) * {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Ensure cards and content blocks appear statically */
+  [data-section]:not([data-section="home"]) .card,
+  [data-section]:not([data-section="home"]) .service-card,
+  [data-section]:not([data-section="home"]) .portfolio-card,
+  [data-section]:not([data-section="home"]) .contact-card,
+  [data-section]:not([data-section="home"]) .button,
+  [data-section]:not([data-section="home"]) button,
+  [data-section]:not([data-section="home"]) .text-content,
+  [data-section]:not([data-section="home"]) h1,
+  [data-section]:not([data-section="home"]) h2,
+  [data-section]:not([data-section="home"]) h3,
+  [data-section]:not([data-section="home"]) p,
+  [data-section]:not([data-section="home"]) .grid > *,
+  [data-section]:not([data-section="home"]) .flex > * {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Disable Framer Motion initial states */
+  [data-section]:not([data-section="home"]) [style*="opacity: 0"],
+  [data-section]:not([data-section="home"]) [style*="transform"],
+  [data-section]:not([data-section="home"]) [style*="scale"],
+  [data-section]:not([data-section="home"]) [style*="translateY"],
+  [data-section]:not([data-section="home"]) [style*="translateX"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
