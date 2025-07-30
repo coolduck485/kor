@@ -4969,6 +4969,20 @@ export default function Index() {
           animation-play-state: paused !important;
         }
 
+        /* Ensure fixed navigation elements stay truly fixed to viewport */
+        .fixed {
+          position: fixed !important;
+        }
+
+        /* Specific overrides for navigation elements */
+        .help-button,
+        .help-button *,
+        [class*="fixed right-"],
+        [class*="fixed left-"] {
+          position: fixed !important;
+          z-index: 9999 !important;
+        }
+
         .warm-glow-text {
           animation: warm-glow-pulse 4s ease-in-out infinite;
         }
