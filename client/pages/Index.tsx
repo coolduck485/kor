@@ -1700,18 +1700,16 @@ export default function Index() {
         </button>
       </div>
 
-      {/* Mobile Hamburger Menu - Only show in home section */}
-      {currentSection === 0 && (
-        <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
-          <div className="relative pointer-events-auto">
-            <MobileHamburgerMenu
-              isOpen={isMobileMenuOpen}
-              setIsOpen={setIsMobileMenuOpen}
-              theme={theme}
-            />
-          </div>
+      {/* Mobile Hamburger Menu - Always visible */}
+      <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
+        <div className="relative pointer-events-auto">
+          <MobileHamburgerMenu
+            isOpen={isMobileMenuOpen}
+            setIsOpen={setIsMobileMenuOpen}
+            theme={theme}
+          />
         </div>
-      )}
+      </div>
 
 
 
