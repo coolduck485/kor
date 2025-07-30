@@ -1069,7 +1069,7 @@ export default function Index() {
                       className="close-terminal"
                       onClick={() => setShowTerminal(false)}
                     >
-                      ��
+                      ✕
                     </button>
                   </div>
                   <div className="terminal-body">
