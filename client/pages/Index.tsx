@@ -62,12 +62,12 @@ export default function Index() {
   const [dismissedTooltips, setDismissedTooltips] = useState<Set<string>>(
     () => {
       try {
-        const saved = localStorage.getItem('dismissedTooltips');
+        const saved = localStorage.getItem("dismissedTooltips");
         return saved ? new Set(JSON.parse(saved)) : new Set();
       } catch {
         return new Set();
       }
-    }
+    },
   );
 
   // Function to dismiss a tooltip permanently
@@ -76,7 +76,10 @@ export default function Index() {
     newDismissed.add(tooltipId);
     setDismissedTooltips(newDismissed);
     try {
-      localStorage.setItem('dismissedTooltips', JSON.stringify([...newDismissed]));
+      localStorage.setItem(
+        "dismissedTooltips",
+        JSON.stringify([...newDismissed]),
+      );
     } catch {
       // Handle localStorage errors gracefully
     }
@@ -1028,7 +1031,9 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">������◄�����������</span>
+                  <span className="text-green-400 ml-4">
+                    ������◄�����������
+                  </span>
                 </div>
 
                 <div className="loading-indicators">
@@ -1890,10 +1895,10 @@ export default function Index() {
             onClick={() => {
               scrollToSection(currentSection - 1);
               setShowNavigationHints(false);
-              dismissTooltip('nav-up');
+              dismissTooltip("nav-up");
             }}
-            onMouseEnter={() => dismissTooltip('nav-up')}
-            onTouchStart={() => dismissTooltip('nav-up')}
+            onMouseEnter={() => dismissTooltip("nav-up")}
+            onTouchStart={() => dismissTooltip("nav-up")}
             className={`group relative p-2 sm:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
@@ -1916,7 +1921,7 @@ export default function Index() {
             />
 
             {/* Tooltip */}
-            {shouldShowTooltip('nav-up') && (
+            {shouldShowTooltip("nav-up") && (
               <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
                 <div
                   className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
@@ -1945,10 +1950,10 @@ export default function Index() {
             onClick={() => {
               scrollToSection(currentSection + 1);
               setShowNavigationHints(false);
-              dismissTooltip('nav-down');
+              dismissTooltip("nav-down");
             }}
-            onMouseEnter={() => dismissTooltip('nav-down')}
-            onTouchStart={() => dismissTooltip('nav-down')}
+            onMouseEnter={() => dismissTooltip("nav-down")}
+            onTouchStart={() => dismissTooltip("nav-down")}
             className={`group relative p-2 sm:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
@@ -1971,7 +1976,7 @@ export default function Index() {
             />
 
             {/* Tooltip */}
-            {shouldShowTooltip('nav-down') && (
+            {shouldShowTooltip("nav-down") && (
               <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
                 <div
                   className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
@@ -1993,10 +1998,7 @@ export default function Index() {
             )}
           </button>
         )}
-
       </div>
-
-
 
       {/* Help Modal */}
       {isHelpModalOpen && (
@@ -2262,10 +2264,10 @@ export default function Index() {
             onClick={() => {
               setIsHelpModalOpen(true);
               setHasInteractedWithHelp(true);
-              dismissTooltip('help-button');
+              dismissTooltip("help-button");
             }}
-            onMouseEnter={() => dismissTooltip('help-button')}
-            onTouchStart={() => dismissTooltip('help-button')}
+            onMouseEnter={() => dismissTooltip("help-button")}
+            onTouchStart={() => dismissTooltip("help-button")}
             className={`group relative p-2.5 sm:p-3 lg:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
               isPinkActive
                 ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
@@ -2298,7 +2300,7 @@ export default function Index() {
             <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
 
             {/* Tooltip */}
-            {shouldShowTooltip('help-button') && (
+            {shouldShowTooltip("help-button") && (
               <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-100 transition-all duration-300 transform translate-y-0 pointer-events-none">
                 <div
                   className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${

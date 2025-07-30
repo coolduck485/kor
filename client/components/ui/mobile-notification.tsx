@@ -127,7 +127,6 @@ const MobileNotificationItem = React.forwardRef<
   HTMLDivElement,
   MobileNotificationItemProps
 >(({ notification, onClose, isMobile }, ref) => {
-
   const handleClose = () => {
     // Immediate removal on mobile/tablet to avoid glitchy animation
     onClose();
@@ -285,7 +284,6 @@ const MobileNotificationItem = React.forwardRef<
           )}
           whileHover={isMobile ? undefined : { scale: 1.1, rotate: 90 }}
           whileTap={isMobile ? { scale: 0.85 } : { scale: 0.8, rotate: 180 }}
-
           onTouchStart={(e) => e.stopPropagation()}
           onTouchEnd={(e) => e.stopPropagation()}
         >
