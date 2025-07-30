@@ -5515,14 +5515,15 @@ function MobileHamburgerMenu({
       <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            initial={{ opacity: 0, "--backdrop-blur": "0px" }}
+            animate={{ opacity: 1, "--backdrop-blur": "12px" }}
+            exit={{ opacity: 0, "--backdrop-blur": "0px" }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="fixed inset-0 bg-black/30 z-40"
             onClick={() => setIsOpen(false)}
             style={{
-              WebkitBackdropFilter: "blur(12px)",
+              backdropFilter: "blur(var(--backdrop-blur))",
+              WebkitBackdropFilter: "blur(var(--backdrop-blur))",
             }}
           >
             {/* Mobile Menu Content - Synchronized with backdrop */}
