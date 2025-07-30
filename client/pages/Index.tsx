@@ -816,7 +816,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ��
+                      ����
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -890,7 +890,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
-██║  �����█╗╚███��██�����╝██║  ���������║
+██║  �����█╗╚███��██�����╝██║  �������║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -7052,7 +7052,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   >
                     {/* Main Card Container */}
-                    <div className="relative h-full min-h-[160px] sm:min-h-[160px] lg:min-h-[180px]">
+                    <div className="relative h-full min-h-[140px] sm:min-h-[150px] lg:min-h-[160px]">
                       {/* Outer Glow Effect */}
                       <div
                         className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"
