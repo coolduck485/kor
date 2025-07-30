@@ -7312,7 +7312,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative w-full py-2 sm:py-3 lg:py-4 section-container">
+        <div className="relative w-full py-4 sm:py-6 lg:py-8 section-container">
           {/* Text Content */}
           <motion.div
             className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-2"
