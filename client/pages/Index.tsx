@@ -7043,7 +7043,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Floating Service Icons with Orbit Animation - Desktop Only for Performance */}
         {screenSize === "desktop" && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ clipPath: "inset(0)" }}>
             {[
               {
                 Icon: Globe,
