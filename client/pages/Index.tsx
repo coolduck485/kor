@@ -886,7 +886,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ██��███╗
+                  {`██╗  ██╗ ██████╗ ██����██╗
 ██║ ██╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -3551,7 +3551,7 @@ export default function Index() {
 
                 {/* Connecting line to center (desktop only) */}
                 <motion.div
-                  className={`hidden lg:block absolute top-8 left-4 w-32 h-px ${
+                  className={`hidden sm:block absolute top-8 left-4 w-32 h-px ${
                     isPinkActive
                       ? "bg-gradient-to-r from-pink-400/40 to-transparent"
                       : "bg-gradient-to-r from-blue-400/30 to-transparent"
@@ -8170,7 +8170,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-yellow-500 to-orange-500",
               },
               {
-                icon: "⭐",
+                icon: "��",
                 label: "Featured",
                 x: 88,
                 y: 18,
