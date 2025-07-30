@@ -881,7 +881,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███�������������█╗
-██║ █��╔╝�����╔�������������═██╗█�������������══██╗
+██║ █��╔╝�������╔�������������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 █���║  �����█╗���███����██�����╝██║  �����������
@@ -2255,7 +2255,7 @@ export default function Index() {
       {/* Desktop Scroll Progress Indicator */}
       {currentSection > 0 && (
         <div
-          className={`fixed top-0 left-0 w-full h-1 z-50 pointer-events-none transition-opacity duration-300 ${
+          className={`hidden lg:block fixed top-0 left-0 w-full h-1 z-50 pointer-events-none transition-opacity duration-300 ${
             theme === "light" ? "bg-gray-200/50" : "bg-white/10"
           }`}
         >
