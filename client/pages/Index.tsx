@@ -536,34 +536,29 @@ export default function Index() {
       if (deltaY > 10 && deltaY > deltaX * 1.5) {
         isSwiping = true;
 
-        // Check if we're in services section on mobile/tablet
-        const isMobileTablet = window.innerWidth <= 1024;
-        const isServicesSection = currentSection === 2;
-
-        if (isMobileTablet && isServicesSection) {
-          // Allow normal scrolling within services section
-          const servicesElement = document.querySelector(
-            '[data-section="services"]',
-          ) as HTMLElement;
-          if (servicesElement) {
-            const { scrollTop, scrollHeight, clientHeight } = servicesElement;
-            const isAtTop = scrollTop <= 0;
-            const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
-            const scrollDirection = touchStartY - touchY;
-
-            // Only prevent default if at boundaries and trying to scroll beyond
-            if (
-              (scrollDirection > 0 && isAtBottom) ||
-              (scrollDirection < 0 && isAtTop)
-            ) {
-              e.preventDefault();
-            }
-            // Otherwise allow normal scrolling
-            return;
-          }
+        // For home section, prevent default immediately
+        if (currentSection === 0) {
+          e.preventDefault();
+          return;
         }
 
-        e.preventDefault(); // Prevent default scrolling only during vertical swipes for other sections
+        // For all other sections, check scroll boundaries
+        const container = containerRef.current;
+        if (container) {
+          const { scrollTop, scrollHeight, clientHeight } = container;
+          const isAtTop = scrollTop <= 5;
+          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5;
+          const scrollDirection = touchStartY - touchY;
+
+          // Only prevent default if at boundaries and trying to scroll beyond
+          if (
+            (scrollDirection > 0 && isAtBottom) ||
+            (scrollDirection < 0 && isAtTop)
+          ) {
+            e.preventDefault();
+          }
+          // Otherwise allow normal scrolling
+        }
       }
     };
 
