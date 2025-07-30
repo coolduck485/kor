@@ -1994,9 +1994,9 @@ export default function Index() {
           </button>
         )}
 
-        {/* Navigation Help Text - shows on content sections */}
+        {/* Navigation Help Text - shows on content sections, desktop only */}
         {currentSection > 0 && (
-          <div className="mt-6 text-center">
+          <div className="mt-6 text-center hidden lg:block">
             <p
               className={`text-xs opacity-60 ${
                 theme === "light" ? "text-gray-500" : "text-white/60"
