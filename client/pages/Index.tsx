@@ -7315,7 +7315,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="relative w-full py-4 sm:py-6 lg:py-8 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-2"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-16"
             initial={{
               opacity: 0,
               y: 80,
