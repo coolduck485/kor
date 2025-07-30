@@ -2041,7 +2041,9 @@ export default function Index() {
             onClick={() => {
               scrollToSection(currentSection + 1);
               setShowNavigationHints(false);
+              setShowNavigationTooltip(false);
               dismissTooltip("nav-down");
+              dismissTooltip("nav-shared");
             }}
             onMouseEnter={() => {
               setShowNavigationTooltip(false);
