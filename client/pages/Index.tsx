@@ -54,6 +54,7 @@ export default function Index() {
 
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
+
   const sectionsRef = useRef<HTMLDivElement[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -76,6 +77,11 @@ export default function Index() {
     return <>{children}</>;
   };
 
+  // Black transition animation state
+  const [isBlackTransition, setIsBlackTransition] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(true);
+  const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
+
   // Mobile-optimized animation config
   const getMobileAnimationProps = (desktopProps: any) => {
     if (!isMobile) return desktopProps;
@@ -89,11 +95,6 @@ export default function Index() {
       },
     };
   };
-
-  // Black transition animation state
-  const [isBlackTransition, setIsBlackTransition] = useState(false);
-  const [isContentVisible, setIsContentVisible] = useState(true);
-  const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
 
   // Test notification removed
 
@@ -900,11 +901,11 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
+██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
-██╔═��█╗ █��║   ██║██╔══█��������
+██╔����█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �������║
-╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
+╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1050,7 +1051,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">������◄►�����</span>
+                  <span className="text-green-400 ml-4">������◄►������</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -7041,7 +7042,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
             {/* Services Stack */}
             <div className="flex justify-center mt-6 sm:mt-8 lg:mt-12 px-4">
-              <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8 w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-4 sm:gap-6 lg:gap-8 w-full max-w-2xl sm:max-w-3xl lg:max-w-6xl">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
