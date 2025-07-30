@@ -881,12 +881,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝█��╔═══██╗██╔══██╗
+                  {`██╗  ██╗ ██████╗ ��█████╗
+██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══██╗
+██╔═██╗ ██║   ██║���█╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ���═╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1069,7 +1069,7 @@ export default function Index() {
                       className="close-terminal"
                       onClick={() => setShowTerminal(false)}
                     >
-                      ✕
+                      ��
                     </button>
                   </div>
                   <div className="terminal-body">
@@ -8084,7 +8084,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-green-500 to-blue-500",
               },
               {
-                icon: "��",
+                icon: "💎",
                 label: "Premium",
                 x: 85,
                 y: 82,
