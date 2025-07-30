@@ -959,7 +959,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ████████████████████████████████████ 60%
+                      CPU: ██████████████████████████████���█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2880,7 +2880,7 @@ export default function Index() {
                 </div>
 
                 {/* Pulsing Corner Accents - Mobile/Tablet Only */}
-                <div className="absolute top-4 left-4 w-16 h-16 rounded-full opacity-60">
+                <div className="absolute top-4 left-4 w-16 h-16 rounded-full opacity-90">
                   <div
                     className="w-full h-full rounded-full"
                     style={{
@@ -2891,7 +2891,7 @@ export default function Index() {
                     }}
                   />
                 </div>
-                <div className="absolute top-4 right-4 w-12 h-12 rounded-full opacity-50">
+                <div className="absolute top-4 right-4 w-12 h-12 rounded-full opacity-80">
                   <div
                     className="w-full h-full rounded-full"
                     style={{
