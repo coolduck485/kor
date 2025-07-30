@@ -285,16 +285,7 @@ const MobileNotificationItem = React.forwardRef<
           )}
           whileHover={isMobile ? undefined : { scale: 1.1, rotate: 90 }}
           whileTap={isMobile ? { scale: 0.85 } : { scale: 0.8, rotate: 180 }}
-          animate={
-            isClosing
-              ? {
-                  scale: isMobile ? 0.7 : 0.8,
-                  rotate: isMobile ? 180 : 360,
-                  opacity: 0.3,
-                  transition: { duration: isMobile ? 0.2 : 0.3 },
-                }
-              : {}
-          }
+
           onTouchStart={(e) => e.stopPropagation()}
           onTouchEnd={(e) => e.stopPropagation()}
         >
