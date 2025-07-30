@@ -877,8 +877,8 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███������������█╗
-██║ █�����╝��█╔�����������═██╗█�������������══██╗
+                  {`██╗  ██╗ ██████���� ███�������������█╗
+██║ █��╔╝��█╔�����������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
@@ -2234,7 +2234,7 @@ export default function Index() {
       )}
 
       {/* Section Position Indicator - Hidden on mobile, smaller on tablet */}
-      <div className="hidden sm:flex fixed left-3 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 flex-col space-y-1 sm:space-y-1 lg:space-y-2">
+      <div className="hidden lg:flex fixed left-3 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 flex-col space-y-1 sm:space-y-1 lg:space-y-2">
         {sections.map((section, index) => (
           <button
             key={section.id}
