@@ -782,7 +782,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████���� ███������������█╗
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
-█████╔╝ █������   █��║██����███╔���
+█████╔╝ █������   █��║██������███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
@@ -1744,74 +1744,102 @@ export default function Index() {
         WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS
       }}
     >
-      {/* Universal Scroll Navigation */}
-      {currentSection < sections.length - 1 && (
-        <div
-          className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
-        >
-          <div className="flex flex-col items-center space-y-3 animate-button-float">
-            <span
-              className={`font-inter text-sm font-medium animate-text-glow ${
-                theme === "light" ? "text-gray-600" : "text-white/70"
+      {/* Section Navigation Buttons */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-3">
+        {/* Previous Section Button */}
+        {currentSection > 0 && (
+          <button
+            onClick={() => scrollToSection(currentSection - 1)}
+            className={`group relative p-3 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+            }`}
+            style={{
+              background:
+                theme === "light"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+              boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            <ChevronUp
+              className={`w-5 h-5 transition-colors duration-300 ${
+                theme === "light"
+                  ? "text-blue-600 group-hover:text-blue-700"
+                  : "text-white group-hover:text-blue-300"
               }`}
-            >
-              Scroll Down
-            </span>
+            />
 
-            {/* Mouse scroll indicator - now visible on all devices */}
-            <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
+            {/* Tooltip */}
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
               <div
-                className={`w-1 h-3 rounded-full mt-2 animate-float shadow-lg ${
-                  isPinkActive
-                    ? "bg-gradient-to-b from-pink-400 to-pink-200"
-                    : "bg-gradient-to-b from-glow-blue to-white/80"
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
                 }`}
-                style={{
-                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
-                }}
-              />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
+              >
+                Previous Section
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
+                  }`}
+                />
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </button>
+        )}
 
-      {/* Scroll Up Indicator - Last Section */}
-      {currentSection === sections.length - 1 && (
-        <div
-          className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
-        >
-          <div className="flex flex-col items-center space-y-3 animate-button-float">
-            <span
-              className={`font-inter text-sm font-medium animate-text-glow ${
-                theme === "light" ? "text-gray-600" : "text-white/70"
+        {/* Next Section Button */}
+        {currentSection < sections.length - 1 && (
+          <button
+            onClick={() => scrollToSection(currentSection + 1)}
+            className={`group relative p-3 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+            }`}
+            style={{
+              background:
+                theme === "light"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+              boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            <ChevronDown
+              className={`w-5 h-5 transition-colors duration-300 ${
+                theme === "light"
+                  ? "text-blue-600 group-hover:text-blue-700"
+                  : "text-white group-hover:text-blue-300"
               }`}
-            >
-              Scroll Up
-            </span>
+            />
 
-            {/* Mouse scroll indicator - pointing up - now visible on all devices */}
-            <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
+            {/* Tooltip */}
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
               <div
-                className={`w-1 h-3 rounded-full mb-2 animate-float shadow-lg ${
-                  isPinkActive
-                    ? "bg-gradient-to-t from-pink-400 to-pink-200"
-                    : "bg-gradient-to-t from-glow-blue to-white/80"
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
                 }`}
-                style={{
-                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
-                  alignSelf: "flex-end",
-                }}
-              />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-white/10 to-transparent" />
+              >
+                Next Section
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
+                  }`}
+                />
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </button>
+        )}
+      </div>
 
       {/* Desktop Scroll Progress Indicator */}
       {currentSection > 0 && window.innerWidth > 1024 && (
