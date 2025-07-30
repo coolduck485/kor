@@ -886,12 +886,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ██��███╗
+                  {`██╗  ██╗ ██████╗ ██����██╗
 ██║ ██╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-������╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+������╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -959,7 +959,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ████████████████████████████████████ 60%
+                      CPU: ██████████████████████████████���█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1981,7 +1981,7 @@ export default function Index() {
       {/* FIXED NAVIGATION ELEMENTS - OUTSIDE SCROLLING CONTAINER */}
       {/* Section Navigation Buttons */}
       <div
-        className="fixed right-2 sm:right-3 md:right-4 lg:right-4 xl:right-6 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
+        className="fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
         style={{ position: "fixed" }}
         onMouseLeave={() => setShowNavigationTooltip(true)}
       >
@@ -2098,7 +2098,7 @@ export default function Index() {
 
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
       <div
-        className="hidden md:flex fixed left-2 sm:left-3 md:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
+        className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
         style={{ position: "fixed" }}
       >
         {sections.map((section, index) => (
@@ -2129,13 +2129,15 @@ export default function Index() {
 
       {/* Help Button - Available on all sections, above notifications */}
       <div
-        className={`help-button fixed right-3 sm:right-4 md:right-6 lg:right-8 z-[9999] transition-all duration-300 ${
-          isMobileSafari || (isSafari && isMobile) ? "" : "bottom-6 sm:bottom-8"
+        className={`help-button fixed right-12 sm:right-16 md:right-20 lg:right-24 z-[9999] transition-all duration-300 ${
+          isMobileSafari || (isSafari && isMobile)
+            ? ""
+            : "bottom-12 sm:bottom-16 md:bottom-20"
         } ${isMobileMenuOpen ? "blur-sm" : ""}`}
         style={{
           position: "fixed",
           bottom:
-            isMobileSafari || (isSafari && isMobile) ? "120px" : undefined,
+            isMobileSafari || (isSafari && isMobile) ? "160px" : undefined,
         }}
       >
         <button
@@ -2146,7 +2148,7 @@ export default function Index() {
           }}
           onMouseEnter={() => dismissTooltip("help-button")}
           onTouchStart={() => dismissTooltip("help-button")}
-          className={`group relative p-2.5 sm:p-3 md:p-3 lg:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
+          className={`group relative p-4 sm:p-5 md:p-6 lg:p-7 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
             isPinkActive
               ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
               : theme === "light"
@@ -2165,7 +2167,7 @@ export default function Index() {
         >
           {/* Help Icon */}
           <HelpCircle
-            className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 transition-colors duration-300 ${
+            className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 transition-colors duration-300 flex-shrink-0 ${
               isPinkActive
                 ? "text-pink-400 group-hover:text-pink-300"
                 : theme === "light"
@@ -2280,123 +2282,6 @@ export default function Index() {
             </div>
           </div>
         )}
-
-        {/* Section Navigation Buttons */}
-        <div
-          className="fixed right-2 sm:right-3 md:right-4 lg:right-4 xl:right-6 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
-          style={{ position: "fixed" }}
-          onMouseLeave={() => setShowNavigationTooltip(true)}
-        >
-          {/* Shared Navigation Tooltip - Positioned between buttons */}
-          {showNavigationTooltip &&
-            !hasInteractedWithHelp &&
-            (currentSection > 0 || currentSection < sections.length - 1) &&
-            shouldShowTooltip("nav-shared") && (
-              <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
-                <div
-                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                    theme === "light"
-                      ? "border-blue-400/40 bg-white/90 text-gray-800"
-                      : "border-blue-300/30 bg-black/80 text-white"
-                  }`}
-                >
-                  Click to navigate sections or use Ctrl+Arrow keys
-                  <div
-                    className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
-                      theme === "light"
-                        ? "border-l-white/90"
-                        : "border-l-black/80"
-                    }`}
-                  />
-                </div>
-              </div>
-            )}
-          {/* Previous Section Button */}
-          {currentSection > 0 && (
-            <button
-              onClick={() => {
-                scrollToSection(currentSection - 1);
-                setShowNavigationHints(false);
-                setShowNavigationTooltip(false);
-                dismissTooltip("nav-up");
-                dismissTooltip("nav-shared");
-              }}
-              onMouseEnter={() => {
-                setShowNavigationTooltip(false);
-                dismissTooltip("nav-up");
-                dismissTooltip("nav-shared");
-              }}
-              onTouchStart={() => {
-                setShowNavigationTooltip(false);
-                dismissTooltip("nav-up");
-                dismissTooltip("nav-shared");
-              }}
-              className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
-                theme === "light"
-                  ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                  : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
-              }`}
-              style={{
-                background:
-                  theme === "light"
-                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
-              }}
-            >
-              <ChevronUp
-                className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
-                  theme === "light"
-                    ? "text-blue-600 group-hover:text-blue-700"
-                    : "text-white group-hover:text-blue-300"
-                }`}
-              />
-            </button>
-          )}
-
-          {/* Next Section Button */}
-          {currentSection < sections.length - 1 && (
-            <button
-              onClick={() => {
-                scrollToSection(currentSection + 1);
-                setShowNavigationHints(false);
-                setShowNavigationTooltip(false);
-                dismissTooltip("nav-down");
-                dismissTooltip("nav-shared");
-              }}
-              onMouseEnter={() => {
-                setShowNavigationTooltip(false);
-                dismissTooltip("nav-down");
-                dismissTooltip("nav-shared");
-              }}
-              onTouchStart={() => {
-                setShowNavigationTooltip(false);
-                dismissTooltip("nav-down");
-                dismissTooltip("nav-shared");
-              }}
-              className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
-                theme === "light"
-                  ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                  : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
-              }`}
-              style={{
-                background:
-                  theme === "light"
-                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
-              }}
-            >
-              <ChevronDown
-                className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
-                  theme === "light"
-                    ? "text-blue-600 group-hover:text-blue-700"
-                    : "text-white group-hover:text-blue-300"
-                }`}
-              />
-            </button>
-          )}
-        </div>
 
         {/* Help Modal */}
         {isHelpModalOpen && (
@@ -2623,129 +2508,6 @@ export default function Index() {
           </div>
         )}
 
-        {/* Section Position Indicator - Visible on desktop and larger tablets */}
-        <div
-          className="hidden md:flex fixed left-2 sm:left-3 md:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
-          style={{ position: "fixed" }}
-        >
-          {sections.map((section, index) => (
-            <button
-              key={section.id}
-              onClick={() => {
-                scrollToSection(index);
-                setShowNavigationHints(false);
-              }}
-              className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
-                index === currentSection
-                  ? theme === "light"
-                    ? "bg-blue-600 shadow-lg scale-125"
-                    : "bg-blue-400 shadow-lg scale-125"
-                  : theme === "light"
-                    ? "bg-gray-300 hover:bg-gray-400"
-                    : "bg-white/30 hover:bg-white/50"
-              }`}
-              style={{
-                boxShadow:
-                  index === currentSection
-                    ? "0 0 15px rgba(73, 146, 255, 0.5)"
-                    : "none",
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Help Button - Available on all sections, above notifications */}
-        {
-          <div
-            className={`help-button fixed right-3 sm:right-4 md:right-6 lg:right-8 z-[9999] transition-all duration-300 ${
-              isMobileSafari || (isSafari && isMobile)
-                ? ""
-                : "bottom-6 sm:bottom-8"
-            } ${isMobileMenuOpen ? "blur-sm" : ""}`}
-            style={{
-              position: "fixed",
-              bottom:
-                isMobileSafari || (isSafari && isMobile) ? "120px" : undefined,
-            }}
-          >
-            <button
-              onClick={() => {
-                setIsHelpModalOpen(true);
-                setHasInteractedWithHelp(true);
-                dismissTooltip("help-button");
-              }}
-              onMouseEnter={() => dismissTooltip("help-button")}
-              onTouchStart={() => dismissTooltip("help-button")}
-              className={`group relative p-2.5 sm:p-3 md:p-3 lg:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
-                isPinkActive
-                  ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
-                  : theme === "light"
-                    ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                    : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
-              }`}
-              style={{
-                background:
-                  theme === "light"
-                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                boxShadow: isPinkActive
-                  ? "0 0 20px rgba(236, 72, 153, 0.4)"
-                  : "0 0 20px rgba(73, 146, 255, 0.3)",
-              }}
-            >
-              {/* Help Icon */}
-              <HelpCircle
-                className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 transition-colors duration-300 ${
-                  isPinkActive
-                    ? "text-pink-400 group-hover:text-pink-300"
-                    : theme === "light"
-                      ? "text-blue-600 group-hover:text-blue-700"
-                      : "text-white group-hover:text-blue-300"
-                }`}
-              />
-
-              {/* Ripple effect */}
-              <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
-
-              {/* Tooltip - positioned to left on mobile/tablet, above on desktop */}
-              {shouldShowTooltip("help-button") && (
-                <div
-                  className={`absolute opacity-100 transition-all duration-300 transform pointer-events-none ${
-                    window.innerWidth < 1024
-                      ? "right-full mr-3 top-1/2 -translate-y-1/2"
-                      : "bottom-full mb-3 left-1/2 -translate-x-1/2"
-                  }`}
-                >
-                  <div
-                    className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                      theme === "light"
-                        ? "border-blue-400/40 bg-white/90 text-gray-800"
-                        : "border-blue-300/30 bg-black/80 text-white"
-                    }`}
-                  >
-                    Click here for help
-                    <div
-                      className={`absolute w-0 h-0 border-4 border-transparent ${
-                        window.innerWidth < 1024
-                          ? `left-full top-1/2 -translate-y-1/2 border-l-4 ${
-                              theme === "light"
-                                ? "border-l-white/90"
-                                : "border-l-black/80"
-                            }`
-                          : `top-full left-1/2 -translate-x-1/2 border-t-4 ${
-                              theme === "light"
-                                ? "border-t-white/90"
-                                : "border-t-black/80"
-                            }`
-                      }`}
-                    />
-                  </div>
-                </div>
-              )}
-            </button>
-          </div>
-        }
-
         {/* Mobile Hamburger Menu - Only show in home section */}
         {currentSection === 0 && (
           <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
@@ -2876,7 +2638,7 @@ export default function Index() {
             {/* Animated Noise Texture - Now on all devices */}
             {isHighPerformance && (
               <div
-                className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
+                className="absolute inset-0 opacity-10 sm:opacity-8 lg:opacity-5 animate-noise gpu-accelerated"
                 style={{
                   backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
                 }}
@@ -2885,7 +2647,7 @@ export default function Index() {
 
             {/* Enhanced Spectacular Full-Width Wavy Aurora Curtains - Desktop Only (992px+) */}
             {isHighPerformance && (
-              <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 hidden lg:block">
+              <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-70 sm:opacity-60 lg:opacity-60">
                 {/* Primary aurora curtain - Top layer */}
                 <div
                   className="absolute aurora-curtain-1"
@@ -3070,7 +2832,7 @@ export default function Index() {
                   {[...Array(3)].map((_, i) => (
                     <div
                       key={`mobile-wave-${i}`}
-                      className="absolute w-full h-32 opacity-40"
+                      className="absolute w-full h-32 opacity-80"
                       style={{
                         top: `${20 + i * 25}%`,
                         background: `linear-gradient(90deg,
@@ -3114,7 +2876,7 @@ export default function Index() {
                 </div>
 
                 {/* Pulsing Corner Accents - Mobile/Tablet Only */}
-                <div className="absolute top-4 left-4 w-16 h-16 rounded-full opacity-60">
+                <div className="absolute top-4 left-4 w-16 h-16 rounded-full opacity-90">
                   <div
                     className="w-full h-full rounded-full"
                     style={{
@@ -3125,7 +2887,7 @@ export default function Index() {
                     }}
                   />
                 </div>
-                <div className="absolute top-4 right-4 w-12 h-12 rounded-full opacity-50">
+                <div className="absolute top-4 right-4 w-12 h-12 rounded-full opacity-80">
                   <div
                     className="w-full h-full rounded-full"
                     style={{
@@ -3315,7 +3077,7 @@ export default function Index() {
             {isPinkActive && isHighPerformance && (
               <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 {/* Pink Aurora Curtains - Desktop */}
-                <div className="hidden lg:block opacity-70">
+                <div className="opacity-80 sm:opacity-70 lg:opacity-70">
                   {[...Array(4)].map((_, i) => (
                     <div
                       key={`pink-aurora-${i}`}
@@ -3785,7 +3547,7 @@ export default function Index() {
 
                 {/* Connecting line to center (desktop only) */}
                 <motion.div
-                  className={`hidden lg:block absolute top-8 left-4 w-32 h-px ${
+                  className={`hidden sm:block absolute top-8 left-4 w-32 h-px ${
                     isPinkActive
                       ? "bg-gradient-to-r from-pink-400/40 to-transparent"
                       : "bg-gradient-to-r from-blue-400/30 to-transparent"
@@ -6625,7 +6387,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         )}
 
         {/* Interactive Holographic Stats Display */}
-        <div className="absolute top-20 right-10 hidden lg:block pointer-events-none">
+        <div className="absolute top-20 right-4 sm:right-6 lg:right-10 hidden sm:block pointer-events-none">
           <motion.div
             className="relative"
             animate={{
@@ -6681,7 +6443,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Desktop Aurora Curtains */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 hidden lg:block">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-70 sm:opacity-60 lg:opacity-60">
           <div
             className="absolute aurora-curtain-1"
             style={{
@@ -7584,7 +7346,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         )}
 
         {/* Technology Stack Visualization */}
-        <div className="absolute top-10 left-10 hidden lg:block pointer-events-none">
+        <div className="absolute top-10 left-4 sm:left-6 lg:left-10 hidden sm:block pointer-events-none">
           <motion.div
             className="relative"
             animate={{
@@ -8323,7 +8085,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         )}
 
         {/* Code Repository Visualization */}
-        <div className="absolute top-10 right-10 hidden lg:block pointer-events-none">
+        <div className="absolute top-10 right-4 sm:right-6 lg:right-10 hidden sm:block pointer-events-none">
           <motion.div
             className="relative"
             animate={{
@@ -8404,7 +8166,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-yellow-500 to-orange-500",
               },
               {
-                icon: "⭐",
+                icon: "��",
                 label: "Featured",
                 x: 88,
                 y: 18,
@@ -9062,7 +8824,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           {[
             { icon: "✉️", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
-            { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
+            { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             { icon: "📞", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },

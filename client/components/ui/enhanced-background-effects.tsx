@@ -19,7 +19,7 @@ export const EnhancedBackgroundEffects: React.FC<
       />
 
       {/* Desktop Aurora Curtains */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60 hidden lg:block">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-70 sm:opacity-60 lg:opacity-60">
         <div
           className="absolute aurora-curtain-1"
           style={{
