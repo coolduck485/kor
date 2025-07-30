@@ -881,7 +881,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███�������������█╗
-██║ █��╔╝�����╔�������������═██╗█���������������══██╗
+██║ █��╔╝�����╔�������������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  �����������
@@ -953,7 +953,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █�����������█��������█████����██████ 60%
+                      CPU: █�����������█��������█████������██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1968,7 +1968,7 @@ export default function Index() {
             }}
           >
             <ChevronDown
-              className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
                 theme === "light"
                   ? "text-blue-600 group-hover:text-blue-700"
                   : "text-white group-hover:text-blue-300"
