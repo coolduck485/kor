@@ -1897,6 +1897,13 @@ export default function Index() {
         }
 
         /* Specific services section overflow prevention */
+        [data-section="services"] {
+          contain: layout style paint !important;
+          overflow: hidden !important;
+          max-width: 100vw !important;
+          position: relative !important;
+        }
+
         [data-section="services"] * {
           max-width: 100% !important;
           box-sizing: border-box !important;
@@ -1904,6 +1911,26 @@ export default function Index() {
 
         [data-section="services"] .absolute {
           max-width: 100vw !important;
+          contain: layout !important;
+        }
+
+        /* Force containment for all animated elements in services */
+        [data-section="services"] [style*="left"],
+        [data-section="services"] [style*="right"],
+        [data-section="services"] [style*="transform"] {
+          will-change: auto !important;
+          contain: layout style paint !important;
+        }
+
+        /* Prevent scroll-triggered overflow */
+        [data-section="services"]::-webkit-scrollbar {
+          width: 0 !important;
+          display: none !important;
+        }
+
+        [data-section="services"] {
+          scrollbar-width: none !important;
+          -ms-overflow-style: none !important;
         }
       `}</style>
       </div>
