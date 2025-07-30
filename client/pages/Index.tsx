@@ -877,7 +877,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████������ ███������������█╗
+                  {`██╗  ██╗ ██████���� ███������������█╗
 ██║ █��╔╝��█╔�����������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
@@ -2262,24 +2262,26 @@ export default function Index() {
             }}
           >
             {/* Tooltip */}
-            <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 pointer-events-none">
-              <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                  theme === "light"
-                    ? "border-blue-400/40 bg-white/90 text-gray-800"
-                    : "border-blue-300/30 bg-black/80 text-white"
-                }`}
-              >
-                {section.title}
+            {shouldShowTooltip(`section-dot-${index}`) && (
+              <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
                 <div
-                  className={`absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent ${
+                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
                     theme === "light"
-                      ? "border-r-white/90"
-                      : "border-r-black/80"
+                      ? "border-blue-400/40 bg-white/90 text-gray-800"
+                      : "border-blue-300/30 bg-black/80 text-white"
                   }`}
-                />
+                >
+                  {section.title}
+                  <div
+                    className={`absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent ${
+                      theme === "light"
+                        ? "border-r-white/90"
+                        : "border-r-black/80"
+                    }`}
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </button>
         ))}
       </div>
