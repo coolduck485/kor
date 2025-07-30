@@ -843,7 +843,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███������������█╗
-██║ █��╔╝��█╔═�������═██╗█�����������══██╗
+██║ █��╔╝��█╔═�������═██╗█�������������══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
@@ -2183,7 +2183,7 @@ export default function Index() {
       )}
 
       {/* Section Position Indicator */}
-      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2">
+      <div className="fixed left-3 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-1 sm:space-y-1.5 lg:space-y-2">
         {sections.map((section, index) => (
           <button
             key={section.id}
@@ -2191,7 +2191,7 @@ export default function Index() {
               scrollToSection(index);
               setShowNavigationHints(false);
             }}
-            className={`group relative w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`group relative w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
               index === currentSection
                 ? theme === "light"
                   ? "bg-blue-600 shadow-lg scale-125"
@@ -5598,7 +5598,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  �����  hoverScale: 1.15
+// Change: hoverScale: 1.05  ������  hoverScale: 1.15
 //
 // ========================================
 
@@ -9340,7 +9340,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "����",
+                        icon: "�����",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
