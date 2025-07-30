@@ -528,6 +528,27 @@ export default function Index() {
     };
   }, []);
 
+  // Keyboard navigation for sections
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isScrolling || mode === "retro") return;
+
+      // Only trigger on specific key combinations to avoid interfering with normal usage
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === 'ArrowUp' && currentSection > 0) {
+          e.preventDefault();
+          scrollToSection(currentSection - 1);
+        } else if (e.key === 'ArrowDown' && currentSection < sections.length - 1) {
+          e.preventDefault();
+          scrollToSection(currentSection + 1);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentSection, isScrolling, sections.length, mode]);
+
   // Disabled touch scroll section transitions - allow natural scrolling within sections
 
   // Listen for scroll events from buttons
@@ -785,7 +806,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
-╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
+╚���╝  ╚������� ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -8812,7 +8833,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Discord",
                             url: "https://discord.com",
-                            icon: "��",
+                            icon: "���",
                             color: "from-indigo-500 to-blue-500",
                           },
                           {
