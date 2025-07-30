@@ -810,7 +810,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███�����������█╗
+                  {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
@@ -951,7 +951,7 @@ export default function Index() {
                 <div className="status-indicators">
                   <span className="status-dot text-red-400">●</span>
                   <span>READY</span>
-                  <span className="status-dot text-amber-400">●</span>
+                  <span className="status-dot text-amber-400">��</span>
                   <span>CONNECTED</span>
                   <span className="status-dot text-green-400 terminal-glow">
                     ●
@@ -6951,8 +6951,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="flex justify-center mt-6 sm:mt-8 lg:mt-12">
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3 lg:gap-4 responsive-grid w-full max-w-5xl px-3 sm:px-4 lg:px-6">
+            <div className="flex justify-center mt-6 sm:mt-8 lg:mt-12 px-4">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 responsive-grid w-full max-w-[90vw] sm:max-w-4xl lg:max-w-5xl">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
