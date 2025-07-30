@@ -7066,7 +7066,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   >
                     {/* Main Card Container */}
-                    <div className="relative h-full min-h-[140px] sm:min-h-[150px] lg:min-h-[160px]">
+                    <div className="relative h-full min-h-[120px] sm:min-h-[130px] lg:min-h-[140px]">
                       {/* Outer Glow Effect */}
                       <div
                         className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"
@@ -7527,7 +7527,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-green-500 to-blue-500",
               },
               {
-                icon: "��",
+                icon: "💎",
                 label: "Premium",
                 x: 85,
                 y: 82,
