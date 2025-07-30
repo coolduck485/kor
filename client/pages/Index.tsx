@@ -548,9 +548,9 @@ export default function Index() {
         }
 
         // For all other sections, check scroll boundaries
-        const container = containerRef.current;
-        if (container) {
-          const { scrollTop, scrollHeight, clientHeight } = container;
+        const mainContainer = containerRef.current;
+        if (mainContainer) {
+          const { scrollTop, scrollHeight, clientHeight } = mainContainer;
           const isAtTop = scrollTop <= 5;
           const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5;
           const scrollDirection = touchStartY - touchY;
@@ -886,7 +886,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████���� ███������������█╗
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
-█████╔╝ █������   █��║██����███╔���
+█████╔╝ █������   █����║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
