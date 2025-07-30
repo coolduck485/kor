@@ -810,7 +810,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███����������█╗
+                  {`██╗  ██╗ ██████���� ███�����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
@@ -7021,10 +7021,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         </div>
 
                         {/* Content Container */}
-                        <div className="relative z-10 h-full flex flex-col p-2 sm:p-3 lg:p-4">
+                        <div className="relative z-10 h-full flex flex-col p-3 sm:p-3 lg:p-4">
 
                           {/* Icon Section */}
-                          <div className="flex justify-center mb-2">
+                          <div className="flex justify-center mb-3">
                             <motion.div
                               className="relative"
                               whileHover={{
@@ -7035,12 +7035,12 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             >
                               {/* Icon Background */}
                               <div
-                                className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.color} shadow-md`}
+                                className={`w-10 h-10 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.color} shadow-md`}
                                 style={{
                                   boxShadow: `0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`
                                 }}
                               >
-                                <service.icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white drop-shadow-md" />
+                                <service.icon className="w-5 h-5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white drop-shadow-md" />
                               </div>
 
                               {/* Icon Glow */}
@@ -7051,8 +7051,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           </div>
 
                           {/* Title */}
-                          <div className="text-center mb-2">
-                            <h3 className="text-sm sm:text-base lg:text-base font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
+                          <div className="text-center mb-3">
+                            <h3 className="text-base sm:text-base lg:text-base font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
                               {service.title}
                             </h3>
                           </div>
@@ -7065,9 +7065,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           </div>
 
                           {/* Bottom Accent */}
-                          <div className="mt-2 flex justify-center">
+                          <div className="mt-3 flex justify-center">
                             <div
-                              className={`w-8 h-0.5 rounded-full bg-gradient-to-r ${service.color} opacity-60 group-hover:opacity-100 group-hover:w-10 transition-all duration-300`}
+                              className={`w-10 h-0.5 rounded-full bg-gradient-to-r ${service.color} opacity-60 group-hover:opacity-100 group-hover:w-12 transition-all duration-300`}
                             />
                           </div>
                         </div>
