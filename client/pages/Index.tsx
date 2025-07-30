@@ -878,7 +878,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███������������█╗
-██║ █��╔╝��█╔���������═██╗█�������������══██╗
+██║ █��╔╝��█╔�����������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
@@ -2292,7 +2292,10 @@ export default function Index() {
             onClick={() => {
               setIsHelpModalOpen(true);
               setHasInteractedWithHelp(true);
+              dismissTooltip('help-button');
             }}
+            onMouseEnter={() => dismissTooltip('help-button')}
+            onTouchStart={() => dismissTooltip('help-button')}
             className={`group relative p-2.5 sm:p-3 lg:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
               isPinkActive
                 ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
