@@ -532,6 +532,17 @@ export default function Index() {
     };
   }, []);
 
+  // Auto-dismiss navigation hints after 10 seconds
+  useEffect(() => {
+    if (showNavigationHints && currentSection > 0) {
+      const timer = setTimeout(() => {
+        setShowNavigationHints(false);
+      }, 10000); // 10 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [showNavigationHints, currentSection]);
+
   // Keyboard navigation for sections
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -542,9 +553,11 @@ export default function Index() {
         if (e.key === 'ArrowUp' && currentSection > 0) {
           e.preventDefault();
           scrollToSection(currentSection - 1);
+          setShowNavigationHints(false); // Dismiss hints when user uses navigation
         } else if (e.key === 'ArrowDown' && currentSection < sections.length - 1) {
           e.preventDefault();
           scrollToSection(currentSection + 1);
+          setShowNavigationHints(false); // Dismiss hints when user uses navigation
         }
       }
     };
@@ -805,10 +818,10 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███������������█╗
-██║ █��╔╝��█╔═���������██╗█�����������══██╗
+                  {`██╗  ██╗ ██████���� ███������������█��
+██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
-██╔����█╗ █��║   ██║██╔══�����������
+██╔����█╗ █����   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
