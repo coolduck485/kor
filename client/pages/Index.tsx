@@ -8800,15 +8800,18 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 <motion.circle
                   r="4"
                   fill="rgba(63, 186, 255, 0.8)"
-                  initial={{ offsetDistance: "0%" }}
-                  animate={{ offsetDistance: ["0%", "100%"] }}
+                  initial={{ "--offset-distance": "0%" }}
+                  animate={{ "--offset-distance": ["0%", "100%"] }}
                   transition={{
                     duration: 5,
                     delay: line.delay,
                     repeat: Infinity,
                     repeatDelay: 6,
                   }}
-                  style={{ offsetPath: `path('${line.path}')` }}
+                  style={{
+                    offsetPath: `path('${line.path}')`,
+                    offsetDistance: "var(--offset-distance)"
+                  }}
                 />
                 \n{" "}
               </g>
