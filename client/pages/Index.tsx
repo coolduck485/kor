@@ -877,7 +877,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">������◄►�����</span>
+                  <span className="text-green-400 ml-4">������◄►������</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -1605,39 +1605,37 @@ export default function Index() {
         WebkitOverflowScrolling: "touch",
       }}
     >
-      {/* Universal Scroll Navigation */}
-      {currentSection < sections.length - 1 && (
-        <div
-          className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
-        >
-          <div className="flex flex-col items-center space-y-3 animate-button-float">
-            <span
-              className={`font-inter text-sm font-medium animate-text-glow ${
-                theme === "light" ? "text-gray-600" : "text-white/70"
-              }`}
-            >
-              Scroll Down
-            </span>
+      {/* Universal Scroll Navigation - Always visible, indicates more content below */}
+      <div
+        className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+          isMobileMenuOpen ? "blur-sm" : ""
+        }`}
+      >
+        <div className="flex flex-col items-center space-y-3 animate-button-float">
+          <span
+            className={`font-inter text-sm font-medium animate-text-glow ${
+              theme === "light" ? "text-gray-600" : "text-white/70"
+            }`}
+          >
+            Scroll to Explore
+          </span>
 
-            {/* Mouse scroll indicator - now visible on all devices */}
-            <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
-              <div
-                className={`w-1 h-3 rounded-full mt-2 animate-float shadow-lg ${
-                  isPinkActive
-                    ? "bg-gradient-to-b from-pink-400 to-pink-200"
-                    : "bg-gradient-to-b from-glow-blue to-white/80"
-                }`}
-                style={{
-                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
-                }}
-              />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
-            </div>
+          {/* Mouse scroll indicator - visible on all devices */}
+          <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
+            <div
+              className={`w-1 h-3 rounded-full mt-2 animate-float shadow-lg ${
+                isPinkActive
+                  ? "bg-gradient-to-b from-pink-400 to-pink-200"
+                  : "bg-gradient-to-b from-glow-blue to-white/80"
+              }`}
+              style={{
+                boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
+              }}
+            />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
           </div>
         </div>
-      )}
+      </div>
 
       {/* Scroll Up Indicator - Last Section */}
       {currentSection === sections.length - 1 && (
