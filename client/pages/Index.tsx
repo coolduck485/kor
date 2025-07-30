@@ -55,6 +55,7 @@ export default function Index() {
   const [showNavigationHints, setShowNavigationHints] = useState(true);
   const [initialLoadingComplete, setInitialLoadingComplete] = useState(false);
   const [hasInteractedWithHelp, setHasInteractedWithHelp] = useState(false);
+  const [showNavigationTooltip, setShowNavigationTooltip] = useState(true);
   const hasShownWelcomeRef = useRef(false);
   const hasShownMobilePerformanceRef = useRef(false);
 
@@ -810,7 +811,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ����
+                      ••••
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -823,7 +824,7 @@ export default function Index() {
         {!isLoading && (
           <>
             {/* Toggle Buttons Container */}
-            <div className="fixed top-6 right-6 z-[9999] pointer-events-auto">
+            <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[9999] pointer-events-auto">
               <div
                 className="group relative"
                 onMouseEnter={() => setIsTooltipDismissed(true)}
@@ -880,12 +881,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███�������������█╗
-██║ █��╔╝�����╔�������������═██╗█�������������══██╗
-██���██╔╝ █������   █��║██����███╔���
-██╔����█╗ █��║   ██║██╔══�����������
-██║  �����█╗���███����██�����╝██║  �����������
-╚�����╝  ╚������ ╚�������══�����╝ ╚═╝  ����═��`}
+                  {`██╗  ██╗ ██████╗ ██��███╗
+██║ ██╔��██╔═══██╗██╔══██╗
+█████╔╝ ██║   ██║██████╔╝
+██╔═██╗ ██║   ██║██╔══██╗
+██║  ██╗╚██████╔╝██║  ██║
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -953,13 +954,13 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █�����������█��������█████����██████ 60%
+                      CPU: ████████████████████████████████████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█��█████████����███ 50%
+                      RAM: ████████████████████████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1021,7 +1022,7 @@ export default function Index() {
                 <div className="status-indicators">
                   <span className="status-dot text-red-400">●</span>
                   <span>READY</span>
-                  <span className="status-dot text-amber-400">��</span>
+                  <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
                   <span className="status-dot text-green-400 terminal-glow">
                     ●
@@ -1031,15 +1032,13 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">
-                    ������◄�����������
-                  </span>
+                  <span className="text-green-400 ml-4">◆◆◆◆◄◆◆◆◆◆</span>
                 </div>
 
                 <div className="loading-indicators">
-                  <span>█��▒░</span>
+                  <span>█▓▒��</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░���▓█</span>
+                  <span>░▒▓█</span>
                 </div>
               </motion.div>
 
@@ -1817,6 +1816,155 @@ export default function Index() {
             scroll-snap-align: start;
           }
         }
+
+        /* Enhanced responsive fixes for smaller desktop screens */
+        @media (min-width: 768px) and (max-width: 1024px) {
+          /* Ensure navigation elements stay visible and accessible */
+          .fixed {
+            position: fixed !important;
+          }
+
+          /* Prevent content from overlapping navigation */
+          div[data-section]:not([data-section="home"]) {
+            padding-right: 60px;
+            padding-left: 30px;
+            box-sizing: border-box;
+          }
+
+          /* Ensure proper section heights on smaller desktop screens */
+          div[data-section] {
+            min-height: 100vh;
+            max-height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+          }
+        }
+
+        /* Small desktop screen fixes */
+        @media (min-width: 1025px) and (max-width: 1280px) {
+          /* Prevent navigation overlap */
+          div[data-section]:not([data-section="home"]) {
+            padding-right: 80px;
+            padding-left: 40px;
+          }
+        }
+
+        /* Ensure fixed elements stay in viewport on all screen sizes */
+        @media (min-width: 768px) {
+          .fixed[style*="right"] {
+            right: clamp(8px, 2vw, 32px) !important;
+          }
+
+          .fixed[style*="left"] {
+            left: clamp(8px, 2vw, 24px) !important;
+          }
+        }
+
+        /* Comprehensive horizontal scrollbar prevention */
+        * {
+          max-width: 100vw;
+        }
+
+        html, body {
+          overflow-x: hidden !important;
+          max-width: 100vw !important;
+          width: 100vw !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        /* Ensure root container fills full width */
+        #root {
+          width: 100vw !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        /* Prevent any child elements from causing horizontal overflow */
+        div, section, main, article, aside, nav, header, footer {
+          max-width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Enforce full width for section containers */
+        .section-container {
+          width: 100% !important;
+          max-width: 100vw !important;
+          margin: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Hide horizontal scrollbars completely on all elements */
+        ::-webkit-scrollbar:horizontal {
+          display: none !important;
+        }
+
+        /* Firefox horizontal scrollbar hiding */
+        * {
+          scrollbar-width: thin;
+          scrollbar-color: transparent transparent;
+        }
+
+        /* Ensure no element can exceed viewport width */
+        [data-section] {
+          max-width: 100vw !important;
+          width: 100vw !important;
+          overflow-x: hidden !important;
+          box-sizing: border-box !important;
+          margin: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+        }
+
+        /* Specific services section overflow prevention */
+        [data-section="services"] {
+          contain: layout style paint !important;
+          overflow: hidden !important;
+          max-width: 100vw !important;
+          position: relative !important;
+        }
+
+        [data-section="services"] * {
+          max-width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        [data-section="services"] .absolute {
+          max-width: 100vw !important;
+          contain: layout !important;
+        }
+
+        /* Force containment for all animated elements in services */
+        [data-section="services"] [style*="left"],
+        [data-section="services"] [style*="right"],
+        [data-section="services"] [style*="transform"] {
+          will-change: auto !important;
+          contain: layout style paint !important;
+        }
+
+        /* Prevent scroll-triggered overflow */
+        [data-section="services"]::-webkit-scrollbar {
+          width: 0 !important;
+          display: none !important;
+        }
+
+        [data-section="services"] {
+          scrollbar-width: none !important;
+          -ms-overflow-style: none !important;
+        }
+
+        /* Prevent transform animations from causing overflow */
+        [data-section="services"] motion-div,
+        [data-section="services"] [class*="motion"],
+        [data-section="services"] [style*="transform"] {
+          transform-box: fill-box !important;
+          overflow: visible !important;
+        }
+
+        /* Clip all absolute positioned children to prevent overflow */
+        [data-section="services"] > * {
+          clip-path: inset(0) !important;
+        }
       `}</style>
       </div>
     );
@@ -1826,7 +1974,7 @@ export default function Index() {
   return (
     <div
       ref={containerRef}
-      className={`relative transition-all duration-500 gpu-accelerated composite-layer scroll-optimized ${
+      className={`relative transition-all duration-500 gpu-accelerated composite-layer scroll-optimized overflow-x-hidden ${
         isScrollingActive ? "scroll-simplified" : ""
       } ${
         theme === "light"
@@ -1835,14 +1983,17 @@ export default function Index() {
       }`}
       style={{
         height: "100vh",
+        width: "100vw", // Ensure full viewport width
         overflowY: currentSection === 0 ? "hidden" : "auto", // Allow vertical scrolling on content sections
         overflowX: "hidden", // Always disable horizontal scrolling
         maxWidth: "100vw",
+        minHeight: "100vh", // Ensure minimum height
         willChange: isScrollingActive ? "auto" : "transform",
-        contain: "layout style paint",
         scrollBehavior: "smooth", // Native smooth scrolling for content
-        scrollbarGutter: "stable", // Prevent layout shift from scrollbar
         WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS
+        margin: 0,
+        padding: 0,
+        position: "relative",
       }}
     >
       {/* Navigation Hints for New Users */}
@@ -1888,18 +2039,55 @@ export default function Index() {
       )}
 
       {/* Section Navigation Buttons */}
-      <div className="fixed right-2 sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3">
+      <div
+        className="fixed right-2 sm:right-3 md:right-4 lg:right-4 xl:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3"
+        onMouseLeave={() => setShowNavigationTooltip(true)}
+      >
+        {/* Shared Navigation Tooltip - Positioned between buttons */}
+        {showNavigationTooltip &&
+          !hasInteractedWithHelp &&
+          (currentSection > 0 || currentSection < sections.length - 1) &&
+          shouldShowTooltip("nav-shared") && (
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
+              <div
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
+                }`}
+              >
+                Click to navigate sections or use Ctrl+Arrow keys
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
+                  }`}
+                />
+              </div>
+            </div>
+          )}
         {/* Previous Section Button */}
         {currentSection > 0 && (
           <button
             onClick={() => {
               scrollToSection(currentSection - 1);
               setShowNavigationHints(false);
+              setShowNavigationTooltip(false);
               dismissTooltip("nav-up");
+              dismissTooltip("nav-shared");
             }}
-            onMouseEnter={() => dismissTooltip("nav-up")}
-            onTouchStart={() => dismissTooltip("nav-up")}
-            className={`group relative p-2 sm:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+            onMouseEnter={() => {
+              setShowNavigationTooltip(false);
+              dismissTooltip("nav-up");
+              dismissTooltip("nav-shared");
+            }}
+            onTouchStart={() => {
+              setShowNavigationTooltip(false);
+              dismissTooltip("nav-up");
+              dismissTooltip("nav-shared");
+            }}
+            className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
                 : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
@@ -1913,34 +2101,12 @@ export default function Index() {
             }}
           >
             <ChevronUp
-              className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
                 theme === "light"
                   ? "text-blue-600 group-hover:text-blue-700"
                   : "text-white group-hover:text-blue-300"
               }`}
             />
-
-            {/* Tooltip */}
-            {shouldShowTooltip("nav-up") && (
-              <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
-                <div
-                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                    theme === "light"
-                      ? "border-blue-400/40 bg-white/90 text-gray-800"
-                      : "border-blue-300/30 bg-black/80 text-white"
-                  }`}
-                >
-                  Click here to move up/down or use Ctrl+Arrow keys
-                  <div
-                    className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
-                      theme === "light"
-                        ? "border-l-white/90"
-                        : "border-l-black/80"
-                    }`}
-                  />
-                </div>
-              </div>
-            )}
           </button>
         )}
 
@@ -1950,11 +2116,21 @@ export default function Index() {
             onClick={() => {
               scrollToSection(currentSection + 1);
               setShowNavigationHints(false);
+              setShowNavigationTooltip(false);
               dismissTooltip("nav-down");
+              dismissTooltip("nav-shared");
             }}
-            onMouseEnter={() => dismissTooltip("nav-down")}
-            onTouchStart={() => dismissTooltip("nav-down")}
-            className={`group relative p-2 sm:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+            onMouseEnter={() => {
+              setShowNavigationTooltip(false);
+              dismissTooltip("nav-down");
+              dismissTooltip("nav-shared");
+            }}
+            onTouchStart={() => {
+              setShowNavigationTooltip(false);
+              dismissTooltip("nav-down");
+              dismissTooltip("nav-shared");
+            }}
+            className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
                 : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
@@ -1968,34 +2144,12 @@ export default function Index() {
             }}
           >
             <ChevronDown
-              className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
                 theme === "light"
                   ? "text-blue-600 group-hover:text-blue-700"
                   : "text-white group-hover:text-blue-300"
               }`}
             />
-
-            {/* Tooltip */}
-            {shouldShowTooltip("nav-down") && (
-              <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
-                <div
-                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                    theme === "light"
-                      ? "border-blue-400/40 bg-white/90 text-gray-800"
-                      : "border-blue-300/30 bg-black/80 text-white"
-                  }`}
-                >
-                  Click here to move up/down or use Ctrl+Arrow keys
-                  <div
-                    className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
-                      theme === "light"
-                        ? "border-l-white/90"
-                        : "border-l-black/80"
-                    }`}
-                  />
-                </div>
-              </div>
-            )}
           </button>
         )}
       </div>
@@ -2209,9 +2363,9 @@ export default function Index() {
       )}
 
       {/* Desktop Scroll Progress Indicator */}
-      {currentSection > 0 && window.innerWidth > 1024 && (
+      {currentSection > 0 && (
         <div
-          className={`fixed top-0 left-0 w-full h-1 z-50 pointer-events-none transition-opacity duration-300 ${
+          className={`hidden lg:block fixed top-0 left-0 w-full h-1 z-50 pointer-events-none transition-opacity duration-300 ${
             theme === "light" ? "bg-gray-200/50" : "bg-white/10"
           }`}
         >
@@ -2225,8 +2379,8 @@ export default function Index() {
         </div>
       )}
 
-      {/* Section Position Indicator - Hidden on mobile, smaller on tablet */}
-      <div className="hidden lg:flex fixed left-3 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 flex-col space-y-1 sm:space-y-1 lg:space-y-2">
+      {/* Section Position Indicator - Visible on desktop and larger tablets */}
+      <div className="hidden md:flex fixed left-2 sm:left-3 md:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 flex-col space-y-1 md:space-y-1 lg:space-y-2">
         {sections.map((section, index) => (
           <button
             key={section.id}
@@ -2234,7 +2388,7 @@ export default function Index() {
               scrollToSection(index);
               setShowNavigationHints(false);
             }}
-            className={`relative w-1 h-1 sm:w-1 sm:h-1 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
+            className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
               index === currentSection
                 ? theme === "light"
                   ? "bg-blue-600 shadow-lg scale-125"
@@ -2256,9 +2410,15 @@ export default function Index() {
       {/* Help Button - Available on all sections, above notifications */}
       {
         <div
-          className={`help-button fixed bottom-6 right-3 sm:bottom-8 sm:right-4 lg:right-8 z-[150] transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
+          className={`help-button fixed right-3 sm:right-4 md:right-6 lg:right-8 z-[150] transition-all duration-300 ${
+            isMobileSafari || (isSafari && isMobile)
+              ? ""
+              : "bottom-6 sm:bottom-8"
+          } ${isMobileMenuOpen ? "blur-sm" : ""}`}
+          style={{
+            bottom:
+              isMobileSafari || (isSafari && isMobile) ? "120px" : undefined,
+          }}
         >
           <button
             onClick={() => {
@@ -2268,7 +2428,7 @@ export default function Index() {
             }}
             onMouseEnter={() => dismissTooltip("help-button")}
             onTouchStart={() => dismissTooltip("help-button")}
-            className={`group relative p-2.5 sm:p-3 lg:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
+            className={`group relative p-2.5 sm:p-3 md:p-3 lg:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
               isPinkActive
                 ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
                 : theme === "light"
@@ -2287,7 +2447,7 @@ export default function Index() {
           >
             {/* Help Icon */}
             <HelpCircle
-              className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 transition-colors duration-300 ${
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 transition-colors duration-300 ${
                 isPinkActive
                   ? "text-pink-400 group-hover:text-pink-300"
                   : theme === "light"
@@ -5379,14 +5539,15 @@ function MobileHamburgerMenu({
       <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            initial={{ opacity: 0, "--backdrop-blur": "0px" }}
+            animate={{ opacity: 1, "--backdrop-blur": "12px" }}
+            exit={{ opacity: 0, "--backdrop-blur": "0px" }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="fixed inset-0 bg-black/30 z-40"
             onClick={() => setIsOpen(false)}
             style={{
-              WebkitBackdropFilter: "blur(12px)",
+              backdropFilter: "blur(var(--backdrop-blur))",
+              WebkitBackdropFilter: "blur(var(--backdrop-blur))",
             }}
           >
             {/* Mobile Menu Content - Synchronized with backdrop */}
@@ -5627,7 +5788,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ��������  hoverScale: 1.15
+// Change: hoverScale: 1.05  ———————→  hoverScale: 1.15
 //
 // ========================================
 
@@ -6929,7 +7090,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
     return (
       <motion.div
         ref={ref}
-        className={`relative w-full min-h-screen ${
+        className={`relative w-full min-h-screen overflow-hidden ${
           theme === "light"
             ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
             : "bg-black"
@@ -6937,6 +7098,11 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
+        style={{
+          maxWidth: "100vw",
+          overflowX: "hidden",
+          contain: "layout style paint",
+        }}
       >
         {/* SPECTACULAR SERVICES SECTION ENHANCEMENTS */}
 
@@ -6950,19 +7116,22 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Floating Service Icons with Orbit Animation - Desktop Only for Performance */}
         {screenSize === "desktop" && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div
+            className="absolute inset-0 pointer-events-none overflow-hidden"
+            style={{ clipPath: "inset(0)" }}
+          >
             {[
               {
                 Icon: Globe,
                 color: "from-blue-500 to-cyan-500",
-                x: 85,
+                x: 75, // Reduced from 85 to prevent overflow
                 y: 20,
                 delay: 0,
               },
               {
                 Icon: Smartphone,
                 color: "from-purple-500 to-pink-500",
-                x: 15,
+                x: 20, // Increased from 15 to prevent overflow
                 y: 30,
                 delay: 1,
               },
@@ -6971,28 +7140,28 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     {
                       Icon: Palette,
                       color: "from-green-500 to-emerald-500",
-                      x: 80,
+                      x: 70, // Reduced from 80
                       y: 65,
                       delay: 2,
                     },
                     {
                       Icon: Zap,
                       color: "from-orange-500 to-red-500",
-                      x: 10,
+                      x: 20, // Increased from 10
                       y: 70,
                       delay: 3,
                     },
                     {
                       Icon: Users,
                       color: "from-indigo-500 to-purple-500",
-                      x: 85,
+                      x: 75, // Reduced from 85
                       y: 85,
                       delay: 4,
                     },
                     {
                       Icon: Code,
                       color: "from-teal-500 to-blue-500",
-                      x: 15,
+                      x: 20, // Increased from 15
                       y: 15,
                       delay: 5,
                     },
@@ -7001,7 +7170,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     {
                       Icon: Palette,
                       color: "from-green-500 to-emerald-500",
-                      x: 75,
+                      x: 65, // Reduced from 75
                       y: 75,
                       delay: 2,
                     },
@@ -7017,13 +7186,13 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 animate={
                   window.innerWidth < 992
                     ? {
-                        y: [-8, 8, -8],
+                        y: [-6, 6, -6],
                       }
                     : {
-                        y: [-15, 15, -15],
-                        x: [-8, 8, -8],
-                        rotateZ: [-10, 10, -10],
-                        scale: [0.8, 1.2, 0.8],
+                        y: [-12, 12, -12],
+                        x: [-4, 4, -4], // Reduced from [-8, 8, -8] to prevent overflow
+                        rotateZ: [-8, 8, -8], // Reduced rotation
+                        scale: [0.9, 1.1, 0.9], // Reduced scale range
                       }
                 }
                 transition={{
@@ -7174,19 +7343,22 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Floating Digital Elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none overflow-hidden"
+          style={{ clipPath: "inset(0)" }}
+        >
           {[...Array(12)].map((_, i) => (
             <motion.div
               key={`digital-element-${i}`}
               className="absolute opacity-30"
               style={{
-                left: `${5 + ((i * 80) % 90)}%`,
-                top: `${10 + ((i * 35) % 80)}%`,
+                left: `${10 + ((i * 60) % 75)}%`, // Constrained from 5-95% to 10-85%
+                top: `${15 + ((i * 30) % 70)}%`, // Adjusted for better distribution
               }}
               animate={{
-                y: [-20, 20, -20],
-                x: [-10, 10, -10],
-                rotateZ: [-15, 15, -15],
+                y: [-15, 15, -15], // Reduced animation range
+                x: [-5, 5, -5], // Significantly reduced horizontal movement
+                rotateZ: [-12, 12, -12], // Reduced rotation
               }}
               transition={{
                 duration: 5 + (i % 3),
@@ -7280,14 +7452,17 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Breathing Orbs - Desktop Only */}
         {screenSize === "desktop" && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div
+            className="absolute inset-0 pointer-events-none overflow-hidden"
+            style={{ clipPath: "inset(0)" }}
+          >
             {[...Array(6)].map((_, i) => (
               <div
                 key={`breath-orb-${i}`}
                 className="absolute rounded-full"
                 style={{
-                  left: `${15 + ((i * 80) % 70)}%`,
-                  top: `${20 + ((i * 60) % 60)}%`,
+                  left: `${20 + ((i * 60) % 60)}%`, // Constrained from 15-85% to 20-80%
+                  top: `${25 + ((i * 50) % 50)}%`, // Constrained positioning
                   width: `${20 + (i % 3) * 15}px`,
                   height: `${20 + (i % 3) * 15}px`,
                   background: `radial-gradient(circle, rgba(${73 + i * 10}, ${146 + i * 5}, 255, 0.3) 0%, transparent 70%)`,
@@ -7458,7 +7633,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
             {/* Services Stack */}
             <div className="flex justify-center mt-4 sm:mt-6 lg:mt-8 px-4">
-              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-6 w-full max-w-xl sm:max-w-2xl lg:max-w-5xl">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-6 w-full max-w-xl sm:max-w-2xl lg:max-w-4xl xl:max-w-5xl overflow-hidden">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
@@ -7922,7 +8097,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {[
               {
-                icon: "���",
+                icon: "🏆",
                 label: "Award",
                 x: 8,
                 y: 15,
@@ -8585,11 +8760,11 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Communication Icons - Contact specific */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
           {[
-            { icon: "�������", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
-            { icon: "��", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
+            { icon: "✉️", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
+            { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "��", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "📞", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
@@ -8659,15 +8834,18 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 <motion.circle
                   r="4"
                   fill="rgba(63, 186, 255, 0.8)"
-                  initial={{ offsetDistance: "0%" }}
-                  animate={{ offsetDistance: ["0%", "100%"] }}
+                  initial={{ "--offset-distance": "0%" }}
+                  animate={{ "--offset-distance": ["0%", "100%"] }}
                   transition={{
                     duration: 5,
                     delay: line.delay,
                     repeat: Infinity,
                     repeatDelay: 6,
                   }}
-                  style={{ offsetPath: `path('${line.path}')` }}
+                  style={{
+                    offsetPath: `path('${line.path}')`,
+                    offsetDistance: "var(--offset-distance)",
+                  }}
                 />
                 \n{" "}
               </g>
@@ -8678,8 +8856,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "✉���" },
-            { type: "call", x: 75, y: 25, icon: "���" },
+            { type: "email", x: 15, y: 35, icon: "✉️" },
+            { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
           ].map((card, i) => (
@@ -9217,7 +9395,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Discord",
                             url: "https://discord.com",
-                            icon: "��",
+                            icon: "💬",
                             color: "from-indigo-500 to-blue-500",
                           },
                           {
@@ -9353,7 +9531,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Instagram",
                         subtitle: "Follow us for updates",
                         url: "https://instagram.com",
-                        icon: "���",
+                        icon: "📷",
                         color: "from-pink-500 via-purple-500 to-indigo-500",
                         shadowColor: "rgba(236, 72, 153, 0.3)",
                       },
@@ -9361,7 +9539,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Discord",
                         subtitle: "Join our community",
                         url: "https://discord.com",
-                        icon: "����",
+                        icon: "💬",
                         color: "from-indigo-500 via-blue-500 to-purple-500",
                         shadowColor: "rgba(99, 102, 241, 0.3)",
                       },
@@ -9369,7 +9547,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "�����",
+                        icon: "✈️",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
@@ -9377,7 +9555,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Email",
                         subtitle: "contact@kor.dev",
                         url: "mailto:contact@kor.dev",
-                        icon: "✉���",
+                        icon: "✉️",
                         color: "from-emerald-500 via-green-500 to-lime-500",
                         shadowColor: "rgba(16, 185, 129, 0.3)",
                       },
