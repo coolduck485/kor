@@ -878,7 +878,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███������������█╗
-██║ █��╔╝��█╔�����������═██╗█�������������══██╗
+██║ █�����╝��█╔�����������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
@@ -2242,7 +2242,7 @@ export default function Index() {
               scrollToSection(index);
               setShowNavigationHints(false);
             }}
-            className={`relative w-1.5 h-1.5 sm:w-2 sm:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
+            className={`relative w-1 h-1 sm:w-1 sm:h-1 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
               index === currentSection
                 ? theme === "light"
                   ? "bg-blue-600 shadow-lg scale-125"
