@@ -967,8 +967,8 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████���� ███������������█╗
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
-█████╔╝ █������   █��║██����███╔���
-██╔����█╗ █��║   ██║██╔══�������������
+████��╔╝ █������   █��║██����███╔���
+██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
@@ -1116,7 +1116,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">������◄�����������</span>
+                  <span className="text-green-400 ml-4">������◄����������</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -1880,6 +1880,9 @@ export default function Index() {
         maxWidth: "100vw",
         willChange: isScrollingActive ? "auto" : "transform",
         contain: "layout style paint",
+        scrollBehavior: "smooth", // Native smooth scrolling
+        scrollbarGutter: "stable", // Prevent layout shift from scrollbar
+        WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS
       }}
     >
       {/* Universal Scroll Navigation */}
