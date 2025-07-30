@@ -881,7 +881,7 @@ export default function Index() {
 ██║ █��╔╝�����╔�������������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
-██║  �����█╗���███����██�����╝██║  ���������
+██║  �����█╗���███����██�����╝██║  �����������
 ╚���╝  ╚������ ╚�������══�����╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1925,7 +1925,7 @@ export default function Index() {
                       : "border-blue-300/30 bg-black/80 text-white"
                   }`}
                 >
-                  Click here to move up/down
+                  Click here to move up/down or use Ctrl+Arrow keys
                   <div
                     className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                       theme === "light"
