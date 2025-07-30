@@ -1,199 +1,212 @@
-/* Disable all content loading animations for mobile and tablet (except main section with KOR text) */
+/* Disable only content loading animations for mobile and tablet (except main section with KOR text) */
+/* Background animations, button/card styling, and hover effects are preserved */
 
 /* Mobile breakpoint: 640px and smaller */
 @media (max-width: 640px) {
-  /* Target sections by their data attributes and disable animations */
-  [data-section="about"] *,
-  [data-section="services"] *,
-  [data-section="portfolio"] *,
-  [data-section="contact"] * {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
+  /* Only disable content loading animations - NOT background animations or styling */
 
-  /* Disable all CSS animations for non-home sections */
-  [data-section="about"] [class*="animate-"],
-  [data-section="services"] [class*="animate-"],
-  [data-section="portfolio"] [class*="animate-"],
-  [data-section="contact"] [class*="animate-"] {
-    animation: none !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
-  /* Force override any motion components in non-home sections */
-  [data-section="about"] div[style*="opacity"],
-  [data-section="about"] div[style*="transform"],
-  [data-section="services"] div[style*="opacity"],
-  [data-section="services"] div[style*="transform"],
-  [data-section="portfolio"] div[style*="opacity"],
-  [data-section="portfolio"] div[style*="transform"],
-  [data-section="contact"] div[style*="opacity"],
-  [data-section="contact"] div[style*="transform"] {
+  /* Disable Framer Motion content loading animations */
+  [data-section="about"] .motion-div[style*="opacity: 0"],
+  [data-section="about"] .motion-div[style*="translateY"],
+  [data-section="about"] .motion-div[style*="scale(0"],
+  [data-section="services"] .motion-div[style*="opacity: 0"],
+  [data-section="services"] .motion-div[style*="translateY"],
+  [data-section="services"] .motion-div[style*="scale(0"],
+  [data-section="portfolio"] .motion-div[style*="opacity: 0"],
+  [data-section="portfolio"] .motion-div[style*="translateY"],
+  [data-section="portfolio"] .motion-div[style*="scale(0"],
+  [data-section="contact"] .motion-div[style*="opacity: 0"],
+  [data-section="contact"] .motion-div[style*="translateY"],
+  [data-section="contact"] .motion-div[style*="scale(0"] {
     opacity: 1 !important;
     transform: none !important;
   }
 
-  /* Disable specific animation classes */
+  /* Disable specific content loading animation classes only */
   [data-section="about"] .animate-fade-in,
   [data-section="about"] .animate-slide-up,
+  [data-section="about"] .animate-slide-down,
+  [data-section="about"] .animate-slide-left,
+  [data-section="about"] .animate-slide-right,
   [data-section="about"] .animate-scale-in,
+  [data-section="about"] .animate-zoom-in,
+  [data-section="about"] .animate-pop-in,
+  [data-section="about"] .animate-bounce-in,
   [data-section="services"] .animate-fade-in,
   [data-section="services"] .animate-slide-up,
+  [data-section="services"] .animate-slide-down,
+  [data-section="services"] .animate-slide-left,
+  [data-section="services"] .animate-slide-right,
   [data-section="services"] .animate-scale-in,
+  [data-section="services"] .animate-zoom-in,
+  [data-section="services"] .animate-pop-in,
+  [data-section="services"] .animate-bounce-in,
   [data-section="portfolio"] .animate-fade-in,
   [data-section="portfolio"] .animate-slide-up,
+  [data-section="portfolio"] .animate-slide-down,
+  [data-section="portfolio"] .animate-slide-left,
+  [data-section="portfolio"] .animate-slide-right,
   [data-section="portfolio"] .animate-scale-in,
+  [data-section="portfolio"] .animate-zoom-in,
+  [data-section="portfolio"] .animate-pop-in,
+  [data-section="portfolio"] .animate-bounce-in,
   [data-section="contact"] .animate-fade-in,
   [data-section="contact"] .animate-slide-up,
+  [data-section="contact"] .animate-slide-down,
+  [data-section="contact"] .animate-slide-left,
+  [data-section="contact"] .animate-slide-right,
   [data-section="contact"] .animate-scale-in,
-  /* All possible animation classes */
-  [data-section="about"] .animate-button-float,
-  [data-section="about"] .animate-text-glow,
-  [data-section="about"] .animate-float,
-  [data-section="about"] .animate-gentle-float,
-  [data-section="about"] .animate-gentle-bounce,
-  [data-section="about"] .animate-sparkle,
-  [data-section="about"] .animate-bounce,
-  [data-section="about"] .animate-pulse,
-  [data-section="about"] .animate-spin,
-  [data-section="about"] .animate-ping,
-  [data-section="services"] .animate-button-float,
-  [data-section="services"] .animate-text-glow,
-  [data-section="services"] .animate-float,
-  [data-section="services"] .animate-gentle-float,
-  [data-section="services"] .animate-gentle-bounce,
-  [data-section="services"] .animate-sparkle,
-  [data-section="services"] .animate-bounce,
-  [data-section="services"] .animate-pulse,
-  [data-section="services"] .animate-spin,
-  [data-section="services"] .animate-ping,
-  [data-section="portfolio"] .animate-button-float,
-  [data-section="portfolio"] .animate-text-glow,
-  [data-section="portfolio"] .animate-float,
-  [data-section="portfolio"] .animate-gentle-float,
-  [data-section="portfolio"] .animate-gentle-bounce,
-  [data-section="portfolio"] .animate-sparkle,
-  [data-section="portfolio"] .animate-bounce,
-  [data-section="portfolio"] .animate-pulse,
-  [data-section="portfolio"] .animate-spin,
-  [data-section="portfolio"] .animate-ping,
-  [data-section="contact"] .animate-button-float,
-  [data-section="contact"] .animate-text-glow,
-  [data-section="contact"] .animate-float,
-  [data-section="contact"] .animate-gentle-float,
-  [data-section="contact"] .animate-gentle-bounce,
-  [data-section="contact"] .animate-sparkle,
-  [data-section="contact"] .animate-bounce,
-  [data-section="contact"] .animate-pulse,
-  [data-section="contact"] .animate-spin,
-  [data-section="contact"] .animate-ping {
+  [data-section="contact"] .animate-zoom-in,
+  [data-section="contact"] .animate-pop-in,
+  [data-section="contact"] .animate-bounce-in {
     animation: none !important;
     transform: none !important;
-    transition: none !important;
     opacity: 1 !important;
     visibility: visible !important;
   }
+
+  /* Force cards and text content to appear immediately */
+  [data-section="about"] .card,
+  [data-section="about"] .service-card,
+  [data-section="about"] .feature-card,
+  [data-section="about"] .content-card,
+  [data-section="about"] h1,
+  [data-section="about"] h2,
+  [data-section="about"] h3,
+  [data-section="about"] p,
+  [data-section="services"] .card,
+  [data-section="services"] .service-card,
+  [data-section="services"] .feature-card,
+  [data-section="services"] .content-card,
+  [data-section="services"] h1,
+  [data-section="services"] h2,
+  [data-section="services"] h3,
+  [data-section="services"] p,
+  [data-section="portfolio"] .card,
+  [data-section="portfolio"] .portfolio-card,
+  [data-section="portfolio"] .project-card,
+  [data-section="portfolio"] .content-card,
+  [data-section="portfolio"] h1,
+  [data-section="portfolio"] h2,
+  [data-section="portfolio"] h3,
+  [data-section="portfolio"] p,
+  [data-section="contact"] .card,
+  [data-section="contact"] .contact-card,
+  [data-section="contact"] .form-card,
+  [data-section="contact"] .content-card,
+  [data-section="contact"] h1,
+  [data-section="contact"] h2,
+  [data-section="contact"] h3,
+  [data-section="contact"] p {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Preserve all background animations, button hover effects, and styling */
+  /* DO NOT disable: aurora animations, floating particles, hover effects, etc. */
 }
 
 /* Tablet breakpoint: 641px to 991px */
 @media (min-width: 641px) and (max-width: 991px) {
-  /* Target sections by their data attributes and disable animations */
-  [data-section="about"] *,
-  [data-section="services"] *,
-  [data-section="portfolio"] *,
-  [data-section="contact"] * {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
+  /* Only disable content loading animations - NOT background animations or styling */
 
-  /* Disable all CSS animations for non-home sections */
-  [data-section="about"] [class*="animate-"],
-  [data-section="services"] [class*="animate-"],
-  [data-section="portfolio"] [class*="animate-"],
-  [data-section="contact"] [class*="animate-"] {
-    animation: none !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
-  /* Force override any motion components in non-home sections */
-  [data-section="about"] div[style*="opacity"],
-  [data-section="about"] div[style*="transform"],
-  [data-section="services"] div[style*="opacity"],
-  [data-section="services"] div[style*="transform"],
-  [data-section="portfolio"] div[style*="opacity"],
-  [data-section="portfolio"] div[style*="transform"],
-  [data-section="contact"] div[style*="opacity"],
-  [data-section="contact"] div[style*="transform"] {
+  /* Disable Framer Motion content loading animations */
+  [data-section="about"] .motion-div[style*="opacity: 0"],
+  [data-section="about"] .motion-div[style*="translateY"],
+  [data-section="about"] .motion-div[style*="scale(0"],
+  [data-section="services"] .motion-div[style*="opacity: 0"],
+  [data-section="services"] .motion-div[style*="translateY"],
+  [data-section="services"] .motion-div[style*="scale(0"],
+  [data-section="portfolio"] .motion-div[style*="opacity: 0"],
+  [data-section="portfolio"] .motion-div[style*="translateY"],
+  [data-section="portfolio"] .motion-div[style*="scale(0"],
+  [data-section="contact"] .motion-div[style*="opacity: 0"],
+  [data-section="contact"] .motion-div[style*="translateY"],
+  [data-section="contact"] .motion-div[style*="scale(0"] {
     opacity: 1 !important;
     transform: none !important;
   }
 
-  /* Disable specific animation classes */
+  /* Disable specific content loading animation classes only */
   [data-section="about"] .animate-fade-in,
   [data-section="about"] .animate-slide-up,
+  [data-section="about"] .animate-slide-down,
+  [data-section="about"] .animate-slide-left,
+  [data-section="about"] .animate-slide-right,
   [data-section="about"] .animate-scale-in,
+  [data-section="about"] .animate-zoom-in,
+  [data-section="about"] .animate-pop-in,
+  [data-section="about"] .animate-bounce-in,
   [data-section="services"] .animate-fade-in,
   [data-section="services"] .animate-slide-up,
+  [data-section="services"] .animate-slide-down,
+  [data-section="services"] .animate-slide-left,
+  [data-section="services"] .animate-slide-right,
   [data-section="services"] .animate-scale-in,
+  [data-section="services"] .animate-zoom-in,
+  [data-section="services"] .animate-pop-in,
+  [data-section="services"] .animate-bounce-in,
   [data-section="portfolio"] .animate-fade-in,
   [data-section="portfolio"] .animate-slide-up,
+  [data-section="portfolio"] .animate-slide-down,
+  [data-section="portfolio"] .animate-slide-left,
+  [data-section="portfolio"] .animate-slide-right,
   [data-section="portfolio"] .animate-scale-in,
+  [data-section="portfolio"] .animate-zoom-in,
+  [data-section="portfolio"] .animate-pop-in,
+  [data-section="portfolio"] .animate-bounce-in,
   [data-section="contact"] .animate-fade-in,
   [data-section="contact"] .animate-slide-up,
+  [data-section="contact"] .animate-slide-down,
+  [data-section="contact"] .animate-slide-left,
+  [data-section="contact"] .animate-slide-right,
   [data-section="contact"] .animate-scale-in,
-  /* All possible animation classes */
-  [data-section="about"] .animate-button-float,
-  [data-section="about"] .animate-text-glow,
-  [data-section="about"] .animate-float,
-  [data-section="about"] .animate-gentle-float,
-  [data-section="about"] .animate-gentle-bounce,
-  [data-section="about"] .animate-sparkle,
-  [data-section="about"] .animate-bounce,
-  [data-section="about"] .animate-pulse,
-  [data-section="about"] .animate-spin,
-  [data-section="about"] .animate-ping,
-  [data-section="services"] .animate-button-float,
-  [data-section="services"] .animate-text-glow,
-  [data-section="services"] .animate-float,
-  [data-section="services"] .animate-gentle-float,
-  [data-section="services"] .animate-gentle-bounce,
-  [data-section="services"] .animate-sparkle,
-  [data-section="services"] .animate-bounce,
-  [data-section="services"] .animate-pulse,
-  [data-section="services"] .animate-spin,
-  [data-section="services"] .animate-ping,
-  [data-section="portfolio"] .animate-button-float,
-  [data-section="portfolio"] .animate-text-glow,
-  [data-section="portfolio"] .animate-float,
-  [data-section="portfolio"] .animate-gentle-float,
-  [data-section="portfolio"] .animate-gentle-bounce,
-  [data-section="portfolio"] .animate-sparkle,
-  [data-section="portfolio"] .animate-bounce,
-  [data-section="portfolio"] .animate-pulse,
-  [data-section="portfolio"] .animate-spin,
-  [data-section="portfolio"] .animate-ping,
-  [data-section="contact"] .animate-button-float,
-  [data-section="contact"] .animate-text-glow,
-  [data-section="contact"] .animate-float,
-  [data-section="contact"] .animate-gentle-float,
-  [data-section="contact"] .animate-gentle-bounce,
-  [data-section="contact"] .animate-sparkle,
-  [data-section="contact"] .animate-bounce,
-  [data-section="contact"] .animate-pulse,
-  [data-section="contact"] .animate-spin,
-  [data-section="contact"] .animate-ping {
+  [data-section="contact"] .animate-zoom-in,
+  [data-section="contact"] .animate-pop-in,
+  [data-section="contact"] .animate-bounce-in {
     animation: none !important;
     transform: none !important;
-    transition: none !important;
     opacity: 1 !important;
     visibility: visible !important;
   }
+
+  /* Force cards and text content to appear immediately */
+  [data-section="about"] .card,
+  [data-section="about"] .service-card,
+  [data-section="about"] .feature-card,
+  [data-section="about"] .content-card,
+  [data-section="about"] h1,
+  [data-section="about"] h2,
+  [data-section="about"] h3,
+  [data-section="about"] p,
+  [data-section="services"] .card,
+  [data-section="services"] .service-card,
+  [data-section="services"] .feature-card,
+  [data-section="services"] .content-card,
+  [data-section="services"] h1,
+  [data-section="services"] h2,
+  [data-section="services"] h3,
+  [data-section="services"] p,
+  [data-section="portfolio"] .card,
+  [data-section="portfolio"] .portfolio-card,
+  [data-section="portfolio"] .project-card,
+  [data-section="portfolio"] .content-card,
+  [data-section="portfolio"] h1,
+  [data-section="portfolio"] h2,
+  [data-section="portfolio"] h3,
+  [data-section="portfolio"] p,
+  [data-section="contact"] .card,
+  [data-section="contact"] .contact-card,
+  [data-section="contact"] .form-card,
+  [data-section="contact"] .content-card,
+  [data-section="contact"] h1,
+  [data-section="contact"] h2,
+  [data-section="contact"] h3,
+  [data-section="contact"] p {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Preserve all background animations, button hover effects, and styling */
+  /* DO NOT disable: aurora animations, floating particles, hover effects, etc. */
 }
