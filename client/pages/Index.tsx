@@ -422,6 +422,13 @@ export default function Index() {
     setIsScrollingActive(true);
     setTransitioningSectionIndex(index);
 
+    // Enhanced timing for desktop vs mobile
+    const isDesktopTransition = window.innerWidth > 1024;
+    const fadeToBlackTime = isDesktopTransition ? 250 : 350; // Faster on desktop
+    const contentRevealDelay = isDesktopTransition ? 50 : 100; // Faster on desktop
+    const visibilityDelay = isDesktopTransition ? 100 : 150; // Faster on desktop
+    const completionDelay = isDesktopTransition ? 600 : 900; // Faster on desktop
+
     // Start black transition animation
     setIsBlackTransition(true);
     setIsContentVisible(false);
@@ -433,6 +440,15 @@ export default function Index() {
       // Reset scroll position to top for non-home sections IMMEDIATELY
       if (index !== 0 && containerRef.current) {
         containerRef.current.scrollTop = 0;
+        // Enhanced smooth reset for desktop
+        if (isDesktopTransition) {
+          containerRef.current.style.scrollBehavior = 'auto';
+          setTimeout(() => {
+            if (containerRef.current) {
+              containerRef.current.style.scrollBehavior = 'smooth';
+            }
+          }, 50);
+        }
       }
 
       // Update URL based on section
@@ -464,10 +480,10 @@ export default function Index() {
           setTimeout(() => {
             setIsScrolling(false);
             setIsScrollingActive(false);
-          }, 900); // Allow time for content to fully appear
-        }, 150); // Small delay for content to start appearing
-      }, 100); // Short delay to ensure scroll is complete
-    }, 350); // Time for fade to black
+          }, completionDelay); // Responsive timing based on device
+        }, visibilityDelay); // Responsive delay
+      }, contentRevealDelay); // Responsive reveal delay
+    }, fadeToBlackTime); // Responsive fade timing
   };
 
   // Desktop scroll optimization variables
@@ -969,7 +985,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
-██║  �����█╗���███����██�����╝██║  ���������
+██║  �����█╗���███�����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1038,7 +1054,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █����������█������█████����██████ 60%
+                      CPU: █��������█������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
