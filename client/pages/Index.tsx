@@ -882,7 +882,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔═���██╗
+██║ ██╔╝██╔═══██╗██╔���═██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -9518,7 +9518,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Email",
                         subtitle: "contact@kor.dev",
                         url: "mailto:contact@kor.dev",
-                        icon: "✉���",
+                        icon: "✉️",
                         color: "from-emerald-500 via-green-500 to-lime-500",
                         shadowColor: "rgba(16, 185, 129, 0.3)",
                       },
