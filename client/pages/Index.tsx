@@ -544,6 +544,28 @@ export default function Index() {
     }
   }, [showNavigationHints, currentSection]);
 
+  // Track initial loading completion and automatically show help modal
+  useEffect(() => {
+    // Set initial loading as complete after all animations settle
+    const timer = setTimeout(() => {
+      setInitialLoadingComplete(true);
+    }, 3000); // 3 seconds to allow for initial animations
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Automatically show help modal once initial loading is complete
+  useEffect(() => {
+    if (initialLoadingComplete && !isHelpModalOpen) {
+      // Small delay to ensure user sees the page first
+      const timer = setTimeout(() => {
+        setIsHelpModalOpen(true);
+      }, 1000); // 1 second after loading complete
+
+      return () => clearTimeout(timer);
+    }
+  }, [initialLoadingComplete, isHelpModalOpen]);
+
   // Keyboard navigation for sections
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -819,10 +841,10 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███������������█╗
+                  {`██╗  ██╗ ██████���� ███������������█���
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
-██╔����█╗ �����║   ██║██╔══�����������
+██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══�����╝ ╚═╝  ����═��`}
                 </pre>
