@@ -3582,6 +3582,7 @@ export default function Index() {
 
         {/* Portfolio Section */}
         <motion.div
+          data-section="portfolio"
           className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
             display: currentSection === 3 ? "block" : "none",
