@@ -953,7 +953,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █�����������█��������█████����██████ 60%
+                      CPU: █�����������█��������██��██����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2225,8 +2225,8 @@ export default function Index() {
         </div>
       )}
 
-      {/* Section Position Indicator - Hidden on mobile, smaller on tablet */}
-      <div className="hidden lg:flex fixed left-3 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 flex-col space-y-1 sm:space-y-1 lg:space-y-2">
+      {/* Section Position Indicator - Visible on desktop and larger tablets */}
+      <div className="hidden md:flex fixed left-2 sm:left-3 md:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 flex-col space-y-1 md:space-y-1 lg:space-y-2">
         {sections.map((section, index) => (
           <button
             key={section.id}
