@@ -953,7 +953,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █�����������█��������██��██����██████ 60%
+                      CPU: █�����������█��������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2234,7 +2234,7 @@ export default function Index() {
               scrollToSection(index);
               setShowNavigationHints(false);
             }}
-            className={`relative w-1 h-1 sm:w-1 sm:h-1 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
+            className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
               index === currentSection
                 ? theme === "light"
                   ? "bg-blue-600 shadow-lg scale-125"
