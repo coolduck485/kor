@@ -1860,6 +1860,17 @@ export default function Index() {
             </div>
           </button>
         )}
+
+        {/* Navigation Help Text - shows on content sections */}
+        {currentSection > 0 && (
+          <div className="mt-6 text-center">
+            <p className={`text-xs opacity-60 ${
+              theme === "light" ? "text-gray-500" : "text-white/60"
+            }`}>
+              Use buttons or Ctrl+Arrow keys
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Desktop Scroll Progress Indicator */}
