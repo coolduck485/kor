@@ -890,8 +890,8 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
-██║  �����█╗╚███��██�����╝██║  �������║
-╚═╝  ╚������� ╚═����═══╝ ╚═╝  ����═╝`}
+██║  �����█╗╚███��██�����╝██║  ���������║
+╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -7026,9 +7026,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
               </div>
             </div>
 
-            {/* Services Grid */}
+            {/* Services Stack */}
             <div className="flex justify-center mt-6 sm:mt-8 lg:mt-12 px-4">
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 responsive-grid w-full max-w-[90vw] sm:max-w-4xl lg:max-w-5xl">
+              <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8 w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
