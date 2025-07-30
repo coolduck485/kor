@@ -954,7 +954,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ████████████████████████████████████ 60%
+                      CPU: █████████████���██████████████████████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1885,6 +1885,14 @@ export default function Index() {
         /* Prevent any child elements from causing horizontal overflow */
         div, section, main, article, aside, nav, header, footer {
           max-width: 100% !important;
+          box-sizing: border-box !important;
+        }
+
+        /* Enforce full width for section containers */
+        .section-container {
+          width: 100% !important;
+          max-width: 100vw !important;
+          margin: 0 !important;
           box-sizing: border-box !important;
         }
 
