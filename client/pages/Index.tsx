@@ -1032,9 +1032,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">
-                    ◆◆◆◆◄◆◆◆◆◆
-                  </span>
+                  <span className="text-green-400 ml-4">◆◆◆◆◄◆◆◆◆◆</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -2046,26 +2044,29 @@ export default function Index() {
         onMouseLeave={() => setShowNavigationTooltip(true)}
       >
         {/* Shared Navigation Tooltip - Positioned between buttons */}
-        {showNavigationTooltip && !hasInteractedWithHelp && (currentSection > 0 || currentSection < sections.length - 1) && shouldShowTooltip("nav-shared") && (
-          <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
-            <div
-              className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                theme === "light"
-                  ? "border-blue-400/40 bg-white/90 text-gray-800"
-                  : "border-blue-300/30 bg-black/80 text-white"
-              }`}
-            >
-              Click to navigate sections or use Ctrl+Arrow keys
+        {showNavigationTooltip &&
+          !hasInteractedWithHelp &&
+          (currentSection > 0 || currentSection < sections.length - 1) &&
+          shouldShowTooltip("nav-shared") && (
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
               <div
-                className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
                   theme === "light"
-                    ? "border-l-white/90"
-                    : "border-l-black/80"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
                 }`}
-              />
+              >
+                Click to navigate sections or use Ctrl+Arrow keys
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
+                  }`}
+                />
+              </div>
             </div>
-          </div>
-        )}
+          )}
         {/* Previous Section Button */}
         {currentSection > 0 && (
           <button
@@ -2106,8 +2107,6 @@ export default function Index() {
                   : "text-white group-hover:text-blue-300"
               }`}
             />
-
-
           </button>
         )}
 
@@ -2151,8 +2150,6 @@ export default function Index() {
                   : "text-white group-hover:text-blue-300"
               }`}
             />
-
-
           </button>
         )}
       </div>
@@ -2414,10 +2411,13 @@ export default function Index() {
       {
         <div
           className={`help-button fixed right-3 sm:right-4 md:right-6 lg:right-8 z-[150] transition-all duration-300 ${
-            (isMobileSafari || (isSafari && isMobile)) ? "" : "bottom-6 sm:bottom-8"
+            isMobileSafari || (isSafari && isMobile)
+              ? ""
+              : "bottom-6 sm:bottom-8"
           } ${isMobileMenuOpen ? "blur-sm" : ""}`}
           style={{
-            bottom: (isMobileSafari || (isSafari && isMobile)) ? "120px" : undefined,
+            bottom:
+              isMobileSafari || (isSafari && isMobile) ? "120px" : undefined,
           }}
         >
           <button
@@ -7101,7 +7101,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         style={{
           maxWidth: "100vw",
           overflowX: "hidden",
-          contain: "layout style paint"
+          contain: "layout style paint",
         }}
       >
         {/* SPECTACULAR SERVICES SECTION ENHANCEMENTS */}
@@ -7116,7 +7116,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Floating Service Icons with Orbit Animation - Desktop Only for Performance */}
         {screenSize === "desktop" && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ clipPath: "inset(0)" }}>
+          <div
+            className="absolute inset-0 pointer-events-none overflow-hidden"
+            style={{ clipPath: "inset(0)" }}
+          >
             {[
               {
                 Icon: Globe,
@@ -7340,7 +7343,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Floating Digital Elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ clipPath: "inset(0)" }}>
+        <div
+          className="absolute inset-0 pointer-events-none overflow-hidden"
+          style={{ clipPath: "inset(0)" }}
+        >
           {[...Array(12)].map((_, i) => (
             <motion.div
               key={`digital-element-${i}`}
@@ -7446,7 +7452,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Breathing Orbs - Desktop Only */}
         {screenSize === "desktop" && (
-          <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ clipPath: "inset(0)" }}>
+          <div
+            className="absolute inset-0 pointer-events-none overflow-hidden"
+            style={{ clipPath: "inset(0)" }}
+          >
             {[...Array(6)].map((_, i) => (
               <div
                 key={`breath-orb-${i}`}
@@ -8835,7 +8844,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   }}
                   style={{
                     offsetPath: `path('${line.path}')`,
-                    offsetDistance: "var(--offset-distance)"
+                    offsetDistance: "var(--offset-distance)",
                   }}
                 />
                 \n{" "}
