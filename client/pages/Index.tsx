@@ -985,7 +985,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
-██║  �����█╗���███�����██�����╝██║  ���������
+██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -2011,6 +2011,19 @@ export default function Index() {
               <div className="absolute inset-0 rounded-full bg-gradient-to-t from-white/10 to-transparent" />
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Desktop Scroll Progress Indicator */}
+      {currentSection > 0 && window.innerWidth > 1024 && (
+        <div className="fixed top-0 left-0 w-full h-1 bg-black/10 dark:bg-white/10 z-50 pointer-events-none">
+          <div
+            className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 ease-out"
+            style={{
+              width: `${((containerRef.current?.scrollTop || 0) / Math.max((containerRef.current?.scrollHeight || 1) - (containerRef.current?.clientHeight || 0), 1)) * 100}%`,
+              boxShadow: '0 0 10px rgba(73, 146, 255, 0.5)'
+            }}
+          />
         </div>
       )}
 
