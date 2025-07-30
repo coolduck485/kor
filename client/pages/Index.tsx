@@ -881,7 +881,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ██████╗
+                  {`██╗  ██╗ ██████╗ ██��███╗
 ██║ ██╔��██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -954,7 +954,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████���██████████████████████ 60%
+                      CPU: ████████████████████████████████████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1991,10 +1991,11 @@ export default function Index() {
         maxWidth: "100vw",
         minHeight: "100vh", // Ensure minimum height
         willChange: isScrollingActive ? "auto" : "transform",
-        contain: "layout style paint",
         scrollBehavior: "smooth", // Native smooth scrolling for content
-        scrollbarGutter: "stable", // Prevent layout shift from scrollbar
         WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS
+        margin: 0,
+        padding: 0,
+        position: "relative",
       }}
     >
       {/* Navigation Hints for New Users */}
