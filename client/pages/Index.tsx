@@ -577,8 +577,21 @@ export default function Index() {
     const container = containerRef.current;
     if (container) {
       container.addEventListener("wheel", handleWheel, { passive: false });
-      return () => container.removeEventListener("wheel", handleWheel);
+      return () => {
+        container.removeEventListener("wheel", handleWheel);
+        window.removeEventListener('resize', updateIsDesktop);
+        if (scrollTimeout.current) {
+          clearTimeout(scrollTimeout.current);
+        }
+      };
     }
+
+    return () => {
+      window.removeEventListener('resize', updateIsDesktop);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+    };
   }, [currentSection, isScrolling, sections.length, mode]);
 
   // Handle touch scroll for mobile - Enhanced with better swipe detection
@@ -955,7 +968,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████���� ███������������█╗
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
-██╔����█╗ █��║   ██║██╔══�����������
+██╔����█╗ █��║   ██║██╔══�������������
 ██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
@@ -1103,7 +1116,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">������◄����������</span>
+                  <span className="text-green-400 ml-4">������◄�����������</span>
                 </div>
 
                 <div className="loading-indicators">
