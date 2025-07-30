@@ -905,7 +905,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███��██�����╝██║  ���������
-╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
+╚���╝  ╚������ ╚═����═�����╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1276,7 +1276,7 @@ export default function Index() {
           }
 
           .ascii-logo::after {
-            content: "█";
+            content: "���";
             color: #00ff41;
             animation: terminal-cursor 1s infinite;
             margin-left: 8px;
@@ -6925,7 +6925,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative min-h-screen py-2 sm:py-3 lg:py-4 section-container">
+        <div className="relative w-full py-2 sm:py-3 lg:py-4 section-container">
           {/* Text Content */}
           <motion.div
             className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-2"
