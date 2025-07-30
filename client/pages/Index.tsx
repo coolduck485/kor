@@ -811,7 +811,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ������
+                      ����
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -7110,13 +7110,13 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 animate={
                   window.innerWidth < 992
                     ? {
-                        y: [-8, 8, -8],
+                        y: [-6, 6, -6],
                       }
                     : {
-                        y: [-15, 15, -15],
-                        x: [-8, 8, -8],
-                        rotateZ: [-10, 10, -10],
-                        scale: [0.8, 1.2, 0.8],
+                        y: [-12, 12, -12],
+                        x: [-4, 4, -4], // Reduced from [-8, 8, -8] to prevent overflow
+                        rotateZ: [-8, 8, -8], // Reduced rotation
+                        scale: [0.9, 1.1, 0.9], // Reduced scale range
                       }
                 }
                 transition={{
