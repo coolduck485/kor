@@ -882,11 +882,11 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗██╔══██╗
+██║ ██╔��██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═��  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1038,7 +1038,7 @@ export default function Index() {
                 </div>
 
                 <div className="loading-indicators">
-                  <span>█▓▒░</span>
+                  <span>█▓▒��</span>
                   <span className="text-amber-400">PROCESSING...</span>
                   <span>░▒▓█</span>
                 </div>
@@ -8822,7 +8822,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { type: "email", x: 15, y: 35, icon: "✉️" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
-            { type: "meet", x: 80, y: 65, icon: "🤝" },
+            { type: "meet", x: 80, y: 65, icon: "����" },
           ].map((card, i) => (
             <motion.div
               key={`contact-card-${i}`}
