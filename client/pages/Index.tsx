@@ -905,7 +905,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███��██�����╝██║  ���������
-╚���╝  ╚������ ╚═����═�����╝ ╚═╝  ����═��`}
+╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1051,7 +1051,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">������◄��������</span>
+                  <span className="text-green-400 ml-4">������◄����������</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -1276,7 +1276,7 @@ export default function Index() {
           }
 
           .ascii-logo::after {
-            content: "���";
+            content: "█";
             color: #00ff41;
             animation: terminal-cursor 1s infinite;
             margin-left: 8px;
@@ -6513,7 +6513,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
     return (
       <motion.div
         ref={ref}
-        className={`relative min-h-screen flex items-center justify-center ${
+        className={`relative w-full ${
           theme === "light"
             ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
             : "bg-black"
