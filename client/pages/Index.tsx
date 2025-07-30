@@ -2,10 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { RetroToggle } from "@/components/ui/retro-toggle";
-import { PinkThemeToggle } from "@/components/ui/pink-theme-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
-import { usePinkTheme } from "@/hooks/use-pink-theme";
 import { useUnifiedNotifications } from "@/components/ui/unified-notification";
 import { useMobilePerformance } from "@/hooks/use-mobile-performance";
 import { useBrowserDetection } from "@/hooks/use-browser-detection";
@@ -31,7 +29,7 @@ import {
 export default function Index() {
   const { theme, setTheme } = useTheme();
   const { mode, toggleMode } = useRetroMode();
-  const { isPinkActive } = usePinkTheme();
+  const isPinkActive = false; // Temporary fix - pink theme removed
   const { showSuccess, showError, showWarning, showInfo } =
     useUnifiedNotifications();
   const { isMobile, animationConfig, deviceType } = useMobilePerformance();
@@ -813,10 +811,10 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═�����═██╗█����╔����══██╗
-█████╔╝ █������   █��║██����███╔╝
-██╔═��█╗ █��║   ██║██╔══█�������
-██║  ���█╗╚███��██�����╝██║  �����█║
+██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
+█████╔╝ █������   █��║██����███╔���
+██╔═��█╗ █��║   ██║██╔══█��������
+██║  �����█╗╚███��██�����╝██║  �����█║
 ╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1861,6 +1859,7 @@ export default function Index() {
         {/* Home Section */}
         <motion.div
           ref={(el) => (sectionsRef.current[0] = el!)}
+          data-section="home"
           className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
             isMobileMenuOpen ? "blur-sm" : ""
           } ${
@@ -1939,7 +1938,6 @@ export default function Index() {
                 <div className="flex flex-col gap-2 sm:gap-3">
                   <ThemeToggle />
                   <RetroToggle />
-                  <PinkThemeToggle />
                 </div>
               </div>
             </div>
@@ -2161,12 +2159,12 @@ export default function Index() {
                 ))}
               </div>
 
-              {/* Floating Energy Dots - Mobile/Tablet Only */}
+              {/* Enhanced Floating Energy Dots - Mobile/Tablet Only */}
               <div className="absolute inset-0">
-                {[...Array(8)].map((_, i) => (
+                {[...Array(12)].map((_, i) => (
                   <div
                     key={`mobile-dot-${i}`}
-                    className="absolute rounded-full"
+                    className="absolute rounded-full mobile-lively-particle"
                     style={{
                       left: `${10 + ((i * 11) % 80)}%`,
                       top: `${15 + ((i * 13) % 70)}%`,
@@ -3129,26 +3127,18 @@ export default function Index() {
               className="relative z-10 px-4 -mt-16 gpu-accelerated will-change-transform"
               initial={{
                 opacity: 0,
-                y: 80,
-                scale: 0.9,
-                filter: "blur(10px)",
               }}
               animate={
                 animationStep >= 3
                   ? {
                       opacity: 1,
-                      y: 0,
-                      scale: 1,
-                      filter: "blur(0px)",
                     }
                   : {}
               }
               transition={{
-                duration: 0.7,
+                duration: 1.2,
                 ease: "easeOut",
-                type: "spring",
-                stiffness: 140,
-                damping: 18,
+                delay: 0.3,
               }}
             >
               {/* Kor - mobile: 50px left + 30px down + bigger, desktop: moved further to the left */}
@@ -3157,7 +3147,7 @@ export default function Index() {
                 style={{ marginLeft: "-5px" }}
               >
                 <h1
-                  className={`font-poppins text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative ${
+                  className={`font-poppins text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tight relative mobile-lively-text ${
                     isPinkActive
                       ? "text-pink-300 animate-pink-neon-glow"
                       : theme === "light"
@@ -3197,18 +3187,26 @@ export default function Index() {
                 </h1>
               </div>
 
-              {/* Development services - mobile: 10px right + 10px down, desktop: enhanced with dramatic effects */}
-              <div
+              {/* Development services - Fade in second with delay */}
+              <motion.div
                 className="text-center transform translate-x-[10px] translate-y-[10px] sm:translate-x-8 sm:translate-y-0 md:translate-x-12 lg:translate-x-16 mt-2 md:mt-4"
                 style={{ marginLeft: "5px", marginTop: "-5px" }}
+                initial={{ opacity: 0 }}
+                animate={animationStep >= 3 ? { opacity: 1 } : { opacity: 0 }}
+                transition={{
+                  duration: 1.2,
+                  ease: "easeOut",
+                  delay: 1.5,
+                }}
               >
                 <div className="relative">
                   {/* Background glow effect */}
                   <div
                     className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
                     style={{
-                      background:
-                        theme === "light"
+                      background: isPinkActive
+                        ? "radial-gradient(ellipse, rgba(236, 72, 153, 0.4) 0%, rgba(244, 114, 182, 0.3) 50%, transparent 70%)"
+                        : theme === "light"
                           ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
                           : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(34, 211, 238, 0.4) 50%, transparent 70%)",
                       transform: "scale(1.5)",
@@ -3216,47 +3214,46 @@ export default function Index() {
                   />
 
                   {/* Optimized floating energy particles around text */}
-                  {[...Array(8)].map((_, i) => (
-                    <div
-                      key={`energy-${i}`}
-                      className="absolute rounded-full pointer-events-none gpu-accelerated"
-                      style={{
-                        left: `${20 + ((i * 80) % 160)}%`,
-                        top: `${30 + ((i * 50) % 60)}%`,
-                        width: `${4 + (i % 2)}px`,
-                        height: `${4 + (i % 2)}px`,
-                        background:
-                          theme === "light"
-                            ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.7 + (i % 2) * 0.2})`
-                            : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.7 + (i % 2) * 0.2})`,
-                        animation: `energy-float ${4 + (i % 2)}s ease-in-out infinite ${i * 0.5}s`,
-                        willChange: "transform, opacity",
-                        transform: "translateZ(0)",
-                      }}
-                    />
-                  ))}
+                  {!isPinkActive &&
+                    [...Array(8)].map((_, i) => (
+                      <div
+                        key={`energy-${i}`}
+                        className="absolute rounded-full pointer-events-none gpu-accelerated"
+                        style={{
+                          left: `${20 + ((i * 80) % 160)}%`,
+                          top: `${30 + ((i * 50) % 60)}%`,
+                          width: `${4 + (i % 2)}px`,
+                          height: `${4 + (i % 2)}px`,
+                          background:
+                            theme === "light"
+                              ? `rgba(${59 + ((i * 30) % 60)}, ${130 + ((i * 20) % 50)}, 246, ${0.7 + (i % 2) * 0.2})`
+                              : `rgba(${73 + ((i * 20) % 50)}, ${146 + ((i * 10) % 30)}, 255, ${0.7 + (i % 2) * 0.2})`,
+                          animation: `energy-float ${4 + (i % 2)}s ease-in-out infinite ${i * 0.5}s`,
+                          willChange: "transform, opacity",
+                          transform: "translateZ(0)",
+                        }}
+                      />
+                    ))}
 
-                  {/* Pink Theme Floating Hearts and Sparkles */}
+                  {/* Pink Theme Floating Bubbles with Pink Outlines */}
                   {isPinkActive &&
                     [...Array(12)].map((_, i) => (
                       <div
-                        key={`pink-particle-${i}`}
+                        key={`pink-bubble-${i}`}
                         className="absolute rounded-full pointer-events-none"
                         style={{
                           left: `${10 + ((i * 70) % 180)}%`,
                           top: `${20 + ((i * 60) % 80)}%`,
-                          width: `${3 + (i % 3)}px`,
-                          height: `${3 + (i % 3)}px`,
-                          background:
-                            i % 3 === 0
-                              ? "rgba(236, 72, 153, 0.8)"
-                              : i % 3 === 1
-                                ? "rgba(244, 114, 182, 0.7)"
-                                : "rgba(251, 113, 133, 0.6)",
-                          animation: `pink-pulse ${3 + (i % 2)}s ease-in-out infinite ${i * 0.4}s`,
-                          boxShadow: "0 0 8px rgba(236, 72, 153, 0.6)",
+                          width: `${6 + (i % 4) * 2}px`,
+                          height: `${6 + (i % 4) * 2}px`,
+                          background: `radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(236, 72, 153, 0.2) 40%, rgba(236, 72, 153, 0.1))`,
+                          border: "1px solid rgba(236, 72, 153, 0.6)",
+                          animation: `gentle-float ${4 + (i % 3)}s ease-in-out infinite ${i * 0.5}s`,
+                          boxShadow:
+                            "0 0 12px rgba(236, 72, 153, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3)",
                           willChange: "transform, opacity",
                           transform: "translateZ(0)",
+                          backdropFilter: "blur(1px)",
                         }}
                       />
                     ))}
@@ -3292,7 +3289,7 @@ export default function Index() {
 
                   <div className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
                     <span
-                      className={`relative inline-block ${
+                      className={`relative inline-block mobile-lively-glow ${
                         isPinkActive
                           ? "text-pink-200"
                           : theme === "light"
@@ -3426,7 +3423,7 @@ export default function Index() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
@@ -3551,6 +3548,7 @@ export default function Index() {
 
         {/* About Us Section */}
         <motion.div
+          data-section="about"
           className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
             display: currentSection === 1 ? "block" : "none",
@@ -3567,6 +3565,7 @@ export default function Index() {
 
         {/* Services Section */}
         <motion.div
+          data-section="services"
           className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
             display: currentSection === 2 ? "block" : "none",
@@ -3583,6 +3582,7 @@ export default function Index() {
 
         {/* Portfolio Section */}
         <motion.div
+          data-section="portfolio"
           className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
             display: currentSection === 3 ? "block" : "none",
@@ -3599,6 +3599,7 @@ export default function Index() {
 
         {/* Contact Us Section */}
         <motion.div
+          data-section="contact"
           className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
             display: currentSection === 4 ? "block" : "none",
@@ -4706,7 +4707,7 @@ function MobileHamburgerMenu({
   setIsOpen,
   theme,
 }: MobileHamburgerMenuProps) {
-  const { isPinkActive } = usePinkTheme();
+  const isPinkActive = false; // Pink theme removed
   const [menuPosition, setMenuPosition] = useState({ left: 70, top: -80 });
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -6861,7 +6862,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Services Title - matching home style */}
             <div className="text-center mb-3">
               <h1
-                className={`font-poppins text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight relative ${
+                className={`font-poppins text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight relative mobile-lively-text ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
@@ -6967,7 +6968,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   >
                     {/* Service Card */}
                     <div
-                      className="relative p-1 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
+                      className="relative p-1 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full mobile-lively-card"
                       style={{
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "2px solid rgba(255, 255, 255, 0.1)",
@@ -7005,7 +7006,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         transition={{ duration: 0.3 }}
                       >
                         <div
-                          className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br ${service.color}`}
+                          className={`w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-lg sm:rounded-xl lg:rounded-xl flex items-center justify-center bg-gradient-to-br mobile-lively-icon ${service.color}`}
                           style={{
                             boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)",
                           }}
@@ -7596,7 +7597,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Portfolio Title */}
             <div className="text-center mb-4 sm:mb-8">
               <h1
-                className={`font-poppins text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                className={`font-poppins text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative mobile-lively-text ${theme === "light" ? "text-gray-900" : "text-white"}`}
               >
                 {"Portfolio".split("").map((letter, i) => (
                   <span
@@ -7790,7 +7791,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       whileHover={{ scale: 1.02, y: -3 }}
                     >
                       <div
-                        className="relative p-2 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full"
+                        className="relative p-2 sm:p-4 lg:p-6 rounded-lg sm:rounded-xl lg:rounded-2xl backdrop-blur-lg border overflow-hidden transition-all duration-500 h-full mobile-lively-card"
                         style={{
                           background: "rgba(255, 255, 255, 0.05)",
                           border: "2px solid rgba(255, 255, 255, 0.1)",
@@ -8358,7 +8359,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Contact Title */}
             <div className="text-center mb-2 sm:mb-4">
               <h1
-                className={`contact-title font-poppins text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight relative ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                className={`contact-title font-poppins text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight relative mobile-lively-text ${theme === "light" ? "text-gray-900" : "text-white"}`}
               >
                 {"Contact".split("").map((letter, i) => (
                   <span
@@ -8809,7 +8810,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Discord",
                         subtitle: "Join our community",
                         url: "https://discord.com",
-                        icon: "💬",
+                        icon: "����",
                         color: "from-indigo-500 via-blue-500 to-purple-500",
                         shadowColor: "rgba(99, 102, 241, 0.3)",
                       },
@@ -8833,7 +8834,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <motion.button
                         key={contact.name}
                         onClick={() => window.open(contact.url, "_blank")}
-                        className="group relative rounded-2xl backdrop-blur-lg border transition-all duration-300 hover:scale-[1.02] overflow-hidden will-change-transform p-4 sm:p-6"
+                        className="group relative rounded-2xl backdrop-blur-lg border transition-all duration-300 hover:scale-[1.02] overflow-hidden will-change-transform p-4 sm:p-6 mobile-lively-float"
                         style={{
                           background: "rgba(255, 255, 255, 0.08)",
                           border: "2px solid rgba(255, 255, 255, 0.15)",
