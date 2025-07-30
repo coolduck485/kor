@@ -2286,7 +2286,7 @@ export default function Index() {
             <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
 
             {/* Tooltip */}
-            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
+            <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 pointer-events-none">
               <div
                 className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
                   theme === "light"
@@ -2294,12 +2294,12 @@ export default function Index() {
                     : "border-blue-300/30 bg-black/80 text-white"
                 }`}
               >
-                Navigation Help
+                Click here for help
                 <div
-                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                  className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
                     theme === "light"
-                      ? "border-l-white/90"
-                      : "border-l-black/80"
+                      ? "border-t-white/90"
+                      : "border-t-black/80"
                   }`}
                 />
               </div>
