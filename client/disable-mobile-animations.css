@@ -1,212 +1,96 @@
-/* Disable only content loading animations for mobile and tablet (except main section with KOR text) */
-/* Background animations, button/card styling, and hover effects are preserved */
+/* Disable ONLY content loading animations for mobile and tablet */
+/* ALL background animations are preserved (aurora, particles, corners, waves, etc.) */
 
 /* Mobile breakpoint: 640px and smaller */
 @media (max-width: 640px) {
-  /* Only disable content loading animations - NOT background animations or styling */
+  /* Target only Framer Motion components that control content entrance */
+  /* This specifically targets the motion.div components that wrap content blocks */
 
-  /* Disable Framer Motion content loading animations */
-  [data-section="about"] .motion-div[style*="opacity: 0"],
-  [data-section="about"] .motion-div[style*="translateY"],
-  [data-section="about"] .motion-div[style*="scale(0"],
-  [data-section="services"] .motion-div[style*="opacity: 0"],
-  [data-section="services"] .motion-div[style*="translateY"],
-  [data-section="services"] .motion-div[style*="scale(0"],
-  [data-section="portfolio"] .motion-div[style*="opacity: 0"],
-  [data-section="portfolio"] .motion-div[style*="translateY"],
-  [data-section="portfolio"] .motion-div[style*="scale(0"],
-  [data-section="contact"] .motion-div[style*="opacity: 0"],
-  [data-section="contact"] .motion-div[style*="translateY"],
-  [data-section="contact"] .motion-div[style*="scale(0"] {
+  /* Override Framer Motion initial states that hide content */
+  [data-section="about"] > * > [style*="opacity: 0"],
+  [data-section="about"] > * > [style*="translateY"],
+  [data-section="services"] > * > [style*="opacity: 0"],
+  [data-section="services"] > * > [style*="translateY"],
+  [data-section="portfolio"] > * > [style*="opacity: 0"],
+  [data-section="portfolio"] > * > [style*="translateY"],
+  [data-section="contact"] > * > [style*="opacity: 0"],
+  [data-section="contact"] > * > [style*="translateY"] {
     opacity: 1 !important;
-    transform: none !important;
+    transform: translate3d(0, 0, 0) !important;
   }
 
-  /* Disable specific content loading animation classes only */
-  [data-section="about"] .animate-fade-in,
-  [data-section="about"] .animate-slide-up,
-  [data-section="about"] .animate-slide-down,
-  [data-section="about"] .animate-slide-left,
-  [data-section="about"] .animate-slide-right,
-  [data-section="about"] .animate-scale-in,
-  [data-section="about"] .animate-zoom-in,
-  [data-section="about"] .animate-pop-in,
-  [data-section="about"] .animate-bounce-in,
-  [data-section="services"] .animate-fade-in,
-  [data-section="services"] .animate-slide-up,
-  [data-section="services"] .animate-slide-down,
-  [data-section="services"] .animate-slide-left,
-  [data-section="services"] .animate-slide-right,
-  [data-section="services"] .animate-scale-in,
-  [data-section="services"] .animate-zoom-in,
-  [data-section="services"] .animate-pop-in,
-  [data-section="services"] .animate-bounce-in,
-  [data-section="portfolio"] .animate-fade-in,
-  [data-section="portfolio"] .animate-slide-up,
-  [data-section="portfolio"] .animate-slide-down,
-  [data-section="portfolio"] .animate-slide-left,
-  [data-section="portfolio"] .animate-slide-right,
-  [data-section="portfolio"] .animate-scale-in,
-  [data-section="portfolio"] .animate-zoom-in,
-  [data-section="portfolio"] .animate-pop-in,
-  [data-section="portfolio"] .animate-bounce-in,
-  [data-section="contact"] .animate-fade-in,
-  [data-section="contact"] .animate-slide-up,
-  [data-section="contact"] .animate-slide-down,
-  [data-section="contact"] .animate-slide-left,
-  [data-section="contact"] .animate-slide-right,
-  [data-section="contact"] .animate-scale-in,
-  [data-section="contact"] .animate-zoom-in,
-  [data-section="contact"] .animate-pop-in,
-  [data-section="contact"] .animate-bounce-in {
-    animation: none !important;
-    transform: none !important;
+  /* Force content cards and text to be immediately visible */
+  [data-section="about"] .content-wrapper,
+  [data-section="about"] .section-content,
+  [data-section="about"] .card-grid,
+  [data-section="about"] .text-content,
+  [data-section="services"] .content-wrapper,
+  [data-section="services"] .section-content,
+  [data-section="services"] .card-grid,
+  [data-section="services"] .text-content,
+  [data-section="portfolio"] .content-wrapper,
+  [data-section="portfolio"] .section-content,
+  [data-section="portfolio"] .card-grid,
+  [data-section="portfolio"] .text-content,
+  [data-section="contact"] .content-wrapper,
+  [data-section="contact"] .section-content,
+  [data-section="contact"] .card-grid,
+  [data-section="contact"] .text-content {
     opacity: 1 !important;
     visibility: visible !important;
+    transform: none !important;
   }
-
-  /* Force cards and text content to appear immediately */
-  [data-section="about"] .card,
-  [data-section="about"] .service-card,
-  [data-section="about"] .feature-card,
-  [data-section="about"] .content-card,
-  [data-section="about"] h1,
-  [data-section="about"] h2,
-  [data-section="about"] h3,
-  [data-section="about"] p,
-  [data-section="services"] .card,
-  [data-section="services"] .service-card,
-  [data-section="services"] .feature-card,
-  [data-section="services"] .content-card,
-  [data-section="services"] h1,
-  [data-section="services"] h2,
-  [data-section="services"] h3,
-  [data-section="services"] p,
-  [data-section="portfolio"] .card,
-  [data-section="portfolio"] .portfolio-card,
-  [data-section="portfolio"] .project-card,
-  [data-section="portfolio"] .content-card,
-  [data-section="portfolio"] h1,
-  [data-section="portfolio"] h2,
-  [data-section="portfolio"] h3,
-  [data-section="portfolio"] p,
-  [data-section="contact"] .card,
-  [data-section="contact"] .contact-card,
-  [data-section="contact"] .form-card,
-  [data-section="contact"] .content-card,
-  [data-section="contact"] h1,
-  [data-section="contact"] h2,
-  [data-section="contact"] h3,
-  [data-section="contact"] p {
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-
-  /* Preserve all background animations, button hover effects, and styling */
-  /* DO NOT disable: aurora animations, floating particles, hover effects, etc. */
 }
 
 /* Tablet breakpoint: 641px to 991px */
 @media (min-width: 641px) and (max-width: 991px) {
-  /* Only disable content loading animations - NOT background animations or styling */
+  /* Target only Framer Motion components that control content entrance */
+  /* This specifically targets the motion.div components that wrap content blocks */
 
-  /* Disable Framer Motion content loading animations */
-  [data-section="about"] .motion-div[style*="opacity: 0"],
-  [data-section="about"] .motion-div[style*="translateY"],
-  [data-section="about"] .motion-div[style*="scale(0"],
-  [data-section="services"] .motion-div[style*="opacity: 0"],
-  [data-section="services"] .motion-div[style*="translateY"],
-  [data-section="services"] .motion-div[style*="scale(0"],
-  [data-section="portfolio"] .motion-div[style*="opacity: 0"],
-  [data-section="portfolio"] .motion-div[style*="translateY"],
-  [data-section="portfolio"] .motion-div[style*="scale(0"],
-  [data-section="contact"] .motion-div[style*="opacity: 0"],
-  [data-section="contact"] .motion-div[style*="translateY"],
-  [data-section="contact"] .motion-div[style*="scale(0"] {
+  /* Override Framer Motion initial states that hide content */
+  [data-section="about"] > * > [style*="opacity: 0"],
+  [data-section="about"] > * > [style*="translateY"],
+  [data-section="services"] > * > [style*="opacity: 0"],
+  [data-section="services"] > * > [style*="translateY"],
+  [data-section="portfolio"] > * > [style*="opacity: 0"],
+  [data-section="portfolio"] > * > [style*="translateY"],
+  [data-section="contact"] > * > [style*="opacity: 0"],
+  [data-section="contact"] > * > [style*="translateY"] {
     opacity: 1 !important;
-    transform: none !important;
+    transform: translate3d(0, 0, 0) !important;
   }
 
-  /* Disable specific content loading animation classes only */
-  [data-section="about"] .animate-fade-in,
-  [data-section="about"] .animate-slide-up,
-  [data-section="about"] .animate-slide-down,
-  [data-section="about"] .animate-slide-left,
-  [data-section="about"] .animate-slide-right,
-  [data-section="about"] .animate-scale-in,
-  [data-section="about"] .animate-zoom-in,
-  [data-section="about"] .animate-pop-in,
-  [data-section="about"] .animate-bounce-in,
-  [data-section="services"] .animate-fade-in,
-  [data-section="services"] .animate-slide-up,
-  [data-section="services"] .animate-slide-down,
-  [data-section="services"] .animate-slide-left,
-  [data-section="services"] .animate-slide-right,
-  [data-section="services"] .animate-scale-in,
-  [data-section="services"] .animate-zoom-in,
-  [data-section="services"] .animate-pop-in,
-  [data-section="services"] .animate-bounce-in,
-  [data-section="portfolio"] .animate-fade-in,
-  [data-section="portfolio"] .animate-slide-up,
-  [data-section="portfolio"] .animate-slide-down,
-  [data-section="portfolio"] .animate-slide-left,
-  [data-section="portfolio"] .animate-slide-right,
-  [data-section="portfolio"] .animate-scale-in,
-  [data-section="portfolio"] .animate-zoom-in,
-  [data-section="portfolio"] .animate-pop-in,
-  [data-section="portfolio"] .animate-bounce-in,
-  [data-section="contact"] .animate-fade-in,
-  [data-section="contact"] .animate-slide-up,
-  [data-section="contact"] .animate-slide-down,
-  [data-section="contact"] .animate-slide-left,
-  [data-section="contact"] .animate-slide-right,
-  [data-section="contact"] .animate-scale-in,
-  [data-section="contact"] .animate-zoom-in,
-  [data-section="contact"] .animate-pop-in,
-  [data-section="contact"] .animate-bounce-in {
-    animation: none !important;
-    transform: none !important;
+  /* Force content cards and text to be immediately visible */
+  [data-section="about"] .content-wrapper,
+  [data-section="about"] .section-content,
+  [data-section="about"] .card-grid,
+  [data-section="about"] .text-content,
+  [data-section="services"] .content-wrapper,
+  [data-section="services"] .section-content,
+  [data-section="services"] .card-grid,
+  [data-section="services"] .text-content,
+  [data-section="portfolio"] .content-wrapper,
+  [data-section="portfolio"] .section-content,
+  [data-section="portfolio"] .card-grid,
+  [data-section="portfolio"] .text-content,
+  [data-section="contact"] .content-wrapper,
+  [data-section="contact"] .section-content,
+  [data-section="contact"] .card-grid,
+  [data-section="contact"] .text-content {
     opacity: 1 !important;
     visibility: visible !important;
+    transform: none !important;
   }
-
-  /* Force cards and text content to appear immediately */
-  [data-section="about"] .card,
-  [data-section="about"] .service-card,
-  [data-section="about"] .feature-card,
-  [data-section="about"] .content-card,
-  [data-section="about"] h1,
-  [data-section="about"] h2,
-  [data-section="about"] h3,
-  [data-section="about"] p,
-  [data-section="services"] .card,
-  [data-section="services"] .service-card,
-  [data-section="services"] .feature-card,
-  [data-section="services"] .content-card,
-  [data-section="services"] h1,
-  [data-section="services"] h2,
-  [data-section="services"] h3,
-  [data-section="services"] p,
-  [data-section="portfolio"] .card,
-  [data-section="portfolio"] .portfolio-card,
-  [data-section="portfolio"] .project-card,
-  [data-section="portfolio"] .content-card,
-  [data-section="portfolio"] h1,
-  [data-section="portfolio"] h2,
-  [data-section="portfolio"] h3,
-  [data-section="portfolio"] p,
-  [data-section="contact"] .card,
-  [data-section="contact"] .contact-card,
-  [data-section="contact"] .form-card,
-  [data-section="contact"] .content-card,
-  [data-section="contact"] h1,
-  [data-section="contact"] h2,
-  [data-section="contact"] h3,
-  [data-section="contact"] p {
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-
-  /* Preserve all background animations, button hover effects, and styling */
-  /* DO NOT disable: aurora animations, floating particles, hover effects, etc. */
 }
+
+/*
+EXPLICITLY PRESERVED BACKGROUND ANIMATIONS:
+- aurora-wave-subtle-1, aurora-wave-subtle-2, aurora-wave-subtle-3
+- desktop-float-1, desktop-float-2, desktop-float-3, desktop-float-4
+- mobile-float-1, mobile-float-2, mobile-float-3
+- desktop-pulse-corner, mobile-pulse-corner
+- desktop-wave-1, desktop-wave-2, desktop-wave-3, desktop-wave-4
+- mobile-wave-1, mobile-wave-2, mobile-wave-3
+- All aurora curtains, floating particles, corner pulses, and wave patterns
+- All button hover effects and card styling
+*/
