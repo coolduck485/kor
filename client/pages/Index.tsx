@@ -823,7 +823,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
-╚�����╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
+╚���╝  ╚������ ╚═����══�����╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -2156,7 +2156,10 @@ export default function Index() {
         {sections.map((section, index) => (
           <button
             key={section.id}
-            onClick={() => scrollToSection(index)}
+            onClick={() => {
+              scrollToSection(index);
+              setShowNavigationHints(false);
+            }}
             className={`group relative w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentSection
                 ? theme === "light"
