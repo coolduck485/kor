@@ -2230,7 +2230,10 @@ export default function Index() {
           }`}
         >
           <button
-            onClick={() => setIsHelpModalOpen(true)}
+            onClick={() => {
+              setIsHelpModalOpen(true);
+              setHasInteractedWithHelp(true);
+            }}
             className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
               isPinkActive
                 ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
