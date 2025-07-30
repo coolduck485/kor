@@ -77,6 +77,11 @@ export default function Index() {
     return <>{children}</>;
   };
 
+  // Black transition animation state
+  const [isBlackTransition, setIsBlackTransition] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(true);
+  const [transitioningSectionIndex, setTransitioningSectionIndex] = useState(0);
+
   // Mobile-optimized animation config
   const getMobileAnimationProps = (desktopProps: any) => {
     if (!isMobile) return desktopProps;
@@ -883,7 +888,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">�������◄►������</span>
+                  <span className="text-green-400 ml-4">������◄►������</span>
                 </div>
 
                 <div className="loading-indicators">
