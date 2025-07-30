@@ -490,7 +490,26 @@ export default function Index() {
   const scrollAccumulator = useRef(0);
   const lastScrollTime = useRef(0);
   const scrollTimeout = useRef<NodeJS.Timeout>();
+  const scrollMomentum = useRef(0);
   const isDesktop = useRef(window.innerWidth > 1024);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Track scroll progress for visual indicators
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      if (containerRef.current && currentSection > 0) {
+        const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
+        const progress = scrollTop / Math.max(scrollHeight - clientHeight, 1);
+        setScrollProgress(progress * 100);
+      }
+    };
+
+    const container = containerRef.current;
+    if (container && currentSection > 0) {
+      container.addEventListener('scroll', updateScrollProgress, { passive: true });
+      return () => container.removeEventListener('scroll', updateScrollProgress);
+    }
+  }, [currentSection]);
 
   // Handle wheel scroll with desktop optimizations
   useEffect(() => {
