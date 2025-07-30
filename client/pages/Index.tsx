@@ -2129,13 +2129,13 @@ export default function Index() {
 
       {/* Help Button - Available on all sections, above notifications */}
       <div
-        className={`help-button fixed right-12 sm:right-16 md:right-20 lg:right-24 z-[9999] transition-all duration-300 ${
-          isMobileSafari || (isSafari && isMobile) ? "" : "bottom-16 sm:bottom-20 md:bottom-24"
+        className={`help-button fixed right-8 sm:right-10 md:right-12 lg:right-16 z-[9999] transition-all duration-300 ${
+          isMobileSafari || (isSafari && isMobile) ? "" : "bottom-8 sm:bottom-10 md:bottom-12"
         } ${isMobileMenuOpen ? "blur-sm" : ""}`}
         style={{
           position: "fixed",
           bottom:
-            isMobileSafari || (isSafari && isMobile) ? "180px" : undefined,
+            isMobileSafari || (isSafari && isMobile) ? "120px" : undefined,
         }}
       >
         <button
@@ -2146,7 +2146,7 @@ export default function Index() {
           }}
           onMouseEnter={() => dismissTooltip("help-button")}
           onTouchStart={() => dismissTooltip("help-button")}
-          className={`group relative p-2.5 sm:p-3 md:p-3 lg:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+          className={`group relative p-4 sm:p-5 md:p-6 lg:p-7 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
             isPinkActive
               ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
               : theme === "light"
