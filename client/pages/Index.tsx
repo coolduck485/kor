@@ -516,8 +516,141 @@ export default function Index() {
     }
   }, [currentSection, isScrolling, sections.length, mode]);
 
-  // Remove touch scroll hijacking - allow natural touch scrolling
-  // Touch events are now handled by the browser's natural scroll behavior
+  // Handle touch scroll for mobile - Enhanced with better swipe detection
+  useEffect(() => {
+    let touchStartY = 0;
+    let touchStartTime = 0;
+    let touchStartX = 0;
+    let isSwiping = false;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (isScrolling || mode === "retro") return;
+
+      touchStartY = e.touches[0].clientY;
+      touchStartX = e.touches[0].clientX;
+      touchStartTime = Date.now();
+      isSwiping = false;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isScrolling || mode === "retro") return;
+
+      const touchY = e.touches[0].clientY;
+      const touchX = e.touches[0].clientX;
+      const deltaY = Math.abs(touchY - touchStartY);
+      const deltaX = Math.abs(touchX - touchStartX);
+
+      // Determine if this is a vertical swipe (not horizontal)
+      if (deltaY > 10 && deltaY > deltaX * 1.5) {
+        isSwiping = true;
+
+        // Check if we're in services section on mobile/tablet
+        const isMobileTablet = window.innerWidth <= 1024;
+        const isServicesSection = currentSection === 2;
+
+        if (isMobileTablet && isServicesSection) {
+          // Allow normal scrolling within services section
+          const servicesElement = document.querySelector(
+            '[data-section="services"]',
+          ) as HTMLElement;
+          if (servicesElement) {
+            const { scrollTop, scrollHeight, clientHeight } = servicesElement;
+            const isAtTop = scrollTop <= 0;
+            const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+            const scrollDirection = touchStartY - touchY;
+
+            // Only prevent default if at boundaries and trying to scroll beyond
+            if (
+              (scrollDirection > 0 && isAtBottom) ||
+              (scrollDirection < 0 && isAtTop)
+            ) {
+              e.preventDefault();
+            }
+            // Otherwise allow normal scrolling
+            return;
+          }
+        }
+
+        e.preventDefault(); // Prevent default scrolling only during vertical swipes for other sections
+      }
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (isScrolling || mode === "retro" || !isSwiping) return;
+
+      const touchEndY = e.changedTouches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+      const touchDuration = Date.now() - touchStartTime;
+      const swipeVelocity = Math.abs(deltaY) / touchDuration;
+
+      // Enhanced swipe detection: require minimum distance AND velocity
+      const minSwipeDistance = 50;
+      const minSwipeVelocity = 0.1; // pixels per millisecond
+
+      // Check if we're in services section on mobile/tablet
+      const isMobileTablet = window.innerWidth <= 1024;
+      const isServicesSection = currentSection === 2;
+
+      if (isMobileTablet && isServicesSection) {
+        // For services section, only trigger section change if at boundaries
+        const servicesElement = document.querySelector(
+          '[data-section="services"]',
+        ) as HTMLElement;
+        if (servicesElement) {
+          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
+          const isAtTop = scrollTop <= 0;
+          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+
+          if (
+            Math.abs(deltaY) > minSwipeDistance &&
+            swipeVelocity > minSwipeVelocity
+          ) {
+            // Only change sections if at boundaries
+            if (
+              deltaY > 0 &&
+              isAtBottom &&
+              currentSection < sections.length - 1
+            ) {
+              scrollToSection(currentSection + 1);
+            } else if (deltaY < 0 && isAtTop && currentSection > 0) {
+              scrollToSection(currentSection - 1);
+            }
+          }
+        }
+      } else {
+        // Default behavior for other sections
+        if (
+          Math.abs(deltaY) > minSwipeDistance &&
+          swipeVelocity > minSwipeVelocity
+        ) {
+          if (deltaY > 0 && currentSection < sections.length - 1) {
+            scrollToSection(currentSection + 1);
+          } else if (deltaY < 0 && currentSection > 0) {
+            scrollToSection(currentSection - 1);
+          }
+        }
+      }
+
+      // Reset
+      isSwiping = false;
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("touchstart", handleTouchStart, {
+        passive: true,
+      });
+      container.addEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
+      container.addEventListener("touchend", handleTouchEnd, { passive: true });
+      return () => {
+        container.removeEventListener("touchstart", handleTouchStart);
+        container.removeEventListener("touchmove", handleTouchMove);
+        container.removeEventListener("touchend", handleTouchEnd);
+      };
+    }
+  }, [currentSection, isScrolling, sections.length, mode]);
 
   // Listen for scroll events from buttons
   useEffect(() => {
@@ -842,7 +975,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������█████����██████ 60%
+                      CPU: █��������█������██��██����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
