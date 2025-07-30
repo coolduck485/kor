@@ -881,7 +881,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███�������������█╗
+                  {`██╗  ██╗ ██████���� ███���������������█╗
 ���█║ █��╔╝�����╔�������������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
@@ -7267,19 +7267,19 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Floating Digital Elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ clipPath: "inset(0)" }}>
           {[...Array(12)].map((_, i) => (
             <motion.div
               key={`digital-element-${i}`}
               className="absolute opacity-30"
               style={{
-                left: `${5 + ((i * 80) % 90)}%`,
-                top: `${10 + ((i * 35) % 80)}%`,
+                left: `${10 + ((i * 60) % 75)}%`, // Constrained from 5-95% to 10-85%
+                top: `${15 + ((i * 30) % 70)}%`, // Adjusted for better distribution
               }}
               animate={{
-                y: [-20, 20, -20],
-                x: [-10, 10, -10],
-                rotateZ: [-15, 15, -15],
+                y: [-15, 15, -15], // Reduced animation range
+                x: [-5, 5, -5], // Significantly reduced horizontal movement
+                rotateZ: [-12, 12, -12], // Reduced rotation
               }}
               transition={{
                 duration: 5 + (i % 3),
