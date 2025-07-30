@@ -2129,8 +2129,8 @@ export default function Index() {
 
       {/* Help Button - Available on all sections, above notifications */}
       <div
-        className={`help-button fixed right-8 sm:right-10 md:right-12 lg:right-16 z-[9999] transition-all duration-300 ${
-          isMobileSafari || (isSafari && isMobile) ? "" : "bottom-8 sm:bottom-10 md:bottom-12"
+        className={`help-button fixed right-12 sm:right-16 md:right-20 lg:right-24 z-[9999] transition-all duration-300 ${
+          isMobileSafari || (isSafari && isMobile) ? "" : "bottom-12 sm:bottom-16 md:bottom-20"
         } ${isMobileMenuOpen ? "blur-sm" : ""}`}
         style={{
           position: "fixed",
