@@ -2241,7 +2241,7 @@ export default function Index() {
               setIsHelpModalOpen(true);
               setHasInteractedWithHelp(true);
             }}
-            className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
+            className={`group relative p-2.5 sm:p-3 lg:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
               isPinkActive
                 ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
                 : theme === "light"
@@ -9324,7 +9324,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Instagram",
                         subtitle: "Follow us for updates",
                         url: "https://instagram.com",
-                        icon: "📷",
+                        icon: "���",
                         color: "from-pink-500 via-purple-500 to-indigo-500",
                         shadowColor: "rgba(236, 72, 153, 0.3)",
                       },
