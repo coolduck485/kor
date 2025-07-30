@@ -1732,6 +1732,46 @@ export default function Index() {
         `}</style>
           </>
         )}
+
+      {/* Custom Scrollbar Styling */}
+      <style>{`
+        /* Custom scrollbar for sections with content overflow */
+        div[data-section]:not([data-section="home"]) {
+          scrollbar-width: thin;
+          scrollbar-color: ${theme === "light" ? "rgba(59, 130, 246, 0.6)" : "rgba(73, 146, 255, 0.8)"} ${theme === "light" ? "rgba(243, 244, 246, 0.3)" : "rgba(17, 24, 39, 0.3)"};
+        }
+
+        /* Webkit scrollbar styling */
+        div[data-section]:not([data-section="home"])::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        div[data-section]:not([data-section="home"])::-webkit-scrollbar-track {
+          background: ${theme === "light" ? "rgba(243, 244, 246, 0.3)" : "rgba(17, 24, 39, 0.3)"};
+          border-radius: 4px;
+        }
+
+        div[data-section]:not([data-section="home"])::-webkit-scrollbar-thumb {
+          background: ${theme === "light" ? "rgba(59, 130, 246, 0.6)" : "rgba(73, 146, 255, 0.8)"};
+          border-radius: 4px;
+          transition: background 0.3s ease;
+        }
+
+        div[data-section]:not([data-section="home"])::-webkit-scrollbar-thumb:hover {
+          background: ${theme === "light" ? "rgba(59, 130, 246, 0.8)" : "rgba(73, 146, 255, 1)"};
+        }
+
+        /* Add glow effect to scrollbar */
+        div[data-section]:not([data-section="home"])::-webkit-scrollbar-thumb {
+          box-shadow: 0 0 10px ${theme === "light" ? "rgba(59, 130, 246, 0.3)" : "rgba(73, 146, 255, 0.4)"};
+        }
+
+        /* Hide horizontal scrollbar completely */
+        div[data-section]::-webkit-scrollbar:horizontal {
+          display: none;
+        }
+      `}</style>
+
       </div>
     );
   }
