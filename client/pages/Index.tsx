@@ -891,7 +891,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �������║
-╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═╝`}
+╚═╝  ╚������� ╚═����═══╝ ╚═╝  ����═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -3642,7 +3642,7 @@ export default function Index() {
         {/* Services Section */}
         <motion.div
           data-section="services"
-          className={isMobileMenuOpen ? "blur-sm" : ""}
+          className={`${isMobileMenuOpen ? "blur-sm" : ""} lg:overflow-hidden overflow-y-auto lg:h-auto h-screen`}
           style={{
             display: currentSection === 2 ? "block" : "none",
           }}
