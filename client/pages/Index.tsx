@@ -905,7 +905,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
-██╔═��█╗ █��║   ██║██╔══█��������
+██╔═��█╗ �����║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �������║
 ╚���╝  ╚����� ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
@@ -1849,66 +1849,68 @@ export default function Index() {
 
 
 
-      {/* Back to Top Button - Always visible */}
-      <div
-        className={`back-to-top fixed bottom-8 right-4 sm:right-8 z-50 transition-all duration-300 ${
-          isMobileMenuOpen ? "blur-sm" : ""
-        }`}
-      >
-        <button
-          onClick={() => scrollToSection(0)}
-          className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
-            isPinkActive
-              ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
-              : theme === "light"
-                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+      {/* Back to Top Button - All sections except first */}
+      {currentSection > 0 && (
+        <div
+          className={`back-to-top fixed bottom-8 right-4 sm:right-8 z-50 transition-all duration-300 ${
+            isMobileMenuOpen ? "blur-sm" : ""
           }`}
-          style={{
-            background:
-              theme === "light"
-                ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-            boxShadow: isPinkActive
-              ? "0 0 20px rgba(236, 72, 153, 0.4)"
-              : "0 0 20px rgba(73, 146, 255, 0.3)",
-          }}
         >
-          {/* Icon */}
-          <ChevronUp
-            className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${
+          <button
+            onClick={() => scrollToSection(0)}
+            className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
               isPinkActive
-                ? "text-pink-400 group-hover:text-pink-300"
+                ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
                 : theme === "light"
-                  ? "text-blue-600 group-hover:text-blue-700"
-                  : "text-white group-hover:text-blue-300"
+                  ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                  : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
             }`}
-          />
-
-          {/* Ripple effect */}
-          <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
-
-          {/* Tooltip */}
-          <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
-            <div
-              className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+            style={{
+              background:
                 theme === "light"
-                  ? "border-blue-400/40 bg-white/90 text-gray-800"
-                  : "border-blue-300/30 bg-black/80 text-white"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+              boxShadow: isPinkActive
+                ? "0 0 20px rgba(236, 72, 153, 0.4)"
+                : "0 0 20px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            {/* Icon */}
+            <ChevronUp
+              className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${
+                isPinkActive
+                  ? "text-pink-400 group-hover:text-pink-300"
+                  : theme === "light"
+                    ? "text-blue-600 group-hover:text-blue-700"
+                    : "text-white group-hover:text-blue-300"
               }`}
-            >
-              Back to Top
+            />
+
+            {/* Ripple effect */}
+            <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
+
+            {/* Tooltip */}
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
               <div
-                className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
                   theme === "light"
-                    ? "border-l-white/90"
-                    : "border-l-black/80"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
                 }`}
-              />
+              >
+                Back to Top
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
+                  }`}
+                />
+              </div>
             </div>
-          </div>
-        </button>
-      </div>
+          </button>
+        </div>
+      )}
 
       {/* Mobile Hamburger Menu - Always visible */}
       <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
