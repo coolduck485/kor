@@ -20,13 +20,13 @@ html {
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  
+
   /* Enable smooth touch scrolling on iOS */
   -webkit-overflow-scrolling: touch;
-  
+
   /* Improve scroll performance */
   overscroll-behavior: contain;
-  
+
   /* Ensure content doesn't interfere with scroll */
   overflow-anchor: none;
 }
@@ -47,15 +47,15 @@ html {
     /* Reduce scroll jank on mobile */
     will-change: scroll-position;
   }
-  
+
   /* Ensure touch targets are appropriate */
-  button, 
+  button,
   [role="button"],
   input,
   textarea {
     touch-action: manipulation;
   }
-  
+
   /* Optimize sections for mobile */
   [data-section] {
     /* Ensure sections work well on mobile */
@@ -86,7 +86,7 @@ html {
   html {
     scroll-behavior: auto;
   }
-  
+
   .smooth-scroll {
     scroll-behavior: auto;
   }

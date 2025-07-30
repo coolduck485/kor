@@ -96,8 +96,6 @@ export default function Index() {
     };
   };
 
-
-
   // Test notification removed
 
   // Welcome notification - shows immediately on all devices
@@ -1847,8 +1845,6 @@ export default function Index() {
         </div>
       )}
 
-
-
       {/* Back to Top Button - All sections except first */}
       {currentSection > 0 && (
         <div
@@ -1947,8 +1943,6 @@ export default function Index() {
           </motion.div>
         )}
       </AnimatePresence>
-
-
 
       {/* Sections Container */}
       <div className="h-full">
