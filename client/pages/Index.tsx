@@ -884,9 +884,9 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══██╗
+██╔═██╗ █���║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-╚═╝  ╚═╝ ╚════���╝ ╚═╝  ╚═╝`}
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -8063,7 +8063,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {[
               {
-                icon: "���",
+                icon: "🏆",
                 label: "Award",
                 x: 8,
                 y: 15,
