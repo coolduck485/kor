@@ -967,7 +967,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████���� ███������������█╗
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
-████��╔╝ █������   █��║██����███╔���
+█████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
@@ -1038,7 +1038,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������█████����██████ 60%
+                      CPU: █����������█������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1819,42 +1819,86 @@ export default function Index() {
           </>
         )}
 
-      {/* Custom Scrollbar Styling */}
+      {/* Custom Scrollbar Styling with Desktop Optimizations */}
       <style>{`
         /* Custom scrollbar for sections with content overflow */
         div[data-section]:not([data-section="home"]) {
           scrollbar-width: thin;
           scrollbar-color: ${theme === "light" ? "rgba(59, 130, 246, 0.6)" : "rgba(73, 146, 255, 0.8)"} ${theme === "light" ? "rgba(243, 244, 246, 0.3)" : "rgba(17, 24, 39, 0.3)"};
+          scroll-padding-top: 20px;
+          scroll-padding-bottom: 20px;
         }
 
-        /* Webkit scrollbar styling */
+        /* Enhanced webkit scrollbar styling for desktop */
         div[data-section]:not([data-section="home"])::-webkit-scrollbar {
-          width: 8px;
+          width: 10px;
+          transition: width 0.2s ease;
+        }
+
+        @media (max-width: 1024px) {
+          div[data-section]:not([data-section="home"])::-webkit-scrollbar {
+            width: 6px;
+          }
         }
 
         div[data-section]:not([data-section="home"])::-webkit-scrollbar-track {
           background: ${theme === "light" ? "rgba(243, 244, 246, 0.3)" : "rgba(17, 24, 39, 0.3)"};
-          border-radius: 4px;
+          border-radius: 6px;
+          margin: 5px 0;
         }
 
         div[data-section]:not([data-section="home"])::-webkit-scrollbar-thumb {
-          background: ${theme === "light" ? "rgba(59, 130, 246, 0.6)" : "rgba(73, 146, 255, 0.8)"};
-          border-radius: 4px;
-          transition: background 0.3s ease;
+          background: linear-gradient(180deg,
+            ${theme === "light" ? "rgba(59, 130, 246, 0.7)" : "rgba(73, 146, 255, 0.9)"} 0%,
+            ${theme === "light" ? "rgba(59, 130, 246, 0.5)" : "rgba(73, 146, 255, 0.7)"} 100%);
+          border-radius: 6px;
+          border: 1px solid ${theme === "light" ? "rgba(59, 130, 246, 0.2)" : "rgba(73, 146, 255, 0.3)"};
+          transition: all 0.3s ease;
+          box-shadow:
+            0 0 10px ${theme === "light" ? "rgba(59, 130, 246, 0.3)" : "rgba(73, 146, 255, 0.4)"},
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         div[data-section]:not([data-section="home"])::-webkit-scrollbar-thumb:hover {
-          background: ${theme === "light" ? "rgba(59, 130, 246, 0.8)" : "rgba(73, 146, 255, 1)"};
+          background: linear-gradient(180deg,
+            ${theme === "light" ? "rgba(59, 130, 246, 0.9)" : "rgba(73, 146, 255, 1)"} 0%,
+            ${theme === "light" ? "rgba(59, 130, 246, 0.7)" : "rgba(73, 146, 255, 0.8)"} 100%);
+          box-shadow:
+            0 0 15px ${theme === "light" ? "rgba(59, 130, 246, 0.5)" : "rgba(73, 146, 255, 0.6)"},
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          transform: scale(1.02);
         }
 
-        /* Add glow effect to scrollbar */
-        div[data-section]:not([data-section="home"])::-webkit-scrollbar-thumb {
-          box-shadow: 0 0 10px ${theme === "light" ? "rgba(59, 130, 246, 0.3)" : "rgba(73, 146, 255, 0.4)"};
+        div[data-section]:not([data-section="home"])::-webkit-scrollbar-thumb:active {
+          background: linear-gradient(180deg,
+            ${theme === "light" ? "rgba(59, 130, 246, 1)" : "rgba(73, 146, 255, 1)"} 0%,
+            ${theme === "light" ? "rgba(59, 130, 246, 0.8)" : "rgba(73, 146, 255, 0.9)"} 100%);
+        }
+
+        /* Smooth scrolling performance optimizations */
+        div[data-section]:not([data-section="home"]) {
+          transform: translateZ(0);
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          perspective: 1000px;
+          will-change: scroll-position;
         }
 
         /* Hide horizontal scrollbar completely */
         div[data-section]::-webkit-scrollbar:horizontal {
           display: none;
+        }
+
+        /* Desktop scroll snap for smoother experience */
+        @media (min-width: 1025px) {
+          div[data-section]:not([data-section="home"]) {
+            scroll-snap-type: y proximity;
+            scroll-padding: 20px;
+          }
+
+          div[data-section]:not([data-section="home"]) > * {
+            scroll-snap-align: start;
+          }
         }
       `}</style>
 
