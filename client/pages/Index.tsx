@@ -806,7 +806,7 @@ export default function Index() {
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
-╚���╝  ╚������� ╚═����══���╝ ╚═╝  ����═��`}
+╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1876,6 +1876,50 @@ export default function Index() {
           />
         </div>
       )}
+
+      {/* Section Position Indicator */}
+      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2">
+        {sections.map((section, index) => (
+          <button
+            key={section.id}
+            onClick={() => scrollToSection(index)}
+            className={`group relative w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentSection
+                ? theme === "light"
+                  ? "bg-blue-600 shadow-lg scale-125"
+                  : "bg-blue-400 shadow-lg scale-125"
+                : theme === "light"
+                  ? "bg-gray-300 hover:bg-gray-400"
+                  : "bg-white/30 hover:bg-white/50"
+            }`}
+            style={{
+              boxShadow: index === currentSection
+                ? "0 0 15px rgba(73, 146, 255, 0.5)"
+                : "none"
+            }}
+          >
+            {/* Tooltip */}
+            <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 pointer-events-none">
+              <div
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
+                }`}
+              >
+                {section.title}
+                <div
+                  className={`absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent ${
+                    theme === "light"
+                      ? "border-r-white/90"
+                      : "border-r-black/80"
+                  }`}
+                />
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
 
       {/* Back to Top Button - All sections except first */}
       {currentSection > 0 && (
@@ -8833,7 +8877,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Discord",
                             url: "https://discord.com",
-                            icon: "���",
+                            icon: "��",
                             color: "from-indigo-500 to-blue-500",
                           },
                           {
