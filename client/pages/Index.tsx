@@ -1859,6 +1859,7 @@ export default function Index() {
         {/* Home Section */}
         <motion.div
           ref={(el) => (sectionsRef.current[0] = el!)}
+          data-section="home"
           className={`relative min-h-screen overflow-hidden transition-all duration-500 ${
             isMobileMenuOpen ? "blur-sm" : ""
           } ${
