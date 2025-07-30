@@ -882,7 +882,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██████╗
-██║ ██╔╝██╔═══██╗█��╔══██╗
+██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
@@ -9358,7 +9358,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Discord",
                             url: "https://discord.com",
-                            icon: "��",
+                            icon: "💬",
                             color: "from-indigo-500 to-blue-500",
                           },
                           {
