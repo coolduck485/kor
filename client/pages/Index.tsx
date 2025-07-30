@@ -487,9 +487,9 @@ export default function Index() {
       }
 
       // For all other sections, check scroll boundaries before allowing section transitions
-      const container = containerRef.current;
-      if (container) {
-        const { scrollTop, scrollHeight, clientHeight } = container;
+      const mainContainer = containerRef.current;
+      if (mainContainer) {
+        const { scrollTop, scrollHeight, clientHeight } = mainContainer;
         const isAtTop = scrollTop <= 5; // 5px tolerance
         const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5; // 5px tolerance
 
@@ -963,7 +963,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █������███��█��█████████����███ 50%
+                      RAM: █���████��█��█████████����███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
