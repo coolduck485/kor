@@ -6951,32 +6951,32 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Grid */}
-            <div className="flex justify-center mt-8 sm:mt-12 lg:mt-16">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 responsive-grid w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-center mt-6 sm:mt-8 lg:mt-12">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 responsive-grid w-full max-w-5xl px-2 sm:px-4 lg:px-6">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
                     className="group relative h-full"
-                    initial={{ y: 60, opacity: 0, scale: 0.8 }}
+                    initial={{ y: 40, opacity: 0, scale: 0.9 }}
                     animate={
                       isVisible
                         ? { y: 0, opacity: 1, scale: 1 }
-                        : { y: 60, opacity: 0, scale: 0.8 }
+                        : { y: 40, opacity: 0, scale: 0.9 }
                     }
                     transition={{
-                      duration: 0.7,
-                      delay: 0.1 + index * 0.1,
+                      duration: 0.6,
+                      delay: 0.05 + index * 0.05,
                       type: "spring",
-                      stiffness: 100
+                      stiffness: 120
                     }}
                     whileHover={{
-                      scale: 1.02,
-                      y: -5,
-                      transition: { duration: 0.3 }
+                      scale: 1.01,
+                      y: -3,
+                      transition: { duration: 0.2 }
                     }}
                   >
                     {/* Main Card Container */}
-                    <div className="relative h-full min-h-[240px] sm:min-h-[220px] lg:min-h-[240px]">
+                    <div className="relative h-full min-h-[140px] sm:min-h-[160px] lg:min-h-[180px]">
                       {/* Outer Glow Effect */}
                       <div
                         className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"
