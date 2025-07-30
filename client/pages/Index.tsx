@@ -3565,6 +3565,7 @@ export default function Index() {
 
         {/* Services Section */}
         <motion.div
+          data-section="services"
           className={isMobileMenuOpen ? "blur-sm" : ""}
           style={{
             display: currentSection === 2 ? "block" : "none",
