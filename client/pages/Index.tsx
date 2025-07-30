@@ -882,7 +882,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███�������������█╗
-���█║ █��╔╝�����╔�������������═██╗█�������������══██╗
+���█║ █��╔╝�����╔��������������═██╗█�������������══██╗
 ██���██╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 █���║  �����█╗���███����██�����╝██║  �����������
@@ -1968,6 +1968,27 @@ export default function Index() {
 
       {/* Section Navigation Buttons */}
       <div className="fixed right-2 sm:right-3 md:right-4 lg:right-4 xl:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3">
+        {/* Shared Navigation Tooltip - Positioned between buttons */}
+        {showNavigationTooltip && (currentSection > 0 || currentSection < sections.length - 1) && (
+          <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
+            <div
+              className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                theme === "light"
+                  ? "border-blue-400/40 bg-white/90 text-gray-800"
+                  : "border-blue-300/30 bg-black/80 text-white"
+              }`}
+            >
+              Click to navigate sections or use Ctrl+Arrow keys
+              <div
+                className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                  theme === "light"
+                    ? "border-l-white/90"
+                    : "border-l-black/80"
+                }`}
+              />
+            </div>
+          </div>
+        )}
         {/* Previous Section Button */}
         {currentSection > 0 && (
           <button
@@ -5678,7 +5699,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ����������  hoverScale: 1.15
+// Change: hoverScale: 1.05  ��������  hoverScale: 1.15
 //
 // ========================================
 
