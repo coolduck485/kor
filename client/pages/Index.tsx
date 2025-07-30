@@ -429,46 +429,54 @@ export default function Index() {
     }
   };
 
-  // Handle scroll position detection
+  // Handle wheel scroll
   useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current || mode === "retro") return;
+    const handleWheel = (e: WheelEvent) => {
+      if (isScrolling || mode === "retro") return;
 
-      const scrollTop = containerRef.current.scrollTop;
-      const windowHeight = window.innerHeight;
+      // Check if we're on mobile/tablet and in services section (index 2)
+      const isMobileTablet = window.innerWidth <= 1024;
+      const isServicesSection = currentSection === 2;
 
-      // Determine current section based on scroll position
-      const newCurrentSection = sectionsRef.current.findIndex((section, index) => {
-        if (!section) return false;
-        const sectionTop = section.offsetTop;
-        const sectionBottom = sectionTop + section.offsetHeight;
+      if (isMobileTablet && isServicesSection) {
+        // Allow normal scrolling within services section
+        const servicesElement = document.querySelector(
+          '[data-section="services"]',
+        ) as HTMLElement;
+        if (servicesElement) {
+          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
+          const isAtTop = scrollTop <= 0;
+          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10; // 10px tolerance
 
-        // Section is considered current if it's more than 50% visible
-        const visibleTop = Math.max(scrollTop, sectionTop);
-        const visibleBottom = Math.min(scrollTop + windowHeight, sectionBottom);
-        const visibleHeight = visibleBottom - visibleTop;
-        const sectionHeight = sectionBottom - sectionTop;
-
-        return visibleHeight > sectionHeight * 0.5;
-      });
-
-      if (newCurrentSection !== -1 && newCurrentSection !== currentSection) {
-        setCurrentSection(newCurrentSection);
-
-        // Update URL based on section
-        const sectionPath = newCurrentSection === 0 ? "/" : `/${sections[newCurrentSection].id}`;
-        if (window.location.pathname !== sectionPath) {
-          window.history.pushState({}, "", sectionPath);
+          // Only prevent default and trigger section change at boundaries
+          if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
+            e.preventDefault();
+            if (e.deltaY > 0 && currentSection < sections.length - 1) {
+              scrollToSection(currentSection + 1);
+            } else if (e.deltaY < 0 && currentSection > 0) {
+              scrollToSection(currentSection - 1);
+            }
+          }
+          // If not at boundaries, allow normal scrolling (don't prevent default)
+          return;
         }
+      }
+
+      // Default behavior for other sections or desktop
+      e.preventDefault();
+      if (e.deltaY > 0 && currentSection < sections.length - 1) {
+        scrollToSection(currentSection + 1);
+      } else if (e.deltaY < 0 && currentSection > 0) {
+        scrollToSection(currentSection - 1);
       }
     };
 
     const container = containerRef.current;
     if (container) {
-      container.addEventListener("scroll", handleScroll, { passive: true });
-      return () => container.removeEventListener("scroll", handleScroll);
+      container.addEventListener("wheel", handleWheel, { passive: false });
+      return () => container.removeEventListener("wheel", handleWheel);
     }
-  }, [currentSection, sections, mode]);
+  }, [currentSection, isScrolling, sections.length, mode]);
 
   // Remove touch scroll hijacking - allow natural touch scrolling
   // Touch events are now handled by the browser's natural scroll behavior
@@ -724,11 +732,11 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═�������═██╗█�����������══█��╗
+██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �������║
-╚═╝  ╚����� ╚═����═══╝ ╚═╝  ����═��`}
+╚═╝  ╚����� ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
