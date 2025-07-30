@@ -6513,7 +6513,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
     return (
       <motion.div
         ref={ref}
-        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+        className={`relative min-h-screen flex items-center justify-center ${
           theme === "light"
             ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
             : "bg-black"
