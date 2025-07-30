@@ -348,7 +348,8 @@ export default function Index() {
         navigator.connection.effectiveType === "slow-2g";
 
       // Enable high performance for mobile and tablet devices regardless of hardware
-      const isMobileOrTablet = window.innerWidth < 1024;
+      // Using custom breakpoints: mobile ≤640px, tablet 641-991px, desktop ≥992px
+      const isMobileOrTablet = window.innerWidth <= 991;
       setIsHighPerformance(
         isMobileOrTablet || (!isLowEnd && !isSlowConnection && !prefersReducedMotion),
       );
