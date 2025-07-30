@@ -127,7 +127,6 @@ const MobileNotificationItem = React.forwardRef<
   HTMLDivElement,
   MobileNotificationItemProps
 >(({ notification, onClose, isMobile }, ref) => {
-  const [isClosing, setIsClosing] = useState(false);
 
   const handleClose = () => {
     // Immediate removal on mobile/tablet to avoid glitchy animation
