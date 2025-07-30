@@ -901,7 +901,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═�������═██╗█�����������══██╗
+██║ █��╔╝��█╔═��������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══█��������
 ██║  �����█╗╚███��██�����╝██║  �������║
@@ -7117,7 +7117,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         {/* Content Container */}
                         <div className="relative z-10 h-full flex flex-col p-2 sm:p-2.5 lg:p-3">
                           {/* Icon Section */}
-                          <div className="flex justify-center mb-3">
+                          <div className="flex justify-center mb-2">
                             <motion.div
                               className="relative"
                               whileHover={{
@@ -7128,12 +7128,12 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             >
                               {/* Icon Background */}
                               <div
-                                className={`w-10 h-10 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.color} shadow-md`}
+                                className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.color} shadow-md`}
                                 style={{
                                   boxShadow: `0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
                                 }}
                               >
-                                <service.icon className="w-5 h-5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white drop-shadow-md" />
+                                <service.icon className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white drop-shadow-md" />
                               </div>
 
                               {/* Icon Glow */}
