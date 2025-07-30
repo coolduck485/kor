@@ -904,7 +904,7 @@ export default function Index() {
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
-██║  �����█╗���███��██�����╝██║  �������║
+██║  �����█╗���███��██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1055,7 +1055,7 @@ export default function Index() {
                 </div>
 
                 <div className="loading-indicators">
-                  <span>█▓▒░</span>
+                  <span>█��▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
                   <span>░���▓█</span>
                 </div>
@@ -7008,7 +7008,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     />
                   ))}
 
-                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10">
+                <div className="font-poppins text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold relative z-10">
                   <span
                     className={`relative inline-block ${
                       theme === "light" ? "text-gray-900" : "text-white"
