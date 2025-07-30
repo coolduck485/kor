@@ -2390,8 +2390,8 @@ export default function Index() {
       {
         <div
           className={`help-button fixed right-3 sm:right-4 md:right-6 lg:right-8 z-[150] transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
+            (isMobileSafari || (isSafari && isMobile)) ? "" : "bottom-6 sm:bottom-8"
+          } ${isMobileMenuOpen ? "blur-sm" : ""}`}
           style={{
             bottom: (isMobileSafari || (isSafari && isMobile)) ? "120px" : undefined,
           }}
