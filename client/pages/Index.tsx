@@ -53,7 +53,7 @@ export default function Index() {
   const hasShownMobilePerformanceRef = useRef(false);
 
   const [currentSection, setCurrentSection] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
+
   const sectionsRef = useRef<HTMLDivElement[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
