@@ -881,7 +881,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ █████���╗
+                  {`██╗  ██╗ ██████╗ ██████╗
 ██║ ██╔╝██╔═══██╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
@@ -1038,7 +1038,7 @@ export default function Index() {
                 </div>
 
                 <div className="loading-indicators">
-                  <span>█▓▒��</span>
+                  <span>█▓▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
                   <span>░▒▓█</span>
                 </div>
