@@ -782,7 +782,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████���� ███������������█╗
 ██║ █��╔╝��█╔═�������═██╗█�����������══██╗
-█████╔╝ █������   █��║██������███╔���
+█████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
@@ -1734,12 +1734,12 @@ export default function Index() {
       }`}
       style={{
         height: "100vh",
-        overflowY: currentSection === 0 ? "hidden" : "auto", // Allow vertical scrolling on all sections except home
+        overflowY: currentSection === 0 ? "hidden" : "auto", // Allow vertical scrolling on content sections
         overflowX: "hidden", // Always disable horizontal scrolling
         maxWidth: "100vw",
         willChange: isScrollingActive ? "auto" : "transform",
         contain: "layout style paint",
-        scrollBehavior: "smooth", // Native smooth scrolling
+        scrollBehavior: "smooth", // Native smooth scrolling for content
         scrollbarGutter: "stable", // Prevent layout shift from scrollbar
         WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS
       }}
