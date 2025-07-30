@@ -950,7 +950,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █����������█��������█████����██████ 60%
+                      CPU: █�����������█��������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1996,20 +1996,7 @@ export default function Index() {
 
       </div>
 
-      {/* Navigation Help Text - separate group, desktop only */}
-      {currentSection > 0 && (
-        <div className="fixed right-2 sm:right-3 lg:right-4 top-1/2 translate-y-12 z-40 hidden lg:block">
-          <div className="text-center">
-            <p
-              className={`text-xs opacity-60 ${
-                theme === "light" ? "text-gray-500" : "text-white/60"
-              }`}
-            >
-              Use buttons or Ctrl+Arrow keys
-            </p>
-          </div>
-        </div>
-      )}
+
 
       {/* Help Modal */}
       {isHelpModalOpen && (
@@ -5638,7 +5625,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ������  hoverScale: 1.15
+// Change: hoverScale: 1.05  ��������  hoverScale: 1.15
 //
 // ========================================
 
