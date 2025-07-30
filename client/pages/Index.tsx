@@ -806,7 +806,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███������������█╗
-██║ █��╔╝��█╔═�������═██╗█�����������══██╗
+██║ █��╔╝��█╔═���������██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══�����������
 ██║  �����█╗���███����██�����╝██║  ���������
@@ -1918,6 +1918,204 @@ export default function Index() {
           </div>
         )}
       </div>
+
+      {/* Help Modal */}
+      {isHelpModalOpen && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsHelpModalOpen(false)}
+          />
+
+          {/* Modal */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className={`relative w-full max-w-md mx-4 p-6 rounded-2xl border-2 backdrop-blur-xl ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/90"
+                : "border-blue-300/30 bg-black/80"
+            }`}
+            style={{
+              background:
+                theme === "light"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)`
+                  : `linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 100%)`,
+              boxShadow: "0 0 30px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsHelpModalOpen(false)}
+              className={`absolute top-4 right-4 p-2 rounded-full transition-colors duration-200 ${
+                theme === "light"
+                  ? "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                  : "text-gray-400 hover:text-white hover:bg-white/10"
+              }`}
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Header */}
+            <div className="mb-6">
+              <h2
+                className={`text-xl font-bold mb-2 ${
+                  theme === "light" ? "text-gray-900" : "text-white"
+                }`}
+              >
+                Navigation Help
+              </h2>
+              <p
+                className={`text-sm ${
+                  theme === "light" ? "text-gray-600" : "text-gray-300"
+                }`}
+              >
+                Learn how to navigate through the website sections
+              </p>
+            </div>
+
+            {/* Navigation Instructions */}
+            <div className="space-y-4">
+              {/* Section Buttons */}
+              <div className="flex items-start space-x-3">
+                <div className="flex flex-col space-y-1 mt-1">
+                  <div className="w-8 h-8 rounded-full border-2 border-blue-400 flex items-center justify-center">
+                    <ChevronUp className="w-4 h-4 text-blue-400" />
+                  </div>
+                  <div className="w-8 h-8 rounded-full border-2 border-blue-400 flex items-center justify-center">
+                    <ChevronDown className="w-4 h-4 text-blue-400" />
+                  </div>
+                </div>
+                <div>
+                  <h3
+                    className={`font-semibold text-sm mb-1 ${
+                      theme === "light" ? "text-gray-900" : "text-white"
+                    }`}
+                  >
+                    Section Navigation Buttons
+                  </h3>
+                  <p
+                    className={`text-xs ${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    }`}
+                  >
+                    Use the up/down arrow buttons on the right side to move between sections
+                  </p>
+                </div>
+              </div>
+
+              {/* Section Dots */}
+              <div className="flex items-start space-x-3">
+                <div className="flex flex-col space-y-1 mt-1">
+                  <div className="w-3 h-3 rounded-full bg-blue-400" />
+                  <div className="w-3 h-3 rounded-full border-2 border-gray-400" />
+                  <div className="w-3 h-3 rounded-full border-2 border-gray-400" />
+                </div>
+                <div>
+                  <h3
+                    className={`font-semibold text-sm mb-1 ${
+                      theme === "light" ? "text-gray-900" : "text-white"
+                    }`}
+                  >
+                    Section Indicators
+                  </h3>
+                  <p
+                    className={`text-xs ${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    }`}
+                  >
+                    Click the dots on the left side to jump directly to any section
+                  </p>
+                </div>
+              </div>
+
+              {/* Keyboard Shortcuts */}
+              <div className="flex items-start space-x-3">
+                <div className="flex space-x-1 mt-1">
+                  <kbd
+                    className={`px-2 py-1 text-xs rounded ${
+                      theme === "light"
+                        ? "bg-gray-200 text-gray-700"
+                        : "bg-gray-700 text-gray-300"
+                    }`}
+                  >
+                    Ctrl
+                  </kbd>
+                  <span className="text-xs">+</span>
+                  <kbd
+                    className={`px-2 py-1 text-xs rounded ${
+                      theme === "light"
+                        ? "bg-gray-200 text-gray-700"
+                        : "bg-gray-700 text-gray-300"
+                    }`}
+                  >
+                    ↑↓
+                  </kbd>
+                </div>
+                <div>
+                  <h3
+                    className={`font-semibold text-sm mb-1 ${
+                      theme === "light" ? "text-gray-900" : "text-white"
+                    }`}
+                  >
+                    Keyboard Shortcuts
+                  </h3>
+                  <p
+                    className={`text-xs ${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    }`}
+                  >
+                    Hold Ctrl and use arrow keys to navigate between sections
+                  </p>
+                </div>
+              </div>
+
+              {/* Content Scrolling */}
+              <div className="flex items-start space-x-3">
+                <div className="w-8 h-12 border-2 border-blue-400 rounded mt-1 relative">
+                  <div className="absolute right-0 top-1 bottom-1 w-1 bg-blue-400 rounded" />
+                </div>
+                <div>
+                  <h3
+                    className={`font-semibold text-sm mb-1 ${
+                      theme === "light" ? "text-gray-900" : "text-white"
+                    }`}
+                  >
+                    Content Scrolling
+                  </h3>
+                  <p
+                    className={`text-xs ${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    }`}
+                  >
+                    Scroll naturally within each section to view all content. Section changes only happen via buttons.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <button
+                onClick={() => {
+                  setIsHelpModalOpen(false);
+                  setShowNavigationHints(false);
+                }}
+                className={`w-full py-2 px-4 rounded-lg font-medium transition-colors duration-200 ${
+                  theme === "light"
+                    ? "bg-blue-600 hover:bg-blue-700 text-white"
+                    : "bg-blue-500 hover:bg-blue-600 text-white"
+                }`}
+              >
+                Got it, dismiss hints
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
 
       {/* Desktop Scroll Progress Indicator */}
       {currentSection > 0 && window.innerWidth > 1024 && (
