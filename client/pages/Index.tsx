@@ -53,6 +53,7 @@ export default function Index() {
   const hasShownMobilePerformanceRef = useRef(false);
 
   const [currentSection, setCurrentSection] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   const sectionsRef = useRef<HTMLDivElement[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -882,7 +883,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">������◄►������</span>
+                  <span className="text-green-400 ml-4">�������◄►������</span>
                 </div>
 
                 <div className="loading-indicators">
