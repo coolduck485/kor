@@ -1769,6 +1769,48 @@ export default function Index() {
         WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS
       }}
     >
+      {/* Navigation Hints for New Users */}
+      {showNavigationHints && currentSection > 0 && (
+        <div className="fixed right-20 top-1/2 -translate-y-1/2 z-40 animate-pulse">
+          <div
+            className={`px-3 py-2 rounded-lg border backdrop-blur-sm text-sm font-medium whitespace-nowrap ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/90 text-gray-800"
+                : "border-blue-300/30 bg-black/80 text-white"
+            }`}
+            style={{
+              boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            Click to navigate sections →
+            <button
+              onClick={() => setShowNavigationHints(false)}
+              className="ml-2 text-xs opacity-60 hover:opacity-100"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Section Position Indicator Hint */}
+      {showNavigationHints && currentSection > 0 && (
+        <div className="fixed left-20 top-1/2 -translate-y-1/2 z-40 animate-pulse">
+          <div
+            className={`px-3 py-2 rounded-lg border backdrop-blur-sm text-sm font-medium whitespace-nowrap ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/90 text-gray-800"
+                : "border-blue-300/30 bg-black/80 text-white"
+            }`}
+            style={{
+              boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            ← Click dots to jump to any section
+          </div>
+        </div>
+      )}
+
       {/* Section Navigation Buttons */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-3">
         {/* Previous Section Button */}
@@ -8353,7 +8395,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "✉�����" },
+            { type: "email", x: 15, y: 35, icon: "✉���" },
             { type: "call", x: 75, y: 25, icon: "���" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
