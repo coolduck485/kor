@@ -901,10 +901,10 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═��������═██╗█�����������══██╗
+██║ █��╔╝��█╔═�������═██╗█�����������══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔����█╗ █��║   ██║██╔══█��������
-██║  �����█╗╚███��██�����╝██║  �������║
+██║  �����█╗���███��██�����╝██║  �������║
 ╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -7144,21 +7144,21 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           </div>
 
                           {/* Title */}
-                          <div className="text-center mb-3">
-                            <h3 className="text-base sm:text-base lg:text-base font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
+                          <div className="text-center mb-2">
+                            <h3 className="text-sm sm:text-sm lg:text-base font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
                               {service.title}
                             </h3>
                           </div>
 
                           {/* Description */}
                           <div className="flex-1 flex items-center">
-                            <p className="text-gray-300 text-xs sm:text-xs lg:text-sm leading-snug text-center opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+                            <p className="text-gray-300 text-xs sm:text-xs lg:text-xs leading-snug text-center opacity-90 group-hover:opacity-100 transition-opacity duration-300">
                               {service.description}
                             </p>
                           </div>
 
                           {/* Bottom Accent */}
-                          <div className="mt-3 flex justify-center">
+                          <div className="mt-2 flex justify-center">
                             <div
                               className={`w-10 h-0.5 rounded-full bg-gradient-to-r ${service.color} opacity-60 group-hover:opacity-100 group-hover:w-12 transition-all duration-300`}
                             />
