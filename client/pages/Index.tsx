@@ -953,7 +953,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █�����������█��������█████������██████ 60%
+                      CPU: █�����������█��������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2256,7 +2256,7 @@ export default function Index() {
       {/* Help Button - Available on all sections, above notifications */}
       {
         <div
-          className={`help-button fixed bottom-6 right-3 sm:bottom-8 sm:right-4 lg:right-8 z-[150] transition-all duration-300 ${
+          className={`help-button fixed bottom-6 right-3 sm:bottom-8 sm:right-4 md:right-6 lg:right-8 z-[150] transition-all duration-300 ${
             isMobileMenuOpen ? "blur-sm" : ""
           }`}
         >
