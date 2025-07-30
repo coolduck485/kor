@@ -297,18 +297,19 @@ const FloatingNotificationItem = React.forwardRef<
         }}
       />
 
-      {/* Main notification content */}
+      {/* Main notification content - container stays static */}
       <div
         className={cn(
-          "relative rounded-xl shadow-2xl transition-all",
+          "relative shadow-2xl transition-shadow",
           isMobile
-            ? "backdrop-blur-md duration-200 p-3 pr-10 text-sm"
-            : "backdrop-blur-xl duration-300 hover:shadow-glow-intense group-hover:scale-[1.02] p-4 pr-12",
+            ? "backdrop-blur-md duration-200"
+            : "backdrop-blur-xl duration-300 hover:shadow-glow-intense",
           "border border-transparent",
         )}
         style={{
           background: "rgba(0, 0, 0, 0.4)",
           backdropFilter: "blur(20px)",
+          borderRadius: "0.75rem", // Exact match with border
           boxShadow: `
             0 0 50px ${colors.glow},
             0 8px 32px rgba(0, 0, 0, 0.3),
@@ -316,6 +317,14 @@ const FloatingNotificationItem = React.forwardRef<
           `,
         }}
       >
+        {/* Inner content wrapper that animates on hover */}
+        <div
+          className={cn(
+            "relative transition-transform duration-300",
+            isMobile ? "p-3 pr-10 text-sm" : "p-4 pr-12",
+            !isMobile && "group-hover:scale-[1.02]"
+          )}
+        >
         {/* Floating particles effect - optimized for mobile */}
         {!isMobile && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
@@ -423,11 +432,14 @@ const FloatingNotificationItem = React.forwardRef<
 
         {/* Accent line */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-0.5 rounded-b-xl"
+          className="absolute bottom-0 left-0 right-0 h-0.5"
           style={{
             background: `linear-gradient(90deg, transparent, ${colors.accent}, transparent)`,
+            borderBottomLeftRadius: "0.75rem",
+            borderBottomRightRadius: "0.75rem",
           }}
         />
+        </div>
       </div>
     </motion.div>
   );
