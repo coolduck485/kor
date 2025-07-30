@@ -810,7 +810,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███�����������█╗
+                  {`██╗  ██╗ ██████���� ███����������█╗
 ██║ █��╔╝��█╔═�������═██╗█����╔����══██╗
 █████╔╝ █������   █��║██����███╔���
 ██╔═��█╗ █��║   ██║██╔══█��������
@@ -6952,7 +6952,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
             {/* Services Grid */}
             <div className="flex justify-center mt-6 sm:mt-8 lg:mt-12">
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 responsive-grid w-full max-w-5xl px-2 sm:px-4 lg:px-6">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3 lg:gap-4 responsive-grid w-full max-w-5xl px-3 sm:px-4 lg:px-6">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
@@ -6976,7 +6976,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   >
                     {/* Main Card Container */}
-                    <div className="relative h-full min-h-[140px] sm:min-h-[160px] lg:min-h-[180px]">
+                    <div className="relative h-full min-h-[160px] sm:min-h-[160px] lg:min-h-[180px]">
                       {/* Outer Glow Effect */}
                       <div
                         className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"
