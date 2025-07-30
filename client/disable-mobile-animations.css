@@ -40,6 +40,44 @@
     visibility: visible !important;
     transform: none !important;
   }
+
+  /* Disable card and button loading animations specifically */
+  [data-section="about"] div[class*="card"],
+  [data-section="about"] button,
+  [data-section="about"] [role="button"],
+  [data-section="services"] div[class*="card"],
+  [data-section="services"] button,
+  [data-section="services"] [role="button"],
+  [data-section="portfolio"] div[class*="card"],
+  [data-section="portfolio"] button,
+  [data-section="portfolio"] [role="button"],
+  [data-section="contact"] div[class*="card"],
+  [data-section="contact"] button,
+  [data-section="contact"] [role="button"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    animation: none !important;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+  }
+
+  /* Force all motion containers in non-home sections to show content immediately */
+  [data-section="about"] [style*="opacity: 0"],
+  [data-section="services"] [style*="opacity: 0"],
+  [data-section="portfolio"] [style*="opacity: 0"],
+  [data-section="contact"] [style*="opacity: 0"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Target deeply nested motion components */
+  [data-section="about"] * [style*="opacity: 0"],
+  [data-section="services"] * [style*="opacity: 0"],
+  [data-section="portfolio"] * [style*="opacity: 0"],
+  [data-section="contact"] * [style*="opacity: 0"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Tablet breakpoint: 641px to 991px */
