@@ -2130,7 +2130,9 @@ export default function Index() {
       {/* Help Button - Available on all sections, above notifications */}
       <div
         className={`help-button fixed right-12 sm:right-16 md:right-20 lg:right-24 z-[9999] transition-all duration-300 ${
-          isMobileSafari || (isSafari && isMobile) ? "" : "bottom-12 sm:bottom-16 md:bottom-20"
+          isMobileSafari || (isSafari && isMobile)
+            ? ""
+            : "bottom-12 sm:bottom-16 md:bottom-20"
         } ${isMobileMenuOpen ? "blur-sm" : ""}`}
         style={{
           position: "fixed",
@@ -2280,8 +2282,6 @@ export default function Index() {
             </div>
           </div>
         )}
-
-
 
         {/* Help Modal */}
         {isHelpModalOpen && (
@@ -2507,10 +2507,6 @@ export default function Index() {
             />
           </div>
         )}
-
-
-
-
 
         {/* Mobile Hamburger Menu - Only show in home section */}
         {currentSection === 0 && (
