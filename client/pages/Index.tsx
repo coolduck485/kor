@@ -24,6 +24,8 @@ import {
   Smartphone,
   Globe,
   Users,
+  HelpCircle,
+  X,
 } from "lucide-react";
 
 export default function Index() {
@@ -49,6 +51,10 @@ export default function Index() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [showNavigationHints, setShowNavigationHints] = useState(true);
+  const [initialLoadingComplete, setInitialLoadingComplete] = useState(false);
+  const [hasInteractedWithHelp, setHasInteractedWithHelp] = useState(false);
   const hasShownWelcomeRef = useRef(false);
   const hasShownMobilePerformanceRef = useRef(false);
 
@@ -422,6 +428,13 @@ export default function Index() {
     setIsScrollingActive(true);
     setTransitioningSectionIndex(index);
 
+    // Enhanced timing for desktop vs mobile
+    const isDesktopTransition = window.innerWidth > 1024;
+    const fadeToBlackTime = isDesktopTransition ? 250 : 350; // Faster on desktop
+    const contentRevealDelay = isDesktopTransition ? 50 : 100; // Faster on desktop
+    const visibilityDelay = isDesktopTransition ? 100 : 150; // Faster on desktop
+    const completionDelay = isDesktopTransition ? 600 : 900; // Faster on desktop
+
     // Start black transition animation
     setIsBlackTransition(true);
     setIsContentVisible(false);
@@ -429,6 +442,20 @@ export default function Index() {
     // Wait for fade to black, then change section
     setTimeout(() => {
       setCurrentSection(index);
+
+      // Reset scroll position to top for non-home sections IMMEDIATELY
+      if (index !== 0 && containerRef.current) {
+        containerRef.current.scrollTop = 0;
+        // Enhanced smooth reset for desktop
+        if (isDesktopTransition) {
+          containerRef.current.style.scrollBehavior = "auto";
+          setTimeout(() => {
+            if (containerRef.current) {
+              containerRef.current.style.scrollBehavior = "smooth";
+            }
+          }, 50);
+        }
+      }
 
       // Update URL based on section
       const sectionPath = index === 0 ? "/" : `/${sections[index].id}`;
@@ -459,196 +486,117 @@ export default function Index() {
           setTimeout(() => {
             setIsScrolling(false);
             setIsScrollingActive(false);
-          }, 900); // Allow time for content to fully appear
-        }, 150); // Small delay for content to start appearing
-      }, 100); // Short delay to ensure scroll is complete
-    }, 350); // Time for fade to black
+          }, completionDelay); // Responsive timing based on device
+        }, visibilityDelay); // Responsive delay
+      }, contentRevealDelay); // Responsive reveal delay
+    }, fadeToBlackTime); // Responsive fade timing
   };
 
-  // Handle wheel scroll
+  // Desktop scroll optimization variables
+  const scrollAccumulator = useRef(0);
+  const lastScrollTime = useRef(0);
+  const scrollTimeout = useRef<NodeJS.Timeout>();
+  const scrollMomentum = useRef(0);
+  const isDesktop = useRef(window.innerWidth > 1024);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Track scroll progress for visual indicators
   useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      if (isScrolling || mode === "retro") return;
-
-      // Check if we're on mobile/tablet and in services section (index 2)
-      const isMobileTablet = window.innerWidth <= 1024;
-      const isServicesSection = currentSection === 2;
-
-      if (isMobileTablet && isServicesSection) {
-        // Allow normal scrolling within services section
-        const servicesElement = document.querySelector(
-          '[data-section="services"]',
-        ) as HTMLElement;
-        if (servicesElement) {
-          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
-          const isAtTop = scrollTop <= 0;
-          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10; // 10px tolerance
-
-          // Only prevent default and trigger section change at boundaries
-          if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
-            e.preventDefault();
-            if (e.deltaY > 0 && currentSection < sections.length - 1) {
-              scrollToSection(currentSection + 1);
-            } else if (e.deltaY < 0 && currentSection > 0) {
-              scrollToSection(currentSection - 1);
-            }
-          }
-          // If not at boundaries, allow normal scrolling (don't prevent default)
-          return;
-        }
-      }
-
-      // Default behavior for other sections or desktop
-      e.preventDefault();
-      if (e.deltaY > 0 && currentSection < sections.length - 1) {
-        scrollToSection(currentSection + 1);
-      } else if (e.deltaY < 0 && currentSection > 0) {
-        scrollToSection(currentSection - 1);
+    const updateScrollProgress = () => {
+      if (containerRef.current && currentSection > 0) {
+        const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
+        const progress = scrollTop / Math.max(scrollHeight - clientHeight, 1);
+        setScrollProgress(progress * 100);
       }
     };
 
     const container = containerRef.current;
-    if (container) {
-      container.addEventListener("wheel", handleWheel, { passive: false });
-      return () => container.removeEventListener("wheel", handleWheel);
-    }
-  }, [currentSection, isScrolling, sections.length, mode]);
-
-  // Handle touch scroll for mobile - Enhanced with better swipe detection
-  useEffect(() => {
-    let touchStartY = 0;
-    let touchStartTime = 0;
-    let touchStartX = 0;
-    let isSwiping = false;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      if (isScrolling || mode === "retro") return;
-
-      touchStartY = e.touches[0].clientY;
-      touchStartX = e.touches[0].clientX;
-      touchStartTime = Date.now();
-      isSwiping = false;
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (isScrolling || mode === "retro") return;
-
-      const touchY = e.touches[0].clientY;
-      const touchX = e.touches[0].clientX;
-      const deltaY = Math.abs(touchY - touchStartY);
-      const deltaX = Math.abs(touchX - touchStartX);
-
-      // Determine if this is a vertical swipe (not horizontal)
-      if (deltaY > 10 && deltaY > deltaX * 1.5) {
-        isSwiping = true;
-
-        // Check if we're in services section on mobile/tablet
-        const isMobileTablet = window.innerWidth <= 1024;
-        const isServicesSection = currentSection === 2;
-
-        if (isMobileTablet && isServicesSection) {
-          // Allow normal scrolling within services section
-          const servicesElement = document.querySelector(
-            '[data-section="services"]',
-          ) as HTMLElement;
-          if (servicesElement) {
-            const { scrollTop, scrollHeight, clientHeight } = servicesElement;
-            const isAtTop = scrollTop <= 0;
-            const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
-            const scrollDirection = touchStartY - touchY;
-
-            // Only prevent default if at boundaries and trying to scroll beyond
-            if (
-              (scrollDirection > 0 && isAtBottom) ||
-              (scrollDirection < 0 && isAtTop)
-            ) {
-              e.preventDefault();
-            }
-            // Otherwise allow normal scrolling
-            return;
-          }
-        }
-
-        e.preventDefault(); // Prevent default scrolling only during vertical swipes for other sections
-      }
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      if (isScrolling || mode === "retro" || !isSwiping) return;
-
-      const touchEndY = e.changedTouches[0].clientY;
-      const deltaY = touchStartY - touchEndY;
-      const touchDuration = Date.now() - touchStartTime;
-      const swipeVelocity = Math.abs(deltaY) / touchDuration;
-
-      // Enhanced swipe detection: require minimum distance AND velocity
-      const minSwipeDistance = 50;
-      const minSwipeVelocity = 0.1; // pixels per millisecond
-
-      // Check if we're in services section on mobile/tablet
-      const isMobileTablet = window.innerWidth <= 1024;
-      const isServicesSection = currentSection === 2;
-
-      if (isMobileTablet && isServicesSection) {
-        // For services section, only trigger section change if at boundaries
-        const servicesElement = document.querySelector(
-          '[data-section="services"]',
-        ) as HTMLElement;
-        if (servicesElement) {
-          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
-          const isAtTop = scrollTop <= 0;
-          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
-
-          if (
-            Math.abs(deltaY) > minSwipeDistance &&
-            swipeVelocity > minSwipeVelocity
-          ) {
-            // Only change sections if at boundaries
-            if (
-              deltaY > 0 &&
-              isAtBottom &&
-              currentSection < sections.length - 1
-            ) {
-              scrollToSection(currentSection + 1);
-            } else if (deltaY < 0 && isAtTop && currentSection > 0) {
-              scrollToSection(currentSection - 1);
-            }
-          }
-        }
-      } else {
-        // Default behavior for other sections
-        if (
-          Math.abs(deltaY) > minSwipeDistance &&
-          swipeVelocity > minSwipeVelocity
-        ) {
-          if (deltaY > 0 && currentSection < sections.length - 1) {
-            scrollToSection(currentSection + 1);
-          } else if (deltaY < 0 && currentSection > 0) {
-            scrollToSection(currentSection - 1);
-          }
-        }
-      }
-
-      // Reset
-      isSwiping = false;
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("touchstart", handleTouchStart, {
+    if (container && currentSection > 0) {
+      container.addEventListener("scroll", updateScrollProgress, {
         passive: true,
       });
-      container.addEventListener("touchmove", handleTouchMove, {
-        passive: false,
-      });
-      container.addEventListener("touchend", handleTouchEnd, { passive: true });
-      return () => {
-        container.removeEventListener("touchstart", handleTouchStart);
-        container.removeEventListener("touchmove", handleTouchMove);
-        container.removeEventListener("touchend", handleTouchEnd);
-      };
+      return () =>
+        container.removeEventListener("scroll", updateScrollProgress);
     }
+  }, [currentSection]);
+
+  // Disabled automatic scroll transitions - now using navigation buttons only
+  useEffect(() => {
+    // Update desktop detection on resize
+    const updateIsDesktop = () => {
+      isDesktop.current = window.innerWidth > 1024;
+    };
+    window.addEventListener("resize", updateIsDesktop);
+
+    // No wheel event handler - allow natural scrolling within sections
+    return () => {
+      window.removeEventListener("resize", updateIsDesktop);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+    };
+  }, []);
+
+  // Auto-dismiss navigation hints after 10 seconds
+  useEffect(() => {
+    if (showNavigationHints && currentSection > 0) {
+      const timer = setTimeout(() => {
+        setShowNavigationHints(false);
+      }, 10000); // 10 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [showNavigationHints, currentSection]);
+
+  // Track initial loading completion and automatically show help modal
+  useEffect(() => {
+    // Set initial loading as complete after all animations settle
+    const timer = setTimeout(() => {
+      setInitialLoadingComplete(true);
+    }, 3000); // 3 seconds to allow for initial animations
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Automatically show help modal once initial loading is complete (first-time users only)
+  useEffect(() => {
+    if (initialLoadingComplete && !isHelpModalOpen && !hasInteractedWithHelp) {
+      // Small delay to ensure user sees the page first
+      const timer = setTimeout(() => {
+        setIsHelpModalOpen(true);
+      }, 1000); // 1 second after loading complete
+
+      return () => clearTimeout(timer);
+    }
+  }, [initialLoadingComplete, isHelpModalOpen, hasInteractedWithHelp]);
+
+  // Keyboard navigation for sections
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isScrolling || mode === "retro") return;
+
+      // Only trigger on specific key combinations to avoid interfering with normal usage
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === "ArrowUp" && currentSection > 0) {
+          e.preventDefault();
+          scrollToSection(currentSection - 1);
+          setShowNavigationHints(false); // Dismiss hints when user uses navigation
+        } else if (
+          e.key === "ArrowDown" &&
+          currentSection < sections.length - 1
+        ) {
+          e.preventDefault();
+          scrollToSection(currentSection + 1);
+          setShowNavigationHints(false); // Dismiss hints when user uses navigation
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [currentSection, isScrolling, sections.length, mode]);
+
+  // Disabled touch scroll section transitions - allow natural scrolling within sections
 
   // Listen for scroll events from buttons
   useEffect(() => {
@@ -900,12 +848,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████���� ███����������█╗
-██║ █��╔╝��█╔═�������═██╗█�����������══██╗
-█████╔╝ █������   █��║██����███╔���
-██╔����█╗ █��║   ██║██╔══█��������
-██║  �����█╗╚███��██�����╝██║  �������║
-╚���╝  ╚������ ╚═����══���╝ ╚═╝  ����═��`}
+                  {`██╗  ██╗ ██████���� ███������������█╗
+██║ █��╔╝��█╔═�������═██╗█�������������══██╗
+██���██╔╝ █������   █��║██����███╔���
+██╔����█╗ █��║   ██║██╔══�����������
+██║  �����█╗���███����██�����╝██║  ���������
+╚���╝  ╚������ ╚═����══�����╝ ╚═╝  ����═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -973,13 +921,13 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��������█������█████����██████ 60%
+                      CPU: █����������█������█████����██████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: █���████��█��█████████��███ 50%
+                      RAM: █���████��█��█████████����███ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1051,11 +999,11 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">������◄►������</span>
+                  <span className="text-green-400 ml-4">������◄����������</span>
                 </div>
 
                 <div className="loading-indicators">
-                  <span>█▓▒░</span>
+                  <span>█��▒░</span>
                   <span className="text-amber-400">PROCESSING...</span>
                   <span>░���▓█</span>
                 </div>
@@ -1753,6 +1701,89 @@ export default function Index() {
         `}</style>
           </>
         )}
+
+        {/* Custom Scrollbar Styling with Desktop Optimizations */}
+        <style>{`
+        /* Custom scrollbar for sections with content overflow */
+        div[data-section]:not([data-section="home"]) {
+          scrollbar-width: thin;
+          scrollbar-color: ${theme === "light" ? "rgba(59, 130, 246, 0.6)" : "rgba(73, 146, 255, 0.8)"} ${theme === "light" ? "rgba(243, 244, 246, 0.3)" : "rgba(17, 24, 39, 0.3)"};
+          scroll-padding-top: 20px;
+          scroll-padding-bottom: 20px;
+        }
+
+        /* Enhanced webkit scrollbar styling for desktop */
+        div[data-section]:not([data-section="home"])::-webkit-scrollbar {
+          width: 10px;
+          transition: width 0.2s ease;
+        }
+
+        @media (max-width: 1024px) {
+          div[data-section]:not([data-section="home"])::-webkit-scrollbar {
+            width: 6px;
+          }
+        }
+
+        div[data-section]:not([data-section="home"])::-webkit-scrollbar-track {
+          background: ${theme === "light" ? "rgba(243, 244, 246, 0.3)" : "rgba(17, 24, 39, 0.3)"};
+          border-radius: 6px;
+          margin: 5px 0;
+        }
+
+        div[data-section]:not([data-section="home"])::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg,
+            ${theme === "light" ? "rgba(59, 130, 246, 0.7)" : "rgba(73, 146, 255, 0.9)"} 0%,
+            ${theme === "light" ? "rgba(59, 130, 246, 0.5)" : "rgba(73, 146, 255, 0.7)"} 100%);
+          border-radius: 6px;
+          border: 1px solid ${theme === "light" ? "rgba(59, 130, 246, 0.2)" : "rgba(73, 146, 255, 0.3)"};
+          transition: all 0.3s ease;
+          box-shadow:
+            0 0 10px ${theme === "light" ? "rgba(59, 130, 246, 0.3)" : "rgba(73, 146, 255, 0.4)"},
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        div[data-section]:not([data-section="home"])::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(180deg,
+            ${theme === "light" ? "rgba(59, 130, 246, 0.9)" : "rgba(73, 146, 255, 1)"} 0%,
+            ${theme === "light" ? "rgba(59, 130, 246, 0.7)" : "rgba(73, 146, 255, 0.8)"} 100%);
+          box-shadow:
+            0 0 15px ${theme === "light" ? "rgba(59, 130, 246, 0.5)" : "rgba(73, 146, 255, 0.6)"},
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          transform: scale(1.02);
+        }
+
+        div[data-section]:not([data-section="home"])::-webkit-scrollbar-thumb:active {
+          background: linear-gradient(180deg,
+            ${theme === "light" ? "rgba(59, 130, 246, 1)" : "rgba(73, 146, 255, 1)"} 0%,
+            ${theme === "light" ? "rgba(59, 130, 246, 0.8)" : "rgba(73, 146, 255, 0.9)"} 100%);
+        }
+
+        /* Smooth scrolling performance optimizations */
+        div[data-section]:not([data-section="home"]) {
+          transform: translateZ(0);
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          perspective: 1000px;
+          will-change: scroll-position;
+        }
+
+        /* Hide horizontal scrollbar completely */
+        div[data-section]::-webkit-scrollbar:horizontal {
+          display: none;
+        }
+
+        /* Desktop scroll snap for smoother experience */
+        @media (min-width: 1025px) {
+          div[data-section]:not([data-section="home"]) {
+            scroll-snap-type: y proximity;
+            scroll-padding: 20px;
+          }
+
+          div[data-section]:not([data-section="home"]) > * {
+            scroll-snap-align: start;
+          }
+        }
+      `}</style>
       </div>
     );
   }
@@ -1770,91 +1801,460 @@ export default function Index() {
       }`}
       style={{
         height: "100vh",
-        overflow: "hidden",
+        overflowY: currentSection === 0 ? "hidden" : "auto", // Allow vertical scrolling on content sections
+        overflowX: "hidden", // Always disable horizontal scrolling
         maxWidth: "100vw",
         willChange: isScrollingActive ? "auto" : "transform",
         contain: "layout style paint",
+        scrollBehavior: "smooth", // Native smooth scrolling for content
+        scrollbarGutter: "stable", // Prevent layout shift from scrollbar
+        WebkitOverflowScrolling: "touch", // Smooth scrolling on iOS
       }}
     >
-      {/* Universal Scroll Navigation */}
-      {currentSection < sections.length - 1 && (
-        <div
-          className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
-        >
-          <div className="flex flex-col items-center space-y-3 animate-button-float">
-            <span
-              className={`font-inter text-sm font-medium animate-text-glow ${
-                theme === "light" ? "text-gray-600" : "text-white/70"
-              }`}
+      {/* Navigation Hints for New Users */}
+      {showNavigationHints && currentSection > 0 && (
+        <div className="fixed right-20 top-1/2 -translate-y-1/2 z-40 animate-pulse">
+          <div
+            className={`px-3 py-2 rounded-lg border backdrop-blur-sm text-sm font-medium whitespace-nowrap ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/90 text-gray-800"
+                : "border-blue-300/30 bg-black/80 text-white"
+            }`}
+            style={{
+              boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            Click to navigate sections →
+            <button
+              onClick={() => setShowNavigationHints(false)}
+              className="ml-2 text-xs opacity-60 hover:opacity-100"
             >
-              Scroll Down
-            </span>
-
-            {/* Mouse scroll indicator - now visible on all devices */}
-            <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
-              <div
-                className={`w-1 h-3 rounded-full mt-2 animate-float shadow-lg ${
-                  isPinkActive
-                    ? "bg-gradient-to-b from-pink-400 to-pink-200"
-                    : "bg-gradient-to-b from-glow-blue to-white/80"
-                }`}
-                style={{
-                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
-                }}
-              />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
-            </div>
+              ✕
+            </button>
           </div>
         </div>
       )}
 
-      {/* Scroll Up Indicator - Last Section */}
-      {currentSection === sections.length - 1 && (
-        <div
-          className={`scroll-indicator fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
-            isMobileMenuOpen ? "blur-sm" : ""
-          }`}
-        >
-          <div className="flex flex-col items-center space-y-3 animate-button-float">
-            <span
-              className={`font-inter text-sm font-medium animate-text-glow ${
-                theme === "light" ? "text-gray-600" : "text-white/70"
-              }`}
-            >
-              Scroll Up
-            </span>
-
-            {/* Mouse scroll indicator - pointing up - now visible on all devices */}
-            <div className="flex relative w-6 h-10 border-2 border-white/40 rounded-full justify-center backdrop-blur-sm bg-white/5">
-              <div
-                className={`w-1 h-3 rounded-full mb-2 animate-float shadow-lg ${
-                  isPinkActive
-                    ? "bg-gradient-to-t from-pink-400 to-pink-200"
-                    : "bg-gradient-to-t from-glow-blue to-white/80"
-                }`}
-                style={{
-                  boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
-                  alignSelf: "flex-end",
-                }}
-              />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-white/10 to-transparent" />
-            </div>
+      {/* Section Position Indicator Hint */}
+      {showNavigationHints && currentSection > 0 && (
+        <div className="fixed left-20 top-1/2 -translate-y-1/2 z-40 animate-pulse">
+          <div
+            className={`px-3 py-2 rounded-lg border backdrop-blur-sm text-sm font-medium whitespace-nowrap ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/90 text-gray-800"
+                : "border-blue-300/30 bg-black/80 text-white"
+            }`}
+            style={{
+              boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            ← Click dots to jump to any section
           </div>
         </div>
       )}
 
-      {/* Back to Top Button - All sections except first */}
-      {currentSection > 0 && (
+      {/* Section Navigation Buttons */}
+      <div className="fixed right-1 sm:right-2 lg:right-3 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-2 sm:space-y-3">
+        {/* Previous Section Button */}
+        {currentSection > 0 && (
+          <button
+            onClick={() => {
+              scrollToSection(currentSection - 1);
+              setShowNavigationHints(false);
+            }}
+            className={`group relative p-2 sm:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+            }`}
+            style={{
+              background:
+                theme === "light"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+              boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            <ChevronUp
+              className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                theme === "light"
+                  ? "text-blue-600 group-hover:text-blue-700"
+                  : "text-white group-hover:text-blue-300"
+              }`}
+            />
+
+            {/* Tooltip */}
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
+              <div
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
+                }`}
+              >
+                Click here to move up
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
+                  }`}
+                />
+              </div>
+            </div>
+          </button>
+        )}
+
+        {/* Next Section Button */}
+        {currentSection < sections.length - 1 && (
+          <button
+            onClick={() => {
+              scrollToSection(currentSection + 1);
+              setShowNavigationHints(false);
+            }}
+            className={`group relative p-2 sm:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+            }`}
+            style={{
+              background:
+                theme === "light"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+              boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            <ChevronDown
+              className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                theme === "light"
+                  ? "text-blue-600 group-hover:text-blue-700"
+                  : "text-white group-hover:text-blue-300"
+              }`}
+            />
+
+            {/* Tooltip */}
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 pointer-events-none">
+              <div
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
+                }`}
+              >
+                Next Section
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
+                  }`}
+                />
+              </div>
+            </div>
+          </button>
+        )}
+
+        {/* Navigation Help Text - shows on content sections */}
+        {currentSection > 0 && (
+          <div className="mt-6 text-center">
+            <p
+              className={`text-xs opacity-60 ${
+                theme === "light" ? "text-gray-500" : "text-white/60"
+              }`}
+            >
+              Use buttons or Ctrl+Arrow keys
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Help Modal */}
+      {isHelpModalOpen && (
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => {
+              setIsHelpModalOpen(false);
+              setHasInteractedWithHelp(true);
+            }}
+          />
+
+          {/* Modal */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className={`relative w-full max-w-md mx-4 p-6 rounded-2xl border-2 backdrop-blur-xl ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/90"
+                : "border-blue-300/30 bg-black/80"
+            }`}
+            style={{
+              background:
+                theme === "light"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)`
+                  : `linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.85) 100%)`,
+              boxShadow: "0 0 30px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => {
+                setIsHelpModalOpen(false);
+                setHasInteractedWithHelp(true);
+              }}
+              className={`absolute top-4 right-4 p-2 rounded-full transition-colors duration-200 ${
+                theme === "light"
+                  ? "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                  : "text-gray-400 hover:text-white hover:bg-white/10"
+              }`}
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Header */}
+            <div className="mb-6">
+              <h2
+                className={`text-xl font-bold mb-2 ${
+                  theme === "light" ? "text-gray-900" : "text-white"
+                }`}
+              >
+                Navigation Help
+              </h2>
+              <p
+                className={`text-sm ${
+                  theme === "light" ? "text-gray-600" : "text-gray-300"
+                }`}
+              >
+                Learn how to navigate through the website sections
+              </p>
+            </div>
+
+            {/* Navigation Instructions */}
+            <div className="space-y-4">
+              {/* Section Buttons */}
+              <div className="flex items-start space-x-3">
+                <div className="flex flex-col space-y-1 mt-1">
+                  <div className="w-8 h-8 rounded-full border-2 border-blue-400 flex items-center justify-center">
+                    <ChevronUp className="w-4 h-4 text-blue-400" />
+                  </div>
+                  <div className="w-8 h-8 rounded-full border-2 border-blue-400 flex items-center justify-center">
+                    <ChevronDown className="w-4 h-4 text-blue-400" />
+                  </div>
+                </div>
+                <div>
+                  <h3
+                    className={`font-semibold text-sm mb-1 ${
+                      theme === "light" ? "text-gray-900" : "text-white"
+                    }`}
+                  >
+                    Section Navigation Buttons
+                  </h3>
+                  <p
+                    className={`text-xs ${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    }`}
+                  >
+                    Use the up/down arrow buttons on the right side to move
+                    between sections
+                  </p>
+                </div>
+              </div>
+
+              {/* Section Dots */}
+              <div className="flex items-start space-x-3">
+                <div className="flex flex-col space-y-1 mt-1">
+                  <div className="w-3 h-3 rounded-full bg-blue-400" />
+                  <div className="w-3 h-3 rounded-full border-2 border-gray-400" />
+                  <div className="w-3 h-3 rounded-full border-2 border-gray-400" />
+                </div>
+                <div>
+                  <h3
+                    className={`font-semibold text-sm mb-1 ${
+                      theme === "light" ? "text-gray-900" : "text-white"
+                    }`}
+                  >
+                    Section Indicators
+                  </h3>
+                  <p
+                    className={`text-xs ${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    }`}
+                  >
+                    Click the dots on the left side to jump directly to any
+                    section
+                  </p>
+                </div>
+              </div>
+
+              {/* Keyboard Shortcuts */}
+              <div className="flex items-start space-x-3">
+                <div className="flex space-x-1 mt-1">
+                  <kbd
+                    className={`px-2 py-1 text-xs rounded ${
+                      theme === "light"
+                        ? "bg-gray-200 text-gray-700"
+                        : "bg-gray-700 text-gray-300"
+                    }`}
+                  >
+                    Ctrl
+                  </kbd>
+                  <span className="text-xs">+</span>
+                  <kbd
+                    className={`px-2 py-1 text-xs rounded ${
+                      theme === "light"
+                        ? "bg-gray-200 text-gray-700"
+                        : "bg-gray-700 text-gray-300"
+                    }`}
+                  >
+                    ↑↓
+                  </kbd>
+                </div>
+                <div>
+                  <h3
+                    className={`font-semibold text-sm mb-1 ${
+                      theme === "light" ? "text-gray-900" : "text-white"
+                    }`}
+                  >
+                    Keyboard Shortcuts
+                  </h3>
+                  <p
+                    className={`text-xs ${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    }`}
+                  >
+                    Hold Ctrl and use arrow keys to navigate between sections
+                  </p>
+                </div>
+              </div>
+
+              {/* Content Scrolling */}
+              <div className="flex items-start space-x-3">
+                <div className="w-8 h-12 border-2 border-blue-400 rounded mt-1 relative">
+                  <div className="absolute right-0 top-1 bottom-1 w-1 bg-blue-400 rounded" />
+                </div>
+                <div>
+                  <h3
+                    className={`font-semibold text-sm mb-1 ${
+                      theme === "light" ? "text-gray-900" : "text-white"
+                    }`}
+                  >
+                    Content Scrolling
+                  </h3>
+                  <p
+                    className={`text-xs ${
+                      theme === "light" ? "text-gray-600" : "text-gray-300"
+                    }`}
+                  >
+                    Scroll naturally within each section to view all content.
+                    Section changes only happen via buttons.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <button
+                onClick={() => {
+                  setIsHelpModalOpen(false);
+                  setShowNavigationHints(false);
+                  setHasInteractedWithHelp(true);
+                }}
+                className={`w-full py-2 px-4 rounded-lg font-medium transition-colors duration-200 ${
+                  theme === "light"
+                    ? "bg-blue-600 hover:bg-blue-700 text-white"
+                    : "bg-blue-500 hover:bg-blue-600 text-white"
+                }`}
+              >
+                Got it, dismiss hints
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Desktop Scroll Progress Indicator */}
+      {currentSection > 0 && window.innerWidth > 1024 && (
         <div
-          className={`back-to-top fixed bottom-8 right-4 sm:right-8 z-50 transition-all duration-300 ${
+          className={`fixed top-0 left-0 w-full h-1 z-50 pointer-events-none transition-opacity duration-300 ${
+            theme === "light" ? "bg-gray-200/50" : "bg-white/10"
+          }`}
+        >
+          <div
+            className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-200 ease-out"
+            style={{
+              width: `${scrollProgress}%`,
+              boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
+            }}
+          />
+        </div>
+      )}
+
+      {/* Section Position Indicator */}
+      <div className="fixed left-3 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col space-y-1 sm:space-y-1.5 lg:space-y-2">
+        {sections.map((section, index) => (
+          <button
+            key={section.id}
+            onClick={() => {
+              scrollToSection(index);
+              setShowNavigationHints(false);
+            }}
+            className={`group relative w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
+              index === currentSection
+                ? theme === "light"
+                  ? "bg-blue-600 shadow-lg scale-125"
+                  : "bg-blue-400 shadow-lg scale-125"
+                : theme === "light"
+                  ? "bg-gray-300 hover:bg-gray-400"
+                  : "bg-white/30 hover:bg-white/50"
+            }`}
+            style={{
+              boxShadow:
+                index === currentSection
+                  ? "0 0 15px rgba(73, 146, 255, 0.5)"
+                  : "none",
+            }}
+          >
+            {/* Tooltip */}
+            <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 pointer-events-none">
+              <div
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
+                }`}
+              >
+                {section.title}
+                <div
+                  className={`absolute right-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent ${
+                    theme === "light"
+                      ? "border-r-white/90"
+                      : "border-r-black/80"
+                  }`}
+                />
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {/* Help Button - Available on all sections, above notifications */}
+      {
+        <div
+          className={`help-button fixed bottom-6 right-3 sm:bottom-8 sm:right-4 lg:right-8 z-[150] transition-all duration-300 ${
             isMobileMenuOpen ? "blur-sm" : ""
           }`}
         >
           <button
-            onClick={() => scrollToSection(0)}
-            className={`group relative p-3 sm:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
+            onClick={() => {
+              setIsHelpModalOpen(true);
+              setHasInteractedWithHelp(true);
+            }}
+            className={`group relative p-2.5 sm:p-3 lg:p-4 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
               isPinkActive
                 ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
                 : theme === "light"
@@ -1871,9 +2271,9 @@ export default function Index() {
                 : "0 0 20px rgba(73, 146, 255, 0.3)",
             }}
           >
-            {/* Icon */}
-            <ChevronUp
-              className={`w-5 h-5 sm:w-6 sm:h-6 transition-colors duration-300 ${
+            {/* Help Icon */}
+            <HelpCircle
+              className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 transition-colors duration-300 ${
                 isPinkActive
                   ? "text-pink-400 group-hover:text-pink-300"
                   : theme === "light"
@@ -1894,7 +2294,7 @@ export default function Index() {
                     : "border-blue-300/30 bg-black/80 text-white"
                 }`}
               >
-                Back to Top
+                Navigation Help
                 <div
                   className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                     theme === "light"
@@ -1906,7 +2306,7 @@ export default function Index() {
             </div>
           </button>
         </div>
-      )}
+      }
 
       {/* Mobile Hamburger Menu - Only show in home section */}
       {currentSection === 0 && (
@@ -3656,7 +4056,7 @@ export default function Index() {
         {/* Services Section */}
         <motion.div
           data-section="services"
-          className={`${isMobileMenuOpen ? "blur-sm" : ""} lg:overflow-hidden overflow-y-auto lg:h-auto h-screen`}
+          className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
           style={{
             display: currentSection === 2 ? "block" : "none",
           }}
@@ -5211,7 +5611,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  �����  hoverScale: 1.15
+// Change: hoverScale: 1.05  ������  hoverScale: 1.15
 //
 // ========================================
 
@@ -6513,7 +6913,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
     return (
       <motion.div
         ref={ref}
-        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+        className={`relative w-full min-h-screen ${
           theme === "light"
             ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
             : "bg-black"
@@ -6925,10 +7325,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         </div>
 
         {/* Main Content Container */}
-        <div className="relative min-h-screen py-2 sm:py-3 lg:py-4 section-container">
+        <div className="relative w-full py-4 sm:py-6 lg:py-8 section-container">
           {/* Text Content */}
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-2"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-6xl mx-auto section-content pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-16"
             initial={{
               opacity: 0,
               y: 80,
@@ -6950,9 +7350,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             }}
           >
             {/* Services Title - matching home style */}
-            <div className="text-center mb-3">
+            <div className="text-center mb-2">
               <h1
-                className={`font-poppins text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight relative mobile-lively-text ${
+                className={`font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight relative mobile-lively-text ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
@@ -6971,7 +7371,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle - matching development services style */}
-            <div className="text-center mb-3">
+            <div className="text-center mb-2">
               <div className="relative">
                 {/* Background glow effect */}
                 <div
@@ -7008,7 +7408,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     />
                   ))}
 
-                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10">
+                <div className="font-poppins text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold relative z-10">
                   <span
                     className={`relative inline-block ${
                       theme === "light" ? "text-gray-900" : "text-white"
@@ -7041,8 +7441,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Services Stack */}
-            <div className="flex justify-center mt-6 sm:mt-8 lg:mt-12 px-4">
-              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-4 sm:gap-6 lg:gap-8 w-full max-w-2xl sm:max-w-3xl lg:max-w-6xl">
+            <div className="flex justify-center mt-4 sm:mt-6 lg:mt-8 px-4">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-6 w-full max-w-xl sm:max-w-2xl lg:max-w-5xl">
                 {services.map((service, index) => (
                   <motion.div
                     key={index}
@@ -7066,7 +7466,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   >
                     {/* Main Card Container */}
-                    <div className="relative h-full min-h-[140px] sm:min-h-[150px] lg:min-h-[160px]">
+                    <div className="relative h-full min-h-[120px] sm:min-h-[130px] lg:min-h-[140px]">
                       {/* Outer Glow Effect */}
                       <div
                         className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"
@@ -7115,9 +7515,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         </div>
 
                         {/* Content Container */}
-                        <div className="relative z-10 h-full flex flex-col p-3 sm:p-3 lg:p-4">
+                        <div className="relative z-10 h-full flex flex-col p-2 sm:p-2.5 lg:p-3">
                           {/* Icon Section */}
-                          <div className="flex justify-center mb-3">
+                          <div className="flex justify-center mb-2">
                             <motion.div
                               className="relative"
                               whileHover={{
@@ -7128,12 +7528,12 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             >
                               {/* Icon Background */}
                               <div
-                                className={`w-10 h-10 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.color} shadow-md`}
+                                className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.color} shadow-md`}
                                 style={{
                                   boxShadow: `0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
                                 }}
                               >
-                                <service.icon className="w-5 h-5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white drop-shadow-md" />
+                                <service.icon className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white drop-shadow-md" />
                               </div>
 
                               {/* Icon Glow */}
@@ -7144,21 +7544,21 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           </div>
 
                           {/* Title */}
-                          <div className="text-center mb-3">
-                            <h3 className="text-base sm:text-base lg:text-base font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
+                          <div className="text-center mb-2">
+                            <h3 className="text-sm sm:text-sm lg:text-base font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
                               {service.title}
                             </h3>
                           </div>
 
                           {/* Description */}
                           <div className="flex-1 flex items-center">
-                            <p className="text-gray-300 text-xs sm:text-xs lg:text-sm leading-snug text-center opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+                            <p className="text-gray-300 text-xs sm:text-xs lg:text-xs leading-snug text-center opacity-90 group-hover:opacity-100 transition-opacity duration-300">
                               {service.description}
                             </p>
                           </div>
 
                           {/* Bottom Accent */}
-                          <div className="mt-3 flex justify-center">
+                          <div className="mt-2 flex justify-center">
                             <div
                               className={`w-10 h-0.5 rounded-full bg-gradient-to-r ${service.color} opacity-60 group-hover:opacity-100 group-hover:w-12 transition-all duration-300`}
                             />
@@ -8173,7 +8573,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "��", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "📱", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "📞", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "��", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
@@ -8937,7 +9337,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Instagram",
                         subtitle: "Follow us for updates",
                         url: "https://instagram.com",
-                        icon: "📷",
+                        icon: "���",
                         color: "from-pink-500 via-purple-500 to-indigo-500",
                         shadowColor: "rgba(236, 72, 153, 0.3)",
                       },
@@ -8953,7 +9353,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "����",
+                        icon: "�����",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
