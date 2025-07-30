@@ -1857,7 +1857,7 @@ export default function Index() {
               scrollToSection(currentSection - 1);
               setShowNavigationHints(false);
             }}
-            className={`group relative p-3 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
+            className={`group relative p-2 sm:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
                 : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
@@ -1871,7 +1871,7 @@ export default function Index() {
             }}
           >
             <ChevronUp
-              className={`w-5 h-5 transition-colors duration-300 ${
+              className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
                 theme === "light"
                   ? "text-blue-600 group-hover:text-blue-700"
                   : "text-white group-hover:text-blue-300"
@@ -1907,7 +1907,7 @@ export default function Index() {
               scrollToSection(currentSection + 1);
               setShowNavigationHints(false);
             }}
-            className={`group relative p-3 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 ${
+            className={`group relative p-2 sm:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
                 : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
