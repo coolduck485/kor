@@ -413,241 +413,68 @@ export default function Index() {
     { id: "contact", title: "Contact Us", component: "contact" },
   ];
 
-  // Scroll to section function with black transition
+  // Smooth scroll to section function
   const scrollToSection = (index: number) => {
-    if (isScrolling || !containerRef.current) return;
+    if (!containerRef.current || index < 0 || index >= sections.length) return;
 
-    setIsScrolling(true);
-    setIsScrollingActive(true);
-    setTransitioningSectionIndex(index);
-
-    // Start black transition animation
-    setIsBlackTransition(true);
-    setIsContentVisible(false);
-
-    // Wait for fade to black, then change section
-    setTimeout(() => {
-      setCurrentSection(index);
+    const targetSection = sectionsRef.current[index];
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
 
       // Update URL based on section
       const sectionPath = index === 0 ? "/" : `/${sections[index].id}`;
-      window.history.pushState({}, "", sectionPath);
-
-      const targetSection = sectionsRef.current[index];
-      if (targetSection) {
-        targetSection.scrollIntoView({
-          behavior: "auto", // Instant scroll during black screen
-          block: "start",
-        });
+      if (window.location.pathname !== sectionPath) {
+        window.history.pushState({}, "", sectionPath);
       }
-
-      // If returning to home section (index 0), trigger loading animation
-      if (index === 0) {
-        triggerOptimizedLoadingSequence();
-      }
-
-      // Start revealing new content after a cinematic pause
-      setTimeout(() => {
-        setIsBlackTransition(false);
-
-        // Delay content visibility for dramatic effect
-        setTimeout(() => {
-          setIsContentVisible(true);
-
-          // Complete the transition
-          setTimeout(() => {
-            setIsScrolling(false);
-            setIsScrollingActive(false);
-          }, 900); // Allow time for content to fully appear
-        }, 150); // Small delay for content to start appearing
-      }, 100); // Short delay to ensure scroll is complete
-    }, 350); // Time for fade to black
+    }
   };
 
-  // Handle wheel scroll
+  // Handle scroll position detection
   useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      if (isScrolling || mode === "retro") return;
+    const handleScroll = () => {
+      if (!containerRef.current || mode === "retro") return;
 
-      // Check if we're on mobile/tablet and in services section (index 2)
-      const isMobileTablet = window.innerWidth <= 1024;
-      const isServicesSection = currentSection === 2;
+      const scrollTop = containerRef.current.scrollTop;
+      const windowHeight = window.innerHeight;
 
-      if (isMobileTablet && isServicesSection) {
-        // Allow normal scrolling within services section
-        const servicesElement = document.querySelector(
-          '[data-section="services"]',
-        ) as HTMLElement;
-        if (servicesElement) {
-          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
-          const isAtTop = scrollTop <= 0;
-          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10; // 10px tolerance
+      // Determine current section based on scroll position
+      const newCurrentSection = sectionsRef.current.findIndex((section, index) => {
+        if (!section) return false;
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
 
-          // Only prevent default and trigger section change at boundaries
-          if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
-            e.preventDefault();
-            if (e.deltaY > 0 && currentSection < sections.length - 1) {
-              scrollToSection(currentSection + 1);
-            } else if (e.deltaY < 0 && currentSection > 0) {
-              scrollToSection(currentSection - 1);
-            }
-          }
-          // If not at boundaries, allow normal scrolling (don't prevent default)
-          return;
+        // Section is considered current if it's more than 50% visible
+        const visibleTop = Math.max(scrollTop, sectionTop);
+        const visibleBottom = Math.min(scrollTop + windowHeight, sectionBottom);
+        const visibleHeight = visibleBottom - visibleTop;
+        const sectionHeight = sectionBottom - sectionTop;
+
+        return visibleHeight > sectionHeight * 0.5;
+      });
+
+      if (newCurrentSection !== -1 && newCurrentSection !== currentSection) {
+        setCurrentSection(newCurrentSection);
+
+        // Update URL based on section
+        const sectionPath = newCurrentSection === 0 ? "/" : `/${sections[newCurrentSection].id}`;
+        if (window.location.pathname !== sectionPath) {
+          window.history.pushState({}, "", sectionPath);
         }
-      }
-
-      // Default behavior for other sections or desktop
-      e.preventDefault();
-      if (e.deltaY > 0 && currentSection < sections.length - 1) {
-        scrollToSection(currentSection + 1);
-      } else if (e.deltaY < 0 && currentSection > 0) {
-        scrollToSection(currentSection - 1);
       }
     };
 
     const container = containerRef.current;
     if (container) {
-      container.addEventListener("wheel", handleWheel, { passive: false });
-      return () => container.removeEventListener("wheel", handleWheel);
+      container.addEventListener("scroll", handleScroll, { passive: true });
+      return () => container.removeEventListener("scroll", handleScroll);
     }
-  }, [currentSection, isScrolling, sections.length, mode]);
+  }, [currentSection, sections, mode]);
 
-  // Handle touch scroll for mobile - Enhanced with better swipe detection
-  useEffect(() => {
-    let touchStartY = 0;
-    let touchStartTime = 0;
-    let touchStartX = 0;
-    let isSwiping = false;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      if (isScrolling || mode === "retro") return;
-
-      touchStartY = e.touches[0].clientY;
-      touchStartX = e.touches[0].clientX;
-      touchStartTime = Date.now();
-      isSwiping = false;
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (isScrolling || mode === "retro") return;
-
-      const touchY = e.touches[0].clientY;
-      const touchX = e.touches[0].clientX;
-      const deltaY = Math.abs(touchY - touchStartY);
-      const deltaX = Math.abs(touchX - touchStartX);
-
-      // Determine if this is a vertical swipe (not horizontal)
-      if (deltaY > 10 && deltaY > deltaX * 1.5) {
-        isSwiping = true;
-
-        // Check if we're in services section on mobile/tablet
-        const isMobileTablet = window.innerWidth <= 1024;
-        const isServicesSection = currentSection === 2;
-
-        if (isMobileTablet && isServicesSection) {
-          // Allow normal scrolling within services section
-          const servicesElement = document.querySelector(
-            '[data-section="services"]',
-          ) as HTMLElement;
-          if (servicesElement) {
-            const { scrollTop, scrollHeight, clientHeight } = servicesElement;
-            const isAtTop = scrollTop <= 0;
-            const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
-            const scrollDirection = touchStartY - touchY;
-
-            // Only prevent default if at boundaries and trying to scroll beyond
-            if (
-              (scrollDirection > 0 && isAtBottom) ||
-              (scrollDirection < 0 && isAtTop)
-            ) {
-              e.preventDefault();
-            }
-            // Otherwise allow normal scrolling
-            return;
-          }
-        }
-
-        e.preventDefault(); // Prevent default scrolling only during vertical swipes for other sections
-      }
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      if (isScrolling || mode === "retro" || !isSwiping) return;
-
-      const touchEndY = e.changedTouches[0].clientY;
-      const deltaY = touchStartY - touchEndY;
-      const touchDuration = Date.now() - touchStartTime;
-      const swipeVelocity = Math.abs(deltaY) / touchDuration;
-
-      // Enhanced swipe detection: require minimum distance AND velocity
-      const minSwipeDistance = 50;
-      const minSwipeVelocity = 0.1; // pixels per millisecond
-
-      // Check if we're in services section on mobile/tablet
-      const isMobileTablet = window.innerWidth <= 1024;
-      const isServicesSection = currentSection === 2;
-
-      if (isMobileTablet && isServicesSection) {
-        // For services section, only trigger section change if at boundaries
-        const servicesElement = document.querySelector(
-          '[data-section="services"]',
-        ) as HTMLElement;
-        if (servicesElement) {
-          const { scrollTop, scrollHeight, clientHeight } = servicesElement;
-          const isAtTop = scrollTop <= 0;
-          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
-
-          if (
-            Math.abs(deltaY) > minSwipeDistance &&
-            swipeVelocity > minSwipeVelocity
-          ) {
-            // Only change sections if at boundaries
-            if (
-              deltaY > 0 &&
-              isAtBottom &&
-              currentSection < sections.length - 1
-            ) {
-              scrollToSection(currentSection + 1);
-            } else if (deltaY < 0 && isAtTop && currentSection > 0) {
-              scrollToSection(currentSection - 1);
-            }
-          }
-        }
-      } else {
-        // Default behavior for other sections
-        if (
-          Math.abs(deltaY) > minSwipeDistance &&
-          swipeVelocity > minSwipeVelocity
-        ) {
-          if (deltaY > 0 && currentSection < sections.length - 1) {
-            scrollToSection(currentSection + 1);
-          } else if (deltaY < 0 && currentSection > 0) {
-            scrollToSection(currentSection - 1);
-          }
-        }
-      }
-
-      // Reset
-      isSwiping = false;
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener("touchstart", handleTouchStart, {
-        passive: true,
-      });
-      container.addEventListener("touchmove", handleTouchMove, {
-        passive: false,
-      });
-      container.addEventListener("touchend", handleTouchEnd, { passive: true });
-      return () => {
-        container.removeEventListener("touchstart", handleTouchStart);
-        container.removeEventListener("touchmove", handleTouchMove);
-        container.removeEventListener("touchend", handleTouchEnd);
-      };
-    }
-  }, [currentSection, isScrolling, sections.length, mode]);
+  // Remove touch scroll hijacking - allow natural touch scrolling
+  // Touch events are now handled by the browser's natural scroll behavior
 
   // Listen for scroll events from buttons
   useEffect(() => {
