@@ -1817,6 +1817,49 @@ export default function Index() {
             scroll-snap-align: start;
           }
         }
+
+        /* Enhanced responsive fixes for smaller desktop screens */
+        @media (min-width: 768px) and (max-width: 1024px) {
+          /* Ensure navigation elements stay visible and accessible */
+          .fixed {
+            position: fixed !important;
+          }
+
+          /* Prevent content from overlapping navigation */
+          div[data-section]:not([data-section="home"]) {
+            padding-right: 60px;
+            padding-left: 30px;
+            box-sizing: border-box;
+          }
+
+          /* Ensure proper section heights on smaller desktop screens */
+          div[data-section] {
+            min-height: 100vh;
+            max-height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+          }
+        }
+
+        /* Small desktop screen fixes */
+        @media (min-width: 1025px) and (max-width: 1280px) {
+          /* Prevent navigation overlap */
+          div[data-section]:not([data-section="home"]) {
+            padding-right: 80px;
+            padding-left: 40px;
+          }
+        }
+
+        /* Ensure fixed elements stay in viewport on all screen sizes */
+        @media (min-width: 768px) {
+          .fixed[style*="right"] {
+            right: clamp(8px, 2vw, 32px) !important;
+          }
+
+          .fixed[style*="left"] {
+            left: clamp(8px, 2vw, 24px) !important;
+          }
+        }
       `}</style>
       </div>
     );
