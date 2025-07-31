@@ -1913,7 +1913,9 @@ export default function Index() {
                     : "border-blue-300/30 bg-black/80 text-white"
                 }`}
               >
-                {window.innerWidth < 992 ? "Tap here!" : "Click to navigate sections or use Ctrl+Arrow keys"}
+                {window.innerWidth < 992
+                  ? "Tap here!"
+                  : "Click to navigate sections or use Ctrl+Arrow keys"}
                 <div
                   className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                     theme === "light"
@@ -2017,30 +2019,30 @@ export default function Index() {
           className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
           style={{ position: "fixed" }}
         >
-        {sections.map((section, index) => (
-          <button
-            key={section.id}
-            onClick={() => {
-              scrollToSection(index);
-              setShowNavigationHints(false);
-            }}
-            className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
-              index === currentSection
-                ? theme === "light"
-                  ? "bg-blue-600 shadow-lg scale-125"
-                  : "bg-blue-400 shadow-lg scale-125"
-                : theme === "light"
-                  ? "bg-gray-300 hover:bg-gray-400"
-                  : "bg-white/30 hover:bg-white/50"
-            }`}
-            style={{
-              boxShadow:
+          {sections.map((section, index) => (
+            <button
+              key={section.id}
+              onClick={() => {
+                scrollToSection(index);
+                setShowNavigationHints(false);
+              }}
+              className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
                 index === currentSection
-                  ? "0 0 15px rgba(73, 146, 255, 0.5)"
-                  : "none",
-            }}
-          />
-        ))}
+                  ? theme === "light"
+                    ? "bg-blue-600 shadow-lg scale-125"
+                    : "bg-blue-400 shadow-lg scale-125"
+                  : theme === "light"
+                    ? "bg-gray-300 hover:bg-gray-400"
+                    : "bg-white/30 hover:bg-white/50"
+              }`}
+              style={{
+                boxShadow:
+                  index === currentSection
+                    ? "0 0 15px rgba(73, 146, 255, 0.5)"
+                    : "none",
+              }}
+            />
+          ))}
         </div>
       )}
 
@@ -2096,26 +2098,28 @@ export default function Index() {
           <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
 
           {/* Tooltip - positioned above on desktop only (992px+) */}
-          {shouldShowTooltip("help-button") && !isHelpModalOpen && window.innerWidth >= 992 && (
-            <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-100 transition-all duration-300 transform pointer-events-none">
-              <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                  theme === "light"
-                    ? "border-blue-400/40 bg-white/90 text-gray-800"
-                    : "border-blue-300/30 bg-black/80 text-white"
-                }`}
-              >
-                Click here for help
+          {shouldShowTooltip("help-button") &&
+            !isHelpModalOpen &&
+            window.innerWidth >= 992 && (
+              <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-100 transition-all duration-300 transform pointer-events-none">
                 <div
-                  className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-t-4 border-4 border-transparent ${
+                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
                     theme === "light"
-                      ? "border-t-white/90"
-                      : "border-t-black/80"
+                      ? "border-blue-400/40 bg-white/90 text-gray-800"
+                      : "border-blue-300/30 bg-black/80 text-white"
                   }`}
-                />
+                >
+                  Click here for help
+                  <div
+                    className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-t-4 border-4 border-transparent ${
+                      theme === "light"
+                        ? "border-t-white/90"
+                        : "border-t-black/80"
+                    }`}
+                  />
+                </div>
               </div>
-            </div>
-          )}
+            )}
         </button>
       </div>
 
@@ -2902,9 +2906,18 @@ export default function Index() {
             <div className="absolute inset-0 pointer-events-none overflow-hidden sm:hidden">
               {/* Mobile screen edge glow effects */}
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent animate-pulse" />
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-400/30 to-transparent animate-pulse" style={{ animationDelay: '1s' }} />
-              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-green-400/30 to-transparent animate-pulse" style={{ animationDelay: '0.5s' }} />
-              <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-pink-400/30 to-transparent animate-pulse" style={{ animationDelay: '1.5s' }} />
+              <div
+                className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-400/30 to-transparent animate-pulse"
+                style={{ animationDelay: "1s" }}
+              />
+              <div
+                className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-green-400/30 to-transparent animate-pulse"
+                style={{ animationDelay: "0.5s" }}
+              />
+              <div
+                className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-pink-400/30 to-transparent animate-pulse"
+                style={{ animationDelay: "1.5s" }}
+              />
             </div>
 
             {/* Mobile-Specific Floating Elements */}
@@ -5338,11 +5351,11 @@ function MobileHamburgerMenu({
           whileTap={{
             scale: 0.9,
             rotate: 5,
-            transition: { duration: 0.1 }
+            transition: { duration: 0.1 },
           }}
           whileHover={{
             scale: 1.05,
-            transition: { duration: 0.2 }
+            transition: { duration: 0.2 },
           }}
           animate={{
             rotate: isOpen ? 180 : 0,
@@ -5497,17 +5510,17 @@ function MobileHamburgerMenu({
                         duration: 0.3,
                         type: "spring",
                         stiffness: 200,
-                        damping: 15
+                        damping: 15,
                       }}
                       whileTap={{
                         scale: 0.95,
                         x: 2,
-                        transition: { duration: 0.1 }
+                        transition: { duration: 0.1 },
                       }}
                       whileHover={{
                         scale: 1.02,
                         x: 2,
-                        transition: { duration: 0.2 }
+                        transition: { duration: 0.2 },
                       }}
                       className={`group w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 hover:shadow-xl active:scale-95 overflow-hidden relative will-change-transform ${
                         theme === "light"
