@@ -886,7 +886,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ███���██████████████��█████████ 50%
+                      RAM: ███���██████████���███��█████████ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -8626,9 +8626,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 ? window.innerWidth < 641
                   ? 2
                   : 3
-                : animationConfig?.enableBackgroundParticles
-                  ? 15
-                  : 6,
+                : 15,
             ),
           ].map((_, i) => (
             <div
