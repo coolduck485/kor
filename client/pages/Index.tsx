@@ -805,7 +805,7 @@ export default function Index() {
 ██║ ██╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
-██║  ██╗╚█��████╔╝��█║  ██║
+██║  ██╗╚█��████╔╝██║  ██║
 �������╝  ╚═╝ ��═════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -2560,10 +2560,41 @@ export default function Index() {
                       : "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
                   }}
                 >
-                  {/* Original Toggle Buttons */}
+                  {/* Enhanced Toggle Buttons with Mobile Animations */}
                   <div className="flex flex-col gap-2 sm:gap-3">
-                    <ThemeToggle />
-                    <RetroToggle />
+                    <motion.div
+                      whileTap={{ scale: 0.95 }}
+                      animate={{
+                        scale: [1, 1.02, 1],
+                      }}
+                      transition={{
+                        scale: {
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                      }}
+                      className="sm:animate-none"
+                    >
+                      <ThemeToggle />
+                    </motion.div>
+                    <motion.div
+                      whileTap={{ scale: 0.95 }}
+                      animate={{
+                        scale: [1, 1.02, 1],
+                      }}
+                      transition={{
+                        scale: {
+                          duration: 2.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.3,
+                        },
+                      }}
+                      className="sm:animate-none"
+                    >
+                      <RetroToggle />
+                    </motion.div>
                   </div>
                 </div>
               </div>
@@ -8583,7 +8614,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "����", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
