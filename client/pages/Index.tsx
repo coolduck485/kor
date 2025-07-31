@@ -802,10 +802,10 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██����██╗
-██║ ██╔��██╔═══�����█╗██╔══██╗
+██║ ██╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
-██║  ██��╚█��████╔╝██║  ██║
+██║  ██╗╚█��████╔╝██║  ██║
 �������╝  ╚═╝ ��═════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -2095,7 +2095,7 @@ export default function Index() {
           <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
 
           {/* Tooltip - positioned to left on mobile/tablet, above on desktop */}
-          {shouldShowTooltip("help-button") && (
+          {shouldShowTooltip("help-button") && !isHelpModalOpen && (
             <div
               className={`absolute opacity-100 transition-all duration-300 transform pointer-events-none ${
                 window.innerWidth < 1024
@@ -2110,7 +2110,7 @@ export default function Index() {
                     : "border-blue-300/30 bg-black/80 text-white"
                 }`}
               >
-                Click here for help
+                {window.innerWidth < 1024 ? "Tap here!" : "Click here for help"}
                 <div
                   className={`absolute w-0 h-0 border-4 border-transparent ${
                     window.innerWidth < 1024
