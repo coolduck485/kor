@@ -146,29 +146,7 @@ export default function Index() {
     }
   }, [showInfo]); // Shows once on load
 
-  // Mobile/Tablet performance notification - shows immediately on mobile/tablet devices
-  useEffect(() => {
-    if (
-      !hasShownMobilePerformanceRef.current &&
-      (currentDeviceType === "mobile" || currentDeviceType === "tablet")
-    ) {
-      hasShownMobilePerformanceRef.current = true;
 
-      console.log(
-        "Performance check on load - device type:",
-        currentDeviceType,
-      );
-
-      console.log(
-        "🚀 Showing performance notification on mobile/tablet device!",
-      );
-      showWarning(
-        "Mobile Performance Mode",
-        "Visual effects and animations have been limited to improve performance.",
-        0, // No auto-dismiss - user must click X
-      );
-    }
-  }, [currentDeviceType, showWarning]); // React to device type changes
 
   const [showTerminal, setShowTerminal] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
@@ -883,7 +861,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██����██╗
-██║ ██╔��██╔═══���█╗██╔══██╗
+██║ ██╔��██╔═══���█╗█��╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔═██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
