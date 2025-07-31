@@ -1958,7 +1958,7 @@ export default function Index() {
               e.preventDefault();
               e.stopPropagation();
               if (isScrolling) return;
-              scrollToSection(currentSection - 1);
+              protectedScrollToSection(currentSection - 1);
               setShowNavigationHints(false);
               setShowNavigationTooltip(false);
               dismissTooltip("nav-up");
