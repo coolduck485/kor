@@ -807,9 +807,9 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ██����██��
+                  {`██╗  ██╗ ██████╗ ██����██╗
 ██║ ██╔��██╔═══���█╗██╔══██╗
-█████╔╝ ██║   ██║██████╔╝
+█████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��████╔╝██║  ██║
 �������╝  ╚═╝ ��═════╝ ╚═╝  ��═╝`}
@@ -2180,7 +2180,7 @@ export default function Index() {
                 onClick={() => setShowNavigationHints(false)}
                 className="ml-2 text-xs opacity-60 hover:opacity-100"
               >
-                ✕
+                ��
               </button>
             </div>
           </div>
@@ -5793,7 +5793,7 @@ interface SectionProps {
 }
 
 const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
+  ({ theme, isVisible }, ref) => {
     const [screenSize, setScreenSize] = useState<
       "mobile" | "tablet" | "desktop"
     >("desktop");
@@ -6734,7 +6734,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // ========================================
 
 const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
+  ({ theme, isVisible }, ref) => {
     const [screenSize, setScreenSize] = useState<
       "mobile" | "tablet" | "desktop"
     >("desktop");
@@ -7498,7 +7498,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // ========================================
 
 const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
+  ({ theme, isVisible }, ref) => {
     const [currentPage, setCurrentPage] = useState(0);
 
     // ===== PORTFOLIO PROJECTS =====
@@ -8399,7 +8399,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // ========================================
 
 const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
-  ({ theme, isVisible, isMobile = false, animationConfig }, ref) => {
+  ({ theme, isVisible }, ref) => {
     const [formData, setFormData] = useState({
       firstName: "",
       lastName: "",
@@ -8565,7 +8565,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "✉��" },
+            { type: "email", x: 15, y: 35, icon: "✉️" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
