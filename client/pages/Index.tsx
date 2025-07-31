@@ -576,11 +576,16 @@ export default function Index() {
       "scrollToSection",
       handleScrollToSection as EventListener,
     );
-    return () =>
+    return () => {
       window.removeEventListener(
         "scrollToSection",
         handleScrollToSection as EventListener,
       );
+      // Cleanup navigation timeout on unmount
+      if (navigationTimeoutRef.current) {
+        clearTimeout(navigationTimeoutRef.current);
+      }
+    };
   }, []);
 
   // If retro mode is enabled, show retro version
