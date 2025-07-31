@@ -830,7 +830,7 @@ export default function Index() {
 ██║ ����█╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
-██║  ██╗╚█��████╔╝██║  ██║
+██║  ██╗╚█��██���█╔╝██║  ██║
 ��������╝  ╚═╝ �����════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -5383,7 +5383,7 @@ function MobileHamburgerMenu({
         }}
       >
         <motion.button
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={protectedToggleMenu}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => !isOpen && setShowTooltip(false)}
           whileTap={{
@@ -5497,7 +5497,7 @@ function MobileHamburgerMenu({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
             className="fixed inset-0 bg-black/40 z-40 mobile-menu-backdrop"
-            onClick={() => setIsOpen(false)}
+            onClick={protectedCloseMenu}
             style={{
               backdropFilter: "blur(12px)",
               WebkitBackdropFilter: "blur(12px)",
