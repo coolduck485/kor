@@ -2060,7 +2060,7 @@ export default function Index() {
             <button
               key={section.id}
               onClick={() => {
-                scrollToSection(index);
+                protectedScrollToSection(index);
                 setShowNavigationHints(false);
               }}
               className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
