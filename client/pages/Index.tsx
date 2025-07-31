@@ -4527,6 +4527,54 @@ export default function Index() {
           50% { transform: translateX(12px) translateY(-3px) skewY(1deg) rotate(3deg); }
         }
 
+        /* Mobile Touch Feedback Animations */
+        @keyframes mobile-touch-ripple {
+          0% {
+            transform: scale(0);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+
+        @keyframes mobile-bounce-in {
+          0% {
+            transform: scale(0.3) translateY(20px);
+            opacity: 0;
+          }
+          50% {
+            transform: scale(1.05) translateY(-5px);
+            opacity: 0.8;
+          }
+          70% {
+            transform: scale(0.9) translateY(2px);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1) translateY(0px);
+            opacity: 1;
+          }
+        }
+
+        @keyframes mobile-wiggle {
+          0%, 100% { transform: rotate(0deg); }
+          25% { transform: rotate(1deg) scale(1.01); }
+          75% { transform: rotate(-1deg) scale(1.01); }
+        }
+
+        @keyframes mobile-pulse-glow {
+          0%, 100% {
+            box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+            transform: scale(1);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.3);
+            transform: scale(1.02);
+          }
+        }
+
         @keyframes aurora-wave-subtle-1 {
           0%, 100% { transform: translateX(-15%) translateY(0%) skewY(-1deg) scale(1); }
           25% { transform: translateX(-12%) translateY(-2%) skewY(-0.5deg) scale(1.05); }
