@@ -846,7 +846,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ██����██╗
 ██║ ����█╔��██╔═══���█╗██╔══██╗
-█████╔╝ ██║   ██║███���██��╝
+█████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��██���█╔╝██║  ██║
 ��������╝  ╚═╝ �����════╝ ╚���╝  ��═╝`}
@@ -923,7 +923,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ███�����█████████���███��███████��█ 50%
+                      RAM: ███�����█████████���███���███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -957,7 +957,7 @@ export default function Index() {
               >
                 <button
                   className="pixel-button social-button"
-                  onClick={() => window.open("https://instagram.com", "_blank")}
+                  onClick={() => protectedOpenLink("https://instagram.com")}
                 >
                   INSTAGRAM
                 </button>
