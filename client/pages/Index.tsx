@@ -9410,7 +9410,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         ].map((social) => (
                           <motion.button
                             key={social.name}
-                            onClick={() => window.open(social.url, "_blank")}
+                            onClick={() => protectedOpenLink(social.url)}
                             className="group relative p-2 rounded-lg backdrop-blur-lg border transition-all duration-200 hover:scale-[1.02] overflow-hidden will-change-transform text-left"
                             style={{
                               background: "rgba(255, 255, 255, 0.05)",
