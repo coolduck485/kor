@@ -169,10 +169,10 @@ const MobileNotificationItem = React.forwardRef<
       layoutId={notification.id}
       initial={{
         opacity: 0,
-        scale: isMobile ? 0.9 : 0.8,
+        scale: isMobile ? 0.95 : 0.8,
         x: isMobile ? 0 : 100,
-        y: isMobile ? -30 : 0,
-        filter: isMobile ? "blur(2px)" : "blur(4px)",
+        y: isMobile ? -10 : 0,
+        filter: isMobile ? "blur(1px)" : "blur(4px)",
       }}
       animate={{
         opacity: 1,
@@ -183,15 +183,15 @@ const MobileNotificationItem = React.forwardRef<
       }}
       exit={{
         opacity: 0,
-        scale: 0.95,
+        scale: 0.98,
         transition: {
-          duration: 0.15,
+          duration: 0.2,
           ease: "easeOut",
         },
       }}
       transition={{
         type: "tween",
-        duration: 0.2,
+        duration: isMobile ? 0.15 : 0.2,
         ease: "easeOut",
       }}
       className={cn(
