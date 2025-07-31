@@ -32,9 +32,7 @@ export default function Index() {
   const isPinkActive = false; // Temporary fix - pink theme removed
   const { showSuccess, showError, showWarning, showInfo } =
     useUnifiedNotifications();
-  const { isMobile, animationConfig, deviceType } = useMobilePerformance();
   const { isSafari, isMobileSafari, isIOS } = useBrowserDetection();
-  const currentDeviceType = useDeviceType();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
