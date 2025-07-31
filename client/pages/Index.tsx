@@ -373,10 +373,24 @@ export default function Index() {
     { id: "contact", title: "Contact Us", component: "contact" },
   ];
 
+  // Add debouncing for navigation
+  const navigationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastNavigationTime = useRef(0);
+
   // Scroll to section function with black transition
   const scrollToSection = (index: number) => {
+    // Prevent rapid successive calls
+    const now = Date.now();
+    if (now - lastNavigationTime.current < 100) return; // 100ms debounce
+
     if (isScrolling || !containerRef.current) return;
 
+    // Clear any pending navigation timeout
+    if (navigationTimeoutRef.current) {
+      clearTimeout(navigationTimeoutRef.current);
+    }
+
+    lastNavigationTime.current = now;
     setIsScrolling(true);
     setIsScrollingActive(true);
     setTransitioningSectionIndex(index);
