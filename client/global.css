@@ -2067,13 +2067,13 @@ body > div {
   }
 
   33% {
-    transform: translateY(-12px) translateX(4px) scale(1.1);
-    opacity: 1;
+    transform: translateY(-3px) translateX(1px) scale(1.02);
+    opacity: 0.9;
   }
 
   66% {
-    transform: translateY(8px) translateX(-6px) scale(0.9);
-    opacity: 0.9;
+    transform: translateY(2px) translateX(-1px) scale(0.98);
+    opacity: 0.85;
   }
 }
 
