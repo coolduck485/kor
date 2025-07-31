@@ -2013,10 +2013,11 @@ export default function Index() {
       </div>
 
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
-      <div
-        className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
-        style={{ position: "fixed" }}
-      >
+      {!isHelpModalOpen && (
+        <div
+          className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
+          style={{ position: "fixed" }}
+        >
         {sections.map((section, index) => (
           <button
             key={section.id}
@@ -2041,7 +2042,8 @@ export default function Index() {
             }}
           />
         ))}
-      </div>
+        </div>
+      )}
 
       {/* Help Button - Available on all sections, above notifications */}
       <div
