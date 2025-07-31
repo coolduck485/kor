@@ -805,7 +805,7 @@ export default function Index() {
 ██║ ██╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
-██║  ██╗╚█��████╔╝██║  ██║
+██║  ██╗╚█��████╔╝��█║  ██║
 �������╝  ╚═╝ ��═════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -5398,9 +5398,25 @@ function MobileHamburgerMenu({
                   {menuItems.map((item, index) => (
                     <motion.button
                       key={item.text}
-                      initial={{ opacity: 0, x: -15 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 + index * 0.05, duration: 0.2 }}
+                      initial={{ opacity: 0, x: -15, scale: 0.95 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      transition={{
+                        delay: 0.1 + index * 0.05,
+                        duration: 0.3,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 15
+                      }}
+                      whileTap={{
+                        scale: 0.95,
+                        x: 2,
+                        transition: { duration: 0.1 }
+                      }}
+                      whileHover={{
+                        scale: 1.02,
+                        x: 2,
+                        transition: { duration: 0.2 }
+                      }}
                       className={`group w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 hover:shadow-xl active:scale-95 overflow-hidden relative will-change-transform ${
                         theme === "light"
                           ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60 text-gray-800 hover:text-gray-900"
