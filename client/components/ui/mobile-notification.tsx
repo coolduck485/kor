@@ -282,8 +282,8 @@ const MobileNotificationItem = React.forwardRef<
               ? "focus:ring-2 focus:ring-white/30"
               : "focus:ring-2 focus:ring-white/20",
           )}
-          whileHover={isMobile ? undefined : { scale: 1.1, rotate: 90 }}
-          whileTap={isMobile ? { scale: 0.85 } : { scale: 0.8, rotate: 180 }}
+          whileHover={isMobile ? undefined : { scale: 1.05, rotate: 45 }}
+          whileTap={isMobile ? { scale: 0.95 } : { scale: 0.9, rotate: 90 }}
           onTouchStart={(e) => e.stopPropagation()}
           onTouchEnd={(e) => e.stopPropagation()}
         >
