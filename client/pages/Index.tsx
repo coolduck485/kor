@@ -818,7 +818,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��████╔╝██║  ██║
-����������  ╚═╝ ��═════╝ ╚���╝  ��═╝`}
+��������╝  ╚═╝ ��═════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1189,7 +1189,7 @@ export default function Index() {
           }
 
           .ascii-logo::after {
-            content: "��";
+            content: "█";
             color: #00ff41;
             animation: terminal-cursor 1s infinite;
             margin-left: 8px;
@@ -1987,7 +1987,10 @@ export default function Index() {
         {/* Next Section Button */}
         {currentSection < sections.length - 1 && !isHelpModalOpen && (
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (isScrolling) return;
               scrollToSection(currentSection + 1);
               setShowNavigationHints(false);
               setShowNavigationTooltip(false);
@@ -8060,7 +8063,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-green-500 to-blue-500",
               },
               {
-                icon: "����",
+                icon: "💎",
                 label: "Premium",
                 x: 85,
                 y: 82,
