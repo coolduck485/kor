@@ -6795,7 +6795,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       </div>
 
                       {/* Code Lines Visualization */}
-                      <div className="space-y-2 sm:space-y-3 mb-6">
+                      <div className="space-y-2 sm:space-y-3 mb-8 sm:mb-12 lg:mb-16">
                         {[
                           {
                             width: "w-3/4",
