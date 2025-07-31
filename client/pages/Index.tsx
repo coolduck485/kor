@@ -281,32 +281,7 @@ export default function Index() {
       });
     };
 
-    // Performance optimization checks
-    const checkPerformance = () => {
-      // Check for reduced motion preference
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-      setReducedMotion(prefersReducedMotion);
-
-      // Check device capabilities for high performance animations
-      const isLowEnd =
-        navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2;
-      const isSlowConnection =
-        navigator.connection &&
-        navigator.connection.effectiveType === "slow-2g";
-
-      // Enable high performance for mobile and tablet devices regardless of hardware
-      // Using custom breakpoints: mobile ≤640px, tablet 641-991px, desktop ≥992px
-      const isMobileOrTablet = window.innerWidth <= 991;
-      setIsHighPerformance(
-        isMobileOrTablet ||
-          (!isLowEnd && !isSlowConnection && !prefersReducedMotion),
-      );
-    };
-
     window.addEventListener("mousemove", handleMouseMove);
-    checkPerformance(); // Performance optimization check
 
     // Check current URL and scroll to appropriate section
     const checkInitialSection = () => {
@@ -840,7 +815,7 @@ export default function Index() {
 █████╔╝ ██║   ██║██████╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-�������╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
+���������╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
