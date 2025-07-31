@@ -2076,13 +2076,16 @@ export default function Index() {
         </div>
       )}
 
-      {/* Help Button - Duplicated from down navigation button, positioned 150px lower */}
+      {/* Help Button - Positioned at bottom right corner */}
       <div
-        className="fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[9999]"
+        className={`fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[9999] transition-all duration-300 ${
+          isMobileSafari || isSafari
+            ? ""
+            : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12"
+        }`}
         style={{
           position: "fixed",
-          top: "calc(50% + 150px)",
-          transform: "translateY(-50%)"
+          bottom: isMobileSafari || isSafari ? "120px" : undefined,
         }}
       >
         <button
