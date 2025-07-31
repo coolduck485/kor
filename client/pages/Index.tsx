@@ -2867,6 +2867,73 @@ export default function Index() {
               </div>
             )}
 
+            {/* Mobile-Specific Floating Elements */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden sm:hidden">
+              {/* Mobile floating bubbles */}
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={`mobile-bubble-${i}`}
+                  className="absolute rounded-full opacity-40"
+                  style={{
+                    left: `${15 + ((i * 65) % 70)}%`,
+                    top: `${20 + ((i * 45) % 60)}%`,
+                    width: `${6 + (i % 3) * 2}px`,
+                    height: `${6 + (i % 3) * 2}px`,
+                    background: [
+                      "radial-gradient(circle, rgba(34, 197, 94, 0.7) 0%, transparent 80%)",
+                      "radial-gradient(circle, rgba(59, 130, 246, 0.7) 0%, transparent 80%)",
+                      "radial-gradient(circle, rgba(147, 51, 234, 0.7) 0%, transparent 80%)",
+                      "radial-gradient(circle, rgba(236, 72, 153, 0.7) 0%, transparent 80%)",
+                    ][i % 4],
+                    filter: `blur(${0.5 + (i % 2) * 0.5}px)`,
+                  }}
+                  animate={{
+                    y: [0, -15, 0],
+                    x: [0, 8, 0],
+                    scale: [0.8, 1.2, 0.8],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 4 + (i % 3),
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.3,
+                  }}
+                />
+              ))}
+
+              {/* Mobile swipe indicators */}
+              <motion.div
+                className="absolute top-1/2 right-4 transform -translate-y-1/2"
+                animate={{
+                  x: [0, -10, 0],
+                  opacity: [0.3, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <div className="flex flex-col space-y-1">
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={`swipe-dot-${i}`}
+                      className="w-1 h-1 bg-blue-400 rounded-full opacity-60"
+                      animate={{
+                        scale: [1, 1.5, 1],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: i * 0.2,
+                      }}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
             {/* Optimized Floating Ambient Particles - Reduced count for 60fps */}
             <motion.div
               className="absolute inset-0 pointer-events-none overflow-hidden will-change-transform"
@@ -7833,7 +7900,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-blue-500 to-purple-500",
               },
               {
-                icon: "���",
+                icon: "�����",
                 label: "Launch",
                 x: 12,
                 y: 85,
