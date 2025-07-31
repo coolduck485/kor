@@ -6786,10 +6786,11 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-400/80" />
                           <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-400/80" />
                         </div>
-                        <div className="flex-1 h-6 sm:h-8 bg-white/10 rounded-md ml-3 flex items-center px-3">
+                        <div className="flex-1 h-6 sm:h-8 bg-white/10 rounded-md ml-3 flex items-center px-2 sm:px-3">
                           <div className="w-2 h-2 bg-blue-400/60 rounded-full animate-pulse" />
-                          <div className="ml-2 text-xs text-white/60 font-mono">
-                            Building amazing software...
+                          <div className="ml-1 sm:ml-2 text-[10px] sm:text-xs text-white/60 font-mono truncate">
+                            <span className="hidden xs:inline">Building amazing software...</span>
+                            <span className="xs:hidden">Building...</span>
                           </div>
                         </div>
                       </div>
