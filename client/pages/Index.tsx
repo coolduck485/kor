@@ -815,7 +815,7 @@ export default function Index() {
 █████╔╝ ██║   ██║██████╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-���������╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
+�������╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -2560,14 +2560,12 @@ export default function Index() {
             {/* Enhanced Background Elements - Performance optimized */}
 
             {/* Animated Noise Texture - Now on all devices */}
-            {isHighPerformance && (
-              <div
-                className="absolute inset-0 opacity-10 sm:opacity-8 lg:opacity-5 animate-noise gpu-accelerated"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-                }}
-              />
-            )}
+            <div
+              className="absolute inset-0 opacity-10 sm:opacity-8 lg:opacity-5 animate-noise gpu-accelerated"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+              }}
+            />
 
             {/* Enhanced Spectacular Full-Width Wavy Aurora Curtains - Desktop Only (992px+) */}
             {isHighPerformance && (
