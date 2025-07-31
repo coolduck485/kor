@@ -5299,6 +5299,18 @@ function MobileHamburgerMenu({
   const [menuPosition, setMenuPosition] = useState({ left: 70, top: -80 });
   const [showTooltip, setShowTooltip] = useState(false);
 
+  // Spam protection for menu toggle
+  const { protectedCallback: protectedToggleMenu } = useSpamProtection(
+    () => setIsOpen(!isOpen),
+    SPAM_PROTECTION_PRESETS.fast
+  );
+
+  // Spam protection for menu close
+  const { protectedCallback: protectedCloseMenu } = useSpamProtection(
+    () => setIsOpen(false),
+    SPAM_PROTECTION_PRESETS.fast
+  );
+
   const menuItems = [
     { text: "About us" },
     { text: "Services" },
