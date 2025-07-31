@@ -592,6 +592,8 @@ export default function Index() {
                     style={{
                       left: `${(i * 100) / 15}%`,
                       fontSize: "8px",
+                      willChange: "transform",
+                      backfaceVisibility: "hidden",
                     }}
                     animate={{
                       y: [-20, window.innerHeight + 20],
@@ -601,10 +603,6 @@ export default function Index() {
                       repeat: Infinity,
                       delay: i * 0.3,
                       ease: "linear",
-                    }}
-                    style={{
-                      willChange: "transform",
-                      backfaceVisibility: "hidden",
                     }}
                   >
                     {Array.from({ length: 20 }, () =>
@@ -806,7 +804,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��████╔╝██║  ██║
-�������╝  ╚═╝ ��═════╝ ╚���╝  ��═╝`}
+��������╝  ╚═╝ ��═════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
