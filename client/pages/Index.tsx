@@ -812,7 +812,7 @@ export default function Index() {
 █████╔╝ ██║   ██║██████╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��████╔╝██║  ██║
-�������╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
+�������╝  ╚═╝ ��═════╝ ╚═╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -3721,9 +3721,7 @@ export default function Index() {
                                     })(),
                                     clipPath:
                                       "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
-                                    animation: isMobile
-                                      ? "spin-slow 8s linear infinite"
-                                      : "spin-slow 15s linear infinite",
+                                    animation: "spin-slow 15s linear infinite",
                                     filter: "drop-shadow(0 0 8px currentColor)",
                                   }}
                                 />
@@ -3743,9 +3741,7 @@ export default function Index() {
                                     })(),
                                     clipPath:
                                       "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                                    animation: isMobile
-                                      ? "gentle-pulse 3s ease-in-out infinite"
-                                      : "gentle-pulse 4s ease-in-out infinite",
+                                    animation: "gentle-pulse 4s ease-in-out infinite",
                                     filter: "drop-shadow(0 0 6px currentColor)",
                                   }}
                                 />
@@ -3765,9 +3761,7 @@ export default function Index() {
                                     })(),
                                     clipPath:
                                       "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
-                                    animation: isMobile
-                                      ? "rotate-slow 8s linear infinite"
-                                      : "rotate-slow 12s linear infinite",
+                                    animation: "rotate-slow 12s linear infinite",
                                     filter:
                                       "drop-shadow(0 0 10px currentColor)",
                                   }}
