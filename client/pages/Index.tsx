@@ -373,10 +373,24 @@ export default function Index() {
     { id: "contact", title: "Contact Us", component: "contact" },
   ];
 
+  // Add debouncing for navigation
+  const navigationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastNavigationTime = useRef(0);
+
   // Scroll to section function with black transition
   const scrollToSection = (index: number) => {
+    // Prevent rapid successive calls
+    const now = Date.now();
+    if (now - lastNavigationTime.current < 100) return; // 100ms debounce
+
     if (isScrolling || !containerRef.current) return;
 
+    // Clear any pending navigation timeout
+    if (navigationTimeoutRef.current) {
+      clearTimeout(navigationTimeoutRef.current);
+    }
+
+    lastNavigationTime.current = now;
     setIsScrolling(true);
     setIsScrollingActive(true);
     setTransitioningSectionIndex(index);
@@ -436,9 +450,10 @@ export default function Index() {
           setIsContentVisible(true);
 
           // Complete the transition
-          setTimeout(() => {
+          navigationTimeoutRef.current = setTimeout(() => {
             setIsScrolling(false);
             setIsScrollingActive(false);
+            navigationTimeoutRef.current = null;
           }, completionDelay); // Responsive timing based on device
         }, visibilityDelay); // Responsive delay
       }, contentRevealDelay); // Responsive reveal delay
@@ -561,11 +576,16 @@ export default function Index() {
       "scrollToSection",
       handleScrollToSection as EventListener,
     );
-    return () =>
+    return () => {
       window.removeEventListener(
         "scrollToSection",
         handleScrollToSection as EventListener,
       );
+      // Cleanup navigation timeout on unmount
+      if (navigationTimeoutRef.current) {
+        clearTimeout(navigationTimeoutRef.current);
+      }
+    };
   }, []);
 
   // If retro mode is enabled, show retro version
@@ -592,6 +612,8 @@ export default function Index() {
                     style={{
                       left: `${(i * 100) / 15}%`,
                       fontSize: "8px",
+                      willChange: "transform",
+                      backfaceVisibility: "hidden",
                     }}
                     animate={{
                       y: [-20, window.innerHeight + 20],
@@ -601,10 +623,6 @@ export default function Index() {
                       repeat: Infinity,
                       delay: i * 0.3,
                       ease: "linear",
-                    }}
-                    style={{
-                      willChange: "transform",
-                      backfaceVisibility: "hidden",
                     }}
                   >
                     {Array.from({ length: 20 }, () =>
@@ -802,11 +820,11 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██����██╗
-██║ ██╔��██╔═══���█╗██╔══██╗
+██║ ����█╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��████╔╝██║  ██║
-�������╝  ╚═╝ ��═════╝ ╚���╝  ��═╝`}
+��������╝  ╚═╝ �����════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -880,7 +898,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ███���██████████���███��█████████ 50%
+                      RAM: ███�����█████████���███��███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1929,7 +1947,10 @@ export default function Index() {
         {/* Previous Section Button */}
         {currentSection > 0 && !isHelpModalOpen && (
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (isScrolling) return;
               scrollToSection(currentSection - 1);
               setShowNavigationHints(false);
               setShowNavigationTooltip(false);
@@ -1946,7 +1967,10 @@ export default function Index() {
               dismissTooltip("nav-up");
               dismissTooltip("nav-shared");
             }}
+            disabled={isScrolling}
             className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+              isScrolling ? "pointer-events-none opacity-60" : ""
+            } ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
                 : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
@@ -1972,7 +1996,10 @@ export default function Index() {
         {/* Next Section Button */}
         {currentSection < sections.length - 1 && !isHelpModalOpen && (
           <button
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (isScrolling) return;
               scrollToSection(currentSection + 1);
               setShowNavigationHints(false);
               setShowNavigationTooltip(false);
@@ -1989,7 +2016,10 @@ export default function Index() {
               dismissTooltip("nav-down");
               dismissTooltip("nav-shared");
             }}
+            disabled={isScrolling}
             className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+              isScrolling ? "pointer-events-none opacity-60" : ""
+            } ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
                 : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
@@ -2046,16 +2076,16 @@ export default function Index() {
         </div>
       )}
 
-      {/* Help Button - Available on all sections, above notifications */}
+      {/* Help Button - Positioned at bottom right corner */}
       <div
-        className={`help-button fixed right-12 sm:right-16 md:right-20 lg:right-24 z-[9999] transition-all duration-300 ${
+        className={`fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[9999] transition-all duration-300 ${
           isMobileSafari || isSafari
             ? ""
-            : "bottom-12 sm:bottom-16 md:bottom-20"
-        } ${isMobileMenuOpen ? "blur-sm" : ""}`}
+            : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12"
+        }`}
         style={{
           position: "fixed",
-          bottom: isMobileSafari || isSafari ? "160px" : undefined,
+          bottom: isMobileSafari || isSafari ? "120px" : undefined,
         }}
       >
         <button
@@ -2066,60 +2096,51 @@ export default function Index() {
           }}
           onMouseEnter={() => dismissTooltip("help-button")}
           onTouchStart={() => dismissTooltip("help-button")}
-          className={`group relative p-4 sm:p-5 md:p-6 lg:p-7 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
-            isPinkActive
-              ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
-              : theme === "light"
-                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+          disabled={isScrolling}
+          className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+            isScrolling ? "pointer-events-none opacity-60" : ""
+          } ${
+            theme === "light"
+              ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+              : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
           }`}
           style={{
             background:
               theme === "light"
                 ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
                 : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-            boxShadow: isPinkActive
-              ? "0 0 20px rgba(236, 72, 153, 0.4)"
-              : "0 0 20px rgba(73, 146, 255, 0.3)",
+            boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
           }}
         >
-          {/* Help Icon */}
           <HelpCircle
-            className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 transition-colors duration-300 flex-shrink-0 ${
-              isPinkActive
-                ? "text-pink-400 group-hover:text-pink-300"
-                : theme === "light"
-                  ? "text-blue-600 group-hover:text-blue-700"
-                  : "text-white group-hover:text-blue-300"
+            className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+              theme === "light"
+                ? "text-blue-600 group-hover:text-blue-700"
+                : "text-white group-hover:text-blue-300"
             }`}
           />
 
-          {/* Ripple effect */}
-          <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
-
-          {/* Tooltip - positioned above on desktop only (992px+) */}
-          {shouldShowTooltip("help-button") &&
-            !isHelpModalOpen &&
-            window.innerWidth >= 992 && (
-              <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-100 transition-all duration-300 transform pointer-events-none">
+          {/* Tooltip - positioned to the left like navigation buttons */}
+          {shouldShowTooltip("help-button") && !isHelpModalOpen && (
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
+              <div
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
+                }`}
+              >
+                Click here for help
                 <div
-                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                     theme === "light"
-                      ? "border-blue-400/40 bg-white/90 text-gray-800"
-                      : "border-blue-300/30 bg-black/80 text-white"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
                   }`}
-                >
-                  Click here for help
-                  <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-t-4 border-4 border-transparent ${
-                      theme === "light"
-                        ? "border-t-white/90"
-                        : "border-t-black/80"
-                    }`}
-                  />
-                </div>
+                />
               </div>
-            )}
+            </div>
+          )}
         </button>
       </div>
 
@@ -2462,7 +2483,7 @@ export default function Index() {
               theme === "light"
                 ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
                 : "bg-black"
-            } animate-pulse sm:animate-none`}
+            }`}
             style={{
               display: currentSection === 0 ? "block" : "none",
             }}
@@ -2553,7 +2574,7 @@ export default function Index() {
                       : theme === "light"
                         ? "border-blue-400/40 bg-white/30"
                         : "border-blue-300/30 bg-blue-400/5"
-                  } animate-wiggle sm:animate-none`}
+                  }`}
                   style={{
                     background:
                       theme === "light"
@@ -2578,7 +2599,6 @@ export default function Index() {
                           ease: "easeInOut",
                         },
                       }}
-                      className="sm:animate-none"
                     >
                       <ThemeToggle />
                     </motion.div>
@@ -2595,7 +2615,6 @@ export default function Index() {
                           delay: 0.3,
                         },
                       }}
-                      className="sm:animate-none"
                     >
                       <RetroToggle />
                     </motion.div>
@@ -5052,8 +5071,8 @@ const contactAnimationsCSS = `
       animation: none !important;
     }
 
-    /* Disable complex transforms on mobile */
-    .gpu-accelerated {
+    /* Keep GPU acceleration for background elements, disable only for content */
+    [data-section]:not([data-section="home"]) .gpu-accelerated {
       transform: none !important;
       will-change: auto !important;
     }
@@ -6767,7 +6786,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 }
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <div className="relative w-full max-w-md h-64 sm:h-80 lg:h-96 lg:ml-12">
+                <div className="relative w-full max-w-md h-72 sm:h-80 lg:h-96 lg:ml-12">
                   {/* Main Glass Container */}
                   <div
                     className="relative w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden backdrop-blur-xl border border-white/30"
@@ -6782,7 +6801,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/10" />
 
                     {/* Code Editor Interface */}
-                    <div className="absolute inset-0 p-4 sm:p-6 lg:p-8">
+                    <div className="absolute inset-0 p-3 sm:p-6 lg:p-8">
                       {/* Browser-like Header */}
                       <div className="flex items-center space-x-2 mb-4 sm:mb-6">
                         <div className="flex space-x-1.5">
@@ -6790,16 +6809,19 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-400/80" />
                           <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-400/80" />
                         </div>
-                        <div className="flex-1 h-6 sm:h-8 bg-white/10 rounded-md ml-3 flex items-center px-3">
+                        <div className="flex-1 h-6 sm:h-8 bg-white/10 rounded-md ml-3 flex items-center px-2 sm:px-3">
                           <div className="w-2 h-2 bg-blue-400/60 rounded-full animate-pulse" />
-                          <div className="ml-2 text-xs text-white/60 font-mono">
-                            Building amazing software...
+                          <div className="ml-1 sm:ml-2 text-[10px] sm:text-xs text-white/60 font-mono truncate">
+                            <span className="hidden xs:inline">
+                              Building amazing software...
+                            </span>
+                            <span className="xs:hidden">Building...</span>
                           </div>
                         </div>
                       </div>
 
                       {/* Code Lines Visualization */}
-                      <div className="space-y-2 sm:space-y-3 mb-6">
+                      <div className="space-y-2 sm:space-y-3 mb-8 sm:mb-12 lg:mb-16">
                         {[
                           {
                             width: "w-3/4",
@@ -6822,7 +6844,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             delay: 0.6,
                           },
                           {
-                            width: "w-4/5",
+                            width: "w-1/2 sm:w-4/5",
                             color: "from-indigo-400 to-purple-400",
                             delay: 0.8,
                           },

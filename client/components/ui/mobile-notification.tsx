@@ -169,10 +169,10 @@ const MobileNotificationItem = React.forwardRef<
       layoutId={notification.id}
       initial={{
         opacity: 0,
-        scale: isMobile ? 0.9 : 0.8,
+        scale: isMobile ? 0.95 : 0.8,
         x: isMobile ? 0 : 100,
-        y: isMobile ? -30 : 0,
-        filter: isMobile ? "blur(2px)" : "blur(4px)",
+        y: isMobile ? -10 : 0,
+        filter: isMobile ? "blur(1px)" : "blur(4px)",
       }}
       animate={{
         opacity: 1,
@@ -183,15 +183,15 @@ const MobileNotificationItem = React.forwardRef<
       }}
       exit={{
         opacity: 0,
-        scale: 0.95,
+        scale: 0.98,
         transition: {
-          duration: 0.15,
+          duration: 0.2,
           ease: "easeOut",
         },
       }}
       transition={{
         type: "tween",
-        duration: 0.2,
+        duration: isMobile ? 0.15 : 0.2,
         ease: "easeOut",
       }}
       className={cn(
@@ -282,8 +282,8 @@ const MobileNotificationItem = React.forwardRef<
               ? "focus:ring-2 focus:ring-white/30"
               : "focus:ring-2 focus:ring-white/20",
           )}
-          whileHover={isMobile ? undefined : { scale: 1.1, rotate: 90 }}
-          whileTap={isMobile ? { scale: 0.85 } : { scale: 0.8, rotate: 180 }}
+          whileHover={isMobile ? undefined : { scale: 1.05, rotate: 45 }}
+          whileTap={isMobile ? { scale: 0.95 } : { scale: 0.9, rotate: 90 }}
           onTouchStart={(e) => e.stopPropagation()}
           onTouchEnd={(e) => e.stopPropagation()}
         >
@@ -299,12 +299,12 @@ const MobileNotificationItem = React.forwardRef<
         >
           <motion.h4
             className={cn(
-              "font-semibold text-white animate-text-glow-pulse",
-              isMobile ? "text-xs" : "text-sm sm:text-base",
+              "font-semibold text-white",
+              isMobile ? "text-xs" : "text-sm sm:text-base animate-text-glow-pulse",
             )}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: isMobile ? 5 : 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: isMobile ? 0.05 : 0.1, duration: isMobile ? 0.15 : 0.2 }}
           >
             {notification.title}
           </motion.h4>
@@ -315,9 +315,9 @@ const MobileNotificationItem = React.forwardRef<
                 ? "text-xs leading-tight"
                 : "text-xs sm:text-sm leading-relaxed",
             )}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: isMobile ? 3 : 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: isMobile ? 0.08 : 0.2, duration: isMobile ? 0.15 : 0.2 }}
           >
             {notification.message}
           </motion.p>
@@ -332,7 +332,7 @@ const MobileNotificationItem = React.forwardRef<
                 "transition-colors duration-150",
                 "border border-white/20",
               )}
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: isMobile ? 0.98 : 0.95 }}
             >
               {notification.action.label}
             </motion.button>

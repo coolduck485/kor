@@ -36,7 +36,8 @@
   transition: none !important;
 }
 
-.scroll-simplified .gpu-accelerated {
+/* Allow background animations to continue during scroll transitions */
+.scroll-simplified [data-section]:not([data-section="home"]) .gpu-accelerated {
   animation: none !important;
 }
 

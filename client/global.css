@@ -970,8 +970,8 @@ body > div {
 @keyframes mobile-notification-enter {
   from {
     opacity: 0;
-    transform: scale(0.9) translateX(50px) translateY(-10px);
-    filter: blur(2px);
+    transform: scale(0.95) translateX(20px) translateY(-5px);
+    filter: blur(1px);
   }
 
   to {
@@ -990,8 +990,8 @@ body > div {
 
   to {
     opacity: 0;
-    transform: scale(0.8) translateX(80px) translateY(-15px);
-    filter: blur(3px);
+    transform: scale(0.95) translateX(15px) translateY(-3px);
+    filter: blur(1px);
   }
 }
 
@@ -2067,13 +2067,13 @@ body > div {
   }
 
   33% {
-    transform: translateY(-12px) translateX(4px) scale(1.1);
-    opacity: 1;
+    transform: translateY(-3px) translateX(1px) scale(1.02);
+    opacity: 0.9;
   }
 
   66% {
-    transform: translateY(8px) translateX(-6px) scale(0.9);
-    opacity: 0.9;
+    transform: translateY(2px) translateX(-1px) scale(0.98);
+    opacity: 0.85;
   }
 }
 
@@ -2085,13 +2085,13 @@ body > div {
   }
 
   40% {
-    transform: translateY(-8px) translateX(-3px) scale(1.15) rotate(2deg);
-    opacity: 0.95;
+    transform: translateY(-2px) translateX(-1px) scale(1.01) rotate(0.5deg);
+    opacity: 0.8;
   }
 
   70% {
-    transform: translateY(6px) translateX(5px) scale(0.85) rotate(-1deg);
-    opacity: 0.85;
+    transform: translateY(2px) translateX(1px) scale(0.99) rotate(-0.5deg);
+    opacity: 0.75;
   }
 }
 
@@ -2103,8 +2103,8 @@ body > div {
   }
 
   50% {
-    transform: translateY(-15px) translateX(2px) scale(1.2);
-    opacity: 0.9;
+    transform: translateY(-4px) translateX(1px) scale(1.03);
+    opacity: 0.75;
   }
 }
 
