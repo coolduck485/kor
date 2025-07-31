@@ -5239,11 +5239,29 @@ function MobileHamburgerMenu({
             "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s, bubble-pop-in 0.6s ease-out forwards",
         }}
       >
-        <button
+        <motion.button
           onClick={() => setIsOpen(!isOpen)}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => !isOpen && setShowTooltip(false)}
-          className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
+          whileTap={{
+            scale: 0.9,
+            rotate: 5,
+            transition: { duration: 0.1 }
+          }}
+          whileHover={{
+            scale: 1.05,
+            transition: { duration: 0.2 }
+          }}
+          animate={{
+            rotate: isOpen ? 180 : 0,
+            scale: isOpen ? 1.1 : 1,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 20,
+          }}
+          className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl overflow-hidden ${
             isPinkActive
               ? "border-pink-400/50 bg-pink-500/10 hover:border-pink-500/70"
               : theme === "light"
@@ -5323,7 +5341,7 @@ function MobileHamburgerMenu({
               </motion.div>
             )}
           </AnimatePresence>
-        </button>
+        </motion.button>
       </div>
 
       {/* Enhanced Backdrop overlay with synchronized menu content */}
