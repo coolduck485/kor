@@ -839,7 +839,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ██����██╗
 ██║ ██╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
-██╔═██╗ ██║   ██║██╔══██╗
+██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
 ������╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
                 </pre>
@@ -2992,8 +2992,7 @@ export default function Index() {
 
             {/* Optimized Breathing Orbs - Reduced count for performance - Responsive for mobile/tablet */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden scale-75 sm:scale-85 lg:scale-100">
-              {[...Array(animationConfig.enableFloatingOrbs ? 6 : 0)].map(
-                (_, i) => (
+              {[...Array(6)].map((_, i) => (
                   <div
                     key={`breath-orb-${i}`}
                     className="absolute rounded-full gpu-accelerated"
