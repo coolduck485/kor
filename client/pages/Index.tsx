@@ -892,7 +892,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██��███���█████████���█████ 60%
+                      CPU: █████████████��██��█████████████���█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -5477,7 +5477,7 @@ function MobileHamburgerMenu({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="fixed inset-0 bg-black/40 z-40"
+            className="fixed inset-0 bg-black/40 z-40 mobile-menu-backdrop"
             onClick={() => setIsOpen(false)}
             style={{
               backdropFilter: "blur(12px)",
@@ -5497,7 +5497,7 @@ function MobileHamburgerMenu({
                 stiffness: 400,
                 damping: 25
               }}
-              className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
+              className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 mobile-menu-content"
               style={{
                 marginLeft: `${menuPosition.left}px`,
                 marginTop: `${menuPosition.top}px`,
@@ -5548,7 +5548,7 @@ function MobileHamburgerMenu({
                         scale: 1.02,
                         transition: { duration: 0.15 },
                       }}
-                      className={`group w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 hover:shadow-xl active:scale-95 overflow-hidden relative will-change-transform ${
+                      className={`group w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 hover:shadow-xl active:scale-95 overflow-hidden relative mobile-menu-item ${
                         theme === "light"
                           ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60 text-gray-800 hover:text-gray-900"
                           : "border-blue-300/30 bg-blue-400/5 hover:border-white/40 text-white/90 hover:text-white"
