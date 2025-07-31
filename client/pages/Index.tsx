@@ -461,6 +461,12 @@ export default function Index() {
     }, fadeToBlackTime); // Responsive fade timing
   };
 
+  // Enhanced spam protection for scroll navigation
+  const { protectedCallback: protectedScrollToSection } = useSpamProtection(
+    scrollToSection,
+    SPAM_PROTECTION_PRESETS.standard
+  );
+
   // Desktop scroll optimization variables
   const scrollAccumulator = useRef(0);
   const lastScrollTime = useRef(0);
@@ -975,7 +981,7 @@ export default function Index() {
                 </div>
 
                 <div className="loading-indicators">
-                  <span>█▓▒��</span>
+                  <span>█��▒��</span>
                   <span className="text-amber-400">PROCESSING...</span>
                   <span>░▒▓█</span>
                 </div>
