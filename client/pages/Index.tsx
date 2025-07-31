@@ -814,7 +814,7 @@ export default function Index() {
 ██║ ██╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║██████╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
-██║  ██╗╚██████╔╝██║  ██║
+██║  ██╗╚█��████╔╝██║  ██║
 �������╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -2568,8 +2568,7 @@ export default function Index() {
             />
 
             {/* Enhanced Spectacular Full-Width Wavy Aurora Curtains - Desktop Only (992px+) */}
-            {isHighPerformance && (
-              <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-70 sm:opacity-60 lg:opacity-60">
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-70 sm:opacity-60 lg:opacity-60">
                 {/* Primary aurora curtain - Top layer */}
                 <div
                   className="absolute aurora-curtain-1"
@@ -2744,12 +2743,11 @@ export default function Index() {
 
                 {/* Desktop shimmer scanlines removed */}
               </div>
-            )}
 
 
 
             {/* Pink Theme Exclusive Background Effects */}
-            {isPinkActive && isHighPerformance && (
+            {isPinkActive && (
               <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 {/* Pink Aurora Curtains - Desktop */}
                 <div className="opacity-80 sm:opacity-70 lg:opacity-70">
