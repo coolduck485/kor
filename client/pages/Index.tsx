@@ -1926,7 +1926,7 @@ export default function Index() {
             </div>
           )}
         {/* Previous Section Button */}
-        {currentSection > 0 && (
+        {currentSection > 0 && !isHelpModalOpen && (
           <button
             onClick={() => {
               scrollToSection(currentSection - 1);
