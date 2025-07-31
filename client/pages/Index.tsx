@@ -1902,7 +1902,6 @@ export default function Index() {
       >
         {/* Shared Navigation Tooltip - Positioned between buttons */}
         {showNavigationTooltip &&
-          !hasInteractedWithHelp &&
           !isHelpModalOpen &&
           (currentSection > 0 || currentSection < sections.length - 1) &&
           shouldShowTooltip("nav-shared") && (
