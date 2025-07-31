@@ -25,6 +25,7 @@ import {
   HelpCircle,
   X,
 } from "lucide-react";
+import { useSpamProtection, SPAM_PROTECTION_PRESETS } from "../hooks/use-spam-protection";
 
 export default function Index() {
   const { theme, setTheme } = useTheme();
