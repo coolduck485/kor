@@ -1001,7 +1001,7 @@ export default function Index() {
                 <div className="loading-indicators">
                   <span>█��▒��</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░▒▓█</span>
+                  <span>░▒���█</span>
                 </div>
               </motion.div>
 
@@ -8729,14 +8729,29 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       // Add your form submission logic here
     };
 
+    // Spam protection for form interactions
+    const { protectedCallback: protectedInterestSelect } = useSpamProtection(
+      (interest: string) => {
+        setSelectedInterest(interest);
+        setFormData({ ...formData, interest });
+      },
+      SPAM_PROTECTION_PRESETS.fast
+    );
+
+    const { protectedCallback: protectedBudgetSelect } = useSpamProtection(
+      (budget: string) => {
+        setSelectedBudget(budget);
+        setFormData({ ...formData, budget });
+      },
+      SPAM_PROTECTION_PRESETS.fast
+    );
+
     const handleInterestSelect = (interest: string) => {
-      setSelectedInterest(interest);
-      setFormData({ ...formData, interest });
+      protectedInterestSelect(interest);
     };
 
     const handleBudgetSelect = (budget: string) => {
-      setSelectedBudget(budget);
-      setFormData({ ...formData, budget });
+      protectedBudgetSelect(budget);
     };
 
     return (
@@ -8850,7 +8865,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "✉️" },
+            { type: "email", x: 15, y: 35, icon: "��️" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
