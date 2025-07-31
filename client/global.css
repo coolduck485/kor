@@ -29,6 +29,26 @@ body > div {
   display: none !important;
 }
 
+/* Hamburger menu performance optimizations */
+.mobile-menu-backdrop {
+  will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.mobile-menu-content {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style paint;
+}
+
+.mobile-menu-item {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
 /* Ensure notifications stay visible across all sections */
 .notification-container {
   position: fixed !important;
