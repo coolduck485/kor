@@ -2898,6 +2898,15 @@ export default function Index() {
               </div>
             )}
 
+            {/* Mobile Screen Edge Effects */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden sm:hidden">
+              {/* Mobile screen edge glow effects */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent animate-pulse" />
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-400/30 to-transparent animate-pulse" style={{ animationDelay: '1s' }} />
+              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-green-400/30 to-transparent animate-pulse" style={{ animationDelay: '0.5s' }} />
+              <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-pink-400/30 to-transparent animate-pulse" style={{ animationDelay: '1.5s' }} />
+            </div>
+
             {/* Mobile-Specific Floating Elements */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden sm:hidden">
               {/* Mobile floating bubbles */}
