@@ -332,7 +332,7 @@ const MobileNotificationItem = React.forwardRef<
                 "transition-colors duration-150",
                 "border border-white/20",
               )}
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: isMobile ? 0.98 : 0.95 }}
             >
               {notification.action.label}
             </motion.button>
