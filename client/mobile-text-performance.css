@@ -65,10 +65,20 @@
 
 /* Mobile only (640px and below) - even more aggressive optimizations */
 @media (max-width: 640px) {
-  /* Remove all text animations completely */
-  * {
+  /* Remove text animations but preserve background/decorative animations */
+  .animate-letter-float,
+  .animate-dev-services-text,
+  .animate-pulse-glow,
+  .animate-textGlow,
+  .animate-text-glow,
+  .warm-glow-text,
+  .animate-warm-glow-pulse {
     animation-duration: 0s !important;
     animation-delay: 0s !important;
+  }
+
+  /* Keep short transitions for interactive elements */
+  button, .interactive {
     transition-duration: 0.2s !important;
   }
 
