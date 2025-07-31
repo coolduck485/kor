@@ -880,7 +880,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ████████████████��█████████████���█████ 60%
+                      CPU: █████████████��██��█████████████���█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -3908,8 +3908,6 @@ export default function Index() {
               ref={(el) => (sectionsRef.current[1] = el!)}
               theme={theme}
               isVisible={currentSection === 1}
-              isMobile={isMobile}
-              animationConfig={animationConfig}
             />
           </motion.div>
 
@@ -3925,8 +3923,6 @@ export default function Index() {
               ref={(el) => (sectionsRef.current[2] = el!)}
               theme={theme}
               isVisible={currentSection === 2}
-              isMobile={isMobile}
-              animationConfig={animationConfig}
             />
           </motion.div>
 
@@ -3942,8 +3938,6 @@ export default function Index() {
               ref={(el) => (sectionsRef.current[3] = el!)}
               theme={theme}
               isVisible={currentSection === 3}
-              isMobile={isMobile}
-              animationConfig={animationConfig}
             />
           </motion.div>
 
@@ -3959,8 +3953,6 @@ export default function Index() {
               ref={(el) => (sectionsRef.current[4] = el!)}
               theme={theme}
               isVisible={currentSection === 4}
-              isMobile={isMobile}
-              animationConfig={animationConfig}
             />
           </motion.div>
         </div>
