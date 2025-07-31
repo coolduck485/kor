@@ -467,6 +467,24 @@ export default function Index() {
     SPAM_PROTECTION_PRESETS.standard
   );
 
+  // Spam protection for external links
+  const { protectedCallback: protectedOpenLink } = useSpamProtection(
+    (url: string) => window.open(url, "_blank"),
+    SPAM_PROTECTION_PRESETS.critical
+  );
+
+  // Spam protection for help modal
+  const { protectedCallback: protectedToggleHelpModal } = useSpamProtection(
+    (isOpen: boolean) => setIsHelpModalOpen(isOpen),
+    SPAM_PROTECTION_PRESETS.fast
+  );
+
+  // Spam protection for form interactions
+  const { protectedCallback: protectedFormInteraction } = useSpamProtection(
+    (callback: () => void) => callback(),
+    SPAM_PROTECTION_PRESETS.standard
+  );
+
   // Desktop scroll optimization variables
   const scrollAccumulator = useRef(0);
   const lastScrollTime = useRef(0);
@@ -828,7 +846,7 @@ export default function Index() {
                 >
                   {`██╗  ██╗ ██████╗ ██����██╗
 ██║ ����█╔��██╔═══���█╗██╔══██╗
-█████╔╝ ██║   ██║███���██╔╝
+█████╔╝ ██║   ██║███���██��╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��██���█╔╝██║  ██║
 ��������╝  ╚═╝ �����════╝ ╚���╝  ��═╝`}
