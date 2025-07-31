@@ -450,9 +450,10 @@ export default function Index() {
           setIsContentVisible(true);
 
           // Complete the transition
-          setTimeout(() => {
+          navigationTimeoutRef.current = setTimeout(() => {
             setIsScrolling(false);
             setIsScrollingActive(false);
+            navigationTimeoutRef.current = null;
           }, completionDelay); // Responsive timing based on device
         }, visibilityDelay); // Responsive delay
       }, contentRevealDelay); // Responsive reveal delay
