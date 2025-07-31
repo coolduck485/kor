@@ -892,7 +892,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██��█████████████���█████ 60%
+                      CPU: █████████████��██��███���█████████���█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -5378,12 +5378,13 @@ function MobileHamburgerMenu({
           }}
           animate={{
             rotate: isOpen ? 180 : 0,
-            scale: isOpen ? 1.1 : 1,
+            scale: isOpen ? 1.05 : 1,
           }}
           transition={{
             type: "spring",
-            stiffness: 300,
-            damping: 20,
+            stiffness: 400,
+            damping: 25,
+            duration: 0.2,
           }}
           className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl overflow-hidden ${
             isPinkActive
@@ -5412,17 +5413,17 @@ function MobileHamburgerMenu({
           {/* Hamburger Icon */}
           <div className="relative w-6 h-6 flex flex-col justify-center items-center space-y-1">
             <div
-              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+              className={`w-5 h-0.5 bg-current transition-all duration-200 ease-out ${
                 isOpen ? "rotate-45 translate-y-1.5" : ""
               } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
             />
             <div
-              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+              className={`w-5 h-0.5 bg-current transition-all duration-200 ease-out ${
                 isOpen ? "opacity-0" : ""
               } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
             />
             <div
-              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+              className={`w-5 h-0.5 bg-current transition-all duration-200 ease-out ${
                 isOpen ? "-rotate-45 -translate-y-1.5" : ""
               } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
             />
@@ -5472,27 +5473,35 @@ function MobileHamburgerMenu({
       <AnimatePresence mode="wait">
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, "--backdrop-blur": "0px" }}
-            animate={{ opacity: 1, "--backdrop-blur": "12px" }}
-            exit={{ opacity: 0, "--backdrop-blur": "0px" }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 bg-black/30 z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="fixed inset-0 bg-black/40 z-40"
             onClick={() => setIsOpen(false)}
             style={{
-              backdropFilter: "blur(var(--backdrop-blur))",
-              WebkitBackdropFilter: "blur(var(--backdrop-blur))",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              willChange: "opacity",
             }}
           >
             {/* Mobile Menu Content - Synchronized with backdrop */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: -10 }}
+              initial={{ opacity: 0, scale: 0.9, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -10 }}
-              transition={{ duration: 0.2, ease: "easeOut", delay: 0.05 }}
+              exit={{ opacity: 0, scale: 0.9, y: -20 }}
+              transition={{
+                duration: 0.2,
+                ease: "easeOut",
+                type: "spring",
+                stiffness: 400,
+                damping: 25
+              }}
               className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
               style={{
                 marginLeft: `${menuPosition.left}px`,
                 marginTop: `${menuPosition.top}px`,
+                willChange: "transform, opacity",
               }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -5522,24 +5531,22 @@ function MobileHamburgerMenu({
                   {menuItems.map((item, index) => (
                     <motion.button
                       key={item.text}
-                      initial={{ opacity: 0, x: -15, scale: 0.95 }}
+                      initial={{ opacity: 0, x: -20, scale: 0.9 }}
                       animate={{ opacity: 1, x: 0, scale: 1 }}
                       transition={{
-                        delay: 0.1 + index * 0.05,
-                        duration: 0.3,
+                        delay: 0.05 + index * 0.03,
+                        duration: 0.2,
                         type: "spring",
-                        stiffness: 200,
-                        damping: 15,
+                        stiffness: 300,
+                        damping: 20,
                       }}
                       whileTap={{
-                        scale: 0.95,
-                        x: 2,
+                        scale: 0.96,
                         transition: { duration: 0.1 },
                       }}
                       whileHover={{
                         scale: 1.02,
-                        x: 2,
-                        transition: { duration: 0.2 },
+                        transition: { duration: 0.15 },
                       }}
                       className={`group w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 hover:shadow-xl active:scale-95 overflow-hidden relative will-change-transform ${
                         theme === "light"
