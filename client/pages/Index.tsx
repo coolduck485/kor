@@ -3161,28 +3161,26 @@ export default function Index() {
               </div>
 
               {/* Optimized Rotating Light Beams */}
-              {!isMobile && (
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-                  <div
-                    className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-blue-400/25 to-transparent gpu-accelerated"
-                    style={{
-                      animation: "spin 15s linear infinite",
-                      transformOrigin: "center 50%",
-                      willChange: "transform",
-                      transform: "translateZ(0)",
-                    }}
-                  />
-                  <div
-                    className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent gpu-accelerated"
-                    style={{
-                      animation: "spin 20s linear infinite reverse",
-                      transformOrigin: "center 50%",
-                      willChange: "transform",
-                      transform: "translateZ(0)",
-                    }}
-                  />
-                </div>
-              )}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+                <div
+                  className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-blue-400/25 to-transparent gpu-accelerated"
+                  style={{
+                    animation: "spin 15s linear infinite",
+                    transformOrigin: "center 50%",
+                    willChange: "transform",
+                    transform: "translateZ(0)",
+                  }}
+                />
+                <div
+                  className="absolute w-1 h-96 bg-gradient-to-t from-transparent via-cyan-400/20 to-transparent gpu-accelerated"
+                  style={{
+                    animation: "spin 20s linear infinite reverse",
+                    transformOrigin: "center 50%",
+                    willChange: "transform",
+                    transform: "translateZ(0)",
+                  }}
+                />
+              </div>
 
               {/* Left Side Visual Balance Elements */}
               <div className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 pointer-events-none">
@@ -8526,7 +8524,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "📞", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "����", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
