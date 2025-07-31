@@ -5,9 +5,7 @@ import { RetroToggle } from "@/components/ui/retro-toggle";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useUnifiedNotifications } from "@/components/ui/unified-notification";
-import { useMobilePerformance } from "@/hooks/use-mobile-performance";
 import { useBrowserDetection } from "@/hooks/use-browser-detection";
-import { useDeviceType } from "@/hooks/use-device-type";
 import {
   ChevronUp,
   ChevronDown,
