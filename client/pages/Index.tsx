@@ -969,7 +969,7 @@ export default function Index() {
                 </button>
                 <button
                   className="pixel-button social-button"
-                  onClick={() => window.open("https://telegram.org", "_blank")}
+                  onClick={() => protectedOpenLink("https://telegram.org")}
                 >
                   TELEGRAM
                 </button>
