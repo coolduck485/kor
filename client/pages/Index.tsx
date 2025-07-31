@@ -2458,7 +2458,7 @@ export default function Index() {
               theme === "light"
                 ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
                 : "bg-black"
-            }`}
+            } animate-pulse sm:animate-none`}
             style={{
               display: currentSection === 0 ? "block" : "none",
             }}
