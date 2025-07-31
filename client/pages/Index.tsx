@@ -1902,7 +1902,7 @@ export default function Index() {
       >
         {/* Shared Navigation Tooltip - Positioned between buttons */}
         {showNavigationTooltip &&
-          !hasInteractedWithHelp &&
+          !isHelpModalOpen &&
           (currentSection > 0 || currentSection < sections.length - 1) &&
           shouldShowTooltip("nav-shared") && (
             <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
@@ -1913,7 +1913,9 @@ export default function Index() {
                     : "border-blue-300/30 bg-black/80 text-white"
                 }`}
               >
-                Click to navigate sections or use Ctrl+Arrow keys
+                {window.innerWidth < 992
+                  ? "Tap here!"
+                  : "Click to navigate sections or use Ctrl+Arrow keys"}
                 <div
                   className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                     theme === "light"
@@ -1925,7 +1927,7 @@ export default function Index() {
             </div>
           )}
         {/* Previous Section Button */}
-        {currentSection > 0 && (
+        {currentSection > 0 && !isHelpModalOpen && (
           <button
             onClick={() => {
               scrollToSection(currentSection - 1);
@@ -1968,7 +1970,7 @@ export default function Index() {
         )}
 
         {/* Next Section Button */}
-        {currentSection < sections.length - 1 && (
+        {currentSection < sections.length - 1 && !isHelpModalOpen && (
           <button
             onClick={() => {
               scrollToSection(currentSection + 1);
@@ -2012,35 +2014,37 @@ export default function Index() {
       </div>
 
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
-      <div
-        className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
-        style={{ position: "fixed" }}
-      >
-        {sections.map((section, index) => (
-          <button
-            key={section.id}
-            onClick={() => {
-              scrollToSection(index);
-              setShowNavigationHints(false);
-            }}
-            className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
-              index === currentSection
-                ? theme === "light"
-                  ? "bg-blue-600 shadow-lg scale-125"
-                  : "bg-blue-400 shadow-lg scale-125"
-                : theme === "light"
-                  ? "bg-gray-300 hover:bg-gray-400"
-                  : "bg-white/30 hover:bg-white/50"
-            }`}
-            style={{
-              boxShadow:
+      {!isHelpModalOpen && (
+        <div
+          className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
+          style={{ position: "fixed" }}
+        >
+          {sections.map((section, index) => (
+            <button
+              key={section.id}
+              onClick={() => {
+                scrollToSection(index);
+                setShowNavigationHints(false);
+              }}
+              className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
                 index === currentSection
-                  ? "0 0 15px rgba(73, 146, 255, 0.5)"
-                  : "none",
-            }}
-          />
-        ))}
-      </div>
+                  ? theme === "light"
+                    ? "bg-blue-600 shadow-lg scale-125"
+                    : "bg-blue-400 shadow-lg scale-125"
+                  : theme === "light"
+                    ? "bg-gray-300 hover:bg-gray-400"
+                    : "bg-white/30 hover:bg-white/50"
+              }`}
+              style={{
+                boxShadow:
+                  index === currentSection
+                    ? "0 0 15px rgba(73, 146, 255, 0.5)"
+                    : "none",
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Help Button - Available on all sections, above notifications */}
       <div
@@ -2093,41 +2097,29 @@ export default function Index() {
           {/* Ripple effect */}
           <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
 
-          {/* Tooltip - positioned to left on mobile/tablet, above on desktop */}
-          {shouldShowTooltip("help-button") && (
-            <div
-              className={`absolute opacity-100 transition-all duration-300 transform pointer-events-none ${
-                window.innerWidth < 1024
-                  ? "right-full mr-3 top-1/2 -translate-y-1/2"
-                  : "bottom-full mb-3 left-1/2 -translate-x-1/2"
-              }`}
-            >
-              <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                  theme === "light"
-                    ? "border-blue-400/40 bg-white/90 text-gray-800"
-                    : "border-blue-300/30 bg-black/80 text-white"
-                }`}
-              >
-                Click here for help
+          {/* Tooltip - positioned above on desktop only (992px+) */}
+          {shouldShowTooltip("help-button") &&
+            !isHelpModalOpen &&
+            window.innerWidth >= 992 && (
+              <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-100 transition-all duration-300 transform pointer-events-none">
                 <div
-                  className={`absolute w-0 h-0 border-4 border-transparent ${
-                    window.innerWidth < 1024
-                      ? `left-full top-1/2 -translate-y-1/2 border-l-4 ${
-                          theme === "light"
-                            ? "border-l-white/90"
-                            : "border-l-black/80"
-                        }`
-                      : `top-full left-1/2 -translate-x-1/2 border-t-4 ${
-                          theme === "light"
-                            ? "border-t-white/90"
-                            : "border-t-black/80"
-                        }`
+                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                    theme === "light"
+                      ? "border-blue-400/40 bg-white/90 text-gray-800"
+                      : "border-blue-300/30 bg-black/80 text-white"
                   }`}
-                />
+                >
+                  Click here for help
+                  <div
+                    className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-t-4 border-4 border-transparent ${
+                      theme === "light"
+                        ? "border-t-white/90"
+                        : "border-t-black/80"
+                    }`}
+                  />
+                </div>
               </div>
-            </div>
-          )}
+            )}
         </button>
       </div>
 
@@ -2470,14 +2462,48 @@ export default function Index() {
               theme === "light"
                 ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
                 : "bg-black"
-            }`}
+            } animate-pulse sm:animate-none`}
             style={{
               display: currentSection === 0 ? "block" : "none",
             }}
           >
             {/* Main Content - Always visible with orchestrated animations */}
-            {/* Left Corner Visual Elements for Mobile Balance */}
-            <div className="fixed top-6 left-6 z-40 block sm:hidden"></div>
+            {/* Enhanced Mobile Visual Elements */}
+            <div className="fixed top-6 left-6 z-40 block sm:hidden">
+              {/* Animated mobile corner orbs */}
+              <div className="relative">
+                {[...Array(3)].map((_, i) => (
+                  <motion.div
+                    key={`mobile-corner-orb-${i}`}
+                    className="absolute rounded-full opacity-60"
+                    style={{
+                      width: `${8 + i * 3}px`,
+                      height: `${8 + i * 3}px`,
+                      left: `${i * 12}px`,
+                      top: `${i * 8}px`,
+                      background: [
+                        "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, transparent 70%)",
+                        "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)",
+                        "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, transparent 70%)",
+                      ][i],
+                      filter: `blur(${1 + i * 0.5}px)`,
+                    }}
+                    animate={{
+                      y: [0, -8, 0],
+                      x: [0, 4, 0],
+                      scale: [1, 1.1, 1],
+                      opacity: [0.6, 0.9, 0.6],
+                    }}
+                    transition={{
+                      duration: 3 + i,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: i * 0.5,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
 
             {/* Theme Toggle Container with Tooltip */}
             <div
@@ -2527,7 +2553,7 @@ export default function Index() {
                       : theme === "light"
                         ? "border-blue-400/40 bg-white/30"
                         : "border-blue-300/30 bg-blue-400/5"
-                  }`}
+                  } animate-wiggle sm:animate-none`}
                   style={{
                     background:
                       theme === "light"
@@ -2538,10 +2564,41 @@ export default function Index() {
                       : "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
                   }}
                 >
-                  {/* Original Toggle Buttons */}
+                  {/* Enhanced Toggle Buttons with Mobile Animations */}
                   <div className="flex flex-col gap-2 sm:gap-3">
-                    <ThemeToggle />
-                    <RetroToggle />
+                    <motion.div
+                      whileTap={{ scale: 0.95 }}
+                      animate={{
+                        scale: [1, 1.02, 1],
+                      }}
+                      transition={{
+                        scale: {
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                      }}
+                      className="sm:animate-none"
+                    >
+                      <ThemeToggle />
+                    </motion.div>
+                    <motion.div
+                      whileTap={{ scale: 0.95 }}
+                      animate={{
+                        scale: [1, 1.02, 1],
+                      }}
+                      transition={{
+                        scale: {
+                          duration: 2.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.3,
+                        },
+                      }}
+                      className="sm:animate-none"
+                    >
+                      <RetroToggle />
+                    </motion.div>
                   </div>
                 </div>
               </div>
@@ -2844,6 +2901,91 @@ export default function Index() {
                 </div>
               </div>
             )}
+
+            {/* Mobile Screen Edge Effects */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden sm:hidden">
+              {/* Mobile screen edge glow effects */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent animate-pulse" />
+              <div
+                className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-400/30 to-transparent animate-pulse"
+                style={{ animationDelay: "1s" }}
+              />
+              <div
+                className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-green-400/30 to-transparent animate-pulse"
+                style={{ animationDelay: "0.5s" }}
+              />
+              <div
+                className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-pink-400/30 to-transparent animate-pulse"
+                style={{ animationDelay: "1.5s" }}
+              />
+            </div>
+
+            {/* Mobile-Specific Floating Elements */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden sm:hidden">
+              {/* Mobile floating bubbles */}
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={`mobile-bubble-${i}`}
+                  className="absolute rounded-full opacity-40"
+                  style={{
+                    left: `${15 + ((i * 65) % 70)}%`,
+                    top: `${20 + ((i * 45) % 60)}%`,
+                    width: `${6 + (i % 3) * 2}px`,
+                    height: `${6 + (i % 3) * 2}px`,
+                    background: [
+                      "radial-gradient(circle, rgba(34, 197, 94, 0.7) 0%, transparent 80%)",
+                      "radial-gradient(circle, rgba(59, 130, 246, 0.7) 0%, transparent 80%)",
+                      "radial-gradient(circle, rgba(147, 51, 234, 0.7) 0%, transparent 80%)",
+                      "radial-gradient(circle, rgba(236, 72, 153, 0.7) 0%, transparent 80%)",
+                    ][i % 4],
+                    filter: `blur(${0.5 + (i % 2) * 0.5}px)`,
+                  }}
+                  animate={{
+                    y: [0, -15, 0],
+                    x: [0, 8, 0],
+                    scale: [0.8, 1.2, 0.8],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 4 + (i % 3),
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: i * 0.3,
+                  }}
+                />
+              ))}
+
+              {/* Mobile swipe indicators */}
+              <motion.div
+                className="absolute top-1/2 right-4 transform -translate-y-1/2"
+                animate={{
+                  x: [0, -10, 0],
+                  opacity: [0.3, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <div className="flex flex-col space-y-1">
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={`swipe-dot-${i}`}
+                      className="w-1 h-1 bg-blue-400 rounded-full opacity-60"
+                      animate={{
+                        scale: [1, 1.5, 1],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: i * 0.2,
+                      }}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </div>
 
             {/* Optimized Floating Ambient Particles - Reduced count for 60fps */}
             <motion.div
@@ -4407,6 +4549,58 @@ export default function Index() {
           50% { transform: translateX(12px) translateY(-3px) skewY(1deg) rotate(3deg); }
         }
 
+        /* Mobile Touch Feedback Animations */
+        @keyframes mobile-touch-ripple {
+          0% {
+            transform: scale(0);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+
+        @keyframes mobile-bounce-in {
+          0% {
+            transform: scale(0.3) translateY(20px);
+            opacity: 0;
+          }
+          50% {
+            transform: scale(1.05) translateY(-5px);
+            opacity: 0.8;
+          }
+          70% {
+            transform: scale(0.9) translateY(2px);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1) translateY(0px);
+            opacity: 1;
+          }
+        }
+
+        @keyframes mobile-wiggle {
+          0%, 100% { transform: rotate(0deg); }
+          25% { transform: rotate(1deg) scale(1.01); }
+          75% { transform: rotate(-1deg) scale(1.01); }
+        }
+
+        @keyframes mobile-pulse-glow {
+          0%, 100% {
+            box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+            transform: scale(1);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.3);
+            transform: scale(1.02);
+          }
+        }
+
+        .animate-wiggle {
+          animation: mobile-wiggle 3s ease-in-out infinite;
+        }
+
         @keyframes aurora-wave-subtle-1 {
           0%, 100% { transform: translateX(-15%) translateY(0%) skewY(-1deg) scale(1); }
           25% { transform: translateX(-12%) translateY(-2%) skewY(-0.5deg) scale(1.05); }
@@ -5150,11 +5344,29 @@ function MobileHamburgerMenu({
             "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s, bubble-pop-in 0.6s ease-out forwards",
         }}
       >
-        <button
+        <motion.button
           onClick={() => setIsOpen(!isOpen)}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => !isOpen && setShowTooltip(false)}
-          className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl active:scale-95 overflow-hidden ${
+          whileTap={{
+            scale: 0.9,
+            rotate: 5,
+            transition: { duration: 0.1 },
+          }}
+          whileHover={{
+            scale: 1.05,
+            transition: { duration: 0.2 },
+          }}
+          animate={{
+            rotate: isOpen ? 180 : 0,
+            scale: isOpen ? 1.1 : 1,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 20,
+          }}
+          className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl overflow-hidden ${
             isPinkActive
               ? "border-pink-400/50 bg-pink-500/10 hover:border-pink-500/70"
               : theme === "light"
@@ -5234,7 +5446,7 @@ function MobileHamburgerMenu({
               </motion.div>
             )}
           </AnimatePresence>
-        </button>
+        </motion.button>
       </div>
 
       {/* Enhanced Backdrop overlay with synchronized menu content */}
@@ -5291,9 +5503,25 @@ function MobileHamburgerMenu({
                   {menuItems.map((item, index) => (
                     <motion.button
                       key={item.text}
-                      initial={{ opacity: 0, x: -15 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 + index * 0.05, duration: 0.2 }}
+                      initial={{ opacity: 0, x: -15, scale: 0.95 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      transition={{
+                        delay: 0.1 + index * 0.05,
+                        duration: 0.3,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 15,
+                      }}
+                      whileTap={{
+                        scale: 0.95,
+                        x: 2,
+                        transition: { duration: 0.1 },
+                      }}
+                      whileHover={{
+                        scale: 1.02,
+                        x: 2,
+                        transition: { duration: 0.2 },
+                      }}
                       className={`group w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 hover:shadow-xl active:scale-95 overflow-hidden relative will-change-transform ${
                         theme === "light"
                           ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60 text-gray-800 hover:text-gray-900"
@@ -7811,7 +8039,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-blue-500 to-purple-500",
               },
               {
-                icon: "🚀",
+                icon: "�����",
                 label: "Launch",
                 x: 12,
                 y: 85,
@@ -8460,7 +8688,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "����", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
