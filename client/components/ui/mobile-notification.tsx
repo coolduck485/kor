@@ -299,12 +299,12 @@ const MobileNotificationItem = React.forwardRef<
         >
           <motion.h4
             className={cn(
-              "font-semibold text-white animate-text-glow-pulse",
-              isMobile ? "text-xs" : "text-sm sm:text-base",
+              "font-semibold text-white",
+              isMobile ? "text-xs" : "text-sm sm:text-base animate-text-glow-pulse",
             )}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: isMobile ? 5 : 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: isMobile ? 0.05 : 0.1, duration: isMobile ? 0.15 : 0.2 }}
           >
             {notification.title}
           </motion.h4>
@@ -315,9 +315,9 @@ const MobileNotificationItem = React.forwardRef<
                 ? "text-xs leading-tight"
                 : "text-xs sm:text-sm leading-relaxed",
             )}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: isMobile ? 3 : 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: isMobile ? 0.08 : 0.2, duration: isMobile ? 0.15 : 0.2 }}
           >
             {notification.message}
           </motion.p>
