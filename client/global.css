@@ -990,8 +990,8 @@ body > div {
 
   to {
     opacity: 0;
-    transform: scale(0.8) translateX(80px) translateY(-15px);
-    filter: blur(3px);
+    transform: scale(0.95) translateX(15px) translateY(-3px);
+    filter: blur(1px);
   }
 }
 
