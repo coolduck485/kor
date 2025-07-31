@@ -5311,6 +5311,27 @@ function MobileHamburgerMenu({
     SPAM_PROTECTION_PRESETS.fast
   );
 
+  // Spam protection for menu item navigation
+  const { protectedCallback: protectedNavigateFromMenu } = useSpamProtection(
+    (itemText: string) => {
+      setIsOpen(false);
+      const sectionMap: { [key: string]: number } = {
+        "About us": 1,
+        Services: 2,
+        Portfolio: 3,
+        "Contact us": 4,
+      };
+      const sectionIndex = sectionMap[itemText];
+      if (sectionIndex) {
+        const event = new CustomEvent("scrollToSection", {
+          detail: sectionIndex,
+        });
+        window.dispatchEvent(event);
+      }
+    },
+    SPAM_PROTECTION_PRESETS.standard
+  );
+
   const menuItems = [
     { text: "About us" },
     { text: "Services" },
