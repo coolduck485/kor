@@ -2895,9 +2895,7 @@ export default function Index() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
             >
-              {[
-                ...Array(animationConfig.enableBackgroundParticles ? 15 : 0),
-              ].map((_, i) => (
+              {[...Array(15)].map((_, i) => (
                 <motion.div
                   key={`particle-${i}`}
                   className="absolute rounded-full opacity-70 gpu-accelerated"
