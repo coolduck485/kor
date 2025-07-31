@@ -2098,13 +2098,7 @@ export default function Index() {
 
           {/* Tooltip - positioned to left on mobile/tablet, above on desktop */}
           {shouldShowTooltip("help-button") && !isHelpModalOpen && (
-            <div
-              className={`absolute opacity-100 transition-all duration-300 transform pointer-events-none ${
-                window.innerWidth < 1024
-                  ? "right-full mr-3 top-1/2 -translate-y-1/2"
-                  : "bottom-full mb-3 left-1/2 -translate-x-1/2"
-              }`}
-            >
+            <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-100 transition-all duration-300 transform pointer-events-none">
               <div
                 className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
                   theme === "light"
@@ -2112,20 +2106,12 @@ export default function Index() {
                     : "border-blue-300/30 bg-black/80 text-white"
                 }`}
               >
-                {window.innerWidth < 1024 ? "Tap here!" : "Click here for help"}
+                Click here for help
                 <div
-                  className={`absolute w-0 h-0 border-4 border-transparent ${
-                    window.innerWidth < 1024
-                      ? `left-full top-1/2 -translate-y-1/2 border-l-4 ${
-                          theme === "light"
-                            ? "border-l-white/90"
-                            : "border-l-black/80"
-                        }`
-                      : `top-full left-1/2 -translate-x-1/2 border-t-4 ${
-                          theme === "light"
-                            ? "border-t-white/90"
-                            : "border-t-black/80"
-                        }`
+                  className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-t-4 border-4 border-transparent ${
+                    theme === "light"
+                      ? "border-t-white/90"
+                      : "border-t-black/80"
                   }`}
                 />
               </div>
