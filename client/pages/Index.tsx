@@ -2115,7 +2115,7 @@ export default function Index() {
       >
         <button
           onClick={() => {
-            setIsHelpModalOpen(true);
+            protectedToggleHelpModal(true);
             setHasInteractedWithHelp(true);
             dismissTooltip("help-button");
           }}
