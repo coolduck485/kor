@@ -800,7 +800,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██����██╗
-██║ ���█╔��██╔═══���█╗██╔══██╗
+██║ ����█╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��████╔╝██║  ██║
@@ -6778,7 +6778,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/10" />
 
                     {/* Code Editor Interface */}
-                    <div className="absolute inset-0 p-4 sm:p-6 lg:p-8">
+                    <div className="absolute inset-0 p-3 sm:p-6 lg:p-8">
                       {/* Browser-like Header */}
                       <div className="flex items-center space-x-2 mb-4 sm:mb-6">
                         <div className="flex space-x-1.5">
