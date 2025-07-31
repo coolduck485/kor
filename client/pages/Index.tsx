@@ -2096,8 +2096,8 @@ export default function Index() {
           {/* Ripple effect */}
           <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
 
-          {/* Tooltip - positioned to left on mobile/tablet, above on desktop */}
-          {shouldShowTooltip("help-button") && !isHelpModalOpen && (
+          {/* Tooltip - positioned above on desktop only (992px+) */}
+          {shouldShowTooltip("help-button") && !isHelpModalOpen && window.innerWidth >= 992 && (
             <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-100 transition-all duration-300 transform pointer-events-none">
               <div
                 className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
@@ -7800,7 +7800,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-blue-500 to-purple-500",
               },
               {
-                icon: "🚀",
+                icon: "���",
                 label: "Launch",
                 x: 12,
                 y: 85,
