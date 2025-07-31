@@ -53,7 +53,6 @@ export default function Index() {
   const [hasInteractedWithHelp, setHasInteractedWithHelp] = useState(false);
   const [showNavigationTooltip, setShowNavigationTooltip] = useState(true);
   const hasShownWelcomeRef = useRef(false);
-  const hasShownMobilePerformanceRef = useRef(false);
 
   // Tooltip management state
   const [dismissedTooltips, setDismissedTooltips] = useState<Set<string>>(
@@ -841,7 +840,7 @@ export default function Index() {
 █████╔╝ ██║   ██║██████╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚██████╔╝██║  ██║
-������╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
+�������╝  ╚═╝ ╚═════╝ ╚═╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
