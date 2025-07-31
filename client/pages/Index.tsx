@@ -2007,7 +2007,7 @@ export default function Index() {
               e.preventDefault();
               e.stopPropagation();
               if (isScrolling) return;
-              scrollToSection(currentSection + 1);
+              protectedScrollToSection(currentSection + 1);
               setShowNavigationHints(false);
               setShowNavigationTooltip(false);
               dismissTooltip("nav-down");
@@ -5760,7 +5760,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: xOffset: 0  →  xOffset: 50
 //
 // To move "About us" button 30px up:
-// Change: yOffset: 0  →  yOffset: -30
+// Change: yOffset: 0  ��  yOffset: -30
 //
 // To make all buttons closer to center on mobile:
 // Change: mobileRadiusMultiplier: 0.5  →  mobileRadiusMultiplier: 0.3
