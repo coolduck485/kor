@@ -2549,7 +2549,7 @@ export default function Index() {
                       : theme === "light"
                         ? "border-blue-400/40 bg-white/30"
                         : "border-blue-300/30 bg-blue-400/5"
-                  }`}
+                  } animate-wiggle sm:animate-none`}
                   style={{
                     background:
                       theme === "light"
