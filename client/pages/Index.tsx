@@ -2076,16 +2076,13 @@ export default function Index() {
         </div>
       )}
 
-      {/* Help Button - Available on all sections, above notifications */}
+      {/* Help Button - Duplicated from down navigation button, positioned 150px lower */}
       <div
-        className={`help-button fixed right-6 sm:right-16 md:right-20 lg:right-24 z-[9999] transition-all duration-300 ${
-          isMobileSafari || isSafari
-            ? ""
-            : "bottom-12 sm:bottom-16 md:bottom-20"
-        } ${isMobileMenuOpen ? "blur-sm" : ""}`}
+        className="fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[9999]"
         style={{
           position: "fixed",
-          bottom: isMobileSafari || isSafari ? "160px" : undefined,
+          top: "calc(50% + 150px)",
+          transform: "translateY(-50%)"
         }}
       >
         <button
@@ -2096,42 +2093,34 @@ export default function Index() {
           }}
           onMouseEnter={() => dismissTooltip("help-button")}
           onTouchStart={() => dismissTooltip("help-button")}
-          className={`group relative p-4 sm:p-5 md:p-6 lg:p-7 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
-            isPinkActive
-              ? "border-pink-400/50 bg-pink-500/10 hover:bg-pink-500/20"
-              : theme === "light"
-                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+          disabled={isScrolling}
+          className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+            isScrolling ? "pointer-events-none opacity-60" : ""
+          } ${
+            theme === "light"
+              ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+              : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
           }`}
           style={{
             background:
               theme === "light"
                 ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
                 : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-            boxShadow: isPinkActive
-              ? "0 0 20px rgba(236, 72, 153, 0.4)"
-              : "0 0 20px rgba(73, 146, 255, 0.3)",
+            boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
           }}
         >
-          {/* Help Icon */}
           <HelpCircle
-            className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 transition-colors duration-300 flex-shrink-0 ${
-              isPinkActive
-                ? "text-pink-400 group-hover:text-pink-300"
-                : theme === "light"
-                  ? "text-blue-600 group-hover:text-blue-700"
-                  : "text-white group-hover:text-blue-300"
+            className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+              theme === "light"
+                ? "text-blue-600 group-hover:text-blue-700"
+                : "text-white group-hover:text-blue-300"
             }`}
           />
 
-          {/* Ripple effect */}
-          <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
-
-          {/* Tooltip - positioned above on desktop only (992px+) */}
+          {/* Tooltip - positioned to the left like navigation buttons */}
           {shouldShowTooltip("help-button") &&
-            !isHelpModalOpen &&
-            window.innerWidth >= 992 && (
-              <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-100 transition-all duration-300 transform pointer-events-none">
+            !isHelpModalOpen && (
+              <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
                 <div
                   className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
                     theme === "light"
@@ -2141,10 +2130,10 @@ export default function Index() {
                 >
                   Click here for help
                   <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-t-4 border-4 border-transparent ${
+                    className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                       theme === "light"
-                        ? "border-t-white/90"
-                        : "border-t-black/80"
+                        ? "border-l-white/90"
+                        : "border-l-black/80"
                     }`}
                   />
                 </div>
