@@ -5601,22 +5601,7 @@ function MobileHamburgerMenu({
                         backdropFilter: "blur(10px)",
                         WebkitBackdropFilter: "blur(10px)",
                       }}
-                      onClick={() => {
-                        setIsOpen(false);
-                        const sectionMap: { [key: string]: number } = {
-                          "About us": 1,
-                          Services: 2,
-                          Portfolio: 3,
-                          "Contact us": 4,
-                        };
-                        const sectionIndex = sectionMap[item.text];
-                        if (sectionIndex) {
-                          const event = new CustomEvent("scrollToSection", {
-                            detail: sectionIndex,
-                          });
-                          window.dispatchEvent(event);
-                        }
-                      }}
+                      onClick={() => protectedNavigateFromMenu(item.text)}
                     >
                       {/* Simplified background layers for performance */}
                       <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-200" />
