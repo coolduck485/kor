@@ -2594,7 +2594,6 @@ export default function Index() {
                           delay: 0.3,
                         },
                       }}
-                      className="sm:animate-none"
                     >
                       <RetroToggle />
                     </motion.div>
