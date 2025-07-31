@@ -4584,6 +4584,10 @@ export default function Index() {
           }
         }
 
+        .animate-wiggle {
+          animation: mobile-wiggle 3s ease-in-out infinite;
+        }
+
         @keyframes aurora-wave-subtle-1 {
           0%, 100% { transform: translateX(-15%) translateY(0%) skewY(-1deg) scale(1); }
           25% { transform: translateX(-12%) translateY(-2%) skewY(-0.5deg) scale(1.05); }
