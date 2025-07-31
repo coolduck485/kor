@@ -2464,8 +2464,42 @@ export default function Index() {
             }}
           >
             {/* Main Content - Always visible with orchestrated animations */}
-            {/* Left Corner Visual Elements for Mobile Balance */}
-            <div className="fixed top-6 left-6 z-40 block sm:hidden"></div>
+            {/* Enhanced Mobile Visual Elements */}
+            <div className="fixed top-6 left-6 z-40 block sm:hidden">
+              {/* Animated mobile corner orbs */}
+              <div className="relative">
+                {[...Array(3)].map((_, i) => (
+                  <motion.div
+                    key={`mobile-corner-orb-${i}`}
+                    className="absolute rounded-full opacity-60"
+                    style={{
+                      width: `${8 + i * 3}px`,
+                      height: `${8 + i * 3}px`,
+                      left: `${i * 12}px`,
+                      top: `${i * 8}px`,
+                      background: [
+                        "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, transparent 70%)",
+                        "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%)",
+                        "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, transparent 70%)",
+                      ][i],
+                      filter: `blur(${1 + i * 0.5}px)`,
+                    }}
+                    animate={{
+                      y: [0, -8, 0],
+                      x: [0, 4, 0],
+                      scale: [1, 1.1, 1],
+                      opacity: [0.6, 0.9, 0.6],
+                    }}
+                    transition={{
+                      duration: 3 + i,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: i * 0.5,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
 
             {/* Theme Toggle Container with Tooltip */}
             <div
