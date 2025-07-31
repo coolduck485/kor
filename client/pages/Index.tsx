@@ -1969,7 +1969,7 @@ export default function Index() {
         )}
 
         {/* Next Section Button */}
-        {currentSection < sections.length - 1 && (
+        {currentSection < sections.length - 1 && !isHelpModalOpen && (
           <button
             onClick={() => {
               scrollToSection(currentSection + 1);
