@@ -2919,8 +2919,7 @@ export default function Index() {
             </motion.div>
 
             {/* Animated Geometric Patterns - Now on all devices */}
-            {isHighPerformance && (
-              <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+            <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
                 <svg
                   className="absolute w-full h-full gpu-accelerated"
                   viewBox="0 0 1200 800"
@@ -2958,7 +2957,6 @@ export default function Index() {
                   ))}
                 </svg>
               </div>
-            )}
 
             {/* Optimized Breathing Orbs - Reduced count for performance - Responsive for mobile/tablet */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden scale-75 sm:scale-85 lg:scale-100">
