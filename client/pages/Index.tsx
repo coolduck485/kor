@@ -2121,27 +2121,26 @@ export default function Index() {
           />
 
           {/* Tooltip - positioned to the left like navigation buttons */}
-          {shouldShowTooltip("help-button") &&
-            !isHelpModalOpen && (
-              <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
+          {shouldShowTooltip("help-button") && !isHelpModalOpen && (
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
+              <div
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
+                }`}
+              >
+                Click here for help
                 <div
-                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                     theme === "light"
-                      ? "border-blue-400/40 bg-white/90 text-gray-800"
-                      : "border-blue-300/30 bg-black/80 text-white"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
                   }`}
-                >
-                  Click here for help
-                  <div
-                    className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
-                      theme === "light"
-                        ? "border-l-white/90"
-                        : "border-l-black/80"
-                    }`}
-                  />
-                </div>
+                />
               </div>
-            )}
+            </div>
+          )}
         </button>
       </div>
 
@@ -6813,7 +6812,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         <div className="flex-1 h-6 sm:h-8 bg-white/10 rounded-md ml-3 flex items-center px-2 sm:px-3">
                           <div className="w-2 h-2 bg-blue-400/60 rounded-full animate-pulse" />
                           <div className="ml-1 sm:ml-2 text-[10px] sm:text-xs text-white/60 font-mono truncate">
-                            <span className="hidden xs:inline">Building amazing software...</span>
+                            <span className="hidden xs:inline">
+                              Building amazing software...
+                            </span>
                             <span className="xs:hidden">Building...</span>
                           </div>
                         </div>
