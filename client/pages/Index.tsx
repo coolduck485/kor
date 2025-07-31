@@ -802,7 +802,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██����██╗
-██║ ██╔��██╔═══���█╗██╔══██╗
+██║ ���█╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��████╔╝██║  ██║
@@ -2578,7 +2578,6 @@ export default function Index() {
                           ease: "easeInOut",
                         },
                       }}
-                      className="sm:animate-none"
                     >
                       <ThemeToggle />
                     </motion.div>
