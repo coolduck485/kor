@@ -824,7 +824,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��████╔╝██║  ██║
-��������╝  ╚═╝ ��═════╝ ╚���╝  ��═╝`}
+��������╝  ╚═╝ �����════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -2078,7 +2078,7 @@ export default function Index() {
 
       {/* Help Button - Available on all sections, above notifications */}
       <div
-        className={`help-button fixed right-12 sm:right-16 md:right-20 lg:right-24 z-[9999] transition-all duration-300 ${
+        className={`help-button fixed right-6 sm:right-16 md:right-20 lg:right-24 z-[9999] transition-all duration-300 ${
           isMobileSafari || isSafari
             ? ""
             : "bottom-12 sm:bottom-16 md:bottom-20"
