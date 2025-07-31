@@ -802,10 +802,10 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██����██╗
-██║ ██╔��██╔═══���█╗██╔══██╗
+██║ ██╔��██╔═══�����█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
-██║  ██╗╚█��████╔╝██║  ██║
+██║  ██��╚█��████╔╝██║  ██║
 �������╝  ╚═╝ ��═════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1903,6 +1903,7 @@ export default function Index() {
         {/* Shared Navigation Tooltip - Positioned between buttons */}
         {showNavigationTooltip &&
           !hasInteractedWithHelp &&
+          !isHelpModalOpen &&
           (currentSection > 0 || currentSection < sections.length - 1) &&
           shouldShowTooltip("nav-shared") && (
             <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
@@ -1913,7 +1914,7 @@ export default function Index() {
                     : "border-blue-300/30 bg-black/80 text-white"
                 }`}
               >
-                Click to navigate sections or use Ctrl+Arrow keys
+                {window.innerWidth < 1024 ? "Tap here!" : "Click to navigate sections or use Ctrl+Arrow keys"}
                 <div
                   className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                     theme === "light"
