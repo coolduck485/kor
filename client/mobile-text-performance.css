@@ -103,9 +103,8 @@
     color: white !important;
   }
 
-  /* Override any remaining glow effects */
-  .animate-pulse-glow,
-  .animate-button-float {
+  /* Override text glow effects only */
+  .animate-pulse-glow {
     animation: none !important;
   }
 }
