@@ -6105,8 +6105,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         ref={ref}
         className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
-            ? "bg-gradient-to-br from-violet-900 via-purple-800 to-indigo-900"
-            : "bg-gradient-to-br from-gray-900 via-purple-900 to-black"
+            ? "bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900"
+            : "bg-gradient-to-br from-gray-900 via-blue-900 to-black"
         }`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
