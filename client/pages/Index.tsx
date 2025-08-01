@@ -851,7 +851,7 @@ export default function Index() {
 ██║ ����█╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
-██║  ██╗╚█��██���█╔╝█��║  ██║
+██║  ██╗╚█��█�����█╔╝█��║  ██║
 ��������╝  ╚═╝ �����════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -2044,9 +2044,9 @@ export default function Index() {
               dismissTooltip("nav-down");
               dismissTooltip("nav-shared");
             }}
-            disabled={isScrolling}
+            disabled={isScrolling || isMobileMenuOpen}
             className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
-              isScrolling ? "pointer-events-none opacity-60" : ""
+              isScrolling || isMobileMenuOpen ? "pointer-events-none opacity-60" : ""
             } ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
@@ -5729,7 +5729,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: xOffset: 0  →  xOffset: 50
 //
 // To move "About us" button 30px up:
-// Change: yOffset: 0  ��  yOffset: -30
+// Change: yOffset: 0  ���  yOffset: -30
 //
 // To make all buttons closer to center on mobile:
 // Change: mobileRadiusMultiplier: 0.5  →  mobileRadiusMultiplier: 0.3
