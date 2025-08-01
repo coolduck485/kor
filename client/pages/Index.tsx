@@ -931,7 +931,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��█�����█████████████����█████ 60%
+                      CPU: █████████████��██���█████████████����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8691,7 +8691,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {/* CTA Button */}
                           <div className="mt-4">
                             <motion.button
-                              className={`w-full py-4 px-6 rounded-xl font-bold text-white bg-gradient-to-r ${plan.color} shadow-lg transition-all duration-300 hover:shadow-xl`}
+                              className={`w-full py-3 px-4 rounded-lg font-bold text-white bg-gradient-to-r ${plan.color} shadow-lg transition-all duration-300 hover:shadow-xl`}
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
                             >
