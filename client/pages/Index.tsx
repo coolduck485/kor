@@ -8641,7 +8641,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                                   boxShadow: `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
                                 }}
                               >
-                                <plan.icon className="w-8 h-8 text-white drop-shadow-lg" />
+                                <plan.icon className="w-6 h-6 text-white drop-shadow-lg" />
                               </div>
                               <div
                                 className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${plan.color} opacity-0 group-hover:opacity-60 transition-opacity duration-300 blur-lg -z-10`}
