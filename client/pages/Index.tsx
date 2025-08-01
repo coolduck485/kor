@@ -899,11 +899,11 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █████���╗ ██���������██╗
+                  {`��█╗  █�������╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█��█�����█╔╝█��║  ██║
+██║  ██╗╚█��█�����█╔╝�����║  ██║
 ����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1043,7 +1043,7 @@ export default function Index() {
                   <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
                   <span className="status-dot text-green-400 terminal-glow">
-                    ���
+                    ●
                   </span>
                   <span>ONLINE</span>
                 </div>
@@ -8412,16 +8412,88 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
-                {"Services".split("").map((letter, i) => (
-                  <span
-                    key={i}
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                <span className="warm-glow-text animate-warm-glow-pulse">
+                  {"Services".split("").map((letter, i) => (
+                    <span
+                      key={i}
+                      className="inline-block relative animate-letter-float"
+                      style={{
+                        animationDelay: `${i * 0.2}s`,
+                      }}
+                    >
+                      {letter}
+                    </span>
+                  ))}
+                </span>
+
+                {/* Optimized sparkles for better performance */}
+                {[
+                  { x: 75, y: -35, size: 0.8, type: "star" },
+                  { x: 55, y: -12, size: 0.6, type: "diamond" },
+                  { x: 95, y: 40, size: 0.7, type: "plus" },
+                  { x: 70, y: 70, size: 0.9, type: "star" },
+                  { x: 15, y: 75, size: 0.5, type: "diamond" },
+                  { x: -30, y: 50, size: 0.6, type: "plus" },
+                ].map((sparkle, i) => (
+                  <div
+                    key={`services-sparkle-${i}`}
+                    className="absolute pointer-events-none gpu-accelerated"
                     style={{
-                      animationDelay: `${i * 0.2}s`,
+                      left: `calc(50% + ${sparkle.x}px)`,
+                      top: `calc(50% + ${sparkle.y}px)`,
+                      animation: `sparkle-enhanced ${6 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                      transform: `translateZ(0) scale(${sparkle.size})`,
+                      opacity: 0.6,
+                      zIndex: -1,
+                      willChange: "transform, opacity",
                     }}
                   >
-                    {letter}
-                  </span>
+                    {sparkle.type === "star" && (
+                      <div
+                        className="w-5 h-5"
+                        style={{
+                          background: [
+                            "radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(150, 200, 255, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(100, 255, 180, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(200, 150, 255, 0.8) 0%, rgba(255, 100, 150, 0.5) 70%, transparent 90%)",
+                          ][i % 3],
+                          clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          animation: "spin-slow 14s linear infinite",
+                          filter: "drop-shadow(0 0 7px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "diamond" && (
+                      <div
+                        className="w-4 h-4"
+                        style={{
+                          background: [
+                            "linear-gradient(45deg, rgba(100, 255, 200, 0.7), rgba(255, 150, 100, 0.6))",
+                            "linear-gradient(45deg, rgba(200, 100, 255, 0.7), rgba(100, 255, 150, 0.6))",
+                            "linear-gradient(45deg, rgba(255, 200, 100, 0.7), rgba(100, 150, 255, 0.6))",
+                          ][i % 3],
+                          clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          animation: "gentle-pulse 4s ease-in-out infinite",
+                          filter: "drop-shadow(0 0 5px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "plus" && (
+                      <div
+                        className="w-4 h-4"
+                        style={{
+                          background: [
+                            "conic-gradient(from 45deg, rgba(100, 255, 180, 0.7), rgba(255, 100, 150, 0.6), rgba(150, 200, 255, 0.7), rgba(255, 180, 100, 0.6))",
+                            "conic-gradient(from 135deg, rgba(255, 150, 100, 0.7), rgba(100, 200, 255, 0.6), rgba(200, 100, 255, 0.7), rgba(100, 255, 150, 0.6))",
+                            "conic-gradient(from 225deg, rgba(150, 255, 100, 0.7), rgba(255, 100, 200, 0.6), rgba(100, 150, 255, 0.7), rgba(255, 200, 100, 0.6))",
+                          ][i % 3],
+                          clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          animation: "rotate-slow 11s linear infinite",
+                          filter: "drop-shadow(0 0 9px currentColor)",
+                        }}
+                      />
+                    )}
+                  </div>
                 ))}
               </h1>
             </div>
