@@ -862,7 +862,7 @@ export default function Index() {
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 ██╔���██╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█��█�����█╔╝█��║  ██║
+██║  ██╗╚█��█�����█╔��█��║  ██║
 ����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -941,7 +941,7 @@ export default function Index() {
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
-                      {systemStats.networkDown}MB/s ↓
+                      {systemStats.networkDown}MB/s ���
                     </div>
                   </div>
                 </div>
@@ -8650,14 +8650,14 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           </div>
 
                           {/* Title */}
-                          <div className="text-center mb-4">
-                            <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+                          <div className="text-center mb-3">
+                            <h3 className="text-xl font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
                               {plan.title}
                             </h3>
                           </div>
 
                           {/* Price */}
-                          <div className="text-center mb-8">
+                          <div className="text-center mb-5">
                             <div className="flex items-baseline justify-center">
                               <span className={`text-4xl font-bold bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}>
                                 {plan.price}
