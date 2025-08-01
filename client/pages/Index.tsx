@@ -2226,7 +2226,7 @@ export default function Index() {
                 boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
               }}
             >
-              Click to navigate sections →
+              Click to navigate sections ��
               <button
                 onClick={() => setShowNavigationHints(false)}
                 className="ml-2 text-xs opacity-60 hover:opacity-100"
@@ -8442,7 +8442,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {[...Array(screenSize === "mobile" ? 1 : screenSize === "tablet" ? 2 : 3)].map((_, i) => (
               <motion.div
                 key={`clownfish-${i}`}
-                className="absolute"
+                className="absolute ocean-element"
                 style={{
                   left: "-15%",
                   top: `${20 + (i * (screenSize === "mobile" ? 20 : 15))}%`,
