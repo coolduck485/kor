@@ -42,6 +42,10 @@ export default function Index() {
   const { showSuccess, showError, showWarning, showInfo } =
     useUnifiedNotifications();
   const { isSafari, isMobileSafari, isIOS } = useBrowserDetection();
+
+  // Performance optimizations
+  const prefersReducedMotion = useReducedMotion();
+  const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [badgeMousePosition, setBadgeMousePosition] = useState({
     x: 0,
@@ -859,7 +863,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
-����������╝  ╚═╝ �������════╝ ╚���╝  ��═╝`}
+����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
