@@ -378,6 +378,25 @@ export default function Index() {
     setBadgeMousePosition({ x: 0, y: 0, isNear: false });
   };
 
+  // Navbar mouse tracking handlers
+  const handleNavbarMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (navbarRef.current) {
+      const rect = navbarRef.current.getBoundingClientRect();
+      setNavbarMousePosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
+
+  const handleNavbarMouseEnter = () => {
+    setIsNavbarHovered(true);
+  };
+
+  const handleNavbarMouseLeave = () => {
+    setIsNavbarHovered(false);
+  };
+
   // ========================================
   // SHINE ANIMATION CONFIGURATION
   // ========================================
