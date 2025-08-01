@@ -78,7 +78,10 @@ export default function Index() {
   const hasShownWelcomeRef = useRef(false);
 
   // Navbar state
-  const [navbarMousePosition, setNavbarMousePosition] = useState({ x: 0, y: 0 });
+  const [navbarMousePosition, setNavbarMousePosition] = useState({
+    x: 0,
+    y: 0,
+  });
   const [isNavbarHovered, setIsNavbarHovered] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
 
@@ -4240,7 +4243,8 @@ export default function Index() {
                 borderRadius: "inherit",
                 mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 maskComposite: "xor",
-                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
               }}
             />
@@ -4258,10 +4262,12 @@ export default function Index() {
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 relative overflow-hidden animate-textGlow ${
                     currentSection === index
                       ? "text-white"
-                      : theme === "light" ? "text-gray-700" : "text-white/80"
+                      : theme === "light"
+                        ? "text-gray-700"
+                        : "text-white/80"
                   } ${currentSection === index ? "bg-white/20" : "hover:bg-white/10"}`}
                   whileHover={{
-                    scale: 1.05
+                    scale: 1.05,
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
