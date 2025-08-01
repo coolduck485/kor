@@ -39,31 +39,47 @@ const LoadingFallback = () => (
   </div>
 );
 
+// Wrapper component to connect help modal state to notifications
+const NotificationWrapper = ({ children }: { children: React.ReactNode }) => {
+  const { isHelpModalOpen, setIsHelpModalOpen } = useHelpModal();
+
+  return (
+    <UnifiedNotificationProvider
+      isHelpModalOpen={isHelpModalOpen}
+      setIsHelpModalOpen={setIsHelpModalOpen}
+    >
+      {children}
+    </UnifiedNotificationProvider>
+  );
+};
+
 const App = () => (
   <ErrorBoundary>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <PinkThemeProvider>
           <RetroModeProvider>
-            <UnifiedNotificationProvider>
-              <TooltipProvider>
-                <Toaster />
-                <Sonner />
-                <BrowserRouter>
-                  <Suspense fallback={<LoadingFallback />}>
-                    <Routes>
-                      <Route path="/" element={<Index />} />
-                      <Route path="/about" element={<Index />} />
-                      <Route path="/services" element={<Index />} />
-                      <Route path="/portfolio" element={<Index />} />
-                      <Route path="/contact" element={<Index />} />
-                      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                  </Suspense>
-                </BrowserRouter>
-              </TooltipProvider>
-            </UnifiedNotificationProvider>
+            <HelpModalProvider>
+              <NotificationWrapper>
+                <TooltipProvider>
+                  <Toaster />
+                  <Sonner />
+                  <BrowserRouter>
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Routes>
+                        <Route path="/" element={<Index />} />
+                        <Route path="/about" element={<Index />} />
+                        <Route path="/services" element={<Index />} />
+                        <Route path="/portfolio" element={<Index />} />
+                        <Route path="/contact" element={<Index />} />
+                        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                        <Route path="*" element={<NotFound />} />
+                      </Routes>
+                    </Suspense>
+                  </BrowserRouter>
+                </TooltipProvider>
+              </NotificationWrapper>
+            </HelpModalProvider>
           </RetroModeProvider>
         </PinkThemeProvider>
       </ThemeProvider>
