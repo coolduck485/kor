@@ -297,13 +297,15 @@ export default function Index() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX / window.innerWidth,
-        y: e.clientY / window.innerHeight,
-      });
+      // Disabled mouse tracking to prevent twinkling effects
+      // setMousePosition({
+      //   x: e.clientX / window.innerWidth,
+      //   y: e.clientY / window.innerHeight,
+      // });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    // Commented out to disable mouse tracking
+    // window.addEventListener("mousemove", handleMouseMove);
 
     // Check current URL and scroll to appropriate section
     const checkInitialSection = () => {
