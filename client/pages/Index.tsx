@@ -861,7 +861,7 @@ export default function Index() {
                   {`██╗  █���╗ ██████╗ ██����██╗
 ██║ ����█╔���██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
-██╔���██╗ ██║   ██║██╔═��██╗
+██╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -4576,6 +4576,14 @@ export default function Index() {
           will-change: transform, opacity;
           contain: layout style paint;
         }
+
+        /* Performance optimizations applied:
+           - Reduced animation counts on mobile
+           - GPU acceleration for smooth animations
+           - Respect for reduced motion preferences
+           - Optimized bubble and fish counts
+           - Layer hints for better rendering
+        */
 
         /* NEW SPECTACULAR ANIMATIONS FOR EYE CANDY */
 
