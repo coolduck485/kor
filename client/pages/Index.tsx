@@ -4246,7 +4246,8 @@ export default function Index() {
                 borderRadius: "inherit",
                 mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 maskComposite: "xor",
-                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
               }}
             />
@@ -4303,7 +4304,9 @@ export default function Index() {
                   className={`px-3 py-1.5 rounded-full font-inter text-xs font-normal transition-all duration-300 animate-textGlow ${
                     currentSection === index
                       ? "bg-blue-500/20 text-white shadow-lg"
-                      : theme === "light" ? "text-gray-700 hover:text-blue-600" : "text-white/80 hover:text-white"
+                      : theme === "light"
+                        ? "text-gray-700 hover:text-blue-600"
+                        : "text-white/80 hover:text-white"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
