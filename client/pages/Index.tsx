@@ -62,11 +62,6 @@ export default function Index() {
     y: 0,
     isNear: false,
   });
-  const [navbarMousePosition, setNavbarMousePosition] = useState({
-    x: 0,
-    y: 0,
-    isNear: false,
-  });
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -376,28 +371,6 @@ export default function Index() {
 
   const handleBadgeMouseLeave = () => {
     setBadgeMousePosition({ x: 0, y: 0, isNear: false });
-  };
-
-  const navbarRef = useRef<HTMLDivElement>(null);
-
-  const handleNavbarMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!navbarRef.current) return;
-
-    const rect = navbarRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const mouseX = e.clientX - centerX;
-    const mouseY = e.clientY - centerY;
-
-    setNavbarMousePosition({
-      x: mouseX,
-      y: mouseY,
-      isNear: true,
-    });
-  };
-
-  const handleNavbarMouseLeave = () => {
-    setNavbarMousePosition({ x: 0, y: 0, isNear: false });
   };
 
   // ========================================
@@ -826,7 +799,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ���•••
+                      ••••
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -897,11 +870,11 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █���╗ █████���╗ ██��������██╗
-██║ ����█╔����██╔═══���█╗██╔══█���╗
+██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
-█��╔�����█╗ ██║   ██║██╔══█��╗
+█��╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
-����������╝  ╚═╝ ������������═══╝ ╚���╝  ��═╝`}
+����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -969,7 +942,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���██████��██���███����█���███ 60%
+                      CPU: █████████████��██���█████████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1040,7 +1013,7 @@ export default function Index() {
                   <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
                   <span className="status-dot text-green-400 terminal-glow">
-                    ��
+                    ●
                   </span>
                   <span>ONLINE</span>
                 </div>
@@ -2518,28 +2491,18 @@ export default function Index() {
           </div>
         )}
 
-        {/* Mobile Hamburger Menu - Show centered on home, top-right on other sections */}
-        <div className="sm:hidden">
-          {currentSection === 0 ? (
-            <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
-              <div className="relative pointer-events-auto">
-                <MobileHamburgerMenu
-                  isOpen={isMobileMenuOpen}
-                  setIsOpen={setIsMobileMenuOpen}
-                  theme={theme}
-                />
-              </div>
-            </div>
-          ) : (
-            <div className="fixed top-4 right-4 z-[100]">
+        {/* Mobile Hamburger Menu - Only show in home section */}
+        {currentSection === 0 && (
+          <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
+            <div className="relative pointer-events-auto">
               <MobileHamburgerMenu
                 isOpen={isMobileMenuOpen}
                 setIsOpen={setIsMobileMenuOpen}
                 theme={theme}
               />
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Black Transition Overlay with Cinematic Effects */}
         <AnimatePresence>
@@ -2621,7 +2584,7 @@ export default function Index() {
 
             {/* Theme Toggle Container with Tooltip */}
             <div
-              className={`fixed top-6 right-6 z-50 transition-all duration-300 hidden ${
+              className={`fixed top-6 right-6 z-50 transition-all duration-300 ${
                 isMobileMenuOpen ? "blur-sm" : ""
               }`}
             >
@@ -3740,7 +3703,7 @@ export default function Index() {
               >
                 {/* Kor - mobile: 50px left + 30px down + bigger, desktop: moved further to the left */}
                 <div
-                  className="text-center transform -translate-x-[50px] translate-y-[30px] sm:-translate-x-6 sm:translate-y-0 md:-translate-x-[62px] lg:-translate-x-16 xl:-translate-x-20"
+                  className="text-center transform -translate-x-[50px] translate-y-[30px] sm:-translate-x-6 sm:translate-y-0 md:-translate-x-12 lg:-translate-x-16 xl:-translate-x-20"
                   style={{ marginLeft: "-5px" }}
                 >
                   <h1
@@ -4219,81 +4182,16 @@ export default function Index() {
 
         {/* Futuristic Navbar */}
         <motion.div
-          className="fixed top-4 left-1/2 z-[9999] hidden sm:block"
-          initial={{ opacity: 0, y: -20, x: "-50%" }}
-          animate={{ opacity: 1, y: 0, x: "-50%" }}
+          className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          <div
-            ref={navbarRef}
-            className="flex items-center gap-2 md:gap-4 px-4 md:px-6 py-2 md:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
-            style={{
-              background: "rgba(255, 255, 255, 0.1)",
-              border: "2px solid transparent",
-              backgroundClip: "padding-box",
-            }}
-            onMouseMove={handleNavbarMouseMove}
-            onMouseLeave={handleNavbarMouseLeave}
-          >
-            {/* Dynamic Border Effect */}
-            <div
-              className="absolute inset-0 rounded-full pointer-events-none transition-all duration-300"
-              style={{
-                background: navbarMousePosition.isNear
-                  ? `conic-gradient(from ${(Math.atan2(navbarMousePosition.y, navbarMousePosition.x) * 180) / Math.PI + 90}deg, rgba(73, 146, 255, 0.8) 0deg, rgba(73, 146, 255, 0.4) 90deg, rgba(255, 255, 255, 0.2) 180deg, rgba(255, 255, 255, 0.2) 270deg, rgba(73, 146, 255, 0.8) 360deg)`
-                  : "conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(255, 255, 255, 0.2) 360deg)",
-                padding: "2px",
-                borderRadius: "inherit",
-                mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                maskComposite: "xor",
-                WebkitMask:
-                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                WebkitMaskComposite: "xor",
-              }}
-            />
-            {/* Logo Placeholder */}
-            <svg
-              className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0"
-              viewBox="0 0 24 25"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M5 3.5V7.5"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M19 17.5V21.5"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M3 5.5H7"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M17 19.5H21"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+          <div className="flex items-center gap-4 px-6 py-3 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20">
+            {/* Logo/Icon Placeholder */}
+            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+              <Zap className="w-4 h-4 text-white" />
+            </div>
 
             {/* Navigation Pills */}
             <div className="hidden sm:flex items-center gap-2">
@@ -4301,12 +4199,10 @@ export default function Index() {
                 <motion.button
                   key={section.id}
                   onClick={() => scrollToSection(index)}
-                  className={`px-3 py-1.5 rounded-full font-inter text-xs font-normal transition-all duration-300 animate-textGlow ${
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
                     currentSection === index
-                      ? "bg-blue-500/20 text-white shadow-lg"
-                      : theme === "light"
-                        ? "text-gray-700 hover:text-blue-600"
-                        : "text-white/80 hover:text-white"
+                      ? "bg-blue-500 text-white shadow-lg"
+                      : "text-gray-300 hover:text-white hover:bg-white/10"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -8882,7 +8778,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Pricing Cards Container */}
-            <div className="relative mt-12 sm:mt-16 lg:mt-20">
+            <div className="relative">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-4 xl:gap-6 max-w-5xl mx-auto">
                 {pricingPlans.map((plan, index) => (
                   <motion.div
@@ -9307,7 +9203,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       : "0 0 8px rgba(59, 130, 246, 0.4)",
                 }}
                 animate={{
-                  y: ["-20px", screenSize === "mobile" ? "-30vh" : "-40vh"],
+                  y: ["-20px", screenSize === "mobile" ? "-60vh" : "-100vh"],
                   x: [
                     `0px`,
                     `${(Math.random() - 0.5) * (screenSize === "mobile" ? 100 : 200)}px`,
@@ -11022,7 +10918,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             { icon: "������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
-            { icon: "����", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
+            { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
               key={`comm-icon-${i}`}
