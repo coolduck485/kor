@@ -899,7 +899,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █████���╗ ██��������██╗
+                  {`��█╗  █�������╗ █████���╗ ██���������██╗
 ██║ ����█╔���██╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
@@ -1043,7 +1043,7 @@ export default function Index() {
                   <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
                   <span className="status-dot text-green-400 terminal-glow">
-                    ●
+                    ���
                   </span>
                   <span>ONLINE</span>
                 </div>
@@ -7149,16 +7149,88 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
-                {"About Us".split("").map((letter, i) => (
-                  <span
-                    key={i}
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                <span className="warm-glow-text animate-warm-glow-pulse">
+                  {"About Us".split("").map((letter, i) => (
+                    <span
+                      key={i}
+                      className="inline-block relative animate-letter-float"
+                      style={{
+                        animationDelay: `${i * 0.15}s`,
+                      }}
+                    >
+                      {letter === " " ? "\u00A0" : letter}
+                    </span>
+                  ))}
+                </span>
+
+                {/* Optimized sparkles for better performance */}
+                {[
+                  { x: 85, y: -30, size: 0.7, type: "star" },
+                  { x: 65, y: -8, size: 0.5, type: "diamond" },
+                  { x: 110, y: 45, size: 0.6, type: "plus" },
+                  { x: 80, y: 75, size: 0.8, type: "star" },
+                  { x: 20, y: 80, size: 0.4, type: "diamond" },
+                  { x: -35, y: 55, size: 0.5, type: "plus" },
+                ].map((sparkle, i) => (
+                  <div
+                    key={`about-sparkle-${i}`}
+                    className="absolute pointer-events-none gpu-accelerated"
                     style={{
-                      animationDelay: `${i * 0.15}s`,
+                      left: `calc(50% + ${sparkle.x}px)`,
+                      top: `calc(50% + ${sparkle.y}px)`,
+                      animation: `sparkle-enhanced ${5 + (i % 3)}s ease-in-out infinite ${i * 0.4}s`,
+                      transform: `translateZ(0) scale(${sparkle.size})`,
+                      opacity: 0.5,
+                      zIndex: -1,
+                      willChange: "transform, opacity",
                     }}
                   >
-                    {letter === " " ? "\u00A0" : letter}
-                  </span>
+                    {sparkle.type === "star" && (
+                      <div
+                        className="w-5 h-5"
+                        style={{
+                          background: [
+                            "radial-gradient(circle, rgba(255, 120, 180, 0.8) 0%, rgba(255, 160, 120, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(120, 255, 200, 0.8) 0%, rgba(120, 180, 255, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(180, 120, 255, 0.8) 0%, rgba(255, 140, 180, 0.5) 70%, transparent 90%)",
+                          ][i % 3],
+                          clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          animation: "spin-slow 12s linear infinite",
+                          filter: "drop-shadow(0 0 6px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "diamond" && (
+                      <div
+                        className="w-3 h-3"
+                        style={{
+                          background: [
+                            "linear-gradient(45deg, rgba(255, 120, 200, 0.7), rgba(120, 255, 150, 0.6))",
+                            "linear-gradient(45deg, rgba(150, 120, 255, 0.7), rgba(255, 180, 120, 0.6))",
+                            "linear-gradient(45deg, rgba(120, 180, 255, 0.7), rgba(255, 140, 120, 0.6))",
+                          ][i % 3],
+                          clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          animation: "gentle-pulse 3s ease-in-out infinite",
+                          filter: "drop-shadow(0 0 4px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "plus" && (
+                      <div
+                        className="w-4 h-4"
+                        style={{
+                          background: [
+                            "conic-gradient(from 0deg, rgba(255, 140, 120, 0.7), rgba(120, 255, 180, 0.6), rgba(180, 120, 255, 0.7), rgba(255, 180, 140, 0.6))",
+                            "conic-gradient(from 90deg, rgba(120, 255, 140, 0.7), rgba(255, 120, 180, 0.6), rgba(140, 180, 255, 0.7), rgba(255, 160, 120, 0.6))",
+                            "conic-gradient(from 180deg, rgba(180, 140, 255, 0.7), rgba(255, 180, 120, 0.6), rgba(120, 255, 160, 0.7), rgba(255, 140, 180, 0.6))",
+                          ][i % 3],
+                          clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          animation: "rotate-slow 10s linear infinite",
+                          filter: "drop-shadow(0 0 8px currentColor)",
+                        }}
+                      />
+                    )}
+                  </div>
                 ))}
               </h1>
             </div>
