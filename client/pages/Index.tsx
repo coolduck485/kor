@@ -22,6 +22,9 @@ import {
   Smartphone,
   Globe,
   Users,
+  Shield,
+  Cloud,
+  Database,
   HelpCircle,
   X,
 } from "lucide-react";
