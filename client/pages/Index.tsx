@@ -5438,7 +5438,6 @@ function MobileHamburgerMenu({
             transition: { duration: 0.2 },
           }}
           animate={{
-            rotate: isOpen ? 180 : 0,
             scale: isOpen ? 1.05 : 1,
           }}
           transition={{
