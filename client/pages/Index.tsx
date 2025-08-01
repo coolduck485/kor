@@ -966,7 +966,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█████████���███����█████ 60%
+                      CPU: █████████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4206,16 +4206,58 @@ export default function Index() {
 
         {/* Futuristic Navbar */}
         <motion.div
-          className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50"
+          className={`fixed top-4 left-1/2 z-50 hidden md:block ${
+            prefersReducedMotion ? "" : "transform-gpu"
+          }`}
+          style={{
+            transform: "translate(-50%, 0)",
+          }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          <div className="flex items-center gap-4 px-6 py-3 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20">
-            {/* Logo/Icon Placeholder */}
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-              <Zap className="w-4 h-4 text-white" />
-            </div>
+          <div
+            ref={navbarRef}
+            className="relative flex items-center gap-4 px-6 py-3 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20 transition-all duration-300"
+            style={{
+              background: isNavbarHovered
+                ? `radial-gradient(circle at ${navbarMousePosition.x}px ${navbarMousePosition.y}px, rgba(73, 146, 255, 0.3) 0%, rgba(73, 146, 255, 0.1) 40%, transparent 70%),
+                   linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(59, 130, 246, 0.2) 50%, rgba(0, 0, 0, 0.2) 100%)`
+                : "linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(59, 130, 246, 0.2) 50%, rgba(0, 0, 0, 0.2) 100%)",
+              borderImage: isNavbarHovered
+                ? `conic-gradient(from ${(Math.atan2(navbarMousePosition.y - 24, navbarMousePosition.x - 150) * 180) / Math.PI + 90}deg,
+                   rgba(73, 146, 255, 0.8) 0deg,
+                   rgba(255, 255, 255, 0.4) 90deg,
+                   rgba(147, 51, 234, 0.6) 180deg,
+                   rgba(255, 255, 255, 0.4) 270deg,
+                   rgba(73, 146, 255, 0.8) 360deg) 1`
+                : "none",
+              boxShadow: isNavbarHovered
+                ? `0 0 20px rgba(73, 146, 255, 0.3),
+                   0 0 40px rgba(73, 146, 255, 0.2),
+                   0 8px 32px rgba(0, 0, 0, 0.3)`
+                : "0 8px 32px rgba(0, 0, 0, 0.3)",
+            }}
+            onMouseMove={handleNavbarMouseMove}
+            onMouseEnter={handleNavbarMouseEnter}
+            onMouseLeave={handleNavbarMouseLeave}
+          >
+            {/* Logo/Icon Placeholder with sparkle animation */}
+            <motion.div
+              className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center relative overflow-hidden"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Zap className="w-4 h-4 text-white relative z-10" />
+              {isNavbarHovered && (
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "100%" }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                />
+              )}
+            </motion.div>
 
             {/* Navigation Pills */}
             <div className="hidden sm:flex items-center gap-2">
@@ -4223,15 +4265,39 @@ export default function Index() {
                 <motion.button
                   key={section.id}
                   onClick={() => scrollToSection(index)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 relative overflow-hidden ${
                     currentSection === index
                       ? "bg-blue-500 text-white shadow-lg"
                       : "text-gray-300 hover:text-white hover:bg-white/10"
                   }`}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)"
+                  }}
                   whileTap={{ scale: 0.95 }}
+                  style={{
+                    background: currentSection === index
+                      ? "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)"
+                      : undefined,
+                    textShadow: currentSection === index
+                      ? "0 0 10px rgba(255, 255, 255, 0.5)"
+                      : undefined,
+                  }}
                 >
                   {section.title}
+                  {currentSection === index && (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      initial={{ x: "-100%" }}
+                      animate={{ x: "100%" }}
+                      transition={{
+                        duration: 1.5,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                        repeatDelay: 2
+                      }}
+                    />
+                  )}
                 </motion.button>
               ))}
             </div>
