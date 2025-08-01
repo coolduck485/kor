@@ -2226,7 +2226,7 @@ export default function Index() {
                 boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
               }}
             >
-              Click to navigate sections ��
+              Click to navigate sections →
               <button
                 onClick={() => setShowNavigationHints(false)}
                 className="ml-2 text-xs opacity-60 hover:opacity-100"
@@ -8256,6 +8256,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible }, ref) => {
     const [currentPage, setCurrentPage] = useState(0);
+    const prefersReducedMotion = useReducedMotion();
 
     // ===== PORTFOLIO PROJECTS =====
     // Easy to add more projects - just add them to this array
