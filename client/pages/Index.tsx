@@ -8336,7 +8336,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Services Title - matching home style */}
             <div className="text-center mb-2">
               <h1
-                className={`font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight relative mobile-lively-text ${
+                className={`font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative mobile-lively-text ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
