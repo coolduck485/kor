@@ -920,7 +920,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██��█████████████���█████ 60%
+                      CPU: █████████████��██���█████████████���█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -5682,7 +5682,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("About us clicked");
-        scrollToSection(1);
+        protectedScrollToSection(1);
       },
 
       // Custom positioning for About us button
@@ -5703,7 +5703,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("Services clicked");
-        scrollToSection(2);
+        protectedScrollToSection(2);
       },
 
       // Custom positioning for Services button
@@ -5724,7 +5724,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("Portfolio clicked");
-        scrollToSection(3);
+        protectedScrollToSection(3);
       },
 
       xOffset: 0, // Centered positioning
@@ -5743,7 +5743,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("Contact us clicked");
-        scrollToSection(4);
+        protectedScrollToSection(4);
       },
 
       xOffset: -20, // Mobile-friendly spacing
