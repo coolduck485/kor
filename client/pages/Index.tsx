@@ -7266,92 +7266,117 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
           contain: "layout style paint",
         }}
       >
-        {/* SPECTACULAR SERVICES SECTION ENHANCEMENTS - LAVA/FIRE THEME */}
+        {/* SPECTACULAR SERVICES SECTION ENHANCEMENTS - BLUE VOLCANIC THEME */}
 
-        {/* Molten Lava Flow Background */}
+        {/* Blue Volcanic Background */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Flowing Lava Streams */}
+          {/* Blue Volcanos */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 8)].map((_, i) => (
+            {[...Array(screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 4)].map((_, i) => (
+              <div key={`volcano-${i}`} className="absolute">
+                {/* Volcano Shape */}
+                <div
+                  className="absolute"
+                  style={{
+                    left: `${15 + (i * (screenSize === "mobile" ? 35 : 25))}%`,
+                    bottom: "0px",
+                    width: `${screenSize === "mobile" ? 60 : 100}px`,
+                    height: `${screenSize === "mobile" ? 80 : 120}px`,
+                    background: "linear-gradient(45deg, rgba(30, 58, 138, 0.8) 0%, rgba(59, 130, 246, 0.6) 100%)",
+                    clipPath: "polygon(40% 100%, 0% 0%, 100% 0%, 60% 100%)",
+                    filter: "drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3))",
+                  }}
+                />
+
+                {/* Erupting Blue Fire */}
+                <div className="absolute" style={{
+                  left: `${15 + (i * (screenSize === "mobile" ? 35 : 25)) + (screenSize === "mobile" ? 7 : 12)}%`,
+                  bottom: `${screenSize === "mobile" ? 80 : 120}px`,
+                  width: `${screenSize === "mobile" ? 40 : 60}px`,
+                  height: `${screenSize === "mobile" ? 60 : 100}px`,
+                }}>
+                  {[...Array(screenSize === "mobile" ? 8 : 15)].map((_, j) => (
+                    <motion.div
+                      key={`fire-particle-${i}-${j}`}
+                      className="absolute rounded-full"
+                      style={{
+                        left: `${20 + (j % 5) * 8}%`,
+                        bottom: "0px",
+                        width: `${3 + (j % 3)}px`,
+                        height: `${4 + (j % 4)}px`,
+                        background: [
+                          "radial-gradient(ellipse, #3b82f6 0%, #1d4ed8 50%, transparent 80%)",
+                          "radial-gradient(ellipse, #60a5fa 0%, #2563eb 50%, transparent 80%)",
+                          "radial-gradient(ellipse, #93c5fd 0%, #3b82f6 50%, transparent 80%)",
+                        ][j % 3],
+                        boxShadow: "0 0 8px rgba(59, 130, 246, 0.6)",
+                      }}
+                      animate={{
+                        y: [0, -(screenSize === "mobile" ? 40 : 80) - (j % 3) * 20],
+                        x: [(j % 2 === 0 ? -5 : 5), (j % 2 === 0 ? -15 : 15)],
+                        opacity: [1, 0.8, 0],
+                        scale: [1, 1.2, 0.5],
+                      }}
+                      transition={{
+                        duration: 2 + (j % 3) * 0.5,
+                        repeat: Infinity,
+                        delay: (j * 0.1 + i * 0.5) % 4,
+                        ease: "easeOut",
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Blue Flame Wisps */}
+          <div className="absolute inset-0">
+            {[...Array(screenSize === "mobile" ? 12 : screenSize === "tablet" ? 20 : 30)].map((_, i) => (
               <motion.div
-                key={`lava-flow-${i}`}
-                className="absolute rounded-full"
+                key={`flame-wisp-${i}`}
+                className="absolute"
                 style={{
-                  left: `${-10 + (i * (screenSize === "mobile" ? 25 : 15))}%`,
-                  top: `${10 + ((i * 23) % 80)}%`,
-                  width: `${60 + (i % 3) * (screenSize === "mobile" ? 30 : 50)}px`,
-                  height: `${20 + (i % 2) * (screenSize === "mobile" ? 10 : 20)}px`,
-                  background: `linear-gradient(90deg,
-                    rgba(0, 128, 255, 0.8) 0%,
-                    rgba(64, 165, 255, 0.6) 30%,
-                    rgba(135, 206, 255, 0.4) 60%,
-                    transparent 90%)`,
-                  filter: `blur(${screenSize === "mobile" ? 5 : 10}px)`,
-                  transform: `skewX(${-20 + (i % 3) * 10}deg)`,
+                  left: `${(i * 3.33) % 100}%`,
+                  bottom: "-10px",
+                  width: `${screenSize === "mobile" ? 8 : 15}px`,
+                  height: `${screenSize === "mobile" ? 20 : 35}px`,
+                  background: "linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.8) 30%, rgba(147, 197, 253, 0.9) 70%, rgba(219, 234, 254, 0.6) 100%)",
+                  borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%",
+                  filter: "blur(1px)",
+                  boxShadow: "0 0 15px rgba(59, 130, 246, 0.4)",
                 }}
                 animate={{
-                  x: ["-50px", screenSize === "mobile" ? "120vw" : "150vw"],
-                  scaleX: [1, 1.3, 1],
+                  y: [0, -(screenSize === "mobile" ? 30 : 60)],
+                  x: [(Math.random() - 0.5) * 10, (Math.random() - 0.5) * 20],
+                  scaleY: [1, 1.5, 0.8],
+                  scaleX: [1, 0.8, 1.2],
                   opacity: [0, 0.8, 0],
                 }}
                 transition={{
-                  duration: 8 + (i % 4),
+                  duration: 3 + (i % 4) * 0.5,
                   repeat: Infinity,
-                  delay: i * 1.2,
+                  delay: (i * 0.15) % 5,
                   ease: "easeInOut",
                 }}
               />
             ))}
           </div>
 
-          {/* Volcanic Particles */}
-          <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 10 : screenSize === "tablet" ? 18 : 25)].map((_, i) => (
-              <motion.div
-                key={`ember-${i}`}
-                className="absolute rounded-full"
-                style={{
-                  left: `${(i * 4) % 100}%`,
-                  bottom: "-10px",
-                  width: `${2 + (i % 3)}px`,
-                  height: `${2 + (i % 3)}px`,
-                  background: [
-                    "radial-gradient(circle, #ff4500 0%, #ff6347 50%, transparent 80%)",
-                    "radial-gradient(circle, #ff8c00 0%, #ffa500 50%, transparent 80%)",
-                    "radial-gradient(circle, #ffd700 0%, #ffff00 50%, transparent 80%)",
-                  ][i % 3],
-                  boxShadow: screenSize === "desktop" ? "0 0 10px currentColor" : "none",
-                }}
-                animate={{
-                  y: ["-10px", screenSize === "mobile" ? "-60vh" : "-100vh"],
-                  x: ["0px", `${(Math.random() - 0.5) * (screenSize === "mobile" ? 50 : 100)}px`],
-                  opacity: [1, 0.8, 0],
-                  scale: [1, 0.5],
-                }}
-                transition={{
-                  duration: 4 + (i % 3),
-                  repeat: Infinity,
-                  delay: (i * 0.2) % 6,
-                  ease: "easeOut",
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Magma Bubbles */}
+          {/* Blue Energy Orbs */}
           <div className="absolute inset-0">
             {[...Array(screenSize === "mobile" ? 6 : screenSize === "tablet" ? 9 : 12)].map((_, i) => (
               <motion.div
-                key={`bubble-${i}`}
-                className="absolute rounded-full border-2"
+                key={`energy-orb-${i}`}
+                className="absolute rounded-full"
                 style={{
                   left: `${10 + (i * (screenSize === "mobile" ? 15 : 8))}%`,
                   top: `${20 + ((i * 15) % 60)}%`,
                   width: `${15 + (i % 4) * (screenSize === "mobile" ? 8 : 15)}px`,
                   height: `${15 + (i % 4) * (screenSize === "mobile" ? 8 : 15)}px`,
-                  borderColor: "rgba(255, 69, 0, 0.6)",
-                  background: "radial-gradient(circle, rgba(255, 140, 0, 0.3) 0%, rgba(255, 69, 0, 0.1) 50%, transparent 80%)",
-                  boxShadow: screenSize === "desktop" ? "0 0 20px rgba(255, 69, 0, 0.4), inset 0 0 20px rgba(255, 140, 0, 0.2)" : "0 0 10px rgba(255, 69, 0, 0.3)",
+                  background: "radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, rgba(29, 78, 216, 0.3) 50%, transparent 80%)",
+                  boxShadow: screenSize === "desktop" ? "0 0 20px rgba(59, 130, 246, 0.6), inset 0 0 20px rgba(147, 197, 253, 0.3)" : "0 0 10px rgba(59, 130, 246, 0.4)",
+                  border: "2px solid rgba(59, 130, 246, 0.4)",
                 }}
                 animate={{
                   scale: [1, 1.5, 1],
