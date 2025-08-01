@@ -920,7 +920,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█████████████���███��█ 60%
+                      CPU: ████████████����██���█████████████���█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -5473,7 +5473,7 @@ function MobileHamburgerMenu({
           {/* Hamburger Icon */}
           <div className="relative w-6 h-6 flex flex-col justify-center items-center space-y-1">
             <div
-              className={`w-5 h-0.5 bg-current transition-all duration-200 ease-out ${
+              className={`w-5 h-0.5 bg-current ${
                 isOpen ? "rotate-45 translate-y-1.5" : ""
               } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
             />
