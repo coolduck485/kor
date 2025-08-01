@@ -4206,12 +4206,9 @@ export default function Index() {
 
         {/* Futuristic Navbar */}
         <motion.div
-          className={`fixed top-4 left-1/2 z-50 hidden md:block ${
+          className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:block ${
             prefersReducedMotion ? "" : "transform-gpu"
           }`}
-          style={{
-            transform: "translate(-50%, 0)",
-          }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
