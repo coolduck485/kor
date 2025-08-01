@@ -470,7 +470,9 @@ export default function Index() {
 
   // Spam protection for external links
   const { protectedCallback: protectedOpenLink } = useSpamProtection(
-    (url: string) => window.open(url, "_blank"),
+    (url: string) => {
+      window.open(url, "_blank");
+    },
     SPAM_PROTECTION_PRESETS.critical
   );
 
