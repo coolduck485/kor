@@ -893,7 +893,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�����╗ █████���╗ ██��������██╗
+                  {`��█╗  █�����╗ █████���╗ ██����������██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
@@ -4218,7 +4218,7 @@ export default function Index() {
         >
           <div
             ref={navbarRef}
-            className="relative flex items-center gap-4 px-6 py-3 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20 transition-all duration-300"
+            className="relative flex items-center gap-3 md:gap-2 lg:gap-4 px-4 py-2 md:px-3 md:py-1.5 lg:px-6 lg:py-3 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20 transition-all duration-300"
             style={{
               background: isNavbarHovered
                 ? `radial-gradient(circle at ${navbarMousePosition.x}px ${navbarMousePosition.y}px, rgba(73, 146, 255, 0.3) 0%, rgba(73, 146, 255, 0.1) 40%, transparent 70%),
