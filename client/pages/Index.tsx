@@ -13,7 +13,6 @@ import {
 } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { RetroToggle } from "@/components/ui/retro-toggle";
-import { CenteredNavbar } from "@/components/ui/centered-navbar";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useUnifiedNotifications } from "@/components/ui/unified-notification";
