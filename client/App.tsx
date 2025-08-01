@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/hooks/use-theme";
 import { RetroModeProvider } from "@/hooks/use-retro-mode";
 import { PinkThemeProvider } from "@/hooks/use-pink-theme";
+import { HelpModalProvider, useHelpModal } from "@/hooks/use-help-modal";
 import { UnifiedNotificationProvider } from "@/components/ui/unified-notification";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import Index from "./pages/Index";
