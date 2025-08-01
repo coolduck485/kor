@@ -923,7 +923,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███████��█████��██���█████████████����█████ 60%
+                      CPU: █████████████��██���█████████████������████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8435,12 +8435,12 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <div
                     className="absolute"
                     style={{
-                      left: "20%",
+                      left: "15%",
                       top: "25%",
                       width: "60%",
                       height: "50%",
                       background: "linear-gradient(90deg, rgba(173, 216, 230, 0.9) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(25, 118, 210, 0.7) 100%)",
-                      borderRadius: "40% 20% 40% 60%",
+                      borderRadius: "20% 40% 60% 40%",
                       boxShadow: "0 0 6px rgba(59, 130, 246, 0.5)",
                     }}
                   />
@@ -8448,32 +8448,33 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <div
                     className="absolute"
                     style={{
-                      left: "35%",
+                      left: "30%",
                       top: "0%",
                       width: "30%",
                       height: "30%",
                       background: "linear-gradient(45deg, rgba(59, 130, 246, 0.7) 0%, rgba(147, 197, 253, 0.5) 100%)",
                       borderRadius: "0% 100% 0% 0%",
-                      transform: "skewX(-20deg)",
+                      transform: "skewX(20deg)",
                     }}
                   />
                   {/* Bottom Fin */}
                   <div
                     className="absolute"
                     style={{
-                      left: "35%",
+                      left: "30%",
                       bottom: "0%",
                       width: "30%",
                       height: "30%",
                       background: "linear-gradient(-45deg, rgba(59, 130, 246, 0.7) 0%, rgba(147, 197, 253, 0.5) 100%)",
                       borderRadius: "0% 0% 100% 0%",
-                      transform: "skewX(20deg)",
+                      transform: "skewX(-20deg)",
                     }}
                   />
                   {/* Tail */}
                   <div
-                    className="absolute right-0 top-1/2 transform -translate-y-1/2"
+                    className="absolute top-1/2 transform -translate-y-1/2"
                     style={{
+                      right: "0px",
                       width: "0",
                       height: "0",
                       borderLeft: `${screenSize === "mobile" ? 8 : 11}px solid rgba(59, 130, 246, 0.7)`,
@@ -8485,7 +8486,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <div
                     className="absolute rounded-full"
                     style={{
-                      left: "28%",
+                      left: "20%",
                       top: "35%",
                       width: `${screenSize === "mobile" ? 3 : 4}px`,
                       height: `${screenSize === "mobile" ? 3 : 4}px`,
