@@ -858,9 +858,9 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  █���╗ ██████╗ ██����██╗
+                  {`██╗  █���╗ █████���╗ ██����██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
-█████╔╝ ██║   ██║███���██╔╝
+█████╔╝ ██║   ██║███���██╔��
 ██╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
@@ -4158,13 +4158,13 @@ export default function Index() {
             data-section="contact"
             className={isMobileMenuOpen ? "blur-sm" : ""}
             style={{
-              display: currentSection === 4 ? "block" : "none",
+              display: currentSection === 5 ? "block" : "none",
             }}
           >
             <ContactUsSection
-              ref={(el) => (sectionsRef.current[4] = el!)}
+              ref={(el) => (sectionsRef.current[5] = el!)}
               theme={theme}
-              isVisible={currentSection === 4}
+              isVisible={currentSection === 5}
             />
           </motion.div>
         </div>
