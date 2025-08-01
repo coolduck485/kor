@@ -4218,46 +4218,80 @@ export default function Index() {
         >
           <div
             ref={navbarRef}
-            className="relative flex items-center gap-3 md:gap-2 lg:gap-4 px-4 py-2 md:px-3 md:py-1.5 lg:px-6 lg:py-3 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20 transition-all duration-300"
+            className="relative flex items-center gap-3 md:gap-2 lg:gap-4 px-4 py-2 md:px-3 md:py-1.5 lg:px-6 lg:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 overflow-hidden"
             style={{
-              background: isNavbarHovered
-                ? `radial-gradient(circle at ${navbarMousePosition.x}px ${navbarMousePosition.y}px, rgba(73, 146, 255, 0.3) 0%, rgba(73, 146, 255, 0.1) 40%, transparent 70%),
-                   linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(59, 130, 246, 0.2) 50%, rgba(0, 0, 0, 0.2) 100%)`
-                : "linear-gradient(90deg, rgba(0, 0, 0, 0.2) 0%, rgba(59, 130, 246, 0.2) 50%, rgba(0, 0, 0, 0.2) 100%)",
-              borderImage: isNavbarHovered
-                ? `conic-gradient(from ${(Math.atan2(navbarMousePosition.y - 24, navbarMousePosition.x - 150) * 180) / Math.PI + 90}deg,
-                   rgba(73, 146, 255, 0.8) 0deg,
-                   rgba(255, 255, 255, 0.4) 90deg,
-                   rgba(147, 51, 234, 0.6) 180deg,
-                   rgba(255, 255, 255, 0.4) 270deg,
-                   rgba(73, 146, 255, 0.8) 360deg) 1`
-                : "none",
-              boxShadow: isNavbarHovered
-                ? `0 0 20px rgba(73, 146, 255, 0.3),
-                   0 0 40px rgba(73, 146, 255, 0.2),
-                   0 8px 32px rgba(0, 0, 0, 0.3)`
-                : "0 8px 32px rgba(0, 0, 0, 0.3)",
+              background: "rgba(255, 255, 255, 0.1)",
+              border: "2px solid transparent",
+              backgroundClip: "padding-box",
             }}
             onMouseMove={handleNavbarMouseMove}
             onMouseEnter={handleNavbarMouseEnter}
             onMouseLeave={handleNavbarMouseLeave}
           >
-            {/* Logo/Icon Placeholder with sparkle animation */}
-            <motion.div
-              className="w-6 h-6 md:w-5 md:h-5 lg:w-8 lg:h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center relative overflow-hidden"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ duration: 0.2 }}
+            {/* Dynamic Border Effect - cursor following glow */}
+            <div
+              className="absolute inset-0 rounded-full pointer-events-none transition-all duration-300"
+              style={{
+                background: isNavbarHovered
+                  ? `conic-gradient(from ${(Math.atan2(navbarMousePosition.y - 24, navbarMousePosition.x - 100) * 180) / Math.PI + 90}deg,
+                     rgba(73, 146, 255, 0.8) 0deg,
+                     rgba(73, 146, 255, 0.4) 15deg,
+                     rgba(255, 255, 255, 0.2) 30deg,
+                     rgba(255, 255, 255, 0.2) 330deg,
+                     rgba(73, 146, 255, 0.4) 345deg,
+                     rgba(73, 146, 255, 0.8) 360deg)`
+                  : "conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(255, 255, 255, 0.2) 360deg)",
+                padding: "2px",
+                borderRadius: "inherit",
+                mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                maskComposite: "xor",
+                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "xor",
+              }}
+            />
+            {/* Animated Sparkle Icon like Future-Ready badge */}
+            <svg
+              className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle"
+              viewBox="0 0 24 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <Zap className="w-3 h-3 md:w-2.5 md:h-2.5 lg:w-4 lg:h-4 text-white relative z-10" />
-              {isNavbarHovered && (
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                  initial={{ x: "-100%" }}
-                  animate={{ x: "100%" }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                />
-              )}
-            </motion.div>
+              <path
+                d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z"
+                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5 3.5V7.5"
+                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M19 17.5V21.5"
+                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M3 5.5H7"
+                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M17 19.5H21"
+                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
 
             {/* Navigation Pills */}
             <div className="hidden sm:flex items-center gap-2">
@@ -4265,39 +4299,17 @@ export default function Index() {
                 <motion.button
                   key={section.id}
                   onClick={() => scrollToSection(index)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 relative overflow-hidden ${
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 relative overflow-hidden animate-textGlow ${
                     currentSection === index
-                      ? "bg-blue-500 text-white shadow-lg"
-                      : "text-gray-300 hover:text-white hover:bg-white/10"
-                  }`}
+                      ? theme === "light" ? "text-blue-600" : "text-cyan-400"
+                      : theme === "light" ? "text-gray-700" : "text-white/80"
+                  } ${currentSection === index ? "bg-white/20" : "hover:bg-white/10"}`}
                   whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0 0 20px rgba(73, 146, 255, 0.4)"
+                    scale: 1.05
                   }}
                   whileTap={{ scale: 0.95 }}
-                  style={{
-                    background: currentSection === index
-                      ? "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)"
-                      : undefined,
-                    textShadow: currentSection === index
-                      ? "0 0 10px rgba(255, 255, 255, 0.5)"
-                      : undefined,
-                  }}
                 >
                   {section.title}
-                  {currentSection === index && (
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                      initial={{ x: "-100%" }}
-                      animate={{ x: "100%" }}
-                      transition={{
-                        duration: 1.5,
-                        ease: "easeInOut",
-                        repeat: Infinity,
-                        repeatDelay: 2
-                      }}
-                    />
-                  )}
                 </motion.button>
               ))}
             </div>
