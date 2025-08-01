@@ -7060,9 +7060,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         color: "from-orange-500 to-red-500",
       },
       {
-        icon: Users,
-        title: "Consulting",
-        description: "Strategic guidance for your digital transformation",
+        icon: Globe,
+        title: "SEO Optimization",
+        description: "Boost your search rankings and drive organic traffic",
         color: "from-indigo-500 to-purple-500",
       },
       {
