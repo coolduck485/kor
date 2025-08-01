@@ -931,7 +931,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█████████████����█████ 60%
+                      CPU: █████████████��██���█████��███████����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -997,7 +997,7 @@ export default function Index() {
                 transition={{ delay: 3, duration: 1 }}
               >
                 <div className="status-indicators">
-                  <span className="status-dot text-red-400">●</span>
+                  <span className="status-dot text-red-400">��</span>
                   <span>READY</span>
                   <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
@@ -8707,7 +8707,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
               {/* Pricing Note */}
               <motion.div
-                className="text-center mt-12"
+                className="text-center mt-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 1, duration: 0.8 }}
