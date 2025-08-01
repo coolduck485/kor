@@ -8778,7 +8778,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Pricing Cards Container */}
-            <div className="relative">
+            <div className="relative mt-12 sm:mt-16 lg:mt-20">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-4 xl:gap-6 max-w-5xl mx-auto">
                 {pricingPlans.map((plan, index) => (
                   <motion.div
