@@ -49,7 +49,7 @@ export default function Index() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
-  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const { isHelpModalOpen, setIsHelpModalOpen } = useHelpModal();
   const [showNavigationHints, setShowNavigationHints] = useState(true);
   const [initialLoadingComplete, setInitialLoadingComplete] = useState(false);
   const [hasInteractedWithHelp, setHasInteractedWithHelp] = useState(false);
