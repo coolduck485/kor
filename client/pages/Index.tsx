@@ -869,10 +869,10 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █���╗ █████���╗ ██��������██╗
+                  {`��█╗  █���╗ █████���╗ ██����������██╗
 ██║ ����█╔����██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
-█��╔���██╗ ██║   ██║██╔══█��╗
+█��╔���██╗ ██║   ██║���█╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ������������═══╝ ╚���╝  ��═╝`}
                 </pre>
@@ -4258,10 +4258,10 @@ export default function Index() {
                 <motion.button
                   key={section.id}
                   onClick={() => scrollToSection(index)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+                  className={`px-3 py-1.5 rounded-full font-inter text-xs font-normal transition-all duration-300 animate-textGlow ${
                     currentSection === index
-                      ? "bg-blue-500 text-white shadow-lg"
-                      : "text-gray-300 hover:text-white hover:bg-white/10"
+                      ? "bg-blue-500/20 text-white shadow-lg"
+                      : theme === "light" ? "text-gray-700 hover:text-blue-600" : "text-white/80 hover:text-white"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
