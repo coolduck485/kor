@@ -5682,7 +5682,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("About us clicked");
-        protectedScrollToSection(1);
+        scrollToSection(1);
       },
 
       // Custom positioning for About us button
@@ -5703,7 +5703,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("Services clicked");
-        protectedScrollToSection(2);
+        scrollToSection(2);
       },
 
       // Custom positioning for Services button
@@ -5724,7 +5724,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("Portfolio clicked");
-        protectedScrollToSection(3);
+        scrollToSection(3);
       },
 
       xOffset: 0, // Centered positioning
@@ -5743,7 +5743,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
       onClick: () => {
         console.log("Contact us clicked");
-        protectedScrollToSection(4);
+        scrollToSection(4);
       },
 
       xOffset: -20, // Mobile-friendly spacing
