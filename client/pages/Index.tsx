@@ -77,6 +77,11 @@ export default function Index() {
   const [showNavigationTooltip, setShowNavigationTooltip] = useState(true);
   const hasShownWelcomeRef = useRef(false);
 
+  // Navbar state
+  const [navbarMousePosition, setNavbarMousePosition] = useState({ x: 0, y: 0 });
+  const [isNavbarHovered, setIsNavbarHovered] = useState(false);
+  const navbarRef = useRef<HTMLDivElement>(null);
+
   // Tooltip management state
   const [dismissedTooltips, setDismissedTooltips] = useState<Set<string>>(
     () => {
@@ -869,7 +874,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █���╗ █████���╗ ██��������██╗
+                  {`��█╗  █�����╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
@@ -10009,7 +10014,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-blue-500 to-purple-500",
               },
               {
-                icon: "��������",
+                icon: "���������",
                 label: "Launch",
                 x: 12,
                 y: 85,
