@@ -11047,7 +11047,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "�������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
@@ -11355,7 +11355,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Main Content Container */}
         <div className="relative min-h-screen py-2 sm:py-4 lg:py-6 section-container">
           <motion.div
-            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-1 pb-4"
+            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-20 sm:pt-24 lg:pt-28 pb-4"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
