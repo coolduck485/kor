@@ -26,6 +26,7 @@ import {
   X,
 } from "lucide-react";
 import { useSpamProtection, SPAM_PROTECTION_PRESETS } from "../hooks/use-spam-protection";
+import { useHelpModal } from "../hooks/use-help-modal";
 
 export default function Index() {
   const { theme, setTheme } = useTheme();
@@ -8775,7 +8776,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "�������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
