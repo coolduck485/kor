@@ -859,7 +859,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  █���╗ ██████╗ ██����██╗
-██�� ����█╔���██╔═══���█╗██╔══██╗
+██║ ����█╔���██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
@@ -937,7 +937,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ███�����████��████���███��███████��█ 50%
+                      RAM: ███�����█████████���███��███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -8410,7 +8410,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {[...Array(screenSize === "mobile" ? 6 : screenSize === "tablet" ? 9 : 12)].map((_, i) => (
               <motion.div
                 key={`bubble-${i}`}
-                className="absolute rounded-full"
+                className="absolute rounded-full ocean-element"
                 style={{
                   left: `${(i * 3.33) % 100}%`,
                   bottom: "-20px",
