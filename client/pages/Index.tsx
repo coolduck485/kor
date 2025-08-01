@@ -923,7 +923,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█████████████����█████ 60%
+                      CPU: █��███████████��██���█████████████����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8184,8 +8184,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         ref={ref}
         className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
-            ? "bg-gradient-to-br from-emerald-800 via-teal-700 to-cyan-800"
-            : "bg-gradient-to-br from-gray-900 via-teal-900 to-black"
+            ? "bg-gradient-to-br from-blue-800 via-blue-700 to-indigo-800"
+            : "bg-gradient-to-br from-gray-900 via-blue-900 to-black"
         }`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
