@@ -858,7 +858,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █���╗ █████���╗ ██������██╗
+                  {`��█╗  █���╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
@@ -937,7 +937,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ███�����█████████���███��███████��█ 50%
+                      RAM: ��██�����█████████���███��███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -4168,6 +4168,91 @@ export default function Index() {
             />
           </motion.div>
         </div>
+
+        {/* Futuristic Navbar */}
+        <motion.div
+          className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.8 }}
+        >
+          <div className="flex items-center gap-4 px-6 py-3 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20">
+            {/* Logo/Icon Placeholder */}
+            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+              <Zap className="w-4 h-4 text-white" />
+            </div>
+
+            {/* Navigation Pills */}
+            <div className="hidden sm:flex items-center gap-2">
+              {sections.map((section, index) => (
+                <motion.button
+                  key={section.id}
+                  onClick={() => scrollToSection(index)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+                    currentSection === index
+                      ? 'bg-blue-500 text-white shadow-lg'
+                      : 'text-gray-300 hover:text-white hover:bg-white/10'
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {section.title}
+                </motion.button>
+              ))}
+            </div>
+
+            {/* Mobile Menu Indicator */}
+            <div className="sm:hidden flex items-center gap-2">
+              <div className="text-xs text-gray-300 font-medium">
+                {sections[currentSection]?.title}
+              </div>
+              <div className="flex gap-1">
+                {sections.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      currentSection === index ? 'bg-blue-500' : 'bg-gray-600'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Back to Top Button */}
+        <motion.button
+          onClick={() => scrollToSection(0)}
+          className={`fixed z-50 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-110 hover:shadow-xl ${
+            isMobileSafari || isIOS
+              ? 'bottom-20 left-4' // Above Safari search bar
+              : 'bottom-6 left-4'   // Normal position
+          }`}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: currentSection > 0 ? 1 : 0,
+            scale: currentSection > 0 ? 1 : 0
+          }}
+          transition={{ duration: 0.3 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          {/* Custom up arrow with stem */}
+          <svg
+            className="w-6 h-6 mx-auto"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            {/* Vertical stem */}
+            <line x1="12" y1="19" x2="12" y2="7" />
+            {/* Arrow head */}
+            <polyline points="5,12 12,5 19,12" />
+          </svg>
+        </motion.button>
 
         {/* Enhanced Background Animations */}
         <style>{`
