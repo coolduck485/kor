@@ -2528,6 +2528,9 @@ export default function Index() {
           )}
         </AnimatePresence>
 
+        {/* Centered Navigation Bar */}
+        <CenteredNavbar />
+
         {/* Sections Container */}
         <div className="h-full">
           {/* Home Section */}
