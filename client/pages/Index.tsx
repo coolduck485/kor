@@ -8261,10 +8261,11 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <div
                     className="absolute"
                     style={{
+                      left: "0%",
                       width: "75%",
                       height: "100%",
-                      background: "linear-gradient(45deg, rgba(255, 165, 0, 0.9) 0%, rgba(59, 130, 246, 0.7) 50%, rgba(255, 140, 0, 0.8) 100%)",
-                      borderRadius: "60% 40% 40% 60%",
+                      background: "linear-gradient(90deg, rgba(255, 165, 0, 0.9) 0%, rgba(59, 130, 246, 0.7) 50%, rgba(255, 140, 0, 0.8) 100%)",
+                      borderRadius: "40% 60% 60% 40%",
                       boxShadow: "0 0 6px rgba(59, 130, 246, 0.5)",
                     }}
                   />
@@ -8272,7 +8273,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <div
                     className="absolute"
                     style={{
-                      left: "20%",
+                      left: "15%",
                       top: "10%",
                       width: "15%",
                       height: "80%",
@@ -8283,7 +8284,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <div
                     className="absolute"
                     style={{
-                      left: "45%",
+                      left: "40%",
                       top: "15%",
                       width: "12%",
                       height: "70%",
@@ -8293,8 +8294,9 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   />
                   {/* Tail */}
                   <div
-                    className="absolute right-0 top-1/2 transform -translate-y-1/2"
+                    className="absolute top-1/2 transform -translate-y-1/2"
                     style={{
+                      right: "0px",
                       width: "0",
                       height: "0",
                       borderLeft: `${screenSize === "mobile" ? 10 : 14}px solid rgba(59, 130, 246, 0.8)`,
@@ -8306,7 +8308,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <div
                     className="absolute rounded-full"
                     style={{
-                      left: "15%",
+                      left: "8%",
                       top: "25%",
                       width: `${screenSize === "mobile" ? 4 : 5}px`,
                       height: `${screenSize === "mobile" ? 4 : 5}px`,
@@ -8317,7 +8319,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <div
                     className="absolute rounded-full"
                     style={{
-                      left: "16%",
+                      left: "9%",
                       top: "27%",
                       width: `${screenSize === "mobile" ? 2 : 3}px`,
                       height: `${screenSize === "mobile" ? 2 : 3}px`,
