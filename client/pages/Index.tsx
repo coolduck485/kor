@@ -858,7 +858,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █���╗ █████���╗ ██����██╗
+                  {`��█╗  █���╗ █████���╗ ██������██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
@@ -8691,6 +8691,10 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {/* CTA Button */}
                           <div className="mt-4">
                             <motion.button
+                              onClick={() => {
+                                const event = new CustomEvent("scrollToSection", { detail: 5 }); // Contact section is index 5
+                                window.dispatchEvent(event);
+                              }}
                               className={`w-full py-3 px-4 rounded-lg font-bold text-white bg-gradient-to-r ${plan.color} shadow-lg transition-all duration-300 hover:shadow-xl`}
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
