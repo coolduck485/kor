@@ -4161,7 +4161,7 @@ export default function Index() {
           {/* Pricing Section */}
           <motion.div
             data-section="pricing"
-            className={isMobileMenuOpen ? "blur-sm" : ""}
+            className={`pt-20 ${isMobileMenuOpen ? "blur-sm" : ""}`}
             style={{
               display: currentSection === 3 ? "block" : "none",
             }}
@@ -4191,7 +4191,7 @@ export default function Index() {
           {/* Contact Us Section */}
           <motion.div
             data-section="contact"
-            className={isMobileMenuOpen ? "blur-sm" : ""}
+            className={`pt-20 ${isMobileMenuOpen ? "blur-sm" : ""}`}
             style={{
               display: currentSection === 5 ? "block" : "none",
             }}
