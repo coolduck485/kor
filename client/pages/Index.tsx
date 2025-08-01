@@ -5536,12 +5536,12 @@ function MobileHamburgerMenu({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
+            transition={{ duration: 0.08, ease: "easeOut" }}
             className="fixed inset-0 bg-black/40 z-40 mobile-menu-backdrop"
             onClick={protectedCloseMenu}
             style={{
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
+              backdropFilter: "blur(6px)",
+              WebkitBackdropFilter: "blur(6px)",
               willChange: "opacity",
             }}
           >
@@ -5551,11 +5551,9 @@ function MobileHamburgerMenu({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: -20 }}
               transition={{
-                duration: 0.2,
+                duration: 0.1,
                 ease: "easeOut",
-                type: "spring",
-                stiffness: 400,
-                damping: 25
+                type: "tween"
               }}
               className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 mobile-menu-content"
               style={{
@@ -5578,8 +5576,8 @@ function MobileHamburgerMenu({
                       : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
                   boxShadow:
                     "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
-                  backdropFilter: "blur(20px)",
-                  WebkitBackdropFilter: "blur(20px)",
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
                 }}
               >
                 {/* Animated background layers */}
@@ -5594,11 +5592,10 @@ function MobileHamburgerMenu({
                       initial={{ opacity: 0, x: -20, scale: 0.9 }}
                       animate={{ opacity: 1, x: 0, scale: 1 }}
                       transition={{
-                        delay: 0.05 + index * 0.03,
-                        duration: 0.2,
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 20,
+                        delay: index * 0.01,
+                        duration: 0.08,
+                        type: "tween",
+                        ease: "easeOut"
                       }}
                       whileTap={{
                         scale: 0.96,
