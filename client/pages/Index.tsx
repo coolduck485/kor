@@ -8785,7 +8785,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             ))}
 
             {/* Seaweed Animation */}
-            {[...Array(screenSize === "mobile" ? 3 : screenSize === "tablet" ? 5 : 8)].map((_, i) => (
+            {[...Array(screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 5)].map((_, i) => (
               <motion.div
                 key={`seaweed-motion-${i}`}
                 className="absolute bottom-0"
