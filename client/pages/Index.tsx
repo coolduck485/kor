@@ -7363,60 +7363,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             ))}
           </div>
 
-          {/* Blue Energy Orbs */}
-          <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 6 : screenSize === "tablet" ? 9 : 12)].map((_, i) => (
-              <motion.div
-                key={`energy-orb-${i}`}
-                className="absolute rounded-full"
-                style={{
-                  left: `${10 + (i * (screenSize === "mobile" ? 15 : 8))}%`,
-                  top: `${20 + ((i * 15) % 60)}%`,
-                  width: `${15 + (i % 4) * (screenSize === "mobile" ? 8 : 15)}px`,
-                  height: `${15 + (i % 4) * (screenSize === "mobile" ? 8 : 15)}px`,
-                  background: "radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, rgba(29, 78, 216, 0.3) 50%, transparent 80%)",
-                  boxShadow: screenSize === "desktop" ? "0 0 20px rgba(59, 130, 246, 0.6), inset 0 0 20px rgba(147, 197, 253, 0.3)" : "0 0 10px rgba(59, 130, 246, 0.4)",
-                  border: "2px solid rgba(59, 130, 246, 0.4)",
-                }}
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.3, 0.8, 0.3],
-                  rotateZ: [0, 180, 360],
-                }}
-                transition={{
-                  duration: 3 + (i % 3),
-                  repeat: Infinity,
-                  delay: i * 0.4,
-                }}
-              />
-            ))}
-          </div>
 
-          {/* Heat Distortion Lines */}
-          <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 8 : 15)].map((_, i) => (
-              <motion.div
-                key={`heat-line-${i}`}
-                className="absolute w-px opacity-40"
-                style={{
-                  left: `${(i * (screenSize === "mobile" ? 12 : 7))}%`,
-                  height: "100%",
-                  background: "linear-gradient(180deg, transparent 0%, rgba(255, 140, 0, 0.6) 30%, rgba(255, 69, 0, 0.8) 50%, rgba(255, 140, 0, 0.6) 70%, transparent 100%)",
-                  filter: "blur(1px)",
-                }}
-                animate={{
-                  scaleX: [1, 2, 1],
-                  opacity: [0.2, 0.6, 0.2],
-                  skewX: [-5, 5, -5],
-                }}
-                transition={{
-                  duration: 2 + (i % 2),
-                  repeat: Infinity,
-                  delay: i * 0.1,
-                }}
-              />
-            ))}
-          </div>
 
           {/* Animated Noise Texture */}
           <div
