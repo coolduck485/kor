@@ -4182,7 +4182,7 @@ export default function Index() {
 
         {/* Futuristic Navbar */}
         <motion.div
-          className="fixed top-4 left-1/2 z-50"
+          className="fixed top-4 left-1/2 z-[9999]"
           initial={{ opacity: 0, y: -20, x: "-50%" }}
           animate={{ opacity: 1, y: 0, x: "-50%" }}
           transition={{ delay: 1, duration: 0.8 }}
