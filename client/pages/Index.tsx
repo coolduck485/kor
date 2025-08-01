@@ -8670,7 +8670,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             ))}
 
             {/* Small School Fish */}
-            {[...Array(screenSize === "mobile" ? 6 : screenSize === "tablet" ? 10 : 15)].map((_, i) => (
+            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 10)].map((_, i) => (
               <motion.div
                 key={`school-fish-${i}`}
                 className="absolute"
