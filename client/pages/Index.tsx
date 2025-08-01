@@ -5790,7 +5790,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ———————→  hoverScale: 1.15
+// Change: hoverScale: 1.05  ————��——→  hoverScale: 1.15
 //
 // ========================================
 
@@ -5839,7 +5839,7 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
   };
   return (
     <>
-      {ORB_BUTTON_CONFIG.buttons.map((button) => (
+      {buttonConfig.buttons.map((button) => (
         <OrbFloatingButton
           key={button.text}
           text={button.text}
