@@ -8300,23 +8300,6 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
     const pricingPlans = [
       {
-        title: "Websites",
-        price: "$150",
-        maxPrice: "Unlimited",
-        icon: Globe,
-        color: "from-blue-500 to-cyan-500",
-        accentColor: "blue",
-        perks: [
-          "Fully built & deployed",
-          "Professional design",
-          "Mobile responsive",
-          "SEO optimized",
-          "Fast loading times",
-          "Contact forms",
-        ],
-        popular: false,
-      },
-      {
         title: "Custom Software/Tools",
         price: "$100",
         maxPrice: "Unlimited",
@@ -8330,6 +8313,23 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
           "Testing & debugging",
           "Performance optimized",
           "Support & maintenance",
+        ],
+        popular: false,
+      },
+      {
+        title: "Websites",
+        price: "$150",
+        maxPrice: "Unlimited",
+        icon: Globe,
+        color: "from-blue-500 to-cyan-500",
+        accentColor: "blue",
+        perks: [
+          "Fully built & deployed",
+          "Professional design",
+          "Mobile responsive",
+          "SEO optimized",
+          "Fast loading times",
+          "Contact forms",
         ],
         popular: true,
       },
