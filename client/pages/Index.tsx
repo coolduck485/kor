@@ -8304,8 +8304,8 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
         price: "$100",
         maxPrice: "Unlimited",
         icon: Code,
-        color: "from-purple-500 to-pink-500",
-        accentColor: "purple",
+        color: "from-blue-500 to-cyan-500",
+        accentColor: "blue",
         perks: [
           "Tailored to your needs",
           "Full source code",
@@ -8321,8 +8321,8 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
         price: "$150",
         maxPrice: "Unlimited",
         icon: Globe,
-        color: "from-blue-500 to-cyan-500",
-        accentColor: "blue",
+        color: "from-purple-500 to-pink-500",
+        accentColor: "purple",
         perks: [
           "Fully built & deployed",
           "Professional design",
@@ -9620,7 +9620,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-blue-500 to-purple-500",
               },
               {
-                icon: "������",
+                icon: "��������",
                 label: "Launch",
                 x: 12,
                 y: 85,
