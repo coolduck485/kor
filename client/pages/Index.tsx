@@ -7254,8 +7254,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         ref={ref}
         className={`relative w-full min-h-screen overflow-hidden ${
           theme === "light"
-            ? "bg-gradient-to-br from-orange-600 via-red-600 to-pink-700"
-            : "bg-gradient-to-br from-gray-900 via-red-900 to-black"
+            ? "bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700"
+            : "bg-gradient-to-br from-gray-900 via-blue-900 to-black"
         }`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
