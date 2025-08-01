@@ -896,7 +896,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�����╗ █████���╗ ██��������██╗
+                  {`��█╗  █�������╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
@@ -4164,7 +4164,7 @@ export default function Index() {
           {/* Pricing Section */}
           <motion.div
             data-section="pricing"
-            className={`pt-20 ${isMobileMenuOpen ? "blur-sm" : ""}`}
+            className={`${isMobileMenuOpen ? "blur-sm" : ""}`}
             style={{
               display: currentSection === 3 ? "block" : "none",
             }}
