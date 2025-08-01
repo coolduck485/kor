@@ -896,9 +896,9 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █████���╗ ██��������██╗
+                  {`��█╗  █�����╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
-█████╔╝ ██║   ██║███���██╔��
+█████╔╝ ██║   ██║███�����██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
@@ -4194,7 +4194,7 @@ export default function Index() {
           {/* Contact Us Section */}
           <motion.div
             data-section="contact"
-            className={`pt-20 ${isMobileMenuOpen ? "blur-sm" : ""}`}
+            className={`${isMobileMenuOpen ? "blur-sm" : ""}`}
             style={{
               display: currentSection === 5 ? "block" : "none",
             }}
