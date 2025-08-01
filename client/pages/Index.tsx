@@ -870,7 +870,7 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █���╗ █████���╗ ██��������██╗
-██║ ����█╔���██╔═══���█╗██╔══█���╗
+██║ ����█╔����██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
@@ -9203,7 +9203,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       : "0 0 8px rgba(59, 130, 246, 0.4)",
                 }}
                 animate={{
-                  y: ["-20px", screenSize === "mobile" ? "-60vh" : "-100vh"],
+                  y: ["-20px", screenSize === "mobile" ? "-30vh" : "-40vh"],
                   x: [
                     `0px`,
                     `${(Math.random() - 0.5) * (screenSize === "mobile" ? 100 : 200)}px`,
