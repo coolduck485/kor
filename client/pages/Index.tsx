@@ -796,7 +796,7 @@ export default function Index() {
                 onMouseEnter={() => setIsTooltipDismissed(true)}
               >
                 {/* Tooltip - only show in modern mode and if not dismissed */}
-                {mode === "modern" && !isTooltipDismissed && (
+                {(mode as string) === "modern" && !isTooltipDismissed && (
                   <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
                     <div
                       className="px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap border-green-300/30 bg-green-400/10 text-green-400"
@@ -2565,7 +2565,7 @@ export default function Index() {
                 onMouseEnter={() => setIsTooltipDismissed(true)}
               >
                 {/* Tooltip - only show in modern mode and if not dismissed and not on mobile */}
-                {mode === "modern" && !isTooltipDismissed && (
+                {(mode as string) === "modern" && !isTooltipDismissed && (
                   <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none hidden sm:block">
                     <div
                       className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
