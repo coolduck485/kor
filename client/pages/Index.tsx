@@ -9216,8 +9216,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         ref={ref}
         className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
-            ? "bg-gradient-to-br from-purple-800 via-pink-700 to-rose-800"
-            : "bg-gradient-to-br from-gray-900 via-purple-900 to-black"
+            ? "bg-gradient-to-br from-blue-800 via-indigo-700 to-blue-800"
+            : "bg-gradient-to-br from-gray-900 via-blue-900 to-black"
         }`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
