@@ -859,10 +859,10 @@ export default function Index() {
                   }}
                 >
                   {`██╗  █���╗ ██████╗ ██����██╗
-██║ ����█╔����██╔═══���█╗██╔══█���╗
+██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█��█�������█╔╝█��║  ██║
+██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -4123,18 +4123,33 @@ export default function Index() {
             />
           </motion.div>
 
-          {/* Portfolio Section */}
+          {/* Pricing Section */}
           <motion.div
-            data-section="portfolio"
+            data-section="pricing"
             className={isMobileMenuOpen ? "blur-sm" : ""}
             style={{
               display: currentSection === 3 ? "block" : "none",
             }}
           >
-            <PortfolioSection
+            <PricingSection
               ref={(el) => (sectionsRef.current[3] = el!)}
               theme={theme}
               isVisible={currentSection === 3}
+            />
+          </motion.div>
+
+          {/* Portfolio Section */}
+          <motion.div
+            data-section="portfolio"
+            className={isMobileMenuOpen ? "blur-sm" : ""}
+            style={{
+              display: currentSection === 4 ? "block" : "none",
+            }}
+          >
+            <PortfolioSection
+              ref={(el) => (sectionsRef.current[4] = el!)}
+              theme={theme}
+              isVisible={currentSection === 4}
             />
           </motion.div>
 
