@@ -898,7 +898,7 @@ export default function Index() {
                 >
                   {`��█╗  █�����╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
-█████╔╝ ██║   ██║███���██╔��
+██��██╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
@@ -4216,9 +4216,9 @@ export default function Index() {
         >
           <div
             ref={navbarRef}
-            className="relative flex items-center gap-3 md:gap-2 lg:gap-4 px-4 py-2 md:px-3 md:py-1.5 lg:px-6 lg:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 overflow-hidden"
+            className="relative flex items-center gap-3 md:gap-2 lg:gap-4 px-4 py-2 md:px-3 md:py-1.5 lg:px-6 lg:py-3 rounded-full backdrop-blur-md hover:bg-white/25 transition-all duration-500 hover:scale-105 overflow-hidden"
             style={{
-              background: "rgba(255, 255, 255, 0.1)",
+              background: theme === "light" ? "rgba(255, 255, 255, 0.9)" : "rgba(0, 0, 0, 0.6)",
               border: "2px solid transparent",
               backgroundClip: "padding-box",
             }}
