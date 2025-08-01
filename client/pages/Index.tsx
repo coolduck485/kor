@@ -893,7 +893,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�����╗ █████���╗ ██����������██╗
+                  {`��█╗  █�����╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
@@ -4244,11 +4244,11 @@ export default function Index() {
           >
             {/* Logo/Icon Placeholder with sparkle animation */}
             <motion.div
-              className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center relative overflow-hidden"
+              className="w-6 h-6 md:w-5 md:h-5 lg:w-8 lg:h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center relative overflow-hidden"
               whileHover={{ scale: 1.1, rotate: 5 }}
               transition={{ duration: 0.2 }}
             >
-              <Zap className="w-4 h-4 text-white relative z-10" />
+              <Zap className="w-3 h-3 md:w-2.5 md:h-2.5 lg:w-4 lg:h-4 text-white relative z-10" />
               {isNavbarHovered && (
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
