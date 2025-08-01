@@ -8592,7 +8592,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     )}
 
                     {/* Card Container */}
-                    <div className="relative h-full min-h-[500px]">
+                    <div className="relative h-full min-h-[400px]">
                       {/* Outer Glow Effect */}
                       <div
                         className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl ${
