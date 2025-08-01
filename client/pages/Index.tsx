@@ -920,7 +920,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█████████████���█████ 60%
+                      CPU: █████████████��██���█████████████���███��█ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -5574,25 +5574,9 @@ function MobileHamburgerMenu({
                 {/* Menu Items - Optimized for performance */}
                 <div className="relative space-y-2">
                   {menuItems.map((item, index) => (
-                    <motion.button
+                    <button
                       key={item.text}
-                      initial={{ opacity: 0, x: -20, scale: 0.9 }}
-                      animate={{ opacity: 1, x: 0, scale: 1 }}
-                      transition={{
-                        delay: index * 0.01,
-                        duration: 0.08,
-                        type: "tween",
-                        ease: "easeOut"
-                      }}
-                      whileTap={{
-                        scale: 0.96,
-                        transition: { duration: 0.1 },
-                      }}
-                      whileHover={{
-                        scale: 1.02,
-                        transition: { duration: 0.15 },
-                      }}
-                      className={`group w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 hover:shadow-xl active:scale-95 overflow-hidden relative mobile-menu-item ${
+                      className={`group w-full px-4 py-3 rounded-xl border-2 hover:shadow-xl overflow-hidden relative mobile-menu-item ${
                         theme === "light"
                           ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60 text-gray-800 hover:text-gray-900"
                           : "border-blue-300/30 bg-blue-400/5 hover:border-white/40 text-white/90 hover:text-white"
@@ -5616,8 +5600,8 @@ function MobileHamburgerMenu({
                       </span>
 
                       {/* Subtle highlight */}
-                      <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-xl bg-gradient-to-b from-white/15 via-white/5 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-200" />
-                    </motion.button>
+                      <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-xl bg-gradient-to-b from-white/15 via-white/5 to-transparent opacity-0 group-hover:opacity-50" />
+                    </button>
                   ))}
                 </div>
 
