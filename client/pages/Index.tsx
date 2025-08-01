@@ -1,5 +1,16 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { motion, AnimatePresence, useAnimation, useReducedMotion } from "framer-motion";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from "react";
+import {
+  motion,
+  AnimatePresence,
+  useAnimation,
+  useReducedMotion,
+} from "framer-motion";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { RetroToggle } from "@/components/ui/retro-toggle";
 import { useTheme } from "@/hooks/use-theme";
@@ -4190,8 +4201,8 @@ export default function Index() {
                   onClick={() => scrollToSection(index)}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
                     currentSection === index
-                      ? 'bg-blue-500 text-white shadow-lg'
-                      : 'text-gray-300 hover:text-white hover:bg-white/10'
+                      ? "bg-blue-500 text-white shadow-lg"
+                      : "text-gray-300 hover:text-white hover:bg-white/10"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -4211,7 +4222,7 @@ export default function Index() {
                   <div
                     key={index}
                     className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                      currentSection === index ? 'bg-blue-500' : 'bg-gray-600'
+                      currentSection === index ? "bg-blue-500" : "bg-gray-600"
                     }`}
                   />
                 ))}
@@ -4225,13 +4236,13 @@ export default function Index() {
           onClick={() => scrollToSection(0)}
           className={`fixed z-50 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-110 hover:shadow-xl ${
             isMobileSafari || isIOS
-              ? 'bottom-20 left-4' // Above Safari search bar
-              : 'bottom-6 left-4'   // Normal position
+              ? "bottom-20 left-4" // Above Safari search bar
+              : "bottom-6 left-4" // Normal position
           }`}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
             opacity: currentSection > 0 ? 1 : 0,
-            scale: currentSection > 0 ? 1 : 0
+            scale: currentSection > 0 ? 1 : 0,
           }}
           transition={{ duration: 0.3 }}
           whileHover={{ scale: 1.1 }}
@@ -6273,8 +6284,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 key={`matrix-line-${i}`}
                 className="absolute w-px h-full opacity-30"
                 style={{
-                  left: `${(i * (isMobileOrTablet ? 10 : 5))}%`,
-                  background: "linear-gradient(180deg, transparent 0%, #0080ff 20%, #0080ff 80%, transparent 100%)",
+                  left: `${i * (isMobileOrTablet ? 10 : 5)}%`,
+                  background:
+                    "linear-gradient(180deg, transparent 0%, #0080ff 20%, #0080ff 80%, transparent 100%)",
                   filter: "blur(0.5px)",
                 }}
                 animate={{
@@ -6297,7 +6309,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 key={`rain-${i}`}
                 className="absolute text-xs sm:text-sm font-mono text-green-400 opacity-40"
                 style={{
-                  left: `${(i * (isMobileOrTablet ? 12 : 7))}%`,
+                  left: `${i * (isMobileOrTablet ? 12 : 7)}%`,
                   top: "-10%",
                   writingMode: "vertical-rl",
                   textOrientation: "mixed",
@@ -6313,7 +6325,9 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   ease: "linear",
                 }}
               >
-                {Array.from({ length: 20 }, () => Math.random() > 0.5 ? '1' : '0').join('')}
+                {Array.from({ length: 20 }, () =>
+                  Math.random() > 0.5 ? "1" : "0",
+                ).join("")}
               </motion.div>
             ))}
           </div>
@@ -6325,13 +6339,15 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 key={`shape-${i}`}
                 className="absolute border-2 border-cyan-400"
                 style={{
-                  left: `${10 + (i * (isMobileOrTablet ? 18 : 11))}%`,
+                  left: `${10 + i * (isMobileOrTablet ? 18 : 11)}%`,
                   top: `${15 + ((i * 13) % 70)}%`,
                   width: `${30 + (i % 3) * (isMobileOrTablet ? 10 : 20)}px`,
                   height: `${30 + (i % 3) * (isMobileOrTablet ? 10 : 20)}px`,
                   borderRadius: i % 3 === 0 ? "50%" : i % 3 === 1 ? "0" : "20%",
-                  boxShadow: "0 0 20px rgba(34, 211, 238, 0.5), inset 0 0 20px rgba(34, 211, 238, 0.1)",
-                  background: "linear-gradient(45deg, rgba(34, 211, 238, 0.1), rgba(168, 85, 247, 0.1))",
+                  boxShadow:
+                    "0 0 20px rgba(34, 211, 238, 0.5), inset 0 0 20px rgba(34, 211, 238, 0.1)",
+                  background:
+                    "linear-gradient(45deg, rgba(34, 211, 238, 0.1), rgba(168, 85, 247, 0.1))",
                 }}
                 animate={{
                   rotateZ: [0, 360],
@@ -6393,11 +6409,12 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 key={`holo-panel-${i}`}
                 className="absolute border border-cyan-400 rounded-lg backdrop-blur-sm"
                 style={{
-                  left: `${5 + (i * (isMobileOrTablet ? 20 : 15))}%`,
+                  left: `${5 + i * (isMobileOrTablet ? 20 : 15)}%`,
                   top: `${10 + ((i * 20) % 70)}%`,
                   width: `${60 + (i % 2) * (isMobileOrTablet ? 20 : 40)}px`,
                   height: `${40 + (i % 2) * (isMobileOrTablet ? 15 : 30)}px`,
-                  background: "linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(168, 85, 247, 0.1))",
+                  background:
+                    "linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(168, 85, 247, 0.1))",
                   boxShadow: "0 0 30px rgba(34, 211, 238, 0.3)",
                 }}
                 animate={{
@@ -6416,7 +6433,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     <motion.div
                       key={lineIndex}
                       className="h-0.5 sm:h-1 bg-cyan-400 rounded opacity-60"
-                      style={{ width: `${50 + (lineIndex * 25)}%` }}
+                      style={{ width: `${50 + lineIndex * 25}%` }}
                       animate={{ opacity: [0.3, 0.8, 0.3] }}
                       transition={{
                         duration: 2,
@@ -7337,7 +7354,15 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // ========================================
 
 // Service Card Component
-const ServiceCard = ({ service, index, isVisible }: { service: any, index: number, isVisible: boolean }) => (
+const ServiceCard = ({
+  service,
+  index,
+  isVisible,
+}: {
+  service: any;
+  index: number;
+  isVisible: boolean;
+}) => (
   <motion.div
     className="group relative h-full"
     initial={{ y: 40, opacity: 0, scale: 0.9 }}
@@ -7508,7 +7533,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
       {
         icon: Globe,
         title: "Web Development",
-        description: "Modern, responsive websites built with cutting-edge technologies",
+        description:
+          "Modern, responsive websites built with cutting-edge technologies",
         color: "from-blue-500 to-cyan-500",
       },
       {
@@ -7545,13 +7571,15 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
       {
         icon: Users,
         title: "Consulting Services",
-        description: "Strategic technology consulting and digital transformation",
+        description:
+          "Strategic technology consulting and digital transformation",
         color: "from-pink-500 to-rose-500",
       },
       {
         icon: Shield,
         title: "Cybersecurity",
-        description: "Comprehensive security solutions to protect your digital assets",
+        description:
+          "Comprehensive security solutions to protect your digital assets",
         color: "from-red-500 to-orange-500",
       },
       {
@@ -7626,29 +7654,37 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 overflow-hidden">
           {/* Blue Volcanos */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 4)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 4,
+              ),
+            ].map((_, i) => (
               <div key={`volcano-${i}`} className="absolute">
                 {/* Volcano Shape */}
                 <div
                   className="absolute"
                   style={{
-                    left: `${15 + (i * (screenSize === "mobile" ? 35 : 25))}%`,
+                    left: `${15 + i * (screenSize === "mobile" ? 35 : 25)}%`,
                     bottom: "0px",
                     width: `${screenSize === "mobile" ? 60 : 100}px`,
                     height: `${screenSize === "mobile" ? 80 : 120}px`,
-                    background: "linear-gradient(45deg, rgba(30, 58, 138, 0.8) 0%, rgba(59, 130, 246, 0.6) 100%)",
+                    background:
+                      "linear-gradient(45deg, rgba(30, 58, 138, 0.8) 0%, rgba(59, 130, 246, 0.6) 100%)",
                     clipPath: "polygon(40% 100%, 0% 0%, 100% 0%, 60% 100%)",
                     filter: "drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3))",
                   }}
                 />
 
                 {/* Erupting Blue Fire */}
-                <div className="absolute" style={{
-                  left: `${15 + (i * (screenSize === "mobile" ? 35 : 25)) + (screenSize === "mobile" ? 7 : 12)}%`,
-                  bottom: `${screenSize === "mobile" ? 80 : 120}px`,
-                  width: `${screenSize === "mobile" ? 40 : 60}px`,
-                  height: `${screenSize === "mobile" ? 60 : 100}px`,
-                }}>
+                <div
+                  className="absolute"
+                  style={{
+                    left: `${15 + i * (screenSize === "mobile" ? 35 : 25) + (screenSize === "mobile" ? 7 : 12)}%`,
+                    bottom: `${screenSize === "mobile" ? 80 : 120}px`,
+                    width: `${screenSize === "mobile" ? 40 : 60}px`,
+                    height: `${screenSize === "mobile" ? 60 : 100}px`,
+                  }}
+                >
                   {[...Array(screenSize === "mobile" ? 8 : 15)].map((_, j) => (
                     <motion.div
                       key={`fire-particle-${i}-${j}`}
@@ -7666,8 +7702,11 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         boxShadow: "0 0 8px rgba(59, 130, 246, 0.6)",
                       }}
                       animate={{
-                        y: [0, -(screenSize === "mobile" ? 40 : 80) - (j % 3) * 20],
-                        x: [(j % 2 === 0 ? -5 : 5), (j % 2 === 0 ? -15 : 15)],
+                        y: [
+                          0,
+                          -(screenSize === "mobile" ? 40 : 80) - (j % 3) * 20,
+                        ],
+                        x: [j % 2 === 0 ? -5 : 5, j % 2 === 0 ? -15 : 15],
                         opacity: [1, 0.8, 0],
                         scale: [1, 1.2, 0.5],
                       }}
@@ -7686,7 +7725,15 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
           {/* Blue Flame Wisps */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 12 : screenSize === "tablet" ? 20 : 30)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile"
+                  ? 12
+                  : screenSize === "tablet"
+                    ? 20
+                    : 30,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`flame-wisp-${i}`}
                 className="absolute"
@@ -7695,7 +7742,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   bottom: "-10px",
                   width: `${screenSize === "mobile" ? 8 : 15}px`,
                   height: `${screenSize === "mobile" ? 20 : 35}px`,
-                  background: "linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.8) 30%, rgba(147, 197, 253, 0.9) 70%, rgba(219, 234, 254, 0.6) 100%)",
+                  background:
+                    "linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.8) 30%, rgba(147, 197, 253, 0.9) 70%, rgba(219, 234, 254, 0.6) 100%)",
                   borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%",
                   filter: "blur(1px)",
                   boxShadow: "0 0 15px rgba(59, 130, 246, 0.4)",
@@ -7716,8 +7764,6 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
               />
             ))}
           </div>
-
-
 
           {/* Animated Noise Texture */}
           <div
@@ -8268,7 +8314,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           ? "opacity-30 cursor-not-allowed"
                           : "hover:scale-110 cursor-pointer hover:bg-white/5"
                       }`}
-                      whileHover={currentServicesPage === 0 ? {} : { scale: 1.1 }}
+                      whileHover={
+                        currentServicesPage === 0 ? {} : { scale: 1.1 }
+                      }
                       whileTap={currentServicesPage === 0 ? {} : { scale: 0.9 }}
                     >
                       <ChevronLeft
@@ -8306,8 +8354,16 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           ? "opacity-30 cursor-not-allowed"
                           : "hover:scale-110 cursor-pointer hover:bg-white/5"
                       }`}
-                      whileHover={currentServicesPage === totalServicesPages - 1 ? {} : { scale: 1.1 }}
-                      whileTap={currentServicesPage === totalServicesPages - 1 ? {} : { scale: 0.9 }}
+                      whileHover={
+                        currentServicesPage === totalServicesPages - 1
+                          ? {}
+                          : { scale: 1.1 }
+                      }
+                      whileTap={
+                        currentServicesPage === totalServicesPages - 1
+                          ? {}
+                          : { scale: 0.9 }
+                      }
                     >
                       <ChevronRight
                         className={`w-4 h-4 transition-colors ${
@@ -8333,7 +8389,12 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         transition={{ duration: 0.3 }}
                       >
                         {getCurrentPageServices().map((service, index) => (
-                          <ServiceCard key={`${currentServicesPage}-${index}`} service={service} index={index} isVisible={isVisible} />
+                          <ServiceCard
+                            key={`${currentServicesPage}-${index}`}
+                            service={service}
+                            index={index}
+                            isVisible={isVisible}
+                          />
                         ))}
                       </motion.div>
                     </AnimatePresence>
@@ -8345,7 +8406,12 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <div className="flex justify-center mt-4 sm:mt-6 px-4">
                 <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-xl sm:max-w-2xl overflow-hidden">
                   {getCurrentPageServices().map((service, index) => (
-                    <ServiceCard key={index} service={service} index={index} isVisible={isVisible} />
+                    <ServiceCard
+                      key={index}
+                      service={service}
+                      index={index}
+                      isVisible={isVisible}
+                    />
                   ))}
                 </div>
               </div>
@@ -8363,7 +8429,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
 const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible }, ref) => {
-    const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">("desktop");
+    const [screenSize, setScreenSize] = useState<
+      "mobile" | "tablet" | "desktop"
+    >("desktop");
     const prefersReducedMotion = useReducedMotion();
 
     useEffect(() => {
@@ -8456,19 +8524,28 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
           {/* Digital Grid Lines */}
           <div className="absolute inset-0">
             {/* Vertical Lines */}
-            {[...Array(screenSize === "mobile" ? 6 : screenSize === "tablet" ? 8 : 12)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 6 : screenSize === "tablet" ? 8 : 12,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`grid-v-${i}`}
                 className="absolute w-px h-full opacity-20"
                 style={{
                   left: `${(i + 1) * (100 / ((screenSize === "mobile" ? 6 : screenSize === "tablet" ? 8 : 12) + 1))}%`,
-                  background: "linear-gradient(180deg, transparent 0%, #3b82f6 20%, #3b82f6 80%, transparent 100%)",
+                  background:
+                    "linear-gradient(180deg, transparent 0%, #3b82f6 20%, #3b82f6 80%, transparent 100%)",
                   filter: "blur(0.5px)",
                 }}
-                animate={!prefersReducedMotion ? {
-                  opacity: [0.1, 0.3, 0.1],
-                  scaleY: [1, 1.05, 1],
-                } : {}}
+                animate={
+                  !prefersReducedMotion
+                    ? {
+                        opacity: [0.1, 0.3, 0.1],
+                        scaleY: [1, 1.05, 1],
+                      }
+                    : {}
+                }
                 transition={{
                   duration: 3 + (i % 3),
                   repeat: Infinity,
@@ -8478,19 +8555,28 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
             ))}
 
             {/* Horizontal Lines */}
-            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 8)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 8,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`grid-h-${i}`}
                 className="absolute w-full h-px opacity-15"
                 style={{
                   top: `${(i + 1) * (100 / ((screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 8) + 1))}%`,
-                  background: "linear-gradient(90deg, transparent 0%, #3b82f6 20%, #3b82f6 80%, transparent 100%)",
+                  background:
+                    "linear-gradient(90deg, transparent 0%, #3b82f6 20%, #3b82f6 80%, transparent 100%)",
                   filter: "blur(0.5px)",
                 }}
-                animate={!prefersReducedMotion ? {
-                  opacity: [0.1, 0.25, 0.1],
-                  scaleX: [1, 1.02, 1],
-                } : {}}
+                animate={
+                  !prefersReducedMotion
+                    ? {
+                        opacity: [0.1, 0.25, 0.1],
+                        scaleX: [1, 1.02, 1],
+                      }
+                    : {}
+                }
                 transition={{
                   duration: 4 + (i % 2),
                   repeat: Infinity,
@@ -8502,19 +8588,62 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
           {/* Floating Data Particles */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 15 : screenSize === "tablet" ? 25 : 40)].map((_, i) => {
+            {[
+              ...Array(
+                screenSize === "mobile"
+                  ? 15
+                  : screenSize === "tablet"
+                    ? 25
+                    : 40,
+              ),
+            ].map((_, i) => {
               // Fixed positions for particles to prevent mouse movement effects
               const positions = [
-                { x: 12, y: 15 }, { x: 88, y: 22 }, { x: 25, y: 78 }, { x: 75, y: 85 }, { x: 45, y: 12 },
-                { x: 18, y: 65 }, { x: 82, y: 35 }, { x: 55, y: 90 }, { x: 8, y: 45 }, { x: 92, y: 55 },
-                { x: 35, y: 25 }, { x: 65, y: 75 }, { x: 22, y: 42 }, { x: 78, y: 18 }, { x: 48, y: 68 },
-                { x: 15, y: 82 }, { x: 85, y: 28 }, { x: 38, y: 58 }, { x: 62, y: 38 }, { x: 72, y: 72 },
-                { x: 28, y: 88 }, { x: 58, y: 8 }, { x: 42, y: 52 }, { x: 68, y: 32 }, { x: 32, y: 62 },
-                { x: 77, y: 47 }, { x: 23, y: 73 }, { x: 53, y: 23 }, { x: 47, y: 77 }, { x: 67, y: 13 },
-                { x: 33, y: 83 }, { x: 87, y: 43 }, { x: 13, y: 67 }, { x: 73, y: 37 }, { x: 37, y: 53 },
-                { x: 63, y: 63 }, { x: 17, y: 17 }, { x: 83, y: 87 }, { x: 43, y: 27 }, { x: 57, y: 57 }
+                { x: 12, y: 15 },
+                { x: 88, y: 22 },
+                { x: 25, y: 78 },
+                { x: 75, y: 85 },
+                { x: 45, y: 12 },
+                { x: 18, y: 65 },
+                { x: 82, y: 35 },
+                { x: 55, y: 90 },
+                { x: 8, y: 45 },
+                { x: 92, y: 55 },
+                { x: 35, y: 25 },
+                { x: 65, y: 75 },
+                { x: 22, y: 42 },
+                { x: 78, y: 18 },
+                { x: 48, y: 68 },
+                { x: 15, y: 82 },
+                { x: 85, y: 28 },
+                { x: 38, y: 58 },
+                { x: 62, y: 38 },
+                { x: 72, y: 72 },
+                { x: 28, y: 88 },
+                { x: 58, y: 8 },
+                { x: 42, y: 52 },
+                { x: 68, y: 32 },
+                { x: 32, y: 62 },
+                { x: 77, y: 47 },
+                { x: 23, y: 73 },
+                { x: 53, y: 23 },
+                { x: 47, y: 77 },
+                { x: 67, y: 13 },
+                { x: 33, y: 83 },
+                { x: 87, y: 43 },
+                { x: 13, y: 67 },
+                { x: 73, y: 37 },
+                { x: 37, y: 53 },
+                { x: 63, y: 63 },
+                { x: 17, y: 17 },
+                { x: 83, y: 87 },
+                { x: 43, y: 27 },
+                { x: 57, y: 57 },
               ];
-              const pos = positions[i] || { x: (i * 7.5) % 100, y: (i * 13.7) % 100 };
+              const pos = positions[i] || {
+                x: (i * 7.5) % 100,
+                y: (i * 13.7) % 100,
+              };
 
               return (
                 <motion.div
@@ -8533,11 +8662,15 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     ][i % 4],
                     boxShadow: "0 0 10px currentColor",
                   }}
-                  animate={!prefersReducedMotion ? {
-                    y: [0, -100, 0],
-                    opacity: [0, 1, 0],
-                    scale: [0.8, 1.2, 0.8],
-                  } : {}}
+                  animate={
+                    !prefersReducedMotion
+                      ? {
+                          y: [0, -100, 0],
+                          opacity: [0, 1, 0],
+                          scale: [0.8, 1.2, 0.8],
+                        }
+                      : {}
+                  }
                   transition={{
                     duration: 8 + (i % 4),
                     repeat: Infinity,
@@ -8556,7 +8689,8 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
               style={{
                 left: "10%",
                 top: "20%",
-                background: "radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)",
+                background:
+                  "radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)",
                 filter: "blur(60px)",
                 animation: "pulse 8s ease-in-out infinite",
               }}
@@ -8566,7 +8700,8 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
               style={{
                 right: "15%",
                 bottom: "25%",
-                background: "radial-gradient(circle, rgba(147, 51, 234, 0.4) 0%, transparent 70%)",
+                background:
+                  "radial-gradient(circle, rgba(147, 51, 234, 0.4) 0%, transparent 70%)",
                 filter: "blur(80px)",
                 animation: "pulse 12s ease-in-out infinite 2s",
               }}
@@ -8648,7 +8783,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 {pricingPlans.map((plan, index) => (
                   <motion.div
                     key={plan.title}
-                    className={`group relative ${plan.popular ? 'lg:scale-105 lg:-mt-4' : ''}`}
+                    className={`group relative ${plan.popular ? "lg:scale-105 lg:-mt-4" : ""}`}
                     initial={{ y: 60, opacity: 0, scale: 0.9 }}
                     animate={
                       isVisible
@@ -8681,7 +8816,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       {/* Outer Glow Effect */}
                       <div
                         className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl ${
-                          plan.popular ? 'opacity-50' : ''
+                          plan.popular ? "opacity-50" : ""
                         }`}
                         style={{
                           background: `linear-gradient(135deg, ${plan.color.replace("from-", "").replace(" to-", ", ").replace("-500", "")})`,
@@ -8692,7 +8827,9 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       {/* Card Body */}
                       <div
                         className={`relative h-full rounded-3xl overflow-hidden transition-all duration-500 backdrop-blur-xl border ${
-                          plan.popular ? 'border-purple-500/50' : 'border-white/10'
+                          plan.popular
+                            ? "border-purple-500/50"
+                            : "border-white/10"
                         }`}
                         style={{
                           background: plan.popular
@@ -8744,12 +8881,18 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {/* Price */}
                           <div className="text-center mb-5">
                             <div className="flex items-baseline justify-center">
-                              <span className={`text-3xl font-bold bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}>
+                              <span
+                                className={`text-3xl font-bold bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}
+                              >
                                 {plan.price}
                               </span>
-                              <span className="text-gray-400 ml-2 text-sm">- {plan.maxPrice}</span>
+                              <span className="text-gray-400 ml-2 text-sm">
+                                - {plan.maxPrice}
+                              </span>
                             </div>
-                            <p className="text-xs text-gray-400 mt-1">minimum pricing</p>
+                            <p className="text-xs text-gray-400 mt-1">
+                              minimum pricing
+                            </p>
                           </div>
 
                           {/* Perks */}
@@ -8760,13 +8903,17 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                                   key={perk}
                                   className="flex items-center text-gray-300"
                                   initial={{ opacity: 0, x: -20 }}
-                                  animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                                  animate={
+                                    isVisible ? { opacity: 1, x: 0 } : {}
+                                  }
                                   transition={{
                                     delay: 0.4 + index * 0.2 + perkIndex * 0.1,
                                     duration: 0.5,
                                   }}
                                 >
-                                  <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${plan.color} mr-3 flex-shrink-0`} />
+                                  <div
+                                    className={`w-2 h-2 rounded-full bg-gradient-to-r ${plan.color} mr-3 flex-shrink-0`}
+                                  />
                                   <span className="text-sm">{perk}</span>
                                 </motion.li>
                               ))}
@@ -8777,7 +8924,10 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div className="mt-4">
                             <motion.button
                               onClick={() => {
-                                const event = new CustomEvent("scrollToSection", { detail: 5 }); // Contact section is index 5
+                                const event = new CustomEvent(
+                                  "scrollToSection",
+                                  { detail: 5 },
+                                ); // Contact section is index 5
                                 window.dispatchEvent(event);
                               }}
                               className={`w-full py-3 px-4 rounded-lg font-bold text-white bg-gradient-to-r ${plan.color} shadow-lg transition-all duration-300 hover:shadow-xl`}
@@ -8822,12 +8972,16 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         </h3>
 
                         <p className="text-gray-300 text-sm sm:text-base mb-6 max-w-2xl mx-auto">
-                          We offer many more services including API integrations, database design, e-commerce solutions, and custom enterprise applications.
+                          We offer many more services including API
+                          integrations, database design, e-commerce solutions,
+                          and custom enterprise applications.
                         </p>
 
                         <motion.button
                           onClick={() => {
-                            const event = new CustomEvent("scrollToSection", { detail: 5 }); // Contact section is index 5
+                            const event = new CustomEvent("scrollToSection", {
+                              detail: 5,
+                            }); // Contact section is index 5
                             window.dispatchEvent(event);
                           }}
                           className="bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
@@ -8850,7 +9004,10 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 transition={{ delay: 1, duration: 0.8 }}
               >
                 <p className="text-gray-400 text-sm max-w-3xl mx-auto">
-                  <span className="text-yellow-400 font-semibold">*Note:</span> Final pricing depends on the complexity, features, and specific requirements of your project. Contact us for a detailed quote tailored to your needs.
+                  <span className="text-yellow-400 font-semibold">*Note:</span>{" "}
+                  Final pricing depends on the complexity, features, and
+                  specific requirements of your project. Contact us for a
+                  detailed quote tailored to your needs.
                 </p>
               </motion.div>
             </div>
@@ -8987,13 +9144,17 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         <div className="absolute inset-0 overflow-hidden">
           {/* Flowing Water Layers */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 3 : screenSize === "tablet" ? 4 : 6)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 3 : screenSize === "tablet" ? 4 : 6,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`wave-layer-${i}`}
                 className="absolute w-full"
                 style={{
                   height: `${40 + (i % 3) * (screenSize === "mobile" ? 20 : 40)}px`,
-                  top: `${10 + (i * 15)}%`,
+                  top: `${10 + i * 15}%`,
                   background: `linear-gradient(90deg,
                     transparent 0%,
                     rgba(59, 130, 246, ${0.3 + (i % 3) * 0.1}) 20%,
@@ -9020,7 +9181,11 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
           {/* Enhanced Blue Bubbles */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 6 : screenSize === "tablet" ? 9 : 12)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 6 : screenSize === "tablet" ? 9 : 12,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`bubble-${i}`}
                 className="absolute rounded-full ocean-element"
@@ -9029,13 +9194,20 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   bottom: "-20px",
                   width: `${3 + (i % 5) * (screenSize === "mobile" ? 3 : 6)}px`,
                   height: `${3 + (i % 5) * (screenSize === "mobile" ? 3 : 6)}px`,
-                  background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(59, 130, 246, 0.5) 40%, rgba(29, 78, 216, 0.3) 70%, transparent)",
+                  background:
+                    "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(59, 130, 246, 0.5) 40%, rgba(29, 78, 216, 0.3) 70%, transparent)",
                   border: "1px solid rgba(59, 130, 246, 0.4)",
-                  boxShadow: screenSize === "desktop" ? "0 0 15px rgba(59, 130, 246, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4)" : "0 0 8px rgba(59, 130, 246, 0.4)",
+                  boxShadow:
+                    screenSize === "desktop"
+                      ? "0 0 15px rgba(59, 130, 246, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4)"
+                      : "0 0 8px rgba(59, 130, 246, 0.4)",
                 }}
                 animate={{
                   y: ["-20px", screenSize === "mobile" ? "-60vh" : "-100vh"],
-                  x: [`0px`, `${(Math.random() - 0.5) * (screenSize === "mobile" ? 100 : 200)}px`],
+                  x: [
+                    `0px`,
+                    `${(Math.random() - 0.5) * (screenSize === "mobile" ? 100 : 200)}px`,
+                  ],
                   scale: [1, 1.3, 0.8],
                   opacity: [0.8, 1, 0],
                 }}
@@ -9052,29 +9224,48 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           {/* Swimming Fish Varieties */}
           <div className="absolute inset-0">
             {/* Clownfish */}
-            {[...Array(screenSize === "mobile" ? 1 : screenSize === "tablet" ? 2 : 3)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 1 : screenSize === "tablet" ? 2 : 3,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`clownfish-${i}`}
                 className="absolute ocean-element"
                 style={{
                   left: "-15%",
-                  top: `${20 + (i * (screenSize === "mobile" ? 20 : 15))}%`,
+                  top: `${20 + i * (screenSize === "mobile" ? 20 : 15)}%`,
                 }}
-                animate={prefersReducedMotion ? {} : {
-                  x: ["0px", "115vw"],
-                  y: [0, Math.sin(i) * (screenSize === "mobile" ? 15 : 25), 0],
-                }}
-                transition={prefersReducedMotion ? {} : {
-                  duration: 15 + (i % 3) * 2,
-                  repeat: Infinity,
-                  delay: i * 3,
-                  ease: "linear",
-                }}
+                animate={
+                  prefersReducedMotion
+                    ? {}
+                    : {
+                        x: ["0px", "115vw"],
+                        y: [
+                          0,
+                          Math.sin(i) * (screenSize === "mobile" ? 15 : 25),
+                          0,
+                        ],
+                      }
+                }
+                transition={
+                  prefersReducedMotion
+                    ? {}
+                    : {
+                        duration: 15 + (i % 3) * 2,
+                        repeat: Infinity,
+                        delay: i * 3,
+                        ease: "linear",
+                      }
+                }
               >
-                <div className="relative" style={{
-                  width: `${screenSize === "mobile" ? 25 : 35}px`,
-                  height: `${screenSize === "mobile" ? 15 : 20}px`,
-                }}>
+                <div
+                  className="relative"
+                  style={{
+                    width: `${screenSize === "mobile" ? 25 : 35}px`,
+                    height: `${screenSize === "mobile" ? 15 : 20}px`,
+                  }}
+                >
                   {/* Clownfish Body - Orange with blue tint */}
                   <div
                     className="absolute"
@@ -9082,7 +9273,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       left: "0%",
                       width: "75%",
                       height: "100%",
-                      background: "linear-gradient(90deg, rgba(255, 165, 0, 0.9) 0%, rgba(59, 130, 246, 0.7) 50%, rgba(255, 140, 0, 0.8) 100%)",
+                      background:
+                        "linear-gradient(90deg, rgba(255, 165, 0, 0.9) 0%, rgba(59, 130, 246, 0.7) 50%, rgba(255, 140, 0, 0.8) 100%)",
                       borderRadius: "40% 60% 60% 40%",
                       boxShadow: "0 0 6px rgba(59, 130, 246, 0.5)",
                     }}
@@ -9149,17 +9341,25 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             ))}
 
             {/* Blue Tang Fish */}
-            {[...Array(screenSize === "mobile" ? 1 : screenSize === "tablet" ? 2 : 3)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 1 : screenSize === "tablet" ? 2 : 3,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`tang-${i}`}
                 className="absolute"
                 style={{
                   left: "-12%",
-                  top: `${35 + (i * (screenSize === "mobile" ? 18 : 12))}%`,
+                  top: `${35 + i * (screenSize === "mobile" ? 18 : 12)}%`,
                 }}
                 animate={{
                   x: ["0px", "112vw"],
-                  y: [0, -Math.sin(i + 1) * (screenSize === "mobile" ? 20 : 30), 0],
+                  y: [
+                    0,
+                    -Math.sin(i + 1) * (screenSize === "mobile" ? 20 : 30),
+                    0,
+                  ],
                 }}
                 transition={{
                   duration: 18 + (i % 4) * 2,
@@ -9168,10 +9368,13 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   ease: "linear",
                 }}
               >
-                <div className="relative" style={{
-                  width: `${screenSize === "mobile" ? 22 : 32}px`,
-                  height: `${screenSize === "mobile" ? 18 : 25}px`,
-                }}>
+                <div
+                  className="relative"
+                  style={{
+                    width: `${screenSize === "mobile" ? 22 : 32}px`,
+                    height: `${screenSize === "mobile" ? 18 : 25}px`,
+                  }}
+                >
                   {/* Tang Body */}
                   <div
                     className="absolute"
@@ -9179,7 +9382,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       left: "0%",
                       width: "70%",
                       height: "100%",
-                      background: "linear-gradient(90deg, rgba(59, 130, 246, 0.95) 0%, rgba(30, 144, 255, 0.9) 50%, rgba(0, 100, 200, 0.85) 100%)",
+                      background:
+                        "linear-gradient(90deg, rgba(59, 130, 246, 0.95) 0%, rgba(30, 144, 255, 0.9) 50%, rgba(0, 100, 200, 0.85) 100%)",
                       borderRadius: "30% 50% 50% 30%",
                       boxShadow: "0 0 8px rgba(59, 130, 246, 0.6)",
                     }}
@@ -9192,7 +9396,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       top: "-30%",
                       width: "40%",
                       height: "40%",
-                      background: "linear-gradient(45deg, rgba(59, 130, 246, 0.8) 0%, rgba(147, 197, 253, 0.6) 100%)",
+                      background:
+                        "linear-gradient(45deg, rgba(59, 130, 246, 0.8) 0%, rgba(147, 197, 253, 0.6) 100%)",
                       borderRadius: "50% 50% 20% 20%",
                       transform: "skewX(15deg)",
                     }}
@@ -9226,17 +9431,25 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             ))}
 
             {/* Angelfish */}
-            {[...Array(screenSize === "mobile" ? 1 : screenSize === "tablet" ? 1 : 2)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 1 : screenSize === "tablet" ? 1 : 2,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`angel-${i}`}
                 className="absolute"
                 style={{
                   left: "-10%",
-                  top: `${50 + (i * (screenSize === "mobile" ? 25 : 20))}%`,
+                  top: `${50 + i * (screenSize === "mobile" ? 25 : 20)}%`,
                 }}
                 animate={{
                   x: ["0px", "110vw"],
-                  y: [0, Math.cos(i + 2) * (screenSize === "mobile" ? 25 : 35), 0],
+                  y: [
+                    0,
+                    Math.cos(i + 2) * (screenSize === "mobile" ? 25 : 35),
+                    0,
+                  ],
                 }}
                 transition={{
                   duration: 20 + (i % 3) * 3,
@@ -9245,10 +9458,13 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   ease: "linear",
                 }}
               >
-                <div className="relative" style={{
-                  width: `${screenSize === "mobile" ? 20 : 28}px`,
-                  height: `${screenSize === "mobile" ? 25 : 35}px`,
-                }}>
+                <div
+                  className="relative"
+                  style={{
+                    width: `${screenSize === "mobile" ? 20 : 28}px`,
+                    height: `${screenSize === "mobile" ? 25 : 35}px`,
+                  }}
+                >
                   {/* Angelfish Body */}
                   <div
                     className="absolute"
@@ -9257,7 +9473,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       top: "25%",
                       width: "60%",
                       height: "50%",
-                      background: "linear-gradient(90deg, rgba(173, 216, 230, 0.9) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(25, 118, 210, 0.7) 100%)",
+                      background:
+                        "linear-gradient(90deg, rgba(173, 216, 230, 0.9) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(25, 118, 210, 0.7) 100%)",
                       borderRadius: "20% 40% 60% 40%",
                       boxShadow: "0 0 6px rgba(59, 130, 246, 0.5)",
                     }}
@@ -9270,7 +9487,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       top: "0%",
                       width: "30%",
                       height: "30%",
-                      background: "linear-gradient(45deg, rgba(59, 130, 246, 0.7) 0%, rgba(147, 197, 253, 0.5) 100%)",
+                      background:
+                        "linear-gradient(45deg, rgba(59, 130, 246, 0.7) 0%, rgba(147, 197, 253, 0.5) 100%)",
                       borderRadius: "0% 100% 0% 0%",
                       transform: "skewX(20deg)",
                     }}
@@ -9283,7 +9501,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       bottom: "0%",
                       width: "30%",
                       height: "30%",
-                      background: "linear-gradient(-45deg, rgba(59, 130, 246, 0.7) 0%, rgba(147, 197, 253, 0.5) 100%)",
+                      background:
+                        "linear-gradient(-45deg, rgba(59, 130, 246, 0.7) 0%, rgba(147, 197, 253, 0.5) 100%)",
                       borderRadius: "0% 0% 100% 0%",
                       transform: "skewX(-20deg)",
                     }}
@@ -9317,17 +9536,25 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             ))}
 
             {/* Small School Fish */}
-            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 10)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 10,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`school-fish-${i}`}
                 className="absolute"
                 style={{
                   left: "-8%",
-                  top: `${10 + (i * 5)}%`,
+                  top: `${10 + i * 5}%`,
                 }}
                 animate={{
                   x: ["0px", "108vw"],
-                  y: [0, Math.sin(i * 0.5) * (screenSize === "mobile" ? 10 : 15), 0],
+                  y: [
+                    0,
+                    Math.sin(i * 0.5) * (screenSize === "mobile" ? 10 : 15),
+                    0,
+                  ],
                 }}
                 transition={{
                   duration: 10 + (i % 2),
@@ -9336,10 +9563,13 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   ease: "linear",
                 }}
               >
-                <div className="relative" style={{
-                  width: `${screenSize === "mobile" ? 12 : 16}px`,
-                  height: `${screenSize === "mobile" ? 8 : 10}px`,
-                }}>
+                <div
+                  className="relative"
+                  style={{
+                    width: `${screenSize === "mobile" ? 12 : 16}px`,
+                    height: `${screenSize === "mobile" ? 8 : 10}px`,
+                  }}
+                >
                   {/* Small Fish Body */}
                   <div
                     className="absolute"
@@ -9348,12 +9578,14 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       width: "75%",
                       height: "100%",
                       background: `linear-gradient(90deg,
-                        rgba(${[
-                          "100, 149, 237", // Cornflower blue
-                          "65, 105, 225",  // Royal blue
-                          "30, 144, 255",  // Dodger blue
-                          "0, 191, 255",   // Deep sky blue
-                        ][i % 4]}, 0.8) 0%,
+                        rgba(${
+                          [
+                            "100, 149, 237", // Cornflower blue
+                            "65, 105, 225", // Royal blue
+                            "30, 144, 255", // Dodger blue
+                            "0, 191, 255", // Deep sky blue
+                          ][i % 4]
+                        }, 0.8) 0%,
                         rgba(59, 130, 246, 0.6) 100%)`,
                       borderRadius: "30% 50% 50% 30%",
                       boxShadow: "0 0 4px rgba(59, 130, 246, 0.4)",
@@ -9389,12 +9621,16 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
           {/* Swaying Seaweed */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 5)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 5,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`seaweed-${i}`}
                 className="absolute bottom-0"
                 style={{
-                  left: `${10 + (i * (screenSize === "mobile" ? 25 : 12))}%`,
+                  left: `${10 + i * (screenSize === "mobile" ? 25 : 12)}%`,
                   width: `${screenSize === "mobile" ? 6 : 10}px`,
                   height: `${screenSize === "mobile" ? 60 : 100}px`,
                 }}
@@ -9424,7 +9660,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       height: `${screenSize === "mobile" ? 6 : 10}px`,
                       background: `rgba(59, 130, 246, ${0.6 + j * 0.1})`,
                       borderRadius: "50% 50% 50% 50% / 80% 80% 20% 20%",
-                      transformOrigin: j % 2 === 0 ? "right center" : "left center",
+                      transformOrigin:
+                        j % 2 === 0 ? "right center" : "left center",
                     }}
                   />
                 ))}
@@ -9432,12 +9669,16 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             ))}
 
             {/* Seaweed Animation */}
-            {[...Array(screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 5)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 5,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`seaweed-motion-${i}`}
                 className="absolute bottom-0"
                 style={{
-                  left: `${10 + (i * (screenSize === "mobile" ? 25 : 12))}%`,
+                  left: `${10 + i * (screenSize === "mobile" ? 25 : 12)}%`,
                   transformOrigin: "bottom center",
                 }}
                 animate={{
@@ -9458,12 +9699,16 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
           {/* Floating Jellyfish */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 8)].map((_, i) => (
+            {[
+              ...Array(
+                screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 8,
+              ),
+            ].map((_, i) => (
               <motion.div
                 key={`jellyfish-${i}`}
                 className="absolute"
                 style={{
-                  left: `${5 + (i * (screenSize === "mobile" ? 20 : 12))}%`,
+                  left: `${5 + i * (screenSize === "mobile" ? 20 : 12)}%`,
                   top: `${20 + ((i * 18) % 60)}%`,
                 }}
                 animate={{
@@ -9484,35 +9729,42 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   style={{
                     width: `${20 + (i % 3) * (screenSize === "mobile" ? 8 : 15)}px`,
                     height: `${15 + (i % 3) * (screenSize === "mobile" ? 5 : 10)}px`,
-                    background: "radial-gradient(ellipse at center, rgba(34, 211, 238, 0.6) 0%, rgba(16, 185, 129, 0.4) 50%, rgba(6, 182, 212, 0.2) 80%, transparent)",
+                    background:
+                      "radial-gradient(ellipse at center, rgba(34, 211, 238, 0.6) 0%, rgba(16, 185, 129, 0.4) 50%, rgba(6, 182, 212, 0.2) 80%, transparent)",
                     borderRadius: "50% 50% 20% 20%",
-                    boxShadow: screenSize === "desktop" ? "0 0 20px rgba(34, 211, 238, 0.4)" : "0 0 10px rgba(34, 211, 238, 0.3)",
+                    boxShadow:
+                      screenSize === "desktop"
+                        ? "0 0 20px rgba(34, 211, 238, 0.4)"
+                        : "0 0 10px rgba(34, 211, 238, 0.3)",
                   }}
                 >
                   {/* Tentacles */}
-                  {[...Array(screenSize === "mobile" ? 2 : 4)].map((_, tentacleIndex) => (
-                    <motion.div
-                      key={`tentacle-${tentacleIndex}`}
-                      className="absolute"
-                      style={{
-                        left: `${20 + tentacleIndex * (screenSize === "mobile" ? 30 : 15)}%`,
-                        top: "100%",
-                        width: "2px",
-                        height: `${10 + (tentacleIndex % 2) * (screenSize === "mobile" ? 5 : 10)}px`,
-                        background: "linear-gradient(180deg, rgba(34, 211, 238, 0.8) 0%, rgba(16, 185, 129, 0.4) 50%, transparent 100%)",
-                        borderRadius: "0 0 50% 50%",
-                      }}
-                      animate={{
-                        rotateZ: [-10, 10, -10],
-                        scaleY: [1, 1.3, 1],
-                      }}
-                      transition={{
-                        duration: 2 + (tentacleIndex % 2),
-                        repeat: Infinity,
-                        delay: tentacleIndex * 0.2,
-                      }}
-                    />
-                  ))}
+                  {[...Array(screenSize === "mobile" ? 2 : 4)].map(
+                    (_, tentacleIndex) => (
+                      <motion.div
+                        key={`tentacle-${tentacleIndex}`}
+                        className="absolute"
+                        style={{
+                          left: `${20 + tentacleIndex * (screenSize === "mobile" ? 30 : 15)}%`,
+                          top: "100%",
+                          width: "2px",
+                          height: `${10 + (tentacleIndex % 2) * (screenSize === "mobile" ? 5 : 10)}px`,
+                          background:
+                            "linear-gradient(180deg, rgba(34, 211, 238, 0.8) 0%, rgba(16, 185, 129, 0.4) 50%, transparent 100%)",
+                          borderRadius: "0 0 50% 50%",
+                        }}
+                        animate={{
+                          rotateZ: [-10, 10, -10],
+                          scaleY: [1, 1.3, 1],
+                        }}
+                        transition={{
+                          duration: 2 + (tentacleIndex % 2),
+                          repeat: Infinity,
+                          delay: tentacleIndex * 0.2,
+                        }}
+                      />
+                    ),
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -10429,18 +10681,61 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {[...Array(50)].map((_, i) => {
               // Fixed positions for each star based on index
               const positions = [
-                { x: 15, y: 20 }, { x: 85, y: 15 }, { x: 25, y: 75 }, { x: 70, y: 80 }, { x: 90, y: 45 },
-                { x: 10, y: 60 }, { x: 45, y: 10 }, { x: 60, y: 90 }, { x: 30, y: 30 }, { x: 75, y: 25 },
-                { x: 20, y: 85 }, { x: 95, y: 70 }, { x: 5, y: 40 }, { x: 55, y: 5 }, { x: 80, y: 55 },
-                { x: 40, y: 70 }, { x: 65, y: 35 }, { x: 35, y: 95 }, { x: 50, y: 50 }, { x: 85, y: 85 },
-                { x: 12, y: 12 }, { x: 88, y: 88 }, { x: 22, y: 45 }, { x: 77, y: 22 }, { x: 33, y: 67 },
-                { x: 67, y: 78 }, { x: 18, y: 35 }, { x: 82, y: 15 }, { x: 28, y: 82 }, { x: 72, y: 28 },
-                { x: 38, y: 18 }, { x: 62, y: 72 }, { x: 48, y: 38 }, { x: 52, y: 62 }, { x: 8, y: 52 },
-                { x: 92, y: 8 }, { x: 58, y: 92 }, { x: 42, y: 58 }, { x: 78, y: 42 }, { x: 32, y: 78 },
-                { x: 68, y: 32 }, { x: 13, y: 68 }, { x: 87, y: 13 }, { x: 23, y: 87 }, { x: 73, y: 23 },
-                { x: 43, y: 73 }, { x: 53, y: 43 }, { x: 63, y: 53 }, { x: 37, y: 63 }, { x: 47, y: 37 }
+                { x: 15, y: 20 },
+                { x: 85, y: 15 },
+                { x: 25, y: 75 },
+                { x: 70, y: 80 },
+                { x: 90, y: 45 },
+                { x: 10, y: 60 },
+                { x: 45, y: 10 },
+                { x: 60, y: 90 },
+                { x: 30, y: 30 },
+                { x: 75, y: 25 },
+                { x: 20, y: 85 },
+                { x: 95, y: 70 },
+                { x: 5, y: 40 },
+                { x: 55, y: 5 },
+                { x: 80, y: 55 },
+                { x: 40, y: 70 },
+                { x: 65, y: 35 },
+                { x: 35, y: 95 },
+                { x: 50, y: 50 },
+                { x: 85, y: 85 },
+                { x: 12, y: 12 },
+                { x: 88, y: 88 },
+                { x: 22, y: 45 },
+                { x: 77, y: 22 },
+                { x: 33, y: 67 },
+                { x: 67, y: 78 },
+                { x: 18, y: 35 },
+                { x: 82, y: 15 },
+                { x: 28, y: 82 },
+                { x: 72, y: 28 },
+                { x: 38, y: 18 },
+                { x: 62, y: 72 },
+                { x: 48, y: 38 },
+                { x: 52, y: 62 },
+                { x: 8, y: 52 },
+                { x: 92, y: 8 },
+                { x: 58, y: 92 },
+                { x: 42, y: 58 },
+                { x: 78, y: 42 },
+                { x: 32, y: 78 },
+                { x: 68, y: 32 },
+                { x: 13, y: 68 },
+                { x: 87, y: 13 },
+                { x: 23, y: 87 },
+                { x: 73, y: 23 },
+                { x: 43, y: 73 },
+                { x: 53, y: 43 },
+                { x: 63, y: 53 },
+                { x: 37, y: 63 },
+                { x: 47, y: 37 },
               ];
-              const pos = positions[i] || { x: Math.random() * 100, y: Math.random() * 100 };
+              const pos = positions[i] || {
+                x: Math.random() * 100,
+                y: Math.random() * 100,
+              };
 
               return (
                 <motion.div
@@ -10481,12 +10776,13 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 className="absolute"
                 style={{
                   left: "-10%",
-                  top: `${10 + (i * 12)}%`,
+                  top: `${10 + i * 12}%`,
                   width: "2px",
                   height: "2px",
                   background: "#ffffff",
                   borderRadius: "50%",
-                  boxShadow: "0 0 10px #ffffff, 0 0 20px #3b82f6, 0 0 30px #1d4ed8",
+                  boxShadow:
+                    "0 0 10px #ffffff, 0 0 20px #3b82f6, 0 0 30px #1d4ed8",
                 }}
                 animate={{
                   x: ["-10%", "110%"],
@@ -10508,7 +10804,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   style={{
                     width: "150px",
                     height: "2px",
-                    background: "linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.8) 30%, rgba(255, 255, 255, 1) 100%)",
+                    background:
+                      "linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.8) 30%, rgba(255, 255, 255, 1) 100%)",
                     transform: "translateX(-150px)",
                   }}
                 />
@@ -10523,7 +10820,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 key={`planet-${i}`}
                 className="absolute rounded-full"
                 style={{
-                  left: `${15 + (i * 15)}%`,
+                  left: `${15 + i * 15}%`,
                   top: `${20 + ((i * 20) % 60)}%`,
                   width: `${30 + (i % 3) * 20}px`,
                   height: `${30 + (i % 3) * 20}px`,
@@ -10535,7 +10832,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     "radial-gradient(circle at 30% 30%, #8b5cf6, #7c3aed, #6d28d9)",
                     "radial-gradient(circle at 30% 30%, #f97316, #ea580c, #c2410c)",
                   ][i],
-                  boxShadow: "0 0 30px rgba(59, 130, 246, 0.4), inset -10px -10px 20px rgba(0, 0, 0, 0.3)",
+                  boxShadow:
+                    "0 0 30px rgba(59, 130, 246, 0.4), inset -10px -10px 20px rgba(0, 0, 0, 0.3)",
                 }}
                 animate={{
                   rotateZ: [0, 360],
@@ -10585,7 +10883,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 key={`nebula-${i}`}
                 className="absolute rounded-full"
                 style={{
-                  left: `${10 + (i * 25)}%`,
+                  left: `${10 + i * 25}%`,
                   top: `${15 + ((i * 30) % 70)}%`,
                   width: `${100 + (i % 2) * 80}px`,
                   height: `${60 + (i % 2) * 40}px`,
