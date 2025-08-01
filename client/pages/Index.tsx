@@ -8626,7 +8626,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         {/* Content */}
                         <div className="relative z-10 h-full flex flex-col p-6">
                           {/* Icon Section */}
-                          <div className="flex justify-center mb-6">
+                          <div className="flex justify-center mb-4">
                             <motion.div
                               className="relative"
                               whileHover={{
