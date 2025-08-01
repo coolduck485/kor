@@ -5714,10 +5714,6 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 0.9,
       size: "medium", // Consistent sizing for uniform look
       accent: "blue", // Color accent - unified to blue
-      onClick: () => {
-        console.log("Portfolio clicked");
-        scrollToSection(3);
-      },
 
       xOffset: 0, // Centered positioning
       yOffset: 15, // Adjusted for mobile balance
