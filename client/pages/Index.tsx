@@ -5633,11 +5633,8 @@ function MobileHamburgerMenu({
                   ))}
                 </div>
 
-                {/* Holographic shimmer effect */}
-                <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-2xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40" />
-
-                {/* Bottom reflection */}
-                <div className="absolute bottom-0.5 left-0.5 right-0.5 h-1/4 rounded-2xl bg-gradient-to-t from-white/15 to-transparent opacity-30" />
+                {/* Simple top highlight for visual appeal */}
+                <div className="absolute top-0.5 left-0.5 right-0.5 h-px rounded-2xl bg-white/20" />
               </div>
             </motion.div>
           </motion.div>
