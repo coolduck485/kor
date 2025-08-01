@@ -4215,12 +4215,15 @@ export default function Index() {
           transition={{ delay: 1, duration: 0.8 }}
         >
           <div
+            ref={navbarRef}
             className="flex items-center gap-4 px-6 py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 relative overflow-hidden"
             style={{
               background: "rgba(255, 255, 255, 0.1)",
               border: "2px solid transparent",
               backgroundClip: "padding-box",
             }}
+            onMouseMove={handleNavbarMouseMove}
+            onMouseLeave={handleNavbarMouseLeave}
           >
             {/* Dynamic Border Effect */}
             <div
