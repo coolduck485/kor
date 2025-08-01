@@ -788,7 +788,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ••••
+                      ��•••
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -8373,7 +8373,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
           {/* Enhanced Blue Bubbles */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 8 : screenSize === "tablet" ? 12 : 18)].map((_, i) => (
+            {[...Array(screenSize === "mobile" ? 6 : screenSize === "tablet" ? 9 : 12)].map((_, i) => (
               <motion.div
                 key={`bubble-${i}`}
                 className="absolute rounded-full"
