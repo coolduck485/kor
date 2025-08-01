@@ -8705,6 +8705,54 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 ))}
               </div>
 
+              {/* Additional Services Card */}
+              <motion.div
+                className="mt-8"
+                initial={{ opacity: 0, y: 40 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 1.2, duration: 0.8 }}
+              >
+                <div className="max-w-4xl mx-auto">
+                  <div className="relative group">
+                    {/* Glow Effect */}
+                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500" />
+
+                    {/* Card */}
+                    <div className="relative rounded-2xl overflow-hidden backdrop-blur-xl border border-white/10 p-6 sm:p-8">
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-emerald-500/10" />
+
+                      <div className="relative z-10 text-center">
+                        <div className="flex justify-center mb-4">
+                          <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                            <Star className="w-6 h-6 text-white" />
+                          </div>
+                        </div>
+
+                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
+                          Looking for Something Else?
+                        </h3>
+
+                        <p className="text-gray-300 text-sm sm:text-base mb-6 max-w-2xl mx-auto">
+                          We offer many more services including API integrations, database design, e-commerce solutions, and custom enterprise applications.
+                        </p>
+
+                        <motion.button
+                          onClick={() => {
+                            const event = new CustomEvent("scrollToSection", { detail: 5 }); // Contact section is index 5
+                            window.dispatchEvent(event);
+                          }}
+                          className="bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          Contact Us for More Info
+                        </motion.button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
               {/* Pricing Note */}
               <motion.div
                 className="text-center mt-6"
