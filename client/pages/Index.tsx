@@ -25,7 +25,10 @@ import {
   HelpCircle,
   X,
 } from "lucide-react";
-import { useSpamProtection, SPAM_PROTECTION_PRESETS } from "../hooks/use-spam-protection";
+import {
+  useSpamProtection,
+  SPAM_PROTECTION_PRESETS,
+} from "../hooks/use-spam-protection";
 import { useHelpModal } from "../hooks/use-help-modal";
 
 export default function Index() {
@@ -465,7 +468,7 @@ export default function Index() {
   // Enhanced spam protection for scroll navigation
   const { protectedCallback: protectedScrollToSection } = useSpamProtection(
     scrollToSection,
-    SPAM_PROTECTION_PRESETS.standard
+    SPAM_PROTECTION_PRESETS.standard,
   );
 
   // Spam protection for external links
@@ -473,19 +476,19 @@ export default function Index() {
     (url: string) => {
       window.open(url, "_blank");
     },
-    SPAM_PROTECTION_PRESETS.critical
+    SPAM_PROTECTION_PRESETS.critical,
   );
 
   // Spam protection for help modal
   const { protectedCallback: protectedToggleHelpModal } = useSpamProtection(
     (isOpen: boolean) => setIsHelpModalOpen(isOpen),
-    SPAM_PROTECTION_PRESETS.fast
+    SPAM_PROTECTION_PRESETS.fast,
   );
 
   // Spam protection for form interactions
   const { protectedCallback: protectedFormInteraction } = useSpamProtection(
     (callback: () => void) => callback(),
-    SPAM_PROTECTION_PRESETS.standard
+    SPAM_PROTECTION_PRESETS.standard,
   );
 
   // Desktop scroll optimization variables
@@ -1997,7 +2000,9 @@ export default function Index() {
             }}
             disabled={isScrolling || isMobileMenuOpen}
             className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
-              isScrolling || isMobileMenuOpen ? "pointer-events-none opacity-60" : ""
+              isScrolling || isMobileMenuOpen
+                ? "pointer-events-none opacity-60"
+                : ""
             } ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
@@ -2022,53 +2027,57 @@ export default function Index() {
         )}
 
         {/* Next Section Button */}
-        {currentSection < sections.length - 1 && !isHelpModalOpen && !isMobileMenuOpen && (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              if (isScrolling) return;
-              protectedScrollToSection(currentSection + 1);
-              setShowNavigationHints(false);
-              setShowNavigationTooltip(false);
-              dismissTooltip("nav-down");
-              dismissTooltip("nav-shared");
-            }}
-            onMouseEnter={() => {
-              setShowNavigationTooltip(false);
-              dismissTooltip("nav-down");
-              dismissTooltip("nav-shared");
-            }}
-            onTouchStart={() => {
-              setShowNavigationTooltip(false);
-              dismissTooltip("nav-down");
-              dismissTooltip("nav-shared");
-            }}
-            disabled={isScrolling || isMobileMenuOpen}
-            className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
-              isScrolling || isMobileMenuOpen ? "pointer-events-none opacity-60" : ""
-            } ${
-              theme === "light"
-                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
-            }`}
-            style={{
-              background:
+        {currentSection < sections.length - 1 &&
+          !isHelpModalOpen &&
+          !isMobileMenuOpen && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (isScrolling) return;
+                protectedScrollToSection(currentSection + 1);
+                setShowNavigationHints(false);
+                setShowNavigationTooltip(false);
+                dismissTooltip("nav-down");
+                dismissTooltip("nav-shared");
+              }}
+              onMouseEnter={() => {
+                setShowNavigationTooltip(false);
+                dismissTooltip("nav-down");
+                dismissTooltip("nav-shared");
+              }}
+              onTouchStart={() => {
+                setShowNavigationTooltip(false);
+                dismissTooltip("nav-down");
+                dismissTooltip("nav-shared");
+              }}
+              disabled={isScrolling || isMobileMenuOpen}
+              className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+                isScrolling || isMobileMenuOpen
+                  ? "pointer-events-none opacity-60"
+                  : ""
+              } ${
                 theme === "light"
-                  ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-              boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
-            }}
-          >
-            <ChevronDown
-              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
-                theme === "light"
-                  ? "text-blue-600 group-hover:text-blue-700"
-                  : "text-white group-hover:text-blue-300"
+                  ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                  : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
               }`}
-            />
-          </button>
-        )}
+              style={{
+                background:
+                  theme === "light"
+                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+              }}
+            >
+              <ChevronDown
+                className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                  theme === "light"
+                    ? "text-blue-600 group-hover:text-blue-700"
+                    : "text-white group-hover:text-blue-300"
+                }`}
+              />
+            </button>
+          )}
       </div>
 
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
@@ -5323,13 +5332,13 @@ function MobileHamburgerMenu({
   // Spam protection for menu toggle
   const { protectedCallback: protectedToggleMenu } = useSpamProtection(
     () => setIsOpen(!isOpen),
-    SPAM_PROTECTION_PRESETS.fast
+    SPAM_PROTECTION_PRESETS.fast,
   );
 
   // Spam protection for menu close
   const { protectedCallback: protectedCloseMenu } = useSpamProtection(
     () => setIsOpen(false),
-    SPAM_PROTECTION_PRESETS.fast
+    SPAM_PROTECTION_PRESETS.fast,
   );
 
   // Spam protection for menu item navigation
@@ -5350,7 +5359,7 @@ function MobileHamburgerMenu({
         window.dispatchEvent(event);
       }
     },
-    SPAM_PROTECTION_PRESETS.standard
+    SPAM_PROTECTION_PRESETS.standard,
   );
 
   const menuItems = [
@@ -8721,7 +8730,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         setSelectedInterest(interest);
         setFormData({ ...formData, interest });
       },
-      SPAM_PROTECTION_PRESETS.fast
+      SPAM_PROTECTION_PRESETS.fast,
     );
 
     const { protectedCallback: protectedBudgetSelect } = useSpamProtection(
@@ -8729,7 +8738,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         setSelectedBudget(budget);
         setFormData({ ...formData, budget });
       },
-      SPAM_PROTECTION_PRESETS.fast
+      SPAM_PROTECTION_PRESETS.fast,
     );
 
     // Spam protection for external links in contact section
@@ -8737,7 +8746,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       (url: string) => {
         window.open(url, "_blank");
       },
-      SPAM_PROTECTION_PRESETS.critical
+      SPAM_PROTECTION_PRESETS.critical,
     );
 
     const handleInterestSelect = (interest: string) => {

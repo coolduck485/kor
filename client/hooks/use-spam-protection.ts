@@ -11,7 +11,7 @@ export interface SpamProtectionOptions {
 
 export function useSpamProtection(
   callback: (...args: any[]) => void | Promise<void>,
-  options: SpamProtectionOptions = {}
+  options: SpamProtectionOptions = {},
 ) {
   const {
     cooldown = 300,
@@ -66,7 +66,7 @@ export function useSpamProtection(
           console.error("Protected callback error:", error);
         } finally {
           isExecuting.current = false;
-          
+
           if (disableDuringCooldown) {
             // Re-enable after cooldown
             setTimeout(() => {
@@ -76,7 +76,7 @@ export function useSpamProtection(
         }
       }
     },
-    [callback, cooldown, debounce, disableDuringCooldown]
+    [callback, cooldown, debounce, disableDuringCooldown],
   );
 
   return {
@@ -99,13 +99,13 @@ export function useSpamProtection(
 export const SPAM_PROTECTION_PRESETS = {
   // Fast interactions (theme toggles, navigation)
   fast: { cooldown: 200, debounce: 0 },
-  
+
   // Standard interactions (menu items, form buttons)
   standard: { cooldown: 300, debounce: 50 },
-  
+
   // Heavy operations (API calls, navigation)
   heavy: { cooldown: 500, debounce: 100, disableDuringCooldown: true },
-  
+
   // Critical actions (submit forms, external links)
   critical: { cooldown: 1000, debounce: 200, disableDuringCooldown: true },
 } as const;

@@ -5,7 +5,9 @@ interface HelpModalContextType {
   setIsHelpModalOpen: (isOpen: boolean) => void;
 }
 
-const HelpModalContext = createContext<HelpModalContextType | undefined>(undefined);
+const HelpModalContext = createContext<HelpModalContextType | undefined>(
+  undefined,
+);
 
 export const useHelpModal = () => {
   const context = useContext(HelpModalContext);
@@ -15,7 +17,9 @@ export const useHelpModal = () => {
   return context;
 };
 
-export const HelpModalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const HelpModalProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   return (

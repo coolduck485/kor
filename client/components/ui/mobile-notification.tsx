@@ -80,7 +80,14 @@ export const MobileNotificationProvider: React.FC<{
 
   return (
     <MobileNotificationContext.Provider
-      value={{ notifications, addNotification, removeNotification, clearAll, isHelpModalOpen, setIsHelpModalOpen }}
+      value={{
+        notifications,
+        addNotification,
+        removeNotification,
+        clearAll,
+        isHelpModalOpen,
+        setIsHelpModalOpen,
+      }}
     >
       {children}
       {deviceType !== "desktop" && <MobileNotificationContainer />}
@@ -89,7 +96,8 @@ export const MobileNotificationProvider: React.FC<{
 };
 
 const MobileNotificationContainer: React.FC = () => {
-  const { notifications, removeNotification, isHelpModalOpen } = useMobileNotifications();
+  const { notifications, removeNotification, isHelpModalOpen } =
+    useMobileNotifications();
   const deviceType = useDeviceType();
   const { isSafari } = useBrowserDetection();
 
@@ -115,7 +123,10 @@ const MobileNotificationContainer: React.FC = () => {
         // Position 100px from bottom for non-Safari mobile
         bottom: shouldPositionAtBottom ? "100px" : undefined,
         // Safe area handling for mobile devices
-        paddingTop: isMobile && !shouldPositionAtBottom ? "env(safe-area-inset-top)" : undefined,
+        paddingTop:
+          isMobile && !shouldPositionAtBottom
+            ? "env(safe-area-inset-top)"
+            : undefined,
         paddingBottom: isMobile ? "env(safe-area-inset-bottom)" : undefined,
       }}
     >
@@ -316,11 +327,16 @@ const MobileNotificationItem = React.forwardRef<
           <motion.h4
             className={cn(
               "font-semibold text-white",
-              isMobile ? "text-xs" : "text-sm sm:text-base animate-text-glow-pulse",
+              isMobile
+                ? "text-xs"
+                : "text-sm sm:text-base animate-text-glow-pulse",
             )}
             initial={{ opacity: 0, y: isMobile ? 5 : 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: isMobile ? 0.05 : 0.1, duration: isMobile ? 0.15 : 0.2 }}
+            transition={{
+              delay: isMobile ? 0.05 : 0.1,
+              duration: isMobile ? 0.15 : 0.2,
+            }}
           >
             {notification.title}
           </motion.h4>
@@ -333,7 +349,10 @@ const MobileNotificationItem = React.forwardRef<
             )}
             initial={{ opacity: 0, y: isMobile ? 3 : 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: isMobile ? 0.08 : 0.2, duration: isMobile ? 0.15 : 0.2 }}
+            transition={{
+              delay: isMobile ? 0.08 : 0.2,
+              duration: isMobile ? 0.15 : 0.2,
+            }}
           >
             {notification.message}
           </motion.p>
