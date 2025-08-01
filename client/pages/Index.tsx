@@ -872,9 +872,9 @@ export default function Index() {
                   {`��█╗  █���╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
-█��╔���██�� ██║   ██║██╔══█��╗
+█��╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
-����������╝  ╚═╝ ���������════╝ ╚�����  ��═╝`}
+������������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -2584,7 +2584,7 @@ export default function Index() {
 
             {/* Theme Toggle Container with Tooltip */}
             <div
-              className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+              className={`fixed top-6 right-6 z-50 transition-all duration-300 ${
                 isMobileMenuOpen ? "blur-sm" : ""
               }`}
             >
