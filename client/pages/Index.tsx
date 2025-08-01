@@ -851,7 +851,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  ██╗ ██████╗ ██����██╗
-██║ ����█╔��██╔═══���█╗██╔══██╗
+██║ ����█╔���██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
@@ -9216,14 +9216,187 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         ref={ref}
         className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
-            ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
-            : "bg-black"
+            ? "bg-gradient-to-br from-purple-800 via-pink-700 to-rose-800"
+            : "bg-gradient-to-br from-gray-900 via-purple-900 to-black"
         }`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Enhanced Background Elements - Contact Section Eye Candy */}
+        {/* Enhanced Background Elements - Contact Section Eye Candy - COSMIC/SPACE THEME */}
+
+        {/* Starfield Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Twinkling Stars */}
+          <div className="absolute inset-0">
+            {[...Array(50)].map((_, i) => (
+              <motion.div
+                key={`star-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  width: `${1 + Math.random() * 3}px`,
+                  height: `${1 + Math.random() * 3}px`,
+                  background: [
+                    "radial-gradient(circle, #ffffff 0%, #e0e7ff 50%, transparent 80%)",
+                    "radial-gradient(circle, #fbbf24 0%, #f59e0b 50%, transparent 80%)",
+                    "radial-gradient(circle, #3b82f6 0%, #1d4ed8 50%, transparent 80%)",
+                    "radial-gradient(circle, #f87171 0%, #dc2626 50%, transparent 80%)",
+                  ][Math.floor(Math.random() * 4)],
+                  boxShadow: "0 0 6px currentColor",
+                }}
+                animate={{
+                  opacity: [0.3, 1, 0.3],
+                  scale: [0.8, 1.2, 0.8],
+                }}
+                transition={{
+                  duration: 2 + Math.random() * 3,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Shooting Stars */}
+          <div className="absolute inset-0">
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={`shooting-star-${i}`}
+                className="absolute"
+                style={{
+                  left: "-10%",
+                  top: `${10 + (i * 12)}%`,
+                  width: "2px",
+                  height: "2px",
+                  background: "#ffffff",
+                  borderRadius: "50%",
+                  boxShadow: "0 0 10px #ffffff, 0 0 20px #3b82f6, 0 0 30px #1d4ed8",
+                }}
+                animate={{
+                  x: ["-10%", "110%"],
+                  y: ["0%", "20%"],
+                  opacity: [0, 1, 1, 0],
+                  scale: [0, 1, 1, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 2.5,
+                  ease: "easeOut",
+                  repeatDelay: 15,
+                }}
+              >
+                {/* Shooting star trail */}
+                <div
+                  className="absolute left-0 top-0"
+                  style={{
+                    width: "150px",
+                    height: "2px",
+                    background: "linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.8) 30%, rgba(255, 255, 255, 1) 100%)",
+                    transform: "translateX(-150px)",
+                  }}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Floating Planets */}
+          <div className="absolute inset-0">
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={`planet-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${15 + (i * 15)}%`,
+                  top: `${20 + ((i * 20) % 60)}%`,
+                  width: `${30 + (i % 3) * 20}px`,
+                  height: `${30 + (i % 3) * 20}px`,
+                  background: [
+                    "radial-gradient(circle at 30% 30%, #fbbf24, #f59e0b, #d97706)",
+                    "radial-gradient(circle at 30% 30%, #3b82f6, #1d4ed8, #1e40af)",
+                    "radial-gradient(circle at 30% 30%, #ef4444, #dc2626, #b91c1c)",
+                    "radial-gradient(circle at 30% 30%, #10b981, #059669, #047857)",
+                    "radial-gradient(circle at 30% 30%, #8b5cf6, #7c3aed, #6d28d9)",
+                    "radial-gradient(circle at 30% 30%, #f97316, #ea580c, #c2410c)",
+                  ][i],
+                  boxShadow: "0 0 30px rgba(59, 130, 246, 0.4), inset -10px -10px 20px rgba(0, 0, 0, 0.3)",
+                }}
+                animate={{
+                  rotateZ: [0, 360],
+                  y: [-10, 10, -10],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  rotateZ: {
+                    duration: 20 + (i % 3) * 10,
+                    repeat: Infinity,
+                    ease: "linear",
+                  },
+                  y: {
+                    duration: 6 + (i % 2) * 2,
+                    repeat: Infinity,
+                    delay: i * 0.5,
+                  },
+                  scale: {
+                    duration: 4,
+                    repeat: Infinity,
+                    delay: i * 0.7,
+                  },
+                }}
+              >
+                {/* Planet Ring */}
+                {i % 2 === 0 && (
+                  <div
+                    className="absolute border border-white/30 rounded-full"
+                    style={{
+                      left: "-20%",
+                      top: "40%",
+                      width: "140%",
+                      height: "20%",
+                      borderRadius: "50%",
+                      transform: "rotateX(75deg)",
+                    }}
+                  />
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Nebula Clouds */}
+          <div className="absolute inset-0">
+            {[...Array(4)].map((_, i) => (
+              <motion.div
+                key={`nebula-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${10 + (i * 25)}%`,
+                  top: `${15 + ((i * 30) % 70)}%`,
+                  width: `${100 + (i % 2) * 80}px`,
+                  height: `${60 + (i % 2) * 40}px`,
+                  background: [
+                    "radial-gradient(ellipse, rgba(139, 92, 246, 0.3) 0%, rgba(99, 102, 241, 0.2) 40%, rgba(59, 130, 246, 0.1) 70%, transparent)",
+                    "radial-gradient(ellipse, rgba(236, 72, 153, 0.3) 0%, rgba(219, 39, 119, 0.2) 40%, rgba(190, 24, 93, 0.1) 70%, transparent)",
+                    "radial-gradient(ellipse, rgba(34, 197, 94, 0.3) 0%, rgba(22, 163, 74, 0.2) 40%, rgba(21, 128, 61, 0.1) 70%, transparent)",
+                    "radial-gradient(ellipse, rgba(251, 146, 60, 0.3) 0%, rgba(249, 115, 22, 0.2) 40%, rgba(234, 88, 12, 0.1) 70%, transparent)",
+                  ][i],
+                  filter: "blur(20px)",
+                }}
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.3, 0.7, 0.3],
+                  rotateZ: [0, 30, 0],
+                }}
+                transition={{
+                  duration: 12 + (i % 3) * 4,
+                  repeat: Infinity,
+                  delay: i * 2,
+                }}
+              />
+            ))}
+          </div>
+        </div>
 
         {/* Floating Communication Icons - Contact specific */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
