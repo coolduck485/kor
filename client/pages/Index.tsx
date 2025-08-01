@@ -8856,7 +8856,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 className={`font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative mobile-lively-text ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
-                style={{ transform: 'translateY(-50px)' }}
+                style={{ transform: "translateY(-50px)" }}
               >
                 {"Pricing".split("").map((letter, i) => (
                   <span
@@ -8885,7 +8885,10 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     transform: "scale(1.5)",
                   }}
                 />
-                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10" style={{ transform: 'translateY(-50px)' }}>
+                <div
+                  className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10"
+                  style={{ transform: "translateY(-50px)" }}
+                >
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
