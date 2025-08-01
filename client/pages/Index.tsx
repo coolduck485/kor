@@ -8853,6 +8853,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 className={`font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative mobile-lively-text ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
+                style={{ transform: 'translateY(-50px)' }}
               >
                 {"Pricing".split("").map((letter, i) => (
                   <span
