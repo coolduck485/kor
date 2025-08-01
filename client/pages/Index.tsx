@@ -972,7 +972,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ��██�����█████████���███��███████��█ 50%
+                      RAM: ����█�����█████████���███��███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -4319,6 +4319,72 @@ export default function Index() {
               </div>
             </div>
           </div>
+        </motion.div>
+
+        {/* Mobile Hamburger Menu */}
+        <motion.div
+          className={`fixed top-4 right-4 z-50 md:hidden ${
+            currentSection !== 0 ? "block" : "hidden"
+          }`}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: currentSection !== 0 ? 1 : 0,
+            scale: currentSection !== 0 ? 1 : 0,
+          }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="w-12 h-12 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20 flex items-center justify-center text-white"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div
+              animate={{ rotate: isMobileMenuOpen ? 45 : 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <div className="flex flex-col gap-1">
+                  <div className="w-4 h-0.5 bg-white rounded" />
+                  <div className="w-4 h-0.5 bg-white rounded" />
+                  <div className="w-4 h-0.5 bg-white rounded" />
+                </div>
+              )}
+            </motion.div>
+          </motion.button>
+
+          {/* Mobile Menu Dropdown */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                className="absolute top-14 right-0 w-48 rounded-2xl backdrop-blur-xl border border-white/10 bg-gradient-to-b from-black/40 to-black/60 overflow-hidden"
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                {sections.map((section, index) => (
+                  <motion.button
+                    key={section.id}
+                    onClick={() => {
+                      scrollToSection(index);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full px-4 py-3 text-left text-sm font-medium transition-all duration-200 ${
+                      currentSection === index
+                        ? "bg-blue-500/20 text-blue-400 border-l-2 border-blue-400"
+                        : "text-gray-300 hover:text-white hover:bg-white/10"
+                    }`}
+                    whileHover={{ x: 5 }}
+                  >
+                    {section.title}
+                  </motion.button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
 
         {/* Back to Top Button */}
