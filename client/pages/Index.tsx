@@ -5580,9 +5580,8 @@ function MobileHamburgerMenu({
                   WebkitBackdropFilter: "blur(8px)",
                 }}
               >
-                {/* Animated background layers */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50" />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30" />
+                {/* Simple background for performance */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/15 to-transparent opacity-40" />
 
                 {/* Menu Items - Optimized for performance */}
                 <div className="relative space-y-2">
