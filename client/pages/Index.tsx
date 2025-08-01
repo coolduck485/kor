@@ -931,7 +931,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█████��███████����█████ 60%
+                      CPU: █████████████��██���█████████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -997,7 +997,7 @@ export default function Index() {
                 transition={{ delay: 3, duration: 1 }}
               >
                 <div className="status-indicators">
-                  <span className="status-dot text-red-400">��</span>
+                  <span className="status-dot text-red-400">●</span>
                   <span>READY</span>
                   <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
@@ -8712,7 +8712,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 1, duration: 0.8 }}
               >
-                <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+                <p className="text-gray-400 text-sm max-w-3xl mx-auto">
                   <span className="text-yellow-400 font-semibold">*Note:</span> Final pricing depends on the complexity, features, and specific requirements of your project. Contact us for a detailed quote tailored to your needs.
                 </p>
               </motion.div>
