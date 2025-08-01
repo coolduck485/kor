@@ -6,10 +6,17 @@ import { useDeviceType } from "@/hooks/use-device-type";
 // Always provide both contexts to avoid timing issues
 export const UnifiedNotificationProvider: React.FC<{
   children: React.ReactNode;
-}> = ({ children }) => {
+  isHelpModalOpen?: boolean;
+  setIsHelpModalOpen?: (isOpen: boolean) => void;
+}> = ({ children, isHelpModalOpen, setIsHelpModalOpen }) => {
   return (
     <NotificationProvider>
-      <MobileNotificationProvider>{children}</MobileNotificationProvider>
+      <MobileNotificationProvider
+        isHelpModalOpen={isHelpModalOpen}
+        setIsHelpModalOpen={setIsHelpModalOpen}
+      >
+        {children}
+      </MobileNotificationProvider>
     </NotificationProvider>
   );
 };
