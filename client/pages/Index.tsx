@@ -1013,7 +1013,7 @@ export default function Index() {
                   <span className="status-dot text-amber-400">●</span>
                   <span>CONNECTED</span>
                   <span className="status-dot text-green-400 terminal-glow">
-                    ●
+                    ��
                   </span>
                   <span>ONLINE</span>
                 </div>
@@ -4208,10 +4208,49 @@ export default function Index() {
                 WebkitMaskComposite: "xor",
               }}
             />
-            {/* Logo/Icon Placeholder */}
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-              <Zap className="w-4 h-4 text-white" />
-            </div>
+            {/* Animated Sparkle Icon */}
+            <svg
+              className="w-4 h-4 flex-shrink-0 animate-sparkle"
+              viewBox="0 0 24 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z"
+                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5 3.5V7.5"
+                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M19 17.5V21.5"
+                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M3 5.5H7"
+                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M17 19.5H21"
+                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
 
             {/* Navigation Pills */}
             <div className="hidden sm:flex items-center gap-2">
