@@ -8636,7 +8636,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                               transition={{ duration: 0.4 }}
                             >
                               <div
-                                className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${plan.color} shadow-xl`}
+                                className={`w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${plan.color} shadow-xl`}
                                 style={{
                                   boxShadow: `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
                                 }}
