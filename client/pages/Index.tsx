@@ -8191,17 +8191,178 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1 }}
       >
-        {/* SPECTACULAR PORTFOLIO SECTION ENHANCEMENTS */}
+        {/* SPECTACULAR PORTFOLIO SECTION ENHANCEMENTS - UNDERWATER/OCEAN THEME */}
 
-        {/* Animated Noise Texture - Desktop Only */}
-        {screenSize === "desktop" && (
-          <div
-            className="absolute inset-0 opacity-5 animate-noise"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-            }}
-          />
-        )}
+        {/* Ocean Wave Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Flowing Water Layers */}
+          <div className="absolute inset-0">
+            {[...Array(screenSize === "mobile" ? 3 : screenSize === "tablet" ? 4 : 6)].map((_, i) => (
+              <motion.div
+                key={`wave-layer-${i}`}
+                className="absolute w-full"
+                style={{
+                  height: `${40 + (i % 3) * (screenSize === "mobile" ? 20 : 40)}px`,
+                  top: `${10 + (i * 15)}%`,
+                  background: `linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(34, 211, 238, ${0.3 + (i % 3) * 0.1}) 20%,
+                    rgba(16, 185, 129, ${0.4 + (i % 3) * 0.1}) 50%,
+                    rgba(6, 182, 212, ${0.3 + (i % 3) * 0.1}) 80%,
+                    transparent 100%)`,
+                  borderRadius: `${50 + (i % 3) * 20}% ${70 - (i % 2) * 10}% ${40 + (i % 3) * 15}% ${80 - (i % 3) * 10}% / ${60 + (i % 2) * 15}% ${30 - (i % 2) * 5}% ${50 + (i % 3) * 10}% ${70 - (i % 2) * 15}%`,
+                  filter: `blur(${3 + (i % 2) * (screenSize === "mobile" ? 1 : 3)}px)`,
+                }}
+                animate={{
+                  x: ["-20%", "120%"],
+                  scaleY: [1, 1.2, 1],
+                  opacity: [0.3, 0.7, 0.3],
+                }}
+                transition={{
+                  duration: 15 + (i % 4) * 5,
+                  repeat: Infinity,
+                  delay: i * 2,
+                  ease: "easeInOut",
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Floating Bubbles */}
+          <div className="absolute inset-0">
+            {[...Array(screenSize === "mobile" ? 8 : screenSize === "tablet" ? 12 : 20)].map((_, i) => (
+              <motion.div
+                key={`bubble-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${(i * 5) % 100}%`,
+                  bottom: "-20px",
+                  width: `${3 + (i % 4) * (screenSize === "mobile" ? 4 : 8)}px`,
+                  height: `${3 + (i % 4) * (screenSize === "mobile" ? 4 : 8)}px`,
+                  background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(34, 211, 238, 0.4) 40%, rgba(16, 185, 129, 0.2) 70%, transparent)",
+                  border: "1px solid rgba(34, 211, 238, 0.3)",
+                  boxShadow: screenSize === "desktop" ? "0 0 15px rgba(34, 211, 238, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3)" : "0 0 8px rgba(34, 211, 238, 0.3)",
+                }}
+                animate={{
+                  y: ["-20px", screenSize === "mobile" ? "-60vh" : "-100vh"],
+                  x: [`0px`, `${(Math.random() - 0.5) * (screenSize === "mobile" ? 100 : 200)}px`],
+                  scale: [1, 1.3, 0.8],
+                  opacity: [0.8, 1, 0],
+                }}
+                transition={{
+                  duration: 6 + (i % 4),
+                  repeat: Infinity,
+                  delay: (i * 0.3) % 8,
+                  ease: "easeOut",
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Floating Jellyfish */}
+          <div className="absolute inset-0">
+            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 8)].map((_, i) => (
+              <motion.div
+                key={`jellyfish-${i}`}
+                className="absolute"
+                style={{
+                  left: `${5 + (i * (screenSize === "mobile" ? 20 : 12))}%`,
+                  top: `${20 + ((i * 18) % 60)}%`,
+                }}
+                animate={{
+                  y: [-20, 20, -20],
+                  x: [-10, 10, -10],
+                  rotateZ: [-5, 5, -5],
+                }}
+                transition={{
+                  duration: 8 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 1.5,
+                  ease: "easeInOut",
+                }}
+              >
+                {/* Jellyfish Bell */}
+                <div
+                  className="relative"
+                  style={{
+                    width: `${20 + (i % 3) * (screenSize === "mobile" ? 8 : 15)}px`,
+                    height: `${15 + (i % 3) * (screenSize === "mobile" ? 5 : 10)}px`,
+                    background: "radial-gradient(ellipse at center, rgba(34, 211, 238, 0.6) 0%, rgba(16, 185, 129, 0.4) 50%, rgba(6, 182, 212, 0.2) 80%, transparent)",
+                    borderRadius: "50% 50% 20% 20%",
+                    boxShadow: screenSize === "desktop" ? "0 0 20px rgba(34, 211, 238, 0.4)" : "0 0 10px rgba(34, 211, 238, 0.3)",
+                  }}
+                >
+                  {/* Tentacles */}
+                  {[...Array(screenSize === "mobile" ? 2 : 4)].map((_, tentacleIndex) => (
+                    <motion.div
+                      key={`tentacle-${tentacleIndex}`}
+                      className="absolute"
+                      style={{
+                        left: `${20 + tentacleIndex * (screenSize === "mobile" ? 30 : 15)}%`,
+                        top: "100%",
+                        width: "2px",
+                        height: `${10 + (tentacleIndex % 2) * (screenSize === "mobile" ? 5 : 10)}px`,
+                        background: "linear-gradient(180deg, rgba(34, 211, 238, 0.8) 0%, rgba(16, 185, 129, 0.4) 50%, transparent 100%)",
+                        borderRadius: "0 0 50% 50%",
+                      }}
+                      animate={{
+                        rotateZ: [-10, 10, -10],
+                        scaleY: [1, 1.3, 1],
+                      }}
+                      transition={{
+                        duration: 2 + (tentacleIndex % 2),
+                        repeat: Infinity,
+                        delay: tentacleIndex * 0.2,
+                      }}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Coral Reef Structures */}
+          <div className="absolute bottom-0 left-0 right-0 h-20 sm:h-32 overflow-hidden">
+            {[...Array(screenSize === "mobile" ? 5 : 10)].map((_, i) => (
+              <motion.div
+                key={`coral-${i}`}
+                className="absolute bottom-0"
+                style={{
+                  left: `${i * (screenSize === "mobile" ? 20 : 10)}%`,
+                  width: `${15 + (i % 3) * (screenSize === "mobile" ? 8 : 15)}px`,
+                  height: `${25 + (i % 4) * (screenSize === "mobile" ? 15 : 30)}px`,
+                  background: `linear-gradient(180deg,
+                    rgba(16, 185, 129, 0.8) 0%,
+                    rgba(34, 211, 238, 0.6) 30%,
+                    rgba(6, 182, 212, 0.4) 60%,
+                    rgba(20, 184, 166, 0.2) 100%)`,
+                  borderRadius: "50% 50% 0 0",
+                  filter: "blur(1px)",
+                  opacity: 0.6,
+                }}
+                animate={{
+                  scaleY: [1, 1.1, 1],
+                  opacity: [0.4, 0.8, 0.4],
+                }}
+                transition={{
+                  duration: 4 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.5,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Animated Noise Texture - Desktop Only */}
+          {screenSize === "desktop" && (
+            <div
+              className="absolute inset-0 opacity-10 animate-noise"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+              }}
+            />
+          )}
+        </div>
 
         {/* Desktop Project Screenshots Floating Effect */}
         {screenSize === "desktop" && (
