@@ -896,7 +896,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�����╗ █████���╗ ██��������██╗
+                  {`��█╗  █�������╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
@@ -8882,7 +8882,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     transform: "scale(1.5)",
                   }}
                 />
-                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10">
+                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10" style={{ transform: 'translateY(-50px)' }}>
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
