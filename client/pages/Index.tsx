@@ -923,7 +923,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█████████████���█████ 60%
+                      CPU: █████████████��██���█████████████����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -7282,9 +7282,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   width: `${60 + (i % 3) * (screenSize === "mobile" ? 30 : 50)}px`,
                   height: `${20 + (i % 2) * (screenSize === "mobile" ? 10 : 20)}px`,
                   background: `linear-gradient(90deg,
-                    rgba(255, 69, 0, 0.8) 0%,
-                    rgba(255, 140, 0, 0.6) 30%,
-                    rgba(255, 215, 0, 0.4) 60%,
+                    rgba(0, 128, 255, 0.8) 0%,
+                    rgba(64, 165, 255, 0.6) 30%,
+                    rgba(135, 206, 255, 0.4) 60%,
                     transparent 90%)`,
                   filter: `blur(${screenSize === "mobile" ? 5 : 10}px)`,
                   transform: `skewX(${-20 + (i % 3) * 10}deg)`,
