@@ -9819,36 +9819,53 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
         {/* Starfield Background */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Twinkling Stars */}
+          {/* Twinkling Stars - Fixed positions */}
           <div className="absolute inset-0">
-            {[...Array(50)].map((_, i) => (
-              <motion.div
-                key={`star-${i}`}
-                className="absolute rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  width: `${1 + Math.random() * 3}px`,
-                  height: `${1 + Math.random() * 3}px`,
-                  background: [
-                    "radial-gradient(circle, #ffffff 0%, #dbeafe 50%, transparent 80%)",
-                    "radial-gradient(circle, #60a5fa 0%, #3b82f6 50%, transparent 80%)",
-                    "radial-gradient(circle, #3b82f6 0%, #1d4ed8 50%, transparent 80%)",
-                    "radial-gradient(circle, #93c5fd 0%, #2563eb 50%, transparent 80%)",
-                  ][Math.floor(Math.random() * 4)],
-                  boxShadow: "0 0 6px currentColor",
-                }}
-                animate={{
-                  opacity: [0.3, 1, 0.3],
-                  scale: [0.8, 1.2, 0.8],
-                }}
-                transition={{
-                  duration: 2 + Math.random() * 3,
-                  repeat: Infinity,
-                  delay: Math.random() * 5,
-                }}
-              />
-            ))}
+            {[...Array(50)].map((_, i) => {
+              // Fixed positions for each star based on index
+              const positions = [
+                { x: 15, y: 20 }, { x: 85, y: 15 }, { x: 25, y: 75 }, { x: 70, y: 80 }, { x: 90, y: 45 },
+                { x: 10, y: 60 }, { x: 45, y: 10 }, { x: 60, y: 90 }, { x: 30, y: 30 }, { x: 75, y: 25 },
+                { x: 20, y: 85 }, { x: 95, y: 70 }, { x: 5, y: 40 }, { x: 55, y: 5 }, { x: 80, y: 55 },
+                { x: 40, y: 70 }, { x: 65, y: 35 }, { x: 35, y: 95 }, { x: 50, y: 50 }, { x: 85, y: 85 },
+                { x: 12, y: 12 }, { x: 88, y: 88 }, { x: 22, y: 45 }, { x: 77, y: 22 }, { x: 33, y: 67 },
+                { x: 67, y: 78 }, { x: 18, y: 35 }, { x: 82, y: 15 }, { x: 28, y: 82 }, { x: 72, y: 28 },
+                { x: 38, y: 18 }, { x: 62, y: 72 }, { x: 48, y: 38 }, { x: 52, y: 62 }, { x: 8, y: 52 },
+                { x: 92, y: 8 }, { x: 58, y: 92 }, { x: 42, y: 58 }, { x: 78, y: 42 }, { x: 32, y: 78 },
+                { x: 68, y: 32 }, { x: 13, y: 68 }, { x: 87, y: 13 }, { x: 23, y: 87 }, { x: 73, y: 23 },
+                { x: 43, y: 73 }, { x: 53, y: 43 }, { x: 63, y: 53 }, { x: 37, y: 63 }, { x: 47, y: 37 }
+              ];
+              const pos = positions[i] || { x: Math.random() * 100, y: Math.random() * 100 };
+
+              return (
+                <motion.div
+                  key={`star-${i}`}
+                  className="absolute rounded-full"
+                  style={{
+                    left: `${pos.x}%`,
+                    top: `${pos.y}%`,
+                    width: `${1 + Math.random() * 3}px`,
+                    height: `${1 + Math.random() * 3}px`,
+                    background: [
+                      "radial-gradient(circle, #ffffff 0%, #dbeafe 50%, transparent 80%)",
+                      "radial-gradient(circle, #60a5fa 0%, #3b82f6 50%, transparent 80%)",
+                      "radial-gradient(circle, #3b82f6 0%, #1d4ed8 50%, transparent 80%)",
+                      "radial-gradient(circle, #93c5fd 0%, #2563eb 50%, transparent 80%)",
+                    ][Math.floor(Math.random() * 4)],
+                    boxShadow: "0 0 6px currentColor",
+                  }}
+                  animate={{
+                    opacity: [0.3, 1, 0.3],
+                    scale: [0.8, 1.2, 0.8],
+                  }}
+                  transition={{
+                    duration: 2 + Math.random() * 3,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                  }}
+                />
+              );
+            })}
           </div>
 
           {/* Shooting Stars */}
