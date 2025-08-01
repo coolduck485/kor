@@ -7209,12 +7209,14 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
       return () => window.removeEventListener("resize", updateScreenSize);
     }, []);
 
+    const [currentServicesPage, setCurrentServicesPage] = useState(0);
+
     const services = [
+      // Page 1
       {
         icon: Globe,
         title: "Web Development",
-        description:
-          "Modern, responsive websites built with cutting-edge technologies",
+        description: "Modern, responsive websites built with cutting-edge technologies",
         color: "from-blue-500 to-cyan-500",
       },
       {
@@ -7247,7 +7249,67 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         description: "Tailored software solutions for unique business needs",
         color: "from-teal-500 to-blue-500",
       },
+      // Page 2
+      {
+        icon: Users,
+        title: "Consulting Services",
+        description: "Strategic technology consulting and digital transformation",
+        color: "from-pink-500 to-rose-500",
+      },
+      {
+        icon: Shield,
+        title: "Cybersecurity",
+        description: "Comprehensive security solutions to protect your digital assets",
+        color: "from-red-500 to-orange-500",
+      },
+      {
+        icon: Cloud,
+        title: "Cloud Solutions",
+        description: "Scalable cloud infrastructure and migration services",
+        color: "from-blue-400 to-blue-600",
+      },
+      {
+        icon: Database,
+        title: "Data Analytics",
+        description: "Transform raw data into actionable business insights",
+        color: "from-violet-500 to-purple-500",
+      },
+      {
+        icon: Zap,
+        title: "API Development",
+        description: "Robust APIs for seamless system integrations",
+        color: "from-cyan-500 to-blue-500",
+      },
+      {
+        icon: Code,
+        title: "DevOps & CI/CD",
+        description: "Streamlined development and deployment pipelines",
+        color: "from-emerald-500 to-green-500",
+      },
     ];
+
+    const servicesPerPage = 6;
+    const totalServicesPages = Math.ceil(services.length / servicesPerPage);
+
+    const getCurrentPageServices = () => {
+      if (screenSize === "desktop") {
+        const startIndex = currentServicesPage * servicesPerPage;
+        return services.slice(startIndex, startIndex + servicesPerPage);
+      }
+      return services; // Show all services on mobile/tablet
+    };
+
+    const nextServicesPage = () => {
+      if (currentServicesPage < totalServicesPages - 1) {
+        setCurrentServicesPage(currentServicesPage + 1);
+      }
+    };
+
+    const prevServicesPage = () => {
+      if (currentServicesPage > 0) {
+        setCurrentServicesPage(currentServicesPage - 1);
+      }
+    };
 
     return (
       <motion.div
