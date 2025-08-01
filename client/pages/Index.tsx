@@ -77,6 +77,14 @@ export default function Index() {
   const [showNavigationTooltip, setShowNavigationTooltip] = useState(true);
   const hasShownWelcomeRef = useRef(false);
 
+  // Navbar state
+  const [navbarMousePosition, setNavbarMousePosition] = useState({
+    x: 0,
+    y: 0,
+  });
+  const [isNavbarHovered, setIsNavbarHovered] = useState(false);
+  const navbarRef = useRef<HTMLDivElement>(null);
+
   // Tooltip management state
   const [dismissedTooltips, setDismissedTooltips] = useState<Set<string>>(
     () => {
@@ -371,6 +379,25 @@ export default function Index() {
 
   const handleBadgeMouseLeave = () => {
     setBadgeMousePosition({ x: 0, y: 0, isNear: false });
+  };
+
+  // Navbar mouse tracking handlers
+  const handleNavbarMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (navbarRef.current) {
+      const rect = navbarRef.current.getBoundingClientRect();
+      setNavbarMousePosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
+
+  const handleNavbarMouseEnter = () => {
+    setIsNavbarHovered(true);
+  };
+
+  const handleNavbarMouseLeave = () => {
+    setIsNavbarHovered(false);
   };
 
   // ========================================
@@ -811,8 +838,8 @@ export default function Index() {
         {/* Retro Main Content - Only show after loading */}
         {!isLoading && (
           <>
-            {/* Toggle Buttons Container */}
-            <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[9999] pointer-events-auto">
+            {/* Toggle Buttons Container - HIDDEN */}
+            <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[9999] pointer-events-auto hidden">
               <div
                 className="group relative"
                 onMouseEnter={() => setIsTooltipDismissed(true)}
@@ -869,7 +896,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █���╗ █████���╗ ██��������██╗
+                  {`��█╗  █�����╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
@@ -942,13 +969,13 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█████████���███����█████ 60%
+                      CPU: █████████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ��██�����█████████���███��███████��█ 50%
+                      RAM: ����█�����█████████���███��███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -2582,9 +2609,9 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Theme Toggle Container with Tooltip */}
+            {/* Theme Toggle Container with Tooltip - HIDDEN */}
             <div
-              className={`fixed top-6 right-6 z-50 transition-all duration-300 ${
+              className={`fixed top-6 right-6 z-50 transition-all duration-300 hidden ${
                 isMobileMenuOpen ? "blur-sm" : ""
               }`}
             >
@@ -4137,7 +4164,7 @@ export default function Index() {
           {/* Pricing Section */}
           <motion.div
             data-section="pricing"
-            className={isMobileMenuOpen ? "blur-sm" : ""}
+            className={`pt-20 ${isMobileMenuOpen ? "blur-sm" : ""}`}
             style={{
               display: currentSection === 3 ? "block" : "none",
             }}
@@ -4167,7 +4194,7 @@ export default function Index() {
           {/* Contact Us Section */}
           <motion.div
             data-section="contact"
-            className={isMobileMenuOpen ? "blur-sm" : ""}
+            className={`pt-20 ${isMobileMenuOpen ? "blur-sm" : ""}`}
             style={{
               display: currentSection === 5 ? "block" : "none",
             }}
@@ -4182,15 +4209,48 @@ export default function Index() {
 
         {/* Futuristic Navbar */}
         <motion.div
-          className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50"
+          className="fixed top-4 z-50 w-full flex justify-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
         >
-          <div className="flex items-center gap-4 px-6 py-3 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20">
-            {/* Logo/Icon Placeholder */}
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-              <Zap className="w-4 h-4 text-white" />
+          <div
+            ref={navbarRef}
+            className="relative flex items-center gap-3 md:gap-2 lg:gap-4 px-4 py-2 md:px-3 md:py-1.5 lg:px-6 lg:py-3 rounded-full backdrop-blur-xs hover:bg-white/15 transition-all duration-500 hover:scale-105 overflow-hidden"
+            style={{
+              background: "rgba(255, 255, 255, 0.1)",
+              border: "2px solid transparent",
+              backgroundClip: "padding-box",
+            }}
+            onMouseMove={handleNavbarMouseMove}
+            onMouseEnter={handleNavbarMouseEnter}
+            onMouseLeave={handleNavbarMouseLeave}
+          >
+            {/* Dynamic Border Effect - cursor following glow */}
+            <div
+              className="absolute inset-0 rounded-full pointer-events-none transition-all duration-300"
+              style={{
+                background: isNavbarHovered
+                  ? `conic-gradient(from ${(Math.atan2(navbarMousePosition.y - 24, navbarMousePosition.x - 100) * 180) / Math.PI + 90}deg,
+                     rgba(73, 146, 255, 0.8) 0deg,
+                     rgba(73, 146, 255, 0.4) 15deg,
+                     rgba(255, 255, 255, 0.2) 30deg,
+                     rgba(255, 255, 255, 0.2) 330deg,
+                     rgba(73, 146, 255, 0.4) 345deg,
+                     rgba(73, 146, 255, 0.8) 360deg)`
+                  : "conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(255, 255, 255, 0.2) 360deg)",
+                padding: "2px",
+                borderRadius: "inherit",
+                mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                maskComposite: "xor",
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "xor",
+              }}
+            />
+            {/* Simple Logo Placeholder */}
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm">
+              K
             </div>
 
             {/* Navigation Pills */}
@@ -4199,12 +4259,16 @@ export default function Index() {
                 <motion.button
                   key={section.id}
                   onClick={() => scrollToSection(index)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 relative overflow-hidden animate-textGlow ${
                     currentSection === index
-                      ? "bg-blue-500 text-white shadow-lg"
-                      : "text-gray-300 hover:text-white hover:bg-white/10"
-                  }`}
-                  whileHover={{ scale: 1.05 }}
+                      ? "text-white"
+                      : theme === "light"
+                        ? "text-gray-700"
+                        : "text-white/80"
+                  } ${currentSection === index ? "bg-white/20" : "hover:bg-white/10"}`}
+                  whileHover={{
+                    scale: 1.05,
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {section.title}
@@ -4229,6 +4293,72 @@ export default function Index() {
               </div>
             </div>
           </div>
+        </motion.div>
+
+        {/* Mobile Hamburger Menu */}
+        <motion.div
+          className={`fixed top-4 right-4 z-50 md:hidden ${
+            currentSection !== 0 ? "block" : "hidden"
+          }`}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: currentSection !== 0 ? 1 : 0,
+            scale: currentSection !== 0 ? 1 : 0,
+          }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="w-12 h-12 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20 flex items-center justify-center text-white"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div
+              animate={{ rotate: isMobileMenuOpen ? 45 : 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <div className="flex flex-col gap-1">
+                  <div className="w-4 h-0.5 bg-white rounded" />
+                  <div className="w-4 h-0.5 bg-white rounded" />
+                  <div className="w-4 h-0.5 bg-white rounded" />
+                </div>
+              )}
+            </motion.div>
+          </motion.button>
+
+          {/* Mobile Menu Dropdown */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                className="absolute top-14 right-0 w-48 rounded-2xl backdrop-blur-xl border border-white/10 bg-gradient-to-b from-black/40 to-black/60 overflow-hidden"
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                {sections.map((section, index) => (
+                  <motion.button
+                    key={section.id}
+                    onClick={() => {
+                      scrollToSection(index);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full px-4 py-3 text-left text-sm font-medium transition-all duration-200 ${
+                      currentSection === index
+                        ? "bg-blue-500/20 text-blue-400 border-l-2 border-blue-400"
+                        : "text-gray-300 hover:text-white hover:bg-white/10"
+                    }`}
+                    whileHover={{ x: 5 }}
+                  >
+                    {section.title}
+                  </motion.button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
 
         {/* Back to Top Button */}
@@ -10009,7 +10139,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-blue-500 to-purple-500",
               },
               {
-                icon: "��������",
+                icon: "���������",
                 label: "Launch",
                 x: 12,
                 y: 85,
