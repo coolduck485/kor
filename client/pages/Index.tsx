@@ -861,7 +861,7 @@ export default function Index() {
                   {`██╗  █���╗ ██████╗ ██����██╗
 ██║ ����█╔���██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
-██╔���██╗ ██║   ██║██╔══██╗
+██╔���██╗ ██║   ██║██╔═��██╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -8448,11 +8448,11 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   left: "-15%",
                   top: `${20 + (i * (screenSize === "mobile" ? 20 : 15))}%`,
                 }}
-                animate={{
+                animate={prefersReducedMotion ? {} : {
                   x: ["0px", "115vw"],
                   y: [0, Math.sin(i) * (screenSize === "mobile" ? 15 : 25), 0],
                 }}
-                transition={{
+                transition={prefersReducedMotion ? {} : {
                   duration: 15 + (i % 3) * 2,
                   repeat: Infinity,
                   delay: i * 3,
