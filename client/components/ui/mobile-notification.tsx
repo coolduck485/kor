@@ -21,6 +21,8 @@ interface MobileNotificationContextType {
   addNotification: (notification: Omit<MobileNotification, "id">) => void;
   removeNotification: (id: string) => void;
   clearAll: () => void;
+  isHelpModalOpen?: boolean;
+  setIsHelpModalOpen?: (isOpen: boolean) => void;
 }
 
 const MobileNotificationContext = createContext<
