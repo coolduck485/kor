@@ -835,8 +835,8 @@ export default function Index() {
         {/* Retro Main Content - Only show after loading */}
         {!isLoading && (
           <>
-            {/* Toggle Buttons Container */}
-            <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[9999] pointer-events-auto">
+            {/* Toggle Buttons Container - HIDDEN */}
+            <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[9999] pointer-events-auto hidden">
               <div
                 className="group relative"
                 onMouseEnter={() => setIsTooltipDismissed(true)}
@@ -4244,49 +4244,10 @@ export default function Index() {
                 WebkitMaskComposite: "xor",
               }}
             />
-            {/* Animated Sparkle Icon like Future-Ready badge */}
-            <svg
-              className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle"
-              viewBox="0 0 24 25"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 3.5L10.088 9.313C9.99015 9.61051 9.82379 9.88088 9.60234 10.1023C9.38088 10.3238 9.11051 10.4901 8.813 10.588L3 12.5L8.813 14.412C9.11051 14.5099 9.38088 14.6762 9.60234 14.8977C9.82379 15.1191 9.99015 15.3895 10.088 15.687L12 21.5L13.912 15.687C14.0099 15.3895 14.1762 15.1191 14.3977 14.8977C14.6191 14.6762 14.8895 14.5099 15.187 14.412L21 12.5L15.187 10.588C14.8895 10.4901 14.6191 10.3238 14.3977 10.1023C14.1762 9.88088 14.0099 9.61051 13.912 9.313L12 3.5Z"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M5 3.5V7.5"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M19 17.5V21.5"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M3 5.5H7"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M17 19.5H21"
-                stroke={theme === "light" ? "#3B82F6" : "#22D3EE"}
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            {/* Simple Logo Placeholder */}
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm">
+              K
+            </div>
 
             {/* Navigation Pills */}
             <div className="hidden sm:flex items-center gap-2">
@@ -4296,7 +4257,7 @@ export default function Index() {
                   onClick={() => scrollToSection(index)}
                   className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 relative overflow-hidden animate-textGlow ${
                     currentSection === index
-                      ? theme === "light" ? "text-blue-600" : "text-cyan-400"
+                      ? "text-white"
                       : theme === "light" ? "text-gray-700" : "text-white/80"
                   } ${currentSection === index ? "bg-white/20" : "hover:bg-white/10"}`}
                   whileHover={{
