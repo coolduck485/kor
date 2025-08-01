@@ -923,7 +923,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��███████████��██���█████████████����█████ 60%
+                      CPU: █████████████��██���█████████████����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8206,8 +8206,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   top: `${10 + (i * 15)}%`,
                   background: `linear-gradient(90deg,
                     transparent 0%,
-                    rgba(34, 211, 238, ${0.3 + (i % 3) * 0.1}) 20%,
-                    rgba(16, 185, 129, ${0.4 + (i % 3) * 0.1}) 50%,
+                    rgba(59, 130, 246, ${0.3 + (i % 3) * 0.1}) 20%,
+                    rgba(96, 165, 250, ${0.4 + (i % 3) * 0.1}) 50%,
                     rgba(6, 182, 212, ${0.3 + (i % 3) * 0.1}) 80%,
                     transparent 100%)`,
                   borderRadius: `${50 + (i % 3) * 20}% ${70 - (i % 2) * 10}% ${40 + (i % 3) * 15}% ${80 - (i % 3) * 10}% / ${60 + (i % 2) * 15}% ${30 - (i % 2) * 5}% ${50 + (i % 3) * 10}% ${70 - (i % 2) * 15}%`,
