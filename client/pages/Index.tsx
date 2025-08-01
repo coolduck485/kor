@@ -381,6 +381,7 @@ export default function Index() {
     { id: "home", title: "Home", component: "home" },
     { id: "about", title: "About Us", component: "about" },
     { id: "services", title: "Services", component: "services" },
+    { id: "pricing", title: "Pricing", component: "pricing" },
     { id: "portfolio", title: "Portfolio", component: "portfolio" },
     { id: "contact", title: "Contact Us", component: "contact" },
   ];
@@ -858,10 +859,10 @@ export default function Index() {
                   }}
                 >
                   {`██╗  █���╗ ██████╗ ██����██╗
-██║ ����█╔���██╔═══���█╗██╔══█���╗
+██║ ����█╔����██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█��█�����█╔╝█��║  ██║
+██║  ██╗╚█��█�������█╔╝█��║  ██║
 ����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
