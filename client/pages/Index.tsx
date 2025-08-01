@@ -859,7 +859,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  █���╗ ██████╗ ██����██╗
-██║ ����█╔���██╔═══���█╗██╔══██╗
+██�� ����█╔���██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
@@ -937,7 +937,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ███�����█████████���███��███████��█ 50%
+                      RAM: ███�����████��████���███��███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -4541,6 +4541,40 @@ export default function Index() {
         /* Prevent horizontal scrolling */
         * {
           box-sizing: border-box;
+        }
+
+        /* Performance optimizations */
+        .gpu-accelerated {
+          transform: translateZ(0);
+          will-change: transform;
+        }
+
+        /* Respect reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+
+          .animate-spin {
+            animation: none !important;
+          }
+
+          .animate-pulse {
+            animation: none !important;
+          }
+
+          .animate-bounce {
+            animation: none !important;
+          }
+        }
+
+        /* Optimize rendering with layer hints */
+        .ocean-element {
+          transform: translateZ(0);
+          will-change: transform, opacity;
+          contain: layout style paint;
         }
 
         /* NEW SPECTACULAR ANIMATIONS FOR EYE CANDY */
