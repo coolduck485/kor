@@ -8417,36 +8417,51 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
           {/* Floating Data Particles */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 15 : screenSize === "tablet" ? 25 : 40)].map((_, i) => (
-              <motion.div
-                key={`data-particle-${i}`}
-                className="absolute rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  width: `${1 + Math.random() * 3}px`,
-                  height: `${1 + Math.random() * 3}px`,
-                  background: [
-                    "rgba(59, 130, 246, 0.8)",
-                    "rgba(147, 51, 234, 0.8)",
-                    "rgba(16, 185, 129, 0.8)",
-                    "rgba(245, 158, 11, 0.8)",
-                  ][i % 4],
-                  boxShadow: "0 0 10px currentColor",
-                }}
-                animate={!prefersReducedMotion ? {
-                  y: [0, -100, 0],
-                  opacity: [0, 1, 0],
-                  scale: [0.8, 1.2, 0.8],
-                } : {}}
-                transition={{
-                  duration: 8 + Math.random() * 4,
-                  repeat: Infinity,
-                  delay: Math.random() * 10,
-                  ease: "easeInOut",
-                }}
-              />
-            ))}
+            {[...Array(screenSize === "mobile" ? 15 : screenSize === "tablet" ? 25 : 40)].map((_, i) => {
+              // Fixed positions for particles to prevent mouse movement effects
+              const positions = [
+                { x: 12, y: 15 }, { x: 88, y: 22 }, { x: 25, y: 78 }, { x: 75, y: 85 }, { x: 45, y: 12 },
+                { x: 18, y: 65 }, { x: 82, y: 35 }, { x: 55, y: 90 }, { x: 8, y: 45 }, { x: 92, y: 55 },
+                { x: 35, y: 25 }, { x: 65, y: 75 }, { x: 22, y: 42 }, { x: 78, y: 18 }, { x: 48, y: 68 },
+                { x: 15, y: 82 }, { x: 85, y: 28 }, { x: 38, y: 58 }, { x: 62, y: 38 }, { x: 72, y: 72 },
+                { x: 28, y: 88 }, { x: 58, y: 8 }, { x: 42, y: 52 }, { x: 68, y: 32 }, { x: 32, y: 62 },
+                { x: 77, y: 47 }, { x: 23, y: 73 }, { x: 53, y: 23 }, { x: 47, y: 77 }, { x: 67, y: 13 },
+                { x: 33, y: 83 }, { x: 87, y: 43 }, { x: 13, y: 67 }, { x: 73, y: 37 }, { x: 37, y: 53 },
+                { x: 63, y: 63 }, { x: 17, y: 17 }, { x: 83, y: 87 }, { x: 43, y: 27 }, { x: 57, y: 57 }
+              ];
+              const pos = positions[i] || { x: (i * 7.5) % 100, y: (i * 13.7) % 100 };
+
+              return (
+                <motion.div
+                  key={`data-particle-${i}`}
+                  className="absolute rounded-full"
+                  style={{
+                    left: `${pos.x}%`,
+                    top: `${pos.y}%`,
+                    width: `${1 + (i % 3)}px`,
+                    height: `${1 + (i % 3)}px`,
+                    background: [
+                      "rgba(59, 130, 246, 0.8)",
+                      "rgba(147, 51, 234, 0.8)",
+                      "rgba(16, 185, 129, 0.8)",
+                      "rgba(245, 158, 11, 0.8)",
+                    ][i % 4],
+                    boxShadow: "0 0 10px currentColor",
+                  }}
+                  animate={!prefersReducedMotion ? {
+                    y: [0, -100, 0],
+                    opacity: [0, 1, 0],
+                    scale: [0.8, 1.2, 0.8],
+                  } : {}}
+                  transition={{
+                    duration: 8 + (i % 4),
+                    repeat: Infinity,
+                    delay: (i * 0.3) % 10,
+                    ease: "easeInOut",
+                  }}
+                />
+              );
+            })}
           </div>
 
           {/* Holographic Projection Effects */}
