@@ -5729,10 +5729,6 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 1.2,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
-      onClick: () => {
-        console.log("Contact us clicked");
-        scrollToSection(4);
-      },
 
       xOffset: -20, // Mobile-friendly spacing
       yOffset: -75, // Moved up 50px from -25 to -75
