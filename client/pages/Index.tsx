@@ -858,7 +858,7 @@ export default function Index() {
                   }}
                 >
                   {`██╗  █���╗ ██████╗ ██����██╗
-██║ ����█╔���██╔═══���█╗██╔══██╗
+██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
@@ -8249,6 +8249,443 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 </div>
               </div>
             )}
+          </motion.div>
+        </div>
+      </motion.div>
+    );
+  },
+);
+
+// ========================================
+// PRICING SECTION COMPONENT
+// ========================================
+
+const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
+  ({ theme, isVisible }, ref) => {
+    const [screenSize, setScreenSize] = useState<"mobile" | "tablet" | "desktop">("desktop");
+    const prefersReducedMotion = useReducedMotion();
+
+    useEffect(() => {
+      const updateScreenSize = () => {
+        const width = window.innerWidth;
+        if (width <= 640) {
+          setScreenSize("mobile");
+        } else if (width <= 991) {
+          setScreenSize("tablet");
+        } else {
+          setScreenSize("desktop");
+        }
+      };
+
+      updateScreenSize();
+      window.addEventListener("resize", updateScreenSize);
+      return () => window.removeEventListener("resize", updateScreenSize);
+    }, []);
+
+    const pricingPlans = [
+      {
+        title: "Websites",
+        price: "$150",
+        maxPrice: "Unlimited",
+        icon: Globe,
+        color: "from-blue-500 to-cyan-500",
+        accentColor: "blue",
+        perks: [
+          "Fully built & deployed",
+          "Professional design",
+          "Mobile responsive",
+          "SEO optimized",
+          "Fast loading times",
+          "Contact forms",
+        ],
+        popular: false,
+      },
+      {
+        title: "Custom Software/Tools",
+        price: "$100",
+        maxPrice: "Unlimited",
+        icon: Code,
+        color: "from-purple-500 to-pink-500",
+        accentColor: "purple",
+        perks: [
+          "Tailored to your needs",
+          "Full source code",
+          "Documentation included",
+          "Testing & debugging",
+          "Performance optimized",
+          "Support & maintenance",
+        ],
+        popular: true,
+      },
+      {
+        title: "Discord Bots",
+        price: "$50",
+        maxPrice: "$500",
+        icon: Zap,
+        color: "from-emerald-500 to-teal-500",
+        accentColor: "emerald",
+        perks: [
+          "Custom commands",
+          "Database integration",
+          "Moderation features",
+          "Auto-responses",
+          "Activity tracking",
+          "24/7 hosting setup",
+        ],
+        popular: false,
+      },
+    ];
+
+    return (
+      <motion.div
+        ref={ref}
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+          theme === "light"
+            ? "bg-gradient-to-br from-indigo-900 via-blue-800 to-purple-900"
+            : "bg-gradient-to-br from-gray-900 via-indigo-900 to-black"
+        }`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 1 }}
+      >
+        {/* SPECTACULAR PRICING SECTION ENHANCEMENTS - CYBER GRID THEME */}
+
+        {/* Animated Grid Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Digital Grid Lines */}
+          <div className="absolute inset-0">
+            {/* Vertical Lines */}
+            {[...Array(screenSize === "mobile" ? 6 : screenSize === "tablet" ? 8 : 12)].map((_, i) => (
+              <motion.div
+                key={`grid-v-${i}`}
+                className="absolute w-px h-full opacity-20"
+                style={{
+                  left: `${(i + 1) * (100 / ((screenSize === "mobile" ? 6 : screenSize === "tablet" ? 8 : 12) + 1))}%`,
+                  background: "linear-gradient(180deg, transparent 0%, #3b82f6 20%, #3b82f6 80%, transparent 100%)",
+                  filter: "blur(0.5px)",
+                }}
+                animate={!prefersReducedMotion ? {
+                  opacity: [0.1, 0.3, 0.1],
+                  scaleY: [1, 1.05, 1],
+                } : {}}
+                transition={{
+                  duration: 3 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                }}
+              />
+            ))}
+
+            {/* Horizontal Lines */}
+            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 8)].map((_, i) => (
+              <motion.div
+                key={`grid-h-${i}`}
+                className="absolute w-full h-px opacity-15"
+                style={{
+                  top: `${(i + 1) * (100 / ((screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 8) + 1))}%`,
+                  background: "linear-gradient(90deg, transparent 0%, #3b82f6 20%, #3b82f6 80%, transparent 100%)",
+                  filter: "blur(0.5px)",
+                }}
+                animate={!prefersReducedMotion ? {
+                  opacity: [0.1, 0.25, 0.1],
+                  scaleX: [1, 1.02, 1],
+                } : {}}
+                transition={{
+                  duration: 4 + (i % 2),
+                  repeat: Infinity,
+                  delay: i * 0.3,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Floating Data Particles */}
+          <div className="absolute inset-0">
+            {[...Array(screenSize === "mobile" ? 15 : screenSize === "tablet" ? 25 : 40)].map((_, i) => (
+              <motion.div
+                key={`data-particle-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  width: `${1 + Math.random() * 3}px`,
+                  height: `${1 + Math.random() * 3}px`,
+                  background: [
+                    "rgba(59, 130, 246, 0.8)",
+                    "rgba(147, 51, 234, 0.8)",
+                    "rgba(16, 185, 129, 0.8)",
+                    "rgba(245, 158, 11, 0.8)",
+                  ][i % 4],
+                  boxShadow: "0 0 10px currentColor",
+                }}
+                animate={!prefersReducedMotion ? {
+                  y: [0, -100, 0],
+                  opacity: [0, 1, 0],
+                  scale: [0.8, 1.2, 0.8],
+                } : {}}
+                transition={{
+                  duration: 8 + Math.random() * 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 10,
+                  ease: "easeInOut",
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Holographic Projection Effects */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div
+              className="absolute w-96 h-96 rounded-full opacity-10"
+              style={{
+                left: "10%",
+                top: "20%",
+                background: "radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)",
+                filter: "blur(60px)",
+                animation: "pulse 8s ease-in-out infinite",
+              }}
+            />
+            <div
+              className="absolute w-80 h-80 rounded-full opacity-10"
+              style={{
+                right: "15%",
+                bottom: "25%",
+                background: "radial-gradient(circle, rgba(147, 51, 234, 0.4) 0%, transparent 70%)",
+                filter: "blur(80px)",
+                animation: "pulse 12s ease-in-out infinite 2s",
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Main Content Container */}
+        <div className="relative min-h-screen py-8 sm:py-12 lg:py-16 section-container">
+          <motion.div
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content pt-8 sm:pt-12 lg:pt-16 pb-16 sm:pb-20"
+            initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
+            animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          >
+            {/* Pricing Title */}
+            <div className="text-center mb-8 sm:mb-12">
+              <h1
+                className={`font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight relative mobile-lively-text ${
+                  theme === "light" ? "text-gray-900" : "text-white"
+                }`}
+              >
+                {"Pricing".split("").map((letter, i) => (
+                  <span
+                    key={i}
+                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                    style={{
+                      animationDelay: `${i * 0.15}s`,
+                    }}
+                  >
+                    {letter}
+                  </span>
+                ))}
+              </h1>
+            </div>
+
+            {/* Subtitle */}
+            <div className="text-center mb-12 sm:mb-16">
+              <div className="relative">
+                <div
+                  className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
+                  style={{
+                    background:
+                      theme === "light"
+                        ? "radial-gradient(ellipse, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.3) 50%, transparent 70%)"
+                        : "radial-gradient(ellipse, rgba(73, 146, 255, 0.6) 0%, rgba(147, 51, 234, 0.4) 50%, transparent 70%)",
+                    transform: "scale(1.5)",
+                  }}
+                />
+                <div className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                  <span
+                    className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
+                    style={{
+                      filter:
+                        theme === "light"
+                          ? `drop-shadow(0 0 15px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 30px rgba(147, 51, 234, 0.4))`
+                          : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(147, 51, 234, 0.5))`,
+                    }}
+                  >
+                    <span className="warm-glow-text animate-warm-glow-pulse">
+                      {"Choose Your Perfect Plan".split("").map((letter, i) => (
+                        <span
+                          key={i}
+                          className="animate-letter-float"
+                          style={{ animationDelay: `${i * 0.08}s` }}
+                        >
+                          {letter === " " ? "\u00A0" : letter}
+                        </span>
+                      ))}
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Pricing Cards Container */}
+            <div className="relative">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 xl:gap-8 max-w-6xl mx-auto">
+                {pricingPlans.map((plan, index) => (
+                  <motion.div
+                    key={plan.title}
+                    className={`group relative ${plan.popular ? 'lg:scale-105 lg:-mt-4' : ''}`}
+                    initial={{ y: 60, opacity: 0, scale: 0.9 }}
+                    animate={
+                      isVisible
+                        ? { y: 0, opacity: 1, scale: plan.popular ? 1.05 : 1 }
+                        : { y: 60, opacity: 0, scale: 0.9 }
+                    }
+                    transition={{
+                      duration: 0.8,
+                      delay: 0.2 + index * 0.2,
+                      type: "spring",
+                      stiffness: 120,
+                    }}
+                    whileHover={{
+                      scale: plan.popular ? 1.08 : 1.03,
+                      y: -8,
+                      transition: { duration: 0.3 },
+                    }}
+                  >
+                    {/* Popular Badge */}
+                    {plan.popular && (
+                      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                        <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+                          Most Popular
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Card Container */}
+                    <div className="relative h-full min-h-[500px]">
+                      {/* Outer Glow Effect */}
+                      <div
+                        className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl ${
+                          plan.popular ? 'opacity-50' : ''
+                        }`}
+                        style={{
+                          background: `linear-gradient(135deg, ${plan.color.replace("from-", "").replace(" to-", ", ").replace("-500", "")})`,
+                          transform: "scale(1.05)",
+                        }}
+                      />
+
+                      {/* Card Body */}
+                      <div
+                        className={`relative h-full rounded-3xl overflow-hidden transition-all duration-500 backdrop-blur-xl border ${
+                          plan.popular ? 'border-purple-500/50' : 'border-white/10'
+                        }`}
+                        style={{
+                          background: plan.popular
+                            ? "linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(59, 130, 246, 0.05))"
+                            : "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
+                          boxShadow: plan.popular
+                            ? `0 25px 50px -12px rgba(147, 51, 234, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)`
+                            : `0 25px 50px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)`,
+                        }}
+                      >
+                        {/* Animated Gradient Overlay */}
+                        <div
+                          className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-all duration-700 bg-gradient-to-br ${plan.color}`}
+                        />
+
+                        {/* Content */}
+                        <div className="relative z-10 h-full flex flex-col p-8">
+                          {/* Icon Section */}
+                          <div className="flex justify-center mb-6">
+                            <motion.div
+                              className="relative"
+                              whileHover={{
+                                rotate: [0, -5, 5, 0],
+                                scale: 1.1,
+                              }}
+                              transition={{ duration: 0.4 }}
+                            >
+                              <div
+                                className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${plan.color} shadow-xl`}
+                                style={{
+                                  boxShadow: `0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
+                                }}
+                              >
+                                <plan.icon className="w-8 h-8 text-white drop-shadow-lg" />
+                              </div>
+                              <div
+                                className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${plan.color} opacity-0 group-hover:opacity-60 transition-opacity duration-300 blur-lg -z-10`}
+                              />
+                            </motion.div>
+                          </div>
+
+                          {/* Title */}
+                          <div className="text-center mb-4">
+                            <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+                              {plan.title}
+                            </h3>
+                          </div>
+
+                          {/* Price */}
+                          <div className="text-center mb-8">
+                            <div className="flex items-baseline justify-center">
+                              <span className={`text-4xl font-bold bg-gradient-to-r ${plan.color} bg-clip-text text-transparent`}>
+                                {plan.price}
+                              </span>
+                              <span className="text-gray-400 ml-2">- {plan.maxPrice}</span>
+                            </div>
+                            <p className="text-sm text-gray-400 mt-2">minimum pricing</p>
+                          </div>
+
+                          {/* Perks */}
+                          <div className="flex-1">
+                            <ul className="space-y-4">
+                              {plan.perks.map((perk, perkIndex) => (
+                                <motion.li
+                                  key={perk}
+                                  className="flex items-center text-gray-300"
+                                  initial={{ opacity: 0, x: -20 }}
+                                  animate={isVisible ? { opacity: 1, x: 0 } : {}}
+                                  transition={{
+                                    delay: 0.4 + index * 0.2 + perkIndex * 0.1,
+                                    duration: 0.5,
+                                  }}
+                                >
+                                  <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${plan.color} mr-3 flex-shrink-0`} />
+                                  <span className="text-sm">{perk}</span>
+                                </motion.li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          {/* CTA Button */}
+                          <div className="mt-8">
+                            <motion.button
+                              className={`w-full py-4 px-6 rounded-xl font-bold text-white bg-gradient-to-r ${plan.color} shadow-lg transition-all duration-300 hover:shadow-xl`}
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              Get Started
+                            </motion.button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Pricing Note */}
+              <motion.div
+                className="text-center mt-12"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 1, duration: 0.8 }}
+              >
+                <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+                  <span className="text-yellow-400 font-semibold">*Note:</span> Final pricing depends on the complexity, features, and specific requirements of your project. Contact us for a detailed quote tailored to your needs.
+                </p>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </motion.div>
