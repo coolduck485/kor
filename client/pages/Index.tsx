@@ -5697,10 +5697,6 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 0.6,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
-      onClick: () => {
-        console.log("Services clicked");
-        scrollToSection(2);
-      },
 
       // Custom positioning for Services button
       xOffset: 0, // Centered positioning
