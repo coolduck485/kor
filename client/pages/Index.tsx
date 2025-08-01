@@ -1,4 +1,3 @@
-import React, { useState, useEffect, useRef } from "react";
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, AnimatePresence, useAnimation, useReducedMotion } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
