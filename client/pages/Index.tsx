@@ -2606,9 +2606,9 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Theme Toggle Container with Tooltip */}
+            {/* Theme Toggle Container with Tooltip - HIDDEN */}
             <div
-              className={`fixed top-6 right-6 z-50 transition-all duration-300 ${
+              className={`fixed top-6 right-6 z-50 transition-all duration-300 hidden ${
                 isMobileMenuOpen ? "blur-sm" : ""
               }`}
             >
