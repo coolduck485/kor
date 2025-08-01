@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDeviceType } from "@/hooks/use-device-type";
+import { useBrowserDetection } from "@/hooks/use-browser-detection";
 
 export interface MobileNotification {
   id: string;
