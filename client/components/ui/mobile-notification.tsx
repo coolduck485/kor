@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useDeviceType } from "@/hooks/use-device-type";
+import { useBrowserDetection } from "@/hooks/use-browser-detection";
 
 export interface MobileNotification {
   id: string;
@@ -21,6 +22,8 @@ interface MobileNotificationContextType {
   addNotification: (notification: Omit<MobileNotification, "id">) => void;
   removeNotification: (id: string) => void;
   clearAll: () => void;
+  isHelpModalOpen?: boolean;
+  setIsHelpModalOpen?: (isOpen: boolean) => void;
 }
 
 const MobileNotificationContext = createContext<
@@ -39,7 +42,9 @@ export const useMobileNotifications = () => {
 
 export const MobileNotificationProvider: React.FC<{
   children: React.ReactNode;
-}> = ({ children }) => {
+  isHelpModalOpen?: boolean;
+  setIsHelpModalOpen?: (isOpen: boolean) => void;
+}> = ({ children, isHelpModalOpen, setIsHelpModalOpen }) => {
   const [notifications, setNotifications] = useState<MobileNotification[]>([]);
   const deviceType = useDeviceType();
 
@@ -75,7 +80,14 @@ export const MobileNotificationProvider: React.FC<{
 
   return (
     <MobileNotificationContext.Provider
-      value={{ notifications, addNotification, removeNotification, clearAll }}
+      value={{
+        notifications,
+        addNotification,
+        removeNotification,
+        clearAll,
+        isHelpModalOpen,
+        setIsHelpModalOpen,
+      }}
     >
       {children}
       {deviceType !== "desktop" && <MobileNotificationContainer />}
@@ -84,22 +96,37 @@ export const MobileNotificationProvider: React.FC<{
 };
 
 const MobileNotificationContainer: React.FC = () => {
-  const { notifications, removeNotification } = useMobileNotifications();
+  const { notifications, removeNotification, isHelpModalOpen } =
+    useMobileNotifications();
   const deviceType = useDeviceType();
+  const { isSafari } = useBrowserDetection();
 
   const isMobile = deviceType === "mobile";
+  const shouldPositionAtBottom = isMobile && !isSafari;
+
+  // Hide notifications on mobile when help modal is open
+  if (isMobile && isHelpModalOpen) {
+    return null;
+  }
 
   return (
     <div
       className={cn(
         "notification-container fixed z-[100] pointer-events-none",
         isMobile
-          ? "top-0 w-full flex max-h-screen flex-col-reverse p-4" // Match original mobile positioning
+          ? shouldPositionAtBottom
+            ? "w-full flex max-h-screen flex-col p-4" // Bottom positioning for non-Safari mobile
+            : "top-0 w-full flex max-h-screen flex-col-reverse p-4" // Top positioning for Safari mobile
           : "bottom-0 right-0 top-auto flex-col max-w-[420px] p-4", // Match original tablet positioning
       )}
       style={{
+        // Position 100px from bottom for non-Safari mobile
+        bottom: shouldPositionAtBottom ? "100px" : undefined,
         // Safe area handling for mobile devices
-        paddingTop: isMobile ? "env(safe-area-inset-top)" : undefined,
+        paddingTop:
+          isMobile && !shouldPositionAtBottom
+            ? "env(safe-area-inset-top)"
+            : undefined,
         paddingBottom: isMobile ? "env(safe-area-inset-bottom)" : undefined,
       }}
     >
@@ -300,11 +327,16 @@ const MobileNotificationItem = React.forwardRef<
           <motion.h4
             className={cn(
               "font-semibold text-white",
-              isMobile ? "text-xs" : "text-sm sm:text-base animate-text-glow-pulse",
+              isMobile
+                ? "text-xs"
+                : "text-sm sm:text-base animate-text-glow-pulse",
             )}
             initial={{ opacity: 0, y: isMobile ? 5 : 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: isMobile ? 0.05 : 0.1, duration: isMobile ? 0.15 : 0.2 }}
+            transition={{
+              delay: isMobile ? 0.05 : 0.1,
+              duration: isMobile ? 0.15 : 0.2,
+            }}
           >
             {notification.title}
           </motion.h4>
@@ -317,7 +349,10 @@ const MobileNotificationItem = React.forwardRef<
             )}
             initial={{ opacity: 0, y: isMobile ? 3 : 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: isMobile ? 0.08 : 0.2, duration: isMobile ? 0.15 : 0.2 }}
+            transition={{
+              delay: isMobile ? 0.08 : 0.2,
+              duration: isMobile ? 0.15 : 0.2,
+            }}
           >
             {notification.message}
           </motion.p>

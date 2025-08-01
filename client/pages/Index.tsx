@@ -25,6 +25,11 @@ import {
   HelpCircle,
   X,
 } from "lucide-react";
+import {
+  useSpamProtection,
+  SPAM_PROTECTION_PRESETS,
+} from "../hooks/use-spam-protection";
+import { useHelpModal } from "../hooks/use-help-modal";
 
 export default function Index() {
   const { theme, setTheme } = useTheme();
@@ -47,7 +52,7 @@ export default function Index() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
   const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
-  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const { isHelpModalOpen, setIsHelpModalOpen } = useHelpModal();
   const [showNavigationHints, setShowNavigationHints] = useState(true);
   const [initialLoadingComplete, setInitialLoadingComplete] = useState(false);
   const [hasInteractedWithHelp, setHasInteractedWithHelp] = useState(false);
@@ -460,6 +465,32 @@ export default function Index() {
     }, fadeToBlackTime); // Responsive fade timing
   };
 
+  // Enhanced spam protection for scroll navigation
+  const { protectedCallback: protectedScrollToSection } = useSpamProtection(
+    scrollToSection,
+    SPAM_PROTECTION_PRESETS.standard,
+  );
+
+  // Spam protection for external links
+  const { protectedCallback: protectedOpenLink } = useSpamProtection(
+    (url: string) => {
+      window.open(url, "_blank");
+    },
+    SPAM_PROTECTION_PRESETS.critical,
+  );
+
+  // Spam protection for help modal
+  const { protectedCallback: protectedToggleHelpModal } = useSpamProtection(
+    (isOpen: boolean) => setIsHelpModalOpen(isOpen),
+    SPAM_PROTECTION_PRESETS.fast,
+  );
+
+  // Spam protection for form interactions
+  const { protectedCallback: protectedFormInteraction } = useSpamProtection(
+    (callback: () => void) => callback(),
+    SPAM_PROTECTION_PRESETS.standard,
+  );
+
   // Desktop scroll optimization variables
   const scrollAccumulator = useRef(0);
   const lastScrollTime = useRef(0);
@@ -768,7 +799,7 @@ export default function Index() {
                 onMouseEnter={() => setIsTooltipDismissed(true)}
               >
                 {/* Tooltip - only show in modern mode and if not dismissed */}
-                {mode === "modern" && !isTooltipDismissed && (
+                {(mode as string) === "modern" && !isTooltipDismissed && (
                   <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none">
                     <div
                       className="px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap border-green-300/30 bg-green-400/10 text-green-400"
@@ -823,7 +854,7 @@ export default function Index() {
 ██║ ����█╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
-██║  ██╗╚█��████╔╝██║  ██║
+██║  ██╗╚█��█�����█╔╝█��║  ██║
 ��������╝  ╚═╝ �����════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -892,7 +923,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██��█████████████���█████ 60%
+                      CPU: █████████████��██���█████████████���█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -932,19 +963,19 @@ export default function Index() {
               >
                 <button
                   className="pixel-button social-button"
-                  onClick={() => window.open("https://instagram.com", "_blank")}
+                  onClick={() => protectedOpenLink("https://instagram.com")}
                 >
                   INSTAGRAM
                 </button>
                 <button
                   className="pixel-button social-button"
-                  onClick={() => window.open("https://discord.com", "_blank")}
+                  onClick={() => protectedOpenLink("https://discord.com")}
                 >
                   DISCORD
                 </button>
                 <button
                   className="pixel-button social-button"
-                  onClick={() => window.open("https://telegram.org", "_blank")}
+                  onClick={() => protectedOpenLink("https://telegram.org")}
                 >
                   TELEGRAM
                 </button>
@@ -974,9 +1005,9 @@ export default function Index() {
                 </div>
 
                 <div className="loading-indicators">
-                  <span>█▓▒��</span>
+                  <span>█��▒��</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░▒▓█</span>
+                  <span>░▒���█</span>
                 </div>
               </motion.div>
 
@@ -1945,13 +1976,13 @@ export default function Index() {
             </div>
           )}
         {/* Previous Section Button */}
-        {currentSection > 0 && !isHelpModalOpen && (
+        {currentSection > 0 && !isHelpModalOpen && !isMobileMenuOpen && (
           <button
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               if (isScrolling) return;
-              scrollToSection(currentSection - 1);
+              protectedScrollToSection(currentSection - 1);
               setShowNavigationHints(false);
               setShowNavigationTooltip(false);
               dismissTooltip("nav-up");
@@ -1967,9 +1998,11 @@ export default function Index() {
               dismissTooltip("nav-up");
               dismissTooltip("nav-shared");
             }}
-            disabled={isScrolling}
+            disabled={isScrolling || isMobileMenuOpen}
             className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
-              isScrolling ? "pointer-events-none opacity-60" : ""
+              isScrolling || isMobileMenuOpen
+                ? "pointer-events-none opacity-60"
+                : ""
             } ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
@@ -1994,57 +2027,61 @@ export default function Index() {
         )}
 
         {/* Next Section Button */}
-        {currentSection < sections.length - 1 && !isHelpModalOpen && (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              if (isScrolling) return;
-              scrollToSection(currentSection + 1);
-              setShowNavigationHints(false);
-              setShowNavigationTooltip(false);
-              dismissTooltip("nav-down");
-              dismissTooltip("nav-shared");
-            }}
-            onMouseEnter={() => {
-              setShowNavigationTooltip(false);
-              dismissTooltip("nav-down");
-              dismissTooltip("nav-shared");
-            }}
-            onTouchStart={() => {
-              setShowNavigationTooltip(false);
-              dismissTooltip("nav-down");
-              dismissTooltip("nav-shared");
-            }}
-            disabled={isScrolling}
-            className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
-              isScrolling ? "pointer-events-none opacity-60" : ""
-            } ${
-              theme === "light"
-                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
-            }`}
-            style={{
-              background:
+        {currentSection < sections.length - 1 &&
+          !isHelpModalOpen &&
+          !isMobileMenuOpen && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (isScrolling) return;
+                protectedScrollToSection(currentSection + 1);
+                setShowNavigationHints(false);
+                setShowNavigationTooltip(false);
+                dismissTooltip("nav-down");
+                dismissTooltip("nav-shared");
+              }}
+              onMouseEnter={() => {
+                setShowNavigationTooltip(false);
+                dismissTooltip("nav-down");
+                dismissTooltip("nav-shared");
+              }}
+              onTouchStart={() => {
+                setShowNavigationTooltip(false);
+                dismissTooltip("nav-down");
+                dismissTooltip("nav-shared");
+              }}
+              disabled={isScrolling || isMobileMenuOpen}
+              className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+                isScrolling || isMobileMenuOpen
+                  ? "pointer-events-none opacity-60"
+                  : ""
+              } ${
                 theme === "light"
-                  ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-              boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
-            }}
-          >
-            <ChevronDown
-              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
-                theme === "light"
-                  ? "text-blue-600 group-hover:text-blue-700"
-                  : "text-white group-hover:text-blue-300"
+                  ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                  : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
               }`}
-            />
-          </button>
-        )}
+              style={{
+                background:
+                  theme === "light"
+                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+              }}
+            >
+              <ChevronDown
+                className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                  theme === "light"
+                    ? "text-blue-600 group-hover:text-blue-700"
+                    : "text-white group-hover:text-blue-300"
+                }`}
+              />
+            </button>
+          )}
       </div>
 
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
-      {!isHelpModalOpen && (
+      {!isHelpModalOpen && !isMobileMenuOpen && (
         <div
           className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
           style={{ position: "fixed" }}
@@ -2053,7 +2090,7 @@ export default function Index() {
             <button
               key={section.id}
               onClick={() => {
-                scrollToSection(index);
+                protectedScrollToSection(index);
                 setShowNavigationHints(false);
               }}
               className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
@@ -2090,7 +2127,7 @@ export default function Index() {
       >
         <button
           onClick={() => {
-            setIsHelpModalOpen(true);
+            protectedToggleHelpModal(true);
             setHasInteractedWithHelp(true);
             dismissTooltip("help-button");
           }}
@@ -2537,7 +2574,7 @@ export default function Index() {
                 onMouseEnter={() => setIsTooltipDismissed(true)}
               >
                 {/* Tooltip - only show in modern mode and if not dismissed and not on mobile */}
-                {mode === "modern" && !isTooltipDismissed && (
+                {(mode as string) === "modern" && !isTooltipDismissed && (
                   <div className="absolute right-full top-1/2 -translate-y-1/2 mr-1 sm:mr-2 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none hidden sm:block">
                     <div
                       className={`px-2 py-1.5 sm:px-3 sm:py-2 rounded-lg border backdrop-blur-xl text-xs sm:text-sm font-medium max-w-[140px] sm:max-w-none sm:whitespace-nowrap ${
@@ -5292,6 +5329,39 @@ function MobileHamburgerMenu({
   const [menuPosition, setMenuPosition] = useState({ left: 70, top: -80 });
   const [showTooltip, setShowTooltip] = useState(false);
 
+  // Spam protection for menu toggle
+  const { protectedCallback: protectedToggleMenu } = useSpamProtection(
+    () => setIsOpen(!isOpen),
+    SPAM_PROTECTION_PRESETS.fast,
+  );
+
+  // Spam protection for menu close
+  const { protectedCallback: protectedCloseMenu } = useSpamProtection(
+    () => setIsOpen(false),
+    SPAM_PROTECTION_PRESETS.fast,
+  );
+
+  // Spam protection for menu item navigation
+  const { protectedCallback: protectedNavigateFromMenu } = useSpamProtection(
+    (itemText: string) => {
+      setIsOpen(false);
+      const sectionMap: { [key: string]: number } = {
+        "About us": 1,
+        Services: 2,
+        Portfolio: 3,
+        "Contact us": 4,
+      };
+      const sectionIndex = sectionMap[itemText];
+      if (sectionIndex) {
+        const event = new CustomEvent("scrollToSection", {
+          detail: sectionIndex,
+        });
+        window.dispatchEvent(event);
+      }
+    },
+    SPAM_PROTECTION_PRESETS.standard,
+  );
+
   const menuItems = [
     { text: "About us" },
     { text: "Services" },
@@ -5364,7 +5434,7 @@ function MobileHamburgerMenu({
         }}
       >
         <motion.button
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={protectedToggleMenu}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => !isOpen && setShowTooltip(false)}
           whileTap={{
@@ -5377,13 +5447,13 @@ function MobileHamburgerMenu({
             transition: { duration: 0.2 },
           }}
           animate={{
-            rotate: isOpen ? 180 : 0,
-            scale: isOpen ? 1.1 : 1,
+            scale: isOpen ? 1.05 : 1,
           }}
           transition={{
             type: "spring",
-            stiffness: 300,
-            damping: 20,
+            stiffness: 400,
+            damping: 25,
+            duration: 0.2,
           }}
           className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl overflow-hidden ${
             isPinkActive
@@ -5412,17 +5482,17 @@ function MobileHamburgerMenu({
           {/* Hamburger Icon */}
           <div className="relative w-6 h-6 flex flex-col justify-center items-center space-y-1">
             <div
-              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+              className={`w-5 h-0.5 bg-current ${
                 isOpen ? "rotate-45 translate-y-1.5" : ""
               } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
             />
             <div
-              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+              className={`w-5 h-0.5 bg-current ${
                 isOpen ? "opacity-0" : ""
               } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
             />
             <div
-              className={`w-5 h-0.5 bg-current transition-all duration-300 ${
+              className={`w-5 h-0.5 bg-current ${
                 isOpen ? "-rotate-45 -translate-y-1.5" : ""
               } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
             />
@@ -5471,28 +5541,22 @@ function MobileHamburgerMenu({
       {/* Enhanced Backdrop overlay with synchronized menu content */}
       <AnimatePresence mode="wait">
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, "--backdrop-blur": "0px" }}
-            animate={{ opacity: 1, "--backdrop-blur": "12px" }}
-            exit={{ opacity: 0, "--backdrop-blur": "0px" }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 bg-black/30 z-40"
-            onClick={() => setIsOpen(false)}
+          <div
+            className="fixed inset-0 bg-black/40 z-40 mobile-menu-backdrop"
+            onClick={protectedCloseMenu}
             style={{
-              backdropFilter: "blur(var(--backdrop-blur))",
-              WebkitBackdropFilter: "blur(var(--backdrop-blur))",
+              backdropFilter: "blur(6px)",
+              WebkitBackdropFilter: "blur(6px)",
+              willChange: "opacity",
             }}
           >
             {/* Mobile Menu Content - Synchronized with backdrop */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: -10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -10 }}
-              transition={{ duration: 0.2, ease: "easeOut", delay: 0.05 }}
-              className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
+            <div
+              className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 mobile-menu-content"
               style={{
                 marginLeft: `${menuPosition.left}px`,
                 marginTop: `${menuPosition.top}px`,
+                willChange: "transform, opacity",
               }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -5509,39 +5573,19 @@ function MobileHamburgerMenu({
                       : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
                   boxShadow:
                     "0 0 25px rgba(73, 146, 255, 0.4), 0 0 50px rgba(73, 146, 255, 0.2)",
-                  backdropFilter: "blur(20px)",
-                  WebkitBackdropFilter: "blur(20px)",
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
                 }}
               >
-                {/* Animated background layers */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-50" />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30" />
+                {/* Simple background for performance */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400/15 to-transparent opacity-40" />
 
                 {/* Menu Items - Optimized for performance */}
                 <div className="relative space-y-2">
                   {menuItems.map((item, index) => (
-                    <motion.button
+                    <button
                       key={item.text}
-                      initial={{ opacity: 0, x: -15, scale: 0.95 }}
-                      animate={{ opacity: 1, x: 0, scale: 1 }}
-                      transition={{
-                        delay: 0.1 + index * 0.05,
-                        duration: 0.3,
-                        type: "spring",
-                        stiffness: 200,
-                        damping: 15,
-                      }}
-                      whileTap={{
-                        scale: 0.95,
-                        x: 2,
-                        transition: { duration: 0.1 },
-                      }}
-                      whileHover={{
-                        scale: 1.02,
-                        x: 2,
-                        transition: { duration: 0.2 },
-                      }}
-                      className={`group w-full px-4 py-3 rounded-xl border-2 transition-all duration-200 hover:shadow-xl active:scale-95 overflow-hidden relative will-change-transform ${
+                      className={`group w-full px-4 py-3 rounded-xl border-2 hover:shadow-xl overflow-hidden relative mobile-menu-item ${
                         theme === "light"
                           ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60 text-gray-800 hover:text-gray-900"
                           : "border-blue-300/30 bg-blue-400/5 hover:border-white/40 text-white/90 hover:text-white"
@@ -5554,22 +5598,7 @@ function MobileHamburgerMenu({
                         backdropFilter: "blur(10px)",
                         WebkitBackdropFilter: "blur(10px)",
                       }}
-                      onClick={() => {
-                        setIsOpen(false);
-                        const sectionMap: { [key: string]: number } = {
-                          "About us": 1,
-                          Services: 2,
-                          Portfolio: 3,
-                          "Contact us": 4,
-                        };
-                        const sectionIndex = sectionMap[item.text];
-                        if (sectionIndex) {
-                          const event = new CustomEvent("scrollToSection", {
-                            detail: sectionIndex,
-                          });
-                          window.dispatchEvent(event);
-                        }
-                      }}
+                      onClick={() => protectedNavigateFromMenu(item.text)}
                     >
                       {/* Simplified background layers for performance */}
                       <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-200" />
@@ -5580,19 +5609,16 @@ function MobileHamburgerMenu({
                       </span>
 
                       {/* Subtle highlight */}
-                      <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-xl bg-gradient-to-b from-white/15 via-white/5 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-200" />
-                    </motion.button>
+                      <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-xl bg-gradient-to-b from-white/15 via-white/5 to-transparent opacity-0 group-hover:opacity-50" />
+                    </button>
                   ))}
                 </div>
 
-                {/* Holographic shimmer effect */}
-                <div className="absolute top-0.5 left-0.5 right-0.5 h-1/3 rounded-2xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-40" />
-
-                {/* Bottom reflection */}
-                <div className="absolute bottom-0.5 left-0.5 right-0.5 h-1/4 rounded-2xl bg-gradient-to-t from-white/15 to-transparent opacity-30" />
+                {/* Simple top highlight for visual appeal */}
+                <div className="absolute top-0.5 left-0.5 right-0.5 h-px rounded-2xl bg-white/20" />
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
       </AnimatePresence>
     </>
@@ -5627,10 +5653,6 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 0.3,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
-      onClick: () => {
-        console.log("About us clicked");
-        scrollToSection(1);
-      },
 
       // Custom positioning for About us button
       xOffset: 0, // Centered positioning
@@ -5648,10 +5670,6 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 0.6,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
-      onClick: () => {
-        console.log("Services clicked");
-        scrollToSection(2);
-      },
 
       // Custom positioning for Services button
       xOffset: 0, // Centered positioning
@@ -5669,10 +5687,6 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 0.9,
       size: "medium", // Consistent sizing for uniform look
       accent: "blue", // Color accent - unified to blue
-      onClick: () => {
-        console.log("Portfolio clicked");
-        scrollToSection(3);
-      },
 
       xOffset: 0, // Centered positioning
       yOffset: 15, // Adjusted for mobile balance
@@ -5688,10 +5702,6 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 1.2,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
-      onClick: () => {
-        console.log("Contact us clicked");
-        scrollToSection(4);
-      },
 
       xOffset: -20, // Mobile-friendly spacing
       yOffset: -75, // Moved up 50px from -25 to -75
@@ -5728,7 +5738,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: xOffset: 0  →  xOffset: 50
 //
 // To move "About us" button 30px up:
-// Change: yOffset: 0  →  yOffset: -30
+// Change: yOffset: 0  ���  yOffset: -30
 //
 // To make all buttons closer to center on mobile:
 // Change: mobileRadiusMultiplier: 0.5  →  mobileRadiusMultiplier: 0.3
@@ -5737,7 +5747,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ———————→  hoverScale: 1.15
+// Change: hoverScale: 1.05  ————��——→  hoverScale: 1.15
 //
 // ========================================
 
@@ -5749,9 +5759,44 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
     const event = new CustomEvent("scrollToSection", { detail: index });
     window.dispatchEvent(event);
   };
+
+  // Button configuration with access to scrollToSection
+  const buttonConfig = {
+    global: ORB_BUTTON_CONFIG.global,
+    buttons: [
+      {
+        ...ORB_BUTTON_CONFIG.buttons[0],
+        onClick: () => {
+          console.log("About us clicked");
+          scrollToSection(1);
+        },
+      },
+      {
+        ...ORB_BUTTON_CONFIG.buttons[1],
+        onClick: () => {
+          console.log("Services clicked");
+          scrollToSection(2);
+        },
+      },
+      {
+        ...ORB_BUTTON_CONFIG.buttons[2],
+        onClick: () => {
+          console.log("Portfolio clicked");
+          scrollToSection(3);
+        },
+      },
+      {
+        ...ORB_BUTTON_CONFIG.buttons[3],
+        onClick: () => {
+          console.log("Contact us clicked");
+          scrollToSection(4);
+        },
+      },
+    ],
+  };
   return (
     <>
-      {ORB_BUTTON_CONFIG.buttons.map((button) => (
+      {buttonConfig.buttons.map((button) => (
         <OrbFloatingButton
           key={button.text}
           text={button.text}
@@ -7024,9 +7069,9 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         color: "from-orange-500 to-red-500",
       },
       {
-        icon: Users,
-        title: "Consulting",
-        description: "Strategic guidance for your digital transformation",
+        icon: Globe,
+        title: "SEO Optimization",
+        description: "Boost your search rankings and drive organic traffic",
         color: "from-indigo-500 to-purple-500",
       },
       {
@@ -8679,14 +8724,37 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       // Add your form submission logic here
     };
 
+    // Spam protection for form interactions
+    const { protectedCallback: protectedInterestSelect } = useSpamProtection(
+      (interest: string) => {
+        setSelectedInterest(interest);
+        setFormData({ ...formData, interest });
+      },
+      SPAM_PROTECTION_PRESETS.fast,
+    );
+
+    const { protectedCallback: protectedBudgetSelect } = useSpamProtection(
+      (budget: string) => {
+        setSelectedBudget(budget);
+        setFormData({ ...formData, budget });
+      },
+      SPAM_PROTECTION_PRESETS.fast,
+    );
+
+    // Spam protection for external links in contact section
+    const { protectedCallback: protectedOpenLink } = useSpamProtection(
+      (url: string) => {
+        window.open(url, "_blank");
+      },
+      SPAM_PROTECTION_PRESETS.critical,
+    );
+
     const handleInterestSelect = (interest: string) => {
-      setSelectedInterest(interest);
-      setFormData({ ...formData, interest });
+      protectedInterestSelect(interest);
     };
 
     const handleBudgetSelect = (budget: string) => {
-      setSelectedBudget(budget);
-      setFormData({ ...formData, budget });
+      protectedBudgetSelect(budget);
     };
 
     return (
@@ -8800,7 +8868,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "✉️" },
+            { type: "email", x: 15, y: 35, icon: "��️" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
@@ -9345,7 +9413,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         ].map((social) => (
                           <motion.button
                             key={social.name}
-                            onClick={() => window.open(social.url, "_blank")}
+                            onClick={() => protectedOpenLink(social.url)}
                             className="group relative p-2 rounded-lg backdrop-blur-lg border transition-all duration-200 hover:scale-[1.02] overflow-hidden will-change-transform text-left"
                             style={{
                               background: "rgba(255, 255, 255, 0.05)",
@@ -9500,7 +9568,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     ].map((contact, index) => (
                       <motion.button
                         key={contact.name}
-                        onClick={() => window.open(contact.url, "_blank")}
+                        onClick={() => protectedOpenLink(contact.url)}
                         className="group relative rounded-2xl backdrop-blur-lg border transition-all duration-300 hover:scale-[1.02] overflow-hidden will-change-transform p-4 sm:p-6 mobile-lively-float"
                         style={{
                           background: "rgba(255, 255, 255, 0.08)",
