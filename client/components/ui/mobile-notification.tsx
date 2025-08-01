@@ -107,11 +107,13 @@ const MobileNotificationContainer: React.FC = () => {
         "notification-container fixed z-[100] pointer-events-none",
         isMobile
           ? shouldPositionAtBottom
-            ? "bottom-0 w-full flex max-h-screen flex-col p-4" // Bottom positioning for non-Safari mobile
+            ? "w-full flex max-h-screen flex-col p-4" // Bottom positioning for non-Safari mobile
             : "top-0 w-full flex max-h-screen flex-col-reverse p-4" // Top positioning for Safari mobile
           : "bottom-0 right-0 top-auto flex-col max-w-[420px] p-4", // Match original tablet positioning
       )}
       style={{
+        // Position 100px from bottom for non-Safari mobile
+        bottom: shouldPositionAtBottom ? "100px" : undefined,
         // Safe area handling for mobile devices
         paddingTop: isMobile && !shouldPositionAtBottom ? "env(safe-area-inset-top)" : undefined,
         paddingBottom: isMobile ? "env(safe-area-inset-bottom)" : undefined,
