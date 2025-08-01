@@ -931,7 +931,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ���████████████��██���█████████████����█████ 60%
+                      CPU: █████████████��██���█████████████����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8579,7 +8579,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             ))}
 
             {/* Angelfish */}
-            {[...Array(screenSize === "mobile" ? 1 : screenSize === "tablet" ? 2 : 3)].map((_, i) => (
+            {[...Array(screenSize === "mobile" ? 1 : screenSize === "tablet" ? 1 : 2)].map((_, i) => (
               <motion.div
                 key={`angel-${i}`}
                 className="absolute"
