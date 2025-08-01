@@ -41,7 +41,9 @@ export const useMobileNotifications = () => {
 
 export const MobileNotificationProvider: React.FC<{
   children: React.ReactNode;
-}> = ({ children }) => {
+  isHelpModalOpen?: boolean;
+  setIsHelpModalOpen?: (isOpen: boolean) => void;
+}> = ({ children, isHelpModalOpen, setIsHelpModalOpen }) => {
   const [notifications, setNotifications] = useState<MobileNotification[]>([]);
   const deviceType = useDeviceType();
 
