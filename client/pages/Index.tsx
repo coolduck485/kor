@@ -850,7 +850,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`██╗  ██╗ ██████╗ ██����██╗
+                  {`██╗  █���╗ ██████╗ ██����██╗
 ██║ ����█╔���██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
@@ -8253,20 +8253,20 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             ))}
           </div>
 
-          {/* Floating Bubbles */}
+          {/* Enhanced Blue Bubbles */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 8 : screenSize === "tablet" ? 12 : 20)].map((_, i) => (
+            {[...Array(screenSize === "mobile" ? 12 : screenSize === "tablet" ? 18 : 30)].map((_, i) => (
               <motion.div
                 key={`bubble-${i}`}
                 className="absolute rounded-full"
                 style={{
-                  left: `${(i * 5) % 100}%`,
+                  left: `${(i * 3.33) % 100}%`,
                   bottom: "-20px",
-                  width: `${3 + (i % 4) * (screenSize === "mobile" ? 4 : 8)}px`,
-                  height: `${3 + (i % 4) * (screenSize === "mobile" ? 4 : 8)}px`,
-                  background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(34, 211, 238, 0.4) 40%, rgba(16, 185, 129, 0.2) 70%, transparent)",
-                  border: "1px solid rgba(34, 211, 238, 0.3)",
-                  boxShadow: screenSize === "desktop" ? "0 0 15px rgba(34, 211, 238, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3)" : "0 0 8px rgba(34, 211, 238, 0.3)",
+                  width: `${3 + (i % 5) * (screenSize === "mobile" ? 3 : 6)}px`,
+                  height: `${3 + (i % 5) * (screenSize === "mobile" ? 3 : 6)}px`,
+                  background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(59, 130, 246, 0.5) 40%, rgba(29, 78, 216, 0.3) 70%, transparent)",
+                  border: "1px solid rgba(59, 130, 246, 0.4)",
+                  boxShadow: screenSize === "desktop" ? "0 0 15px rgba(59, 130, 246, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4)" : "0 0 8px rgba(59, 130, 246, 0.4)",
                 }}
                 animate={{
                   y: ["-20px", screenSize === "mobile" ? "-60vh" : "-100vh"],
@@ -8277,10 +8277,157 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 transition={{
                   duration: 6 + (i % 4),
                   repeat: Infinity,
-                  delay: (i * 0.3) % 8,
+                  delay: (i * 0.2) % 8,
                   ease: "easeOut",
                 }}
               />
+            ))}
+          </div>
+
+          {/* Swimming Fish */}
+          <div className="absolute inset-0">
+            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 10)].map((_, i) => (
+              <motion.div
+                key={`fish-${i}`}
+                className="absolute"
+                style={{
+                  left: "-10%",
+                  top: `${15 + (i * (screenSize === "mobile" ? 15 : 8))}%`,
+                  width: `${screenSize === "mobile" ? 20 : 30}px`,
+                  height: `${screenSize === "mobile" ? 12 : 18}px`,
+                }}
+              >
+                {/* Fish Body */}
+                <div
+                  className="absolute"
+                  style={{
+                    width: "70%",
+                    height: "100%",
+                    background: `linear-gradient(45deg,
+                      rgba(59, 130, 246, 0.8) 0%,
+                      rgba(147, 197, 253, 0.9) 50%,
+                      rgba(59, 130, 246, 0.7) 100%)`,
+                    borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%",
+                    boxShadow: "0 0 8px rgba(59, 130, 246, 0.4)",
+                  }}
+                />
+                {/* Fish Tail */}
+                <div
+                  className="absolute right-0 top-1/2 transform -translate-y-1/2"
+                  style={{
+                    width: "0",
+                    height: "0",
+                    borderLeft: `${screenSize === "mobile" ? 8 : 12}px solid rgba(59, 130, 246, 0.7)`,
+                    borderTop: `${screenSize === "mobile" ? 6 : 9}px solid transparent`,
+                    borderBottom: `${screenSize === "mobile" ? 6 : 9}px solid transparent`,
+                  }}
+                />
+                {/* Fish Eye */}
+                <div
+                  className="absolute rounded-full"
+                  style={{
+                    left: "15%",
+                    top: "25%",
+                    width: `${screenSize === "mobile" ? 3 : 4}px`,
+                    height: `${screenSize === "mobile" ? 3 : 4}px`,
+                    background: "rgba(255, 255, 255, 0.9)",
+                    boxShadow: "inset 1px 1px 2px rgba(0, 0, 0, 0.3)",
+                  }}
+                />
+              </motion.div>
+            ))}
+
+            {/* Fish Animation */}
+            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 10)].map((_, i) => (
+              <motion.div
+                key={`fish-motion-${i}`}
+                className="absolute"
+                style={{
+                  left: "-10%",
+                  top: `${15 + (i * (screenSize === "mobile" ? 15 : 8))}%`,
+                }}
+                animate={{
+                  x: ["0px", "110vw"],
+                  y: [0, (Math.sin(i) * (screenSize === "mobile" ? 20 : 40))],
+                }}
+                transition={{
+                  duration: 12 + (i % 4) * 3,
+                  repeat: Infinity,
+                  delay: i * 2,
+                  ease: "linear",
+                }}
+              >
+                {/* This will move the fish container */}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Swaying Seaweed */}
+          <div className="absolute inset-0">
+            {[...Array(screenSize === "mobile" ? 3 : screenSize === "tablet" ? 5 : 8)].map((_, i) => (
+              <motion.div
+                key={`seaweed-${i}`}
+                className="absolute bottom-0"
+                style={{
+                  left: `${10 + (i * (screenSize === "mobile" ? 25 : 12))}%`,
+                  width: `${screenSize === "mobile" ? 6 : 10}px`,
+                  height: `${screenSize === "mobile" ? 60 : 100}px`,
+                }}
+              >
+                {/* Seaweed Stem */}
+                <div
+                  className="absolute bottom-0 w-full"
+                  style={{
+                    height: "100%",
+                    background: `linear-gradient(180deg,
+                      rgba(34, 197, 94, 0.7) 0%,
+                      rgba(59, 130, 246, 0.8) 30%,
+                      rgba(29, 78, 216, 0.9) 100%)`,
+                    borderRadius: "50% 50% 20% 20%",
+                    transformOrigin: "bottom center",
+                  }}
+                />
+                {/* Seaweed Leaves */}
+                {[...Array(screenSize === "mobile" ? 3 : 5)].map((_, j) => (
+                  <div
+                    key={`leaf-${j}`}
+                    className="absolute"
+                    style={{
+                      left: j % 2 === 0 ? "-50%" : "50%",
+                      bottom: `${20 + j * (screenSize === "mobile" ? 12 : 18)}%`,
+                      width: `${screenSize === "mobile" ? 8 : 12}px`,
+                      height: `${screenSize === "mobile" ? 6 : 10}px`,
+                      background: `rgba(59, 130, 246, ${0.6 + j * 0.1})`,
+                      borderRadius: "50% 50% 50% 50% / 80% 80% 20% 20%",
+                      transformOrigin: j % 2 === 0 ? "right center" : "left center",
+                    }}
+                  />
+                ))}
+              </motion.div>
+            ))}
+
+            {/* Seaweed Animation */}
+            {[...Array(screenSize === "mobile" ? 3 : screenSize === "tablet" ? 5 : 8)].map((_, i) => (
+              <motion.div
+                key={`seaweed-motion-${i}`}
+                className="absolute bottom-0"
+                style={{
+                  left: `${10 + (i * (screenSize === "mobile" ? 25 : 12))}%`,
+                  transformOrigin: "bottom center",
+                }}
+                animate={{
+                  rotateZ: [-8, 8, -8],
+                  scaleY: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 4 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.5,
+                  ease: "easeInOut",
+                }}
+              >
+                {/* This will animate the seaweed */}
+              </motion.div>
             ))}
           </div>
 
