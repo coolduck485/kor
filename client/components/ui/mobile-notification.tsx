@@ -79,7 +79,7 @@ export const MobileNotificationProvider: React.FC<{
 
   return (
     <MobileNotificationContext.Provider
-      value={{ notifications, addNotification, removeNotification, clearAll }}
+      value={{ notifications, addNotification, removeNotification, clearAll, isHelpModalOpen, setIsHelpModalOpen }}
     >
       {children}
       {deviceType !== "desktop" && <MobileNotificationContainer />}
