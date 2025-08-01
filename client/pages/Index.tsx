@@ -873,7 +873,7 @@ export default function Index() {
 ██║ ����█╔����██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█��█�����█╔╝█���║  ██║
+██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ������������═══╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -4195,6 +4195,19 @@ export default function Index() {
               backgroundClip: "padding-box",
             }}
           >
+            {/* Dynamic Border Effect */}
+            <div
+              className="absolute inset-0 rounded-full pointer-events-none transition-all duration-300"
+              style={{
+                background: "conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(73, 146, 255, 0.4) 90deg, rgba(255, 255, 255, 0.2) 180deg, rgba(73, 146, 255, 0.4) 270deg, rgba(255, 255, 255, 0.2) 360deg)",
+                padding: "2px",
+                borderRadius: "inherit",
+                mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                maskComposite: "xor",
+                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "xor",
+              }}
+            />
             {/* Logo/Icon Placeholder */}
             <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
               <Zap className="w-4 h-4 text-white" />
