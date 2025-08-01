@@ -91,8 +91,10 @@ export const MobileNotificationProvider: React.FC<{
 const MobileNotificationContainer: React.FC = () => {
   const { notifications, removeNotification, isHelpModalOpen } = useMobileNotifications();
   const deviceType = useDeviceType();
+  const { isSafari } = useBrowserDetection();
 
   const isMobile = deviceType === "mobile";
+  const shouldPositionAtBottom = isMobile && !isSafari;
 
   // Hide notifications on mobile when help modal is open
   if (isMobile && isHelpModalOpen) {
@@ -104,12 +106,14 @@ const MobileNotificationContainer: React.FC = () => {
       className={cn(
         "notification-container fixed z-[100] pointer-events-none",
         isMobile
-          ? "top-0 w-full flex max-h-screen flex-col-reverse p-4" // Match original mobile positioning
+          ? shouldPositionAtBottom
+            ? "bottom-0 w-full flex max-h-screen flex-col p-4" // Bottom positioning for non-Safari mobile
+            : "top-0 w-full flex max-h-screen flex-col-reverse p-4" // Top positioning for Safari mobile
           : "bottom-0 right-0 top-auto flex-col max-w-[420px] p-4", // Match original tablet positioning
       )}
       style={{
         // Safe area handling for mobile devices
-        paddingTop: isMobile ? "env(safe-area-inset-top)" : undefined,
+        paddingTop: isMobile && !shouldPositionAtBottom ? "env(safe-area-inset-top)" : undefined,
         paddingBottom: isMobile ? "env(safe-area-inset-bottom)" : undefined,
       }}
     >
