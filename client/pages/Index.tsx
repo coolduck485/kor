@@ -851,7 +851,7 @@ export default function Index() {
 ██║ ����█╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
-██║  ██╗╚█��██���█╔╝██║  ██║
+██║  ██╗╚█��██���█╔╝█��║  ██║
 ��������╝  ╚═╝ �����════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -8747,6 +8747,14 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         setFormData({ ...formData, budget });
       },
       SPAM_PROTECTION_PRESETS.fast
+    );
+
+    // Spam protection for external links in contact section
+    const { protectedCallback: protectedOpenLink } = useSpamProtection(
+      (url: string) => {
+        window.open(url, "_blank");
+      },
+      SPAM_PROTECTION_PRESETS.critical
     );
 
     const handleInterestSelect = (interest: string) => {
