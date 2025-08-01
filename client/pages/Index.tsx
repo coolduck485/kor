@@ -855,7 +855,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███���██╔╝
 ██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
-����������╝  ╚═╝ �����════╝ ╚���╝  ��═╝`}
+����������╝  ╚═╝ �������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -9239,10 +9239,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   width: `${1 + Math.random() * 3}px`,
                   height: `${1 + Math.random() * 3}px`,
                   background: [
-                    "radial-gradient(circle, #ffffff 0%, #e0e7ff 50%, transparent 80%)",
-                    "radial-gradient(circle, #fbbf24 0%, #f59e0b 50%, transparent 80%)",
+                    "radial-gradient(circle, #ffffff 0%, #dbeafe 50%, transparent 80%)",
+                    "radial-gradient(circle, #60a5fa 0%, #3b82f6 50%, transparent 80%)",
                     "radial-gradient(circle, #3b82f6 0%, #1d4ed8 50%, transparent 80%)",
-                    "radial-gradient(circle, #f87171 0%, #dc2626 50%, transparent 80%)",
+                    "radial-gradient(circle, #93c5fd 0%, #2563eb 50%, transparent 80%)",
                   ][Math.floor(Math.random() * 4)],
                   boxShadow: "0 0 6px currentColor",
                 }}
