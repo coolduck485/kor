@@ -853,7 +853,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ██����██╗
 ██║ ����█╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
-██╔���██╗ ██║   ██║██╔══��█╗
+██╔���██╗ ██║   ██║██╔══██╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ��������╝  ╚═╝ �����════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -7254,8 +7254,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
         ref={ref}
         className={`relative w-full min-h-screen overflow-hidden ${
           theme === "light"
-            ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
-            : "bg-black"
+            ? "bg-gradient-to-br from-orange-600 via-red-600 to-pink-700"
+            : "bg-gradient-to-br from-gray-900 via-red-900 to-black"
         }`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
