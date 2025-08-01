@@ -969,7 +969,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█████████���███����█████ 60%
+                      CPU: █████████████��██���█████████���███����█���███ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4229,7 +4229,9 @@ export default function Index() {
             <div
               className="absolute inset-0 rounded-full pointer-events-none transition-all duration-300"
               style={{
-                background: "conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(73, 146, 255, 0.4) 90deg, rgba(255, 255, 255, 0.2) 180deg, rgba(73, 146, 255, 0.4) 270deg, rgba(255, 255, 255, 0.2) 360deg)",
+                background: navbarMousePosition.isNear
+                  ? `conic-gradient(from ${(Math.atan2(navbarMousePosition.y, navbarMousePosition.x) * 180) / Math.PI + 90}deg, rgba(73, 146, 255, 0.8) 0deg, rgba(73, 146, 255, 0.4) 90deg, rgba(255, 255, 255, 0.2) 180deg, rgba(255, 255, 255, 0.2) 270deg, rgba(73, 146, 255, 0.8) 360deg)`
+                  : "conic-gradient(from 0deg, rgba(255, 255, 255, 0.2) 0deg, rgba(255, 255, 255, 0.2) 360deg)",
                 padding: "2px",
                 borderRadius: "inherit",
                 mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
@@ -11007,7 +11009,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             { icon: "������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
-            { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
+            { icon: "����", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
               key={`comm-icon-${i}`}
