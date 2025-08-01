@@ -799,7 +799,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ••••
+                      ���•••
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -2584,7 +2584,7 @@ export default function Index() {
 
             {/* Theme Toggle Container with Tooltip */}
             <div
-              className={`fixed top-6 right-6 z-50 transition-all duration-300 ${
+              className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
                 isMobileMenuOpen ? "blur-sm" : ""
               }`}
             >
