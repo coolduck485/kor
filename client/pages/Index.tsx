@@ -8775,7 +8775,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "�������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
@@ -9565,7 +9565,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     ].map((contact, index) => (
                       <motion.button
                         key={contact.name}
-                        onClick={() => window.open(contact.url, "_blank")}
+                        onClick={() => protectedOpenLink(contact.url)}
                         className="group relative rounded-2xl backdrop-blur-lg border transition-all duration-300 hover:scale-[1.02] overflow-hidden will-change-transform p-4 sm:p-6 mobile-lively-float"
                         style={{
                           background: "rgba(255, 255, 255, 0.08)",
