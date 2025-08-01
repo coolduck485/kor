@@ -872,9 +872,9 @@ export default function Index() {
                   {`��█╗  █���╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
-█��╔���██╗ ██║   ██║██╔══█��╗
+█��╔���██�� ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
-����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
+����������╝  ╚═╝ ���������════╝ ╚�����  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -4182,9 +4182,9 @@ export default function Index() {
 
         {/* Futuristic Navbar */}
         <motion.div
-          className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          className="fixed top-4 left-1/2 z-50"
+          initial={{ opacity: 0, y: -20, x: "-50%" }}
+          animate={{ opacity: 1, y: 0, x: "-50%" }}
           transition={{ delay: 1, duration: 0.8 }}
         >
           <div className="flex items-center gap-4 px-6 py-3 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20">
