@@ -860,10 +860,10 @@ export default function Index() {
                 >
                   {`██╗  █���╗ █████���╗ ██����██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
-█████╔╝ ██║   ██║███���██╔����
+█████╔╝ ██║   ██║███���██╔��
 ██╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
-����������╝  ╚═╝ ���������════╝ ╚������  ��═╝`}
+����������╝  ╚═╝ ���������════╝ ╚����╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -8498,9 +8498,9 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           >
             {/* Pricing Title */}
-            <div className="text-center mb-8 sm:mb-12">
+            <div className="text-center mb-4 sm:mb-6">
               <h1
-                className={`font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight relative mobile-lively-text ${
+                className={`font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative mobile-lively-text ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
