@@ -7189,6 +7189,148 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 // SERVICES SECTION COMPONENT
 // ========================================
 
+// Service Card Component
+const ServiceCard = ({ service, index, isVisible }: { service: any, index: number, isVisible: boolean }) => (
+  <motion.div
+    className="group relative h-full"
+    initial={{ y: 40, opacity: 0, scale: 0.9 }}
+    animate={
+      isVisible
+        ? { y: 0, opacity: 1, scale: 1 }
+        : { y: 40, opacity: 0, scale: 0.9 }
+    }
+    transition={{
+      duration: 0.6,
+      delay: 0.05 + index * 0.05,
+      type: "spring",
+      stiffness: 120,
+    }}
+    whileHover={{
+      scale: 1.01,
+      y: -3,
+      transition: { duration: 0.2 },
+    }}
+  >
+    {/* Main Card Container */}
+    <div className="relative h-full min-h-[120px] sm:min-h-[130px] lg:min-h-[140px]">
+      {/* Outer Glow Effect */}
+      <div
+        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"
+        style={{
+          background: `linear-gradient(135deg, ${service.color.replace("from-", "").replace(" to-", ", ").replace("-500", "")})`,
+          transform: "scale(1.05)",
+        }}
+      />
+
+      {/* Card Body */}
+      <div
+        className="relative h-full rounded-3xl overflow-hidden transition-all duration-500 backdrop-blur-xl border border-white/10"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
+          boxShadow: `
+            0 25px 50px -12px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.05)
+          `,
+        }}
+      >
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+              backgroundSize: "20px 20px",
+            }}
+          />
+        </div>
+
+        {/* Animated Gradient Overlay */}
+        <div
+          className={`absolute inset-0 opacity-0 group-hover:opacity-30 transition-all duration-700 bg-gradient-to-br ${service.color}`}
+        />
+
+        {/* Dynamic Light Effects */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+          {/* Top Light */}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+          {/* Side Lights */}
+          <div className="absolute top-8 left-0 w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
+          <div className="absolute top-8 right-0 w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
+        </div>
+
+        {/* Content Container */}
+        <div className="relative z-10 h-full flex flex-col p-2 sm:p-2.5 lg:p-3">
+          {/* Icon Section */}
+          <div className="flex justify-center mb-2">
+            <motion.div
+              className="relative"
+              whileHover={{
+                rotate: [0, -5, 5, 0],
+                scale: 1.05,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Icon Background */}
+              <div
+                className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.color} shadow-md`}
+                style={{
+                  boxShadow: `0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
+                }}
+              >
+                <service.icon className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white drop-shadow-md" />
+              </div>
+
+              {/* Icon Glow */}
+              <div
+                className={`absolute inset-0 rounded-lg bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-40 transition-opacity duration-300 blur-sm -z-10`}
+              />
+            </motion.div>
+          </div>
+
+          {/* Title */}
+          <div className="text-center mb-2">
+            <h3 className="text-sm sm:text-sm lg:text-base font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
+              {service.title}
+            </h3>
+          </div>
+
+          {/* Description */}
+          <div className="flex-1 flex items-center">
+            <p className="text-gray-300 text-xs sm:text-xs lg:text-xs leading-snug text-center opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+              {service.description}
+            </p>
+          </div>
+
+          {/* Bottom Accent */}
+          <div className="mt-2 flex justify-center">
+            <div
+              className={`w-10 h-0.5 rounded-full bg-gradient-to-r ${service.color} opacity-60 group-hover:opacity-100 group-hover:w-12 transition-all duration-300`}
+            />
+          </div>
+        </div>
+
+        {/* Interactive Particles */}
+        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <div
+            className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full animate-ping"
+            style={{ animationDelay: "0s" }}
+          />
+          <div
+            className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-400 rounded-full animate-ping"
+            style={{ animationDelay: "0.5s" }}
+          />
+          <div
+            className="absolute top-1/2 left-3/4 w-1 h-1 bg-cyan-400 rounded-full animate-ping"
+            style={{ animationDelay: "1s" }}
+          />
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
 const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
   ({ theme, isVisible }, ref) => {
     const [screenSize, setScreenSize] = useState<
