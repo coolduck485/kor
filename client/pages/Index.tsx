@@ -6124,7 +6124,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 className="absolute w-px h-full opacity-30"
                 style={{
                   left: `${(i * (isMobileOrTablet ? 10 : 5))}%`,
-                  background: "linear-gradient(180deg, transparent 0%, #00ff41 20%, #00ff41 80%, transparent 100%)",
+                  background: "linear-gradient(180deg, transparent 0%, #0080ff 20%, #0080ff 80%, transparent 100%)",
                   filter: "blur(0.5px)",
                 }}
                 animate={{
