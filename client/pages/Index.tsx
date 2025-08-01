@@ -853,7 +853,7 @@ export default function Index() {
                   {`██╗  ██╗ ██████╗ ██����██╗
 ██║ ����█╔��██╔═══���█╗██╔══██╗
 █████╔╝ ██║   ██║███���██╔╝
-██╔���██╗ ██║   ██║██╔══██╗
+██╔���██╗ ██║   ██║██╔══��█╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ��������╝  ╚═╝ �����════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -6105,8 +6105,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         ref={ref}
         className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
-            ? "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"
-            : "bg-black"
+            ? "bg-gradient-to-br from-violet-900 via-purple-800 to-indigo-900"
+            : "bg-gradient-to-br from-gray-900 via-purple-900 to-black"
         }`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
@@ -6114,15 +6114,182 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
       >
         {/* Enhanced Background Elements - Complete Visual Package */}
 
-        {/* Animated Noise Texture - Desktop Only */}
-        {screenSize === "desktop" && (
-          <div
-            className="absolute inset-0 opacity-5 animate-noise gpu-accelerated"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-            }}
-          />
-        )}
+        {/* JARRING CYBERPUNK MATRIX BACKGROUND */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Animated Matrix Grid */}
+          <div className="absolute inset-0">
+            {[...Array(isMobileOrTablet ? 10 : 20)].map((_, i) => (
+              <motion.div
+                key={`matrix-line-${i}`}
+                className="absolute w-px h-full opacity-30"
+                style={{
+                  left: `${(i * (isMobileOrTablet ? 10 : 5))}%`,
+                  background: "linear-gradient(180deg, transparent 0%, #00ff41 20%, #00ff41 80%, transparent 100%)",
+                  filter: "blur(0.5px)",
+                }}
+                animate={{
+                  opacity: [0.1, 0.6, 0.1],
+                  scaleY: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: 3 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Falling Digital Rain */}
+          <div className="absolute inset-0">
+            {[...Array(isMobileOrTablet ? 8 : 15)].map((_, i) => (
+              <motion.div
+                key={`rain-${i}`}
+                className="absolute text-xs sm:text-sm font-mono text-green-400 opacity-40"
+                style={{
+                  left: `${(i * (isMobileOrTablet ? 12 : 7))}%`,
+                  top: "-10%",
+                  writingMode: "vertical-rl",
+                  textOrientation: "mixed",
+                }}
+                animate={{
+                  y: ["0vh", "110vh"],
+                  opacity: [0, 0.8, 0],
+                }}
+                transition={{
+                  duration: 4 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.3,
+                  ease: "linear",
+                }}
+              >
+                {Array.from({ length: 20 }, () => Math.random() > 0.5 ? '1' : '0').join('')}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Glowing Geometric Shapes */}
+          <div className="absolute inset-0">
+            {[...Array(isMobileOrTablet ? 5 : 8)].map((_, i) => (
+              <motion.div
+                key={`shape-${i}`}
+                className="absolute border-2 border-cyan-400"
+                style={{
+                  left: `${10 + (i * (isMobileOrTablet ? 18 : 11))}%`,
+                  top: `${15 + ((i * 13) % 70)}%`,
+                  width: `${30 + (i % 3) * (isMobileOrTablet ? 10 : 20)}px`,
+                  height: `${30 + (i % 3) * (isMobileOrTablet ? 10 : 20)}px`,
+                  borderRadius: i % 3 === 0 ? "50%" : i % 3 === 1 ? "0" : "20%",
+                  boxShadow: "0 0 20px rgba(34, 211, 238, 0.5), inset 0 0 20px rgba(34, 211, 238, 0.1)",
+                  background: "linear-gradient(45deg, rgba(34, 211, 238, 0.1), rgba(168, 85, 247, 0.1))",
+                }}
+                animate={{
+                  rotateZ: [0, 360],
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.8, 0.3],
+                }}
+                transition={{
+                  duration: 8 + (i % 4),
+                  repeat: Infinity,
+                  delay: i * 0.5,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Pulsing Circuit Board Pattern */}
+          <div className="absolute inset-0 opacity-20">
+            <svg className="w-full h-full" viewBox="0 0 1000 1000">
+              {[...Array(isMobileOrTablet ? 4 : 6)].map((_, i) => (
+                <g key={`circuit-${i}`}>
+                  <motion.path
+                    d={`M${100 + i * 150},${200 + i * 50} L${200 + i * 150},${200 + i * 50} L${200 + i * 150},${300 + i * 50} L${300 + i * 150},${300 + i * 50}`}
+                    stroke="#00ff41"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeDasharray="10 5"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: [0, 1, 0] }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: i * 0.5,
+                    }}
+                  />
+                  <motion.circle
+                    cx={200 + i * 150}
+                    cy={200 + i * 50}
+                    r="4"
+                    fill="#00ff41"
+                    animate={{
+                      scale: [1, 1.5, 1],
+                      opacity: [0.5, 1, 0.5],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: i * 0.3,
+                    }}
+                  />
+                </g>
+              ))}
+            </svg>
+          </div>
+
+          {/* Floating Holographic Panels */}
+          <div className="absolute inset-0">
+            {[...Array(isMobileOrTablet ? 4 : 6)].map((_, i) => (
+              <motion.div
+                key={`holo-panel-${i}`}
+                className="absolute border border-cyan-400 rounded-lg backdrop-blur-sm"
+                style={{
+                  left: `${5 + (i * (isMobileOrTablet ? 20 : 15))}%`,
+                  top: `${10 + ((i * 20) % 70)}%`,
+                  width: `${60 + (i % 2) * (isMobileOrTablet ? 20 : 40)}px`,
+                  height: `${40 + (i % 2) * (isMobileOrTablet ? 15 : 30)}px`,
+                  background: "linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(168, 85, 247, 0.1))",
+                  boxShadow: "0 0 30px rgba(34, 211, 238, 0.3)",
+                }}
+                animate={{
+                  rotateY: [-15, 15, -15],
+                  rotateX: [-10, 10, -10],
+                  y: [-10, 10, -10],
+                }}
+                transition={{
+                  duration: 6 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.7,
+                }}
+              >
+                <div className="p-1 sm:p-2 space-y-1">
+                  {[...Array(3)].map((_, lineIndex) => (
+                    <motion.div
+                      key={lineIndex}
+                      className="h-0.5 sm:h-1 bg-cyan-400 rounded opacity-60"
+                      style={{ width: `${50 + (lineIndex * 25)}%` }}
+                      animate={{ opacity: [0.3, 0.8, 0.3] }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: lineIndex * 0.2,
+                      }}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Animated Noise Texture - Desktop Only */}
+          {screenSize === "desktop" && (
+            <div
+              className="absolute inset-0 opacity-10 animate-noise gpu-accelerated"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+              }}
+            />
+          )}
+        </div>
 
         {/* SPECTACULAR ABOUT SECTION ENHANCEMENTS */}
 
