@@ -335,7 +335,8 @@ export default function Index() {
     checkInitialSection();
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      // Commented out since we disabled the event listener
+      // window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
