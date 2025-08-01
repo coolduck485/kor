@@ -861,7 +861,7 @@ export default function Index() {
                   {`██╗  █���╗ █████���╗ ██����██╗
 ██║ ����█╔���██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
-██╔����██╗ ██║   ██║██╔══█��╗
+██╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -8669,7 +8669,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
                           {/* Perks */}
                           <div className="flex-1">
-                            <ul className="space-y-4">
+                            <ul className="space-y-2">
                               {plan.perks.map((perk, perkIndex) => (
                                 <motion.li
                                   key={perk}
