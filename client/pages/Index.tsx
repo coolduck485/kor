@@ -926,7 +926,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ███�����████████������███��███████��█ 50%
+                      RAM: ███�����█████████���███��███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -1995,9 +1995,9 @@ export default function Index() {
               dismissTooltip("nav-up");
               dismissTooltip("nav-shared");
             }}
-            disabled={isScrolling}
+            disabled={isScrolling || isMobileMenuOpen}
             className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
-              isScrolling ? "pointer-events-none opacity-60" : ""
+              isScrolling || isMobileMenuOpen ? "pointer-events-none opacity-60" : ""
             } ${
               theme === "light"
                 ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
