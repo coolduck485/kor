@@ -8231,80 +8231,333 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
             ))}
           </div>
 
-          {/* Swimming Fish */}
+          {/* Swimming Fish Varieties */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 10)].map((_, i) => (
+            {/* Clownfish */}
+            {[...Array(screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 4)].map((_, i) => (
               <motion.div
-                key={`fish-${i}`}
+                key={`clownfish-${i}`}
                 className="absolute"
                 style={{
-                  left: "-10%",
-                  top: `${15 + (i * (screenSize === "mobile" ? 15 : 8))}%`,
-                  width: `${screenSize === "mobile" ? 20 : 30}px`,
-                  height: `${screenSize === "mobile" ? 12 : 18}px`,
-                }}
-              >
-                {/* Fish Body */}
-                <div
-                  className="absolute"
-                  style={{
-                    width: "70%",
-                    height: "100%",
-                    background: `linear-gradient(45deg,
-                      rgba(59, 130, 246, 0.8) 0%,
-                      rgba(147, 197, 253, 0.9) 50%,
-                      rgba(59, 130, 246, 0.7) 100%)`,
-                    borderRadius: "50% 50% 50% 50% / 60% 60% 40% 40%",
-                    boxShadow: "0 0 8px rgba(59, 130, 246, 0.4)",
-                  }}
-                />
-                {/* Fish Tail */}
-                <div
-                  className="absolute right-0 top-1/2 transform -translate-y-1/2"
-                  style={{
-                    width: "0",
-                    height: "0",
-                    borderLeft: `${screenSize === "mobile" ? 8 : 12}px solid rgba(59, 130, 246, 0.7)`,
-                    borderTop: `${screenSize === "mobile" ? 6 : 9}px solid transparent`,
-                    borderBottom: `${screenSize === "mobile" ? 6 : 9}px solid transparent`,
-                  }}
-                />
-                {/* Fish Eye */}
-                <div
-                  className="absolute rounded-full"
-                  style={{
-                    left: "15%",
-                    top: "25%",
-                    width: `${screenSize === "mobile" ? 3 : 4}px`,
-                    height: `${screenSize === "mobile" ? 3 : 4}px`,
-                    background: "rgba(255, 255, 255, 0.9)",
-                    boxShadow: "inset 1px 1px 2px rgba(0, 0, 0, 0.3)",
-                  }}
-                />
-              </motion.div>
-            ))}
-
-            {/* Fish Animation */}
-            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 10)].map((_, i) => (
-              <motion.div
-                key={`fish-motion-${i}`}
-                className="absolute"
-                style={{
-                  left: "-10%",
-                  top: `${15 + (i * (screenSize === "mobile" ? 15 : 8))}%`,
+                  left: "-15%",
+                  top: `${20 + (i * (screenSize === "mobile" ? 20 : 15))}%`,
                 }}
                 animate={{
-                  x: ["0px", "110vw"],
-                  y: [0, (Math.sin(i) * (screenSize === "mobile" ? 20 : 40))],
+                  x: ["0px", "115vw"],
+                  y: [0, Math.sin(i) * (screenSize === "mobile" ? 15 : 25), 0],
                 }}
                 transition={{
-                  duration: 12 + (i % 4) * 3,
+                  duration: 15 + (i % 3) * 2,
                   repeat: Infinity,
-                  delay: i * 2,
+                  delay: i * 3,
                   ease: "linear",
                 }}
               >
-                {/* This will move the fish container */}
+                <div className="relative" style={{
+                  width: `${screenSize === "mobile" ? 25 : 35}px`,
+                  height: `${screenSize === "mobile" ? 15 : 20}px`,
+                }}>
+                  {/* Clownfish Body - Orange with blue tint */}
+                  <div
+                    className="absolute"
+                    style={{
+                      width: "75%",
+                      height: "100%",
+                      background: "linear-gradient(45deg, rgba(255, 165, 0, 0.9) 0%, rgba(59, 130, 246, 0.7) 50%, rgba(255, 140, 0, 0.8) 100%)",
+                      borderRadius: "60% 40% 40% 60%",
+                      boxShadow: "0 0 6px rgba(59, 130, 246, 0.5)",
+                    }}
+                  />
+                  {/* White Stripes */}
+                  <div
+                    className="absolute"
+                    style={{
+                      left: "20%",
+                      top: "10%",
+                      width: "15%",
+                      height: "80%",
+                      background: "rgba(255, 255, 255, 0.9)",
+                      borderRadius: "20%",
+                    }}
+                  />
+                  <div
+                    className="absolute"
+                    style={{
+                      left: "45%",
+                      top: "15%",
+                      width: "12%",
+                      height: "70%",
+                      background: "rgba(255, 255, 255, 0.8)",
+                      borderRadius: "20%",
+                    }}
+                  />
+                  {/* Tail */}
+                  <div
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2"
+                    style={{
+                      width: "0",
+                      height: "0",
+                      borderLeft: `${screenSize === "mobile" ? 10 : 14}px solid rgba(59, 130, 246, 0.8)`,
+                      borderTop: `${screenSize === "mobile" ? 8 : 10}px solid transparent`,
+                      borderBottom: `${screenSize === "mobile" ? 8 : 10}px solid transparent`,
+                    }}
+                  />
+                  {/* Eye */}
+                  <div
+                    className="absolute rounded-full"
+                    style={{
+                      left: "15%",
+                      top: "25%",
+                      width: `${screenSize === "mobile" ? 4 : 5}px`,
+                      height: `${screenSize === "mobile" ? 4 : 5}px`,
+                      background: "rgba(255, 255, 255, 0.95)",
+                      border: "1px solid rgba(0, 0, 0, 0.4)",
+                    }}
+                  />
+                  <div
+                    className="absolute rounded-full"
+                    style={{
+                      left: "16%",
+                      top: "27%",
+                      width: `${screenSize === "mobile" ? 2 : 3}px`,
+                      height: `${screenSize === "mobile" ? 2 : 3}px`,
+                      background: "rgba(0, 0, 0, 0.8)",
+                    }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Blue Tang Fish */}
+            {[...Array(screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 4)].map((_, i) => (
+              <motion.div
+                key={`tang-${i}`}
+                className="absolute"
+                style={{
+                  left: "-12%",
+                  top: `${35 + (i * (screenSize === "mobile" ? 18 : 12))}%`,
+                }}
+                animate={{
+                  x: ["0px", "112vw"],
+                  y: [0, -Math.sin(i + 1) * (screenSize === "mobile" ? 20 : 30), 0],
+                }}
+                transition={{
+                  duration: 18 + (i % 4) * 2,
+                  repeat: Infinity,
+                  delay: i * 4 + 1,
+                  ease: "linear",
+                }}
+              >
+                <div className="relative" style={{
+                  width: `${screenSize === "mobile" ? 22 : 32}px`,
+                  height: `${screenSize === "mobile" ? 18 : 25}px`,
+                }}>
+                  {/* Tang Body */}
+                  <div
+                    className="absolute"
+                    style={{
+                      width: "70%",
+                      height: "100%",
+                      background: "linear-gradient(135deg, rgba(59, 130, 246, 0.95) 0%, rgba(30, 144, 255, 0.9) 50%, rgba(0, 100, 200, 0.85) 100%)",
+                      borderRadius: "50% 30% 30% 50%",
+                      boxShadow: "0 0 8px rgba(59, 130, 246, 0.6)",
+                    }}
+                  />
+                  {/* Dorsal Fin */}
+                  <div
+                    className="absolute"
+                    style={{
+                      left: "25%",
+                      top: "-30%",
+                      width: "40%",
+                      height: "40%",
+                      background: "linear-gradient(45deg, rgba(59, 130, 246, 0.8) 0%, rgba(147, 197, 253, 0.6) 100%)",
+                      borderRadius: "50% 50% 20% 20%",
+                      transform: "skewX(-15deg)",
+                    }}
+                  />
+                  {/* Tail */}
+                  <div
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2"
+                    style={{
+                      width: "0",
+                      height: "0",
+                      borderLeft: `${screenSize === "mobile" ? 12 : 16}px solid rgba(30, 144, 255, 0.8)`,
+                      borderTop: `${screenSize === "mobile" ? 10 : 13}px solid transparent`,
+                      borderBottom: `${screenSize === "mobile" ? 10 : 13}px solid transparent`,
+                    }}
+                  />
+                  {/* Eye */}
+                  <div
+                    className="absolute rounded-full"
+                    style={{
+                      left: "18%",
+                      top: "30%",
+                      width: `${screenSize === "mobile" ? 4 : 5}px`,
+                      height: `${screenSize === "mobile" ? 4 : 5}px`,
+                      background: "rgba(255, 255, 255, 0.95)",
+                      border: "1px solid rgba(0, 0, 0, 0.3)",
+                    }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Angelfish */}
+            {[...Array(screenSize === "mobile" ? 1 : screenSize === "tablet" ? 2 : 3)].map((_, i) => (
+              <motion.div
+                key={`angel-${i}`}
+                className="absolute"
+                style={{
+                  left: "-10%",
+                  top: `${50 + (i * (screenSize === "mobile" ? 25 : 20))}%`,
+                }}
+                animate={{
+                  x: ["0px", "110vw"],
+                  y: [0, Math.cos(i + 2) * (screenSize === "mobile" ? 25 : 35), 0],
+                }}
+                transition={{
+                  duration: 20 + (i % 3) * 3,
+                  repeat: Infinity,
+                  delay: i * 5 + 2,
+                  ease: "linear",
+                }}
+              >
+                <div className="relative" style={{
+                  width: `${screenSize === "mobile" ? 20 : 28}px`,
+                  height: `${screenSize === "mobile" ? 25 : 35}px`,
+                }}>
+                  {/* Angelfish Body */}
+                  <div
+                    className="absolute"
+                    style={{
+                      left: "20%",
+                      top: "25%",
+                      width: "60%",
+                      height: "50%",
+                      background: "linear-gradient(90deg, rgba(173, 216, 230, 0.9) 0%, rgba(59, 130, 246, 0.8) 50%, rgba(25, 118, 210, 0.7) 100%)",
+                      borderRadius: "40% 20% 40% 60%",
+                      boxShadow: "0 0 6px rgba(59, 130, 246, 0.5)",
+                    }}
+                  />
+                  {/* Top Fin */}
+                  <div
+                    className="absolute"
+                    style={{
+                      left: "35%",
+                      top: "0%",
+                      width: "30%",
+                      height: "30%",
+                      background: "linear-gradient(45deg, rgba(59, 130, 246, 0.7) 0%, rgba(147, 197, 253, 0.5) 100%)",
+                      borderRadius: "0% 100% 0% 0%",
+                      transform: "skewX(-20deg)",
+                    }}
+                  />
+                  {/* Bottom Fin */}
+                  <div
+                    className="absolute"
+                    style={{
+                      left: "35%",
+                      bottom: "0%",
+                      width: "30%",
+                      height: "30%",
+                      background: "linear-gradient(-45deg, rgba(59, 130, 246, 0.7) 0%, rgba(147, 197, 253, 0.5) 100%)",
+                      borderRadius: "0% 0% 100% 0%",
+                      transform: "skewX(20deg)",
+                    }}
+                  />
+                  {/* Tail */}
+                  <div
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2"
+                    style={{
+                      width: "0",
+                      height: "0",
+                      borderLeft: `${screenSize === "mobile" ? 8 : 11}px solid rgba(59, 130, 246, 0.7)`,
+                      borderTop: `${screenSize === "mobile" ? 8 : 11}px solid transparent`,
+                      borderBottom: `${screenSize === "mobile" ? 8 : 11}px solid transparent`,
+                    }}
+                  />
+                  {/* Eye */}
+                  <div
+                    className="absolute rounded-full"
+                    style={{
+                      left: "28%",
+                      top: "35%",
+                      width: `${screenSize === "mobile" ? 3 : 4}px`,
+                      height: `${screenSize === "mobile" ? 3 : 4}px`,
+                      background: "rgba(255, 255, 255, 0.9)",
+                      border: "1px solid rgba(0, 0, 0, 0.4)",
+                    }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Small School Fish */}
+            {[...Array(screenSize === "mobile" ? 6 : screenSize === "tablet" ? 10 : 15)].map((_, i) => (
+              <motion.div
+                key={`school-fish-${i}`}
+                className="absolute"
+                style={{
+                  left: "-8%",
+                  top: `${10 + (i * 5)}%`,
+                }}
+                animate={{
+                  x: ["0px", "108vw"],
+                  y: [0, Math.sin(i * 0.5) * (screenSize === "mobile" ? 10 : 15), 0],
+                }}
+                transition={{
+                  duration: 10 + (i % 2),
+                  repeat: Infinity,
+                  delay: (i * 0.3) % 4,
+                  ease: "linear",
+                }}
+              >
+                <div className="relative" style={{
+                  width: `${screenSize === "mobile" ? 12 : 16}px`,
+                  height: `${screenSize === "mobile" ? 8 : 10}px`,
+                }}>
+                  {/* Small Fish Body */}
+                  <div
+                    className="absolute"
+                    style={{
+                      width: "75%",
+                      height: "100%",
+                      background: `linear-gradient(45deg,
+                        rgba(${[
+                          "100, 149, 237", // Cornflower blue
+                          "65, 105, 225",  // Royal blue
+                          "30, 144, 255",  // Dodger blue
+                          "0, 191, 255",   // Deep sky blue
+                        ][i % 4]}, 0.8) 0%,
+                        rgba(59, 130, 246, 0.6) 100%)`,
+                      borderRadius: "50% 30% 30% 50%",
+                      boxShadow: "0 0 4px rgba(59, 130, 246, 0.4)",
+                    }}
+                  />
+                  {/* Small Tail */}
+                  <div
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2"
+                    style={{
+                      width: "0",
+                      height: "0",
+                      borderLeft: `${screenSize === "mobile" ? 5 : 7}px solid rgba(59, 130, 246, 0.7)`,
+                      borderTop: `${screenSize === "mobile" ? 4 : 5}px solid transparent`,
+                      borderBottom: `${screenSize === "mobile" ? 4 : 5}px solid transparent`,
+                    }}
+                  />
+                  {/* Small Eye */}
+                  <div
+                    className="absolute rounded-full"
+                    style={{
+                      left: "20%",
+                      top: "30%",
+                      width: `${screenSize === "mobile" ? 2 : 3}px`,
+                      height: `${screenSize === "mobile" ? 2 : 3}px`,
+                      background: "rgba(255, 255, 255, 0.9)",
+                    }}
+                  />
+                </div>
               </motion.div>
             ))}
           </div>
