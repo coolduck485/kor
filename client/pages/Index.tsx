@@ -8559,7 +8559,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
             {/* Pricing Cards Container */}
             <div className="relative">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 xl:gap-8 max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-4 xl:gap-6 max-w-5xl mx-auto">
                 {pricingPlans.map((plan, index) => (
                   <motion.div
                     key={plan.title}
