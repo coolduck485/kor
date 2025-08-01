@@ -863,7 +863,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███���██╔��
 ██╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
-����������╝  ╚═╝ ���������════╝ ╚����╝  ��═╝`}
+����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -8519,7 +8519,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
             </div>
 
             {/* Subtitle */}
-            <div className="text-center mb-12 sm:mb-16">
+            <div className="text-center mb-6 sm:mb-8">
               <div className="relative">
                 <div
                   className="absolute inset-0 blur-3xl opacity-30 animate-pulse-glow"
@@ -8531,7 +8531,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     transform: "scale(1.5)",
                   }}
                 />
-                <div className="font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold relative z-10">
+                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10">
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
