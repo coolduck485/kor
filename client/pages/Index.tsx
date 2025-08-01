@@ -897,8 +897,8 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █���╗ █████���╗ ██��������██╗
-██║ ����█╔����██╔��══���█╗██╔══█���╗
-█████╔╝ ██║   ██║███���██╔��
+██║ ����█╔����██╔═══���█╗██╔══█���╗
+█████╔╝ ██║   ���█║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ������������═══╝ ╚���╝  ��═╝`}
@@ -2518,18 +2518,28 @@ export default function Index() {
           </div>
         )}
 
-        {/* Mobile Hamburger Menu - Only show in home section */}
-        {currentSection === 0 && (
-          <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
-            <div className="relative pointer-events-auto">
+        {/* Mobile Hamburger Menu - Show centered on home, top-right on other sections */}
+        <div className="sm:hidden">
+          {currentSection === 0 ? (
+            <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
+              <div className="relative pointer-events-auto">
+                <MobileHamburgerMenu
+                  isOpen={isMobileMenuOpen}
+                  setIsOpen={setIsMobileMenuOpen}
+                  theme={theme}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="fixed top-4 right-4 z-[100]">
               <MobileHamburgerMenu
                 isOpen={isMobileMenuOpen}
                 setIsOpen={setIsMobileMenuOpen}
                 theme={theme}
               />
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* Black Transition Overlay with Cinematic Effects */}
         <AnimatePresence>
@@ -11783,7 +11793,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "✈��",
+                        icon: "✈️",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
