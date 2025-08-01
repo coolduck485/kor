@@ -1973,7 +1973,7 @@ export default function Index() {
             </div>
           )}
         {/* Previous Section Button */}
-        {currentSection > 0 && !isHelpModalOpen && (
+        {currentSection > 0 && !isHelpModalOpen && !isMobileMenuOpen && (
           <button
             onClick={(e) => {
               e.preventDefault();
