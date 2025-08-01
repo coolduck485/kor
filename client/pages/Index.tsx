@@ -62,6 +62,11 @@ export default function Index() {
     y: 0,
     isNear: false,
   });
+  const [navbarMousePosition, setNavbarMousePosition] = useState({
+    x: 0,
+    y: 0,
+    isNear: false,
+  });
   const badgeRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -873,7 +878,7 @@ export default function Index() {
 ██║ ����█╔����██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█��█�����█╔╝█��║  ██║
+█��║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ������������═══╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1026,7 +1031,7 @@ export default function Index() {
                 <div className="loading-indicators">
                   <span>█��▒��</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░▒���█</span>
+                  <span>░▒�����█</span>
                 </div>
               </motion.div>
 
