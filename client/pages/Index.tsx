@@ -7266,15 +7266,141 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
           contain: "layout style paint",
         }}
       >
-        {/* SPECTACULAR SERVICES SECTION ENHANCEMENTS */}
+        {/* SPECTACULAR SERVICES SECTION ENHANCEMENTS - LAVA/FIRE THEME */}
 
-        {/* Animated Noise Texture */}
-        <div
-          className="absolute inset-0 opacity-5 animate-noise"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
-          }}
-        />
+        {/* Molten Lava Flow Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Flowing Lava Streams */}
+          <div className="absolute inset-0">
+            {[...Array(screenSize === "mobile" ? 4 : screenSize === "tablet" ? 6 : 8)].map((_, i) => (
+              <motion.div
+                key={`lava-flow-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${-10 + (i * (screenSize === "mobile" ? 25 : 15))}%`,
+                  top: `${10 + ((i * 23) % 80)}%`,
+                  width: `${60 + (i % 3) * (screenSize === "mobile" ? 30 : 50)}px`,
+                  height: `${20 + (i % 2) * (screenSize === "mobile" ? 10 : 20)}px`,
+                  background: `linear-gradient(90deg,
+                    rgba(255, 69, 0, 0.8) 0%,
+                    rgba(255, 140, 0, 0.6) 30%,
+                    rgba(255, 215, 0, 0.4) 60%,
+                    transparent 90%)`,
+                  filter: `blur(${screenSize === "mobile" ? 5 : 10}px)`,
+                  transform: `skewX(${-20 + (i % 3) * 10}deg)`,
+                }}
+                animate={{
+                  x: ["-50px", screenSize === "mobile" ? "120vw" : "150vw"],
+                  scaleX: [1, 1.3, 1],
+                  opacity: [0, 0.8, 0],
+                }}
+                transition={{
+                  duration: 8 + (i % 4),
+                  repeat: Infinity,
+                  delay: i * 1.2,
+                  ease: "easeInOut",
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Volcanic Particles */}
+          <div className="absolute inset-0">
+            {[...Array(screenSize === "mobile" ? 10 : screenSize === "tablet" ? 18 : 25)].map((_, i) => (
+              <motion.div
+                key={`ember-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${(i * 4) % 100}%`,
+                  bottom: "-10px",
+                  width: `${2 + (i % 3)}px`,
+                  height: `${2 + (i % 3)}px`,
+                  background: [
+                    "radial-gradient(circle, #ff4500 0%, #ff6347 50%, transparent 80%)",
+                    "radial-gradient(circle, #ff8c00 0%, #ffa500 50%, transparent 80%)",
+                    "radial-gradient(circle, #ffd700 0%, #ffff00 50%, transparent 80%)",
+                  ][i % 3],
+                  boxShadow: screenSize === "desktop" ? "0 0 10px currentColor" : "none",
+                }}
+                animate={{
+                  y: ["-10px", screenSize === "mobile" ? "-60vh" : "-100vh"],
+                  x: ["0px", `${(Math.random() - 0.5) * (screenSize === "mobile" ? 50 : 100)}px`],
+                  opacity: [1, 0.8, 0],
+                  scale: [1, 0.5],
+                }}
+                transition={{
+                  duration: 4 + (i % 3),
+                  repeat: Infinity,
+                  delay: (i * 0.2) % 6,
+                  ease: "easeOut",
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Magma Bubbles */}
+          <div className="absolute inset-0">
+            {[...Array(screenSize === "mobile" ? 6 : screenSize === "tablet" ? 9 : 12)].map((_, i) => (
+              <motion.div
+                key={`bubble-${i}`}
+                className="absolute rounded-full border-2"
+                style={{
+                  left: `${10 + (i * (screenSize === "mobile" ? 15 : 8))}%`,
+                  top: `${20 + ((i * 15) % 60)}%`,
+                  width: `${15 + (i % 4) * (screenSize === "mobile" ? 8 : 15)}px`,
+                  height: `${15 + (i % 4) * (screenSize === "mobile" ? 8 : 15)}px`,
+                  borderColor: "rgba(255, 69, 0, 0.6)",
+                  background: "radial-gradient(circle, rgba(255, 140, 0, 0.3) 0%, rgba(255, 69, 0, 0.1) 50%, transparent 80%)",
+                  boxShadow: screenSize === "desktop" ? "0 0 20px rgba(255, 69, 0, 0.4), inset 0 0 20px rgba(255, 140, 0, 0.2)" : "0 0 10px rgba(255, 69, 0, 0.3)",
+                }}
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.3, 0.8, 0.3],
+                  rotateZ: [0, 180, 360],
+                }}
+                transition={{
+                  duration: 3 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.4,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Heat Distortion Lines */}
+          <div className="absolute inset-0">
+            {[...Array(screenSize === "mobile" ? 8 : 15)].map((_, i) => (
+              <motion.div
+                key={`heat-line-${i}`}
+                className="absolute w-px opacity-40"
+                style={{
+                  left: `${(i * (screenSize === "mobile" ? 12 : 7))}%`,
+                  height: "100%",
+                  background: "linear-gradient(180deg, transparent 0%, rgba(255, 140, 0, 0.6) 30%, rgba(255, 69, 0, 0.8) 50%, rgba(255, 140, 0, 0.6) 70%, transparent 100%)",
+                  filter: "blur(1px)",
+                }}
+                animate={{
+                  scaleX: [1, 2, 1],
+                  opacity: [0.2, 0.6, 0.2],
+                  skewX: [-5, 5, -5],
+                }}
+                transition={{
+                  duration: 2 + (i % 2),
+                  repeat: Infinity,
+                  delay: i * 0.1,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Animated Noise Texture */}
+          <div
+            className="absolute inset-0 opacity-15 animate-noise"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E")`,
+            }}
+          />
+        </div>
 
         {/* Floating Service Icons with Orbit Animation - Desktop Only for Performance */}
         {screenSize === "desktop" && (
