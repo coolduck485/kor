@@ -297,13 +297,15 @@ export default function Index() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX / window.innerWidth,
-        y: e.clientY / window.innerHeight,
-      });
+      // Disabled mouse tracking to prevent twinkling effects
+      // setMousePosition({
+      //   x: e.clientX / window.innerWidth,
+      //   y: e.clientY / window.innerHeight,
+      // });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    // Commented out to disable mouse tracking
+    // window.addEventListener("mousemove", handleMouseMove);
 
     // Check current URL and scroll to appropriate section
     const checkInitialSection = () => {
@@ -333,7 +335,8 @@ export default function Index() {
     checkInitialSection();
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      // Commented out since we disabled the event listener
+      // window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
@@ -896,9 +899,9 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�����╗ █████���╗ ██��������██╗
-██║ ����█╔���██╔═══���█╗██╔══█���╗
-█████╔╝ ██║   ██║███���██╔��
+                  {`��█╗  █�������╗ █████���╗ ██��������██╗
+██║ ����█╔���██╔═══���█╗██���══█���╗
+█████╔╝ ██║   ██║███�����██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
@@ -975,7 +978,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����█████████���███��███████��█ 50%
+                      RAM: ����█�����█████████���██����███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -4164,7 +4167,7 @@ export default function Index() {
           {/* Pricing Section */}
           <motion.div
             data-section="pricing"
-            className={`pt-20 ${isMobileMenuOpen ? "blur-sm" : ""}`}
+            className={`${isMobileMenuOpen ? "blur-sm" : ""}`}
             style={{
               display: currentSection === 3 ? "block" : "none",
             }}
@@ -4194,7 +4197,7 @@ export default function Index() {
           {/* Contact Us Section */}
           <motion.div
             data-section="contact"
-            className={`pt-20 ${isMobileMenuOpen ? "blur-sm" : ""}`}
+            className={`${isMobileMenuOpen ? "blur-sm" : ""}`}
             style={{
               display: currentSection === 5 ? "block" : "none",
             }}
@@ -8333,7 +8336,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
             {/* Services Title - matching home style */}
             <div className="text-center mb-2">
               <h1
-                className={`font-poppins text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight relative mobile-lively-text ${
+                className={`font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative mobile-lively-text ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
@@ -8842,7 +8845,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Main Content Container */}
         <div className="relative min-h-screen py-4 sm:py-6 lg:py-8 section-container">
           <motion.div
-            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content pt-4 sm:pt-6 lg:pt-8 pb-8 sm:pb-12"
+            className="relative z-10 px-4 sm:px-6 lg:px-8 text-center max-w-7xl mx-auto section-content pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
@@ -8853,6 +8856,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 className={`font-poppins text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative mobile-lively-text ${
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
+                style={{ transform: "translateY(-50px)" }}
               >
                 {"Pricing".split("").map((letter, i) => (
                   <span
@@ -8881,7 +8885,10 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     transform: "scale(1.5)",
                   }}
                 />
-                <div className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10">
+                <div
+                  className="font-poppins text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold relative z-10"
+                  style={{ transform: "translateY(-50px)" }}
+                >
                   <span
                     className={`relative inline-block ${theme === "light" ? "text-gray-900" : "text-white"}`}
                     style={{
@@ -11047,7 +11054,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "�������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
@@ -11355,7 +11362,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Main Content Container */}
         <div className="relative min-h-screen py-2 sm:py-4 lg:py-6 section-container">
           <motion.div
-            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-1 pb-4"
+            className="relative z-10 px-3 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto section-content pt-20 sm:pt-24 lg:pt-28 pb-4"
             initial={{ opacity: 0, y: 80, filter: "blur(10px)" }}
             animate={isVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
