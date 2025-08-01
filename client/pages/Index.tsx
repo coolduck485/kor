@@ -7956,152 +7956,111 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
               </div>
             </div>
 
-            {/* Services Stack */}
-            <div className="flex justify-center mt-4 sm:mt-6 lg:mt-8 px-4">
-              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-6 w-full max-w-xl sm:max-w-2xl lg:max-w-4xl xl:max-w-5xl overflow-hidden">
-                {services.map((service, index) => (
-                  <motion.div
-                    key={index}
-                    className="group relative h-full"
-                    initial={{ y: 40, opacity: 0, scale: 0.9 }}
-                    animate={
-                      isVisible
-                        ? { y: 0, opacity: 1, scale: 1 }
-                        : { y: 40, opacity: 0, scale: 0.9 }
-                    }
-                    transition={{
-                      duration: 0.6,
-                      delay: 0.05 + index * 0.05,
-                      type: "spring",
-                      stiffness: 120,
-                    }}
-                    whileHover={{
-                      scale: 1.01,
-                      y: -3,
-                      transition: { duration: 0.2 },
+            {/* Services Container */}
+            {screenSize === "desktop" ? (
+              // Desktop: Slider with navigation
+              <div className="relative mt-6 lg:mt-8 px-4">
+                {/* Desktop Navigation */}
+                <div className="flex justify-center items-center mb-6">
+                  <div
+                    className="flex items-center gap-4 px-4 py-3 rounded-2xl backdrop-blur-lg border"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.03)",
+                      border: "1px solid rgba(255, 255, 255, 0.08)",
+                      boxShadow: "0 0 15px rgba(73, 146, 255, 0.1)",
                     }}
                   >
-                    {/* Main Card Container */}
-                    <div className="relative h-full min-h-[120px] sm:min-h-[130px] lg:min-h-[140px]">
-                      {/* Outer Glow Effect */}
-                      <div
-                        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl"
-                        style={{
-                          background: `linear-gradient(135deg, ${service.color.replace("from-", "").replace(" to-", ", ").replace("-500", "")})`,
-                          transform: "scale(1.05)",
-                        }}
+                    {/* Left Navigation */}
+                    <motion.button
+                      onClick={prevServicesPage}
+                      disabled={currentServicesPage === 0}
+                      className={`group relative p-1.5 rounded-lg transition-all duration-300 ${
+                        currentServicesPage === 0
+                          ? "opacity-30 cursor-not-allowed"
+                          : "hover:scale-110 cursor-pointer hover:bg-white/5"
+                      }`}
+                      whileHover={currentServicesPage === 0 ? {} : { scale: 1.1 }}
+                      whileTap={currentServicesPage === 0 ? {} : { scale: 0.9 }}
+                    >
+                      <ChevronLeft
+                        className={`w-4 h-4 transition-colors ${
+                          currentServicesPage === 0
+                            ? "text-gray-500"
+                            : `${theme === "light" ? "text-gray-700" : "text-white/80"} group-hover:text-blue-400`
+                        }`}
                       />
+                    </motion.button>
 
-                      {/* Card Body */}
-                      <div
-                        className="relative h-full rounded-3xl overflow-hidden transition-all duration-500 backdrop-blur-xl border border-white/10"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
-                          boxShadow: `
-                            0 25px 50px -12px rgba(0, 0, 0, 0.4),
-                            inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                            0 0 0 1px rgba(255, 255, 255, 0.05)
-                          `,
-                        }}
-                      >
-                        {/* Background Pattern */}
-                        <div className="absolute inset-0 opacity-[0.02]">
-                          <div
-                            className="absolute inset-0"
-                            style={{
-                              backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-                              backgroundSize: "20px 20px",
-                            }}
-                          />
-                        </div>
-
-                        {/* Animated Gradient Overlay */}
-                        <div
-                          className={`absolute inset-0 opacity-0 group-hover:opacity-30 transition-all duration-700 bg-gradient-to-br ${service.color}`}
+                    {/* Page Indicators */}
+                    <div className="flex items-center gap-2 px-2">
+                      {[...Array(totalServicesPages)].map((_, i) => (
+                        <motion.button
+                          key={i}
+                          onClick={() => setCurrentServicesPage(i)}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            i === currentServicesPage
+                              ? "bg-blue-400 scale-125"
+                              : "bg-white/30 hover:bg-white/50"
+                          }`}
+                          whileHover={{ scale: 1.2 }}
+                          whileTap={{ scale: 0.9 }}
                         />
-
-                        {/* Dynamic Light Effects */}
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                          {/* Top Light */}
-                          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-                          {/* Side Lights */}
-                          <div className="absolute top-8 left-0 w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
-                          <div className="absolute top-8 right-0 w-px h-16 bg-gradient-to-b from-white/30 to-transparent" />
-                        </div>
-
-                        {/* Content Container */}
-                        <div className="relative z-10 h-full flex flex-col p-2 sm:p-2.5 lg:p-3">
-                          {/* Icon Section */}
-                          <div className="flex justify-center mb-2">
-                            <motion.div
-                              className="relative"
-                              whileHover={{
-                                rotate: [0, -5, 5, 0],
-                                scale: 1.05,
-                              }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              {/* Icon Background */}
-                              <div
-                                className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center bg-gradient-to-br ${service.color} shadow-md`}
-                                style={{
-                                  boxShadow: `0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)`,
-                                }}
-                              >
-                                <service.icon className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white drop-shadow-md" />
-                              </div>
-
-                              {/* Icon Glow */}
-                              <div
-                                className={`absolute inset-0 rounded-lg bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-40 transition-opacity duration-300 blur-sm -z-10`}
-                              />
-                            </motion.div>
-                          </div>
-
-                          {/* Title */}
-                          <div className="text-center mb-2">
-                            <h3 className="text-sm sm:text-sm lg:text-base font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent leading-tight">
-                              {service.title}
-                            </h3>
-                          </div>
-
-                          {/* Description */}
-                          <div className="flex-1 flex items-center">
-                            <p className="text-gray-300 text-xs sm:text-xs lg:text-xs leading-snug text-center opacity-90 group-hover:opacity-100 transition-opacity duration-300">
-                              {service.description}
-                            </p>
-                          </div>
-
-                          {/* Bottom Accent */}
-                          <div className="mt-2 flex justify-center">
-                            <div
-                              className={`w-10 h-0.5 rounded-full bg-gradient-to-r ${service.color} opacity-60 group-hover:opacity-100 group-hover:w-12 transition-all duration-300`}
-                            />
-                          </div>
-                        </div>
-
-                        {/* Interactive Particles */}
-                        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                          <div
-                            className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full animate-ping"
-                            style={{ animationDelay: "0s" }}
-                          />
-                          <div
-                            className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-400 rounded-full animate-ping"
-                            style={{ animationDelay: "0.5s" }}
-                          />
-                          <div
-                            className="absolute top-1/2 left-3/4 w-1 h-1 bg-cyan-400 rounded-full animate-ping"
-                            style={{ animationDelay: "1s" }}
-                          />
-                        </div>
-                      </div>
+                      ))}
                     </div>
-                  </motion.div>
-                ))}
+
+                    {/* Right Navigation */}
+                    <motion.button
+                      onClick={nextServicesPage}
+                      disabled={currentServicesPage === totalServicesPages - 1}
+                      className={`group relative p-1.5 rounded-lg transition-all duration-300 ${
+                        currentServicesPage === totalServicesPages - 1
+                          ? "opacity-30 cursor-not-allowed"
+                          : "hover:scale-110 cursor-pointer hover:bg-white/5"
+                      }`}
+                      whileHover={currentServicesPage === totalServicesPages - 1 ? {} : { scale: 1.1 }}
+                      whileTap={currentServicesPage === totalServicesPages - 1 ? {} : { scale: 0.9 }}
+                    >
+                      <ChevronRight
+                        className={`w-4 h-4 transition-colors ${
+                          currentServicesPage === totalServicesPages - 1
+                            ? "text-gray-500"
+                            : `${theme === "light" ? "text-gray-700" : "text-white/80"} group-hover:text-blue-400`
+                        }`}
+                      />
+                    </motion.button>
+                  </div>
+                </div>
+
+                {/* Desktop Services Grid */}
+                <div className="flex justify-center">
+                  <div className="w-full max-w-4xl xl:max-w-5xl">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={currentServicesPage}
+                        className="grid grid-cols-3 grid-rows-2 gap-6"
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -50 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {getCurrentPageServices().map((service, index) => (
+                          <ServiceCard key={`${currentServicesPage}-${index}`} service={service} index={index} isVisible={isVisible} />
+                        ))}
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+                </div>
               </div>
-            </div>
+            ) : (
+              // Mobile/Tablet: Stacked layout
+              <div className="flex justify-center mt-4 sm:mt-6 px-4">
+                <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-xl sm:max-w-2xl overflow-hidden">
+                  {getCurrentPageServices().map((service, index) => (
+                    <ServiceCard key={index} service={service} index={index} isVisible={isVisible} />
+                  ))}
+                </div>
+              </div>
+            )}
           </motion.div>
         </div>
       </motion.div>
