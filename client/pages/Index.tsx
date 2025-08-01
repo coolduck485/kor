@@ -5680,10 +5680,6 @@ const ORB_BUTTON_CONFIG = {
       animationDelay: 0.3,
       size: "medium", // Consistent sizing
       accent: "blue", // Color accent - unified to blue
-      onClick: () => {
-        console.log("About us clicked");
-        scrollToSection(1);
-      },
 
       // Custom positioning for About us button
       xOffset: 0, // Centered positioning
