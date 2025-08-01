@@ -869,10 +869,10 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █���╗ █████���╗ ██����������██╗
+                  {`��█╗  █���╗ █████���╗ ██��������██╗
 ██║ ����█╔����██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
-█��╔���██╗ ██║   ██║���█╔══█��╗
+█��╔���██╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ������������═══╝ ╚���╝  ��═╝`}
                 </pre>
@@ -4208,9 +4208,9 @@ export default function Index() {
                 WebkitMaskComposite: "xor",
               }}
             />
-            {/* Animated Sparkle Icon */}
+            {/* Logo Placeholder */}
             <svg
-              className="w-4 h-4 flex-shrink-0 animate-sparkle"
+              className="w-4 h-4 flex-shrink-0"
               viewBox="0 0 24 25"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
