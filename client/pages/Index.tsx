@@ -378,6 +378,28 @@ export default function Index() {
     setBadgeMousePosition({ x: 0, y: 0, isNear: false });
   };
 
+  const navbarRef = useRef<HTMLDivElement>(null);
+
+  const handleNavbarMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!navbarRef.current) return;
+
+    const rect = navbarRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const mouseX = e.clientX - centerX;
+    const mouseY = e.clientY - centerY;
+
+    setNavbarMousePosition({
+      x: mouseX,
+      y: mouseY,
+      isNear: true,
+    });
+  };
+
+  const handleNavbarMouseLeave = () => {
+    setNavbarMousePosition({ x: 0, y: 0, isNear: false });
+  };
+
   // ========================================
   // SHINE ANIMATION CONFIGURATION
   // ========================================
@@ -878,7 +900,7 @@ export default function Index() {
 ██║ ����█╔����██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
 █��╔���██╗ ██║   ██║██╔══█��╗
-█��║  ██╗╚█��█�����█╔╝█��║  ██║
+██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ������������═══╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -1031,7 +1053,7 @@ export default function Index() {
                 <div className="loading-indicators">
                   <span>█��▒��</span>
                   <span className="text-amber-400">PROCESSING...</span>
-                  <span>░▒�����█</span>
+                  <span>░▒���█</span>
                 </div>
               </motion.div>
 
