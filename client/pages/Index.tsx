@@ -8202,7 +8202,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
 
           {/* Enhanced Blue Bubbles */}
           <div className="absolute inset-0">
-            {[...Array(screenSize === "mobile" ? 12 : screenSize === "tablet" ? 18 : 30)].map((_, i) => (
+            {[...Array(screenSize === "mobile" ? 8 : screenSize === "tablet" ? 12 : 18)].map((_, i) => (
               <motion.div
                 key={`bubble-${i}`}
                 className="absolute rounded-full"
