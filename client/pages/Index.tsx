@@ -788,7 +788,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ��•••
+                      ••••
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -8405,7 +8405,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
           {/* Swimming Fish Varieties */}
           <div className="absolute inset-0">
             {/* Clownfish */}
-            {[...Array(screenSize === "mobile" ? 2 : screenSize === "tablet" ? 3 : 4)].map((_, i) => (
+            {[...Array(screenSize === "mobile" ? 1 : screenSize === "tablet" ? 2 : 3)].map((_, i) => (
               <motion.div
                 key={`clownfish-${i}`}
                 className="absolute"
