@@ -899,7 +899,7 @@ export default function Index() {
                   {`��█╗  █���╗ █████���╗ ██��������██╗
 ██║ ����█╔����██╔═══���█╗██╔══█���╗
 █████╔╝ ██║   ██║███���██╔��
-█��╔���██╗ ██║   ██║██╔══█��╗
+█��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█��█�����█╔╝█��║  ██║
 ����������╝  ╚═╝ ������������═══╝ ╚���╝  ��═╝`}
                 </pre>
@@ -4252,7 +4252,7 @@ export default function Index() {
             />
             {/* Logo Placeholder */}
             <svg
-              className="w-4 h-4 flex-shrink-0"
+              className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0"
               viewBox="0 0 24 25"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
