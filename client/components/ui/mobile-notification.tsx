@@ -88,10 +88,15 @@ export const MobileNotificationProvider: React.FC<{
 };
 
 const MobileNotificationContainer: React.FC = () => {
-  const { notifications, removeNotification } = useMobileNotifications();
+  const { notifications, removeNotification, isHelpModalOpen } = useMobileNotifications();
   const deviceType = useDeviceType();
 
   const isMobile = deviceType === "mobile";
+
+  // Hide notifications on mobile when help modal is open
+  if (isMobile && isHelpModalOpen) {
+    return null;
+  }
 
   return (
     <div
