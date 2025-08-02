@@ -905,7 +905,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
-�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═��`}
+�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -979,7 +979,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����█████████���██����███████��█ 50%
+                      RAM: ����█�����█████████����██����███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -7573,267 +7573,405 @@ interface WhatWeDoSectionProps {
 
 const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
   ({ theme, isVisible }, ref) => {
-    const [screenSize, setScreenSize] = useState<
-      "mobile" | "tablet" | "desktop"
-    >("desktop");
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+    const sectionRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-      const updateScreenSize = () => {
-        const width = window.innerWidth;
-        if (width <= 640) {
-          setScreenSize("mobile");
-        } else if (width <= 991) {
-          setScreenSize("tablet");
-        } else {
-          setScreenSize("desktop");
+      const handleMouseMove = (e: MouseEvent) => {
+        if (sectionRef.current) {
+          const rect = sectionRef.current.getBoundingClientRect();
+          setMousePosition({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top,
+          });
         }
       };
 
-      updateScreenSize();
-      window.addEventListener("resize", updateScreenSize);
-      return () => window.removeEventListener("resize", updateScreenSize);
+      if (sectionRef.current) {
+        sectionRef.current.addEventListener("mousemove", handleMouseMove);
+        return () => {
+          if (sectionRef.current) {
+            sectionRef.current.removeEventListener("mousemove", handleMouseMove);
+          }
+        };
+      }
     }, []);
 
     const processSteps = [
       {
         number: "01",
-        title: "Discovery & Analysis",
-        description:
-          "We start by understanding your business goals, target audience, and technical requirements through comprehensive consultation.",
-        icon: "🔍",
-        color: "from-blue-500 to-cyan-500",
+        title: "Discovery & Research",
+        description: "Deep dive into your vision, goals, and market dynamics to create a strategic foundation for success.",
+        icon: Code,
+        category: "ANALYZE",
+        features: ["Market Research", "User Journey Mapping", "Technical Architecture", "Competitive Analysis"],
+        metrics: ["100%", "Data-Driven", "Insights"],
       },
       {
         number: "02",
-        title: "Design & Strategy",
-        description:
-          "Our team creates stunning, user-focused designs while developing a strategic roadmap for your digital solution.",
-        icon: "🎨",
-        color: "from-cyan-500 to-blue-500",
+        title: "Design & Innovation",
+        description: "Craft stunning, user-centric designs that blend aesthetic excellence with cutting-edge functionality.",
+        icon: Palette,
+        category: "CREATE",
+        features: ["UI/UX Design", "Brand Integration", "Prototype Development", "User Testing"],
+        metrics: ["99%", "User Satisfaction", "Rate"],
       },
       {
         number: "03",
-        title: "Development & Build",
-        description:
-          "We bring your vision to life using cutting-edge technologies and best practices, ensuring scalability and performance.",
-        icon: "⚡",
-        color: "from-blue-600 to-cyan-600",
+        title: "Development & Engineering",
+        description: "Transform designs into powerful, scalable solutions using the latest technologies and best practices.",
+        icon: Zap,
+        category: "BUILD",
+        features: ["Full-Stack Development", "Cloud Architecture", "Performance Optimization", "Security Implementation"],
+        metrics: ["<0.5s", "Load Time", "Average"],
       },
       {
         number: "04",
-        title: "Launch & Support",
-        description:
-          "We deploy your solution and provide ongoing support, maintenance, and optimization to ensure continued success.",
-        icon: "🚀",
-        color: "from-cyan-600 to-blue-600",
+        title: "Launch & Scale",
+        description: "Deploy with confidence and provide ongoing optimization to ensure your solution grows with your business.",
+        icon: Globe,
+        category: "DEPLOY",
+        features: ["DevOps & CI/CD", "Performance Monitoring", "24/7 Support", "Continuous Updates"],
+        metrics: ["99.9%", "Uptime", "Guarantee"],
       },
     ];
 
     return (
       <motion.div
-        ref={ref}
-        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
-          theme === "light"
-            ? "bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-100"
-            : "bg-gradient-to-br from-gray-900 via-blue-900 to-cyan-900"
-        }`}
+        ref={(el) => {
+          if (typeof ref === 'function') ref(el);
+          else if (ref) ref.current = el;
+          sectionRef.current = el;
+        }}
+        className="relative min-h-screen overflow-hidden"
+        style={{
+          background: theme === "light"
+            ? "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%)"
+            : "linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%)",
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        {/* Animated Background Elements */}
+        {/* Dynamic Aurora Background */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Floating geometric shapes */}
-          {[...Array(12)].map((_, i) => (
+          {/* Aurora Waves */}
+          <motion.div
+            className="absolute inset-0"
+            animate={{
+              background: [
+                `radial-gradient(ellipse 1200px 800px at ${mousePosition.x}px ${mousePosition.y}px, rgba(73, 146, 255, 0.15) 0%, transparent 60%)`,
+                `radial-gradient(ellipse 1000px 600px at ${mousePosition.x + 100}px ${mousePosition.y + 50}px, rgba(63, 186, 255, 0.12) 0%, transparent 50%)`,
+                `radial-gradient(ellipse 1200px 800px at ${mousePosition.x}px ${mousePosition.y}px, rgba(73, 146, 255, 0.15) 0%, transparent 60%)`,
+              ],
+            }}
+            transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
+          />
+
+          {/* Floating Particles */}
+          {[...Array(20)].map((_, i) => (
             <motion.div
-              key={`shape-${i}`}
-              className={`absolute rounded-full opacity-30 ${
-                theme === "light"
-                  ? "bg-gradient-to-r from-blue-300 to-cyan-300"
-                  : "bg-gradient-to-r from-blue-500 to-cyan-500"
-              }`}
+              key={`particle-${i}`}
+              className="absolute w-1 h-1 bg-blue-400 rounded-full"
               style={{
-                left: `${10 + ((i * 15) % 80)}%`,
-                top: `${10 + ((i * 25) % 80)}%`,
-                width: `${20 + (i % 4) * 10}px`,
-                height: `${20 + (i % 4) * 10}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [0, -30, 0],
-                x: [0, 20, 0],
-                rotate: [0, 180, 360],
-                scale: [1, 1.2, 1],
+                y: [0, -100, 0],
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0],
               }}
               transition={{
-                duration: 8 + (i % 3),
+                duration: 3 + Math.random() * 2,
                 repeat: Infinity,
+                delay: Math.random() * 2,
                 ease: "easeInOut",
-                delay: i * 0.5,
               }}
             />
           ))}
 
-          {/* Glowing orbs */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={`orb-${i}`}
-              className="absolute rounded-full blur-xl opacity-20"
+          {/* Geometric Grid */}
+          <div className="absolute inset-0 opacity-10">
+            <div
+              className="w-full h-full"
               style={{
-                left: `${20 + ((i * 20) % 60)}%`,
-                top: `${20 + ((i * 30) % 60)}%`,
-                width: `${100 + (i % 3) * 50}px`,
-                height: `${100 + (i % 3) * 50}px`,
-                background: `radial-gradient(circle, ${
-                  theme === "light"
-                    ? "rgba(73, 146, 255, 0.6)"
-                    : "rgba(73, 146, 255, 0.8)"
-                } 0%, transparent 70%)`,
-              }}
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.2, 0.4, 0.2],
-              }}
-              transition={{
-                duration: 6 + (i % 2),
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 1.2,
+                backgroundImage: `
+                  linear-gradient(rgba(73, 146, 255, 0.3) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(73, 146, 255, 0.3) 1px, transparent 1px)
+                `,
+                backgroundSize: '50px 50px',
               }}
             />
-          ))}
+          </div>
         </div>
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          {/* Section Header */}
+        <div className="relative z-10 container mx-auto px-6 py-20">
+          {/* Header Section */}
           <motion.div
-            className="text-center mb-16 lg:mb-20"
+            className="text-center mb-20"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 1, delay: 0.2 }}
           >
+            <motion.div
+              className="inline-block mb-6"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <span className={`px-4 py-2 rounded-full text-sm font-medium backdrop-blur-md border ${
+                theme === "light"
+                  ? "bg-white/20 text-blue-700 border-blue-200/30"
+                  : "bg-white/10 text-blue-300 border-blue-400/20"
+              }`}>
+                Our Process
+              </span>
+            </motion.div>
+
             <motion.h2
-              className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 ${
+              className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-8 ${
                 theme === "light" ? "text-gray-900" : "text-white"
               }`}
               style={{
-                background:
-                  theme === "light"
-                    ? "linear-gradient(135deg, #4992FF 0%, #3FBAFF 100%)"
-                    : "linear-gradient(135deg, #3FBAFF 0%, #4992FF 100%)",
+                background: "linear-gradient(135deg, #4992FF 0%, #3FBAFF 50%, #60A5FA 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
+                textShadow: theme === "dark" ? "0 0 20px rgba(73, 146, 255, 0.3)" : "none",
               }}
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             >
               What We Do
             </motion.h2>
+
             <motion.p
-              className={`text-lg sm:text-xl lg:text-2xl ${
+              className={`text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed ${
                 theme === "light" ? "text-gray-600" : "text-gray-300"
-              } max-w-4xl mx-auto leading-relaxed`}
+              }`}
               initial={{ opacity: 0 }}
               animate={{ opacity: isVisible ? 1 : 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 1, delay: 0.6 }}
             >
-              We transform your ideas into powerful digital solutions through
-              our proven process, combining creativity, technology, and
-              strategic thinking to deliver exceptional results.
+              We transform ambitious ideas into revolutionary digital experiences through
+              our{" "}
+              <span className="text-blue-400 font-semibold">cutting-edge methodology</span>{" "}
+              and relentless pursuit of excellence.
             </motion.p>
           </motion.div>
 
-          {/* Process Steps Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-            {processSteps.map((step, index) => (
-              <motion.div
-                key={step.number}
-                className={`relative p-6 lg:p-8 rounded-2xl backdrop-blur-sm border ${
-                  theme === "light"
-                    ? "bg-white/80 border-white/20 shadow-lg"
-                    : "bg-white/10 border-white/10 shadow-2xl"
-                }`}
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                animate={{
-                  opacity: isVisible ? 1 : 0,
-                  y: isVisible ? 0 : 50,
-                  scale: isVisible ? 1 : 0.9,
-                }}
-                transition={{ duration: 0.6, delay: 0.6 + index * 0.2 }}
-                whileHover={{
-                  scale: 1.05,
-                  y: -10,
-                  transition: { duration: 0.3 },
-                }}
-              >
-                {/* Step Number */}
-                <motion.div
-                  className={`inline-flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-lg mb-4 bg-gradient-to-r ${step.color}`}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  {step.number}
-                </motion.div>
+          {/* Process Timeline */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
+            {processSteps.map((step, index) => {
+              const IconComponent = step.icon;
+              const isEven = index % 2 === 0;
 
-                {/* Icon */}
+              return (
                 <motion.div
-                  className="text-4xl mb-4"
+                  key={step.number}
+                  className="relative"
+                  initial={{ opacity: 0, x: isEven ? -50 : 50, y: 50 }}
                   animate={{
-                    rotate: [0, 10, -10, 0],
-                    scale: [1, 1.1, 1],
+                    opacity: isVisible ? 1 : 0,
+                    x: isVisible ? 0 : (isEven ? -50 : 50),
+                    y: isVisible ? 0 : 50
                   }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: index * 0.5,
-                  }}
+                  transition={{ duration: 0.8, delay: 0.8 + index * 0.2 }}
+                  onMouseEnter={() => setHoveredCard(index)}
+                  onMouseLeave={() => setHoveredCard(null)}
                 >
-                  {step.icon}
+                  {/* Glassmorphism Card */}
+                  <motion.div
+                    className={`relative p-8 rounded-3xl backdrop-blur-xl border ${
+                      theme === "light"
+                        ? "bg-white/40 border-white/20 shadow-xl"
+                        : "bg-white/5 border-white/10 shadow-2xl"
+                    } overflow-hidden group`}
+                    whileHover={{
+                      scale: 1.02,
+                      y: -8,
+                      transition: { duration: 0.3, ease: "easeOut" }
+                    }}
+                    style={{
+                      boxShadow: hoveredCard === index
+                        ? `0 25px 50px -12px rgba(73, 146, 255, 0.25), 0 0 0 1px rgba(73, 146, 255, 0.1)`
+                        : theme === "light"
+                        ? "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                        : "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
+                    }}
+                  >
+                    {/* Animated Background Glow */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100"
+                      initial={false}
+                      transition={{ duration: 0.5 }}
+                    />
+
+                    {/* Step Header */}
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="flex items-center space-x-4">
+                        {/* Glowing Number Badge */}
+                        <motion.div
+                          className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-lg"
+                          whileHover={{ rotate: 5, scale: 1.1 }}
+                          transition={{ duration: 0.3 }}
+                          style={{
+                            boxShadow: "0 10px 30px rgba(73, 146, 255, 0.4)",
+                          }}
+                        >
+                          {step.number}
+                          <motion.div
+                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-20"
+                            transition={{ duration: 0.3 }}
+                          />
+                        </motion.div>
+
+                        {/* Category Badge */}
+                        <div className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          theme === "light"
+                            ? "bg-blue-100 text-blue-700"
+                            : "bg-blue-900/30 text-blue-300"
+                        }`}>
+                          {step.category}
+                        </div>
+                      </div>
+
+                      {/* Animated Icon */}
+                      <motion.div
+                        className={`p-3 rounded-xl ${
+                          theme === "light"
+                            ? "bg-blue-50 text-blue-600"
+                            : "bg-blue-900/20 text-blue-400"
+                        }`}
+                        animate={{
+                          rotate: [0, 5, -5, 0],
+                          scale: [1, 1.05, 1],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: index * 0.5
+                        }}
+                      >
+                        <IconComponent size={24} />
+                      </motion.div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="space-y-4">
+                      <h3 className={`text-2xl font-bold ${
+                        theme === "light" ? "text-gray-900" : "text-white"
+                      }`}>
+                        {step.title}
+                      </h3>
+
+                      <p className={`text-base leading-relaxed ${
+                        theme === "light" ? "text-gray-600" : "text-gray-300"
+                      }`}>
+                        {step.description}
+                      </p>
+
+                      {/* Features List */}
+                      <div className="grid grid-cols-2 gap-2 mt-6">
+                        {step.features.map((feature, featureIndex) => (
+                          <motion.div
+                            key={featureIndex}
+                            className={`flex items-center space-x-2 p-2 rounded-lg ${
+                              theme === "light"
+                                ? "bg-blue-50/50 text-blue-700"
+                                : "bg-blue-900/10 text-blue-300"
+                            }`}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -10 }}
+                            transition={{ delay: 1.2 + index * 0.2 + featureIndex * 0.1 }}
+                          >
+                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full" />
+                            <span className="text-sm font-medium">{feature}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      {/* Metrics */}
+                      <motion.div
+                        className={`mt-6 p-4 rounded-xl border ${
+                          theme === "light"
+                            ? "bg-gradient-to-r from-blue-50 to-cyan-50 border-blue-100"
+                            : "bg-gradient-to-r from-blue-900/20 to-cyan-900/20 border-blue-800/30"
+                        }`}
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="text-center">
+                          <div className={`text-2xl font-bold ${
+                            theme === "light" ? "text-blue-600" : "text-blue-400"
+                          }`}>
+                            {step.metrics[0]}
+                          </div>
+                          <div className={`text-sm ${
+                            theme === "light" ? "text-blue-600/70" : "text-blue-400/70"
+                          }`}>
+                            {step.metrics[1]} {step.metrics[2]}
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
+
+                    {/* Hover Border Glow */}
+                    <motion.div
+                      className="absolute inset-0 rounded-3xl border-2 border-blue-400/0 group-hover:border-blue-400/20 pointer-events-none"
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.div>
                 </motion.div>
-
-                {/* Content */}
-                <h3
-                  className={`text-xl lg:text-2xl font-bold mb-3 ${
-                    theme === "light" ? "text-gray-900" : "text-white"
-                  }`}
-                >
-                  {step.title}
-                </h3>
-                <p
-                  className={`text-sm lg:text-base leading-relaxed ${
-                    theme === "light" ? "text-gray-600" : "text-gray-300"
-                  }`}
-                >
-                  {step.description}
-                </p>
-
-                {/* Hover Effect Overlay */}
-                <motion.div
-                  className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${step.color} opacity-0`}
-                  whileHover={{ opacity: 0.1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
 
-          {/* Call to Action */}
+          {/* CTA Section */}
           <motion.div
-            className="text-center mt-16 lg:mt-20"
+            className="text-center mt-20"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
+            transition={{ duration: 1, delay: 2 }}
           >
             <motion.button
-              className={`px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 ${
+              className={`group relative px-10 py-5 rounded-full font-semibold text-lg overflow-hidden ${
                 theme === "light"
-                  ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-700 hover:to-cyan-700"
-                  : "bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600"
-              } shadow-lg hover:shadow-xl`}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
+                  ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white"
+                  : "bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
+              }`}
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.98 }}
+              style={{
+                boxShadow: "0 20px 40px rgba(73, 146, 255, 0.3)",
+              }}
             >
-              Start Your Project Today
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-100"
+                transition={{ duration: 0.3 }}
+              />
+              <span className="relative z-10">Transform Your Vision Today</span>
+              <motion.div
+                className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100"
+                initial={false}
+                transition={{ duration: 0.3 }}
+              />
             </motion.button>
+
+            <motion.p
+              className={`mt-4 text-sm ${
+                theme === "light" ? "text-gray-500" : "text-gray-400"
+              }`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isVisible ? 1 : 0 }}
+              transition={{ delay: 2.2 }}
+            >
+              Ready to revolutionize your digital presence? Let's build something extraordinary.
+            </motion.p>
           </motion.div>
         </div>
       </motion.div>
