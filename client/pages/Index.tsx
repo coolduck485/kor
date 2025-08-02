@@ -900,7 +900,7 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █�������╗ █████����� ██����������██╗
-██║ ����█╔����█��╔═══���█╗██���══█���╗
+██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
@@ -4139,7 +4139,7 @@ export default function Index() {
           {/* About Us Section */}
           <motion.div
             data-section="about"
-            className={isMobileMenuOpen ? "blur-sm" : ""}
+            className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
               display: currentSection === 1 ? "block" : "none",
             }}
@@ -4169,7 +4169,7 @@ export default function Index() {
           {/* Pricing Section */}
           <motion.div
             data-section="pricing"
-            className={`${isMobileMenuOpen ? "blur-sm" : ""}`}
+            className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
               display: currentSection === 3 ? "block" : "none",
             }}
