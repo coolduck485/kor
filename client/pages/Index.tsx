@@ -901,7 +901,7 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █�������╗ █████����� ██����������██╗
-██║ �����█╔����█��╔═══���█╗██���══█���╗
+██��� �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
@@ -2183,7 +2183,7 @@ export default function Index() {
                 boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
               }}
             >
-              Click to navigate sections →
+              Click to navigate sections ��
               <button
                 onClick={() => setShowNavigationHints(false)}
                 className="ml-2 text-xs opacity-60 hover:opacity-100"
@@ -8139,39 +8139,39 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                     {/* Step Header */}
                     <div className="flex items-start justify-between mb-6">
                       <div className="flex items-center space-x-4">
-                        {/* Holographic Tech Badge */}
+                        {/* Cosmic Stellar Badge */}
                         <motion.div
-                          className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-green-500 to-cyan-500 text-white font-bold text-lg font-mono"
+                          className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-lg"
                           whileHover={{ rotate: 5, scale: 1.1 }}
                           transition={{ duration: 0.3 }}
                           style={{
-                            boxShadow: "0 10px 30px rgba(34, 197, 94, 0.4), 0 0 20px rgba(6, 182, 212, 0.3)",
-                            border: "1px solid rgba(20, 184, 166, 0.3)",
+                            boxShadow: "0 10px 30px rgba(147, 51, 234, 0.4), 0 0 20px rgba(59, 130, 246, 0.3)",
+                            border: "1px solid rgba(236, 72, 153, 0.3)",
                           }}
                         >
                           {step.number}
                           <motion.div
-                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-400 to-teal-400 opacity-0 group-hover:opacity-30"
+                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-30"
                             transition={{ duration: 0.3 }}
                           />
-                          {/* Holographic Glitch Effect */}
+                          {/* Stellar Shimmer Effect */}
                           <motion.div
-                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-300 to-green-300 opacity-0"
-                            animate={{
-                              opacity: [0, 0.2, 0],
-                              x: [0, 2, -2, 0],
+                            className="absolute inset-0 rounded-2xl"
+                            style={{
+                              background: "conic-gradient(from 0deg, transparent 0%, rgba(147, 51, 234, 0.3) 20%, transparent 40%, rgba(59, 130, 246, 0.2) 60%, transparent 80%, rgba(236, 72, 153, 0.25) 100%)",
                             }}
+                            animate={{ rotate: [0, 360] }}
                             transition={{
-                              duration: 2,
+                              duration: 8,
                               repeat: Infinity,
-                              delay: index * 0.5,
+                              ease: "linear",
                             }}
                           />
                         </motion.div>
 
-                        {/* Category Badge */}
-                        <div className="px-3 py-1 rounded-full text-xs font-medium bg-blue-900/30 text-blue-300">
-                          {step.category}
+                        {/* Cosmic Category Badge */}
+                        <div className="px-3 py-1 rounded-full text-xs font-medium bg-purple-900/30 text-purple-300 border border-purple-500/20">
+                          ✦ {step.category} ✦
                         </div>
                       </div>
 
