@@ -27,9 +27,9 @@ button[class*="fixed"][class*="left-"][class*="bottom-"] {
   pointer-events: auto !important;
 }
 
-/* Force help button to stay visible */
+/* Force help button to move with scroll */
 div[class*="fixed right-"][class*="bottom-"] {
-  position: fixed !important;
+  position: absolute !important;
   z-index: 99999 !important;
   pointer-events: auto !important;
 }
