@@ -4085,13 +4085,13 @@ export default function Index() {
             data-section="pricing"
             className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
-              display: currentSection === 3 ? "block" : "none",
+              display: currentSection === 4 ? "block" : "none",
             }}
           >
             <PricingSection
-              ref={(el) => (sectionsRef.current[3] = el!)}
+              ref={(el) => (sectionsRef.current[4] = el!)}
               theme={theme}
-              isVisible={currentSection === 3}
+              isVisible={currentSection === 4}
             />
           </motion.div>
 
@@ -4100,13 +4100,13 @@ export default function Index() {
             data-section="portfolio"
             className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
-              display: currentSection === 4 ? "block" : "none",
+              display: currentSection === 5 ? "block" : "none",
             }}
           >
             <PortfolioSection
-              ref={(el) => (sectionsRef.current[4] = el!)}
+              ref={(el) => (sectionsRef.current[5] = el!)}
               theme={theme}
-              isVisible={currentSection === 4}
+              isVisible={currentSection === 5}
             />
           </motion.div>
 
@@ -4115,13 +4115,13 @@ export default function Index() {
             data-section="contact"
             className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
-              display: currentSection === 5 ? "block" : "none",
+              display: currentSection === 6 ? "block" : "none",
             }}
           >
             <ContactUsSection
-              ref={(el) => (sectionsRef.current[5] = el!)}
+              ref={(el) => (sectionsRef.current[6] = el!)}
               theme={theme}
-              isVisible={currentSection === 5}
+              isVisible={currentSection === 6}
             />
           </motion.div>
         </div>
