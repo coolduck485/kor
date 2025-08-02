@@ -94,81 +94,88 @@ body > div {
   }
 }
 
-/* Digital Laboratory Theme Animations */
-@keyframes tech-hologram-rotate {
-  0% { transform: rotate(0deg) scale(1); }
-  25% { transform: rotate(90deg) scale(1.1); }
-  50% { transform: rotate(180deg) scale(1); }
-  75% { transform: rotate(270deg) scale(0.9); }
-  100% { transform: rotate(360deg) scale(1); }
-}
-
-@keyframes tech-pulse-scan {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.5;
-    filter: blur(6px) hue-rotate(0deg);
-  }
-  25% {
-    transform: scale(1.2) rotate(45deg);
-    opacity: 0.8;
-    filter: blur(4px) hue-rotate(15deg);
-  }
-  50% {
-    transform: scale(1.4) rotate(90deg);
-    opacity: 1;
-    filter: blur(2px) hue-rotate(30deg);
-  }
-  75% {
-    transform: scale(1.2) rotate(135deg);
-    opacity: 0.8;
-    filter: blur(4px) hue-rotate(15deg);
-  }
-}
-
-@keyframes tech-lab-morph {
+/* Cosmic Stellar Theme Animations */
+@keyframes cosmic-nebula-drift {
   0% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    transform: rotate(0deg);
+    transform: rotate(0deg) scale(1) skewY(0deg);
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
   }
   25% {
-    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-    transform: rotate(15deg);
+    transform: rotate(5deg) scale(1.1) skewY(2deg);
+    border-radius: 70% 30% 60% 40% / 40% 70% 30% 60%;
   }
   50% {
-    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-    transform: rotate(30deg);
+    transform: rotate(10deg) scale(1.05) skewY(-1deg);
+    border-radius: 50% 50% 80% 20% / 60% 40% 50% 50%;
   }
   75% {
+    transform: rotate(15deg) scale(0.95) skewY(1deg);
+    border-radius: 40% 60% 50% 50% / 70% 30% 60% 40%;
+  }
+  100% {
+    transform: rotate(20deg) scale(1) skewY(0deg);
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  }
+}
+
+@keyframes cosmic-nebula-drift-2 {
+  0% {
+    transform: rotate(20deg) scale(1) skewX(0deg);
+    border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
+  }
+  33% {
+    transform: rotate(25deg) scale(1.08) skewX(-2deg);
+    border-radius: 30% 70% 40% 60% / 50% 50% 80% 20%;
+  }
+  66% {
+    transform: rotate(30deg) scale(0.92) skewX(3deg);
+    border-radius: 60% 40% 70% 30% / 40% 60% 50% 50%;
+  }
+  100% {
+    transform: rotate(35deg) scale(1) skewX(0deg);
+    border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
+  }
+}
+
+@keyframes cosmic-nebula-drift-3 {
+  0% {
+    transform: rotate(-10deg) scale(1) skewY(1deg);
     border-radius: 70% 30% 60% 40% / 40% 70% 60% 30%;
-    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-5deg) scale(1.12) skewY(-1deg);
+    border-radius: 50% 50% 50% 50% / 70% 30% 40% 60%;
+  }
+  80% {
+    transform: rotate(0deg) scale(0.88) skewY(2deg);
+    border-radius: 30% 70% 40% 60% / 60% 40% 70% 30%;
   }
   100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    transform: rotate(0deg);
+    transform: rotate(5deg) scale(1) skewY(1deg);
+    border-radius: 70% 30% 60% 40% / 40% 70% 60% 30%;
   }
 }
 
-@keyframes circuit-flow {
-  0% {
-    background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px;
-    opacity: 0.1;
+@keyframes stellar-twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+    filter: blur(0px);
   }
   25% {
-    background-position: 20px 20px, -20px 20px, 10px 10px, -10px 10px;
-    opacity: 0.15;
+    opacity: 0.8;
+    transform: scale(1.2);
+    filter: blur(0.5px);
   }
   50% {
-    background-position: 40px 40px, -40px 40px, 20px 20px, -20px 20px;
-    opacity: 0.2;
+    opacity: 1;
+    transform: scale(1.5);
+    filter: blur(1px);
   }
   75% {
-    background-position: 60px 60px, -60px 60px, 30px 30px, -30px 30px;
-    opacity: 0.15;
-  }
-  100% {
-    background-position: 80px 80px, -80px 80px, 40px 40px, -40px 40px;
-    opacity: 0.1;
+    opacity: 0.6;
+    transform: scale(1.1);
+    filter: blur(0.5px);
   }
 
   /* Mobile notification animations */
