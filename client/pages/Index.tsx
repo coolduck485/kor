@@ -10734,7 +10734,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       {"Our Featured Work".split("").map((letter, i) => (
                         <span
                           key={i}
-                          className="animate-letter-float"
+                          className="inline-block"
                           style={{ animationDelay: `${i * 0.1}s` }}
                         >
                           {letter === " " ? "\u00A0" : letter}
