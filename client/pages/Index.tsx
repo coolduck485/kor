@@ -899,12 +899,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █████���╗ ██��������██╗
-██║ ����█╔���██╔═══���█╗██���══█���╗
+                  {`��█╗  █�������╗ █████����� ██����������██╗
+██║ ����█╔���█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
-█��╔���██╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█��█�����█╔╝█��║  ██║
-����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
+█��╔�����█╗ ██║   ██║██╔══█��╗
+██║  ██╗╚█���█�����█╔╝�����║  ██║
+�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -996,7 +996,7 @@ export default function Index() {
                 transition={{ delay: 2, duration: 1 }}
               >
                 <button
-                  className="pixel-button"
+                  className="pixel-button button-120hz performance-optimized"
                   onClick={() => setShowTerminal(true)}
                 >
                   TERMINAL
@@ -1011,19 +1011,19 @@ export default function Index() {
                 transition={{ delay: 2.5, duration: 1 }}
               >
                 <button
-                  className="pixel-button social-button"
+                  className="pixel-button social-button button-120hz performance-optimized"
                   onClick={() => protectedOpenLink("https://instagram.com")}
                 >
                   INSTAGRAM
                 </button>
                 <button
-                  className="pixel-button social-button"
+                  className="pixel-button social-button button-120hz performance-optimized"
                   onClick={() => protectedOpenLink("https://discord.com")}
                 >
                   DISCORD
                 </button>
                 <button
-                  className="pixel-button social-button"
+                  className="pixel-button social-button button-120hz performance-optimized"
                   onClick={() => protectedOpenLink("https://telegram.org")}
                 >
                   TELEGRAM
@@ -1994,8 +1994,8 @@ export default function Index() {
       {/* FIXED NAVIGATION ELEMENTS - OUTSIDE SCROLLING CONTAINER */}
       {/* Section Navigation Buttons */}
       <div
-        className="fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
-        style={{ position: "fixed" }}
+        className="absolute right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
+        style={{ position: "absolute" }}
         onMouseLeave={() => setShowNavigationTooltip(true)}
       >
         {/* Shared Navigation Tooltip - Positioned between buttons */}
@@ -2048,7 +2048,7 @@ export default function Index() {
               dismissTooltip("nav-shared");
             }}
             disabled={isScrolling || isMobileMenuOpen}
-            className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+            className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
               isScrolling || isMobileMenuOpen
                 ? "pointer-events-none opacity-60"
                 : ""
@@ -2101,7 +2101,7 @@ export default function Index() {
                 dismissTooltip("nav-shared");
               }}
               disabled={isScrolling || isMobileMenuOpen}
-              className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+              className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
                 isScrolling || isMobileMenuOpen
                   ? "pointer-events-none opacity-60"
                   : ""
@@ -2130,47 +2130,49 @@ export default function Index() {
       </div>
 
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
-      {!isHelpModalOpen && !isMobileMenuOpen && (
-        <div
-          className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
-          style={{ position: "fixed" }}
-        >
-          {sections.map((section, index) => (
-            <button
-              key={section.id}
-              onClick={() => {
-                protectedScrollToSection(index);
-                setShowNavigationHints(false);
-              }}
-              className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
+      <div
+        className="hidden md:flex absolute left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[99999] flex-col space-y-1 md:space-y-1 lg:space-y-2 performance-optimized"
+        style={{
+          position: "absolute",
+          transform: "translateY(-50%)",
+          pointerEvents: "auto",
+        }}
+      >
+        {sections.map((section, index) => (
+          <button
+            key={section.id}
+            onClick={() => {
+              protectedScrollToSection(index);
+              setShowNavigationHints(false);
+            }}
+            className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full hover-120hz performance-optimized ${
+              index === currentSection
+                ? theme === "light"
+                  ? "bg-blue-600 shadow-lg scale-125"
+                  : "bg-blue-400 shadow-lg scale-125"
+                : theme === "light"
+                  ? "bg-gray-300 hover:bg-gray-400"
+                  : "bg-white/30 hover:bg-white/50"
+            }`}
+            style={{
+              boxShadow:
                 index === currentSection
-                  ? theme === "light"
-                    ? "bg-blue-600 shadow-lg scale-125"
-                    : "bg-blue-400 shadow-lg scale-125"
-                  : theme === "light"
-                    ? "bg-gray-300 hover:bg-gray-400"
-                    : "bg-white/30 hover:bg-white/50"
-              }`}
-              style={{
-                boxShadow:
-                  index === currentSection
-                    ? "0 0 15px rgba(73, 146, 255, 0.5)"
-                    : "none",
-              }}
-            />
-          ))}
-        </div>
-      )}
+                  ? "0 0 15px rgba(73, 146, 255, 0.5)"
+                  : "none",
+            }}
+          />
+        ))}
+      </div>
 
       {/* Help Button - Positioned at bottom right corner */}
       <div
-        className={`fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[9999] transition-all duration-300 ${
+        className={`absolute right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[99999] transition-all duration-300 ${
           isMobileSafari || isSafari
             ? ""
             : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12"
         }`}
         style={{
-          position: "fixed",
+          position: "absolute",
           bottom: isMobileSafari || isSafari ? "120px" : undefined,
         }}
       >
@@ -2183,7 +2185,7 @@ export default function Index() {
           onMouseEnter={() => dismissTooltip("help-button")}
           onTouchStart={() => dismissTooltip("help-button")}
           disabled={isScrolling}
-          className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+          className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
             isScrolling ? "pointer-events-none opacity-60" : ""
           } ${
             theme === "light"
@@ -3290,7 +3292,7 @@ export default function Index() {
                 />
                 {/* Animated Sparkle Icon */}
                 <svg
-                  className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle"
+                  className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle sparkle-120hz performance-optimized"
                   viewBox="0 0 24 25"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -3902,11 +3904,11 @@ export default function Index() {
                         }
                       >
                         {/* Warm glow text with iOS-inspired styling */}
-                        <span className="warm-glow-text animate-warm-glow-pulse">
+                        <span className="warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz">
                           {"Development services".split("").map((letter, i) => (
                             <span
                               key={i}
-                              className="animate-letter-float animate-dev-services-text"
+                              className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
                               style={{
                                 animationDelay: `${i * 0.15}s`,
                               }}
@@ -4212,7 +4214,7 @@ export default function Index() {
 
         {/* Futuristic Navbar */}
         <motion.div
-          className="fixed top-4 z-50 w-full flex justify-center"
+          className="absolute top-4 z-50 w-full flex justify-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
@@ -4367,11 +4369,24 @@ export default function Index() {
         {/* Back to Top Button */}
         <motion.button
           onClick={() => scrollToSection(0)}
-          className={`fixed z-50 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-110 hover:shadow-xl ${
+          className={`group absolute z-[99999] p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
             isMobileSafari || isIOS
-              ? "bottom-20 left-4" // Above Safari search bar
-              : "bottom-6 left-4" // Normal position
+              ? "bottom-20 left-6 sm:left-8 md:left-10 lg:left-12" // Above Safari search bar, matching nav positioning
+              : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12 left-6 sm:left-8 md:left-10 lg:left-12" // Normal position, matching nav positioning
+          } ${
+            theme === "light"
+              ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+              : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
           }`}
+          style={{
+            position: "absolute",
+            pointerEvents: "auto",
+            background:
+              theme === "light"
+                ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+            boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+          }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
             opacity: currentSection > 0 ? 1 : 0,
@@ -4383,7 +4398,11 @@ export default function Index() {
         >
           {/* Custom up arrow with stem */}
           <svg
-            className="w-6 h-6 mx-auto"
+            className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+              theme === "light"
+                ? "text-blue-600 group-hover:text-blue-700"
+                : "text-white group-hover:text-blue-300"
+            }`}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -5218,6 +5237,44 @@ export default function Index() {
 
         .animate-text-pop {
           animation: text-pop 0.6s ease-out;
+        }
+
+        /* Enhanced sparkle animations for section headers */
+        .section-header-sparkle {
+          animation: sparkle-enhanced ease-in-out infinite;
+          transform-origin: center;
+          backface-visibility: hidden;
+          perspective: 1000px;
+        }
+
+        /* Enhanced text glow effects for section headers */
+        .section-header-text {
+          text-shadow: 0 0 10px rgba(73, 146, 255, 0.4), 0 0 20px rgba(34, 211, 238, 0.3);
+          transition: text-shadow 0.3s ease;
+        }
+
+        .section-header-text:hover {
+          text-shadow: 0 0 15px rgba(73, 146, 255, 0.6), 0 0 30px rgba(34, 211, 238, 0.5), 0 0 45px rgba(147, 51, 234, 0.3);
+        }
+
+        /* Performance optimizations for sparkles */
+        @media (prefers-reduced-motion: reduce) {
+          .section-header-sparkle {
+            animation: none !important;
+            opacity: 0.3 !important;
+          }
+        }
+
+        /* Smooth text rendering for subtitle elements */
+        .warm-glow-text span.inline-block {
+          transition: transform 0.2s ease;
+          will-change: auto;
+          backface-visibility: hidden;
+        }
+
+        /* Prevent animation conflicts in subtitles */
+        .warm-glow-text .inline-block:not(.animate-letter-float) {
+          transform: translateZ(0);
         }
       `}</style>
       </div>
@@ -7149,16 +7206,91 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
-                {"About Us".split("").map((letter, i) => (
-                  <span
-                    key={i}
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                <span className="warm-glow-text animate-warm-glow-pulse">
+                  {"About Us".split("").map((letter, i) => (
+                    <span
+                      key={i}
+                      className="inline-block relative animate-letter-float"
+                      style={{
+                        animationDelay: `${i * 0.15}s`,
+                      }}
+                    >
+                      {letter === " " ? "\u00A0" : letter}
+                    </span>
+                  ))}
+                </span>
+
+                {/* Optimized sparkles for better performance */}
+                {[
+                  { x: 85, y: -30, size: 0.7, type: "star" },
+                  { x: 65, y: -8, size: 0.5, type: "diamond" },
+                  { x: 110, y: 45, size: 0.6, type: "plus" },
+                  { x: 80, y: 75, size: 0.8, type: "star" },
+                  { x: 20, y: 80, size: 0.4, type: "diamond" },
+                  { x: -35, y: 55, size: 0.5, type: "plus" },
+                ].map((sparkle, i) => (
+                  <div
+                    key={`about-sparkle-${i}`}
+                    className="absolute pointer-events-none gpu-accelerated"
                     style={{
-                      animationDelay: `${i * 0.15}s`,
+                      left: `calc(50% + ${sparkle.x}px)`,
+                      top: `calc(50% + ${sparkle.y}px)`,
+                      animation: `sparkle-enhanced ${5 + (i % 3)}s ease-in-out infinite ${i * 0.4}s`,
+                      transform: `translateZ(0) scale(${sparkle.size})`,
+                      opacity: 0.5,
+                      zIndex: -1,
+                      willChange: "transform, opacity",
                     }}
                   >
-                    {letter === " " ? "\u00A0" : letter}
-                  </span>
+                    {sparkle.type === "star" && (
+                      <div
+                        className="w-5 h-5"
+                        style={{
+                          background: [
+                            "radial-gradient(circle, rgba(255, 120, 180, 0.8) 0%, rgba(255, 160, 120, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(120, 255, 200, 0.8) 0%, rgba(120, 180, 255, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(180, 120, 255, 0.8) 0%, rgba(255, 140, 180, 0.5) 70%, transparent 90%)",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          animation: "spin-slow 12s linear infinite",
+                          filter: "drop-shadow(0 0 6px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "diamond" && (
+                      <div
+                        className="w-3 h-3"
+                        style={{
+                          background: [
+                            "linear-gradient(45deg, rgba(255, 120, 200, 0.7), rgba(120, 255, 150, 0.6))",
+                            "linear-gradient(45deg, rgba(150, 120, 255, 0.7), rgba(255, 180, 120, 0.6))",
+                            "linear-gradient(45deg, rgba(120, 180, 255, 0.7), rgba(255, 140, 120, 0.6))",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          animation: "gentle-pulse 3s ease-in-out infinite",
+                          filter: "drop-shadow(0 0 4px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "plus" && (
+                      <div
+                        className="w-4 h-4"
+                        style={{
+                          background: [
+                            "conic-gradient(from 0deg, rgba(255, 140, 120, 0.7), rgba(120, 255, 180, 0.6), rgba(180, 120, 255, 0.7), rgba(255, 180, 140, 0.6))",
+                            "conic-gradient(from 90deg, rgba(120, 255, 140, 0.7), rgba(255, 120, 180, 0.6), rgba(140, 180, 255, 0.7), rgba(255, 160, 120, 0.6))",
+                            "conic-gradient(from 180deg, rgba(180, 140, 255, 0.7), rgba(255, 180, 120, 0.6), rgba(120, 255, 160, 0.7), rgba(255, 140, 180, 0.6))",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          animation: "rotate-slow 10s linear infinite",
+                          filter: "drop-shadow(0 0 8px currentColor)",
+                        }}
+                      />
+                    )}
+                  </div>
                 ))}
               </h1>
             </div>
@@ -7178,13 +7310,13 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
                     }}
                   >
-                    <span className="warm-glow-text animate-warm-glow-pulse">
+                    <span className="warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz">
                       {"Crafting Digital Excellence"
                         .split("")
                         .map((letter, i) => (
                           <span
                             key={i}
-                            className="animate-letter-float"
+                            className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
                             style={{
                               animationDelay: `${i * 0.1}s`,
                             }}
@@ -7193,6 +7325,68 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           </span>
                         ))}
                     </span>
+
+                    {/* Sparkles for subtitle */}
+                    {[
+                      { x: 120, y: -25, size: 0.6, type: "star" },
+                      { x: 90, y: 35, size: 0.5, type: "diamond" },
+                      { x: -50, y: 25, size: 0.4, type: "plus" },
+                      { x: 140, y: 10, size: 0.7, type: "star" },
+                    ].map((sparkle, i) => (
+                      <div
+                        key={`about-subtitle-sparkle-${i}`}
+                        className="absolute pointer-events-none gpu-accelerated"
+                        style={{
+                          left: `calc(50% + ${sparkle.x}px)`,
+                          top: `calc(50% + ${sparkle.y}px)`,
+                          animation: `sparkle-enhanced ${5 + (i % 2)}s ease-in-out infinite ${i * 0.4}s`,
+                          transform: `translateZ(0) scale(${sparkle.size})`,
+                          opacity: 0.4,
+                          zIndex: -1,
+                          willChange: "transform, opacity",
+                        }}
+                      >
+                        {sparkle.type === "star" && (
+                          <div
+                            className="w-4 h-4"
+                            style={{
+                              background:
+                                "radial-gradient(circle, rgba(120, 200, 255, 0.8) 0%, rgba(200, 120, 255, 0.5) 70%, transparent 90%)",
+                              clipPath:
+                                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              animation: "spin-slow 10s linear infinite",
+                              filter: "drop-shadow(0 0 4px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "diamond" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background:
+                                "linear-gradient(45deg, rgba(255, 140, 180, 0.7), rgba(140, 255, 200, 0.6))",
+                              clipPath:
+                                "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              animation: "gentle-pulse 3s ease-in-out infinite",
+                              filter: "drop-shadow(0 0 3px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "plus" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background:
+                                "conic-gradient(from 45deg, rgba(180, 255, 140, 0.7), rgba(255, 180, 140, 0.6), rgba(140, 180, 255, 0.7), rgba(255, 200, 180, 0.6))",
+                              clipPath:
+                                "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              animation: "rotate-slow 8s linear infinite",
+                              filter: "drop-shadow(0 0 5px currentColor)",
+                            }}
+                          />
+                        )}
+                      </div>
+                    ))}
                   </span>
                 </div>
               </div>
@@ -8340,16 +8534,91 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   theme === "light" ? "text-gray-900" : "text-white"
                 }`}
               >
-                {"Services".split("").map((letter, i) => (
-                  <span
-                    key={i}
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                <span className="warm-glow-text animate-warm-glow-pulse">
+                  {"Services".split("").map((letter, i) => (
+                    <span
+                      key={i}
+                      className="inline-block relative animate-letter-float"
+                      style={{
+                        animationDelay: `${i * 0.2}s`,
+                      }}
+                    >
+                      {letter}
+                    </span>
+                  ))}
+                </span>
+
+                {/* Optimized sparkles for better performance */}
+                {[
+                  { x: 75, y: -35, size: 0.8, type: "star" },
+                  { x: 55, y: -12, size: 0.6, type: "diamond" },
+                  { x: 95, y: 40, size: 0.7, type: "plus" },
+                  { x: 70, y: 70, size: 0.9, type: "star" },
+                  { x: 15, y: 75, size: 0.5, type: "diamond" },
+                  { x: -30, y: 50, size: 0.6, type: "plus" },
+                ].map((sparkle, i) => (
+                  <div
+                    key={`services-sparkle-${i}`}
+                    className="absolute pointer-events-none gpu-accelerated"
                     style={{
-                      animationDelay: `${i * 0.2}s`,
+                      left: `calc(50% + ${sparkle.x}px)`,
+                      top: `calc(50% + ${sparkle.y}px)`,
+                      animation: `sparkle-enhanced ${6 + (i % 3)}s ease-in-out infinite ${i * 0.3}s`,
+                      transform: `translateZ(0) scale(${sparkle.size})`,
+                      opacity: 0.6,
+                      zIndex: -1,
+                      willChange: "transform, opacity",
                     }}
                   >
-                    {letter}
-                  </span>
+                    {sparkle.type === "star" && (
+                      <div
+                        className="w-5 h-5"
+                        style={{
+                          background: [
+                            "radial-gradient(circle, rgba(100, 255, 150, 0.8) 0%, rgba(150, 200, 255, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(100, 255, 180, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(200, 150, 255, 0.8) 0%, rgba(255, 100, 150, 0.5) 70%, transparent 90%)",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          animation: "spin-slow 14s linear infinite",
+                          filter: "drop-shadow(0 0 7px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "diamond" && (
+                      <div
+                        className="w-4 h-4"
+                        style={{
+                          background: [
+                            "linear-gradient(45deg, rgba(100, 255, 200, 0.7), rgba(255, 150, 100, 0.6))",
+                            "linear-gradient(45deg, rgba(200, 100, 255, 0.7), rgba(100, 255, 150, 0.6))",
+                            "linear-gradient(45deg, rgba(255, 200, 100, 0.7), rgba(100, 150, 255, 0.6))",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          animation: "gentle-pulse 4s ease-in-out infinite",
+                          filter: "drop-shadow(0 0 5px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "plus" && (
+                      <div
+                        className="w-4 h-4"
+                        style={{
+                          background: [
+                            "conic-gradient(from 45deg, rgba(100, 255, 180, 0.7), rgba(255, 100, 150, 0.6), rgba(150, 200, 255, 0.7), rgba(255, 180, 100, 0.6))",
+                            "conic-gradient(from 135deg, rgba(255, 150, 100, 0.7), rgba(100, 200, 255, 0.6), rgba(200, 100, 255, 0.7), rgba(100, 255, 150, 0.6))",
+                            "conic-gradient(from 225deg, rgba(150, 255, 100, 0.7), rgba(255, 100, 200, 0.6), rgba(100, 150, 255, 0.7), rgba(255, 200, 100, 0.6))",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          animation: "rotate-slow 11s linear infinite",
+                          filter: "drop-shadow(0 0 9px currentColor)",
+                        }}
+                      />
+                    )}
+                  </div>
                 ))}
               </h1>
             </div>
@@ -8404,13 +8673,13 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
                     }}
                   >
-                    <span className="warm-glow-text animate-warm-glow-pulse">
+                    <span className="warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz">
                       {"Digital Innovation Solutions"
                         .split("")
                         .map((letter, i) => (
                           <span
                             key={i}
-                            className="animate-letter-float"
+                            className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
                             style={{
                               animationDelay: `${i * 0.1}s`,
                             }}
@@ -8419,6 +8688,69 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           </span>
                         ))}
                     </span>
+
+                    {/* Sparkles for subtitle */}
+                    {[
+                      { x: 130, y: -20, size: 0.6, type: "star" },
+                      { x: 95, y: 30, size: 0.5, type: "diamond" },
+                      { x: -45, y: 20, size: 0.4, type: "plus" },
+                      { x: 150, y: 5, size: 0.7, type: "star" },
+                    ].map((sparkle, i) => (
+                      <div
+                        key={`services-subtitle-sparkle-${i}`}
+                        className="absolute pointer-events-none gpu-accelerated"
+                        style={{
+                          left: `calc(50% + ${sparkle.x}px)`,
+                          top: `calc(50% + ${sparkle.y}px)`,
+                          animation: `sparkle-enhanced ${5 + (i % 2)}s ease-in-out infinite ${i * 0.3}s`,
+                          transform: `translateZ(0) scale(${sparkle.size})`,
+                          opacity: 0.4,
+                          zIndex: -1,
+                          willChange: "transform, opacity",
+                        }}
+                      >
+                        {sparkle.type === "star" && (
+                          <div
+                            className="w-4 h-4"
+                            style={{
+                              background:
+                                "radial-gradient(circle, rgba(200, 120, 255, 0.8) 0%, rgba(120, 255, 180, 0.5) 70%, transparent 90%)",
+                              clipPath:
+                                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              animation: "spin-slow 12s linear infinite",
+                              filter: "drop-shadow(0 0 4px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "diamond" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background:
+                                "linear-gradient(45deg, rgba(120, 255, 160, 0.7), rgba(255, 120, 200, 0.6))",
+                              clipPath:
+                                "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              animation:
+                                "gentle-pulse 3.5s ease-in-out infinite",
+                              filter: "drop-shadow(0 0 3px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "plus" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background:
+                                "conic-gradient(from 90deg, rgba(255, 160, 120, 0.7), rgba(120, 255, 160, 0.6), rgba(160, 120, 255, 0.7), rgba(255, 180, 160, 0.6))",
+                              clipPath:
+                                "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              animation: "rotate-slow 9s linear infinite",
+                              filter: "drop-shadow(0 0 5px currentColor)",
+                            }}
+                          />
+                        )}
+                      </div>
+                    ))}
                   </span>
                 </div>
               </div>
@@ -8858,16 +9190,91 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 }`}
                 style={{ transform: "translateY(-50px)" }}
               >
-                {"Pricing".split("").map((letter, i) => (
-                  <span
-                    key={i}
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                <span className="warm-glow-text animate-warm-glow-pulse">
+                  {"Pricing".split("").map((letter, i) => (
+                    <span
+                      key={i}
+                      className="inline-block relative animate-letter-float"
+                      style={{
+                        animationDelay: `${i * 0.15}s`,
+                      }}
+                    >
+                      {letter}
+                    </span>
+                  ))}
+                </span>
+
+                {/* Optimized sparkles for better performance */}
+                {[
+                  { x: 70, y: -32, size: 0.7, type: "star" },
+                  { x: 50, y: -10, size: 0.5, type: "diamond" },
+                  { x: 90, y: 42, size: 0.6, type: "plus" },
+                  { x: 65, y: 72, size: 0.8, type: "star" },
+                  { x: 12, y: 77, size: 0.4, type: "diamond" },
+                  { x: -25, y: 52, size: 0.5, type: "plus" },
+                ].map((sparkle, i) => (
+                  <div
+                    key={`pricing-sparkle-${i}`}
+                    className="absolute pointer-events-none gpu-accelerated"
                     style={{
-                      animationDelay: `${i * 0.15}s`,
+                      left: `calc(50% + ${sparkle.x}px)`,
+                      top: `calc(50% + ${sparkle.y}px)`,
+                      animation: `sparkle-enhanced ${5.5 + (i % 3)}s ease-in-out infinite ${i * 0.35}s`,
+                      transform: `translateZ(0) scale(${sparkle.size})`,
+                      opacity: 0.55,
+                      zIndex: -1,
+                      willChange: "transform, opacity",
                     }}
                   >
-                    {letter}
-                  </span>
+                    {sparkle.type === "star" && (
+                      <div
+                        className="w-5 h-5"
+                        style={{
+                          background: [
+                            "radial-gradient(circle, rgba(255, 200, 100, 0.8) 0%, rgba(100, 255, 150, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(150, 100, 255, 0.8) 0%, rgba(255, 150, 100, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(255, 100, 200, 0.5) 70%, transparent 90%)",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          animation: "spin-slow 13s linear infinite",
+                          filter: "drop-shadow(0 0 6px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "diamond" && (
+                      <div
+                        className="w-3 h-3"
+                        style={{
+                          background: [
+                            "linear-gradient(45deg, rgba(255, 150, 200, 0.7), rgba(150, 255, 100, 0.6))",
+                            "linear-gradient(45deg, rgba(100, 150, 255, 0.7), rgba(255, 200, 100, 0.6))",
+                            "linear-gradient(45deg, rgba(200, 255, 100, 0.7), rgba(100, 200, 255, 0.6))",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          animation: "gentle-pulse 3.5s ease-in-out infinite",
+                          filter: "drop-shadow(0 0 4px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "plus" && (
+                      <div
+                        className="w-4 h-4"
+                        style={{
+                          background: [
+                            "conic-gradient(from 30deg, rgba(255, 180, 100, 0.7), rgba(100, 255, 200, 0.6), rgba(200, 100, 255, 0.7), rgba(255, 150, 180, 0.6))",
+                            "conic-gradient(from 120deg, rgba(100, 255, 180, 0.7), rgba(255, 100, 150, 0.6), rgba(180, 200, 255, 0.7), rgba(255, 200, 100, 0.6))",
+                            "conic-gradient(from 210deg, rgba(200, 150, 255, 0.7), rgba(255, 180, 100, 0.6), rgba(100, 255, 180, 0.7), rgba(255, 150, 200, 0.6))",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          animation: "rotate-slow 9s linear infinite",
+                          filter: "drop-shadow(0 0 7px currentColor)",
+                        }}
+                      />
+                    )}
+                  </div>
                 ))}
               </h1>
             </div>
@@ -8898,17 +9305,80 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(147, 51, 234, 0.5))`,
                     }}
                   >
-                    <span className="warm-glow-text animate-warm-glow-pulse">
+                    <span className="warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz">
                       {"Choose Your Perfect Plan".split("").map((letter, i) => (
                         <span
                           key={i}
-                          className="animate-letter-float"
+                          className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
                           style={{ animationDelay: `${i * 0.08}s` }}
                         >
                           {letter === " " ? "\u00A0" : letter}
                         </span>
                       ))}
                     </span>
+
+                    {/* Sparkles for subtitle */}
+                    {[
+                      { x: 115, y: -22, size: 0.6, type: "star" },
+                      { x: 85, y: 32, size: 0.5, type: "diamond" },
+                      { x: -40, y: 22, size: 0.4, type: "plus" },
+                      { x: 135, y: 8, size: 0.7, type: "star" },
+                    ].map((sparkle, i) => (
+                      <div
+                        key={`pricing-subtitle-sparkle-${i}`}
+                        className="absolute pointer-events-none gpu-accelerated"
+                        style={{
+                          left: `calc(50% + ${sparkle.x}px)`,
+                          top: `calc(50% + ${sparkle.y}px)`,
+                          animation: `sparkle-enhanced ${5 + (i % 2)}s ease-in-out infinite ${i * 0.35}s`,
+                          transform: `translateZ(0) scale(${sparkle.size})`,
+                          opacity: 0.4,
+                          zIndex: -1,
+                          willChange: "transform, opacity",
+                        }}
+                      >
+                        {sparkle.type === "star" && (
+                          <div
+                            className="w-4 h-4"
+                            style={{
+                              background:
+                                "radial-gradient(circle, rgba(255, 180, 120, 0.8) 0%, rgba(120, 200, 255, 0.5) 70%, transparent 90%)",
+                              clipPath:
+                                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              animation: "spin-slow 11s linear infinite",
+                              filter: "drop-shadow(0 0 4px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "diamond" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background:
+                                "linear-gradient(45deg, rgba(255, 200, 120, 0.7), rgba(120, 180, 255, 0.6))",
+                              clipPath:
+                                "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              animation:
+                                "gentle-pulse 3.2s ease-in-out infinite",
+                              filter: "drop-shadow(0 0 3px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "plus" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background:
+                                "conic-gradient(from 135deg, rgba(120, 255, 200, 0.7), rgba(255, 120, 180, 0.6), rgba(200, 180, 255, 0.7), rgba(255, 200, 120, 0.6))",
+                              clipPath:
+                                "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              animation: "rotate-slow 7s linear infinite",
+                              filter: "drop-shadow(0 0 5px currentColor)",
+                            }}
+                          />
+                        )}
+                      </div>
+                    ))}
                   </span>
                 </div>
               </div>
@@ -10360,16 +10830,96 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <h1
                 className={`font-poppins text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight relative mobile-lively-text ${theme === "light" ? "text-gray-900" : "text-white"}`}
               >
-                {"Portfolio".split("").map((letter, i) => (
-                  <span
-                    key={i}
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                <span className="warm-glow-text animate-warm-glow-pulse">
+                  {"Portfolio".split("").map((letter, i) => (
+                    <span
+                      key={i}
+                      className="inline-block relative animate-letter-float"
+                      style={{
+                        animationDelay: `${i * 0.15}s`,
+                      }}
+                    >
+                      {letter}
+                    </span>
+                  ))}
+                </span>
+
+                {/* Optimized sparkles for better performance */}
+                {[
+                  { x: 90, y: -35, size: 0.8, type: "star" },
+                  { x: 70, y: -12, size: 0.6, type: "diamond" },
+                  { x: 110, y: 45, size: 0.7, type: "plus" },
+                  { x: 85, y: 75, size: 0.9, type: "star" },
+                  { x: 25, y: 80, size: 0.5, type: "diamond" },
+                  { x: -40, y: 55, size: 0.6, type: "plus" },
+                  { x: 125, y: 18, size: 0.7, type: "star" },
+                  { x: -15, y: -18, size: 0.4, type: "diamond" },
+                ].map((sparkle, i) => (
+                  <div
+                    key={`portfolio-sparkle-${i}`}
+                    className="absolute pointer-events-none gpu-accelerated"
                     style={{
-                      animationDelay: `${i * 0.15}s`,
+                      left: `calc(50% + ${sparkle.x}px)`,
+                      top: `calc(50% + ${sparkle.y}px)`,
+                      animation: `sparkle-enhanced ${6 + (i % 3)}s ease-in-out infinite ${i * 0.25}s`,
+                      transform: `translateZ(0) scale(${sparkle.size})`,
+                      opacity: 0.6,
+                      zIndex: -1,
+                      willChange: "transform, opacity",
                     }}
                   >
-                    {letter}
-                  </span>
+                    {sparkle.type === "star" && (
+                      <div
+                        className="w-6 h-6"
+                        style={{
+                          background: [
+                            "radial-gradient(circle, rgba(200, 100, 255, 0.8) 0%, rgba(100, 255, 180, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(100, 180, 255, 0.8) 0%, rgba(255, 120, 200, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(255, 160, 100, 0.8) 0%, rgba(120, 255, 160, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(160, 255, 120, 0.8) 0%, rgba(255, 100, 160, 0.5) 70%, transparent 90%)",
+                          ][i % 4],
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          animation: "spin-slow 15s linear infinite",
+                          filter: "drop-shadow(0 0 8px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "diamond" && (
+                      <div
+                        className="w-4 h-4"
+                        style={{
+                          background: [
+                            "linear-gradient(45deg, rgba(200, 120, 255, 0.7), rgba(120, 255, 140, 0.6))",
+                            "linear-gradient(45deg, rgba(120, 200, 255, 0.7), rgba(255, 140, 120, 0.6))",
+                            "linear-gradient(45deg, rgba(255, 180, 120, 0.7), rgba(120, 140, 255, 0.6))",
+                            "linear-gradient(45deg, rgba(140, 255, 120, 0.7), rgba(255, 120, 180, 0.6))",
+                          ][i % 4],
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          animation: "gentle-pulse 4s ease-in-out infinite",
+                          filter: "drop-shadow(0 0 6px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "plus" && (
+                      <div
+                        className="w-5 h-5"
+                        style={{
+                          background: [
+                            "conic-gradient(from 60deg, rgba(200, 140, 255, 0.7), rgba(140, 255, 180, 0.6), rgba(255, 180, 140, 0.7), rgba(180, 140, 255, 0.6))",
+                            "conic-gradient(from 150deg, rgba(140, 255, 160, 0.7), rgba(255, 140, 180, 0.6), rgba(160, 180, 255, 0.7), rgba(255, 180, 140, 0.6))",
+                            "conic-gradient(from 240deg, rgba(255, 180, 160, 0.7), rgba(160, 255, 180, 0.6), rgba(180, 140, 255, 0.7), rgba(255, 160, 180, 0.6))",
+                            "conic-gradient(from 330deg, rgba(180, 255, 140, 0.7), rgba(255, 160, 200, 0.6), rgba(140, 180, 255, 0.7), rgba(255, 200, 160, 0.6))",
+                          ][i % 4],
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          animation: "rotate-slow 12s linear infinite",
+                          filter: "drop-shadow(0 0 10px currentColor)",
+                        }}
+                      />
+                    )}
+                  </div>
                 ))}
               </h1>
             </div>
@@ -10415,17 +10965,80 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
                     }}
                   >
-                    <span className="warm-glow-text animate-warm-glow-pulse">
+                    <span className="warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz">
                       {"Our Featured Work".split("").map((letter, i) => (
                         <span
                           key={i}
-                          className="animate-letter-float"
+                          className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
                           style={{ animationDelay: `${i * 0.1}s` }}
                         >
                           {letter === " " ? "\u00A0" : letter}
                         </span>
                       ))}
                     </span>
+
+                    {/* Sparkles for subtitle */}
+                    {[
+                      { x: 105, y: -24, size: 0.6, type: "star" },
+                      { x: 80, y: 28, size: 0.5, type: "diamond" },
+                      { x: -35, y: 18, size: 0.4, type: "plus" },
+                      { x: 125, y: 12, size: 0.7, type: "star" },
+                    ].map((sparkle, i) => (
+                      <div
+                        key={`portfolio-subtitle-sparkle-${i}`}
+                        className="absolute pointer-events-none gpu-accelerated"
+                        style={{
+                          left: `calc(50% + ${sparkle.x}px)`,
+                          top: `calc(50% + ${sparkle.y}px)`,
+                          animation: `sparkle-enhanced ${5 + (i % 2)}s ease-in-out infinite ${i * 0.25}s`,
+                          transform: `translateZ(0) scale(${sparkle.size})`,
+                          opacity: 0.4,
+                          zIndex: -1,
+                          willChange: "transform, opacity",
+                        }}
+                      >
+                        {sparkle.type === "star" && (
+                          <div
+                            className="w-4 h-4"
+                            style={{
+                              background:
+                                "radial-gradient(circle, rgba(160, 120, 255, 0.8) 0%, rgba(255, 160, 120, 0.5) 70%, transparent 90%)",
+                              clipPath:
+                                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              animation: "spin-slow 13s linear infinite",
+                              filter: "drop-shadow(0 0 4px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "diamond" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background:
+                                "linear-gradient(45deg, rgba(160, 255, 120, 0.7), rgba(255, 120, 160, 0.6))",
+                              clipPath:
+                                "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              animation:
+                                "gentle-pulse 3.8s ease-in-out infinite",
+                              filter: "drop-shadow(0 0 3px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "plus" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background:
+                                "conic-gradient(from 180deg, rgba(255, 120, 160, 0.7), rgba(160, 255, 120, 0.6), rgba(120, 160, 255, 0.7), rgba(255, 160, 180, 0.6))",
+                              clipPath:
+                                "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              animation: "rotate-slow 10s linear infinite",
+                              filter: "drop-shadow(0 0 5px currentColor)",
+                            }}
+                          />
+                        )}
+                      </div>
+                    ))}
                   </span>
                 </div>
               </div>
@@ -11054,7 +11667,14 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "�������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            {
+              icon: "����������",
+              delay: 3,
+              x: 10,
+              y: 60,
+              size: 18,
+              duration: 8,
+            },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
@@ -11372,16 +11992,91 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <h1
                 className={`contact-title font-poppins text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight relative mobile-lively-text ${theme === "light" ? "text-gray-900" : "text-white"}`}
               >
-                {"Contact".split("").map((letter, i) => (
-                  <span
-                    key={i}
-                    className="inline-block relative warm-glow-text animate-warm-glow-pulse"
+                <span className="warm-glow-text animate-warm-glow-pulse">
+                  {"Contact".split("").map((letter, i) => (
+                    <span
+                      key={i}
+                      className="inline-block relative animate-letter-float"
+                      style={{
+                        animationDelay: `${i * 0.15}s`,
+                      }}
+                    >
+                      {letter}
+                    </span>
+                  ))}
+                </span>
+
+                {/* Optimized sparkles for better performance */}
+                {[
+                  { x: 75, y: -30, size: 0.7, type: "star" },
+                  { x: 55, y: -8, size: 0.5, type: "diamond" },
+                  { x: 95, y: 40, size: 0.6, type: "plus" },
+                  { x: 70, y: 70, size: 0.8, type: "star" },
+                  { x: 18, y: 75, size: 0.4, type: "diamond" },
+                  { x: -30, y: 50, size: 0.5, type: "plus" },
+                ].map((sparkle, i) => (
+                  <div
+                    key={`contact-sparkle-${i}`}
+                    className="absolute pointer-events-none gpu-accelerated"
                     style={{
-                      animationDelay: `${i * 0.15}s`,
+                      left: `calc(50% + ${sparkle.x}px)`,
+                      top: `calc(50% + ${sparkle.y}px)`,
+                      animation: `sparkle-enhanced ${5 + (i % 3)}s ease-in-out infinite ${i * 0.4}s`,
+                      transform: `translateZ(0) scale(${sparkle.size})`,
+                      opacity: 0.5,
+                      zIndex: -1,
+                      willChange: "transform, opacity",
                     }}
                   >
-                    {letter}
-                  </span>
+                    {sparkle.type === "star" && (
+                      <div
+                        className="w-5 h-5"
+                        style={{
+                          background: [
+                            "radial-gradient(circle, rgba(255, 140, 200, 0.8) 0%, rgba(140, 255, 160, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(160, 140, 255, 0.8) 0%, rgba(255, 160, 140, 0.5) 70%, transparent 90%)",
+                            "radial-gradient(circle, rgba(140, 200, 255, 0.8) 0%, rgba(255, 140, 180, 0.5) 70%, transparent 90%)",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          animation: "spin-slow 11s linear infinite",
+                          filter: "drop-shadow(0 0 6px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "diamond" && (
+                      <div
+                        className="w-3 h-3"
+                        style={{
+                          background: [
+                            "linear-gradient(45deg, rgba(255, 160, 200, 0.7), rgba(160, 255, 140, 0.6))",
+                            "linear-gradient(45deg, rgba(140, 160, 255, 0.7), rgba(255, 200, 140, 0.6))",
+                            "linear-gradient(45deg, rgba(200, 255, 140, 0.7), rgba(140, 200, 255, 0.6))",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          animation: "gentle-pulse 3s ease-in-out infinite",
+                          filter: "drop-shadow(0 0 4px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "plus" && (
+                      <div
+                        className="w-4 h-4"
+                        style={{
+                          background: [
+                            "conic-gradient(from 15deg, rgba(255, 160, 140, 0.7), rgba(140, 255, 200, 0.6), rgba(200, 140, 255, 0.7), rgba(255, 180, 160, 0.6))",
+                            "conic-gradient(from 105deg, rgba(140, 255, 160, 0.7), rgba(255, 140, 180, 0.6), rgba(160, 200, 255, 0.7), rgba(255, 200, 140, 0.6))",
+                            "conic-gradient(from 195deg, rgba(200, 160, 255, 0.7), rgba(255, 180, 140, 0.6), rgba(140, 255, 180, 0.7), rgba(255, 160, 200, 0.6))",
+                          ][i % 3],
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          animation: "rotate-slow 8s linear infinite",
+                          filter: "drop-shadow(0 0 7px currentColor)",
+                        }}
+                      />
+                    )}
+                  </div>
                 ))}
               </h1>
             </div>
@@ -11396,11 +12091,11 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <p
                 className={`text-sm sm:text-base font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
               >
-                <span className="warm-glow-text animate-warm-glow-pulse">
+                <span className="warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz">
                   {"Tell us about it.".split("").map((letter, i) => (
                     <span
                       key={i}
-                      className="inline-block relative"
+                      className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
                       style={{
                         animationDelay: `${i * 0.1}s`,
                       }}
@@ -11409,6 +12104,68 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     </span>
                   ))}
                 </span>
+
+                {/* Sparkles for subtitle */}
+                {[
+                  { x: 95, y: -20, size: 0.6, type: "star" },
+                  { x: 70, y: 25, size: 0.5, type: "diamond" },
+                  { x: -30, y: 15, size: 0.4, type: "plus" },
+                  { x: 110, y: 5, size: 0.7, type: "star" },
+                ].map((sparkle, i) => (
+                  <div
+                    key={`contact-subtitle-sparkle-${i}`}
+                    className="absolute pointer-events-none gpu-accelerated"
+                    style={{
+                      left: `calc(50% + ${sparkle.x}px)`,
+                      top: `calc(50% + ${sparkle.y}px)`,
+                      animation: `sparkle-enhanced ${5 + (i % 2)}s ease-in-out infinite ${i * 0.4}s`,
+                      transform: `translateZ(0) scale(${sparkle.size})`,
+                      opacity: 0.4,
+                      zIndex: -1,
+                      willChange: "transform, opacity",
+                    }}
+                  >
+                    {sparkle.type === "star" && (
+                      <div
+                        className="w-4 h-4"
+                        style={{
+                          background:
+                            "radial-gradient(circle, rgba(255, 160, 180, 0.8) 0%, rgba(160, 255, 140, 0.5) 70%, transparent 90%)",
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          animation: "spin-slow 9s linear infinite",
+                          filter: "drop-shadow(0 0 4px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "diamond" && (
+                      <div
+                        className="w-3 h-3"
+                        style={{
+                          background:
+                            "linear-gradient(45deg, rgba(255, 140, 200, 0.7), rgba(140, 255, 180, 0.6))",
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          animation: "gentle-pulse 3.5s ease-in-out infinite",
+                          filter: "drop-shadow(0 0 3px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "plus" && (
+                      <div
+                        className="w-3 h-3"
+                        style={{
+                          background:
+                            "conic-gradient(from 225deg, rgba(140, 255, 180, 0.7), rgba(255, 140, 160, 0.6), rgba(180, 160, 255, 0.7), rgba(255, 180, 140, 0.6))",
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          animation: "rotate-slow 8s linear infinite",
+                          filter: "drop-shadow(0 0 5px currentColor)",
+                        }}
+                      />
+                    )}
+                  </div>
+                ))}
               </p>
             </div>
 
