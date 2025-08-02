@@ -2172,7 +2172,7 @@ export default function Index() {
             : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12"
         }`}
         style={{
-          position: "fixed",
+          position: "absolute",
           bottom: isMobileSafari || isSafari ? "120px" : undefined,
         }}
       >
