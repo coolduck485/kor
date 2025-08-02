@@ -8573,19 +8573,17 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse">
-                      {"Digital Innovation Solutions"
-                        .split("")
-                        .map((letter, i) => (
-                          <span
-                            key={i}
-                            className="animate-letter-float"
-                            style={{
-                              animationDelay: `${i * 0.1}s`,
-                            }}
-                          >
-                            {letter === " " ? "\u00A0" : letter}
-                          </span>
-                        ))}
+                      {"Digital Innovation Solutions".split("").map((letter, i) => (
+                        <span
+                          key={i}
+                          className="inline-block"
+                          style={{
+                            animationDelay: `${i * 0.1}s`,
+                          }}
+                        >
+                          {letter === " " ? "\u00A0" : letter}
+                        </span>
+                      ))}
                     </span>
                   </span>
                 </div>
