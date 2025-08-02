@@ -900,7 +900,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █████����� ██����������██╗
+                  {`��█╗  █�������╗ █��███����� ██����������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
@@ -7601,7 +7601,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
         description:
           "We start by understanding your business goals, target audience, and technical requirements through comprehensive consultation.",
         icon: "🔍",
-        color: "from-purple-500 to-pink-500",
+        color: "from-blue-500 to-cyan-500",
       },
       {
         number: "02",
@@ -7609,7 +7609,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
         description:
           "Our team creates stunning, user-focused designs while developing a strategic roadmap for your digital solution.",
         icon: "🎨",
-        color: "from-blue-500 to-cyan-500",
+        color: "from-cyan-500 to-blue-500",
       },
       {
         number: "03",
@@ -7617,7 +7617,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
         description:
           "We bring your vision to life using cutting-edge technologies and best practices, ensuring scalability and performance.",
         icon: "⚡",
-        color: "from-green-500 to-emerald-500",
+        color: "from-blue-600 to-cyan-600",
       },
       {
         number: "04",
@@ -7625,7 +7625,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
         description:
           "We deploy your solution and provide ongoing support, maintenance, and optimization to ensure continued success.",
         icon: "🚀",
-        color: "from-orange-500 to-red-500",
+        color: "from-cyan-600 to-blue-600",
       },
     ];
 
@@ -12753,7 +12753,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "✈️",
+                        icon: "✈��",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
