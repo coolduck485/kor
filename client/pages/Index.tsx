@@ -905,7 +905,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
-�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
+�����������╝  ╚═╝ ����������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -6004,6 +6004,13 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
       },
       {
         ...ORB_BUTTON_CONFIG.buttons[1],
+        onClick: () => {
+          console.log("What we do clicked");
+          scrollToSection(2);
+        },
+      },
+      {
+        ...ORB_BUTTON_CONFIG.buttons[2],
         onClick: () => {
           console.log("Services clicked");
           scrollToSection(3);
