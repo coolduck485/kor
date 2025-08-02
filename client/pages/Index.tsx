@@ -2132,7 +2132,7 @@ export default function Index() {
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
       {!isHelpModalOpen && !isMobileMenuOpen && (
         <div
-          className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2"
+          className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2 performance-optimized"
           style={{ position: "fixed" }}
         >
           {sections.map((section, index) => (
