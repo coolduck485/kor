@@ -905,7 +905,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
-�����������╝  ╚═╝ ����������════╝ ╚���╝  ��═╝`}
+�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -6017,14 +6017,14 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
         },
       },
       {
-        ...ORB_BUTTON_CONFIG.buttons[2],
+        ...ORB_BUTTON_CONFIG.buttons[3],
         onClick: () => {
           console.log("Portfolio clicked");
           scrollToSection(4);
         },
       },
       {
-        ...ORB_BUTTON_CONFIG.buttons[3],
+        ...ORB_BUTTON_CONFIG.buttons[4],
         onClick: () => {
           console.log("Contact us clicked");
           scrollToSection(5);
