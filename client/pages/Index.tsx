@@ -899,7 +899,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █���������� █████���╗ ██��������██╗
+                  {`��█╗  █�������╗ █████���╗ ██��������██╗
 ██║ ����█╔���█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
@@ -2168,7 +2168,7 @@ export default function Index() {
 
       {/* Help Button - Positioned at bottom right corner */}
       <div
-        className={`fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[9999] transition-all duration-300 ${
+        className={`fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[99999] transition-all duration-300 ${
           isMobileSafari || isSafari
             ? ""
             : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12"
