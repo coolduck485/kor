@@ -7996,11 +7996,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
             transition={{ duration: 1, delay: 2 }}
           >
             <motion.button
-              className={`group relative px-10 py-5 rounded-full font-semibold text-lg overflow-hidden ${
-                theme === "light"
-                  ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white"
-                  : "bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
-              }`}
+              className="group relative px-10 py-5 rounded-full font-semibold text-lg overflow-hidden bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.98 }}
               style={{
