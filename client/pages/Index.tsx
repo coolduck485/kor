@@ -1994,8 +1994,8 @@ export default function Index() {
       {/* FIXED NAVIGATION ELEMENTS - OUTSIDE SCROLLING CONTAINER */}
       {/* Section Navigation Buttons */}
       <div
-        className="fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
-        style={{ position: "fixed" }}
+        className="absolute right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
+        style={{ position: "absolute" }}
         onMouseLeave={() => setShowNavigationTooltip(true)}
       >
         {/* Shared Navigation Tooltip - Positioned between buttons */}
