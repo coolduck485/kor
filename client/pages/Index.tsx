@@ -972,7 +972,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█���█████���█���███����█████ 60%
+                      CPU: █████████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4367,7 +4367,7 @@ export default function Index() {
         {/* Back to Top Button */}
         <motion.button
           onClick={() => scrollToSection(0)}
-          className={`fixed z-50 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg backdrop-blur-sm border border-white/10 transition-all duration-300 hover:scale-110 hover:shadow-xl ${
+          className={`fixed z-50 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg backdrop-blur-sm border border-white/10 hover-120hz performance-optimized hover:shadow-xl ${
             isMobileSafari || isIOS
               ? "bottom-20 left-4" // Above Safari search bar
               : "bottom-6 left-4" // Normal position
