@@ -901,7 +901,7 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █�������╗ █████����� ██����������██╗
-██��� �����█╔����█��╔═══���█╗██���══█���╗
+██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
@@ -2183,7 +2183,7 @@ export default function Index() {
                 boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
               }}
             >
-              Click to navigate sections ��
+              Click to navigate sections →
               <button
                 onClick={() => setShowNavigationHints(false)}
                 className="ml-2 text-xs opacity-60 hover:opacity-100"
@@ -7601,39 +7601,39 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
     const processSteps = [
       {
         number: "01",
-        title: "Discovery & Research",
-        description: "Deep dive into your vision, goals, and market dynamics to create a strategic foundation for success.",
+        title: "Cosmic Discovery",
+        description: "Navigate through the stellar landscapes of your vision, mapping constellations of possibilities and charting courses through digital galaxies to illuminate your path to success.",
         icon: Code,
-        category: "ANALYZE",
-        features: ["Market Research", "User Journey Mapping", "Technical Architecture", "Competitive Analysis"],
-        metrics: ["100%", "Data-Driven", "Insights"],
+        category: "EXPLORE",
+        features: ["Vision Constellation", "Market Navigation", "Stellar Architecture", "Galaxy Analysis"],
+        metrics: ["∞", "Cosmic", "Insights"],
       },
       {
         number: "02",
-        title: "Design & Innovation",
-        description: "Craft stunning, user-centric designs that blend aesthetic excellence with cutting-edge functionality.",
+        title: "Nebula Creation",
+        description: "Weave stardust into magnificent designs, crafting cosmic interfaces that shimmer with beauty while harboring the power of supernovas within their elegant forms.",
         icon: Palette,
-        category: "CREATE",
-        features: ["UI/UX Design", "Brand Integration", "Prototype Development", "User Testing"],
-        metrics: ["99%", "User Satisfaction", "Rate"],
+        category: "FORGE",
+        features: ["Stellar UI Design", "Cosmic Branding", "Nebula Prototyping", "Astro Testing"],
+        metrics: ["⭐", "Universal", "Appeal"],
       },
       {
         number: "03",
-        title: "Development & Engineering",
-        description: "Transform designs into powerful, scalable solutions using the latest technologies and best practices.",
+        title: "Stellar Engineering",
+        description: "Transmute cosmic designs into powerful digital matter, forging solutions with the precision of orbital mechanics and the energy of distant quasars.",
         icon: Zap,
         category: "BUILD",
-        features: ["Full-Stack Development", "Cloud Architecture", "Performance Optimization", "Security Implementation"],
-        metrics: ["<0.5s", "Load Time", "Average"],
+        features: ["Quantum Development", "Cosmic Architecture", "Stellar Optimization", "Galactic Security"],
+        metrics: ["🚀", "Lightspeed", "Performance"],
       },
       {
         number: "04",
-        title: "Launch & Scale",
-        description: "Deploy with confidence and provide ongoing optimization to ensure your solution grows with your business.",
+        title: "Galaxy Launch",
+        description: "Release your creation into the digital cosmos with supernova confidence, ensuring it burns bright and expands across infinite digital dimensions.",
         icon: Globe,
-        category: "DEPLOY",
-        features: ["DevOps & CI/CD", "Performance Monitoring", "24/7 Support", "Continuous Updates"],
-        metrics: ["99.9%", "Uptime", "Guarantee"],
+        category: "ASCEND",
+        features: ["Cosmic Deployment", "Stellar Monitoring", "Interstellar Support", "Infinite Scaling"],
+        metrics: ["🌌", "Universal", "Reach"],
       },
     ];
 
