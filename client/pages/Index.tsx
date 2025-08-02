@@ -830,7 +830,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      •••��
+                      ••••
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -7936,15 +7936,11 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
 
                     {/* Content */}
                     <div className="space-y-4">
-                      <h3 className={`text-2xl font-bold ${
-                        theme === "light" ? "text-gray-900" : "text-white"
-                      }`}>
+                      <h3 className="text-2xl font-bold text-white">
                         {step.title}
                       </h3>
 
-                      <p className={`text-base leading-relaxed ${
-                        theme === "light" ? "text-gray-600" : "text-gray-300"
-                      }`}>
+                      <p className="text-base leading-relaxed text-gray-300">
                         {step.description}
                       </p>
 
