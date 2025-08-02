@@ -902,7 +902,7 @@ export default function Index() {
                   {`��█╗  █�������╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
-█��╔�����█╗ ██║   ██║██╔══█��╗
+█��╔�������╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -6079,7 +6079,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ————��——→  hoverScale: 1.15
+// Change: hoverScale: 1.05  ————����——→  hoverScale: 1.15
 //
 // ========================================
 
@@ -8588,7 +8588,7 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       {"Digital Innovation Solutions".split("").map((letter, i) => (
                         <span
                           key={i}
-                          className="inline-block"
+                          className="animate-letter-float animate-dev-services-text"
                           style={{
                             animationDelay: `${i * 0.1}s`,
                           }}
