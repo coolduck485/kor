@@ -830,7 +830,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ••••
+                      •••��
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -5976,7 +5976,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ———�����——→  hoverScale: 1.15
+// Change: hoverScale: 1.05  ————��——→  hoverScale: 1.15
 //
 // ========================================
 
@@ -7918,11 +7918,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
 
                       {/* Animated Icon */}
                       <motion.div
-                        className={`p-3 rounded-xl ${
-                          theme === "light"
-                            ? "bg-blue-50 text-blue-600"
-                            : "bg-blue-900/20 text-blue-400"
-                        }`}
+                        className="p-3 rounded-xl bg-blue-900/20 text-blue-400"
                         animate={{
                           rotate: [0, 5, -5, 0],
                           scale: [1, 1.05, 1],
