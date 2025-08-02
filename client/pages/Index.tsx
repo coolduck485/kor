@@ -904,7 +904,7 @@ export default function Index() {
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█���█�����█╔╝�����║  ██║
+██║  ██╗╚█���█�����█���╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -7883,38 +7883,111 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
           ))}
         </div>
 
-        {/* Floating Tech Elements */}
+        {/* Floating Cosmic Elements */}
         <div className="absolute inset-0 pointer-events-none">
-          {/* Binary Code Rain Effect */}
-          {[...Array(8)].map((_, i) => (
+          {/* Cosmic Dust Trails */}
+          {[...Array(12)].map((_, i) => (
             <motion.div
-              key={`binary-${i}`}
-              className="absolute text-green-400 font-mono text-xs opacity-30"
+              key={`dust-${i}`}
+              className="absolute"
               style={{
-                left: `${5 + i * 12}%`,
-                top: "0%",
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                width: `${20 + Math.random() * 40}px`,
+                height: "1px",
+                background: `linear-gradient(90deg, transparent, rgba(${i % 3 === 0 ? '147, 51, 234' : i % 3 === 1 ? '59, 130, 246' : '236, 72, 153'}, 0.4), transparent)`,
+                transform: `rotate(${Math.random() * 360}deg)`,
               }}
               animate={{
-                y: ["0vh", "100vh"],
-                opacity: [0, 0.3, 0],
+                x: [0, 50, -30, 0],
+                y: [0, -20, 30, 0],
+                opacity: [0, 0.6, 0],
+                rotate: [0, 180, 360],
               }}
               transition={{
-                duration: 10 + (i * 2),
+                duration: 15 + (i * 2),
                 repeat: Infinity,
-                delay: i * 1.5,
-                ease: "linear",
+                delay: i * 1.2,
+                ease: "easeInOut",
               }}
-            >
-              {Array.from({ length: 20 }, () => Math.random() > 0.5 ? '1' : '0').join('')}
-            </motion.div>
+            />
           ))}
 
-          {/* Holographic UI Elements */}
+          {/* Floating Galaxy Spirals */}
           <motion.div
-            className="absolute top-1/4 left-1/4 w-32 h-20 border border-cyan-400/30 rounded-lg opacity-40"
+            className="absolute top-1/4 left-1/5 w-24 h-24 opacity-40"
             animate={{
-              rotateY: [0, 15, 0],
-              scale: [1, 1.05, 1],
+              rotate: [0, 360],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          >
+            <div
+              className="w-full h-full rounded-full"
+              style={{
+                background: "conic-gradient(from 0deg, transparent 0%, rgba(147, 51, 234, 0.6) 20%, transparent 40%, rgba(59, 130, 246, 0.5) 60%, transparent 80%, rgba(236, 72, 153, 0.4) 100%)",
+                filter: "blur(3px)",
+              }}
+            />
+          </motion.div>
+
+          <motion.div
+            className="absolute top-2/3 right-1/4 w-32 h-32 opacity-35"
+            animate={{
+              rotate: [360, 0],
+              scale: [0.8, 1.1, 0.8],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          >
+            <div
+              className="w-full h-full rounded-full"
+              style={{
+                background: "conic-gradient(from 180deg, transparent 0%, rgba(34, 197, 94, 0.5) 25%, transparent 50%, rgba(6, 182, 212, 0.4) 75%, transparent 100%)",
+                filter: "blur(4px)",
+              }}
+            />
+          </motion.div>
+
+          {/* Planetary Orbits */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-48 h-48 -translate-x-1/2 -translate-y-1/2 opacity-20"
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          >
+            <div className="absolute top-0 left-1/2 w-2 h-2 -translate-x-1/2 bg-purple-400 rounded-full blur-sm" />
+            <div className="absolute bottom-0 right-1/2 w-3 h-3 translate-x-1/2 bg-blue-400 rounded-full blur-sm" />
+            <div className="absolute left-0 top-1/2 w-1.5 h-1.5 -translate-y-1/2 bg-pink-400 rounded-full blur-sm" />
+          </motion.div>
+
+          {/* Cosmic Text Elements */}
+          <motion.div
+            className="absolute top-1/3 right-1/6 text-purple-300 font-light text-sm opacity-30"
+            animate={{
+              y: [0, -10, 0],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            ✦ stellar forge ✦
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-1/3 left-1/6 text-blue-300 font-light text-sm opacity-25"
+            animate={{
+              x: [0, 5, -5, 0],
+              opacity: [0.25, 0.5, 0.25],
             }}
             transition={{
               duration: 6,
@@ -7922,61 +7995,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
               ease: "easeInOut",
             }}
           >
-            <div className="w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mt-2" />
-            <div className="w-3/4 h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent mt-2 ml-2" />
-            <div className="w-1/2 h-1 bg-gradient-to-r from-transparent via-teal-400 to-transparent mt-2 ml-4" />
-          </motion.div>
-
-          <motion.div
-            className="absolute top-3/4 right-1/4 w-28 h-28 border-2 border-teal-400/20 opacity-35"
-            style={{
-              clipPath: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)",
-            }}
-            animate={{
-              rotate: [0, 360],
-              borderColor: [
-                "rgba(20, 184, 166, 0.2)",
-                "rgba(34, 197, 94, 0.3)",
-                "rgba(6, 182, 212, 0.2)",
-                "rgba(20, 184, 166, 0.2)",
-              ],
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-
-          {/* Glitch Text Effects */}
-          <motion.div
-            className="absolute top-1/3 right-1/6 text-green-300 font-mono text-sm opacity-25"
-            animate={{
-              x: [0, 2, -2, 0],
-              opacity: [0.25, 0.5, 0.25],
-            }}
-            transition={{
-              duration: 0.5,
-              repeat: Infinity,
-              repeatType: "mirror",
-            }}
-          >
-            [PROCESS_ACTIVE]
-          </motion.div>
-
-          <motion.div
-            className="absolute bottom-1/3 left-1/6 text-cyan-300 font-mono text-sm opacity-30"
-            animate={{
-              y: [0, -3, 3, 0],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            {`<DIGITAL_LAB/>`}
+            ◦ cosmic creation ◦
           </motion.div>
         </div>
 
