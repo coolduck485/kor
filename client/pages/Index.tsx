@@ -972,7 +972,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█���███████���███����█████ 60%
+                      CPU: █████████████��██���█���███████���███����██���██ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4214,7 +4214,7 @@ export default function Index() {
 
         {/* Futuristic Navbar */}
         <motion.div
-          className="fixed top-4 z-50 w-full flex justify-center"
+          className="absolute top-4 z-50 w-full flex justify-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
