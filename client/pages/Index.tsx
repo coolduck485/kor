@@ -3290,7 +3290,7 @@ export default function Index() {
                 />
                 {/* Animated Sparkle Icon */}
                 <svg
-                  className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle"
+                  className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0 animate-sparkle sparkle-120hz performance-optimized"
                   viewBox="0 0 24 25"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
