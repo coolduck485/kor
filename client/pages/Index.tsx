@@ -900,7 +900,7 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █�������╗ █████���╗ ██��������██╗
-██║ ����█╔���██╔═══���█╗██���══█���╗
+██║ ����█╔���█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
@@ -11698,7 +11698,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { type: "email", x: 15, y: 35, icon: "��️" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
-            { type: "meet", x: 80, y: 65, icon: "��" },
+            { type: "meet", x: 80, y: 65, icon: "🤝" },
           ].map((card, i) => (
             <motion.div
               key={`contact-card-${i}`}
@@ -12032,6 +12032,62 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     </span>
                   ))}
                 </span>
+
+                {/* Sparkles for subtitle */}
+                {[
+                  { x: 95, y: -20, size: 0.6, type: "star" },
+                  { x: 70, y: 25, size: 0.5, type: "diamond" },
+                  { x: -30, y: 15, size: 0.4, type: "plus" },
+                  { x: 110, y: 5, size: 0.7, type: "star" },
+                ].map((sparkle, i) => (
+                  <div
+                    key={`contact-subtitle-sparkle-${i}`}
+                    className="absolute pointer-events-none gpu-accelerated"
+                    style={{
+                      left: `calc(50% + ${sparkle.x}px)`,
+                      top: `calc(50% + ${sparkle.y}px)`,
+                      animation: `sparkle-enhanced ${5 + (i % 2)}s ease-in-out infinite ${i * 0.4}s`,
+                      transform: `translateZ(0) scale(${sparkle.size})`,
+                      opacity: 0.4,
+                      zIndex: -1,
+                      willChange: "transform, opacity",
+                    }}
+                  >
+                    {sparkle.type === "star" && (
+                      <div
+                        className="w-4 h-4"
+                        style={{
+                          background: "radial-gradient(circle, rgba(255, 160, 180, 0.8) 0%, rgba(160, 255, 140, 0.5) 70%, transparent 90%)",
+                          clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          animation: "spin-slow 9s linear infinite",
+                          filter: "drop-shadow(0 0 4px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "diamond" && (
+                      <div
+                        className="w-3 h-3"
+                        style={{
+                          background: "linear-gradient(45deg, rgba(255, 140, 200, 0.7), rgba(140, 255, 180, 0.6))",
+                          clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          animation: "gentle-pulse 3.5s ease-in-out infinite",
+                          filter: "drop-shadow(0 0 3px currentColor)",
+                        }}
+                      />
+                    )}
+                    {sparkle.type === "plus" && (
+                      <div
+                        className="w-3 h-3"
+                        style={{
+                          background: "conic-gradient(from 225deg, rgba(140, 255, 180, 0.7), rgba(255, 140, 160, 0.6), rgba(180, 160, 255, 0.7), rgba(255, 180, 140, 0.6))",
+                          clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          animation: "rotate-slow 8s linear infinite",
+                          filter: "drop-shadow(0 0 5px currentColor)",
+                        }}
+                      />
+                    )}
+                  </div>
+                ))}
               </p>
             </div>
 
