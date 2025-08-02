@@ -421,6 +421,7 @@ export default function Index() {
   const sections = [
     { id: "home", title: "Home", component: "home" },
     { id: "about", title: "About Us", component: "about" },
+    { id: "what-we-do", title: "What we do", component: "what-we-do" },
     { id: "services", title: "Services", component: "services" },
     { id: "pricing", title: "Pricing", component: "pricing" },
     { id: "portfolio", title: "Portfolio", component: "portfolio" },
@@ -900,8 +901,8 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █�������╗ █████����� ██����������██╗
-██║ ����█╔���█��╔═══���█╗██���══█���╗
-█████╔╝ ██║   ██║███�����██╔��
+██║ �����█╔����█��╔═══���█╗██���══█���╗
+█████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
@@ -972,7 +973,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█���███████���███����█████ 60%
+                      CPU: ███���█████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1992,38 +1993,12 @@ export default function Index() {
   return (
     <>
       {/* FIXED NAVIGATION ELEMENTS - OUTSIDE SCROLLING CONTAINER */}
+
       {/* Section Navigation Buttons */}
       <div
-        className="absolute right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
-        style={{ position: "absolute" }}
-        onMouseLeave={() => setShowNavigationTooltip(true)}
+        className="fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
+        style={{ position: "fixed" }}
       >
-        {/* Shared Navigation Tooltip - Positioned between buttons */}
-        {showNavigationTooltip &&
-          !isHelpModalOpen &&
-          (currentSection > 0 || currentSection < sections.length - 1) &&
-          shouldShowTooltip("nav-shared") && (
-            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
-              <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                  theme === "light"
-                    ? "border-blue-400/40 bg-white/90 text-gray-800"
-                    : "border-blue-300/30 bg-black/80 text-white"
-                }`}
-              >
-                {window.innerWidth < 992
-                  ? "Tap here!"
-                  : "Click to navigate sections or use Ctrl+Arrow keys"}
-                <div
-                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
-                    theme === "light"
-                      ? "border-l-white/90"
-                      : "border-l-black/80"
-                  }`}
-                />
-              </div>
-            </div>
-          )}
         {/* Previous Section Button */}
         {currentSection > 0 && !isHelpModalOpen && !isMobileMenuOpen && (
           <button
@@ -2033,19 +2008,6 @@ export default function Index() {
               if (isScrolling) return;
               protectedScrollToSection(currentSection - 1);
               setShowNavigationHints(false);
-              setShowNavigationTooltip(false);
-              dismissTooltip("nav-up");
-              dismissTooltip("nav-shared");
-            }}
-            onMouseEnter={() => {
-              setShowNavigationTooltip(false);
-              dismissTooltip("nav-up");
-              dismissTooltip("nav-shared");
-            }}
-            onTouchStart={() => {
-              setShowNavigationTooltip(false);
-              dismissTooltip("nav-up");
-              dismissTooltip("nav-shared");
             }}
             disabled={isScrolling || isMobileMenuOpen}
             className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
@@ -2086,19 +2048,6 @@ export default function Index() {
                 if (isScrolling) return;
                 protectedScrollToSection(currentSection + 1);
                 setShowNavigationHints(false);
-                setShowNavigationTooltip(false);
-                dismissTooltip("nav-down");
-                dismissTooltip("nav-shared");
-              }}
-              onMouseEnter={() => {
-                setShowNavigationTooltip(false);
-                dismissTooltip("nav-down");
-                dismissTooltip("nav-shared");
-              }}
-              onTouchStart={() => {
-                setShowNavigationTooltip(false);
-                dismissTooltip("nav-down");
-                dismissTooltip("nav-shared");
               }}
               disabled={isScrolling || isMobileMenuOpen}
               className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
@@ -2129,50 +2078,15 @@ export default function Index() {
           )}
       </div>
 
-      {/* Section Position Indicator - Visible on desktop and larger tablets */}
-      <div
-        className="hidden md:flex absolute left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[99999] flex-col space-y-1 md:space-y-1 lg:space-y-2 performance-optimized"
-        style={{
-          position: "absolute",
-          transform: "translateY(-50%)",
-          pointerEvents: "auto",
-        }}
-      >
-        {sections.map((section, index) => (
-          <button
-            key={section.id}
-            onClick={() => {
-              protectedScrollToSection(index);
-              setShowNavigationHints(false);
-            }}
-            className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full hover-120hz performance-optimized ${
-              index === currentSection
-                ? theme === "light"
-                  ? "bg-blue-600 shadow-lg scale-125"
-                  : "bg-blue-400 shadow-lg scale-125"
-                : theme === "light"
-                  ? "bg-gray-300 hover:bg-gray-400"
-                  : "bg-white/30 hover:bg-white/50"
-            }`}
-            style={{
-              boxShadow:
-                index === currentSection
-                  ? "0 0 15px rgba(73, 146, 255, 0.5)"
-                  : "none",
-            }}
-          />
-        ))}
-      </div>
-
       {/* Help Button - Positioned at bottom right corner */}
       <div
-        className={`absolute right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[99999] transition-all duration-300 ${
+        className={`fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[99999] transition-all duration-300 ${
           isMobileSafari || isSafari
             ? ""
             : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12"
         }`}
         style={{
-          position: "absolute",
+          position: "fixed",
           bottom: isMobileSafari || isSafari ? "120px" : undefined,
         }}
       >
@@ -2503,23 +2417,6 @@ export default function Index() {
                 </button>
               </div>
             </motion.div>
-          </div>
-        )}
-
-        {/* Desktop Scroll Progress Indicator */}
-        {currentSection > 0 && (
-          <div
-            className={`hidden lg:block fixed top-0 left-0 w-full h-1 z-50 pointer-events-none transition-opacity duration-300 ${
-              theme === "light" ? "bg-gray-200/50" : "bg-white/10"
-            }`}
-          >
-            <div
-              className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-200 ease-out"
-              style={{
-                width: `${scrollProgress}%`,
-                boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
-              }}
-            />
           </div>
         )}
 
@@ -4139,7 +4036,7 @@ export default function Index() {
           {/* About Us Section */}
           <motion.div
             data-section="about"
-            className={isMobileMenuOpen ? "blur-sm" : ""}
+            className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
               display: currentSection === 1 ? "block" : "none",
             }}
@@ -4151,70 +4048,85 @@ export default function Index() {
             />
           </motion.div>
 
-          {/* Services Section */}
+          {/* What we do Section */}
           <motion.div
-            data-section="services"
+            data-section="what-we-do"
             className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
               display: currentSection === 2 ? "block" : "none",
             }}
           >
-            <ServicesSection
+            <WhatWeDoSection
               ref={(el) => (sectionsRef.current[2] = el!)}
               theme={theme}
               isVisible={currentSection === 2}
             />
           </motion.div>
 
-          {/* Pricing Section */}
+          {/* Services Section */}
           <motion.div
-            data-section="pricing"
-            className={`${isMobileMenuOpen ? "blur-sm" : ""}`}
+            data-section="services"
+            className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
               display: currentSection === 3 ? "block" : "none",
             }}
           >
-            <PricingSection
+            <ServicesSection
               ref={(el) => (sectionsRef.current[3] = el!)}
               theme={theme}
               isVisible={currentSection === 3}
             />
           </motion.div>
 
-          {/* Portfolio Section */}
+          {/* Pricing Section */}
           <motion.div
-            data-section="portfolio"
-            className={isMobileMenuOpen ? "blur-sm" : ""}
+            data-section="pricing"
+            className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
               display: currentSection === 4 ? "block" : "none",
             }}
           >
-            <PortfolioSection
+            <PricingSection
               ref={(el) => (sectionsRef.current[4] = el!)}
               theme={theme}
               isVisible={currentSection === 4}
             />
           </motion.div>
 
-          {/* Contact Us Section */}
+          {/* Portfolio Section */}
           <motion.div
-            data-section="contact"
-            className={`${isMobileMenuOpen ? "blur-sm" : ""}`}
+            data-section="portfolio"
+            className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
               display: currentSection === 5 ? "block" : "none",
             }}
           >
-            <ContactUsSection
+            <PortfolioSection
               ref={(el) => (sectionsRef.current[5] = el!)}
               theme={theme}
               isVisible={currentSection === 5}
+            />
+          </motion.div>
+
+          {/* Contact Us Section */}
+          <motion.div
+            data-section="contact"
+            className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
+            style={{
+              display: currentSection === 6 ? "block" : "none",
+            }}
+          >
+            <ContactUsSection
+              ref={(el) => (sectionsRef.current[6] = el!)}
+              theme={theme}
+              isVisible={currentSection === 6}
             />
           </motion.div>
         </div>
 
         {/* Futuristic Navbar */}
         <motion.div
-          className="absolute top-4 z-50 w-full flex justify-center"
+          className="fixed top-4 z-50 w-full flex justify-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
@@ -4300,71 +4212,18 @@ export default function Index() {
           </div>
         </motion.div>
 
-        {/* Mobile Hamburger Menu */}
-        <motion.div
-          className={`fixed top-4 right-4 z-50 md:hidden ${
-            currentSection !== 0 ? "block" : "hidden"
-          }`}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{
-            opacity: currentSection !== 0 ? 1 : 0,
-            scale: currentSection !== 0 ? 1 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="w-12 h-12 rounded-full backdrop-blur-xl border border-white/10 bg-gradient-to-r from-black/20 via-blue-900/20 to-black/20 flex items-center justify-center text-white"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.div
-              animate={{ rotate: isMobileMenuOpen ? 45 : 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <div className="flex flex-col gap-1">
-                  <div className="w-4 h-0.5 bg-white rounded" />
-                  <div className="w-4 h-0.5 bg-white rounded" />
-                  <div className="w-4 h-0.5 bg-white rounded" />
-                </div>
-              )}
-            </motion.div>
-          </motion.button>
-
-          {/* Mobile Menu Dropdown */}
-          <AnimatePresence>
-            {isMobileMenuOpen && (
-              <motion.div
-                className="absolute top-14 right-0 w-48 rounded-2xl backdrop-blur-xl border border-white/10 bg-gradient-to-b from-black/40 to-black/60 overflow-hidden"
-                initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                {sections.map((section, index) => (
-                  <motion.button
-                    key={section.id}
-                    onClick={() => {
-                      scrollToSection(index);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`w-full px-4 py-3 text-left text-sm font-medium transition-all duration-200 ${
-                      currentSection === index
-                        ? "bg-blue-500/20 text-blue-400 border-l-2 border-blue-400"
-                        : "text-gray-300 hover:text-white hover:bg-white/10"
-                    }`}
-                    whileHover={{ x: 5 }}
-                  >
-                    {section.title}
-                  </motion.button>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+        {/* Mobile Hamburger Menu - Consistent across all sections */}
+        {currentSection !== 0 && (
+          <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
+            <div className="relative pointer-events-auto">
+              <MobileHamburgerMenu
+                isOpen={isMobileMenuOpen}
+                setIsOpen={setIsMobileMenuOpen}
+                theme={theme}
+              />
+            </div>
+          </div>
+        )}
 
         {/* Back to Top Button */}
         <motion.button
@@ -4379,7 +4238,7 @@ export default function Index() {
               : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
           }`}
           style={{
-            position: "absolute",
+            position: "fixed",
             pointerEvents: "auto",
             background:
               theme === "light"
@@ -5698,9 +5557,10 @@ function MobileHamburgerMenu({
       setIsOpen(false);
       const sectionMap: { [key: string]: number } = {
         "About us": 1,
-        Services: 2,
-        Portfolio: 3,
-        "Contact us": 4,
+        "What we do": 2,
+        Services: 3,
+        Portfolio: 4,
+        "Contact us": 5,
       };
       const sectionIndex = sectionMap[itemText];
       if (sectionIndex) {
@@ -5715,6 +5575,7 @@ function MobileHamburgerMenu({
 
   const menuItems = [
     { text: "About us" },
+    { text: "What we do" },
     { text: "Services" },
     { text: "Portfolio" },
     { text: "Contact us" },
@@ -6014,6 +5875,23 @@ const ORB_BUTTON_CONFIG = {
     },
 
     {
+      text: "What we do",
+      angle: 0, // Position: center-right for balance
+      radius: 280, // Consistent distance from center
+      position: "center-right",
+      animationDelay: 0.45,
+      size: "medium", // Consistent sizing
+      accent: "blue", // Color accent - unified to blue
+
+      // Custom positioning for What we do button
+      xOffset: 15, // Slightly offset for visual interest
+      yOffset: 0, // Centered positioning
+
+      // What we do button uses global positioning for consistency
+      customRadiusMultiplier: null, // Use global multipliers for consistency
+    },
+
+    {
       text: "Services",
       angle: 30, // Position: bottom-right, mirrored from About us for symmetry
       radius: 280, // Consistent distance from center
@@ -6125,22 +6003,29 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
       {
         ...ORB_BUTTON_CONFIG.buttons[1],
         onClick: () => {
-          console.log("Services clicked");
+          console.log("What we do clicked");
           scrollToSection(2);
         },
       },
       {
         ...ORB_BUTTON_CONFIG.buttons[2],
         onClick: () => {
-          console.log("Portfolio clicked");
+          console.log("Services clicked");
           scrollToSection(3);
         },
       },
       {
         ...ORB_BUTTON_CONFIG.buttons[3],
         onClick: () => {
-          console.log("Contact us clicked");
+          console.log("Portfolio clicked");
           scrollToSection(4);
+        },
+      },
+      {
+        ...ORB_BUTTON_CONFIG.buttons[4],
+        onClick: () => {
+          console.log("Contact us clicked");
+          scrollToSection(5);
         },
       },
     ],
@@ -6164,9 +6049,10 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
           animationStep={animationStep}
           onClick={() => {
             if (button.text === "About us") scrollToSection(1);
-            else if (button.text === "Services") scrollToSection(2);
-            else if (button.text === "Portfolio") scrollToSection(3);
-            else if (button.text === "Contact us") scrollToSection(4);
+            else if (button.text === "What we do") scrollToSection(2);
+            else if (button.text === "Services") scrollToSection(3);
+            else if (button.text === "Portfolio") scrollToSection(4);
+            else if (button.text === "Contact us") scrollToSection(5);
             else button.onClick?.();
           }}
         />
@@ -7675,6 +7561,287 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
     );
   },
 );
+
+// ========================================
+// WHAT WE DO SECTION COMPONENT
+// ========================================
+
+interface WhatWeDoSectionProps {
+  theme: "light" | "dark";
+  isVisible: boolean;
+}
+
+const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
+  ({ theme, isVisible }, ref) => {
+    const [screenSize, setScreenSize] = useState<
+      "mobile" | "tablet" | "desktop"
+    >("desktop");
+
+    useEffect(() => {
+      const updateScreenSize = () => {
+        const width = window.innerWidth;
+        if (width <= 640) {
+          setScreenSize("mobile");
+        } else if (width <= 991) {
+          setScreenSize("tablet");
+        } else {
+          setScreenSize("desktop");
+        }
+      };
+
+      updateScreenSize();
+      window.addEventListener("resize", updateScreenSize);
+      return () => window.removeEventListener("resize", updateScreenSize);
+    }, []);
+
+    const processSteps = [
+      {
+        number: "01",
+        title: "Discovery & Analysis",
+        description:
+          "We start by understanding your business goals, target audience, and technical requirements through comprehensive consultation.",
+        icon: "🔍",
+        color: "from-purple-500 to-pink-500",
+      },
+      {
+        number: "02",
+        title: "Design & Strategy",
+        description:
+          "Our team creates stunning, user-focused designs while developing a strategic roadmap for your digital solution.",
+        icon: "🎨",
+        color: "from-blue-500 to-cyan-500",
+      },
+      {
+        number: "03",
+        title: "Development & Build",
+        description:
+          "We bring your vision to life using cutting-edge technologies and best practices, ensuring scalability and performance.",
+        icon: "⚡",
+        color: "from-green-500 to-emerald-500",
+      },
+      {
+        number: "04",
+        title: "Launch & Support",
+        description:
+          "We deploy your solution and provide ongoing support, maintenance, and optimization to ensure continued success.",
+        icon: "🚀",
+        color: "from-orange-500 to-red-500",
+      },
+    ];
+
+    return (
+      <motion.div
+        ref={ref}
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+          theme === "light"
+            ? "bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-100"
+            : "bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900"
+        }`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Floating geometric shapes */}
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={`shape-${i}`}
+              className={`absolute rounded-full opacity-30 ${
+                theme === "light"
+                  ? "bg-gradient-to-r from-purple-300 to-blue-300"
+                  : "bg-gradient-to-r from-purple-500 to-blue-500"
+              }`}
+              style={{
+                left: `${10 + ((i * 15) % 80)}%`,
+                top: `${10 + ((i * 25) % 80)}%`,
+                width: `${20 + (i % 4) * 10}px`,
+                height: `${20 + (i % 4) * 10}px`,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                x: [0, 20, 0],
+                rotate: [0, 180, 360],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 8 + (i % 3),
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.5,
+              }}
+            />
+          ))}
+
+          {/* Glowing orbs */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`orb-${i}`}
+              className="absolute rounded-full blur-xl opacity-20"
+              style={{
+                left: `${20 + ((i * 20) % 60)}%`,
+                top: `${20 + ((i * 30) % 60)}%`,
+                width: `${100 + (i % 3) * 50}px`,
+                height: `${100 + (i % 3) * 50}px`,
+                background: `radial-gradient(circle, ${
+                  theme === "light"
+                    ? "rgba(139, 69, 219, 0.6)"
+                    : "rgba(139, 69, 219, 0.8)"
+                } 0%, transparent 70%)`,
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.2, 0.4, 0.2],
+              }}
+              transition={{
+                duration: 6 + (i % 2),
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 1.2,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          {/* Section Header */}
+          <motion.div
+            className="text-center mb-16 lg:mb-20"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.h2
+              className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 ${
+                theme === "light" ? "text-gray-900" : "text-white"
+              }`}
+              style={{
+                background:
+                  theme === "light"
+                    ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                    : "linear-gradient(135deg, #a855f7 0%, #3b82f6 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              What We Do
+            </motion.h2>
+            <motion.p
+              className={`text-lg sm:text-xl lg:text-2xl ${
+                theme === "light" ? "text-gray-600" : "text-gray-300"
+              } max-w-4xl mx-auto leading-relaxed`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isVisible ? 1 : 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              We transform your ideas into powerful digital solutions through
+              our proven process, combining creativity, technology, and
+              strategic thinking to deliver exceptional results.
+            </motion.p>
+          </motion.div>
+
+          {/* Process Steps Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                className={`relative p-6 lg:p-8 rounded-2xl backdrop-blur-sm border ${
+                  theme === "light"
+                    ? "bg-white/80 border-white/20 shadow-lg"
+                    : "bg-white/10 border-white/10 shadow-2xl"
+                }`}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={{
+                  opacity: isVisible ? 1 : 0,
+                  y: isVisible ? 0 : 50,
+                  scale: isVisible ? 1 : 0.9,
+                }}
+                transition={{ duration: 0.6, delay: 0.6 + index * 0.2 }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -10,
+                  transition: { duration: 0.3 },
+                }}
+              >
+                {/* Step Number */}
+                <motion.div
+                  className={`inline-flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-lg mb-4 bg-gradient-to-r ${step.color}`}
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  {step.number}
+                </motion.div>
+
+                {/* Icon */}
+                <motion.div
+                  className="text-4xl mb-4"
+                  animate={{
+                    rotate: [0, 10, -10, 0],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.5,
+                  }}
+                >
+                  {step.icon}
+                </motion.div>
+
+                {/* Content */}
+                <h3
+                  className={`text-xl lg:text-2xl font-bold mb-3 ${
+                    theme === "light" ? "text-gray-900" : "text-white"
+                  }`}
+                >
+                  {step.title}
+                </h3>
+                <p
+                  className={`text-sm lg:text-base leading-relaxed ${
+                    theme === "light" ? "text-gray-600" : "text-gray-300"
+                  }`}
+                >
+                  {step.description}
+                </p>
+
+                {/* Hover Effect Overlay */}
+                <motion.div
+                  className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${step.color} opacity-0`}
+                  whileHover={{ opacity: 0.1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Call to Action */}
+          <motion.div
+            className="text-center mt-16 lg:mt-20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+          >
+            <motion.button
+              className={`px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 ${
+                theme === "light"
+                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700"
+                  : "bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600"
+              } shadow-lg hover:shadow-xl`}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Start Your Project Today
+            </motion.button>
+          </motion.div>
+        </div>
+      </motion.div>
+    );
+  },
+);
+
+WhatWeDoSection.displayName = "WhatWeDoSection";
 
 // ========================================
 // SERVICES SECTION COMPONENT
