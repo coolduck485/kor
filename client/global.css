@@ -92,6 +92,84 @@ body > div {
     transform: translateZ(0);
     backface-visibility: hidden;
   }
+}
+
+/* Digital Laboratory Theme Animations */
+@keyframes tech-hologram-rotate {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(90deg) scale(1.1); }
+  50% { transform: rotate(180deg) scale(1); }
+  75% { transform: rotate(270deg) scale(0.9); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes tech-pulse-scan {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.5;
+    filter: blur(6px) hue-rotate(0deg);
+  }
+  25% {
+    transform: scale(1.2) rotate(45deg);
+    opacity: 0.8;
+    filter: blur(4px) hue-rotate(15deg);
+  }
+  50% {
+    transform: scale(1.4) rotate(90deg);
+    opacity: 1;
+    filter: blur(2px) hue-rotate(30deg);
+  }
+  75% {
+    transform: scale(1.2) rotate(135deg);
+    opacity: 0.8;
+    filter: blur(4px) hue-rotate(15deg);
+  }
+}
+
+@keyframes tech-lab-morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg);
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: rotate(15deg);
+  }
+  50% {
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    transform: rotate(30deg);
+  }
+  75% {
+    border-radius: 70% 30% 60% 40% / 40% 70% 60% 30%;
+    transform: rotate(15deg);
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes circuit-flow {
+  0% {
+    background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+    opacity: 0.1;
+  }
+  25% {
+    background-position: 20px 20px, -20px 20px, 10px 10px, -10px 10px;
+    opacity: 0.15;
+  }
+  50% {
+    background-position: 40px 40px, -40px 40px, 20px 20px, -20px 20px;
+    opacity: 0.2;
+  }
+  75% {
+    background-position: 60px 60px, -60px 60px, 30px 30px, -30px 30px;
+    opacity: 0.15;
+  }
+  100% {
+    background-position: 80px 80px, -80px 80px, 40px 40px, -40px 40px;
+    opacity: 0.1;
+  }
 
   /* Mobile notification animations */
   .animate-mobile-notification-enter {
