@@ -900,7 +900,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █���������╗ █████����� ██����������██╗
+                  {`��█╗  █�������╗ █████����� █������������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
@@ -7601,39 +7601,39 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
     const processSteps = [
       {
         number: "01",
-        title: "Cosmic Discovery",
-        description: "Navigate through the stellar landscapes of your vision, mapping constellations of possibilities and charting courses through digital galaxies to illuminate your path to success.",
+        title: "Discovery & Strategy",
+        description: "We conduct comprehensive analysis of your business requirements, market position, and technical needs to develop a strategic roadmap that ensures project success from day one.",
         icon: Code,
-        category: "EXPLORE",
-        features: ["Vision Constellation", "Market Navigation", "Stellar Architecture", "Galaxy Analysis"],
-        metrics: ["∞", "Cosmic", "Insights"],
+        category: "ANALYZE",
+        features: ["Business Analysis", "Market Research", "Technical Planning", "Strategy Development"],
+        metrics: ["100%", "Requirements", "Clarity"],
       },
       {
         number: "02",
-        title: "Nebula Creation",
-        description: "Weave stardust into magnificent designs, crafting cosmic interfaces that shimmer with beauty while harboring the power of supernovas within their elegant forms.",
+        title: "Design & Innovation",
+        description: "Our design team creates intuitive, user-centered interfaces that balance aesthetic excellence with functional efficiency, ensuring optimal user experience across all platforms.",
         icon: Palette,
-        category: "FORGE",
-        features: ["Stellar UI Design", "Cosmic Branding", "Nebula Prototyping", "Astro Testing"],
-        metrics: ["⭐", "Universal", "Appeal"],
+        category: "CREATE",
+        features: ["UI/UX Design", "Brand Integration", "Prototype Development", "User Testing"],
+        metrics: ["99%", "User Satisfaction", "Rate"],
       },
       {
         number: "03",
-        title: "Stellar Engineering",
-        description: "Transmute cosmic designs into powerful digital matter, forging solutions with the precision of orbital mechanics and the energy of distant quasars.",
+        title: "Development & Engineering",
+        description: "We build robust, scalable solutions using industry-leading technologies and best practices, ensuring your application performs flawlessly under any load conditions.",
         icon: Zap,
         category: "BUILD",
-        features: ["Quantum Development", "Cosmic Architecture", "Stellar Optimization", "Galactic Security"],
-        metrics: ["🚀", "Lightspeed", "Performance"],
+        features: ["Full-Stack Development", "Cloud Architecture", "Performance Optimization", "Security Implementation"],
+        metrics: ["<0.5s", "Load Time", "Average"],
       },
       {
         number: "04",
-        title: "Galaxy Launch",
-        description: "Release your creation into the digital cosmos with supernova confidence, ensuring it burns bright and expands across infinite digital dimensions.",
+        title: "Launch & Support",
+        description: "We ensure seamless deployment and provide ongoing maintenance, monitoring, and optimization services to keep your solution running at peak performance as your business grows.",
         icon: Globe,
-        category: "ASCEND",
-        features: ["Cosmic Deployment", "Stellar Monitoring", "Interstellar Support", "Infinite Scaling"],
-        metrics: ["🌌", "Universal", "Reach"],
+        category: "DEPLOY",
+        features: ["Production Deployment", "Performance Monitoring", "24/7 Technical Support", "Continuous Optimization"],
+        metrics: ["99.9%", "Uptime", "Guarantee"],
       },
     ];
 
