@@ -7808,44 +7808,53 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <motion.div
-              className="inline-block mb-6"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <span className="px-4 py-2 rounded-full text-sm font-medium backdrop-blur-md border bg-white/10 text-blue-300 border-blue-400/20">
-                Our Process
-              </span>
-            </motion.div>
-
-            <motion.h2
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-white"
+            <motion.h1
+              className={`text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight font-poppins mb-8 ${
+                theme === "light" ? "text-gray-900" : "text-white"
+              } warm-glow-text animate-warm-glow-pulse`}
               style={{
-                background: "linear-gradient(135deg, #4992FF 0%, #3FBAFF 50%, #60A5FA 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                textShadow: theme === "dark" ? "0 0 20px rgba(73, 146, 255, 0.3)" : "none",
+                filter: "drop-shadow(0px 4px 8px rgba(59, 130, 246, 0.3)) drop-shadow(0px 2px 4px rgba(147, 51, 234, 0.2))",
               }}
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              What We Do
-            </motion.h2>
+              {"What We Do".split("").map((letter, i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block animate-letter-float"
+                  style={{
+                    animationDelay: `${i * 0.1}s`,
+                  }}
+                >
+                  {letter === " " ? "\u00A0" : letter}
+                </motion.span>
+              ))}
+            </motion.h1>
 
-            <motion.p
-              className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed text-gray-300"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isVisible ? 1 : 0 }}
-              transition={{ duration: 1, delay: 0.6 }}
+            <motion.div
+              className={`text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold font-poppins ${
+                theme === "light" ? "text-gray-700" : "text-gray-300"
+              } warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz`}
+              style={{
+                filter: "drop-shadow(0px 2px 4px rgba(59, 130, 246, 0.2)) drop-shadow(0px 1px 2px rgba(147, 51, 234, 0.15))",
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
-              We transform ambitious ideas into revolutionary digital experiences through
-              our{" "}
-              <span className="text-blue-400 font-semibold">cutting-edge methodology</span>{" "}
-              and relentless pursuit of excellence.
-            </motion.p>
+              {"Transform ideas into digital excellence".split("").map((letter, i) => (
+                <motion.span
+                  key={i}
+                  className="inline-block animate-letter-float"
+                  style={{
+                    animationDelay: `${i * 0.05}s`,
+                  }}
+                >
+                  {letter === " " ? "\u00A0" : letter}
+                </motion.span>
+              ))}
+            </motion.div>
           </motion.div>
 
           {/* Process Timeline */}
