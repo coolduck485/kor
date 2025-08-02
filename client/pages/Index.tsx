@@ -905,7 +905,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
-������������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
+�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -5577,6 +5577,7 @@ function MobileHamburgerMenu({
 
   const menuItems = [
     { text: "About us" },
+    { text: "What we do" },
     { text: "Services" },
     { text: "Portfolio" },
     { text: "Contact us" },
