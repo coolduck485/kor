@@ -12,9 +12,9 @@
   transform: translateZ(0);
 }
 
-/* Force navigation dots to stay visible */
+/* Force navigation dots to move with scroll */
 div[class*="fixed left-"][class*="top-1/2"] {
-  position: fixed !important;
+  position: absolute !important;
   z-index: 99999 !important;
   pointer-events: auto !important;
   transform: translateY(-50%) translateZ(0) !important;
