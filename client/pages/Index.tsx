@@ -4184,7 +4184,7 @@ export default function Index() {
           {/* Portfolio Section */}
           <motion.div
             data-section="portfolio"
-            className={isMobileMenuOpen ? "blur-sm" : ""}
+            className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
               display: currentSection === 4 ? "block" : "none",
             }}
