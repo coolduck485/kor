@@ -903,8 +903,8 @@ export default function Index() {
 ██║ ����█╔���██╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█���█�����█╔╝������║  ██║
-�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
+██║  ██╗╚█���█�����█╔╝�����║  ██║
+������������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -10746,7 +10746,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       {"Our Featured Work".split("").map((letter, i) => (
                         <span
                           key={i}
-                          className="inline-block"
+                          className="animate-letter-float animate-dev-services-text"
                           style={{ animationDelay: `${i * 0.1}s` }}
                         >
                           {letter === " " ? "\u00A0" : letter}
