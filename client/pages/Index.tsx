@@ -7866,6 +7866,103 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
           ))}
         </div>
 
+        {/* Floating Tech Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Binary Code Rain Effect */}
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`binary-${i}`}
+              className="absolute text-green-400 font-mono text-xs opacity-30"
+              style={{
+                left: `${5 + i * 12}%`,
+                top: "0%",
+              }}
+              animate={{
+                y: ["0vh", "100vh"],
+                opacity: [0, 0.3, 0],
+              }}
+              transition={{
+                duration: 10 + (i * 2),
+                repeat: Infinity,
+                delay: i * 1.5,
+                ease: "linear",
+              }}
+            >
+              {Array.from({ length: 20 }, () => Math.random() > 0.5 ? '1' : '0').join('')}
+            </motion.div>
+          ))}
+
+          {/* Holographic UI Elements */}
+          <motion.div
+            className="absolute top-1/4 left-1/4 w-32 h-20 border border-cyan-400/30 rounded-lg opacity-40"
+            animate={{
+              rotateY: [0, 15, 0],
+              scale: [1, 1.05, 1],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <div className="w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mt-2" />
+            <div className="w-3/4 h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent mt-2 ml-2" />
+            <div className="w-1/2 h-1 bg-gradient-to-r from-transparent via-teal-400 to-transparent mt-2 ml-4" />
+          </motion.div>
+
+          <motion.div
+            className="absolute top-3/4 right-1/4 w-28 h-28 border-2 border-teal-400/20 opacity-35"
+            style={{
+              clipPath: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)",
+            }}
+            animate={{
+              rotate: [0, 360],
+              borderColor: [
+                "rgba(20, 184, 166, 0.2)",
+                "rgba(34, 197, 94, 0.3)",
+                "rgba(6, 182, 212, 0.2)",
+                "rgba(20, 184, 166, 0.2)",
+              ],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+
+          {/* Glitch Text Effects */}
+          <motion.div
+            className="absolute top-1/3 right-1/6 text-green-300 font-mono text-sm opacity-25"
+            animate={{
+              x: [0, 2, -2, 0],
+              opacity: [0.25, 0.5, 0.25],
+            }}
+            transition={{
+              duration: 0.5,
+              repeat: Infinity,
+              repeatType: "mirror",
+            }}
+          >
+            [PROCESS_ACTIVE]
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-1/3 left-1/6 text-cyan-300 font-mono text-sm opacity-30"
+            animate={{
+              y: [0, -3, 3, 0],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            {`<DIGITAL_LAB/>`}
+          </motion.div>
+        </div>
+
         <div className="relative z-10 container mx-auto px-6 py-20">
           {/* Header Section */}
           <motion.div
@@ -12066,7 +12163,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             {
-              icon: "����������",
+              icon: "������������",
               delay: 3,
               x: 10,
               y: 60,
