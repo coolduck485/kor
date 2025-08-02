@@ -901,7 +901,7 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █�������╗ █████����� ██����������██╗
-██║ �����█╔����█��╔═══���█╗██���══█���╗
+██║ �����█╔����█��╔═══���█╗██���══█�����╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
@@ -979,7 +979,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����█████████���██����███████��█ 50%
+                      RAM: ����█�����█████████���█������███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -8098,19 +8098,33 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                     {/* Step Header */}
                     <div className="flex items-start justify-between mb-6">
                       <div className="flex items-center space-x-4">
-                        {/* Glowing Number Badge */}
+                        {/* Holographic Tech Badge */}
                         <motion.div
-                          className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-lg"
+                          className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-green-500 to-cyan-500 text-white font-bold text-lg font-mono"
                           whileHover={{ rotate: 5, scale: 1.1 }}
                           transition={{ duration: 0.3 }}
                           style={{
-                            boxShadow: "0 10px 30px rgba(73, 146, 255, 0.4)",
+                            boxShadow: "0 10px 30px rgba(34, 197, 94, 0.4), 0 0 20px rgba(6, 182, 212, 0.3)",
+                            border: "1px solid rgba(20, 184, 166, 0.3)",
                           }}
                         >
                           {step.number}
                           <motion.div
-                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-20"
+                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-400 to-teal-400 opacity-0 group-hover:opacity-30"
                             transition={{ duration: 0.3 }}
+                          />
+                          {/* Holographic Glitch Effect */}
+                          <motion.div
+                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-300 to-green-300 opacity-0"
+                            animate={{
+                              opacity: [0, 0.2, 0],
+                              x: [0, 2, -2, 0],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: index * 0.5,
+                            }}
                           />
                         </motion.div>
 
@@ -12289,7 +12303,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "����️" },
+            { type: "email", x: 15, y: 35, icon: "��️" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
