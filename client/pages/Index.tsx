@@ -421,6 +421,7 @@ export default function Index() {
   const sections = [
     { id: "home", title: "Home", component: "home" },
     { id: "about", title: "About Us", component: "about" },
+    { id: "what-we-do", title: "What we do", component: "what-we-do" },
     { id: "services", title: "Services", component: "services" },
     { id: "pricing", title: "Pricing", component: "pricing" },
     { id: "portfolio", title: "Portfolio", component: "portfolio" },
