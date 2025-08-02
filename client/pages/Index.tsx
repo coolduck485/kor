@@ -5967,7 +5967,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: xOffset: 0  →  xOffset: 50
 //
 // To move "About us" button 30px up:
-// Change: yOffset: 0  ���  yOffset: -30
+// Change: yOffset: 0  �����  yOffset: -30
 //
 // To make all buttons closer to center on mobile:
 // Change: mobileRadiusMultiplier: 0.5  →  mobileRadiusMultiplier: 0.3
@@ -7836,9 +7836,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
             </motion.h2>
 
             <motion.p
-              className={`text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed ${
-                theme === "light" ? "text-gray-600" : "text-gray-300"
-              }`}
+              className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed text-gray-300"
               initial={{ opacity: 0 }}
               animate={{ opacity: isVisible ? 1 : 0 }}
               transition={{ duration: 1, delay: 0.6 }}
