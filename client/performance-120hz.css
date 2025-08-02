@@ -9,13 +9,13 @@
   --ease-smooth: cubic-bezier(0.165, 0.84, 0.44, 1);
   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  
+
   /* Optimized durations for 120fps */
   --duration-ultra-fast: 0.08s;
   --duration-fast: 0.15s;
   --duration-medium: 0.3s;
   --duration-slow: 0.6s;
-  
+
   /* Performance flags */
   --gpu-acceleration: translateZ(0);
   --hardware-layer: transform translateZ(0);
@@ -46,7 +46,7 @@
 
 /* 120hz optimized hover effects */
 .hover-120hz {
-  transition: 
+  transition:
     transform var(--duration-fast) var(--ease-120hz),
     filter var(--duration-fast) var(--ease-120hz),
     opacity var(--duration-fast) var(--ease-120hz);
@@ -99,12 +99,12 @@
     /* Reduce will-change on mobile for battery life */
     will-change: transform;
   }
-  
+
   .hover-120hz {
     /* Simplified mobile interactions */
     transition: transform var(--duration-medium) var(--ease-120hz);
   }
-  
+
   /* Disable complex effects on low-power devices */
   @media (prefers-reduced-motion: reduce) {
     .sparkle-120hz,
@@ -118,23 +118,23 @@
 }
 
 /* High refresh rate display optimizations */
-@media (min-resolution: 120dpi) and (min-refresh-rate: 120Hz) {
+@media (min-resolution: 120dpi) and (min-refresh-rate: 120hz) {
   /* Ultra-smooth animations for 120hz+ displays */
   .animate-dev-services-text {
     animation-duration: 3s !important;
     animation-timing-function: var(--ease-smooth) !important;
   }
-  
+
   .animate-letter-float {
     animation-duration: 1s !important;
     animation-timing-function: var(--ease-120hz) !important;
   }
-  
+
   .animate-warm-glow-pulse {
     animation-duration: 1.5s !important;
     animation-timing-function: var(--ease-smooth) !important;
   }
-  
+
   .animate-sparkle-enhanced {
     animation-duration: 1.2s !important;
     animation-timing-function: var(--ease-120hz) !important;
@@ -166,7 +166,7 @@
 .button-120hz {
   will-change: transform, box-shadow;
   transform: translateZ(0);
-  transition: 
+  transition:
     transform var(--duration-fast) var(--ease-bounce),
     box-shadow var(--duration-fast) var(--ease-120hz);
 }
@@ -217,17 +217,17 @@
 }
 
 /* Optimized for 144hz+ displays */
-@media (min-refresh-rate: 144Hz) {
+@media (min-refresh-rate: 144hz) {
   :root {
     --duration-ultra-fast: 0.06s;
     --duration-fast: 0.12s;
     --duration-medium: 0.25s;
   }
-  
+
   .animate-dev-services-text {
     animation-duration: 2.5s !important;
   }
-  
+
   .animate-letter-float {
     animation-duration: 0.8s !important;
   }
@@ -259,7 +259,7 @@
 .card-performance {
   will-change: transform, box-shadow;
   transform: translateZ(0);
-  transition: 
+  transition:
     transform var(--duration-medium) var(--ease-smooth),
     box-shadow var(--duration-medium) var(--ease-120hz);
 }

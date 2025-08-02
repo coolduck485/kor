@@ -2135,7 +2135,7 @@ export default function Index() {
         style={{
           position: "absolute",
           transform: "translateY(-50%)",
-          pointerEvents: "auto"
+          pointerEvents: "auto",
         }}
       >
         {sections.map((section, index) => (
@@ -7251,7 +7251,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "radial-gradient(circle, rgba(120, 255, 200, 0.8) 0%, rgba(120, 180, 255, 0.5) 70%, transparent 90%)",
                             "radial-gradient(circle, rgba(180, 120, 255, 0.8) 0%, rgba(255, 140, 180, 0.5) 70%, transparent 90%)",
                           ][i % 3],
-                          clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                           animation: "spin-slow 12s linear infinite",
                           filter: "drop-shadow(0 0 6px currentColor)",
                         }}
@@ -7266,7 +7267,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "linear-gradient(45deg, rgba(150, 120, 255, 0.7), rgba(255, 180, 120, 0.6))",
                             "linear-gradient(45deg, rgba(120, 180, 255, 0.7), rgba(255, 140, 120, 0.6))",
                           ][i % 3],
-                          clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                           animation: "gentle-pulse 3s ease-in-out infinite",
                           filter: "drop-shadow(0 0 4px currentColor)",
                         }}
@@ -7281,7 +7283,8 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "conic-gradient(from 90deg, rgba(120, 255, 140, 0.7), rgba(255, 120, 180, 0.6), rgba(140, 180, 255, 0.7), rgba(255, 160, 120, 0.6))",
                             "conic-gradient(from 180deg, rgba(180, 140, 255, 0.7), rgba(255, 180, 120, 0.6), rgba(120, 255, 160, 0.7), rgba(255, 140, 180, 0.6))",
                           ][i % 3],
-                          clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                           animation: "rotate-slow 10s linear infinite",
                           filter: "drop-shadow(0 0 8px currentColor)",
                         }}
@@ -7308,17 +7311,19 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz">
-                      {"Crafting Digital Excellence".split("").map((letter, i) => (
-                        <span
-                          key={i}
-                          className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
-                          style={{
-                            animationDelay: `${i * 0.1}s`,
-                          }}
-                        >
-                          {letter === " " ? "\u00A0" : letter}
-                        </span>
-                      ))}
+                      {"Crafting Digital Excellence"
+                        .split("")
+                        .map((letter, i) => (
+                          <span
+                            key={i}
+                            className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
+                            style={{
+                              animationDelay: `${i * 0.1}s`,
+                            }}
+                          >
+                            {letter === " " ? "\u00A0" : letter}
+                          </span>
+                        ))}
                     </span>
 
                     {/* Sparkles for subtitle */}
@@ -7345,8 +7350,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-4 h-4"
                             style={{
-                              background: "radial-gradient(circle, rgba(120, 200, 255, 0.8) 0%, rgba(200, 120, 255, 0.5) 70%, transparent 90%)",
-                              clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              background:
+                                "radial-gradient(circle, rgba(120, 200, 255, 0.8) 0%, rgba(200, 120, 255, 0.5) 70%, transparent 90%)",
+                              clipPath:
+                                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                               animation: "spin-slow 10s linear infinite",
                               filter: "drop-shadow(0 0 4px currentColor)",
                             }}
@@ -7356,8 +7363,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-3 h-3"
                             style={{
-                              background: "linear-gradient(45deg, rgba(255, 140, 180, 0.7), rgba(140, 255, 200, 0.6))",
-                              clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              background:
+                                "linear-gradient(45deg, rgba(255, 140, 180, 0.7), rgba(140, 255, 200, 0.6))",
+                              clipPath:
+                                "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                               animation: "gentle-pulse 3s ease-in-out infinite",
                               filter: "drop-shadow(0 0 3px currentColor)",
                             }}
@@ -7367,8 +7376,10 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-3 h-3"
                             style={{
-                              background: "conic-gradient(from 45deg, rgba(180, 255, 140, 0.7), rgba(255, 180, 140, 0.6), rgba(140, 180, 255, 0.7), rgba(255, 200, 180, 0.6))",
-                              clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              background:
+                                "conic-gradient(from 45deg, rgba(180, 255, 140, 0.7), rgba(255, 180, 140, 0.6), rgba(140, 180, 255, 0.7), rgba(255, 200, 180, 0.6))",
+                              clipPath:
+                                "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                               animation: "rotate-slow 8s linear infinite",
                               filter: "drop-shadow(0 0 5px currentColor)",
                             }}
@@ -8568,7 +8579,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "radial-gradient(circle, rgba(255, 100, 200, 0.8) 0%, rgba(100, 255, 180, 0.5) 70%, transparent 90%)",
                             "radial-gradient(circle, rgba(200, 150, 255, 0.8) 0%, rgba(255, 100, 150, 0.5) 70%, transparent 90%)",
                           ][i % 3],
-                          clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                           animation: "spin-slow 14s linear infinite",
                           filter: "drop-shadow(0 0 7px currentColor)",
                         }}
@@ -8583,7 +8595,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "linear-gradient(45deg, rgba(200, 100, 255, 0.7), rgba(100, 255, 150, 0.6))",
                             "linear-gradient(45deg, rgba(255, 200, 100, 0.7), rgba(100, 150, 255, 0.6))",
                           ][i % 3],
-                          clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                           animation: "gentle-pulse 4s ease-in-out infinite",
                           filter: "drop-shadow(0 0 5px currentColor)",
                         }}
@@ -8598,7 +8611,8 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "conic-gradient(from 135deg, rgba(255, 150, 100, 0.7), rgba(100, 200, 255, 0.6), rgba(200, 100, 255, 0.7), rgba(100, 255, 150, 0.6))",
                             "conic-gradient(from 225deg, rgba(150, 255, 100, 0.7), rgba(255, 100, 200, 0.6), rgba(100, 150, 255, 0.7), rgba(255, 200, 100, 0.6))",
                           ][i % 3],
-                          clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                           animation: "rotate-slow 11s linear infinite",
                           filter: "drop-shadow(0 0 9px currentColor)",
                         }}
@@ -8660,17 +8674,19 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                     }}
                   >
                     <span className="warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz">
-                      {"Digital Innovation Solutions".split("").map((letter, i) => (
-                        <span
-                          key={i}
-                          className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
-                          style={{
-                            animationDelay: `${i * 0.1}s`,
-                          }}
-                        >
-                          {letter === " " ? "\u00A0" : letter}
-                        </span>
-                      ))}
+                      {"Digital Innovation Solutions"
+                        .split("")
+                        .map((letter, i) => (
+                          <span
+                            key={i}
+                            className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
+                            style={{
+                              animationDelay: `${i * 0.1}s`,
+                            }}
+                          >
+                            {letter === " " ? "\u00A0" : letter}
+                          </span>
+                        ))}
                     </span>
 
                     {/* Sparkles for subtitle */}
@@ -8697,8 +8713,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-4 h-4"
                             style={{
-                              background: "radial-gradient(circle, rgba(200, 120, 255, 0.8) 0%, rgba(120, 255, 180, 0.5) 70%, transparent 90%)",
-                              clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              background:
+                                "radial-gradient(circle, rgba(200, 120, 255, 0.8) 0%, rgba(120, 255, 180, 0.5) 70%, transparent 90%)",
+                              clipPath:
+                                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                               animation: "spin-slow 12s linear infinite",
                               filter: "drop-shadow(0 0 4px currentColor)",
                             }}
@@ -8708,9 +8726,12 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-3 h-3"
                             style={{
-                              background: "linear-gradient(45deg, rgba(120, 255, 160, 0.7), rgba(255, 120, 200, 0.6))",
-                              clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                              animation: "gentle-pulse 3.5s ease-in-out infinite",
+                              background:
+                                "linear-gradient(45deg, rgba(120, 255, 160, 0.7), rgba(255, 120, 200, 0.6))",
+                              clipPath:
+                                "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              animation:
+                                "gentle-pulse 3.5s ease-in-out infinite",
                               filter: "drop-shadow(0 0 3px currentColor)",
                             }}
                           />
@@ -8719,8 +8740,10 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-3 h-3"
                             style={{
-                              background: "conic-gradient(from 90deg, rgba(255, 160, 120, 0.7), rgba(120, 255, 160, 0.6), rgba(160, 120, 255, 0.7), rgba(255, 180, 160, 0.6))",
-                              clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              background:
+                                "conic-gradient(from 90deg, rgba(255, 160, 120, 0.7), rgba(120, 255, 160, 0.6), rgba(160, 120, 255, 0.7), rgba(255, 180, 160, 0.6))",
+                              clipPath:
+                                "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                               animation: "rotate-slow 9s linear infinite",
                               filter: "drop-shadow(0 0 5px currentColor)",
                             }}
@@ -9212,7 +9235,8 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "radial-gradient(circle, rgba(150, 100, 255, 0.8) 0%, rgba(255, 150, 100, 0.5) 70%, transparent 90%)",
                             "radial-gradient(circle, rgba(100, 200, 255, 0.8) 0%, rgba(255, 100, 200, 0.5) 70%, transparent 90%)",
                           ][i % 3],
-                          clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                           animation: "spin-slow 13s linear infinite",
                           filter: "drop-shadow(0 0 6px currentColor)",
                         }}
@@ -9227,7 +9251,8 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "linear-gradient(45deg, rgba(100, 150, 255, 0.7), rgba(255, 200, 100, 0.6))",
                             "linear-gradient(45deg, rgba(200, 255, 100, 0.7), rgba(100, 200, 255, 0.6))",
                           ][i % 3],
-                          clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                           animation: "gentle-pulse 3.5s ease-in-out infinite",
                           filter: "drop-shadow(0 0 4px currentColor)",
                         }}
@@ -9242,7 +9267,8 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "conic-gradient(from 120deg, rgba(100, 255, 180, 0.7), rgba(255, 100, 150, 0.6), rgba(180, 200, 255, 0.7), rgba(255, 200, 100, 0.6))",
                             "conic-gradient(from 210deg, rgba(200, 150, 255, 0.7), rgba(255, 180, 100, 0.6), rgba(100, 255, 180, 0.7), rgba(255, 150, 200, 0.6))",
                           ][i % 3],
-                          clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                           animation: "rotate-slow 9s linear infinite",
                           filter: "drop-shadow(0 0 7px currentColor)",
                         }}
@@ -9315,8 +9341,10 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-4 h-4"
                             style={{
-                              background: "radial-gradient(circle, rgba(255, 180, 120, 0.8) 0%, rgba(120, 200, 255, 0.5) 70%, transparent 90%)",
-                              clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              background:
+                                "radial-gradient(circle, rgba(255, 180, 120, 0.8) 0%, rgba(120, 200, 255, 0.5) 70%, transparent 90%)",
+                              clipPath:
+                                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                               animation: "spin-slow 11s linear infinite",
                               filter: "drop-shadow(0 0 4px currentColor)",
                             }}
@@ -9326,9 +9354,12 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-3 h-3"
                             style={{
-                              background: "linear-gradient(45deg, rgba(255, 200, 120, 0.7), rgba(120, 180, 255, 0.6))",
-                              clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                              animation: "gentle-pulse 3.2s ease-in-out infinite",
+                              background:
+                                "linear-gradient(45deg, rgba(255, 200, 120, 0.7), rgba(120, 180, 255, 0.6))",
+                              clipPath:
+                                "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              animation:
+                                "gentle-pulse 3.2s ease-in-out infinite",
                               filter: "drop-shadow(0 0 3px currentColor)",
                             }}
                           />
@@ -9337,8 +9368,10 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-3 h-3"
                             style={{
-                              background: "conic-gradient(from 135deg, rgba(120, 255, 200, 0.7), rgba(255, 120, 180, 0.6), rgba(200, 180, 255, 0.7), rgba(255, 200, 120, 0.6))",
-                              clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              background:
+                                "conic-gradient(from 135deg, rgba(120, 255, 200, 0.7), rgba(255, 120, 180, 0.6), rgba(200, 180, 255, 0.7), rgba(255, 200, 120, 0.6))",
+                              clipPath:
+                                "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                               animation: "rotate-slow 7s linear infinite",
                               filter: "drop-shadow(0 0 5px currentColor)",
                             }}
@@ -10845,7 +10878,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "radial-gradient(circle, rgba(255, 160, 100, 0.8) 0%, rgba(120, 255, 160, 0.5) 70%, transparent 90%)",
                             "radial-gradient(circle, rgba(160, 255, 120, 0.8) 0%, rgba(255, 100, 160, 0.5) 70%, transparent 90%)",
                           ][i % 4],
-                          clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                           animation: "spin-slow 15s linear infinite",
                           filter: "drop-shadow(0 0 8px currentColor)",
                         }}
@@ -10861,7 +10895,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "linear-gradient(45deg, rgba(255, 180, 120, 0.7), rgba(120, 140, 255, 0.6))",
                             "linear-gradient(45deg, rgba(140, 255, 120, 0.7), rgba(255, 120, 180, 0.6))",
                           ][i % 4],
-                          clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                           animation: "gentle-pulse 4s ease-in-out infinite",
                           filter: "drop-shadow(0 0 6px currentColor)",
                         }}
@@ -10877,7 +10912,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "conic-gradient(from 240deg, rgba(255, 180, 160, 0.7), rgba(160, 255, 180, 0.6), rgba(180, 140, 255, 0.7), rgba(255, 160, 180, 0.6))",
                             "conic-gradient(from 330deg, rgba(180, 255, 140, 0.7), rgba(255, 160, 200, 0.6), rgba(140, 180, 255, 0.7), rgba(255, 200, 160, 0.6))",
                           ][i % 4],
-                          clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                           animation: "rotate-slow 12s linear infinite",
                           filter: "drop-shadow(0 0 10px currentColor)",
                         }}
@@ -10965,8 +11001,10 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-4 h-4"
                             style={{
-                              background: "radial-gradient(circle, rgba(160, 120, 255, 0.8) 0%, rgba(255, 160, 120, 0.5) 70%, transparent 90%)",
-                              clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              background:
+                                "radial-gradient(circle, rgba(160, 120, 255, 0.8) 0%, rgba(255, 160, 120, 0.5) 70%, transparent 90%)",
+                              clipPath:
+                                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                               animation: "spin-slow 13s linear infinite",
                               filter: "drop-shadow(0 0 4px currentColor)",
                             }}
@@ -10976,9 +11014,12 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-3 h-3"
                             style={{
-                              background: "linear-gradient(45deg, rgba(160, 255, 120, 0.7), rgba(255, 120, 160, 0.6))",
-                              clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
-                              animation: "gentle-pulse 3.8s ease-in-out infinite",
+                              background:
+                                "linear-gradient(45deg, rgba(160, 255, 120, 0.7), rgba(255, 120, 160, 0.6))",
+                              clipPath:
+                                "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              animation:
+                                "gentle-pulse 3.8s ease-in-out infinite",
                               filter: "drop-shadow(0 0 3px currentColor)",
                             }}
                           />
@@ -10987,8 +11028,10 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           <div
                             className="w-3 h-3"
                             style={{
-                              background: "conic-gradient(from 180deg, rgba(255, 120, 160, 0.7), rgba(160, 255, 120, 0.6), rgba(120, 160, 255, 0.7), rgba(255, 160, 180, 0.6))",
-                              clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              background:
+                                "conic-gradient(from 180deg, rgba(255, 120, 160, 0.7), rgba(160, 255, 120, 0.6), rgba(120, 160, 255, 0.7), rgba(255, 160, 180, 0.6))",
+                              clipPath:
+                                "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                               animation: "rotate-slow 10s linear infinite",
                               filter: "drop-shadow(0 0 5px currentColor)",
                             }}
@@ -11624,7 +11667,14 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "����������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            {
+              icon: "����������",
+              delay: 3,
+              x: 10,
+              y: 60,
+              size: 18,
+              duration: 8,
+            },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
@@ -11987,7 +12037,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "radial-gradient(circle, rgba(160, 140, 255, 0.8) 0%, rgba(255, 160, 140, 0.5) 70%, transparent 90%)",
                             "radial-gradient(circle, rgba(140, 200, 255, 0.8) 0%, rgba(255, 140, 180, 0.5) 70%, transparent 90%)",
                           ][i % 3],
-                          clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                           animation: "spin-slow 11s linear infinite",
                           filter: "drop-shadow(0 0 6px currentColor)",
                         }}
@@ -12002,7 +12053,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "linear-gradient(45deg, rgba(140, 160, 255, 0.7), rgba(255, 200, 140, 0.6))",
                             "linear-gradient(45deg, rgba(200, 255, 140, 0.7), rgba(140, 200, 255, 0.6))",
                           ][i % 3],
-                          clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                           animation: "gentle-pulse 3s ease-in-out infinite",
                           filter: "drop-shadow(0 0 4px currentColor)",
                         }}
@@ -12017,7 +12069,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             "conic-gradient(from 105deg, rgba(140, 255, 160, 0.7), rgba(255, 140, 180, 0.6), rgba(160, 200, 255, 0.7), rgba(255, 200, 140, 0.6))",
                             "conic-gradient(from 195deg, rgba(200, 160, 255, 0.7), rgba(255, 180, 140, 0.6), rgba(140, 255, 180, 0.7), rgba(255, 160, 200, 0.6))",
                           ][i % 3],
-                          clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                           animation: "rotate-slow 8s linear infinite",
                           filter: "drop-shadow(0 0 7px currentColor)",
                         }}
@@ -12076,8 +12129,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div
                         className="w-4 h-4"
                         style={{
-                          background: "radial-gradient(circle, rgba(255, 160, 180, 0.8) 0%, rgba(160, 255, 140, 0.5) 70%, transparent 90%)",
-                          clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                          background:
+                            "radial-gradient(circle, rgba(255, 160, 180, 0.8) 0%, rgba(160, 255, 140, 0.5) 70%, transparent 90%)",
+                          clipPath:
+                            "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
                           animation: "spin-slow 9s linear infinite",
                           filter: "drop-shadow(0 0 4px currentColor)",
                         }}
@@ -12087,8 +12142,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div
                         className="w-3 h-3"
                         style={{
-                          background: "linear-gradient(45deg, rgba(255, 140, 200, 0.7), rgba(140, 255, 180, 0.6))",
-                          clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                          background:
+                            "linear-gradient(45deg, rgba(255, 140, 200, 0.7), rgba(140, 255, 180, 0.6))",
+                          clipPath:
+                            "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                           animation: "gentle-pulse 3.5s ease-in-out infinite",
                           filter: "drop-shadow(0 0 3px currentColor)",
                         }}
@@ -12098,8 +12155,10 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       <div
                         className="w-3 h-3"
                         style={{
-                          background: "conic-gradient(from 225deg, rgba(140, 255, 180, 0.7), rgba(255, 140, 160, 0.6), rgba(180, 160, 255, 0.7), rgba(255, 180, 140, 0.6))",
-                          clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                          background:
+                            "conic-gradient(from 225deg, rgba(140, 255, 180, 0.7), rgba(255, 140, 160, 0.6), rgba(180, 160, 255, 0.7), rgba(255, 180, 140, 0.6))",
+                          clipPath:
+                            "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
                           animation: "rotate-slow 8s linear infinite",
                           filter: "drop-shadow(0 0 5px currentColor)",
                         }}

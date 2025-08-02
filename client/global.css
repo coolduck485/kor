@@ -914,7 +914,7 @@ body > div {
 
   80% {
     opacity: 0.92;
-    transform: scale(1.0) rotate(288deg) translateZ(0);
+    transform: scale(1) rotate(288deg) translateZ(0);
   }
 
   85% {
@@ -2920,7 +2920,8 @@ body > div {
 }
 
 .animate-dev-services-text {
-  animation: dev-services-text 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation: dev-services-text 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    infinite;
   display: inline-block;
   transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
   will-change: transform, filter;
