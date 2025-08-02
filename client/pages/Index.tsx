@@ -903,8 +903,8 @@ export default function Index() {
 ██║ ����█╔���██╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█���█�����█╔╝�����║  ██║
-������������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
+██║  ██╗╚█���█�����█╔��������║  ██║
+�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -11799,7 +11799,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   {"Tell us about it.".split("").map((letter, i) => (
                     <span
                       key={i}
-                      className="inline-block relative"
+                      className="animate-letter-float animate-dev-services-text"
                       style={{
                         animationDelay: `${i * 0.1}s`,
                       }}
