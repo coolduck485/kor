@@ -2130,41 +2130,39 @@ export default function Index() {
       </div>
 
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
-      {!isHelpModalOpen && !isMobileMenuOpen && (
-        <div
-          className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[99999] flex-col space-y-1 md:space-y-1 lg:space-y-2 performance-optimized"
-          style={{
-            position: "fixed",
-            transform: "translateY(-50%)",
-            pointerEvents: "auto"
-          }}
-        >
-          {sections.map((section, index) => (
-            <button
-              key={section.id}
-              onClick={() => {
-                protectedScrollToSection(index);
-                setShowNavigationHints(false);
-              }}
-              className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full hover-120hz performance-optimized ${
+      <div
+        className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[99999] flex-col space-y-1 md:space-y-1 lg:space-y-2 performance-optimized"
+        style={{
+          position: "fixed",
+          transform: "translateY(-50%)",
+          pointerEvents: "auto"
+        }}
+      >
+        {sections.map((section, index) => (
+          <button
+            key={section.id}
+            onClick={() => {
+              protectedScrollToSection(index);
+              setShowNavigationHints(false);
+            }}
+            className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full hover-120hz performance-optimized ${
+              index === currentSection
+                ? theme === "light"
+                  ? "bg-blue-600 shadow-lg scale-125"
+                  : "bg-blue-400 shadow-lg scale-125"
+                : theme === "light"
+                  ? "bg-gray-300 hover:bg-gray-400"
+                  : "bg-white/30 hover:bg-white/50"
+            }`}
+            style={{
+              boxShadow:
                 index === currentSection
-                  ? theme === "light"
-                    ? "bg-blue-600 shadow-lg scale-125"
-                    : "bg-blue-400 shadow-lg scale-125"
-                  : theme === "light"
-                    ? "bg-gray-300 hover:bg-gray-400"
-                    : "bg-white/30 hover:bg-white/50"
-              }`}
-              style={{
-                boxShadow:
-                  index === currentSection
-                    ? "0 0 15px rgba(73, 146, 255, 0.5)"
-                    : "none",
-              }}
-            />
-          ))}
-        </div>
-      )}
+                  ? "0 0 15px rgba(73, 146, 255, 0.5)"
+                  : "none",
+            }}
+          />
+        ))}
+      </div>
 
       {/* Help Button - Positioned at bottom right corner */}
       <div
