@@ -1994,8 +1994,8 @@ export default function Index() {
       {/* FIXED NAVIGATION ELEMENTS - OUTSIDE SCROLLING CONTAINER */}
       {/* Section Navigation Buttons */}
       <div
-        className="absolute right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
-        style={{ position: "absolute" }}
+        className="fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
+        style={{ position: "fixed" }}
         onMouseLeave={() => setShowNavigationTooltip(true)}
       >
         {/* Shared Navigation Tooltip - Positioned between buttons */}
@@ -2131,9 +2131,9 @@ export default function Index() {
 
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
       <div
-        className="hidden md:flex absolute left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[99999] flex-col space-y-1 md:space-y-1 lg:space-y-2 performance-optimized"
+        className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[99999] flex-col space-y-1 md:space-y-1 lg:space-y-2 performance-optimized"
         style={{
-          position: "absolute",
+          position: "fixed",
           transform: "translateY(-50%)",
           pointerEvents: "auto",
         }}
@@ -2166,13 +2166,13 @@ export default function Index() {
 
       {/* Help Button - Positioned at bottom right corner */}
       <div
-        className={`absolute right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[99999] transition-all duration-300 ${
+        className={`fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 z-[99999] transition-all duration-300 ${
           isMobileSafari || isSafari
             ? ""
             : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12"
         }`}
         style={{
-          position: "absolute",
+          position: "fixed",
           bottom: isMobileSafari || isSafari ? "120px" : undefined,
         }}
       >
