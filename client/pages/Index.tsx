@@ -900,9 +900,9 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █████����� ██����������██╗
+                  {`��█╗  █���������╗ █████����� ██����������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
-��████╔╝ ██║   ██║███�������█╔��
+█████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
@@ -979,7 +979,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����█████████���██�����███████��█ 50%
+                      RAM: ����█�����█████████���██����███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -8036,8 +8036,8 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                 theme === "light" ? "text-gray-900" : "text-white"
               } warm-glow-text animate-warm-glow-pulse`}
               style={{
-                filter: "drop-shadow(0px 4px 12px rgba(147, 51, 234, 0.5)) drop-shadow(0px 2px 8px rgba(59, 130, 246, 0.4)) drop-shadow(0px 1px 4px rgba(236, 72, 153, 0.3))",
-                textShadow: "0 0 20px rgba(147, 51, 234, 0.7), 0 0 40px rgba(59, 130, 246, 0.5), 0 0 60px rgba(236, 72, 153, 0.3)",
+                filter: "drop-shadow(0px 4px 12px rgba(16, 185, 129, 0.4)) drop-shadow(0px 2px 8px rgba(59, 130, 246, 0.3)) drop-shadow(0px 1px 4px rgba(236, 72, 153, 0.2))",
+                textShadow: "0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(59, 130, 246, 0.3), 0 0 60px rgba(236, 72, 153, 0.2)",
               }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
@@ -8061,14 +8061,14 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                 theme === "light" ? "text-gray-700" : "text-gray-300"
               } warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz max-w-5xl mx-auto`}
               style={{
-                filter: "drop-shadow(0px 3px 6px rgba(147, 51, 234, 0.3)) drop-shadow(0px 1px 3px rgba(59, 130, 246, 0.25))",
-                textShadow: "0 0 15px rgba(147, 51, 234, 0.5), 0 0 30px rgba(59, 130, 246, 0.3), 0 0 45px rgba(236, 72, 153, 0.2)",
+                filter: "drop-shadow(0px 3px 6px rgba(16, 185, 129, 0.3)) drop-shadow(0px 1px 3px rgba(59, 130, 246, 0.2))",
+                textShadow: "0 0 15px rgba(16, 185, 129, 0.4), 0 0 30px rgba(59, 130, 246, 0.2), 0 0 45px rgba(236, 72, 153, 0.15)",
               }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {"In our stellar forge, we craft digital constellations from cosmic inspiration, weaving starlight into revolutionary solutions that transcend earthly boundaries and illuminate infinite possibilities across the digital universe".split("").map((letter, i) => (
+              {"We deliver comprehensive digital solutions through strategic innovation, cutting-edge technology, and meticulous execution, transforming your business vision into powerful, scalable applications that drive measurable results and sustainable growth".split("").map((letter, i) => (
                 <motion.span
                   key={i}
                   className="inline-block animate-letter-float"
