@@ -903,7 +903,7 @@ export default function Index() {
                   {`��█╗  █�������╗ █████����� ██����������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
-█��╔�����█╗ ██║   ██║██╔══█��╗
+█��╔�������█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -7736,126 +7736,141 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
           ))}
         </div>
 
-        {/* Cosmic Nebula Clouds */}
-        <div className="absolute top-12 left-12 w-40 h-32 opacity-50">
+        {/* Crystal Formations */}
+        <div className="absolute top-16 left-16 w-32 h-40 opacity-45">
           <div
             className="w-full h-full"
             style={{
-              background: "radial-gradient(ellipse 120% 80%, rgba(147, 51, 234, 0.6) 0%, rgba(59, 130, 246, 0.4) 30%, rgba(236, 72, 153, 0.3) 60%, transparent 80%)",
-              borderRadius: "60% 40% 70% 30% / 50% 60% 40% 50%",
-              animation: "25s ease-in-out infinite running cosmic-nebula-drift",
-              filter: "blur(12px)"
+              background: "linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(6, 182, 212, 0.3) 50%, rgba(34, 197, 94, 0.2) 100%)",
+              clipPath: "polygon(50% 0%, 80% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 20% 30%)",
+              animation: "18s ease-in-out infinite running crystal-growth-1",
+              filter: "blur(8px)",
+              transform: "rotate(15deg)"
             }}
           />
         </div>
-        <div className="absolute top-20 right-16 w-36 h-28 opacity-45">
+        <div className="absolute top-12 right-20 w-28 h-36 opacity-40">
           <div
             className="w-full h-full"
             style={{
-              background: "radial-gradient(ellipse 80% 120%, rgba(34, 197, 94, 0.5) 0%, rgba(6, 182, 212, 0.4) 40%, rgba(20, 184, 166, 0.3) 70%, transparent 90%)",
-              borderRadius: "40% 60% 30% 70% / 60% 40% 70% 30%",
-              animation: "30s ease-in-out 5s infinite running cosmic-nebula-drift-2",
-              filter: "blur(15px)"
+              background: "linear-gradient(45deg, rgba(59, 130, 246, 0.5) 0%, rgba(147, 51, 234, 0.3) 50%, rgba(99, 102, 241, 0.2) 100%)",
+              clipPath: "polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)",
+              animation: "22s ease-in-out 3s infinite running crystal-growth-2",
+              filter: "blur(6px)",
+              transform: "rotate(-20deg)"
             }}
           />
         </div>
-        <div className="absolute bottom-16 left-20 w-44 h-36 opacity-40">
+        <div className="absolute bottom-20 left-12 w-36 h-32 opacity-50">
           <div
             className="w-full h-full"
             style={{
-              background: "radial-gradient(ellipse 100% 90%, rgba(245, 158, 11, 0.4) 0%, rgba(236, 72, 153, 0.3) 35%, rgba(147, 51, 234, 0.2) 70%, transparent 85%)",
-              borderRadius: "70% 30% 60% 40% / 40% 70% 30% 60%",
-              animation: "35s ease-in-out 10s infinite running cosmic-nebula-drift-3",
-              filter: "blur(18px)"
+              background: "linear-gradient(90deg, rgba(236, 72, 153, 0.4) 0%, rgba(219, 39, 119, 0.3) 50%, rgba(190, 24, 93, 0.2) 100%)",
+              clipPath: "polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%)",
+              animation: "20s ease-in-out 6s infinite running crystal-growth-3",
+              filter: "blur(10px)",
+              transform: "rotate(45deg)"
             }}
           />
         </div>
-        <div className="absolute bottom-20 right-12 w-32 h-40 opacity-35">
+        <div className="absolute bottom-16 right-16 w-30 h-38 opacity-35">
           <div
             className="w-full h-full"
             style={{
-              background: "radial-gradient(ellipse 90% 110%, rgba(16, 185, 129, 0.5) 0%, rgba(59, 130, 246, 0.3) 45%, rgba(147, 51, 234, 0.2) 75%, transparent 90%)",
-              borderRadius: "50% 50% 80% 20% / 30% 70% 50% 50%",
-              animation: "28s ease-in-out 7s infinite running cosmic-nebula-drift",
-              filter: "blur(14px)"
+              background: "linear-gradient(225deg, rgba(245, 158, 11, 0.4) 0%, rgba(251, 191, 36, 0.3) 50%, rgba(252, 211, 77, 0.2) 100%)",
+              clipPath: "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)",
+              animation: "16s ease-in-out 9s infinite running crystal-growth-1",
+              filter: "blur(7px)",
+              transform: "rotate(-30deg)"
             }}
           />
         </div>
 
-        {/* Constellation Pattern Overlay */}
-        <div className="absolute inset-0 opacity-15">
-          {/* Star field dots */}
-          {[...Array(50)].map((_, i) => (
+        {/* Prismatic Light Refractions */}
+        <div className="absolute inset-0 opacity-20">
+          {/* Geometric prism shapes */}
+          {[...Array(15)].map((_, i) => (
             <div
-              key={`star-${i}`}
-              className="absolute rounded-full bg-white"
+              key={`prism-${i}`}
+              className="absolute"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                width: `${1 + Math.random() * 2}px`,
-                height: `${1 + Math.random() * 2}px`,
-                opacity: 0.3 + Math.random() * 0.4,
-                animation: `${3 + Math.random() * 4}s ease-in-out infinite running stellar-twinkle`,
-                animationDelay: `${Math.random() * 2}s`,
+                left: `${Math.random() * 90 + 5}%`,
+                top: `${Math.random() * 90 + 5}%`,
+                width: `${8 + Math.random() * 16}px`,
+                height: `${12 + Math.random() * 24}px`,
+                background: `linear-gradient(${Math.random() * 360}deg,
+                  rgba(${i % 4 === 0 ? '16, 185, 129' : i % 4 === 1 ? '59, 130, 246' : i % 4 === 2 ? '236, 72, 153' : '245, 158, 11'}, 0.6) 0%,
+                  transparent 100%)`,
+                clipPath: i % 3 === 0 ? "polygon(50% 0%, 100% 100%, 0% 100%)" :
+                          i % 3 === 1 ? "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" :
+                          "polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%)",
+                animation: `${4 + Math.random() * 6}s ease-in-out infinite running prismatic-refraction`,
+                animationDelay: `${Math.random() * 3}s`,
+                transform: `rotate(${Math.random() * 360}deg)`,
+                filter: "blur(1px)"
               }}
             />
           ))}
 
-          {/* Constellation lines */}
+          {/* Crystal lattice pattern */}
           <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
             <defs>
-              <linearGradient id="constellationGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{stopColor: "rgba(147, 51, 234, 0.4)", stopOpacity: 1}} />
-                <stop offset="50%" style={{stopColor: "rgba(59, 130, 246, 0.3)", stopOpacity: 1}} />
-                <stop offset="100%" style={{stopColor: "rgba(236, 72, 153, 0.2)", stopOpacity: 1}} />
+              <linearGradient id="crystalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{stopColor: "rgba(16, 185, 129, 0.3)", stopOpacity: 1}} />
+                <stop offset="33%" style={{stopColor: "rgba(59, 130, 246, 0.2)", stopOpacity: 1}} />
+                <stop offset="66%" style={{stopColor: "rgba(236, 72, 153, 0.2)", stopOpacity: 1}} />
+                <stop offset="100%" style={{stopColor: "rgba(245, 158, 11, 0.1)", stopOpacity: 1}} />
               </linearGradient>
             </defs>
-            <path d="M 10% 20% L 25% 15% L 35% 30% L 20% 35% Z" stroke="url(#constellationGrad)" strokeWidth="1" fill="none" opacity="0.6" />
-            <path d="M 60% 25% L 75% 20% L 80% 40% L 65% 45% L 55% 35% Z" stroke="url(#constellationGrad)" strokeWidth="1" fill="none" opacity="0.5" />
-            <path d="M 15% 70% L 30% 75% L 25% 85% Z" stroke="url(#constellationGrad)" strokeWidth="1" fill="none" opacity="0.4" />
-            <path d="M 70% 65% L 85% 70% L 90% 80% L 75% 85% Z" stroke="url(#constellationGrad)" strokeWidth="1" fill="none" opacity="0.6" />
+            <polygon points="15,25 25,15 35,25 25,35" stroke="url(#crystalGrad)" strokeWidth="1" fill="none" opacity="0.4" />
+            <polygon points="65,20 75,10 85,20 85,30 75,40 65,30" stroke="url(#crystalGrad)" strokeWidth="1" fill="none" opacity="0.3" />
+            <polygon points="20,75 30,65 40,75 30,85" stroke="url(#crystalGrad)" strokeWidth="1" fill="none" opacity="0.5" />
+            <polygon points="70,70 85,70 92,85 78,92 63,85 70,70" stroke="url(#crystalGrad)" strokeWidth="1" fill="none" opacity="0.4" />
           </svg>
         </div>
 
-        {/* Shooting Stars */}
-        {[...Array(4)].map((_, i) => (
+        {/* Faceted Light Beams */}
+        {[...Array(6)].map((_, i) => (
           <motion.div
-            key={`meteor-${i}`}
-            className="absolute opacity-60"
+            key={`lightbeam-${i}`}
+            className="absolute opacity-30"
             style={{
-              left: `${-10 + i * 25}%`,
-              top: `${10 + i * 20}%`,
-              width: "2px",
-              height: "80px",
-              background: `linear-gradient(45deg, transparent 0%, rgba(${i % 2 === 0 ? '147, 51, 234' : '59, 130, 246'}, 0.8) 20%, rgba(236, 72, 153, 0.6) 50%, transparent 80%)`,
-              transform: "rotate(45deg)",
-              filter: "blur(1px)",
+              left: `${10 + i * 15}%`,
+              top: `${5 + i * 10}%`,
+              width: "3px",
+              height: `${60 + Math.random() * 40}px`,
+              background: `linear-gradient(180deg,
+                rgba(${i % 4 === 0 ? '16, 185, 129' : i % 4 === 1 ? '59, 130, 246' : i % 4 === 2 ? '236, 72, 153' : '245, 158, 11'}, 0.8) 0%,
+                rgba(${i % 4 === 0 ? '16, 185, 129' : i % 4 === 1 ? '59, 130, 246' : i % 4 === 2 ? '236, 72, 153' : '245, 158, 11'}, 0.4) 50%,
+                transparent 100%)`,
+              transform: `rotate(${-30 + i * 15}deg)`,
+              filter: "blur(2px)",
             }}
             animate={{
-              x: ["0vw", "120vw"],
-              opacity: [0, 0.8, 0],
+              scaleY: [0.5, 1, 0.8, 1],
+              opacity: [0.2, 0.6, 0.3, 0.6],
             }}
             transition={{
-              duration: 8 + (i * 2),
+              duration: 5 + (i * 0.8),
               repeat: Infinity,
-              delay: i * 4,
-              ease: "easeOut",
+              delay: i * 1.2,
+              ease: "easeInOut",
             }}
           />
         ))}
 
-        {/* Cosmic Energy Rings */}
+        {/* Crystal Resonance Waves */}
         <motion.div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-15"
           animate={{
             background: [
-              "radial-gradient(ellipse 50% 30% at 30% 40%, rgba(147, 51, 234, 0.3) 0%, transparent 60%)",
-              "radial-gradient(ellipse 60% 40% at 70% 60%, rgba(59, 130, 246, 0.2) 0%, transparent 50%)",
-              "radial-gradient(ellipse 40% 50% at 50% 30%, rgba(236, 72, 153, 0.25) 0%, transparent 70%)",
+              "radial-gradient(ellipse 60% 40% at 25% 30%, rgba(16, 185, 129, 0.3) 0%, transparent 70%)",
+              "radial-gradient(ellipse 50% 60% at 75% 60%, rgba(59, 130, 246, 0.2) 0%, transparent 60%)",
+              "radial-gradient(ellipse 70% 30% at 50% 80%, rgba(236, 72, 153, 0.25) 0%, transparent 80%)",
             ],
           }}
           transition={{
-            duration: 12,
+            duration: 8,
             repeat: Infinity,
             ease: "easeInOut",
           }}
