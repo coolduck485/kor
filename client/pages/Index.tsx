@@ -900,7 +900,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █████����� █������������██╗
+                  {`��█╗  █�������╗ █████����� ██����������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
@@ -2353,7 +2353,7 @@ export default function Index() {
                           : "bg-gray-700 text-gray-300"
                       }`}
                     >
-                      ↑↓
+                      ���↓
                     </kbd>
                   </div>
                   <div>
@@ -8163,39 +8163,39 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                     {/* Step Header */}
                     <div className="flex items-start justify-between mb-6">
                       <div className="flex items-center space-x-4">
-                        {/* Cosmic Stellar Badge */}
+                        {/* Crystal Faceted Badge */}
                         <motion.div
-                          className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-500 to-blue-500 text-white font-bold text-lg"
+                          className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-bold text-lg"
                           whileHover={{ rotate: 5, scale: 1.1 }}
                           transition={{ duration: 0.3 }}
                           style={{
-                            boxShadow: "0 10px 30px rgba(147, 51, 234, 0.4), 0 0 20px rgba(59, 130, 246, 0.3)",
-                            border: "1px solid rgba(236, 72, 153, 0.3)",
+                            boxShadow: "0 10px 30px rgba(16, 185, 129, 0.4), 0 0 20px rgba(59, 130, 246, 0.3)",
+                            border: "1px solid rgba(236, 72, 153, 0.2)",
                           }}
                         >
                           {step.number}
                           <motion.div
-                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-30"
+                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-400 to-cyan-400 opacity-0 group-hover:opacity-30"
                             transition={{ duration: 0.3 }}
                           />
-                          {/* Stellar Shimmer Effect */}
+                          {/* Crystal Facet Effect */}
                           <motion.div
                             className="absolute inset-0 rounded-2xl"
                             style={{
-                              background: "conic-gradient(from 0deg, transparent 0%, rgba(147, 51, 234, 0.3) 20%, transparent 40%, rgba(59, 130, 246, 0.2) 60%, transparent 80%, rgba(236, 72, 153, 0.25) 100%)",
+                              background: "conic-gradient(from 0deg, transparent 0%, rgba(16, 185, 129, 0.3) 25%, transparent 50%, rgba(59, 130, 246, 0.2) 75%, transparent 100%)",
                             }}
                             animate={{ rotate: [0, 360] }}
                             transition={{
-                              duration: 8,
+                              duration: 12,
                               repeat: Infinity,
                               ease: "linear",
                             }}
                           />
                         </motion.div>
 
-                        {/* Cosmic Category Badge */}
-                        <div className="px-3 py-1 rounded-full text-xs font-medium bg-purple-900/30 text-purple-300 border border-purple-500/20">
-                          ✦ {step.category} ✦
+                        {/* Professional Category Badge */}
+                        <div className="px-3 py-1 rounded-full text-xs font-medium bg-emerald-900/30 text-emerald-300 border border-emerald-500/20">
+                          {step.category}
                         </div>
                       </div>
 
