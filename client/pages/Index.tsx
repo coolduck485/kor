@@ -7949,11 +7949,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                         {step.features.map((feature, featureIndex) => (
                           <motion.div
                             key={featureIndex}
-                            className={`flex items-center space-x-2 p-2 rounded-lg ${
-                              theme === "light"
-                                ? "bg-blue-50/50 text-blue-700"
-                                : "bg-blue-900/10 text-blue-300"
-                            }`}
+                            className="flex items-center space-x-2 p-2 rounded-lg bg-blue-900/10 text-blue-300"
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -10 }}
                             transition={{ delay: 1.2 + index * 0.2 + featureIndex * 0.1 }}
