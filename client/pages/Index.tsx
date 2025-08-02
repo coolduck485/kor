@@ -902,7 +902,7 @@ export default function Index() {
                   {`��█╗  █�������╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
-█��╔���██╗ ██║   ██║██╔══█��╗
+█��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -5244,6 +5244,18 @@ export default function Index() {
             animation: none !important;
             opacity: 0.3 !important;
           }
+        }
+
+        /* Smooth text rendering for subtitle elements */
+        .warm-glow-text span.inline-block {
+          transition: transform 0.2s ease;
+          will-change: auto;
+          backface-visibility: hidden;
+        }
+
+        /* Prevent animation conflicts in subtitles */
+        .warm-glow-text .inline-block:not(.animate-letter-float) {
+          transform: translateZ(0);
         }
       `}</style>
       </div>
