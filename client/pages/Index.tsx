@@ -5877,6 +5877,23 @@ const ORB_BUTTON_CONFIG = {
     },
 
     {
+      text: "What we do",
+      angle: 0, // Position: center-right for balance
+      radius: 280, // Consistent distance from center
+      position: "center-right",
+      animationDelay: 0.45,
+      size: "medium", // Consistent sizing
+      accent: "blue", // Color accent - unified to blue
+
+      // Custom positioning for What we do button
+      xOffset: 15, // Slightly offset for visual interest
+      yOffset: 0, // Centered positioning
+
+      // What we do button uses global positioning for consistency
+      customRadiusMultiplier: null, // Use global multipliers for consistency
+    },
+
+    {
       text: "Services",
       angle: 30, // Position: bottom-right, mirrored from About us for symmetry
       radius: 280, // Consistent distance from center
