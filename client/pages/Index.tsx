@@ -12019,11 +12019,11 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               <p
                 className={`text-sm sm:text-base font-medium ${theme === "light" ? "text-gray-700" : "text-white/80"}`}
               >
-                <span className="warm-glow-text animate-warm-glow-pulse">
+                <span className="warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz">
                   {"Tell us about it.".split("").map((letter, i) => (
                     <span
                       key={i}
-                      className="animate-letter-float animate-dev-services-text"
+                      className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
                       style={{
                         animationDelay: `${i * 0.1}s`,
                       }}
