@@ -902,8 +902,8 @@ export default function Index() {
                   {`��█╗  █�������╗ █████���╗ ██��������██╗
 ██║ ����█╔���██╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
-█��╔�������╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█���█�����█╔╝�����║  ██║
+█��╔�����█╗ ██║   ██║██╔══█��╗
+██║  ██╗╚█���█�����█╔╝������║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -6079,7 +6079,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ————����——→  hoverScale: 1.15
+// Change: hoverScale: 1.05  ————��——→  hoverScale: 1.15
 //
 // ========================================
 
@@ -9152,7 +9152,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       {"Choose Your Perfect Plan".split("").map((letter, i) => (
                         <span
                           key={i}
-                          className="inline-block"
+                          className="animate-letter-float animate-dev-services-text"
                           style={{ animationDelay: `${i * 0.08}s` }}
                         >
                           {letter === " " ? "\u00A0" : letter}
