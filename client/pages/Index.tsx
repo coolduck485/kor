@@ -9140,7 +9140,7 @@ const PricingSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       {"Choose Your Perfect Plan".split("").map((letter, i) => (
                         <span
                           key={i}
-                          className="animate-letter-float"
+                          className="inline-block"
                           style={{ animationDelay: `${i * 0.08}s` }}
                         >
                           {letter === " " ? "\u00A0" : letter}
