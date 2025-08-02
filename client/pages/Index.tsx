@@ -7997,42 +7997,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
             })}
           </div>
 
-          {/* CTA Section */}
-          <motion.div
-            className="text-center mt-20"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-            transition={{ duration: 1, delay: 2 }}
-          >
-            <motion.button
-              className="group relative px-10 py-5 rounded-full font-semibold text-lg overflow-hidden bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.98 }}
-              style={{
-                boxShadow: "0 20px 40px rgba(73, 146, 255, 0.3)",
-              }}
-            >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-100"
-                transition={{ duration: 0.3 }}
-              />
-              <span className="relative z-10">Transform Your Vision Today</span>
-              <motion.div
-                className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100"
-                initial={false}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.button>
 
-            <motion.p
-              className="mt-4 text-sm text-gray-400"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isVisible ? 1 : 0 }}
-              transition={{ delay: 2.2 }}
-            >
-              Ready to revolutionize your digital presence? Let's build something extraordinary.
-            </motion.p>
-          </motion.div>
         </div>
       </motion.div>
     );
