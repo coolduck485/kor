@@ -7685,8 +7685,8 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                 height: `${100 + (i % 3) * 50}px`,
                 background: `radial-gradient(circle, ${
                   theme === "light"
-                    ? "rgba(139, 69, 219, 0.6)"
-                    : "rgba(139, 69, 219, 0.8)"
+                    ? "rgba(73, 146, 255, 0.6)"
+                    : "rgba(73, 146, 255, 0.8)"
                 } 0%, transparent 70%)`,
               }}
               animate={{
