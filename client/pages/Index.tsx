@@ -7649,8 +7649,8 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
               key={`shape-${i}`}
               className={`absolute rounded-full opacity-30 ${
                 theme === "light"
-                  ? "bg-gradient-to-r from-purple-300 to-blue-300"
-                  : "bg-gradient-to-r from-purple-500 to-blue-500"
+                  ? "bg-gradient-to-r from-blue-300 to-cyan-300"
+                  : "bg-gradient-to-r from-blue-500 to-cyan-500"
               }`}
               style={{
                 left: `${10 + ((i * 15) % 80)}%`,
