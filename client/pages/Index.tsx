@@ -899,7 +899,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █████���╗ ██��������██╗
+                  {`��█╗  █���������� █████���╗ ██��������██╗
 ██║ ����█╔���█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
@@ -2132,8 +2132,12 @@ export default function Index() {
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
       {!isHelpModalOpen && !isMobileMenuOpen && (
         <div
-          className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[9999] flex-col space-y-1 md:space-y-1 lg:space-y-2 performance-optimized"
-          style={{ position: "fixed" }}
+          className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[99999] flex-col space-y-1 md:space-y-1 lg:space-y-2 performance-optimized"
+          style={{
+            position: "fixed",
+            transform: "translateY(-50%)",
+            pointerEvents: "auto"
+          }}
         >
           {sections.map((section, index) => (
             <button
@@ -4367,7 +4371,7 @@ export default function Index() {
         {/* Back to Top Button */}
         <motion.button
           onClick={() => scrollToSection(0)}
-          className={`group fixed z-[9999] p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
+          className={`group fixed z-[99999] p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
             isMobileSafari || isIOS
               ? "bottom-20 left-6 sm:left-8 md:left-10 lg:left-12" // Above Safari search bar, matching nav positioning
               : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12 left-6 sm:left-8 md:left-10 lg:left-12" // Normal position, matching nav positioning
@@ -4378,6 +4382,7 @@ export default function Index() {
           }`}
           style={{
             position: "fixed",
+            pointerEvents: "auto",
             background:
               theme === "light"
                 ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
