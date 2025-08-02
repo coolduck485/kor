@@ -979,7 +979,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����█████████����██����███████��█ 50%
+                      RAM: ����█�����█████████���██����███████����█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -7644,67 +7644,160 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
           else if (ref) ref.current = el;
           sectionRef.current = el;
         }}
-        className="relative min-h-screen overflow-hidden"
-        style={{
-          background: theme === "light"
-            ? "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%)"
-            : "linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%)",
-        }}
+        className="relative min-h-screen overflow-hidden bg-black"
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        {/* Dynamic Aurora Background */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Aurora Waves */}
-          <motion.div
-            className="absolute inset-0"
-            animate={{
-              background: [
-                `radial-gradient(ellipse 1200px 800px at ${mousePosition.x}px ${mousePosition.y}px, rgba(73, 146, 255, 0.15) 0%, transparent 60%)`,
-                `radial-gradient(ellipse 1000px 600px at ${mousePosition.x + 100}px ${mousePosition.y + 50}px, rgba(63, 186, 255, 0.12) 0%, transparent 50%)`,
-                `radial-gradient(ellipse 1200px 800px at ${mousePosition.x}px ${mousePosition.y}px, rgba(73, 146, 255, 0.15) 0%, transparent 60%)`,
-              ],
-            }}
-            transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
-          />
+        {/* Noise Overlay - exactly like home page */}
+        <div
+          className="absolute inset-0 opacity-10 sm:opacity-8 lg:opacity-5 animate-noise gpu-accelerated"
+          style={{
+            backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E\")"
+          }}
+        />
 
-          {/* Floating Particles */}
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={`particle-${i}`}
-              className="absolute w-1 h-1 bg-blue-400 rounded-full"
+        {/* Aurora Curtains - exactly like home page */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-70 sm:opacity-60 lg:opacity-60">
+          <div
+            className="absolute aurora-curtain-1"
+            style={{
+              top: "20%",
+              left: "-15%",
+              right: "-15%",
+              height: "120px",
+              background: "linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.4) 15%, rgba(20, 184, 166, 0.5) 30%, rgba(34, 197, 94, 0.4) 50%, rgba(6, 182, 212, 0.5) 70%, rgba(20, 184, 166, 0.4) 85%, transparent 100%)",
+              borderRadius: "40% 60% 80% 20% / 60% 40% 80% 20%",
+              filter: "blur(15px)",
+              animation: "28s ease-in-out 0s infinite normal none running aurora-wave-subtle-1",
+              transform: "skewY(-1deg)"
+            }}
+          />
+          <div
+            className="absolute aurora-curtain-2"
+            style={{
+              top: "45%",
+              left: "-20%",
+              right: "-20%",
+              height: "140px",
+              background: "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.35) 10%, rgba(6, 182, 212, 0.45) 25%, rgba(16, 185, 129, 0.4) 40%, rgba(20, 184, 166, 0.45) 60%, rgba(34, 197, 94, 0.4) 75%, rgba(6, 182, 212, 0.35) 90%, transparent 100%)",
+              borderRadius: "30% 70% 40% 60% / 70% 30% 60% 40%",
+              filter: "blur(18px)",
+              animation: "34s ease-in-out 0s infinite normal none running aurora-wave-subtle-2",
+              transform: "skewY(0.5deg)"
+            }}
+          />
+          <div
+            className="absolute aurora-curtain-3"
+            style={{
+              top: "70%",
+              left: "-25%",
+              right: "-25%",
+              height: "100px",
+              background: "linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.3) 20%, rgba(34, 197, 94, 0.4) 35%, rgba(6, 182, 212, 0.35) 50%, rgba(16, 185, 129, 0.4) 65%, rgba(20, 184, 166, 0.3) 80%, transparent 100%)",
+              borderRadius: "60% 40% 80% 20% / 40% 60% 20% 80%",
+              filter: "blur(20px)",
+              animation: "40s ease-in-out 0s infinite normal none running aurora-wave-subtle-3",
+              transform: "skewY(-0.5deg)"
+            }}
+          />
+        </div>
+
+        {/* Floating Particles - exactly like home page */}
+        <div className="absolute inset-0">
+          {[
+            { left: "8%", top: "12%", size: "6px", color: "rgba(34, 197, 94, 0.9)", blur: "1px", shadow: "0px 0px 12px", animation: "4s ease-in-out 0s infinite normal none running desktop-float-1" },
+            { left: "15%", top: "23%", size: "8px", color: "rgba(59, 130, 246, 0.9)", blur: "1.5px", shadow: "0px 0px 18px", animation: "5s ease-in-out 0.3s infinite normal none running desktop-float-2" },
+            { left: "22%", top: "34%", size: "10px", color: "rgba(147, 51, 234, 0.9)", blur: "1px", shadow: "0px 0px 24px", animation: "6s ease-in-out 0.6s infinite normal none running desktop-float-3" },
+            { left: "29%", top: "45%", size: "12px", color: "rgba(236, 72, 153, 0.9)", blur: "1.5px", shadow: "0px 0px 12px", animation: "4s ease-in-out 0.9s infinite normal none running desktop-float-4" },
+            { left: "36%", top: "56%", size: "6px", color: "rgba(6, 182, 212, 0.9)", blur: "1px", shadow: "0px 0px 18px", animation: "5s ease-in-out 1.2s infinite normal none running desktop-float-1" },
+            { left: "43%", top: "67%", size: "8px", color: "rgba(245, 158, 11, 0.9)", blur: "1.5px", shadow: "0px 0px 24px", animation: "6s ease-in-out 1.5s infinite normal none running desktop-float-2" },
+            { left: "50%", top: "78%", size: "10px", color: "rgba(34, 197, 94, 0.9)", blur: "1px", shadow: "0px 0px 12px", animation: "4s ease-in-out 1.8s infinite normal none running desktop-float-3" },
+            { left: "57%", top: "13%", size: "12px", color: "rgba(59, 130, 246, 0.9)", blur: "1.5px", shadow: "0px 0px 18px", animation: "5s ease-in-out 2.1s infinite normal none running desktop-float-4" },
+            { left: "64%", top: "24%", size: "6px", color: "rgba(147, 51, 234, 0.9)", blur: "1px", shadow: "0px 0px 24px", animation: "6s ease-in-out 2.4s infinite normal none running desktop-float-1" },
+            { left: "71%", top: "35%", size: "8px", color: "rgba(236, 72, 153, 0.9)", blur: "1.5px", shadow: "0px 0px 12px", animation: "4s ease-in-out 2.7s infinite normal none running desktop-float-2" },
+            { left: "78%", top: "46%", size: "10px", color: "rgba(6, 182, 212, 0.9)", blur: "1px", shadow: "0px 0px 18px", animation: "5s ease-in-out 3s infinite normal none running desktop-float-3" },
+            { left: "85%", top: "57%", size: "12px", color: "rgba(245, 158, 11, 0.9)", blur: "1.5px", shadow: "0px 0px 24px", animation: "6s ease-in-out 3.3s infinite normal none running desktop-float-4" }
+          ].map((particle, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -100, 0],
-                opacity: [0, 1, 0],
-                scale: [0, 1, 0],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-                ease: "easeInOut",
+                left: particle.left,
+                top: particle.top,
+                width: particle.size,
+                height: particle.size,
+                background: `radial-gradient(circle, ${particle.color} 0%, ${particle.color.replace('0.9', '0.2')} 60%, transparent 80%)`,
+                animation: particle.animation,
+                filter: `blur(${particle.blur})`,
+                boxShadow: `${particle.color} ${particle.shadow}`
               }}
             />
           ))}
+        </div>
 
-          {/* Geometric Grid */}
-          <div className="absolute inset-0 opacity-10">
+        {/* Corner Pulse Effects - exactly like home page */}
+        <div className="absolute top-8 left-8 w-24 h-24 rounded-full opacity-40">
+          <div
+            className="w-full h-full rounded-full"
+            style={{
+              background: "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, rgba(59, 130, 246, 0.6) 40%, rgba(147, 51, 234, 0.3) 70%, transparent 90%)",
+              animation: "4s ease-in-out 0s infinite normal none running desktop-pulse-corner",
+              filter: "blur(6px)"
+            }}
+          />
+        </div>
+        <div className="absolute top-8 right-8 w-20 h-20 rounded-full opacity-35">
+          <div
+            className="w-full h-full rounded-full"
+            style={{
+              background: "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(236, 72, 153, 0.6) 40%, rgba(59, 130, 246, 0.3) 70%, transparent 90%)",
+              animation: "3.5s ease-in-out 0.7s infinite normal none running desktop-pulse-corner",
+              filter: "blur(5px)"
+            }}
+          />
+        </div>
+        <div className="absolute bottom-8 left-8 w-28 h-28 rounded-full opacity-45">
+          <div
+            className="w-full h-full rounded-full"
+            style={{
+              background: "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(34, 197, 94, 0.6) 40%, rgba(6, 182, 212, 0.3) 70%, transparent 90%)",
+              animation: "4.5s ease-in-out 1.2s infinite normal none running desktop-pulse-corner",
+              filter: "blur(7px)"
+            }}
+          />
+        </div>
+        <div className="absolute bottom-8 right-8 w-22 h-22 rounded-full opacity-38">
+          <div
+            className="w-full h-full rounded-full"
+            style={{
+              background: "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(245, 158, 11, 0.6) 40%, rgba(34, 197, 94, 0.3) 70%, transparent 90%)",
+              animation: "3.8s ease-in-out 0.4s infinite normal none running desktop-pulse-corner",
+              filter: "blur(4px)"
+            }}
+          />
+        </div>
+
+        {/* Wave Animations - exactly like home page */}
+        <div className="absolute inset-0">
+          {[
+            { top: "15%", animation: "8s ease-in-out 0s infinite normal none running desktop-wave-1", transform: "skewY(-1.5deg) rotate(0deg)" },
+            { top: "35%", animation: "10s ease-in-out 0s infinite normal none running desktop-wave-2", transform: "skewY(-1deg) rotate(1.5deg)" },
+            { top: "55%", animation: "12s ease-in-out 0s infinite normal none running desktop-wave-3", transform: "skewY(-0.5deg) rotate(3deg)" }
+          ].map((wave, i) => (
             <div
-              className="w-full h-full"
+              key={i}
+              className="absolute w-full h-40 opacity-30"
               style={{
-                backgroundImage: `
-                  linear-gradient(rgba(73, 146, 255, 0.3) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(73, 146, 255, 0.3) 1px, transparent 1px)
-                `,
-                backgroundSize: '50px 50px',
+                top: wave.top,
+                background: "linear-gradient(120deg, transparent 0%, rgba(34, 197, 94, 0.25) 20%, rgba(59, 130, 246, 0.35) 40%, rgba(147, 51, 234, 0.3) 60%, rgba(236, 72, 153, 0.25) 80%, transparent 100%)",
+                borderRadius: "50% 70% 40% 80% / 60% 30% 50% 70%",
+                filter: "blur(10px)",
+                animation: wave.animation,
+                transform: wave.transform
               }}
             />
-          </div>
+          ))}
         </div>
 
         <div className="relative z-10 container mx-auto px-6 py-20">
