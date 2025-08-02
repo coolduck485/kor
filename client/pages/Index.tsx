@@ -7292,7 +7292,7 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                       {"Crafting Digital Excellence".split("").map((letter, i) => (
                         <span
                           key={i}
-                          className="inline-block"
+                          className="animate-letter-float animate-dev-services-text"
                           style={{
                             animationDelay: `${i * 0.1}s`,
                           }}
