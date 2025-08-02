@@ -2142,7 +2142,7 @@ export default function Index() {
                 protectedScrollToSection(index);
                 setShowNavigationHints(false);
               }}
-              className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full transition-all duration-300 ${
+              className={`relative w-2 h-2 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full hover-120hz performance-optimized ${
                 index === currentSection
                   ? theme === "light"
                     ? "bg-blue-600 shadow-lg scale-125"
@@ -11621,7 +11621,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
-            { icon: "��������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
+            { icon: "����������", delay: 3, x: 10, y: 60, size: 18, duration: 8 },
             { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
