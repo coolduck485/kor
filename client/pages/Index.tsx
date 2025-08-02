@@ -7813,19 +7813,13 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <span className={`px-4 py-2 rounded-full text-sm font-medium backdrop-blur-md border ${
-                theme === "light"
-                  ? "bg-white/20 text-blue-700 border-blue-200/30"
-                  : "bg-white/10 text-blue-300 border-blue-400/20"
-              }`}>
+              <span className="px-4 py-2 rounded-full text-sm font-medium backdrop-blur-md border bg-white/10 text-blue-300 border-blue-400/20">
                 Our Process
               </span>
             </motion.div>
 
             <motion.h2
-              className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-8 ${
-                theme === "light" ? "text-gray-900" : "text-white"
-              }`}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-white"
               style={{
                 background: "linear-gradient(135deg, #4992FF 0%, #3FBAFF 50%, #60A5FA 100%)",
                 WebkitBackgroundClip: "text",
