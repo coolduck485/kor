@@ -900,7 +900,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █��███����� ██����������██╗
+                  {`��█╗  █�������╗ █████����� ██����������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
@@ -7634,8 +7634,8 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
         ref={ref}
         className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           theme === "light"
-            ? "bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-100"
-            : "bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900"
+            ? "bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-100"
+            : "bg-gradient-to-br from-gray-900 via-blue-900 to-cyan-900"
         }`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isVisible ? 1 : 0 }}
@@ -12753,7 +12753,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "✈��",
+                        icon: "✈️",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
