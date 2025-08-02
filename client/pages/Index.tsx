@@ -905,7 +905,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
-�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
+������������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -5559,9 +5559,10 @@ function MobileHamburgerMenu({
       setIsOpen(false);
       const sectionMap: { [key: string]: number } = {
         "About us": 1,
-        Services: 2,
-        Portfolio: 3,
-        "Contact us": 4,
+        "What we do": 2,
+        Services: 3,
+        Portfolio: 4,
+        "Contact us": 5,
       };
       const sectionIndex = sectionMap[itemText];
       if (sectionIndex) {
@@ -5987,21 +5988,21 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
         ...ORB_BUTTON_CONFIG.buttons[1],
         onClick: () => {
           console.log("Services clicked");
-          scrollToSection(2);
+          scrollToSection(3);
         },
       },
       {
         ...ORB_BUTTON_CONFIG.buttons[2],
         onClick: () => {
           console.log("Portfolio clicked");
-          scrollToSection(3);
+          scrollToSection(4);
         },
       },
       {
         ...ORB_BUTTON_CONFIG.buttons[3],
         onClick: () => {
           console.log("Contact us clicked");
-          scrollToSection(4);
+          scrollToSection(5);
         },
       },
     ],
@@ -6025,9 +6026,10 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
           animationStep={animationStep}
           onClick={() => {
             if (button.text === "About us") scrollToSection(1);
-            else if (button.text === "Services") scrollToSection(2);
-            else if (button.text === "Portfolio") scrollToSection(3);
-            else if (button.text === "Contact us") scrollToSection(4);
+            else if (button.text === "What we do") scrollToSection(2);
+            else if (button.text === "Services") scrollToSection(3);
+            else if (button.text === "Portfolio") scrollToSection(4);
+            else if (button.text === "Contact us") scrollToSection(5);
             else button.onClick?.();
           }}
         />
