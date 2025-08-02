@@ -1206,7 +1206,7 @@ body > div {
 }
 
 .animate-letter-float {
-  animation: letter-float 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation: letter-float 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
