@@ -903,7 +903,7 @@ export default function Index() {
 ██║ ����█╔���██╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█���█�����█╔��������║  ██║
+██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -2267,7 +2267,7 @@ export default function Index() {
                 boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
               }}
             >
-              Click to navigate sections →
+              Click to navigate sections ���
               <button
                 onClick={() => setShowNavigationHints(false)}
                 className="ml-2 text-xs opacity-60 hover:opacity-100"
@@ -7301,6 +7301,62 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         </span>
                       ))}
                     </span>
+
+                    {/* Sparkles for subtitle */}
+                    {[
+                      { x: 120, y: -25, size: 0.6, type: "star" },
+                      { x: 90, y: 35, size: 0.5, type: "diamond" },
+                      { x: -50, y: 25, size: 0.4, type: "plus" },
+                      { x: 140, y: 10, size: 0.7, type: "star" },
+                    ].map((sparkle, i) => (
+                      <div
+                        key={`about-subtitle-sparkle-${i}`}
+                        className="absolute pointer-events-none gpu-accelerated"
+                        style={{
+                          left: `calc(50% + ${sparkle.x}px)`,
+                          top: `calc(50% + ${sparkle.y}px)`,
+                          animation: `sparkle-enhanced ${5 + (i % 2)}s ease-in-out infinite ${i * 0.4}s`,
+                          transform: `translateZ(0) scale(${sparkle.size})`,
+                          opacity: 0.4,
+                          zIndex: -1,
+                          willChange: "transform, opacity",
+                        }}
+                      >
+                        {sparkle.type === "star" && (
+                          <div
+                            className="w-4 h-4"
+                            style={{
+                              background: "radial-gradient(circle, rgba(120, 200, 255, 0.8) 0%, rgba(200, 120, 255, 0.5) 70%, transparent 90%)",
+                              clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              animation: "spin-slow 10s linear infinite",
+                              filter: "drop-shadow(0 0 4px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "diamond" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background: "linear-gradient(45deg, rgba(255, 140, 180, 0.7), rgba(140, 255, 200, 0.6))",
+                              clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              animation: "gentle-pulse 3s ease-in-out infinite",
+                              filter: "drop-shadow(0 0 3px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "plus" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background: "conic-gradient(from 45deg, rgba(180, 255, 140, 0.7), rgba(255, 180, 140, 0.6), rgba(140, 180, 255, 0.7), rgba(255, 200, 180, 0.6))",
+                              clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              animation: "rotate-slow 8s linear infinite",
+                              filter: "drop-shadow(0 0 5px currentColor)",
+                            }}
+                          />
+                        )}
+                      </div>
+                    ))}
                   </span>
                 </div>
               </div>
