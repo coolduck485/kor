@@ -1993,8 +1993,89 @@ export default function Index() {
     <>
       {/* FIXED NAVIGATION ELEMENTS - OUTSIDE SCROLLING CONTAINER */}
 
+      {/* Section Navigation Buttons */}
+      <div
+        className="fixed right-6 sm:right-8 md:right-10 lg:right-12 xl:right-16 top-1/2 -translate-y-1/2 z-[9999] flex flex-col space-y-2 sm:space-y-3"
+        style={{ position: "fixed" }}
+      >
+        {/* Previous Section Button */}
+        {currentSection > 0 && !isHelpModalOpen && !isMobileMenuOpen && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (isScrolling) return;
+              protectedScrollToSection(currentSection - 1);
+              setShowNavigationHints(false);
+            }}
+            disabled={isScrolling || isMobileMenuOpen}
+            className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
+              isScrolling || isMobileMenuOpen
+                ? "pointer-events-none opacity-60"
+                : ""
+            } ${
+              theme === "light"
+                ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+            }`}
+            style={{
+              background:
+                theme === "light"
+                  ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                  : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+              boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+            }}
+          >
+            <ChevronUp
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                theme === "light"
+                  ? "text-blue-600 group-hover:text-blue-700"
+                  : "text-white group-hover:text-blue-300"
+              }`}
+            />
+          </button>
+        )}
 
-
+        {/* Next Section Button */}
+        {currentSection < sections.length - 1 &&
+          !isHelpModalOpen &&
+          !isMobileMenuOpen && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (isScrolling) return;
+                protectedScrollToSection(currentSection + 1);
+                setShowNavigationHints(false);
+              }}
+              disabled={isScrolling || isMobileMenuOpen}
+              className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
+                isScrolling || isMobileMenuOpen
+                  ? "pointer-events-none opacity-60"
+                  : ""
+              } ${
+                theme === "light"
+                  ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                  : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+              }`}
+              style={{
+                background:
+                  theme === "light"
+                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+              }}
+            >
+              <ChevronDown
+                className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                  theme === "light"
+                    ? "text-blue-600 group-hover:text-blue-700"
+                    : "text-white group-hover:text-blue-300"
+                }`}
+              />
+            </button>
+          )}
+      </div>
 
       {/* Help Button - Positioned at bottom right corner */}
       <div
