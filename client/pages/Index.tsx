@@ -899,7 +899,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █████���╗ ██��������██╗
+                  {`��█╗  █�������╗ █████����� ██��������██╗
 ██║ ����█╔���█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�����██╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
@@ -4379,7 +4379,7 @@ export default function Index() {
               : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
           }`}
           style={{
-            position: "fixed",
+            position: "absolute",
             pointerEvents: "auto",
             background:
               theme === "light"
