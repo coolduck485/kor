@@ -4379,7 +4379,7 @@ export default function Index() {
               : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
           }`}
           style={{
-            position: "absolute",
+            position: "fixed",
             pointerEvents: "auto",
             background:
               theme === "light"
