@@ -4050,18 +4050,33 @@ export default function Index() {
             />
           </motion.div>
 
-          {/* Services Section */}
+          {/* What we do Section */}
           <motion.div
-            data-section="services"
+            data-section="what-we-do"
             className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
               display: currentSection === 2 ? "block" : "none",
             }}
           >
-            <ServicesSection
+            <WhatWeDoSection
               ref={(el) => (sectionsRef.current[2] = el!)}
               theme={theme}
               isVisible={currentSection === 2}
+            />
+          </motion.div>
+
+          {/* Services Section */}
+          <motion.div
+            data-section="services"
+            className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
+            style={{
+              display: currentSection === 3 ? "block" : "none",
+            }}
+          >
+            <ServicesSection
+              ref={(el) => (sectionsRef.current[3] = el!)}
+              theme={theme}
+              isVisible={currentSection === 3}
             />
           </motion.div>
 
