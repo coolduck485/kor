@@ -2267,7 +2267,7 @@ export default function Index() {
                 boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
               }}
             >
-              Click to navigate sections ���
+              Click to navigate sections →
               <button
                 onClick={() => setShowNavigationHints(false)}
                 className="ml-2 text-xs opacity-60 hover:opacity-100"
@@ -8653,6 +8653,62 @@ const ServicesSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         </span>
                       ))}
                     </span>
+
+                    {/* Sparkles for subtitle */}
+                    {[
+                      { x: 130, y: -20, size: 0.6, type: "star" },
+                      { x: 95, y: 30, size: 0.5, type: "diamond" },
+                      { x: -45, y: 20, size: 0.4, type: "plus" },
+                      { x: 150, y: 5, size: 0.7, type: "star" },
+                    ].map((sparkle, i) => (
+                      <div
+                        key={`services-subtitle-sparkle-${i}`}
+                        className="absolute pointer-events-none gpu-accelerated"
+                        style={{
+                          left: `calc(50% + ${sparkle.x}px)`,
+                          top: `calc(50% + ${sparkle.y}px)`,
+                          animation: `sparkle-enhanced ${5 + (i % 2)}s ease-in-out infinite ${i * 0.3}s`,
+                          transform: `translateZ(0) scale(${sparkle.size})`,
+                          opacity: 0.4,
+                          zIndex: -1,
+                          willChange: "transform, opacity",
+                        }}
+                      >
+                        {sparkle.type === "star" && (
+                          <div
+                            className="w-4 h-4"
+                            style={{
+                              background: "radial-gradient(circle, rgba(200, 120, 255, 0.8) 0%, rgba(120, 255, 180, 0.5) 70%, transparent 90%)",
+                              clipPath: "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+                              animation: "spin-slow 12s linear infinite",
+                              filter: "drop-shadow(0 0 4px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "diamond" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background: "linear-gradient(45deg, rgba(120, 255, 160, 0.7), rgba(255, 120, 200, 0.6))",
+                              clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                              animation: "gentle-pulse 3.5s ease-in-out infinite",
+                              filter: "drop-shadow(0 0 3px currentColor)",
+                            }}
+                          />
+                        )}
+                        {sparkle.type === "plus" && (
+                          <div
+                            className="w-3 h-3"
+                            style={{
+                              background: "conic-gradient(from 90deg, rgba(255, 160, 120, 0.7), rgba(120, 255, 160, 0.6), rgba(160, 120, 255, 0.7), rgba(255, 180, 160, 0.6))",
+                              clipPath: "polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)",
+                              animation: "rotate-slow 9s linear infinite",
+                              filter: "drop-shadow(0 0 5px currentColor)",
+                            }}
+                          />
+                        )}
+                      </div>
+                    ))}
                   </span>
                 </div>
               </div>
