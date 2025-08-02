@@ -2420,8 +2420,6 @@ export default function Index() {
           </div>
         )}
 
-
-
         {/* Mobile Hamburger Menu - Only show in home section */}
         {currentSection === 0 && (
           <div className="fixed inset-0 flex items-center justify-center z-[100] pointer-events-none">
@@ -7600,31 +7598,35 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
       {
         number: "01",
         title: "Discovery & Analysis",
-        description: "We start by understanding your business goals, target audience, and technical requirements through comprehensive consultation.",
+        description:
+          "We start by understanding your business goals, target audience, and technical requirements through comprehensive consultation.",
         icon: "🔍",
-        color: "from-purple-500 to-pink-500"
+        color: "from-purple-500 to-pink-500",
       },
       {
         number: "02",
         title: "Design & Strategy",
-        description: "Our team creates stunning, user-focused designs while developing a strategic roadmap for your digital solution.",
+        description:
+          "Our team creates stunning, user-focused designs while developing a strategic roadmap for your digital solution.",
         icon: "🎨",
-        color: "from-blue-500 to-cyan-500"
+        color: "from-blue-500 to-cyan-500",
       },
       {
         number: "03",
         title: "Development & Build",
-        description: "We bring your vision to life using cutting-edge technologies and best practices, ensuring scalability and performance.",
+        description:
+          "We bring your vision to life using cutting-edge technologies and best practices, ensuring scalability and performance.",
         icon: "⚡",
-        color: "from-green-500 to-emerald-500"
+        color: "from-green-500 to-emerald-500",
       },
       {
         number: "04",
         title: "Launch & Support",
-        description: "We deploy your solution and provide ongoing support, maintenance, and optimization to ensure continued success.",
+        description:
+          "We deploy your solution and provide ongoing support, maintenance, and optimization to ensure continued success.",
         icon: "🚀",
-        color: "from-orange-500 to-red-500"
-      }
+        color: "from-orange-500 to-red-500",
+      },
     ];
 
     return (
@@ -7646,11 +7648,13 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
             <motion.div
               key={`shape-${i}`}
               className={`absolute rounded-full opacity-30 ${
-                theme === "light" ? "bg-gradient-to-r from-purple-300 to-blue-300" : "bg-gradient-to-r from-purple-500 to-blue-500"
+                theme === "light"
+                  ? "bg-gradient-to-r from-purple-300 to-blue-300"
+                  : "bg-gradient-to-r from-purple-500 to-blue-500"
               }`}
               style={{
-                left: `${10 + (i * 15) % 80}%`,
-                top: `${10 + (i * 25) % 80}%`,
+                left: `${10 + ((i * 15) % 80)}%`,
+                top: `${10 + ((i * 25) % 80)}%`,
                 width: `${20 + (i % 4) * 10}px`,
                 height: `${20 + (i % 4) * 10}px`,
               }}
@@ -7675,8 +7679,8 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
               key={`orb-${i}`}
               className="absolute rounded-full blur-xl opacity-20"
               style={{
-                left: `${20 + (i * 20) % 60}%`,
-                top: `${20 + (i * 30) % 60}%`,
+                left: `${20 + ((i * 20) % 60)}%`,
+                top: `${20 + ((i * 30) % 60)}%`,
                 width: `${100 + (i % 3) * 50}px`,
                 height: `${100 + (i % 3) * 50}px`,
                 background: `radial-gradient(circle, ${
@@ -7709,14 +7713,13 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
           >
             <motion.h2
               className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 ${
-                theme === "light"
-                  ? "text-gray-900"
-                  : "text-white"
+                theme === "light" ? "text-gray-900" : "text-white"
               }`}
               style={{
-                background: theme === "light"
-                  ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-                  : "linear-gradient(135deg, #a855f7 0%, #3b82f6 100%)",
+                background:
+                  theme === "light"
+                    ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                    : "linear-gradient(135deg, #a855f7 0%, #3b82f6 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -7732,8 +7735,9 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
               animate={{ opacity: isVisible ? 1 : 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              We transform your ideas into powerful digital solutions through our proven process,
-              combining creativity, technology, and strategic thinking to deliver exceptional results.
+              We transform your ideas into powerful digital solutions through
+              our proven process, combining creativity, technology, and
+              strategic thinking to deliver exceptional results.
             </motion.p>
           </motion.div>
 
@@ -7751,13 +7755,13 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                 animate={{
                   opacity: isVisible ? 1 : 0,
                   y: isVisible ? 0 : 50,
-                  scale: isVisible ? 1 : 0.9
+                  scale: isVisible ? 1 : 0.9,
                 }}
-                transition={{ duration: 0.6, delay: 0.6 + (index * 0.2) }}
+                transition={{ duration: 0.6, delay: 0.6 + index * 0.2 }}
                 whileHover={{
                   scale: 1.05,
                   y: -10,
-                  transition: { duration: 0.3 }
+                  transition: { duration: 0.3 },
                 }}
               >
                 {/* Step Number */}
@@ -7774,27 +7778,31 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                   className="text-4xl mb-4"
                   animate={{
                     rotate: [0, 10, -10, 0],
-                    scale: [1, 1.1, 1]
+                    scale: [1, 1.1, 1],
                   }}
                   transition={{
                     duration: 4,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: index * 0.5
+                    delay: index * 0.5,
                   }}
                 >
                   {step.icon}
                 </motion.div>
 
                 {/* Content */}
-                <h3 className={`text-xl lg:text-2xl font-bold mb-3 ${
-                  theme === "light" ? "text-gray-900" : "text-white"
-                }`}>
+                <h3
+                  className={`text-xl lg:text-2xl font-bold mb-3 ${
+                    theme === "light" ? "text-gray-900" : "text-white"
+                  }`}
+                >
                   {step.title}
                 </h3>
-                <p className={`text-sm lg:text-base leading-relaxed ${
-                  theme === "light" ? "text-gray-600" : "text-gray-300"
-                }`}>
+                <p
+                  className={`text-sm lg:text-base leading-relaxed ${
+                    theme === "light" ? "text-gray-600" : "text-gray-300"
+                  }`}
+                >
                   {step.description}
                 </p>
 
@@ -7830,7 +7838,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
         </div>
       </motion.div>
     );
-  }
+  },
 );
 
 WhatWeDoSection.displayName = "WhatWeDoSection";
