@@ -979,7 +979,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����█████████���██����███████����█ 50%
+                      RAM: ����█�����█████████���██����███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -7878,11 +7878,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                 >
                   {/* Glassmorphism Card */}
                   <motion.div
-                    className={`relative p-8 rounded-3xl backdrop-blur-xl border ${
-                      theme === "light"
-                        ? "bg-white/40 border-white/20 shadow-xl"
-                        : "bg-white/5 border-white/10 shadow-2xl"
-                    } overflow-hidden group`}
+                    className="relative p-8 rounded-3xl backdrop-blur-xl border bg-white/5 border-white/10 shadow-2xl overflow-hidden group"
                     whileHover={{
                       scale: 1.02,
                       y: -8,
