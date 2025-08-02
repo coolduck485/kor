@@ -972,7 +972,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█���███████���███����██���██ 60%
+                      CPU: █████████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4369,7 +4369,7 @@ export default function Index() {
         {/* Back to Top Button */}
         <motion.button
           onClick={() => scrollToSection(0)}
-          className={`group fixed z-[99999] p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
+          className={`group absolute z-[99999] p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
             isMobileSafari || isIOS
               ? "bottom-20 left-6 sm:left-8 md:left-10 lg:left-12" // Above Safari search bar, matching nav positioning
               : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12 left-6 sm:left-8 md:left-10 lg:left-12" // Normal position, matching nav positioning
@@ -10583,7 +10583,7 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                 color: "from-blue-500 to-purple-500",
               },
               {
-                icon: "���������",
+                icon: "����������",
                 label: "Launch",
                 x: 12,
                 y: 85,
