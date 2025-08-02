@@ -5967,7 +5967,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: xOffset: 0  →  xOffset: 50
 //
 // To move "About us" button 30px up:
-// Change: yOffset: 0  �����  yOffset: -30
+// Change: yOffset: 0  ���  yOffset: -30
 //
 // To make all buttons closer to center on mobile:
 // Change: mobileRadiusMultiplier: 0.5  →  mobileRadiusMultiplier: 0.3
@@ -5976,7 +5976,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: angle: 125  →  angle: -90
 //
 // To make buttons grow more on hover:
-// Change: hoverScale: 1.05  ————��——→  hoverScale: 1.15
+// Change: hoverScale: 1.05  ———�����——→  hoverScale: 1.15
 //
 // ========================================
 
@@ -7911,11 +7911,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                         </motion.div>
 
                         {/* Category Badge */}
-                        <div className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          theme === "light"
-                            ? "bg-blue-100 text-blue-700"
-                            : "bg-blue-900/30 text-blue-300"
-                        }`}>
+                        <div className="px-3 py-1 rounded-full text-xs font-medium bg-blue-900/30 text-blue-300">
                           {step.category}
                         </div>
                       </div>
