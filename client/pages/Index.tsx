@@ -903,7 +903,7 @@ export default function Index() {
                   {`��█╗  █�������╗ █████����� ██����������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
-█��╔�����█╗ ██║   █��║██╔══█��╗
+█��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -7736,47 +7736,113 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
           ))}
         </div>
 
-        {/* Corner Pulse Effects - exactly like home page */}
-        <div className="absolute top-8 left-8 w-24 h-24 rounded-full opacity-40">
+        {/* Digital Laboratory Corner Holograms */}
+        <div className="absolute top-8 left-8 w-32 h-32 opacity-60">
           <div
-            className="w-full h-full rounded-full"
+            className="w-full h-full"
             style={{
-              background: "radial-gradient(circle, rgba(34, 197, 94, 0.8) 0%, rgba(59, 130, 246, 0.6) 40%, rgba(147, 51, 234, 0.3) 70%, transparent 90%)",
-              animation: "4s ease-in-out 0s infinite normal none running desktop-pulse-corner",
-              filter: "blur(6px)"
+              background: "conic-gradient(from 0deg, rgba(34, 197, 94, 0.8), rgba(6, 182, 212, 0.6), rgba(20, 184, 166, 0.7), rgba(34, 197, 94, 0.8))",
+              borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%",
+              animation: "6s linear infinite running tech-hologram-rotate",
+              filter: "blur(8px)",
+              clipPath: "polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)"
             }}
           />
         </div>
-        <div className="absolute top-8 right-8 w-20 h-20 rounded-full opacity-35">
+        <div className="absolute top-8 right-8 w-28 h-28 opacity-50">
           <div
-            className="w-full h-full rounded-full"
+            className="w-full h-full"
             style={{
-              background: "radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, rgba(236, 72, 153, 0.6) 40%, rgba(59, 130, 246, 0.3) 70%, transparent 90%)",
-              animation: "3.5s ease-in-out 0.7s infinite normal none running desktop-pulse-corner",
-              filter: "blur(5px)"
+              background: "linear-gradient(45deg, rgba(6, 182, 212, 0.7), rgba(34, 197, 94, 0.5), rgba(20, 184, 166, 0.6))",
+              borderRadius: "50%",
+              animation: "4.5s ease-in-out infinite running tech-pulse-scan",
+              filter: "blur(6px)",
+              border: "2px solid rgba(6, 182, 212, 0.3)"
             }}
           />
         </div>
-        <div className="absolute bottom-8 left-8 w-28 h-28 rounded-full opacity-45">
+        <div className="absolute bottom-8 left-8 w-36 h-36 opacity-55">
           <div
-            className="w-full h-full rounded-full"
+            className="w-full h-full"
             style={{
-              background: "radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, rgba(34, 197, 94, 0.6) 40%, rgba(6, 182, 212, 0.3) 70%, transparent 90%)",
-              animation: "4.5s ease-in-out 1.2s infinite normal none running desktop-pulse-corner",
+              background: "radial-gradient(ellipse, rgba(20, 184, 166, 0.8) 0%, rgba(34, 197, 94, 0.6) 30%, rgba(6, 182, 212, 0.4) 60%, transparent 90%)",
+              borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
+              animation: "7s ease-in-out 1s infinite normal none running tech-lab-morph",
+              filter: "blur(10px)"
+            }}
+          />
+        </div>
+        <div className="absolute bottom-8 right-8 w-24 h-24 opacity-45">
+          <div
+            className="w-full h-full"
+            style={{
+              background: "conic-gradient(from 180deg, rgba(34, 197, 94, 0.6), rgba(20, 184, 166, 0.8), rgba(6, 182, 212, 0.5), rgba(34, 197, 94, 0.6))",
+              clipPath: "polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%)",
+              animation: "5s linear infinite reverse running tech-hologram-rotate",
               filter: "blur(7px)"
             }}
           />
         </div>
-        <div className="absolute bottom-8 right-8 w-22 h-22 rounded-full opacity-38">
+
+        {/* Circuit Board Pattern Overlay */}
+        <div className="absolute inset-0 opacity-10">
           <div
-            className="w-full h-full rounded-full"
+            className="w-full h-full"
             style={{
-              background: "radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, rgba(245, 158, 11, 0.6) 40%, rgba(34, 197, 94, 0.3) 70%, transparent 90%)",
-              animation: "3.8s ease-in-out 0.4s infinite normal none running desktop-pulse-corner",
-              filter: "blur(4px)"
+              backgroundImage: `
+                linear-gradient(90deg, rgba(34, 197, 94, 0.3) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(6, 182, 212, 0.2) 1px, transparent 1px),
+                linear-gradient(45deg, rgba(20, 184, 166, 0.15) 1px, transparent 1px),
+                linear-gradient(-45deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '80px 80px, 80px 80px, 40px 40px, 40px 40px',
+              animation: "20s linear infinite running circuit-flow"
             }}
           />
         </div>
+
+        {/* Holographic Data Streams */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={`datastream-${i}`}
+            className="absolute opacity-30"
+            style={{
+              left: `${10 + i * 15}%`,
+              top: "0%",
+              width: "2px",
+              height: "100%",
+              background: `linear-gradient(180deg, transparent 0%, rgba(${i % 2 === 0 ? '34, 197, 94' : '6, 182, 212'}, 0.6) 20%, rgba(20, 184, 166, 0.8) 50%, rgba(${i % 2 === 0 ? '6, 182, 212' : '34, 197, 94'}, 0.6) 80%, transparent 100%)`,
+              filter: "blur(1px)",
+            }}
+            animate={{
+              scaleY: [0, 1, 0],
+              opacity: [0, 0.6, 0],
+            }}
+            transition={{
+              duration: 3 + (i * 0.5),
+              repeat: Infinity,
+              delay: i * 0.8,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+
+        {/* Tech Lab Scanning Lines */}
+        <motion.div
+          className="absolute inset-0 opacity-20"
+          animate={{
+            background: [
+              "linear-gradient(0deg, transparent 0%, rgba(34, 197, 94, 0.3) 2%, transparent 4%)",
+              "linear-gradient(0deg, transparent 96%, rgba(6, 182, 212, 0.3) 98%, transparent 100%)",
+              "linear-gradient(0deg, transparent 0%, rgba(20, 184, 166, 0.3) 2%, transparent 4%)",
+            ],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
 
         {/* Wave Animations - exactly like home page */}
         <div className="absolute inset-0">
