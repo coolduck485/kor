@@ -902,8 +902,8 @@ export default function Index() {
                 >
                   {`��█╗  █�������╗ █████����� ██����������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
-█████╔╝ ██║   ██║███�������█╔��
-█��╔�������█╗ ██║   ██║██╔══█��╗
+��████╔╝ ██║   ██║███�������█╔��
+█��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -979,7 +979,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����█████████���██����███████��█ 50%
+                      RAM: ����█�����█████████���██�����███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -7898,119 +7898,128 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
           ))}
         </div>
 
-        {/* Floating Cosmic Elements */}
+        {/* Floating Crystal Elements */}
         <div className="absolute inset-0 pointer-events-none">
-          {/* Cosmic Dust Trails */}
-          {[...Array(12)].map((_, i) => (
+          {/* Floating Crystal Shards */}
+          {[...Array(10)].map((_, i) => (
             <motion.div
-              key={`dust-${i}`}
+              key={`shard-${i}`}
               className="absolute"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                width: `${20 + Math.random() * 40}px`,
-                height: "1px",
-                background: `linear-gradient(90deg, transparent, rgba(${i % 3 === 0 ? '147, 51, 234' : i % 3 === 1 ? '59, 130, 246' : '236, 72, 153'}, 0.4), transparent)`,
+                width: `${12 + Math.random() * 20}px`,
+                height: `${16 + Math.random() * 28}px`,
+                background: `linear-gradient(${120 + i * 30}deg,
+                  rgba(${i % 4 === 0 ? '16, 185, 129' : i % 4 === 1 ? '59, 130, 246' : i % 4 === 2 ? '236, 72, 153' : '245, 158, 11'}, 0.4) 0%,
+                  rgba(${i % 4 === 0 ? '16, 185, 129' : i % 4 === 1 ? '59, 130, 246' : i % 4 === 2 ? '236, 72, 153' : '245, 158, 11'}, 0.1) 100%)`,
+                clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)",
                 transform: `rotate(${Math.random() * 360}deg)`,
+                filter: "blur(1px)"
               }}
               animate={{
-                x: [0, 50, -30, 0],
-                y: [0, -20, 30, 0],
-                opacity: [0, 0.6, 0],
-                rotate: [0, 180, 360],
+                x: [0, 30, -20, 0],
+                y: [0, -15, 25, 0],
+                rotate: [0, 90, 180, 270, 360],
+                opacity: [0.3, 0.7, 0.3],
               }}
               transition={{
-                duration: 15 + (i * 2),
+                duration: 12 + (i * 1.5),
                 repeat: Infinity,
-                delay: i * 1.2,
+                delay: i * 0.8,
                 ease: "easeInOut",
               }}
             />
           ))}
 
-          {/* Floating Galaxy Spirals */}
+          {/* Crystalline Geometric Patterns */}
           <motion.div
-            className="absolute top-1/4 left-1/5 w-24 h-24 opacity-40"
+            className="absolute top-1/4 left-1/6 w-20 h-20 opacity-35"
             animate={{
-              rotate: [0, 360],
-              scale: [1, 1.2, 1],
+              rotate: [0, 120, 240, 360],
+              scale: [1, 1.15, 1],
             }}
             transition={{
-              duration: 20,
+              duration: 15,
               repeat: Infinity,
               ease: "linear",
             }}
           >
             <div
-              className="w-full h-full rounded-full"
+              className="w-full h-full"
               style={{
-                background: "conic-gradient(from 0deg, transparent 0%, rgba(147, 51, 234, 0.6) 20%, transparent 40%, rgba(59, 130, 246, 0.5) 60%, transparent 80%, rgba(236, 72, 153, 0.4) 100%)",
+                background: "conic-gradient(from 0deg, rgba(16, 185, 129, 0.5) 0%, transparent 33%, rgba(59, 130, 246, 0.4) 66%, transparent 100%)",
+                clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                filter: "blur(2px)",
+              }}
+            />
+          </motion.div>
+
+          <motion.div
+            className="absolute top-2/3 right-1/5 w-24 h-24 opacity-30"
+            animate={{
+              rotate: [360, 240, 120, 0],
+              scale: [0.9, 1.2, 0.9],
+            }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          >
+            <div
+              className="w-full h-full"
+              style={{
+                background: "linear-gradient(45deg, rgba(236, 72, 153, 0.4) 0%, rgba(245, 158, 11, 0.3) 100%)",
+                clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
                 filter: "blur(3px)",
               }}
             />
           </motion.div>
 
+          {/* Crystal Growth Nodes */}
           <motion.div
-            className="absolute top-2/3 right-1/4 w-32 h-32 opacity-35"
-            animate={{
-              rotate: [360, 0],
-              scale: [0.8, 1.1, 0.8],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <div
-              className="w-full h-full rounded-full"
-              style={{
-                background: "conic-gradient(from 180deg, transparent 0%, rgba(34, 197, 94, 0.5) 25%, transparent 50%, rgba(6, 182, 212, 0.4) 75%, transparent 100%)",
-                filter: "blur(4px)",
-              }}
-            />
-          </motion.div>
-
-          {/* Planetary Orbits */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-48 h-48 -translate-x-1/2 -translate-y-1/2 opacity-20"
+            className="absolute top-1/2 left-1/2 w-40 h-40 -translate-x-1/2 -translate-y-1/2 opacity-20"
             animate={{ rotate: [0, 360] }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           >
-            <div className="absolute top-0 left-1/2 w-2 h-2 -translate-x-1/2 bg-purple-400 rounded-full blur-sm" />
-            <div className="absolute bottom-0 right-1/2 w-3 h-3 translate-x-1/2 bg-blue-400 rounded-full blur-sm" />
-            <div className="absolute left-0 top-1/2 w-1.5 h-1.5 -translate-y-1/2 bg-pink-400 rounded-full blur-sm" />
+            <div className="absolute top-2 left-1/2 w-3 h-3 -translate-x-1/2 bg-emerald-400 opacity-60"
+                 style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }} />
+            <div className="absolute bottom-2 right-1/2 w-4 h-4 translate-x-1/2 bg-blue-400 opacity-50"
+                 style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }} />
+            <div className="absolute left-2 top-1/2 w-2 h-2 -translate-y-1/2 bg-pink-400 opacity-70"
+                 style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }} />
           </motion.div>
 
-          {/* Cosmic Text Elements */}
+          {/* Professional Ambient Text */}
           <motion.div
-            className="absolute top-1/3 right-1/6 text-purple-300 font-light text-sm opacity-30"
+            className="absolute top-1/3 right-1/6 text-emerald-300 font-light text-sm opacity-25"
             animate={{
-              y: [0, -10, 0],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            ✦ stellar forge ✦
-          </motion.div>
-
-          <motion.div
-            className="absolute bottom-1/3 left-1/6 text-blue-300 font-light text-sm opacity-25"
-            animate={{
-              x: [0, 5, -5, 0],
+              y: [0, -8, 0],
               opacity: [0.25, 0.5, 0.25],
             }}
             transition={{
-              duration: 6,
+              duration: 5,
               repeat: Infinity,
               ease: "easeInOut",
             }}
           >
-            ◦ cosmic creation ◦
+            precision • innovation
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-1/3 left-1/6 text-blue-300 font-light text-sm opacity-20"
+            animate={{
+              x: [0, 4, -4, 0],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            excellence • delivery
           </motion.div>
         </div>
 
