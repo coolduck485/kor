@@ -1236,7 +1236,7 @@ body > div {
 }
 
 .animate-warm-glow-pulse {
-  animation: warm-glow-pulse 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation: warm-glow-pulse 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
   will-change: filter;
   transform: translateZ(0);
   backface-visibility: hidden;
