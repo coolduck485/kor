@@ -8078,7 +8078,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  {/* Enhanced Tech Laboratory Card */}
+                  {/* Cosmic Stellar Card */}
                   <motion.div
                     className="relative p-8 rounded-3xl backdrop-blur-xl border bg-white/5 border-white/10 shadow-2xl overflow-hidden group"
                     whileHover={{
@@ -8088,46 +8088,51 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                     }}
                     style={{
                       boxShadow: hoveredCard === index
-                        ? `0 25px 50px -12px rgba(34, 197, 94, 0.25), 0 0 0 1px rgba(6, 182, 212, 0.2), 0 0 20px rgba(20, 184, 166, 0.15)`
+                        ? `0 25px 50px -12px rgba(147, 51, 234, 0.3), 0 0 0 1px rgba(59, 130, 246, 0.2), 0 0 20px rgba(236, 72, 153, 0.15)`
                         : "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
                     }}
                   >
-                    {/* Tech Lab Animated Background */}
+                    {/* Cosmic Nebula Background */}
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-cyan-500/5 to-teal-500/10 opacity-0 group-hover:opacity-100"
+                      className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-blue-500/8 to-pink-500/10 opacity-0 group-hover:opacity-100"
                       initial={false}
                       transition={{ duration: 0.5 }}
                     />
 
-                    {/* Circuit Pattern Overlay */}
-                    <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
-                      <div
-                        className="w-full h-full"
-                        style={{
-                          backgroundImage: `
-                            radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.3) 1px, transparent 1px),
-                            radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.3) 1px, transparent 1px),
-                            linear-gradient(0deg, rgba(20, 184, 166, 0.1) 1px, transparent 1px)
-                          `,
-                          backgroundSize: '20px 20px, 30px 30px, 100% 10px',
-                        }}
-                      />
+                    {/* Stellar Constellation Overlay */}
+                    <div className="absolute inset-0 opacity-8 group-hover:opacity-15 transition-opacity duration-500">
+                      {/* Floating stars */}
+                      {[...Array(8)].map((_, starIndex) => (
+                        <div
+                          key={starIndex}
+                          className="absolute rounded-full bg-white"
+                          style={{
+                            left: `${20 + (starIndex * 12) % 60}%`,
+                            top: `${15 + (starIndex * 8) % 70}%`,
+                            width: `${1 + Math.random()}px`,
+                            height: `${1 + Math.random()}px`,
+                            opacity: 0.3 + Math.random() * 0.3,
+                            animation: `${2 + Math.random() * 3}s ease-in-out infinite running stellar-twinkle`,
+                            animationDelay: `${starIndex * 0.3}s`,
+                          }}
+                        />
+                      ))}
                     </div>
 
-                    {/* Scanning Line Effect */}
+                    {/* Cosmic Energy Wave */}
                     <motion.div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-30"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-25"
                       animate={{
                         background: [
-                          "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.3) 1%, transparent 2%)",
-                          "linear-gradient(90deg, transparent 98%, rgba(6, 182, 212, 0.3) 99%, transparent 100%)",
-                          "linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.3) 1%, transparent 2%)",
+                          "radial-gradient(ellipse 200% 50% at 0% 50%, rgba(147, 51, 234, 0.2) 0%, transparent 60%)",
+                          "radial-gradient(ellipse 200% 50% at 100% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 60%)",
+                          "radial-gradient(ellipse 200% 50% at 50% 0%, rgba(236, 72, 153, 0.15) 0%, transparent 60%)",
                         ],
                       }}
                       transition={{
-                        duration: 3,
+                        duration: 4,
                         repeat: Infinity,
-                        ease: "linear",
+                        ease: "easeInOut",
                       }}
                     />
 
