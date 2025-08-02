@@ -7962,23 +7962,15 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
 
                       {/* Metrics */}
                       <motion.div
-                        className={`mt-6 p-4 rounded-xl border ${
-                          theme === "light"
-                            ? "bg-gradient-to-r from-blue-50 to-cyan-50 border-blue-100"
-                            : "bg-gradient-to-r from-blue-900/20 to-cyan-900/20 border-blue-800/30"
-                        }`}
+                        className="mt-6 p-4 rounded-xl border bg-gradient-to-r from-blue-900/20 to-cyan-900/20 border-blue-800/30"
                         whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.2 }}
                       >
                         <div className="text-center">
-                          <div className={`text-2xl font-bold ${
-                            theme === "light" ? "text-blue-600" : "text-blue-400"
-                          }`}>
+                          <div className="text-2xl font-bold text-blue-400">
                             {step.metrics[0]}
                           </div>
-                          <div className={`text-sm ${
-                            theme === "light" ? "text-blue-600/70" : "text-blue-400/70"
-                          }`}>
+                          <div className="text-sm text-blue-400/70">
                             {step.metrics[1]} {step.metrics[2]}
                           </div>
                         </div>
