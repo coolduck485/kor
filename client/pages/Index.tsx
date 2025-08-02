@@ -972,7 +972,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█���███████���███����█████ 60%
+                      CPU: ███████���█████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2131,7 +2131,7 @@ export default function Index() {
 
       {/* Section Position Indicator - Visible on desktop and larger tablets */}
       <div
-        className="hidden md:flex fixed left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[99999] flex-col space-y-1 md:space-y-1 lg:space-y-2 performance-optimized"
+        className="hidden md:flex absolute left-6 sm:left-8 md:left-10 lg:left-12 top-1/2 -translate-y-1/2 z-[99999] flex-col space-y-1 md:space-y-1 lg:space-y-2 performance-optimized"
         style={{
           position: "fixed",
           transform: "translateY(-50%)",
