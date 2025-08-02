@@ -139,3 +139,31 @@ div[class*="fixed right-"][class*="bottom-"] {
   }
 }
 
+/* CRITICAL: Force back up button to always be visible - override Framer Motion */
+button[class*="group fixed z-[99999]"] {
+  position: fixed !important;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  visibility: visible !important;
+  display: flex !important;
+}
+
+/* Specific override for motion.button with back up styling */
+*[style*="position: fixed"][class*="group"][class*="left-"][class*="bottom-"] {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  visibility: visible !important;
+  display: flex !important;
+}
+
+/* Force all navigation elements to be visible */
+div[class*="hidden md:flex fixed left-"][class*="top-1/2"] {
+  position: fixed !important;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+}
