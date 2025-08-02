@@ -1,5 +1,6 @@
 @import "./performance-addon.css";
 @import "./cinematic-transitions.css";
+@import "./performance-120hz.css";
 
 @tailwind base;
 @tailwind components;
