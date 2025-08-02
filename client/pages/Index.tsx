@@ -996,7 +996,7 @@ export default function Index() {
                 transition={{ delay: 2, duration: 1 }}
               >
                 <button
-                  className="pixel-button"
+                  className="pixel-button button-120hz performance-optimized"
                   onClick={() => setShowTerminal(true)}
                 >
                   TERMINAL
@@ -1011,19 +1011,19 @@ export default function Index() {
                 transition={{ delay: 2.5, duration: 1 }}
               >
                 <button
-                  className="pixel-button social-button"
+                  className="pixel-button social-button button-120hz performance-optimized"
                   onClick={() => protectedOpenLink("https://instagram.com")}
                 >
                   INSTAGRAM
                 </button>
                 <button
-                  className="pixel-button social-button"
+                  className="pixel-button social-button button-120hz performance-optimized"
                   onClick={() => protectedOpenLink("https://discord.com")}
                 >
                   DISCORD
                 </button>
                 <button
-                  className="pixel-button social-button"
+                  className="pixel-button social-button button-120hz performance-optimized"
                   onClick={() => protectedOpenLink("https://telegram.org")}
                 >
                   TELEGRAM
