@@ -8042,7 +8042,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
                 >
-                  {/* Glassmorphism Card */}
+                  {/* Enhanced Tech Laboratory Card */}
                   <motion.div
                     className="relative p-8 rounded-3xl backdrop-blur-xl border bg-white/5 border-white/10 shadow-2xl overflow-hidden group"
                     whileHover={{
@@ -8052,17 +8052,47 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                     }}
                     style={{
                       boxShadow: hoveredCard === index
-                        ? `0 25px 50px -12px rgba(73, 146, 255, 0.25), 0 0 0 1px rgba(73, 146, 255, 0.1)`
-                        : theme === "light"
-                        ? "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                        ? `0 25px 50px -12px rgba(34, 197, 94, 0.25), 0 0 0 1px rgba(6, 182, 212, 0.2), 0 0 20px rgba(20, 184, 166, 0.15)`
                         : "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
                     }}
                   >
-                    {/* Animated Background Glow */}
+                    {/* Tech Lab Animated Background */}
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100"
+                      className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-cyan-500/5 to-teal-500/10 opacity-0 group-hover:opacity-100"
                       initial={false}
                       transition={{ duration: 0.5 }}
+                    />
+
+                    {/* Circuit Pattern Overlay */}
+                    <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+                      <div
+                        className="w-full h-full"
+                        style={{
+                          backgroundImage: `
+                            radial-gradient(circle at 20% 20%, rgba(34, 197, 94, 0.3) 1px, transparent 1px),
+                            radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.3) 1px, transparent 1px),
+                            linear-gradient(0deg, rgba(20, 184, 166, 0.1) 1px, transparent 1px)
+                          `,
+                          backgroundSize: '20px 20px, 30px 30px, 100% 10px',
+                        }}
+                      />
+                    </div>
+
+                    {/* Scanning Line Effect */}
+                    <motion.div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-30"
+                      animate={{
+                        background: [
+                          "linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.3) 1%, transparent 2%)",
+                          "linear-gradient(90deg, transparent 98%, rgba(6, 182, 212, 0.3) 99%, transparent 100%)",
+                          "linear-gradient(90deg, transparent 0%, rgba(20, 184, 166, 0.3) 1%, transparent 2%)",
+                        ],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                     />
 
                     {/* Step Header */}
@@ -12163,7 +12193,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             {
-              icon: "������������",
+              icon: "����������",
               delay: 3,
               x: 10,
               y: 60,
@@ -12259,7 +12289,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Contact Cards */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[
-            { type: "email", x: 15, y: 35, icon: "��️" },
+            { type: "email", x: 15, y: 35, icon: "����️" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "💬" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
