@@ -2338,22 +2338,7 @@ export default function Index() {
           </div>
         )}
 
-        {/* Desktop Scroll Progress Indicator */}
-        {currentSection > 0 && (
-          <div
-            className={`hidden lg:block fixed top-0 left-0 w-full h-1 z-50 pointer-events-none transition-opacity duration-300 ${
-              theme === "light" ? "bg-gray-200/50" : "bg-white/10"
-            }`}
-          >
-            <div
-              className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-200 ease-out"
-              style={{
-                width: `${scrollProgress}%`,
-                boxShadow: "0 0 10px rgba(73, 146, 255, 0.5)",
-              }}
-            />
-          </div>
-        )}
+
 
         {/* Mobile Hamburger Menu - Only show in home section */}
         {currentSection === 0 && (
