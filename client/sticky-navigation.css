@@ -152,7 +152,7 @@ button[class*="group fixed z-[99999]"] {
 
 /* Specific override for motion.button with back up styling */
 *[style*="position: fixed"][class*="group"][class*="left-"][class*="bottom-"] {
-  position: absolute !important;
+  position: fixed !important;
   opacity: 1 !important;
   transform: scale(1) !important;
   visibility: visible !important;
