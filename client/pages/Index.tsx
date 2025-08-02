@@ -905,7 +905,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
-�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
+�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═��`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -7826,8 +7826,8 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
             <motion.button
               className={`px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 ${
                 theme === "light"
-                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700"
-                  : "bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600"
+                  ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-700 hover:to-cyan-700"
+                  : "bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600"
               } shadow-lg hover:shadow-xl`}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
