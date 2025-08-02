@@ -7565,6 +7565,277 @@ const AboutUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
 );
 
 // ========================================
+// WHAT WE DO SECTION COMPONENT
+// ========================================
+
+interface WhatWeDoSectionProps {
+  theme: "light" | "dark";
+  isVisible: boolean;
+}
+
+const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
+  ({ theme, isVisible }, ref) => {
+    const [screenSize, setScreenSize] = useState<
+      "mobile" | "tablet" | "desktop"
+    >("desktop");
+
+    useEffect(() => {
+      const updateScreenSize = () => {
+        const width = window.innerWidth;
+        if (width <= 640) {
+          setScreenSize("mobile");
+        } else if (width <= 991) {
+          setScreenSize("tablet");
+        } else {
+          setScreenSize("desktop");
+        }
+      };
+
+      updateScreenSize();
+      window.addEventListener("resize", updateScreenSize);
+      return () => window.removeEventListener("resize", updateScreenSize);
+    }, []);
+
+    const processSteps = [
+      {
+        number: "01",
+        title: "Discovery & Analysis",
+        description: "We start by understanding your business goals, target audience, and technical requirements through comprehensive consultation.",
+        icon: "🔍",
+        color: "from-purple-500 to-pink-500"
+      },
+      {
+        number: "02",
+        title: "Design & Strategy",
+        description: "Our team creates stunning, user-focused designs while developing a strategic roadmap for your digital solution.",
+        icon: "🎨",
+        color: "from-blue-500 to-cyan-500"
+      },
+      {
+        number: "03",
+        title: "Development & Build",
+        description: "We bring your vision to life using cutting-edge technologies and best practices, ensuring scalability and performance.",
+        icon: "⚡",
+        color: "from-green-500 to-emerald-500"
+      },
+      {
+        number: "04",
+        title: "Launch & Support",
+        description: "We deploy your solution and provide ongoing support, maintenance, and optimization to ensure continued success.",
+        icon: "🚀",
+        color: "from-orange-500 to-red-500"
+      }
+    ];
+
+    return (
+      <motion.div
+        ref={ref}
+        className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+          theme === "light"
+            ? "bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-100"
+            : "bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900"
+        }`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Floating geometric shapes */}
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={`shape-${i}`}
+              className={`absolute rounded-full opacity-30 ${
+                theme === "light" ? "bg-gradient-to-r from-purple-300 to-blue-300" : "bg-gradient-to-r from-purple-500 to-blue-500"
+              }`}
+              style={{
+                left: `${10 + (i * 15) % 80}%`,
+                top: `${10 + (i * 25) % 80}%`,
+                width: `${20 + (i % 4) * 10}px`,
+                height: `${20 + (i % 4) * 10}px`,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                x: [0, 20, 0],
+                rotate: [0, 180, 360],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 8 + (i % 3),
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.5,
+              }}
+            />
+          ))}
+
+          {/* Glowing orbs */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`orb-${i}`}
+              className="absolute rounded-full blur-xl opacity-20"
+              style={{
+                left: `${20 + (i * 20) % 60}%`,
+                top: `${20 + (i * 30) % 60}%`,
+                width: `${100 + (i % 3) * 50}px`,
+                height: `${100 + (i % 3) * 50}px`,
+                background: `radial-gradient(circle, ${
+                  theme === "light"
+                    ? "rgba(139, 69, 219, 0.6)"
+                    : "rgba(139, 69, 219, 0.8)"
+                } 0%, transparent 70%)`,
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.2, 0.4, 0.2],
+              }}
+              transition={{
+                duration: 6 + (i % 2),
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 1.2,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          {/* Section Header */}
+          <motion.div
+            className="text-center mb-16 lg:mb-20"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.h2
+              className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 ${
+                theme === "light"
+                  ? "text-gray-900"
+                  : "text-white"
+              }`}
+              style={{
+                background: theme === "light"
+                  ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                  : "linear-gradient(135deg, #a855f7 0%, #3b82f6 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              What We Do
+            </motion.h2>
+            <motion.p
+              className={`text-lg sm:text-xl lg:text-2xl ${
+                theme === "light" ? "text-gray-600" : "text-gray-300"
+              } max-w-4xl mx-auto leading-relaxed`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isVisible ? 1 : 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              We transform your ideas into powerful digital solutions through our proven process,
+              combining creativity, technology, and strategic thinking to deliver exceptional results.
+            </motion.p>
+          </motion.div>
+
+          {/* Process Steps Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                className={`relative p-6 lg:p-8 rounded-2xl backdrop-blur-sm border ${
+                  theme === "light"
+                    ? "bg-white/80 border-white/20 shadow-lg"
+                    : "bg-white/10 border-white/10 shadow-2xl"
+                }`}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={{
+                  opacity: isVisible ? 1 : 0,
+                  y: isVisible ? 0 : 50,
+                  scale: isVisible ? 1 : 0.9
+                }}
+                transition={{ duration: 0.6, delay: 0.6 + (index * 0.2) }}
+                whileHover={{
+                  scale: 1.05,
+                  y: -10,
+                  transition: { duration: 0.3 }
+                }}
+              >
+                {/* Step Number */}
+                <motion.div
+                  className={`inline-flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-lg mb-4 bg-gradient-to-r ${step.color}`}
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  {step.number}
+                </motion.div>
+
+                {/* Icon */}
+                <motion.div
+                  className="text-4xl mb-4"
+                  animate={{
+                    rotate: [0, 10, -10, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.5
+                  }}
+                >
+                  {step.icon}
+                </motion.div>
+
+                {/* Content */}
+                <h3 className={`text-xl lg:text-2xl font-bold mb-3 ${
+                  theme === "light" ? "text-gray-900" : "text-white"
+                }`}>
+                  {step.title}
+                </h3>
+                <p className={`text-sm lg:text-base leading-relaxed ${
+                  theme === "light" ? "text-gray-600" : "text-gray-300"
+                }`}>
+                  {step.description}
+                </p>
+
+                {/* Hover Effect Overlay */}
+                <motion.div
+                  className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${step.color} opacity-0`}
+                  whileHover={{ opacity: 0.1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Call to Action */}
+          <motion.div
+            className="text-center mt-16 lg:mt-20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+          >
+            <motion.button
+              className={`px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 ${
+                theme === "light"
+                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700"
+                  : "bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600"
+              } shadow-lg hover:shadow-xl`}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Start Your Project Today
+            </motion.button>
+          </motion.div>
+        </div>
+      </motion.div>
+    );
+  }
+);
+
+WhatWeDoSection.displayName = "WhatWeDoSection";
+
+// ========================================
 // SERVICES SECTION COMPONENT
 // ========================================
 
