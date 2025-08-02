@@ -972,7 +972,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █████████████��██���█���███████���███����█████ 60%
+                      CPU: ███���█████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4199,7 +4199,7 @@ export default function Index() {
           {/* Contact Us Section */}
           <motion.div
             data-section="contact"
-            className={`${isMobileMenuOpen ? "blur-sm" : ""}`}
+            className={`${isMobileMenuOpen ? "blur-sm" : ""} overflow-y-auto h-screen`}
             style={{
               display: currentSection === 5 ? "block" : "none",
             }}
