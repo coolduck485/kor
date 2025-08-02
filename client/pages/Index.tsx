@@ -5219,6 +5219,32 @@ export default function Index() {
         .animate-text-pop {
           animation: text-pop 0.6s ease-out;
         }
+
+        /* Enhanced sparkle animations for section headers */
+        .section-header-sparkle {
+          animation: sparkle-enhanced ease-in-out infinite;
+          transform-origin: center;
+          backface-visibility: hidden;
+          perspective: 1000px;
+        }
+
+        /* Enhanced text glow effects for section headers */
+        .section-header-text {
+          text-shadow: 0 0 10px rgba(73, 146, 255, 0.4), 0 0 20px rgba(34, 211, 238, 0.3);
+          transition: text-shadow 0.3s ease;
+        }
+
+        .section-header-text:hover {
+          text-shadow: 0 0 15px rgba(73, 146, 255, 0.6), 0 0 30px rgba(34, 211, 238, 0.5), 0 0 45px rgba(147, 51, 234, 0.3);
+        }
+
+        /* Performance optimizations for sparkles */
+        @media (prefers-reduced-motion: reduce) {
+          .section-header-sparkle {
+            animation: none !important;
+            opacity: 0.3 !important;
+          }
+        }
       `}</style>
       </div>
     </>
