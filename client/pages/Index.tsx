@@ -8016,9 +8016,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
             </motion.button>
 
             <motion.p
-              className={`mt-4 text-sm ${
-                theme === "light" ? "text-gray-500" : "text-gray-400"
-              }`}
+              className="mt-4 text-sm text-gray-400"
               initial={{ opacity: 0 }}
               animate={{ opacity: isVisible ? 1 : 0 }}
               transition={{ delay: 2.2 }}
