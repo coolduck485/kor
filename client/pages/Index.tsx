@@ -10910,11 +10910,11 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           : `drop-shadow(0 0 20px rgba(73, 146, 255, 0.8)) drop-shadow(0 0 40px rgba(34, 211, 238, 0.5))`,
                     }}
                   >
-                    <span className="warm-glow-text animate-warm-glow-pulse">
+                    <span className="warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz">
                       {"Our Featured Work".split("").map((letter, i) => (
                         <span
                           key={i}
-                          className="animate-letter-float animate-dev-services-text"
+                          className="animate-letter-float animate-dev-services-text performance-optimized float-120hz"
                           style={{ animationDelay: `${i * 0.1}s` }}
                         >
                           {letter === " " ? "\u00A0" : letter}
