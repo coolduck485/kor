@@ -903,7 +903,7 @@ export default function Index() {
                   {`��█╗  █�������╗ █████����� ██����������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
-█��╔�����█╗ ██║   ██║██╔══█��╗
+█��╔�����█╗ ██║   █��║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -7813,7 +7813,8 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                 theme === "light" ? "text-gray-900" : "text-white"
               } warm-glow-text animate-warm-glow-pulse`}
               style={{
-                filter: "drop-shadow(0px 4px 8px rgba(59, 130, 246, 0.3)) drop-shadow(0px 2px 4px rgba(147, 51, 234, 0.2))",
+                filter: "drop-shadow(0px 4px 12px rgba(34, 197, 94, 0.4)) drop-shadow(0px 2px 8px rgba(6, 182, 212, 0.3)) drop-shadow(0px 1px 4px rgba(20, 184, 166, 0.2))",
+                textShadow: "0 0 20px rgba(34, 197, 94, 0.6), 0 0 40px rgba(6, 182, 212, 0.4), 0 0 60px rgba(20, 184, 166, 0.2)",
               }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
@@ -7835,20 +7836,21 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
             <motion.div
               className={`text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold font-poppins ${
                 theme === "light" ? "text-gray-700" : "text-gray-300"
-              } warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz`}
+              } warm-glow-text animate-warm-glow-pulse text-smooth glow-120hz max-w-5xl mx-auto`}
               style={{
-                filter: "drop-shadow(0px 2px 4px rgba(59, 130, 246, 0.2)) drop-shadow(0px 1px 2px rgba(147, 51, 234, 0.15))",
+                filter: "drop-shadow(0px 3px 6px rgba(34, 197, 94, 0.25)) drop-shadow(0px 1px 3px rgba(6, 182, 212, 0.2))",
+                textShadow: "0 0 15px rgba(34, 197, 94, 0.4), 0 0 30px rgba(6, 182, 212, 0.3)",
               }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {"Transform ideas into digital excellence".split("").map((letter, i) => (
+              {"We engineer the future through cutting-edge technology, transforming bold visions into revolutionary digital experiences that reshape industries and redefine possibilities".split("").map((letter, i) => (
                 <motion.span
                   key={i}
                   className="inline-block animate-letter-float"
                   style={{
-                    animationDelay: `${i * 0.05}s`,
+                    animationDelay: `${i * 0.02}s`,
                   }}
                 >
                   {letter === " " ? "\u00A0" : letter}
