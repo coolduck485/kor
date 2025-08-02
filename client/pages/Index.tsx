@@ -7718,8 +7718,8 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
               style={{
                 background:
                   theme === "light"
-                    ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-                    : "linear-gradient(135deg, #a855f7 0%, #3b82f6 100%)",
+                    ? "linear-gradient(135deg, #4992FF 0%, #3FBAFF 100%)"
+                    : "linear-gradient(135deg, #3FBAFF 0%, #4992FF 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
