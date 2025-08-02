@@ -20,9 +20,9 @@ div[class*="fixed left-"][class*="top-1/2"] {
   transform: translateY(-50%) translateZ(0) !important;
 }
 
-/* Force back up button to stay visible */
+/* Force back up button to move with scroll */
 button[class*="fixed"][class*="left-"][class*="bottom-"] {
-  position: fixed !important;
+  position: absolute !important;
   z-index: 99999 !important;
   pointer-events: auto !important;
 }
