@@ -902,7 +902,7 @@ export default function Index() {
                 >
                   {`��█╗  █�������╗ █████����� ██����������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
-█████╔╝ ██║   ██���███�������█╔��
+█████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
@@ -7573,30 +7573,8 @@ interface WhatWeDoSectionProps {
 
 const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
   ({ theme, isVisible }, ref) => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
     const sectionRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-      const handleMouseMove = (e: MouseEvent) => {
-        if (sectionRef.current) {
-          const rect = sectionRef.current.getBoundingClientRect();
-          setMousePosition({
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
-          });
-        }
-      };
-
-      if (sectionRef.current) {
-        sectionRef.current.addEventListener("mousemove", handleMouseMove);
-        return () => {
-          if (sectionRef.current) {
-            sectionRef.current.removeEventListener("mousemove", handleMouseMove);
-          }
-        };
-      }
-    }, []);
 
     const processSteps = [
       {
@@ -13028,7 +13006,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Discord",
                             url: "https://discord.com",
-                            icon: "���",
+                            icon: "💬",
                             color: "from-indigo-500 to-blue-500",
                           },
                           {
