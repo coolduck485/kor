@@ -13062,8 +13062,8 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                             <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
                               <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
                               <div
-                                className="absolute bottom-1 left-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-                                style={{ animationDelay: "0.5s" }}
+                                className="absolute bottom-1 left-1 w-1 h-1 bg-cyan-400 rounded-full"
+                                style={{ animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 0.5s infinite" }}
                               />
                             </div>
                           </motion.button>
