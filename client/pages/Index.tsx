@@ -904,7 +904,7 @@ export default function Index() {
 ��█║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█���█������█╔╝�����║  ██║
+██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ �����������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -5903,8 +5903,8 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for Pricing button
-      xOffset: -15, // Slightly offset for visual interest (opposite of What we do)
-      yOffset: 0, // Centered positioning
+      xOffset: -65, // Moved 50px further left (from -15 to -65)
+      yOffset: -10, // Moved 10px upwards (from 0 to -10)
 
       // Pricing button uses global positioning for consistency
       customRadiusMultiplier: null, // Use global multipliers for consistency
