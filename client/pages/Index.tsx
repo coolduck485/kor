@@ -7935,11 +7935,11 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
           <motion.div
             className="absolute top-2/3 right-1/5 w-24 h-24 opacity-30"
             animate={{
-              rotate: [360, 240, 120, 0],
-              scale: [0.9, 1.2, 0.9],
+              rotate: [180, 120, 60, 0],
+              scale: [0.95, 1.05, 0.95],
             }}
             transition={{
-              duration: 18,
+              duration: 45,
               repeat: Infinity,
               ease: "linear",
             }}
@@ -12238,7 +12238,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             {
-              icon: "����������",
+              icon: "������������",
               delay: 3,
               x: 10,
               y: 60,
