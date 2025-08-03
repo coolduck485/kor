@@ -11126,8 +11126,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                   <div className="flex space-x-1">
                     <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
                     <div
-                      className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse"
-                      style={{ animationDelay: "0.5s" }}
+                      className="w-1.5 h-1.5 bg-yellow-400 rounded-full"
+                      style={{ animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 0.5s infinite" }}
                     />
                   </div>
                 </div>
