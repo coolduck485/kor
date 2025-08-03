@@ -7782,8 +7782,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                 clipPath: i % 3 === 0 ? "polygon(50% 0%, 100% 100%, 0% 100%)" :
                           i % 3 === 1 ? "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" :
                           "polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%)",
-                animation: `${4 + Math.random() * 6}s ease-in-out infinite running prismatic-refraction`,
-                animationDelay: `${Math.random() * 3}s`,
+                animation: `${4 + Math.random() * 6}s ease-in-out ${Math.random() * 3}s infinite running prismatic-refraction`,
                 transform: `rotate(${Math.random() * 360}deg)`,
                 filter: "blur(1px)"
               }}
@@ -13000,7 +12999,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                           {
                             name: "Instagram",
                             url: "https://instagram.com",
-                            icon: "📷",
+                            icon: "���",
                             color: "from-pink-500 to-purple-500",
                           },
                           {
@@ -13158,7 +13157,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "✈️",
+                        icon: "✈���",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
