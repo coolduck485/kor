@@ -904,7 +904,7 @@ export default function Index() {
 ��█║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█���█�����█╔╝�����║  ██║
+██║  ██╗╚█���█������█╔╝�����║  ██║
 �����������╝  ╚═╝ �����������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -5557,7 +5557,8 @@ function MobileHamburgerMenu({
       setIsOpen(false);
       const sectionMap: { [key: string]: number } = {
         "About us": 1,
-        "What we do": 2,
+        "What we do?": 2,
+        "Pricing": 4,
         Services: 3,
         Portfolio: 4,
         "Contact us": 5,
@@ -5575,7 +5576,8 @@ function MobileHamburgerMenu({
 
   const menuItems = [
     { text: "About us" },
-    { text: "What we do" },
+    { text: "What we do?" },
+    { text: "Pricing" },
     { text: "Services" },
     { text: "Portfolio" },
     { text: "Contact us" },
@@ -5875,7 +5877,7 @@ const ORB_BUTTON_CONFIG = {
     },
 
     {
-      text: "What we do",
+      text: "What we do?",
       angle: 0, // Position: center-right for balance
       radius: 280, // Consistent distance from center
       position: "center-right",
@@ -5884,10 +5886,27 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for What we do button
-      xOffset: 15, // Slightly offset for visual interest
+      xOffset: 65, // Moved 50px to the right (15 + 50)
       yOffset: 0, // Centered positioning
 
       // What we do button uses global positioning for consistency
+      customRadiusMultiplier: null, // Use global multipliers for consistency
+    },
+
+    {
+      text: "Pricing",
+      angle: 180, // Position: center-left (opposite of "What we do?")
+      radius: 280, // Consistent distance from center
+      position: "center-left",
+      animationDelay: 0.75,
+      size: "medium", // Consistent sizing
+      accent: "blue", // Color accent - unified to blue
+
+      // Custom positioning for Pricing button
+      xOffset: -15, // Slightly offset for visual interest (opposite of What we do)
+      yOffset: 0, // Centered positioning
+
+      // Pricing button uses global positioning for consistency
       customRadiusMultiplier: null, // Use global multipliers for consistency
     },
 
@@ -6003,29 +6022,36 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
       {
         ...ORB_BUTTON_CONFIG.buttons[1],
         onClick: () => {
-          console.log("What we do clicked");
+          console.log("What we do? clicked");
           scrollToSection(2);
         },
       },
       {
         ...ORB_BUTTON_CONFIG.buttons[2],
         onClick: () => {
+          console.log("Pricing clicked");
+          scrollToSection(4);
+        },
+      },
+      {
+        ...ORB_BUTTON_CONFIG.buttons[3],
+        onClick: () => {
           console.log("Services clicked");
           scrollToSection(3);
         },
       },
       {
-        ...ORB_BUTTON_CONFIG.buttons[3],
+        ...ORB_BUTTON_CONFIG.buttons[4],
         onClick: () => {
           console.log("Portfolio clicked");
           scrollToSection(4);
         },
       },
       {
-        ...ORB_BUTTON_CONFIG.buttons[4],
+        ...ORB_BUTTON_CONFIG.buttons[5],
         onClick: () => {
           console.log("Contact us clicked");
-          scrollToSection(5);
+          scrollToSection(6);
         },
       },
     ],
@@ -6049,10 +6075,11 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
           animationStep={animationStep}
           onClick={() => {
             if (button.text === "About us") scrollToSection(1);
-            else if (button.text === "What we do") scrollToSection(2);
+            else if (button.text === "What we do?") scrollToSection(2);
+            else if (button.text === "Pricing") scrollToSection(4);
             else if (button.text === "Services") scrollToSection(3);
-            else if (button.text === "Portfolio") scrollToSection(4);
-            else if (button.text === "Contact us") scrollToSection(5);
+            else if (button.text === "Portfolio") scrollToSection(5);
+            else if (button.text === "Contact us") scrollToSection(6);
             else button.onClick?.();
           }}
         />
