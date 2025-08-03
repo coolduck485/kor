@@ -973,7 +973,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███���█████████��██���█���██████�����███����█████ 60%
+                      CPU: ███���█████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8084,11 +8084,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                     }}
                   >
                     {/* Crystal Background */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-cyan-500/8 to-emerald-500/10 opacity-0 group-hover:opacity-100"
-                      initial={false}
-                      transition={{ duration: 0.5 }}
-                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-cyan-500/3 to-emerald-500/5 opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
 
                     {/* Stellar Constellation Overlay */}
                     <div className="absolute inset-0 opacity-8">
