@@ -979,7 +979,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����█������██████���██����███████��█ 50%
+                      RAM: ����█�����██���██████���██����███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -5886,7 +5886,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for What we do button
-      xOffset: 10, // Positioned at 10px to the right
+      xOffset: 20, // Moved 10px more to the right (10 + 10)
       yOffset: 0, // Centered positioning
 
       // What we do button uses global positioning for consistency
@@ -5903,7 +5903,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for Pricing button
-      xOffset: -75, // Moved 10px more to the left (from -65 to -75)
+      xOffset: -80, // Moved 5px more to the left (from -75 to -80)
       yOffset: -10, // Moved 10px upwards (from 0 to -10)
 
       // Pricing button uses global positioning for consistency
@@ -12573,7 +12573,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             {
-              icon: "�����������",
+              icon: "�������������",
               delay: 3,
               x: 10,
               y: 60,
