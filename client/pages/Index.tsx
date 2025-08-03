@@ -4433,6 +4433,18 @@ export default function Index() {
           }
         }
 
+        @keyframes gentle-pulse {
+          0%,
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.8;
+            transform: scale(1.02);
+          }
+        }
+
         .animate-float-particle {
           animation: float-particle linear infinite;
         }
