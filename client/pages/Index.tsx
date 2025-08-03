@@ -8073,8 +8073,6 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                   <motion.div
                     className="relative p-8 rounded-3xl backdrop-blur-xl border bg-white/5 border-white/10 shadow-2xl overflow-hidden group"
                     whileHover={{
-                      scale: 1.02,
-                      y: -8,
                       transition: { duration: 0.3, ease: "easeOut" }
                     }}
                     style={{
