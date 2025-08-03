@@ -900,12 +900,12 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █████����� ██����������██╗
+                  {`��█╗  █�������╗ █████������� ██����������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
-�������������╝  ╚═╝ �����������════╝ ╚���╝  ��═╝`}
+�����������╝  ╚═╝ �����������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -7878,20 +7878,31 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
         {/* Floating Crystal Elements */}
         <div className="absolute inset-0 pointer-events-none">
           {/* Floating Crystal Shards */}
-          {[...Array(10)].map((_, i) => (
+          {[
+            { left: 15, top: 20, width: 18, height: 24, rotation: 45 },
+            { left: 75, top: 15, width: 22, height: 30, rotation: 120 },
+            { left: 30, top: 60, width: 16, height: 28, rotation: 200 },
+            { left: 85, top: 70, width: 20, height: 26, rotation: 300 },
+            { left: 10, top: 80, width: 14, height: 22, rotation: 60 },
+            { left: 60, top: 40, width: 24, height: 32, rotation: 180 },
+            { left: 40, top: 25, width: 16, height: 20, rotation: 270 },
+            { left: 90, top: 45, width: 18, height: 26, rotation: 90 },
+            { left: 25, top: 85, width: 20, height: 24, rotation: 150 },
+            { left: 70, top: 75, width: 22, height: 28, rotation: 330 }
+          ].map((shard, i) => (
             <motion.div
               key={`shard-${i}`}
               className="absolute"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                width: `${12 + Math.random() * 20}px`,
-                height: `${16 + Math.random() * 28}px`,
+                left: `${shard.left}%`,
+                top: `${shard.top}%`,
+                width: `${shard.width}px`,
+                height: `${shard.height}px`,
                 background: `linear-gradient(${120 + i * 30}deg,
                   rgba(${i % 4 === 0 ? '16, 185, 129' : i % 4 === 1 ? '59, 130, 246' : i % 4 === 2 ? '236, 72, 153' : '245, 158, 11'}, 0.4) 0%,
                   rgba(${i % 4 === 0 ? '16, 185, 129' : i % 4 === 1 ? '59, 130, 246' : i % 4 === 2 ? '236, 72, 153' : '245, 158, 11'}, 0.1) 100%)`,
                 clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)",
-                transform: `rotate(${Math.random() * 360}deg)`,
+                transform: `rotate(${shard.rotation}deg)`,
                 filter: "blur(1px)"
               }}
               animate={{
