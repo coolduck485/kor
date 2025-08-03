@@ -5886,7 +5886,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for What we do button
-      xOffset: 75, // Moved 10px more to the right (65 + 10)
+      xOffset: 10, // Positioned at 10px to the right
       yOffset: 0, // Centered positioning
 
       // What we do button uses global positioning for consistency
