@@ -8066,8 +8066,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                     y: isVisible ? 0 : 50
                   }}
                   transition={{ duration: 0.8, delay: 0.8 + index * 0.2 }}
-                  onMouseEnter={() => setHoveredCard(index)}
-                  onMouseLeave={() => setHoveredCard(null)}
+
                 >
                   {/* Cosmic Stellar Card */}
                   <motion.div
