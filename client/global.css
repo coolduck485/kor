@@ -157,7 +157,8 @@ body > div {
 }
 
 @keyframes prismatic-refraction {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(1) rotate(0deg);
     filter: blur(1px) hue-rotate(0deg);
