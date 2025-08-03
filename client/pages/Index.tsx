@@ -8080,7 +8080,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                     }}
                     style={{
                       boxShadow: hoveredCard === index
-                        ? `0 25px 50px -12px rgba(147, 51, 234, 0.3), 0 0 0 1px rgba(59, 130, 246, 0.2), 0 0 20px rgba(236, 72, 153, 0.15)`
+                        ? `0 25px 50px -12px rgba(59, 130, 246, 0.3), 0 0 0 1px rgba(6, 182, 212, 0.2), 0 0 20px rgba(34, 197, 94, 0.15)`
                         : "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
                     }}
                   >
