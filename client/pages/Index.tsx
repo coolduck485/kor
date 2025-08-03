@@ -973,7 +973,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███���█████████��██���█���███████���███����█████ 60%
+                      CPU: ███����█████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8066,7 +8066,8 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                     y: isVisible ? 0 : 50
                   }}
                   transition={{ duration: 0.8, delay: 0.8 + index * 0.2 }}
-
+                  onMouseEnter={() => setHoveredCard(index)}
+                  onMouseLeave={() => setHoveredCard(null)}
                 >
                   {/* Cosmic Stellar Card */}
                   <motion.div
