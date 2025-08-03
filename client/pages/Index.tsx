@@ -5886,7 +5886,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for What we do button
-      xOffset: 65, // Moved 50px to the right (15 + 50)
+      xOffset: 75, // Moved 10px more to the right (65 + 10)
       yOffset: 0, // Centered positioning
 
       // What we do button uses global positioning for consistency
@@ -5903,7 +5903,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for Pricing button
-      xOffset: -65, // Moved 50px further left (from -15 to -65)
+      xOffset: -75, // Moved 10px more to the left (from -65 to -75)
       yOffset: -10, // Moved 10px upwards (from 0 to -10)
 
       // Pricing button uses global positioning for consistency
@@ -12568,7 +12568,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Communication Icons - Contact specific */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
           {[
-            { icon: "��️", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
+            { icon: "���️", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
