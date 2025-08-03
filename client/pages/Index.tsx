@@ -5558,7 +5558,7 @@ function MobileHamburgerMenu({
       const sectionMap: { [key: string]: number } = {
         "About us": 1,
         "What we do?": 2,
-        "Pricing": 4,
+        Pricing: 4,
         Services: 3,
         Portfolio: 4,
         "Contact us": 5,
