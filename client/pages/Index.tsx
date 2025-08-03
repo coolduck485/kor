@@ -905,7 +905,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
-�����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
+�����������╝  ╚═╝ �����������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -1051,7 +1051,7 @@ export default function Index() {
 
                 <div className="continue-prompt">
                   <span className="text-cyan-400">[SYSTEM READY]</span>
-                  <span className="text-green-400 ml-4">◆◆◆◆◄�����◆◆◆</span>
+                  <span className="text-green-400 ml-4">◆◆��◆◄�����◆◆◆</span>
                 </div>
 
                 <div className="loading-indicators">
@@ -13270,12 +13270,12 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
                           <div className="absolute top-2 right-2 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full animate-pulse" />
                           <div
-                            className="absolute bottom-2 left-2 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-cyan-400 rounded-full animate-pulse"
-                            style={{ animationDelay: "0.5s" }}
+                            className="absolute bottom-2 left-2 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-cyan-400 rounded-full"
+                            style={{ animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 0.5s infinite" }}
                           />
                           <div
-                            className="absolute top-1/2 right-4 sm:right-6 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-purple-400 rounded-full animate-pulse"
-                            style={{ animationDelay: "1s" }}
+                            className="absolute top-1/2 right-4 sm:right-6 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-purple-400 rounded-full"
+                            style={{ animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 1s infinite" }}
                           />
                         </div>
 
