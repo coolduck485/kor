@@ -973,7 +973,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: █��█���█████████��██���█���███████���███����█████ 60%
+                      CPU: ███���█████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4033,6 +4033,45 @@ export default function Index() {
                   animation: "gentle-glow 12s ease-in-out infinite 1s",
                 }}
               />
+            </motion.div>
+
+            {/* Down Arrow Indicator at Bottom */}
+            <motion.div
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2, duration: 0.8 }}
+            >
+              <motion.div
+                className={`p-3 rounded-full border-2 backdrop-blur-lg ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/80"
+                    : "border-blue-300/30 bg-blue-400/10"
+                }`}
+                style={{
+                  background:
+                    theme === "light"
+                      ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                  boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                }}
+                animate={{
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <ChevronDown
+                  className={`w-5 h-5 transition-colors duration-300 ${
+                    theme === "light"
+                      ? "text-blue-600"
+                      : "text-white"
+                  }`}
+                />
+              </motion.div>
             </motion.div>
           </motion.div>
 
