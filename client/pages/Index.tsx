@@ -979,7 +979,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����█████████���██����███████��█ 50%
+                      RAM: ����█�����██���██████���██����███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -8383,16 +8383,16 @@ const ServiceCard = ({
         {/* Interactive Particles */}
         <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <div
-            className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full animate-ping"
-            style={{ animationDelay: "0s" }}
+            className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full"
+            style={{ animation: "ping 2s cubic-bezier(0, 0, 0.2, 1) 0s infinite" }}
           />
           <div
-            className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-400 rounded-full animate-ping"
-            style={{ animationDelay: "0.5s" }}
+            className="absolute top-3/4 right-1/4 w-1 h-1 bg-blue-400 rounded-full"
+            style={{ animation: "ping 2s cubic-bezier(0, 0, 0.2, 1) 0.5s infinite" }}
           />
           <div
-            className="absolute top-1/2 left-3/4 w-1 h-1 bg-cyan-400 rounded-full animate-ping"
-            style={{ animationDelay: "1s" }}
+            className="absolute top-1/2 left-3/4 w-1 h-1 bg-cyan-400 rounded-full"
+            style={{ animation: "ping 2s cubic-bezier(0, 0, 0.2, 1) 1s infinite" }}
           />
         </div>
       </div>
@@ -12245,7 +12245,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
               size: 18,
               duration: 8,
             },
-            { icon: "💻", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
+            { icon: "����", delay: 5, x: 90, y: 40, size: 20, duration: 7 },
           ].map((item, i) => (
             <motion.div
               key={`comm-icon-${i}`}
