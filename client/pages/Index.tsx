@@ -8084,9 +8084,9 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                         : "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
                     }}
                   >
-                    {/* Cosmic Nebula Background */}
+                    {/* Crystal Background */}
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-blue-500/8 to-pink-500/10 opacity-0 group-hover:opacity-100"
+                      className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-cyan-500/8 to-emerald-500/10 opacity-0 group-hover:opacity-100"
                       initial={false}
                       transition={{ duration: 0.5 }}
                     />
