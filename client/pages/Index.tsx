@@ -7957,8 +7957,8 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
           {/* Crystal Growth Nodes */}
           <motion.div
             className="absolute top-1/2 left-1/2 w-40 h-40 -translate-x-1/2 -translate-y-1/2 opacity-20"
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            animate={{ rotate: [0, 180] }}
+            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
           >
             <div className="absolute top-2 left-1/2 w-3 h-3 -translate-x-1/2 bg-emerald-400 opacity-60"
                  style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }} />
@@ -12238,7 +12238,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             {
-              icon: "������������",
+              icon: "����������",
               delay: 3,
               x: 10,
               y: 60,
