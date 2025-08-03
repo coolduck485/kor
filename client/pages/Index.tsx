@@ -973,7 +973,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███���█████████��██���█���███████���███����█████ 60%
+                      CPU: ███���█████████��██�����█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8111,14 +8111,14 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                       ))}
                     </div>
 
-                    {/* Cosmic Energy Wave */}
+                    {/* Crystal Energy Wave */}
                     <motion.div
                       className="absolute inset-0 opacity-0 group-hover:opacity-25"
                       animate={{
                         background: [
-                          "radial-gradient(ellipse 200% 50% at 0% 50%, rgba(147, 51, 234, 0.2) 0%, transparent 60%)",
-                          "radial-gradient(ellipse 200% 50% at 100% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 60%)",
-                          "radial-gradient(ellipse 200% 50% at 50% 0%, rgba(236, 72, 153, 0.15) 0%, transparent 60%)",
+                          "radial-gradient(ellipse 200% 50% at 0% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 60%)",
+                          "radial-gradient(ellipse 200% 50% at 100% 50%, rgba(6, 182, 212, 0.2) 0%, transparent 60%)",
+                          "radial-gradient(ellipse 200% 50% at 50% 0%, rgba(34, 197, 94, 0.15) 0%, transparent 60%)",
                         ],
                       }}
                       transition={{
