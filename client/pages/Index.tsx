@@ -4297,25 +4297,35 @@ export default function Index() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          {/* Custom up arrow with stem */}
-          <svg
-            className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
-              theme === "light"
-                ? "text-blue-600 group-hover:text-blue-700"
-                : "text-white group-hover:text-blue-300"
-            }`}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            {/* Vertical stem */}
-            <line x1="12" y1="19" x2="12" y2="7" />
-            {/* Arrow head */}
-            <polyline points="5,12 12,5 19,12" />
-          </svg>
+          {/* Up arrow for non-home sections, down arrow for home section */}
+          {currentSection === 0 ? (
+            <ChevronDown
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                theme === "light"
+                  ? "text-blue-600 group-hover:text-blue-700"
+                  : "text-white group-hover:text-blue-300"
+              }`}
+            />
+          ) : (
+            <svg
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                theme === "light"
+                  ? "text-blue-600 group-hover:text-blue-700"
+                  : "text-white group-hover:text-blue-300"
+              }`}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              {/* Vertical stem */}
+              <line x1="12" y1="19" x2="12" y2="7" />
+              {/* Arrow head */}
+              <polyline points="5,12 12,5 19,12" />
+            </svg>
+          )}
         </motion.button>
 
         {/* Enhanced Background Animations */}
