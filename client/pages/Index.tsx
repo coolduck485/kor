@@ -901,7 +901,7 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █�������╗ █████����� ██����������██╗
-██║ �����█╔����█��╔═��═���█╗██���══█���╗
+██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
@@ -973,7 +973,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███���█████████��██���█���███████���███����█████ 60%
+                      CPU: ███���█████████��██���█���██████�����███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8091,7 +8091,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                     />
 
                     {/* Stellar Constellation Overlay */}
-                    <div className="absolute inset-0 opacity-8 group-hover:opacity-15 transition-opacity duration-500">
+                    <div className="absolute inset-0 opacity-8">
                       {/* Floating stars */}
                       {[...Array(8)].map((_, starIndex) => (
                         <div
