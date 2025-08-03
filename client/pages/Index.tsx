@@ -8103,8 +8103,7 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                             width: `${1 + Math.random()}px`,
                             height: `${1 + Math.random()}px`,
                             opacity: 0.3 + Math.random() * 0.3,
-                            animation: `${2 + Math.random() * 3}s ease-in-out infinite running stellar-twinkle`,
-                            animationDelay: `${starIndex * 0.3}s`,
+                            animation: `${2 + Math.random() * 3}s ease-in-out ${starIndex * 0.3}s infinite running stellar-twinkle`,
                           }}
                         />
                       ))}
