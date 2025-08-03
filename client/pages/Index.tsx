@@ -905,7 +905,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
-�����������╝  ╚═╝ �����������════╝ ╚���╝  ��═╝`}
+�����������╝  ╚═��� �����������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -7895,15 +7895,15 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                 filter: "blur(1px)"
               }}
               animate={{
-                x: [0, 30, -20, 0],
-                y: [0, -15, 25, 0],
-                rotate: [0, 90, 180, 270, 360],
-                opacity: [0.3, 0.7, 0.3],
+                x: [0, 5, -3, 0],
+                y: [0, -3, 5, 0],
+                rotate: [0, 15, 30, 45, 60],
+                opacity: [0.2, 0.4, 0.2],
               }}
               transition={{
-                duration: 12 + (i * 1.5),
+                duration: 25 + (i * 3),
                 repeat: Infinity,
-                delay: i * 0.8,
+                delay: i * 2,
                 ease: "easeInOut",
               }}
             />
