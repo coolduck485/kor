@@ -900,8 +900,8 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █�������╗ █████������� ██����������██╗
-██║ �����█╔����█��╔═══���█╗██���══█���╗
+                  {`��█╗  █�������╗ █████����� ██����������██╗
+��█║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
@@ -8098,19 +8098,28 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-cyan-500/3 to-emerald-500/5 opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
 
                     {/* Stellar Constellation Overlay */}
-                    <div className="absolute inset-0 opacity-8">
+                    <div className="absolute inset-0 opacity-8 group-hover:opacity-15 transition-opacity duration-500">
                       {/* Floating stars */}
-                      {[...Array(8)].map((_, starIndex) => (
+                      {[
+                        { left: 20, top: 15, size: 1.5, opacity: 0.4, duration: 3 },
+                        { left: 32, top: 23, size: 1, opacity: 0.5, duration: 4 },
+                        { left: 44, top: 31, size: 2, opacity: 0.3, duration: 2.5 },
+                        { left: 56, top: 39, size: 1.5, opacity: 0.6, duration: 3.5 },
+                        { left: 68, top: 47, size: 1, opacity: 0.4, duration: 4.5 },
+                        { left: 80, top: 55, size: 2, opacity: 0.5, duration: 3 },
+                        { left: 26, top: 63, size: 1.5, opacity: 0.3, duration: 2.5 },
+                        { left: 38, top: 71, size: 1, opacity: 0.6, duration: 4 }
+                      ].map((star, starIndex) => (
                         <div
                           key={starIndex}
                           className="absolute rounded-full bg-white"
                           style={{
-                            left: `${20 + (starIndex * 12) % 60}%`,
-                            top: `${15 + (starIndex * 8) % 70}%`,
-                            width: `${1 + Math.random()}px`,
-                            height: `${1 + Math.random()}px`,
-                            opacity: 0.3 + Math.random() * 0.3,
-                            animation: `${2 + Math.random() * 3}s ease-in-out ${starIndex * 0.3}s infinite running stellar-twinkle`,
+                            left: `${star.left}%`,
+                            top: `${star.top}%`,
+                            width: `${star.size}px`,
+                            height: `${star.size}px`,
+                            opacity: star.opacity,
+                            animation: `${star.duration}s ease-in-out ${starIndex * 0.3}s infinite running stellar-twinkle`,
                           }}
                         />
                       ))}
@@ -12231,7 +12240,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             {
-              icon: "����������",
+              icon: "�����������",
               delay: 3,
               x: 10,
               y: 60,
