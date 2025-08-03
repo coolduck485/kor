@@ -5557,7 +5557,8 @@ function MobileHamburgerMenu({
       setIsOpen(false);
       const sectionMap: { [key: string]: number } = {
         "About us": 1,
-        "What we do": 2,
+        "What we do?": 2,
+        Pricing: 4,
         Services: 3,
         Portfolio: 4,
         "Contact us": 5,
@@ -5575,7 +5576,8 @@ function MobileHamburgerMenu({
 
   const menuItems = [
     { text: "About us" },
-    { text: "What we do" },
+    { text: "What we do?" },
+    { text: "Pricing" },
     { text: "Services" },
     { text: "Portfolio" },
     { text: "Contact us" },
@@ -5875,7 +5877,7 @@ const ORB_BUTTON_CONFIG = {
     },
 
     {
-      text: "What we do",
+      text: "What we do?",
       angle: 0, // Position: center-right for balance
       radius: 280, // Consistent distance from center
       position: "center-right",
@@ -5884,10 +5886,27 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for What we do button
-      xOffset: 15, // Slightly offset for visual interest
+      xOffset: 70, // Moved 50px more to the right (20 + 50)
       yOffset: 0, // Centered positioning
 
       // What we do button uses global positioning for consistency
+      customRadiusMultiplier: null, // Use global multipliers for consistency
+    },
+
+    {
+      text: "Pricing",
+      angle: 180, // Position: center-left (opposite of "What we do?")
+      radius: 280, // Consistent distance from center
+      position: "center-left",
+      animationDelay: 0.75,
+      size: "medium", // Consistent sizing
+      accent: "blue", // Color accent - unified to blue
+
+      // Custom positioning for Pricing button
+      xOffset: -80, // Moved 5px more to the left (from -75 to -80)
+      yOffset: -10, // Moved 10px upwards (from 0 to -10)
+
+      // Pricing button uses global positioning for consistency
       customRadiusMultiplier: null, // Use global multipliers for consistency
     },
 
@@ -6003,29 +6022,36 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
       {
         ...ORB_BUTTON_CONFIG.buttons[1],
         onClick: () => {
-          console.log("What we do clicked");
+          console.log("What we do? clicked");
           scrollToSection(2);
         },
       },
       {
         ...ORB_BUTTON_CONFIG.buttons[2],
         onClick: () => {
+          console.log("Pricing clicked");
+          scrollToSection(4);
+        },
+      },
+      {
+        ...ORB_BUTTON_CONFIG.buttons[3],
+        onClick: () => {
           console.log("Services clicked");
           scrollToSection(3);
         },
       },
       {
-        ...ORB_BUTTON_CONFIG.buttons[3],
+        ...ORB_BUTTON_CONFIG.buttons[4],
         onClick: () => {
           console.log("Portfolio clicked");
           scrollToSection(4);
         },
       },
       {
-        ...ORB_BUTTON_CONFIG.buttons[4],
+        ...ORB_BUTTON_CONFIG.buttons[5],
         onClick: () => {
           console.log("Contact us clicked");
-          scrollToSection(5);
+          scrollToSection(6);
         },
       },
     ],
@@ -6049,10 +6075,11 @@ function OrbFloatingButtons({ animationStep }: { animationStep: number }) {
           animationStep={animationStep}
           onClick={() => {
             if (button.text === "About us") scrollToSection(1);
-            else if (button.text === "What we do") scrollToSection(2);
+            else if (button.text === "What we do?") scrollToSection(2);
+            else if (button.text === "Pricing") scrollToSection(4);
             else if (button.text === "Services") scrollToSection(3);
-            else if (button.text === "Portfolio") scrollToSection(4);
-            else if (button.text === "Contact us") scrollToSection(5);
+            else if (button.text === "Portfolio") scrollToSection(5);
+            else if (button.text === "Contact us") scrollToSection(6);
             else button.onClick?.();
           }}
         />
@@ -6194,13 +6221,13 @@ function OrbFloatingButton({
       <style
         dangerouslySetInnerHTML={{
           __html: `
-          @media (min-width: 640px) {
+          @media (min-width: 640px) and (max-width: 767px) {
             [style*="--mobile-x"] {
               margin-left: var(--tablet-x) !important;
               margin-top: var(--tablet-y) !important;
             }
           }
-          @media (min-width: 1024px) {
+          @media (min-width: 768px) {
             [style*="--mobile-x"] {
               margin-left: var(--desktop-x) !important;
               margin-top: var(--desktop-y) !important;
@@ -12541,7 +12568,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Communication Icons - Contact specific */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
           {[
-            { icon: "��️", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
+            { icon: "���️", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
