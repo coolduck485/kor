@@ -8075,10 +8075,9 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                       transition: { duration: 0.3, ease: "easeOut" }
                     }}
                     style={{
-                      boxShadow: hoveredCard === index
-                        ? `0 25px 50px -12px rgba(59, 130, 246, 0.3), 0 0 0 1px rgba(6, 182, 212, 0.2), 0 0 20px rgba(34, 197, 94, 0.15)`
-                        : "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
+                      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
                     }}
+                    className="hover:shadow-[0_25px_50px_-12px_rgba(59,130,246,0.3),0_0_0_1px_rgba(6,182,212,0.2),0_0_20px_rgba(34,197,94,0.15)] transition-shadow duration-300"
                   >
                     {/* Crystal Background */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-cyan-500/3 to-emerald-500/5 opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
@@ -12212,7 +12211,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
         {/* Floating Communication Icons - Contact specific */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-5">
           {[
-            { icon: "✉️", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
+            { icon: "��️", delay: 0, x: 15, y: 20, size: 24, duration: 8 },
             { icon: "📧", delay: 2, x: 85, y: 15, size: 20, duration: 6 },
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
