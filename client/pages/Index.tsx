@@ -901,7 +901,7 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █�������╗ █████����� ██����������██╗
-��█║ �����█╔����█��╔═══���█╗██���══█���╗
+��█║ �����█╔����█��╔═══���█╗██���══�����╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█������█╔╝�����║  ██║
@@ -3910,6 +3910,26 @@ export default function Index() {
                     </div>
                   </div>
                 </motion.div>
+
+                {/* Subtitle text under Development services */}
+                <motion.div
+                  className="text-center mt-4 mb-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={animationStep >= 3 ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                  transition={{
+                    duration: 0.8,
+                    ease: "easeOut",
+                    delay: 2.2,
+                  }}
+                >
+                  <p className={`text-sm md:text-base lg:text-lg font-medium ${
+                    theme === "light"
+                      ? "text-gray-600"
+                      : "text-gray-300"
+                  } tracking-wide`}>
+                    Modern Web Solutions • Custom Software • Digital Innovation
+                  </p>
+                </motion.div>
               </motion.div>
 
               {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
@@ -4327,22 +4347,25 @@ export default function Index() {
             </svg>
           )}
 
-          {/* Tooltip for home section */}
+          {/* Tooltip for home section - always show when on home page */}
           {currentSection === 0 && (
-            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none z-[100000]">
               <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap shadow-lg ${
                   theme === "light"
-                    ? "border-blue-400/40 bg-white/90 text-gray-800"
-                    : "border-blue-300/30 bg-black/80 text-white"
+                    ? "border-blue-400/40 bg-white/95 text-gray-800"
+                    : "border-blue-300/30 bg-black/90 text-white"
                 }`}
+                style={{
+                  animation: "gentle-pulse 3s ease-in-out infinite",
+                }}
               >
                 Click here to scroll down
                 <div
                   className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
                     theme === "light"
-                      ? "border-l-white/90"
-                      : "border-l-black/80"
+                      ? "border-l-white/95"
+                      : "border-l-black/90"
                   }`}
                 />
               </div>
