@@ -905,7 +905,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
-�����������╝  ╚═╝ �����������════╝ ╚���╝  ��═╝`}
+�������������╝  ╚═╝ �����������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -973,7 +973,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███����█████████��██���█���███████���███����█████ 60%
+                      CPU: ███���█████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8073,12 +8073,15 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                   <motion.div
                     className="relative p-8 rounded-3xl backdrop-blur-xl border bg-white/5 border-white/10 shadow-2xl overflow-hidden group"
                     whileHover={{
+                      scale: 1.02,
+                      y: -8,
                       transition: { duration: 0.3, ease: "easeOut" }
                     }}
                     style={{
-                      boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
+                      boxShadow: hoveredCard === index
+                        ? `0 25px 50px -12px rgba(59, 130, 246, 0.3), 0 0 0 1px rgba(6, 182, 212, 0.2), 0 0 20px rgba(34, 197, 94, 0.15)`
+                        : "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
                     }}
-                    className="hover:shadow-[0_25px_50px_-12px_rgba(59,130,246,0.3),0_0_0_1px_rgba(6,182,212,0.2),0_0_20px_rgba(34,197,94,0.15)] transition-shadow duration-300"
                   >
                     {/* Crystal Background */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-cyan-500/3 to-emerald-500/5 opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
