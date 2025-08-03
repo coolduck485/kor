@@ -7972,11 +7972,11 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
           <motion.div
             className="absolute top-1/3 right-1/6 text-emerald-300 font-light text-sm opacity-25"
             animate={{
-              y: [0, -8, 0],
-              opacity: [0.25, 0.5, 0.25],
+              y: [0, -2, 0],
+              opacity: [0.2, 0.3, 0.2],
             }}
             transition={{
-              duration: 5,
+              duration: 12,
               repeat: Infinity,
               ease: "easeInOut",
             }}
