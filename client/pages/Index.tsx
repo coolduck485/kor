@@ -5886,7 +5886,7 @@ const ORB_BUTTON_CONFIG = {
       accent: "blue", // Color accent - unified to blue
 
       // Custom positioning for What we do button
-      xOffset: 20, // Moved 10px more to the right (10 + 10)
+      xOffset: 70, // Moved 50px more to the right (20 + 50)
       yOffset: 0, // Centered positioning
 
       // What we do button uses global positioning for consistency
@@ -12573,7 +12573,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { icon: "��", delay: 4, x: 25, y: 80, size: 22, duration: 7 },
             { icon: "🌐", delay: 1, x: 75, y: 70, size: 26, duration: 9 },
             {
-              icon: "�������������",
+              icon: "�����������",
               delay: 3,
               x: 10,
               y: 60,
