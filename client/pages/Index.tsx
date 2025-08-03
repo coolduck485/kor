@@ -973,7 +973,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███���████████����██���█���███████���███����█████ 60%
+                      CPU: ███���█████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4290,8 +4290,8 @@ export default function Index() {
           }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
-            opacity: currentSection > 0 ? 1 : 0,
-            scale: currentSection > 0 ? 1 : 0,
+            opacity: 1, // Always visible
+            scale: 1, // Always visible
           }}
           transition={{ duration: 0.3 }}
           whileHover={{ scale: 1.1 }}
