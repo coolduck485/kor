@@ -11881,8 +11881,8 @@ const PortfolioSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-all duration-500">
                           <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
                           <div
-                            className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-                            style={{ animationDelay: "0.5s" }}
+                            className="absolute bottom-2 right-2 w-1 h-1 bg-cyan-400 rounded-full"
+                            style={{ animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 0.5s infinite" }}
                           />
                           <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
                         </div>
