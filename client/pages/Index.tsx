@@ -903,7 +903,7 @@ export default function Index() {
                   {`��█╗  █�������╗ █████����� ██����������██╗
 ██║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
-█��╔�����█╗ ██║   ██║██╔══█��╗
+█��╔�����█╗ ██║   ██║█���╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -973,7 +973,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███���█████████��██�����█���███████���███����█████ 60%
+                      CPU: ███���█████████��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -8137,13 +8137,13 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                           whileHover={{ rotate: 5, scale: 1.1 }}
                           transition={{ duration: 0.3 }}
                           style={{
-                            boxShadow: "0 10px 30px rgba(16, 185, 129, 0.4), 0 0 20px rgba(59, 130, 246, 0.3)",
-                            border: "1px solid rgba(236, 72, 153, 0.2)",
+                            boxShadow: "0 10px 30px rgba(59, 130, 246, 0.4), 0 0 20px rgba(6, 182, 212, 0.3)",
+                            border: "1px solid rgba(34, 197, 94, 0.2)",
                           }}
                         >
                           {step.number}
                           <motion.div
-                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-400 to-cyan-400 opacity-0 group-hover:opacity-30"
+                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-30"
                             transition={{ duration: 0.3 }}
                           />
                           {/* Crystal Facet Effect */}
