@@ -973,7 +973,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███���█████████��██���█���███████���███����█████ 60%
+                      CPU: ███���████████����██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4267,9 +4267,9 @@ export default function Index() {
           </div>
         )}
 
-        {/* Back to Top Button */}
+        {/* Back to Top Button - Shows on home page with "scroll down" functionality */}
         <motion.button
-          onClick={() => scrollToSection(0)}
+          onClick={() => currentSection === 0 ? scrollToSection(1) : scrollToSection(0)}
           className={`group absolute z-[99999] p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
             isMobileSafari || isIOS
               ? "bottom-20 left-6 sm:left-8 md:left-10 lg:left-12" // Above Safari search bar, matching nav positioning
