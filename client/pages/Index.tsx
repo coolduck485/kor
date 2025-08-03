@@ -7987,11 +7987,11 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
           <motion.div
             className="absolute bottom-1/3 left-1/6 text-blue-300 font-light text-sm opacity-20"
             animate={{
-              x: [0, 4, -4, 0],
-              opacity: [0.2, 0.4, 0.2],
+              x: [0, 1, -1, 0],
+              opacity: [0.15, 0.25, 0.15],
             }}
             transition={{
-              duration: 7,
+              duration: 15,
               repeat: Infinity,
               ease: "easeInOut",
             }}
