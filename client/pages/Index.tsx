@@ -904,7 +904,7 @@ export default function Index() {
 ��█║ �����█╔����█��╔═══���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█���█�����█╔╝�����║  ██║
+██║  ██╗╚█���█������█╔╝�����║  ██║
 �����������╝  ╚═╝ �����������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -3969,7 +3969,10 @@ export default function Index() {
                       }}
                     />
                   </svg>
-                  <OrbFloatingButtons animationStep={animationStep} />
+                  {/* OrbFloatingButtons component hidden */}
+                  <div className="hidden">
+                    <OrbFloatingButtons animationStep={animationStep} />
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -4030,6 +4033,43 @@ export default function Index() {
                   animation: "gentle-glow 12s ease-in-out infinite 1s",
                 }}
               />
+            </motion.div>
+
+            {/* Down Arrow Indicator at Bottom */}
+            <motion.div
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2, duration: 0.8 }}
+            >
+              <motion.div
+                className={`p-3 rounded-full border-2 backdrop-blur-lg ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/80"
+                    : "border-blue-300/30 bg-blue-400/10"
+                }`}
+                style={{
+                  background:
+                    theme === "light"
+                      ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                  boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                }}
+                animate={{
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <ChevronDown
+                  className={`w-5 h-5 transition-colors duration-300 ${
+                    theme === "light" ? "text-blue-600" : "text-white"
+                  }`}
+                />
+              </motion.div>
             </motion.div>
           </motion.div>
 
@@ -4225,9 +4265,11 @@ export default function Index() {
           </div>
         )}
 
-        {/* Back to Top Button */}
+        {/* Back to Top Button - Shows on home page with "scroll down" functionality */}
         <motion.button
-          onClick={() => scrollToSection(0)}
+          onClick={() =>
+            currentSection === 0 ? scrollToSection(1) : scrollToSection(0)
+          }
           className={`group absolute z-[99999] p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
             isMobileSafari || isIOS
               ? "bottom-20 left-6 sm:left-8 md:left-10 lg:left-12" // Above Safari search bar, matching nav positioning
@@ -4248,32 +4290,64 @@ export default function Index() {
           }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{
-            opacity: currentSection > 0 ? 1 : 0,
-            scale: currentSection > 0 ? 1 : 0,
+            opacity: 1, // Always visible
+            scale: 1, // Always visible
           }}
           transition={{ duration: 0.3 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          {/* Custom up arrow with stem */}
-          <svg
-            className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
-              theme === "light"
-                ? "text-blue-600 group-hover:text-blue-700"
-                : "text-white group-hover:text-blue-300"
-            }`}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            {/* Vertical stem */}
-            <line x1="12" y1="19" x2="12" y2="7" />
-            {/* Arrow head */}
-            <polyline points="5,12 12,5 19,12" />
-          </svg>
+          {/* Up arrow for non-home sections, down arrow for home section */}
+          {currentSection === 0 ? (
+            <ChevronDown
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                theme === "light"
+                  ? "text-blue-600 group-hover:text-blue-700"
+                  : "text-white group-hover:text-blue-300"
+              }`}
+            />
+          ) : (
+            <svg
+              className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                theme === "light"
+                  ? "text-blue-600 group-hover:text-blue-700"
+                  : "text-white group-hover:text-blue-300"
+              }`}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              {/* Vertical stem */}
+              <line x1="12" y1="19" x2="12" y2="7" />
+              {/* Arrow head */}
+              <polyline points="5,12 12,5 19,12" />
+            </svg>
+          )}
+
+          {/* Tooltip for home section */}
+          {currentSection === 0 && (
+            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
+              <div
+                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  theme === "light"
+                    ? "border-blue-400/40 bg-white/90 text-gray-800"
+                    : "border-blue-300/30 bg-black/80 text-white"
+                }`}
+              >
+                Click here to scroll down
+                <div
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    theme === "light"
+                      ? "border-l-white/90"
+                      : "border-l-black/80"
+                  }`}
+                />
+              </div>
+            </div>
+          )}
         </motion.button>
 
         {/* Enhanced Background Animations */}
