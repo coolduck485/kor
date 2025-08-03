@@ -979,7 +979,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����██���██████���██����███████��█ 50%
+                      RAM: ����█�����█������██████���██����███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
@@ -6221,13 +6221,13 @@ function OrbFloatingButton({
       <style
         dangerouslySetInnerHTML={{
           __html: `
-          @media (min-width: 640px) {
+          @media (min-width: 640px) and (max-width: 767px) {
             [style*="--mobile-x"] {
               margin-left: var(--tablet-x) !important;
               margin-top: var(--tablet-y) !important;
             }
           }
-          @media (min-width: 1024px) {
+          @media (min-width: 768px) {
             [style*="--mobile-x"] {
               margin-left: var(--desktop-x) !important;
               margin-top: var(--desktop-y) !important;
