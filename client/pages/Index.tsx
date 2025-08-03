@@ -7824,13 +7824,13 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
               filter: "blur(2px)",
             }}
             animate={{
-              scaleY: [0.5, 1, 0.8, 1],
-              opacity: [0.2, 0.6, 0.3, 0.6],
+              scaleY: [0.8, 1, 0.9, 1],
+              opacity: [0.1, 0.3, 0.2, 0.3],
             }}
             transition={{
-              duration: 5 + (i * 0.8),
+              duration: 12 + (i * 2),
               repeat: Infinity,
-              delay: i * 1.2,
+              delay: i * 3,
               ease: "easeInOut",
             }}
           />
