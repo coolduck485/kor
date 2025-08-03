@@ -901,7 +901,7 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █�������╗ █████����� ██����������██╗
-██║ �����█╔����█��╔═══���█╗██���══█���╗
+██║ �����█╔����█��╔═��═���█╗██���══█���╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█�����█╔╝�����║  ██║
@@ -8109,22 +8109,8 @@ const WhatWeDoSection = React.forwardRef<HTMLDivElement, WhatWeDoSectionProps>(
                       ))}
                     </div>
 
-                    {/* Crystal Energy Wave */}
-                    <motion.div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-25"
-                      animate={{
-                        background: [
-                          "radial-gradient(ellipse 200% 50% at 0% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 60%)",
-                          "radial-gradient(ellipse 200% 50% at 100% 50%, rgba(6, 182, 212, 0.2) 0%, transparent 60%)",
-                          "radial-gradient(ellipse 200% 50% at 50% 0%, rgba(34, 197, 94, 0.15) 0%, transparent 60%)",
-                        ],
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
+                    {/* Static Crystal Glow */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-15 bg-gradient-to-br from-blue-500/10 via-cyan-500/5 to-emerald-500/5 transition-opacity duration-500" />
 
                     {/* Step Header */}
                     <div className="flex items-start justify-between mb-6">
