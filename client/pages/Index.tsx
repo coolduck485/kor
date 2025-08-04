@@ -4347,25 +4347,34 @@ export default function Index() {
             </svg>
           )}
 
-          {/* Tooltip for home section - always show when on home page */}
+          {/* Tooltip for home section - ALWAYS show when on home page */}
           {currentSection === 0 && (
-            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none z-[100000]">
+            <div
+              className="absolute right-full mr-3 top-1/2 -translate-y-1/2 pointer-events-none z-[100001]"
+              style={{
+                opacity: 1,
+                visibility: "visible",
+                display: "block",
+              }}
+            >
               <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap shadow-lg ${
+                className={`px-4 py-2 rounded-lg border backdrop-blur-md text-sm font-semibold whitespace-nowrap shadow-2xl relative ${
                   theme === "light"
-                    ? "border-blue-400/40 bg-white/95 text-gray-800"
-                    : "border-blue-300/30 bg-black/90 text-white"
+                    ? "border-blue-500/60 bg-white/98 text-blue-900 shadow-blue-200/50"
+                    : "border-blue-400/60 bg-gray-900/98 text-blue-100 shadow-blue-900/50"
                 }`}
                 style={{
-                  animation: "gentle-pulse 3s ease-in-out infinite",
+                  animation: "gentle-pulse 2s ease-in-out infinite",
+                  filter: "drop-shadow(0 4px 12px rgba(59, 130, 246, 0.3))",
                 }}
               >
-                Click here to scroll down
+                👆 Click here to scroll down
+                {/* Arrow pointing to button */}
                 <div
-                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-l-[8px] border-transparent ${
                     theme === "light"
-                      ? "border-l-white/95"
-                      : "border-l-black/90"
+                      ? "border-l-white/98"
+                      : "border-l-gray-900/98"
                   }`}
                 />
               </div>
