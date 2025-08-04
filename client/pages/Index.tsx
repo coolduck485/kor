@@ -3910,8 +3910,6 @@ export default function Index() {
                     </div>
                   </div>
                 </motion.div>
-
-
               </motion.div>
 
               {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
@@ -4339,17 +4337,26 @@ export default function Index() {
                     : "bg-gradient-to-r from-white to-gray-50 text-slate-900 border border-white/20"
                 }`}
                 style={{
-                  boxShadow: theme === "light"
-                    ? "0 4px 20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1) inset"
-                    : "0 4px 20px rgba(255,255,255,0.15), 0 0 0 1px rgba(0,0,0,0.1) inset",
+                  boxShadow:
+                    theme === "light"
+                      ? "0 4px 20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1) inset"
+                      : "0 4px 20px rgba(255,255,255,0.15), 0 0 0 1px rgba(0,0,0,0.1) inset",
                   animation: "tooltip-float 3s ease-in-out infinite",
                 }}
               >
                 <div className="flex items-center gap-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                   <span>Scroll to explore</span>
-                  <svg className="w-3 h-3 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  <svg
+                    className="w-3 h-3 animate-bounce"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </div>
 
