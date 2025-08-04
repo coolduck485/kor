@@ -4447,10 +4447,12 @@ export default function Index() {
           100% {
             opacity: 1;
             transform: scale(1);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
           }
           50% {
-            opacity: 0.8;
-            transform: scale(1.02);
+            opacity: 0.9;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
           }
         }
 
