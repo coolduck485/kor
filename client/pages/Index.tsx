@@ -114,6 +114,10 @@ export default function Index() {
 
   // Check if tooltip should be shown
   const shouldShowTooltip = (tooltipId: string) => {
+    // Always show navigation tooltips
+    if (tooltipId === "nav-prev" || tooltipId === "nav-next") {
+      return true;
+    }
     return !dismissedTooltips.has(tooltipId);
   };
 
@@ -905,7 +909,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█������█╔╝�����║  ██║
-�����������╝  ╚═╝ �����������════╝ ╚���╝  ���═╝`}
+�����������╝  ╚═╝ �����������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
