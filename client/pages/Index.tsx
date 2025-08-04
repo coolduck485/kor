@@ -903,7 +903,7 @@ export default function Index() {
                   {`��█╗  █�������╗ █████����� ██����������██╗
 ��█║ �����█╔����█��╔═══���█╗██���══�����╗
 █████╔╝ ██║   ██║███�������█╔��
-█��╔�����█╗ ██║   ██║██╔══█��╗
+█��╔������█╗ ██║   ██║██╔══█��╗
 ██║  ██╗╚█���█������█╔╝�����║  ██║
 �����������╝  ╚═╝ �����������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -2008,7 +2008,10 @@ export default function Index() {
               if (isScrolling) return;
               protectedScrollToSection(currentSection - 1);
               setShowNavigationHints(false);
+              dismissTooltip("nav-prev");
             }}
+            onMouseEnter={() => dismissTooltip("nav-prev")}
+            onTouchStart={() => dismissTooltip("nav-prev")}
             disabled={isScrolling || isMobileMenuOpen}
             className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
               isScrolling || isMobileMenuOpen
