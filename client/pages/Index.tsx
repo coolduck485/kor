@@ -855,9 +855,9 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █���������� █████����� ██����������██╗
-��█║ �����█╔����█��╔═══���█╗██���══�����╗
+��█�� �����█╔����█��╔═══���█╗██���══�����╗
 █████╔╝ ██║   ██║███�������█╔��
-█��╔�����█╗ ██║   ██║██╔══█��╗
+█��╔�����█╗ █��║   ██║██╔══█��╗
 ██║  ██��╚█���█������█╔╝�����║  ██║
 �����������╝  ╚═╝ �������������════╝ ╚���╝  ��═╝`}
                 </pre>
@@ -4160,54 +4160,6 @@ export default function Index() {
             </svg>
           )}
 
-          {/* New Navigation Tooltip - Modern floating design */}
-          {currentSection === 0 && (
-            <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 pointer-events-none z-[100001]">
-              <div
-                className={`group relative px-3 py-2 rounded-xl text-xs font-medium transition-all duration-300 ${
-                  theme === "light"
-                    ? "bg-gradient-to-r from-slate-800 to-slate-900 text-white border border-slate-700/50"
-                    : "bg-gradient-to-r from-white to-gray-50 text-slate-900 border border-white/20"
-                }`}
-                style={{
-                  boxShadow:
-                    theme === "light"
-                      ? "0 4px 20px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1) inset"
-                      : "0 4px 20px rgba(255,255,255,0.15), 0 0 0 1px rgba(0,0,0,0.1) inset",
-                  animation: "tooltip-float 3s ease-in-out infinite",
-                }}
-              >
-                <div className="flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  <span>Scroll to explore</span>
-                  <svg
-                    className="w-3 h-3 animate-bounce"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-
-                {/* Subtle arrow */}
-                <div
-                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-[5px] border-b-[5px] border-l-[6px] border-transparent ${
-                    theme === "light"
-                      ? "border-l-slate-900"
-                      : "border-l-gray-50"
-                  }`}
-                />
-
-                {/* Glowing dot */}
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-400 rounded-full animate-ping opacity-75" />
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-blue-400 rounded-full" />
-              </div>
-            </div>
-          )}
         </motion.button>
 
         {/* Enhanced Background Animations */}
