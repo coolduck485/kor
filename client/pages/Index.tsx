@@ -69,12 +69,10 @@ export default function Index() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [previousMode, setPreviousMode] = useState(mode);
-  const [isTooltipDismissed, setIsTooltipDismissed] = useState(false);
   const { isHelpModalOpen, setIsHelpModalOpen } = useHelpModal();
   const [showNavigationHints, setShowNavigationHints] = useState(true);
   const [initialLoadingComplete, setInitialLoadingComplete] = useState(false);
   const [hasInteractedWithHelp, setHasInteractedWithHelp] = useState(false);
-  const [showNavigationTooltip, setShowNavigationTooltip] = useState(true);
   const hasShownWelcomeRef = useRef(false);
 
   // Navbar state
@@ -85,51 +83,9 @@ export default function Index() {
   const [isNavbarHovered, setIsNavbarHovered] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
 
-  // Tooltip management state
-  const [dismissedTooltips, setDismissedTooltips] = useState<Set<string>>(
-    () => {
-      try {
-        const saved = localStorage.getItem("dismissedTooltips");
-        return saved ? new Set(JSON.parse(saved)) : new Set();
-      } catch {
-        return new Set();
-      }
-    },
-  );
 
-  // Function to dismiss a tooltip permanently
-  const dismissTooltip = (tooltipId: string) => {
-    const newDismissed = new Set(dismissedTooltips);
-    newDismissed.add(tooltipId);
-    setDismissedTooltips(newDismissed);
-    try {
-      localStorage.setItem(
-        "dismissedTooltips",
-        JSON.stringify([...newDismissed]),
-      );
-    } catch {
-      // Handle localStorage errors gracefully
-    }
-  };
 
-  // Function to clear all dismissed tooltips (for debugging)
-  const clearDismissedTooltips = () => {
-    setDismissedTooltips(new Set());
-    try {
-      localStorage.removeItem("dismissedTooltips");
-    } catch {
-      // Handle localStorage errors gracefully
-    }
-  };
 
-  // Check if tooltip should be shown
-  const shouldShowTooltip = (tooltipId: string) => {
-    // Always show navigation tooltips
-    if (tooltipId === "nav-prev" || tooltipId === "nav-next") {
-      return true;
-    }
-    return !dismissedTooltips.has(tooltipId);
-  };
 
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -919,7 +875,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
 ██║  ██��╚█���█������█╔╝�����║  ██║
-�����������╝  ╚═╝ �������������════╝ ╚���╝  ��═╝`}
+�����������╝  ╚���╝ �������������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -993,7 +949,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����██���██████���██����███████����█ 50%
+                      RAM: ����█�����██���██████���██����███████��█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
