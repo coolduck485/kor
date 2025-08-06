@@ -42,7 +42,7 @@ export function RetroToggle() {
             <span className="sr-only">Toggle retro mode</span>
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="bottom" className="animate-tooltip-float">
+        <TooltipContent side="bottom">
           <p>{isPinkActive ? "Retro toggle disabled in pink theme" : mode === "retro" ? "Switch to modern mode" : "Switch to retro mode"}</p>
         </TooltipContent>
       </Tooltip>
