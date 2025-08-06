@@ -406,16 +406,6 @@ export default {
             filter: "blur(6px)",
           },
         },
-        "tooltip-float": {
-          "0%, 100%": {
-            transform: "translateY(0px)",
-            opacity: "1",
-          },
-          "50%": {
-            transform: "translateY(-4px)",
-            opacity: "0.9",
-          },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -454,16 +444,6 @@ export default {
         "pink-floating-particles":
           "pink-floating-particles 20s linear infinite",
         "pink-floating-orbs": "pink-floating-orbs 30s ease-in-out infinite",
-        "tooltip-float": {
-          "0%, 100%": {
-            transform: "translateY(0px)",
-            opacity: "1",
-          },
-          "50%": {
-            transform: "translateY(-4px)",
-            opacity: "0.9",
-          },
-        },
       },
       boxShadow: {
         glow: "0 0 100px rgba(73, 146, 255, 0.5), 0 0 200px rgba(73, 146, 255, 0.3), 0 0 300px rgba(73, 146, 255, 0.2)",
