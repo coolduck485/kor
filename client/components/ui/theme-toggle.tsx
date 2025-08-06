@@ -2,13 +2,17 @@ import { Palette, RotateCcw } from "lucide-react";
 import { useTheme } from "@/hooks/use-theme";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
   const { mode } = useRetroMode();
 
   return (
-    <Button
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
       variant="ghost"
       size="icon"
       onClick={() => {
@@ -33,7 +37,13 @@ export function ThemeToggle() {
       ) : (
         <Palette className="h-5 w-5 text-cyan-400 transition-all" />
       )}
-      <span className="sr-only">Invert colors</span>
-    </Button>
+            <span className="sr-only">Invert colors</span>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="bottom" className="animate-tooltip-float">
+          <p>{mode === "retro" ? "Theme toggle disabled in retro mode" : theme === "light" ? "Switch to dark theme" : "Switch to light theme"}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }
