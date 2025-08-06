@@ -89,6 +89,9 @@ export default function Index() {
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
 
+  // Tooltip state management
+  const { tooltipState, showTooltip, hideTooltip } = useTooltip();
+
   const sectionsRef = useRef<HTMLDivElement[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -799,7 +802,7 @@ export default function Index() {
                         delay: i * 0.1,
                       }}
                     >
-                      ••••
+                      ��•••
                     </motion.span>
                   ))}
                   <span className="text-green-400 font-mono text-sm">]</span>
@@ -854,7 +857,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ █��║   ██║██╔══█��╗
 ██║  ██��╚█���█������█╔╝�����║  ██║
-�����������╝  ╚═╝ �������������════╝ ╚���╝  ��═╝`}
+�����������╝  ╚═╝ ��������������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -12511,7 +12514,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { type: "email", x: 15, y: 35, icon: "��️" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "���" },
-            { type: "meet", x: 80, y: 65, icon: "��" },
+            { type: "meet", x: 80, y: 65, icon: "����" },
           ].map((card, i) => (
             <motion.div
               key={`contact-card-${i}`}
