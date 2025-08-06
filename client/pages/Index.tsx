@@ -5559,11 +5559,10 @@ function MobileHamburgerMenu({
             "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s, bubble-pop-in 0.6s ease-out forwards",
         }}
       >
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <motion.button
-                onClick={protectedToggleMenu}
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <motion.button
+              onClick={protectedToggleMenu}
                 whileTap={{
                   scale: 0.9,
                   rotate: 5,
@@ -5626,11 +5625,10 @@ function MobileHamburgerMenu({
                 </div>
               </motion.button>
             </TooltipTrigger>
-            <TooltipContent side="right" className="animate-tooltip-float">
+            <TooltipContent side="right">
               <p>{isOpen ? "Close navigation menu" : "Open navigation menu"}</p>
             </TooltipContent>
           </Tooltip>
-        </TooltipProvider>
       </div>
 
       {/* Enhanced Backdrop overlay with synchronized menu content */}
