@@ -444,6 +444,16 @@ export default {
         "pink-floating-particles":
           "pink-floating-particles 20s linear infinite",
         "pink-floating-orbs": "pink-floating-orbs 30s ease-in-out infinite",
+        "tooltip-float": {
+          "0%, 100%": {
+            transform: "translateY(0px)",
+            opacity: "1",
+          },
+          "50%": {
+            transform: "translateY(-4px)",
+            opacity: "0.9",
+          },
+        },
         "tooltip-float": "tooltip-float 2s ease-in-out infinite",
       },
       boxShadow: {
