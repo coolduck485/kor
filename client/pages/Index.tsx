@@ -856,7 +856,7 @@ export default function Index() {
 ��█�� �����█╔����█��╔═══���█╗██�����══�����╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ █���║   ██║██╔══█��╗
-██║  ██��╚█���█������█╔╝�����║  ██║
+█���║  ██��╚█���█������█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -4113,76 +4113,74 @@ export default function Index() {
         )}
 
         {/* Back to Top Button - Shows on home page with "scroll down" functionality */}
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <motion.button
-                onClick={() =>
-                  currentSection === 0 ? scrollToSection(1) : scrollToSection(0)
-                }
-                className={`group absolute z-[99999] p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
-                  isMobileSafari || isIOS
-                    ? "bottom-20 left-6 sm:left-8 md:left-10 lg:left-12" // Above Safari search bar, matching nav positioning
-                    : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12 left-6 sm:left-8 md:left-10 lg:left-12" // Normal position, matching nav positioning
-                } ${
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <motion.button
+              onClick={() =>
+                currentSection === 0 ? scrollToSection(1) : scrollToSection(0)
+              }
+              className={`group absolute z-[99999] p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
+                isMobileSafari || isIOS
+                  ? "bottom-20 left-6 sm:left-8 md:left-10 lg:left-12" // Above Safari search bar, matching nav positioning
+                  : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12 left-6 sm:left-8 md:left-10 lg:left-12" // Normal position, matching nav positioning
+              } ${
+                theme === "light"
+                  ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                  : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+              }`}
+              style={{
+                position: "fixed",
+                pointerEvents: "auto",
+                background:
                   theme === "light"
-                    ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                    : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
-                }`}
-                style={{
-                  position: "fixed",
-                  pointerEvents: "auto",
-                  background:
+                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+              }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{
+                opacity: 1, // Always visible
+                scale: 1, // Always visible
+              }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              {/* Up arrow for non-home sections, down arrow for home section */}
+              {currentSection === 0 ? (
+                <ChevronDown
+                  className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
                     theme === "light"
-                      ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                  boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
-                }}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{
-                  opacity: 1, // Always visible
-                  scale: 1, // Always visible
-                }}
-                transition={{ duration: 0.3 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {/* Up arrow for non-home sections, down arrow for home section */}
-                {currentSection === 0 ? (
-                  <ChevronDown
-                    className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
-                      theme === "light"
-                        ? "text-blue-600 group-hover:text-blue-700"
-                        : "text-white group-hover:text-blue-300"
-                    }`}
-                  />
-                ) : (
-                  <svg
-                    className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
-                      theme === "light"
-                        ? "text-blue-600 group-hover:text-blue-700"
-                        : "text-white group-hover:text-blue-300"
-                    }`}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    {/* Vertical stem */}
-                    <line x1="12" y1="19" x2="12" y2="7" />
-                    {/* Arrow head */}
-                    <polyline points="5,12 12,5 19,12" />
-                  </svg>
-                )}
-              </motion.button>
-            </TooltipTrigger>
-            <TooltipContent side="right" className="animate-tooltip-float">
-              <p>{currentSection === 0 ? "Scroll to explore" : "Back to top"}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+                      ? "text-blue-600 group-hover:text-blue-700"
+                      : "text-white group-hover:text-blue-300"
+                  }`}
+                />
+              ) : (
+                <svg
+                  className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                    theme === "light"
+                      ? "text-blue-600 group-hover:text-blue-700"
+                      : "text-white group-hover:text-blue-300"
+                  }`}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  {/* Vertical stem */}
+                  <line x1="12" y1="19" x2="12" y2="7" />
+                  {/* Arrow head */}
+                  <polyline points="5,12 12,5 19,12" />
+                </svg>
+              )}
+            </motion.button>
+          </TooltipTrigger>
+          <TooltipContent side="right">
+            <p>{currentSection === 0 ? "Scroll to explore" : "Back to top"}</p>
+          </TooltipContent>
+        </Tooltip>
 
         {/* Enhanced Background Animations */}
         <style>{`
