@@ -908,7 +908,7 @@ export default function Index() {
 ��█║ �����█╔����█��╔═══���█╗██���══�����╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ ██║   ██║██╔══█��╗
-██║  ██╗╚█���█������█╔╝�����║  ██║
+██║  ██��╚█���█������█╔╝�����║  ██║
 �����������╝  ╚═╝ �������������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
@@ -2040,21 +2040,21 @@ export default function Index() {
             />
 
             {/* Tooltip for Previous Section - Always shown */}
-            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
+            <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 pointer-events-none z-[100000]">
               <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                className={`px-4 py-2 rounded-lg border backdrop-blur-sm text-sm font-medium whitespace-nowrap shadow-lg ${
                   theme === "light"
-                    ? "border-blue-400/40 bg-white/90 text-gray-800"
-                    : "border-blue-300/30 bg-black/80 text-white"
+                    ? "border-blue-400/60 bg-white/95 text-gray-800 shadow-black/20"
+                    : "border-blue-300/50 bg-black/90 text-white shadow-white/10"
                 } flex items-center`}
               >
                 <div className="animate-pulse w-2 h-2 rounded-full bg-blue-400 mr-2" />
                 Click to navigate sections
                 <div
-                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-l-[6px] border-transparent ${
                     theme === "light"
-                      ? "border-l-white/90"
-                      : "border-l-black/80"
+                      ? "border-l-white/95"
+                      : "border-l-black/90"
                   }`}
                 />
               </div>
@@ -2101,21 +2101,21 @@ export default function Index() {
               />
 
               {/* Tooltip for Next Section - Always shown */}
-              <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
+              <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 pointer-events-none z-[100000]">
                 <div
-                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                  className={`px-4 py-2 rounded-lg border backdrop-blur-sm text-sm font-medium whitespace-nowrap shadow-lg ${
                     theme === "light"
-                      ? "border-blue-400/40 bg-white/90 text-gray-800"
-                      : "border-blue-300/30 bg-black/80 text-white"
+                      ? "border-blue-400/60 bg-white/95 text-gray-800 shadow-black/20"
+                      : "border-blue-300/50 bg-black/90 text-white shadow-white/10"
                   } flex items-center`}
                 >
                   <div className="animate-pulse w-2 h-2 rounded-full bg-blue-400 mr-2" />
                   Click to navigate sections
                   <div
-                    className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                    className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-l-[6px] border-transparent ${
                       theme === "light"
-                        ? "border-l-white/90"
-                        : "border-l-black/80"
+                        ? "border-l-white/95"
+                        : "border-l-black/90"
                     }`}
                   />
                 </div>
