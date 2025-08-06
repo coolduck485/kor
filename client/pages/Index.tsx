@@ -5602,43 +5602,6 @@ function MobileHamburgerMenu({
             />
           </div>
 
-          {/* Tooltip */}
-          <AnimatePresence>
-            {showTooltip && (
-              <motion.div
-                initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                transition={{ duration: 0.2 }}
-                className="absolute -top-14 left-1/2 -translate-x-1/2 pointer-events-none z-40"
-              >
-                <div
-                  className={`px-3 py-2 rounded-lg border backdrop-blur-xl text-xs font-medium whitespace-nowrap ${
-                    theme === "light"
-                      ? "border-blue-400/40 bg-white/80 text-gray-800"
-                      : "border-blue-300/30 bg-blue-400/10 text-white/90"
-                  }`}
-                  style={{
-                    background:
-                      theme === "light"
-                        ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                        : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                    boxShadow: "0 0 15px rgba(73, 146, 255, 0.3)",
-                  }}
-                >
-                  {isOpen ? "Click to close menu" : "Click to open menu"}
-                  {/* Tooltip arrow */}
-                  <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent ${
-                      theme === "light"
-                        ? "border-t-white/80"
-                        : "border-t-blue-400/10"
-                    }`}
-                  />
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </motion.button>
       </div>
 
@@ -12562,7 +12525,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
             { type: "email", x: 15, y: 35, icon: "��️" },
             { type: "call", x: 75, y: 25, icon: "📞" },
             { type: "chat", x: 25, y: 70, icon: "���" },
-            { type: "meet", x: 80, y: 65, icon: "🤝" },
+            { type: "meet", x: 80, y: 65, icon: "��" },
           ].map((card, i) => (
             <motion.div
               key={`contact-card-${i}`}
