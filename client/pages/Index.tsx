@@ -3288,8 +3288,8 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Main Content Container */}
-            <div className="relative flex items-center justify-center min-h-screen">
+            {/* Main Content Container - Simplified and Focused */}
+            <div className="relative flex items-center justify-center min-h-screen px-4">
               {/* Energy Rings Around Orb - Optimized for performance */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 {[...Array(3)].map((_, i) => (
