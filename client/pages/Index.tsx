@@ -2003,40 +2003,49 @@ export default function Index() {
         {currentSection < sections.length - 1 &&
           !isHelpModalOpen &&
           !isMobileMenuOpen && (
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if (isScrolling) return;
-                protectedScrollToSection(currentSection + 1);
-                setShowNavigationHints(false);
-              }}
-              disabled={isScrolling || isMobileMenuOpen}
-              className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
-                isScrolling || isMobileMenuOpen
-                  ? "pointer-events-none opacity-60"
-                  : ""
-              } ${
-                theme === "light"
-                  ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
-                  : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
-              }`}
-              style={{
-                background:
-                  theme === "light"
-                    ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                    : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
-              }}
-            >
-              <ChevronDown
-                className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
-                  theme === "light"
-                    ? "text-blue-600 group-hover:text-blue-700"
-                    : "text-white group-hover:text-blue-300"
-                }`}
-              />
-            </button>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (isScrolling) return;
+                      protectedScrollToSection(currentSection + 1);
+                      setShowNavigationHints(false);
+                    }}
+                    disabled={isScrolling || isMobileMenuOpen}
+                    className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
+                      isScrolling || isMobileMenuOpen
+                        ? "pointer-events-none opacity-60"
+                        : ""
+                    } ${
+                      theme === "light"
+                        ? "border-blue-400/40 bg-white/80 hover:bg-white/90"
+                        : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20"
+                    }`}
+                    style={{
+                      background:
+                        theme === "light"
+                          ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                          : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                      boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                    }}
+                  >
+                    <ChevronDown
+                      className={`w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 transition-colors duration-300 ${
+                        theme === "light"
+                          ? "text-blue-600 group-hover:text-blue-700"
+                          : "text-white group-hover:text-blue-300"
+                      }`}
+                    />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent side="left" className="animate-tooltip-float">
+                  <p>Go to next section</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
       </div>
 
@@ -5837,7 +5846,7 @@ const ORB_BUTTON_CONFIG = {
 // Change: xOffset: 0  →  xOffset: 50
 //
 // To move "About us" button 30px up:
-// Change: yOffset: 0  ���  yOffset: -30
+// Change: yOffset: 0  ����  yOffset: -30
 //
 // To make all buttons closer to center on mobile:
 // Change: mobileRadiusMultiplier: 0.5  →  mobileRadiusMultiplier: 0.3
