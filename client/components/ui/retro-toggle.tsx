@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useRetroMode } from "@/hooks/use-retro-mode";
 import { useTheme } from "@/hooks/use-theme";
 import { usePinkTheme } from "@/hooks/use-pink-theme";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function RetroToggle() {
   const { mode, toggleMode } = useRetroMode();
@@ -10,7 +11,10 @@ export function RetroToggle() {
   const { isPinkActive } = usePinkTheme();
 
   return (
-    <Button
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
       variant="ghost"
       size="icon"
       onClick={() => {
@@ -35,7 +39,13 @@ export function RetroToggle() {
       ) : (
         <Gamepad2 className="h-[1.2rem] w-[1.2rem] text-green-500" />
       )}
-      <span className="sr-only">Toggle retro mode</span>
-    </Button>
+            <span className="sr-only">Toggle retro mode</span>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="bottom" className="animate-tooltip-float">
+          <p>{isPinkActive ? "Retro toggle disabled in pink theme" : mode === "retro" ? "Switch to modern mode" : "Switch to retro mode"}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }
