@@ -852,7 +852,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █���������� █████����� ██����������██╗
+                  {`��█╗  █���������� █████����� ██������������██╗
 ��█�� �����█╔����█��╔═══���█╗██�����══�����╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ █��║   ██║██╔══█��╗
@@ -1944,8 +1944,9 @@ export default function Index() {
 
   // Modern mode - original design
   return (
-    <>
-      {/* FIXED NAVIGATION ELEMENTS - OUTSIDE SCROLLING CONTAINER */}
+    <TooltipProvider delayDuration={300} skipDelayDuration={100}>
+      <>
+        {/* FIXED NAVIGATION ELEMENTS - OUTSIDE SCROLLING CONTAINER */}
 
       {/* Section Navigation Buttons */}
       <div
@@ -5065,10 +5066,8 @@ export default function Index() {
         }
       `}</style>
       </div>
-
-      {/* Floating Tooltip */}
-      <FloatingTooltip tooltipState={tooltipState} />
-    </>
+      </>
+    </TooltipProvider>
   );
 }
 
