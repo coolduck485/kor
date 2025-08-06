@@ -853,7 +853,7 @@ export default function Index() {
                   }}
                 >
                   {`��█╗  █���������� █████����� ██����������██╗
-��█�� �����█╔����█��╔═══���█╗██���══�����╗
+��█�� �����█╔����█��╔═══���█╗██�����══�����╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ █��║   ██║██╔══█��╗
 ██║  ██��╚█���█������█╔╝�����║  ██║
@@ -5556,69 +5556,78 @@ function MobileHamburgerMenu({
             "gentleFloat 4s ease-in-out infinite 0.2s, button-drift 8s ease-in-out infinite 0.3s, bubble-pop-in 0.6s ease-out forwards",
         }}
       >
-        <motion.button
-          onClick={protectedToggleMenu}
-          whileTap={{
-            scale: 0.9,
-            rotate: 5,
-            transition: { duration: 0.1 },
-          }}
-          whileHover={{
-            scale: 1.05,
-            transition: { duration: 0.2 },
-          }}
-          animate={{
-            scale: isOpen ? 1.05 : 1,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 400,
-            damping: 25,
-            duration: 0.2,
-          }}
-          className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl overflow-hidden ${
-            isPinkActive
-              ? "border-pink-400/50 bg-pink-500/10 hover:border-pink-500/70"
-              : theme === "light"
-                ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
-                : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
-          }`}
-          style={{
-            background:
-              theme === "light"
-                ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
-                : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-          }}
-        >
-          {/* Animated background layers */}
-          <div
-            className={`absolute inset-0 rounded-xl opacity-50 group-hover:opacity-70 transition-all duration-500 ${
-              isPinkActive
-                ? "bg-gradient-to-br from-pink-400/30 via-pink-300/15 to-transparent"
-                : "bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent"
-            }`}
-          />
-          <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500" />
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <motion.button
+                onClick={protectedToggleMenu}
+                whileTap={{
+                  scale: 0.9,
+                  rotate: 5,
+                  transition: { duration: 0.1 },
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.2 },
+                }}
+                animate={{
+                  scale: isOpen ? 1.05 : 1,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 25,
+                  duration: 0.2,
+                }}
+                className={`group relative px-3 py-3 rounded-xl border-2 backdrop-blur-2xl hover:backdrop-blur-3xl transition-all duration-700 hover:shadow-2xl overflow-hidden ${
+                  isPinkActive
+                    ? "border-pink-400/50 bg-pink-500/10 hover:border-pink-500/70"
+                    : theme === "light"
+                      ? "border-blue-400/40 bg-white/30 hover:border-blue-500/60"
+                      : "border-blue-300/30 bg-blue-400/5 hover:border-white/40"
+                }`}
+                style={{
+                  background:
+                    theme === "light"
+                      ? `linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 50%, transparent 100%)`
+                      : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                }}
+              >
+                {/* Animated background layers */}
+                <div
+                  className={`absolute inset-0 rounded-xl opacity-50 group-hover:opacity-70 transition-all duration-500 ${
+                    isPinkActive
+                      ? "bg-gradient-to-br from-pink-400/30 via-pink-300/15 to-transparent"
+                      : "bg-gradient-to-br from-blue-400/20 via-blue-300/10 to-transparent"
+                  }`}
+                />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-white/20 via-transparent to-white/10 opacity-30 group-hover:opacity-50 transition-all duration-500" />
 
-          {/* Hamburger Icon */}
-          <div className="relative w-6 h-6 flex flex-col justify-center items-center space-y-1">
-            <div
-              className={`w-5 h-0.5 bg-current ${
-                isOpen ? "rotate-45 translate-y-1.5" : ""
-              } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
-            />
-            <div
-              className={`w-5 h-0.5 bg-current ${
-                isOpen ? "opacity-0" : ""
-              } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
-            />
-            <div
-              className={`w-5 h-0.5 bg-current ${
-                isOpen ? "-rotate-45 -translate-y-1.5" : ""
-              } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
-            />
-          </div>
-        </motion.button>
+                {/* Hamburger Icon */}
+                <div className="relative w-6 h-6 flex flex-col justify-center items-center space-y-1">
+                  <div
+                    className={`w-5 h-0.5 bg-current ${
+                      isOpen ? "rotate-45 translate-y-1.5" : ""
+                    } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
+                  />
+                  <div
+                    className={`w-5 h-0.5 bg-current ${
+                      isOpen ? "opacity-0" : ""
+                    } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
+                  />
+                  <div
+                    className={`w-5 h-0.5 bg-current ${
+                      isOpen ? "-rotate-45 -translate-y-1.5" : ""
+                    } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
+                  />
+                </div>
+              </motion.button>
+            </TooltipTrigger>
+            <TooltipContent side="right" className="animate-tooltip-float">
+              <p>{isOpen ? "Close navigation menu" : "Open navigation menu"}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
 
       {/* Enhanced Backdrop overlay with synchronized menu content */}
