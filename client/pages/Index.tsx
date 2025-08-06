@@ -114,6 +114,10 @@ export default function Index() {
 
   // Check if tooltip should be shown
   const shouldShowTooltip = (tooltipId: string) => {
+    // Always show navigation tooltips
+    if (tooltipId === "nav-prev" || tooltipId === "nav-next") {
+      return true;
+    }
     return !dismissedTooltips.has(tooltipId);
   };
 
@@ -2034,6 +2038,28 @@ export default function Index() {
                   : "text-white group-hover:text-blue-300"
               }`}
             />
+
+            {/* Tooltip for Previous Section */}
+            {shouldShowTooltip("nav-prev") && (
+              <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
+                <div
+                  className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                    theme === "light"
+                      ? "border-blue-400/40 bg-white/90 text-gray-800"
+                      : "border-blue-300/30 bg-black/80 text-white"
+                  }`}
+                >
+                  Go to previous section
+                  <div
+                    className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                      theme === "light"
+                        ? "border-l-white/90"
+                        : "border-l-black/80"
+                    }`}
+                  />
+                </div>
+              </div>
+            )}
           </button>
         )}
 
@@ -2074,6 +2100,28 @@ export default function Index() {
                     : "text-white group-hover:text-blue-300"
                 }`}
               />
+
+              {/* Tooltip for Next Section (Scroll Down) */}
+              {shouldShowTooltip("nav-next") && (
+                <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
+                  <div
+                    className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
+                      theme === "light"
+                        ? "border-blue-400/40 bg-white/90 text-gray-800"
+                        : "border-blue-300/30 bg-black/80 text-white"
+                    }`}
+                  >
+                    Scroll down to next section
+                    <div
+                      className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
+                        theme === "light"
+                          ? "border-l-white/90"
+                          : "border-l-black/80"
+                      }`}
+                    />
+                  </div>
+                </div>
+              )}
             </button>
           )}
       </div>
