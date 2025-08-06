@@ -927,7 +927,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███���█████���███��██���█���███████���███����█████ 60%
+                      CPU: ���██���█████���███��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -4236,17 +4236,6 @@ export default function Index() {
           }
         }
 
-        @keyframes tooltip-float {
-          0%, 100% {
-            transform: translateY(0px) translateX(0px);
-          }
-          33% {
-            transform: translateY(-2px) translateX(1px);
-          }
-          66% {
-            transform: translateY(1px) translateX(-1px);
-          }
-        }
 
         .animate-float-particle {
           animation: float-particle linear infinite;
