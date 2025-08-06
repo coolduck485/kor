@@ -3290,22 +3290,15 @@ export default function Index() {
 
             {/* Main Content Container - Simplified and Focused */}
             <div className="relative flex items-center justify-center min-h-screen px-4">
-              {/* Energy Rings Around Orb - Optimized for performance */}
+              {/* Simplified central orb */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                {[...Array(3)].map((_, i) => (
-                  <div
-                    key={`ring-${i}`}
-                    className="absolute rounded-full border opacity-20 gpu-accelerated"
-                    style={{
-                      width: `${400 + i * 120}px`,
-                      height: `${400 + i * 120}px`,
-                      border: `1px solid rgba(73, 146, 255, ${0.4 - i * 0.1})`,
-                      animation: `energy-ripple 3s ease-out infinite ${i * 0.5}s`,
-                      willChange: "transform, opacity",
-                      transform: "translateZ(0)",
-                    }}
-                  />
-                ))}
+                <div
+                  className="w-64 h-64 rounded-full opacity-50"
+                  style={{
+                    background: "radial-gradient(circle, rgba(73, 146, 255, 0.4) 0%, rgba(73, 146, 255, 0.1) 40%, transparent 70%)",
+                    filter: "blur(30px)",
+                  }}
+                />
               </div>
 
               {/* Optimized Rotating Light Beams */}
@@ -13669,7 +13662,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
                         name: "Telegram",
                         subtitle: "Quick messaging",
                         url: "https://telegram.org",
-                        icon: "✈���",
+                        icon: "✈����",
                         color: "from-blue-500 via-cyan-500 to-teal-500",
                         shadowColor: "rgba(34, 211, 238, 0.3)",
                       },
