@@ -464,7 +464,6 @@ export default {
             opacity: "0.9",
           },
         },
-        "tooltip-float": "tooltip-float 2s ease-in-out infinite",
       },
       boxShadow: {
         glow: "0 0 100px rgba(73, 146, 255, 0.5), 0 0 200px rgba(73, 146, 255, 0.3), 0 0 300px rgba(73, 146, 255, 0.2)",
