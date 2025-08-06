@@ -44,8 +44,6 @@ import {
   SPAM_PROTECTION_PRESETS,
 } from "../hooks/use-spam-protection";
 import { useHelpModal } from "../hooks/use-help-modal";
-import { useTooltip } from "../hooks/use-tooltip";
-import { FloatingTooltip } from "@/components/ui/floating-tooltip";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function Index() {
@@ -856,7 +854,7 @@ export default function Index() {
 ��█�� �����█╔����█��╔═══���█╗██�����══�����╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ █���║   ██║██╔══█��╗
-█���║  ██��╚█���█������█╔╝�����║  ██║
+█�����║  ██��╚█���█������█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
