@@ -87,9 +87,6 @@ export default function Index() {
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
 
-  // Tooltip state management
-  const { tooltipState, showTooltip, hideTooltip } = useTooltip();
-
   const sectionsRef = useRef<HTMLDivElement[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -854,7 +851,7 @@ export default function Index() {
 ��█�� �����█╔����█��╔═══���█╗██�����══�����╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ █���║   ██║██╔══█��╗
-█�����║  ██��╚█���█������█╔╝�����║  ██║
+█���║  ██��╚█���█������█╔╝�����║  ██║
 �����������╝  ╚═╝ ���������������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
