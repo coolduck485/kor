@@ -1280,7 +1280,7 @@ export default function Index() {
           }
 
           .ascii-logo::after {
-            content: "█";
+            content: "��";
             color: #00ff41;
             animation: terminal-cursor 1s infinite;
             margin-left: 8px;
@@ -3953,128 +3953,37 @@ export default function Index() {
                 </motion.div>
               </motion.div>
 
-              {/* Simplified Navigation Buttons - Focused Layout */}
+              {/* Modern Scroll Indicator */}
               <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2, duration: 0.8 }}
               >
-                <div className="relative mt-32">
-                  {/* Top buttons */}
-                  <div className="flex justify-center gap-4 mb-6">
-                    <motion.button
-                      onClick={() => protectedScrollToSection(6)}
-                      className={`px-6 py-3 rounded-xl backdrop-blur-lg font-medium text-sm transition-all duration-300 hover:scale-105 active:scale-95 border-2 ${
-                        theme === "light"
-                          ? "border-blue-400/40 bg-white/80 hover:bg-white/90 text-gray-800"
-                          : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20 text-white"
-                      }`}
-                      style={{
-                        background:
-                          theme === "light"
-                            ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Contact us
-                    </motion.button>
-                    <motion.button
-                      onClick={() => protectedScrollToSection(1)}
-                      className={`px-6 py-3 rounded-xl backdrop-blur-lg font-medium text-sm transition-all duration-300 hover:scale-105 active:scale-95 border-2 ${
-                        theme === "light"
-                          ? "border-blue-400/40 bg-white/80 hover:bg-white/90 text-gray-800"
-                          : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20 text-white"
-                      }`}
-                      style={{
-                        background:
-                          theme === "light"
-                            ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      About us
-                    </motion.button>
-                  </div>
-
-                  {/* Side buttons */}
-                  <div className="flex justify-center items-center gap-8 mb-6">
-                    <motion.button
-                      onClick={() => protectedScrollToSection(5)}
-                      className={`px-6 py-3 rounded-xl backdrop-blur-lg font-medium text-sm transition-all duration-300 hover:scale-105 active:scale-95 border-2 ${
-                        theme === "light"
-                          ? "border-blue-400/40 bg-white/80 hover:bg-white/90 text-gray-800"
-                          : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20 text-white"
-                      }`}
-                      style={{
-                        background:
-                          theme === "light"
-                            ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Portfolio
-                    </motion.button>
-
-                    <div className="w-32" /> {/* Spacer for center */}
-
-                    <motion.button
-                      onClick={() => protectedScrollToSection(3)}
-                      className={`px-6 py-3 rounded-xl backdrop-blur-lg font-medium text-sm transition-all duration-300 hover:scale-105 active:scale-95 border-2 ${
-                        theme === "light"
-                          ? "border-blue-400/40 bg-white/80 hover:bg-white/90 text-gray-800"
-                          : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20 text-white"
-                      }`}
-                      style={{
-                        background:
-                          theme === "light"
-                            ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
-                            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Services
-                    </motion.button>
-                  </div>
-
-                  {/* Bottom scroll indicator */}
+                <p className={`text-sm mb-4 font-medium ${theme === "light" ? "text-gray-600" : "text-white/70"}`}>
+                  Scroll Down
+                </p>
+                <motion.div
+                  className="flex flex-col items-center space-y-1"
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
                   <motion.div
-                    className="flex flex-col items-center mt-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 3, duration: 0.8 }}
-                  >
-                    <p className={`text-sm mb-2 ${theme === "light" ? "text-gray-600" : "text-white/60"}`}>
-                      Scroll Down
-                    </p>
-                    <motion.div
-                      className={`w-6 h-10 border-2 rounded-full ${
-                        theme === "light" ? "border-gray-400" : "border-white/40"
-                      } relative`}
-                      animate={{ opacity: [0.3, 1, 0.3] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      <motion.div
-                        className={`w-1 h-1 rounded-full mx-auto mt-2 ${
-                          theme === "light" ? "bg-gray-600" : "bg-white"
-                        }`}
-                        animate={{ y: [0, 16, 0] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      />
-                    </motion.div>
-                  </motion.div>
-                </div>
+                    className={`w-1 h-1 rounded-full ${theme === "light" ? "bg-blue-600" : "bg-blue-400"}`}
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0 }}
+                  />
+                  <motion.div
+                    className={`w-1 h-1 rounded-full ${theme === "light" ? "bg-blue-600" : "bg-blue-400"}`}
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
+                  />
+                  <motion.div
+                    className={`w-1 h-1 rounded-full ${theme === "light" ? "bg-blue-600" : "bg-blue-400"}`}
+                    animate={{ opacity: [0.3, 1, 0.3] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.4 }}
+                  />
+                </motion.div>
               </motion.div>
             </div>
 
