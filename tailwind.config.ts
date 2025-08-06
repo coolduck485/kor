@@ -406,6 +406,16 @@ export default {
             filter: "blur(6px)",
           },
         },
+        "tooltip-float": {
+          "0%, 100%": {
+            transform: "translateY(0px)",
+            opacity: "1",
+          },
+          "50%": {
+            transform: "translateY(-4px)",
+            opacity: "0.9",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
