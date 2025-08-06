@@ -3953,67 +3953,127 @@ export default function Index() {
                 </motion.div>
               </motion.div>
 
-              {/* Desktop Orb-Floating Navigation Buttons - positioned relative to orb */}
+              {/* Simplified Navigation Buttons - Focused Layout */}
               <motion.div
-                className="flex absolute inset-0 items-center justify-center"
-                initial={{
-                  opacity: 0,
-                  scale: 0.8,
-                  filter: "blur(5px)",
-                }}
-                animate={
-                  animationStep >= 3
-                    ? {
-                        opacity: 1,
-                        scale: 1,
-                        filter: "blur(0px)",
-                      }
-                    : {}
-                }
-                transition={{
-                  duration: 1,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: 0.3,
-                }}
+                className="absolute inset-0 flex items-center justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2, duration: 0.8 }}
               >
-                <div className="relative">
-                  {/* Animated Connection Lines Between Buttons */}
-                  <svg
-                    className="absolute inset-0 pointer-events-none"
-                    width="600"
-                    height="600"
-                    style={{ left: "-300px", top: "-300px" }}
-                  >
-                    <circle
-                      cx="300"
-                      cy="300"
-                      r="280"
-                      fill="none"
-                      stroke="rgba(73, 146, 255, 0.1)"
-                      strokeWidth="1"
-                      strokeDasharray="5 10"
+                <div className="relative mt-32">
+                  {/* Top buttons */}
+                  <div className="flex justify-center gap-4 mb-6">
+                    <motion.button
+                      onClick={() => protectedScrollToSection(6)}
+                      className={`px-6 py-3 rounded-xl backdrop-blur-lg font-medium text-sm transition-all duration-300 hover:scale-105 active:scale-95 border-2 ${
+                        theme === "light"
+                          ? "border-blue-400/40 bg-white/80 hover:bg-white/90 text-gray-800"
+                          : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20 text-white"
+                      }`}
                       style={{
-                        animation: "geometric-pulse 15s ease-in-out infinite",
+                        background:
+                          theme === "light"
+                            ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
                       }}
-                    />
-                    <circle
-                      cx="300"
-                      cy="300"
-                      r="320"
-                      fill="none"
-                      stroke="rgba(63, 186, 255, 0.08)"
-                      strokeWidth="1"
-                      strokeDasharray="8 15"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Contact us
+                    </motion.button>
+                    <motion.button
+                      onClick={() => protectedScrollToSection(1)}
+                      className={`px-6 py-3 rounded-xl backdrop-blur-lg font-medium text-sm transition-all duration-300 hover:scale-105 active:scale-95 border-2 ${
+                        theme === "light"
+                          ? "border-blue-400/40 bg-white/80 hover:bg-white/90 text-gray-800"
+                          : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20 text-white"
+                      }`}
                       style={{
-                        animation:
-                          "geometric-pulse 20s ease-in-out infinite 2s",
+                        background:
+                          theme === "light"
+                            ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
                       }}
-                    />
-                  </svg>
-                  {/* OrbFloatingButtons component hidden */}
-                  <div className="hidden">
-                    <OrbFloatingButtons animationStep={animationStep} />
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      About us
+                    </motion.button>
                   </div>
+
+                  {/* Side buttons */}
+                  <div className="flex justify-center items-center gap-8 mb-6">
+                    <motion.button
+                      onClick={() => protectedScrollToSection(5)}
+                      className={`px-6 py-3 rounded-xl backdrop-blur-lg font-medium text-sm transition-all duration-300 hover:scale-105 active:scale-95 border-2 ${
+                        theme === "light"
+                          ? "border-blue-400/40 bg-white/80 hover:bg-white/90 text-gray-800"
+                          : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20 text-white"
+                      }`}
+                      style={{
+                        background:
+                          theme === "light"
+                            ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Portfolio
+                    </motion.button>
+
+                    <div className="w-32" /> {/* Spacer for center */}
+
+                    <motion.button
+                      onClick={() => protectedScrollToSection(3)}
+                      className={`px-6 py-3 rounded-xl backdrop-blur-lg font-medium text-sm transition-all duration-300 hover:scale-105 active:scale-95 border-2 ${
+                        theme === "light"
+                          ? "border-blue-400/40 bg-white/80 hover:bg-white/90 text-gray-800"
+                          : "border-blue-300/30 bg-blue-400/10 hover:bg-blue-400/20 text-white"
+                      }`}
+                      style={{
+                        background:
+                          theme === "light"
+                            ? `linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 50%, transparent 100%)`
+                            : `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                        boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Services
+                    </motion.button>
+                  </div>
+
+                  {/* Bottom scroll indicator */}
+                  <motion.div
+                    className="flex flex-col items-center mt-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 3, duration: 0.8 }}
+                  >
+                    <p className={`text-sm mb-2 ${theme === "light" ? "text-gray-600" : "text-white/60"}`}>
+                      Scroll Down
+                    </p>
+                    <motion.div
+                      className={`w-6 h-10 border-2 rounded-full ${
+                        theme === "light" ? "border-gray-400" : "border-white/40"
+                      } relative`}
+                      animate={{ opacity: [0.3, 1, 0.3] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <motion.div
+                        className={`w-1 h-1 rounded-full mx-auto mt-2 ${
+                          theme === "light" ? "bg-gray-600" : "bg-white"
+                        }`}
+                        animate={{ y: [0, 16, 0] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                    </motion.div>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
@@ -12839,7 +12899,7 @@ const ContactUsSection = React.forwardRef<HTMLDivElement, SectionProps>(
           {[
             { type: "email", x: 15, y: 35, icon: "��️" },
             { type: "call", x: 75, y: 25, icon: "📞" },
-            { type: "chat", x: 25, y: 70, icon: "💬" },
+            { type: "chat", x: 25, y: 70, icon: "���" },
             { type: "meet", x: 80, y: 65, icon: "🤝" },
           ].map((card, i) => (
             <motion.div
