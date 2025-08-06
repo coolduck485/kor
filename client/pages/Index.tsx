@@ -3953,35 +3953,29 @@ export default function Index() {
                 </motion.div>
               </motion.div>
 
-              {/* Modern Scroll Indicator */}
+              {/* Clean Scroll Indicator */}
               <motion.div
                 className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 2, duration: 0.8 }}
               >
-                <p className={`text-sm mb-4 font-medium ${theme === "light" ? "text-gray-600" : "text-white/70"}`}>
+                <p className={`text-sm mb-3 font-medium ${theme === "light" ? "text-gray-600" : "text-white/70"}`}>
                   Scroll Down
                 </p>
                 <motion.div
-                  className="flex flex-col items-center space-y-1"
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className={`w-6 h-10 border-2 rounded-full ${
+                    theme === "light" ? "border-gray-400" : "border-white/40"
+                  } flex items-start justify-center pt-2`}
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                 >
                   <motion.div
-                    className={`w-1 h-1 rounded-full ${theme === "light" ? "bg-blue-600" : "bg-blue-400"}`}
-                    animate={{ opacity: [0.3, 1, 0.3] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: 0 }}
-                  />
-                  <motion.div
-                    className={`w-1 h-1 rounded-full ${theme === "light" ? "bg-blue-600" : "bg-blue-400"}`}
-                    animate={{ opacity: [0.3, 1, 0.3] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: 0.2 }}
-                  />
-                  <motion.div
-                    className={`w-1 h-1 rounded-full ${theme === "light" ? "bg-blue-600" : "bg-blue-400"}`}
-                    animate={{ opacity: [0.3, 1, 0.3] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: 0.4 }}
+                    className={`w-1 h-1 rounded-full ${
+                      theme === "light" ? "bg-gray-600" : "bg-white"
+                    }`}
+                    animate={{ y: [0, 16, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   />
                 </motion.div>
               </motion.div>
