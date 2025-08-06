@@ -943,7 +943,7 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ███���█████████��██���█���███████���███����█████ 60%
+                      CPU: ███���█████���███��██���█���███████���███����█████ 60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -2066,10 +2066,7 @@ export default function Index() {
           onClick={() => {
             protectedToggleHelpModal(true);
             setHasInteractedWithHelp(true);
-            dismissTooltip("help-button");
           }}
-          onMouseEnter={() => dismissTooltip("help-button")}
-          onTouchStart={() => dismissTooltip("help-button")}
           disabled={isScrolling}
           className={`group relative p-2 sm:p-2.5 md:p-2.5 lg:p-3 w-10 h-10 sm:w-11 sm:h-11 md:w-11 md:h-11 lg:w-12 lg:h-12 rounded-full border-2 backdrop-blur-lg hover-120hz performance-optimized flex items-center justify-center ${
             isScrolling ? "pointer-events-none opacity-60" : ""
@@ -2094,27 +2091,6 @@ export default function Index() {
             }`}
           />
 
-          {/* Tooltip - positioned to the left like navigation buttons */}
-          {shouldShowTooltip("help-button") && !isHelpModalOpen && (
-            <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-100 transition-all duration-300 transform translate-x-0 pointer-events-none">
-              <div
-                className={`px-3 py-1.5 rounded-lg border backdrop-blur-sm text-xs font-medium whitespace-nowrap ${
-                  theme === "light"
-                    ? "border-blue-400/40 bg-white/90 text-gray-800"
-                    : "border-blue-300/30 bg-black/80 text-white"
-                }`}
-              >
-                Click here for help
-                <div
-                  className={`absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent ${
-                    theme === "light"
-                      ? "border-l-white/90"
-                      : "border-l-black/80"
-                  }`}
-                />
-              </div>
-            </div>
-          )}
         </button>
       </div>
 
