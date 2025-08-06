@@ -83,10 +83,6 @@ export default function Index() {
   const [isNavbarHovered, setIsNavbarHovered] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
 
-
-
-
-
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
 
@@ -814,11 +810,7 @@ export default function Index() {
           <>
             {/* Toggle Buttons Container - HIDDEN */}
             <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[9999] pointer-events-auto hidden">
-              <div
-                className="group relative"
-
-              >
-
+              <div className="group relative">
                 {/* Container for existing toggles */}
                 <div
                   className="rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 border-green-300/30 bg-green-400/5"
@@ -927,7 +919,8 @@ export default function Index() {
                       className="text-xs text-green-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      CPU: ���██���█████���███��██���█���███████���███����█████ 60%
+                      CPU: ���██���█████���███��██���█���███████���███����█████
+                      60%
                     </div>
                     <div
                       className="text-xs text-amber-400 mb-1"
@@ -1988,7 +1981,6 @@ export default function Index() {
                   : "text-white group-hover:text-blue-300"
               }`}
             />
-
           </button>
         )}
 
@@ -2029,7 +2021,6 @@ export default function Index() {
                     : "text-white group-hover:text-blue-300"
                 }`}
               />
-
             </button>
           )}
       </div>
@@ -2074,7 +2065,6 @@ export default function Index() {
                 : "text-white group-hover:text-blue-300"
             }`}
           />
-
         </button>
       </div>
 
@@ -2449,11 +2439,7 @@ export default function Index() {
                 isMobileMenuOpen ? "blur-sm" : ""
               }`}
             >
-              <div
-                className="group relative"
-
-              >
-
+              <div className="group relative">
                 {/* Container for existing toggles */}
                 <div
                   className={`rounded-xl sm:rounded-2xl border-2 backdrop-blur-2xl p-2 sm:p-4 ${
@@ -3150,7 +3136,8 @@ export default function Index() {
                 <div
                   className="w-64 h-64 rounded-full opacity-50"
                   style={{
-                    background: "radial-gradient(circle, rgba(73, 146, 255, 0.4) 0%, rgba(73, 146, 255, 0.1) 40%, transparent 70%)",
+                    background:
+                      "radial-gradient(circle, rgba(73, 146, 255, 0.4) 0%, rgba(73, 146, 255, 0.1) 40%, transparent 70%)",
                     filter: "blur(30px)",
                   }}
                 />
@@ -3807,7 +3794,6 @@ export default function Index() {
                   </div>
                 </motion.div>
               </motion.div>
-
             </div>
 
             {/* Floating Decorative Elements */}
@@ -4159,7 +4145,6 @@ export default function Index() {
               <polyline points="5,12 12,5 19,12" />
             </svg>
           )}
-
         </motion.button>
 
         {/* Enhanced Background Animations */}
@@ -5525,7 +5510,6 @@ function MobileHamburgerMenu({
     }
   }, [isOpen]);
 
-
   return (
     <>
       {/* Hamburger Button - MOBILE ONLY */}
@@ -5601,7 +5585,6 @@ function MobileHamburgerMenu({
               } ${theme === "light" ? "text-gray-800" : "text-white/90"}`}
             />
           </div>
-
         </motion.button>
       </div>
 
