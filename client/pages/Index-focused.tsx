@@ -278,7 +278,7 @@ export default function FocusedIndex() {
                   transition={{ duration: 2, repeat: Infinity }}
                 />
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
