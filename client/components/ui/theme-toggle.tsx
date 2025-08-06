@@ -40,7 +40,7 @@ export function ThemeToggle() {
             <span className="sr-only">Invert colors</span>
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="bottom" className="animate-tooltip-float">
+        <TooltipContent side="bottom">
           <p>{mode === "retro" ? "Theme toggle disabled in retro mode" : theme === "light" ? "Switch to dark theme" : "Switch to light theme"}</p>
         </TooltipContent>
       </Tooltip>
