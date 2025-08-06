@@ -112,6 +112,16 @@ export default function Index() {
     }
   };
 
+  // Function to clear all dismissed tooltips (for debugging)
+  const clearDismissedTooltips = () => {
+    setDismissedTooltips(new Set());
+    try {
+      localStorage.removeItem("dismissedTooltips");
+    } catch {
+      // Handle localStorage errors gracefully
+    }
+  };
+
   // Check if tooltip should be shown
   const shouldShowTooltip = (tooltipId: string) => {
     // Always show navigation tooltips
@@ -983,7 +993,7 @@ export default function Index() {
                       className="text-xs text-amber-400 mb-1"
                       style={{ lineHeight: "1.2", fontFamily: "monospace" }}
                     >
-                      RAM: ����█�����██���██████���██����███████��█ 50%
+                      RAM: ����█�����██���██████���██����███████����█ 50%
                     </div>
                     <div className="text-xs text-green-400 mt-1">
                       NETWORK: {systemStats.networkUp}GB/s ↑ |{" "}
