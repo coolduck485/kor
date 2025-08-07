@@ -5683,7 +5683,7 @@ function MobileHamburgerMenu({
               </motion.button>
             </TooltipTrigger>
             <TooltipContent side="right">
-              <p>{isOpen ? "Close navigation menu" : "Open navigation menu"}</p>
+              <span>{isOpen ? "Close navigation menu" : "Open navigation menu"}</span>
             </TooltipContent>
           </Tooltip>
       </div>
