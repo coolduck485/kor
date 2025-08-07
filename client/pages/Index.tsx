@@ -4235,7 +4235,7 @@ export default function Index() {
             </motion.button>
           </TooltipTrigger>
           <TooltipContent side="right">
-            <p>{currentSection === 0 ? "Scroll to explore" : "Back to top"}</p>
+            <span>{currentSection === 0 ? "Scroll to explore" : "Back to top"}</span>
           </TooltipContent>
         </Tooltip>
 
