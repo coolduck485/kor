@@ -2046,32 +2046,38 @@ export default function Index() {
         <>
           {/* Next Section Hint - Always visible on home page */}
           <div
-            className="fixed right-[-120px] sm:right-[-140px] md:right-[-160px] lg:right-[-180px] xl:right-[-200px] top-1/2 -translate-y-1/2 z-[9998] animate-nav-hint-bounce"
+            className="fixed right-20 sm:right-24 md:right-28 lg:right-32 xl:right-36 top-1/2 -translate-y-1/2 z-[9998] animate-nav-hint-bounce"
             style={{ position: "fixed" }}
           >
             <div
-              className={`px-4 py-2.5 rounded-lg border backdrop-blur-sm font-medium whitespace-nowrap shadow-xl ${
+              className={`px-4 py-2.5 rounded-lg border backdrop-blur-lg font-medium whitespace-nowrap shadow-xl relative ${
                 theme === "light"
-                  ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white border-blue-500/20"
-                  : "bg-gradient-to-r from-blue-600 to-blue-700 text-white border-blue-500/20"
-              } relative`}
+                  ? "bg-white/90 text-blue-600 border-blue-400/40"
+                  : "bg-blue-400/10 text-white border-blue-300/30"
+              }`}
               style={{
-                boxShadow: "0 0 20px rgba(59, 130, 246, 0.5)",
+                boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
               }}
             >
               Click to scroll down
               {/* Speech bubble tail pointing left */}
               <div
-                className="absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-gradient-to-r from-blue-600 to-blue-700 border-blue-500/20 rotate-45 border-b border-l"
+                className={`absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 border-b border-l ${
+                  theme === "light"
+                    ? "bg-white/90 border-blue-400/40"
+                    : "bg-blue-400/10 border-blue-300/30"
+                }`}
               />
               {/* Chevron icon */}
-              <span className="absolute right-2 top-1/2 -translate-y-1/2 text-white/80 font-bold text-lg">›</span>
+              <span className={`absolute right-2 top-1/2 -translate-y-1/2 font-bold text-lg ${
+                theme === "light" ? "text-blue-600/80" : "text-white/80"
+              }`}>›</span>
             </div>
           </div>
 
           {/* Scroll to Explore Hint for bottom button */}
           <div
-            className={`fixed left-[-140px] sm:left-[-160px] md:left-[-180px] lg:left-[-200px] xl:left-[-220px] z-[9998] animate-nav-hint-bounce transition-all duration-300 ${
+            className={`fixed left-20 sm:left-24 md:left-28 lg:left-32 xl:left-36 z-[9998] animate-nav-hint-bounce transition-all duration-300 ${
               isMobileSafari || isIOS
                 ? "bottom-20" // Above Safari search bar
                 : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12" // Normal position
@@ -2082,22 +2088,28 @@ export default function Index() {
             }}
           >
             <div
-              className={`px-4 py-2.5 rounded-lg border backdrop-blur-sm font-medium whitespace-nowrap shadow-xl ${
+              className={`px-4 py-2.5 rounded-lg border backdrop-blur-lg font-medium whitespace-nowrap shadow-xl relative ${
                 theme === "light"
-                  ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white border-blue-500/20"
-                  : "bg-gradient-to-r from-blue-600 to-blue-700 text-white border-blue-500/20"
-              } relative`}
+                  ? "bg-white/90 text-blue-600 border-blue-400/40"
+                  : "bg-blue-400/10 text-white border-blue-300/30"
+              }`}
               style={{
-                boxShadow: "0 0 20px rgba(59, 130, 246, 0.5)",
+                boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
               }}
             >
               Scroll to explore
               {/* Speech bubble tail pointing right */}
               <div
-                className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-gradient-to-r from-blue-600 to-blue-700 border-blue-500/20 rotate-45 border-t border-r"
+                className={`absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 border-t border-r ${
+                  theme === "light"
+                    ? "bg-white/90 border-blue-400/40"
+                    : "bg-blue-400/10 border-blue-300/30"
+                }`}
               />
               {/* Chevron icon */}
-              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-white/80 font-bold text-lg rotate-180">›</span>
+              <span className={`absolute left-2 top-1/2 -translate-y-1/2 font-bold text-lg rotate-180 ${
+                theme === "light" ? "text-blue-600/80" : "text-white/80"
+              }`}>›</span>
             </div>
           </div>
         </>
