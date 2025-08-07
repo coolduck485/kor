@@ -852,7 +852,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ █���║   ██║██╔══█��╗
 █���║  ██��╚█���█������█╔╝�����║  ██║
-�������������╝  ╚═╝ ���������������════╝ ╚���╝  ��═╝`}
+���������������╝  ╚═╝ ���������������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -2040,10 +2040,10 @@ export default function Index() {
             </Tooltip>
           )}
 
-        {/* Always-visible navigation hint for home page - next to navigation buttons */}
+        {/* Always-visible navigation hint for home page - to the right of the down button */}
         {currentSection === 0 && !isHelpModalOpen && !isMobileMenuOpen && (
           <div
-            className="absolute right-[-180px] top-1/2 -translate-y-1/2 z-[9998] animate-nav-hint-bounce"
+            className="absolute left-16 top-1/2 -translate-y-1/2 z-[9998] animate-nav-hint-bounce"
             style={{
               position: "absolute",
               pointerEvents: "none"
