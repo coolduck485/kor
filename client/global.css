@@ -31,6 +31,31 @@ body > div {
   display: none !important;
 }
 
+/* Navigation hint bounce animation */
+@keyframes nav-hint-bounce {
+  0%,
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(-8px);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateX(4px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(-4px);
+    opacity: 0.9;
+  }
+}
+
+.animate-nav-hint-bounce {
+  animation: nav-hint-bounce 2s ease-in-out infinite;
+}
+
 /* Hamburger menu performance optimizations */
 .mobile-menu-backdrop {
   will-change: opacity;
