@@ -43,7 +43,7 @@ export function RetroToggle() {
           </Button>
         </TooltipTrigger>
         <TooltipContent side="bottom">
-          <p>{isPinkActive ? "Retro toggle disabled in pink theme" : mode === "retro" ? "Switch to modern mode" : "Switch to retro mode"}</p>
+          <span>{isPinkActive ? "Retro disabled in pink theme" : mode === "retro" ? "Switch to modern mode" : "Switch to retro mode"}</span>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
