@@ -2039,6 +2039,42 @@ export default function Index() {
               </TooltipContent>
             </Tooltip>
           )}
+
+        {/* Always-visible navigation hint for home page - next to navigation buttons */}
+        {currentSection === 0 && !isHelpModalOpen && !isMobileMenuOpen && (
+          <div
+            className="absolute right-16 sm:right-20 md:right-24 lg:right-28 xl:right-32 top-1/2 -translate-y-1/2 z-[9998] animate-nav-hint-bounce"
+            style={{
+              position: "absolute",
+              pointerEvents: "none"
+            }}
+          >
+            <div
+              className={`px-4 py-2.5 rounded-lg border backdrop-blur-lg font-medium whitespace-nowrap shadow-xl relative ${
+                theme === "light"
+                  ? "bg-white/90 text-blue-600 border-blue-400/40"
+                  : "bg-blue-400/10 text-white border-blue-300/30"
+              }`}
+              style={{
+                boxShadow: "0 0 20px rgba(73, 146, 255, 0.3)",
+              }}
+            >
+              Click to scroll down
+              {/* Speech bubble tail pointing left */}
+              <div
+                className={`absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 border-b border-l ${
+                  theme === "light"
+                    ? "bg-white/90 border-blue-400/40"
+                    : "bg-blue-400/10 border-blue-300/30"
+                }`}
+              />
+              {/* Chevron icon */}
+              <span className={`absolute right-2 top-1/2 -translate-y-1/2 font-bold text-lg ${
+                theme === "light" ? "text-blue-600/80" : "text-white/80"
+              }`}>›</span>
+            </div>
+          </div>
+        )}
       </div>
 
 
