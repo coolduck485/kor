@@ -41,7 +41,7 @@ export function ThemeToggle() {
           </Button>
         </TooltipTrigger>
         <TooltipContent side="bottom">
-          <p>{mode === "retro" ? "Theme toggle disabled in retro mode" : theme === "light" ? "Switch to dark theme" : "Switch to light theme"}</p>
+          <span>{mode === "retro" ? "Theme disabled in retro mode" : theme === "light" ? "Switch to dark theme" : "Switch to light theme"}</span>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
