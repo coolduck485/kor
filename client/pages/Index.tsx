@@ -852,7 +852,7 @@ export default function Index() {
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ █���║   ██║██╔══█��╗
 █���║  ██��╚█���█������█╔╝�����║  ██║
-�����������╝  ╚═╝ ���������������════╝ ╚���╝  ��═╝`}
+�����������╝  ╚═╝ ����������������════╝ ╚���╝  ��═╝`}
                 </pre>
                 <div className="retro-subtitle">RETRO DEVELOPMENT SYSTEMS</div>
               </motion.div>
@@ -2040,6 +2040,68 @@ export default function Index() {
             </Tooltip>
           )}
       </div>
+
+      {/* Always-visible Navigation Hints for Home Page */}
+      {currentSection === 0 && !isHelpModalOpen && !isMobileMenuOpen && (
+        <>
+          {/* Next Section Hint - Always visible on home page */}
+          <div
+            className="fixed right-[-120px] sm:right-[-140px] md:right-[-160px] lg:right-[-180px] xl:right-[-200px] top-1/2 -translate-y-1/2 z-[9998] animate-nav-hint-bounce"
+            style={{ position: "fixed" }}
+          >
+            <div
+              className={`px-4 py-2.5 rounded-lg border backdrop-blur-sm font-medium whitespace-nowrap shadow-xl ${
+                theme === "light"
+                  ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white border-blue-500/20"
+                  : "bg-gradient-to-r from-blue-600 to-blue-700 text-white border-blue-500/20"
+              } relative`}
+              style={{
+                boxShadow: "0 0 20px rgba(59, 130, 246, 0.5)",
+              }}
+            >
+              Click to scroll down
+              {/* Speech bubble tail pointing left */}
+              <div
+                className="absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-gradient-to-r from-blue-600 to-blue-700 border-blue-500/20 rotate-45 border-b border-l"
+              />
+              {/* Chevron icon */}
+              <span className="absolute right-2 top-1/2 -translate-y-1/2 text-white/80 font-bold text-lg">›</span>
+            </div>
+          </div>
+
+          {/* Scroll to Explore Hint for bottom button */}
+          <div
+            className={`fixed left-[-140px] sm:left-[-160px] md:left-[-180px] lg:left-[-200px] xl:left-[-220px] z-[9998] animate-nav-hint-bounce transition-all duration-300 ${
+              isMobileSafari || isIOS
+                ? "bottom-20" // Above Safari search bar
+                : "bottom-6 sm:bottom-8 md:bottom-10 lg:bottom-12" // Normal position
+            }`}
+            style={{
+              position: "fixed",
+              animationDelay: "0.5s",
+            }}
+          >
+            <div
+              className={`px-4 py-2.5 rounded-lg border backdrop-blur-sm font-medium whitespace-nowrap shadow-xl ${
+                theme === "light"
+                  ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white border-blue-500/20"
+                  : "bg-gradient-to-r from-blue-600 to-blue-700 text-white border-blue-500/20"
+              } relative`}
+              style={{
+                boxShadow: "0 0 20px rgba(59, 130, 246, 0.5)",
+              }}
+            >
+              Scroll to explore
+              {/* Speech bubble tail pointing right */}
+              <div
+                className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-gradient-to-r from-blue-600 to-blue-700 border-blue-500/20 rotate-45 border-t border-r"
+              />
+              {/* Chevron icon */}
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-white/80 font-bold text-lg rotate-180">›</span>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Help Button - Positioned at bottom right corner */}
       <div
