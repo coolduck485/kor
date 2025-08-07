@@ -847,7 +847,7 @@ export default function Index() {
                     fontSize: "1.2rem",
                   }}
                 >
-                  {`��█╗  █���������� █████����� ██����������██╗
+                  {`��█╗  █���������� █████����� ██������������██╗
 ��█�� �����█╔����█��╔═══���█╗██�����══�����╗
 █████╔╝ ██║   ██║███�������█╔��
 █��╔�����█╗ █���║   ██║██╔══█��╗
@@ -2043,7 +2043,7 @@ export default function Index() {
         {/* Always-visible navigation hint for home page - to the right of the down button */}
         {currentSection === 0 && !isHelpModalOpen && !isMobileMenuOpen && (
           <div
-            className="absolute right-16 top-[-5px] sm:top-[-4px] md:top-[-4px] lg:top-[-3.5px] z-[9998] animate-nav-hint-bounce"
+            className="absolute right-16 top-[-8px] sm:top-[-7px] md:top-[-7px] lg:top-[-6px] z-[9998] animate-nav-hint-bounce"
             style={{
               position: "absolute",
               pointerEvents: "none"
