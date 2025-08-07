@@ -2148,7 +2148,7 @@ export default function Index() {
             </button>
           </TooltipTrigger>
           <TooltipContent side="left">
-            <p>{isScrolling ? "Help disabled while scrolling" : "Open help and information"}</p>
+            <span>{isScrolling ? "Help disabled while scrolling" : "Open help and information"}</span>
           </TooltipContent>
         </Tooltip>
       </div>
