@@ -2043,7 +2043,7 @@ export default function Index() {
         {/* Always-visible navigation hint for home page - to the right of the down button */}
         {currentSection === 0 && !isHelpModalOpen && !isMobileMenuOpen && (
           <div
-            className="absolute right-16 top-1/2 -translate-y-1/2 z-[9998] animate-nav-hint-bounce"
+            className="absolute right-16 top-0 z-[9998] animate-nav-hint-bounce"
             style={{
               position: "absolute",
               pointerEvents: "none"
