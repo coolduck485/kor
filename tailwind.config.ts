@@ -406,6 +406,24 @@ export default {
             filter: "blur(6px)",
           },
         },
+        "nav-hint-bounce": {
+          "0%, 100%": {
+            transform: "translateX(0px)",
+            opacity: "1",
+          },
+          "25%": {
+            transform: "translateX(-8px)",
+            opacity: "0.9",
+          },
+          "50%": {
+            transform: "translateX(4px)",
+            opacity: "1",
+          },
+          "75%": {
+            transform: "translateX(-4px)",
+            opacity: "0.9",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
